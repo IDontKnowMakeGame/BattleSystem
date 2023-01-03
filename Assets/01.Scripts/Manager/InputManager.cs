@@ -11,6 +11,7 @@ public class InputManager : IManager
         MoveLeft,
         MoveRight,
         Attack,
+        Skill
     }
     
     private Dictionary<InputSignal, KeyCode> _inputMap;
@@ -23,6 +24,7 @@ public class InputManager : IManager
         _inputMap.Add(InputSignal.MoveLeft, KeyCode.LeftArrow);
         _inputMap.Add(InputSignal.MoveRight, KeyCode.RightArrow);
         _inputMap.Add(InputSignal.Attack, KeyCode.Z);
+        _inputMap.Add(InputSignal.Skill, KeyCode.X);
     }
 	public bool GetKeyUpInput(InputSignal signal)
 	{

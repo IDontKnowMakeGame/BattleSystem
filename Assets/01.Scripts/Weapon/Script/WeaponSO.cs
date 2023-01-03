@@ -8,10 +8,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New WeaponSO", menuName = "SO/Weapon")]
 public class WeaponSO : ScriptableObject
 {
+	public int idx;
 	public WeaponBaseStat weaponStat;
 }
 
 
+[Serializable]
 public struct WeaponBaseStat
 {
     public float damage;

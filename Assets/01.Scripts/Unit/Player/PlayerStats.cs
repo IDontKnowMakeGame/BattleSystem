@@ -28,6 +28,7 @@ namespace Unit.Player
         private Slider adrenalineSlider;
         [SerializeField]
         private GameObject adrenalineFillArea;
+        
         public override void Start()
         {
            
@@ -40,7 +41,15 @@ namespace Unit.Player
 
         private void ChangeStatsUI()
         {
-            // FillArea Check
+            if (adrenalineSlider is null)
+                return;
+            if(adrenalineFillArea is null)
+                return;
+            if(angerSlider is null)
+                return;
+            if(angerFillArea is null)
+                return;
+                // FillArea Check
             if (angerPercent == 0 && angerFillArea.activeSelf)
                 angerFillArea.SetActive(false);
             else if (angerPercent > 0 && !angerFillArea.activeSelf)
