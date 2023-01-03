@@ -453,6 +453,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMove:
     Speed: 5
+  playerAttack:
+    Delay: 1
 --- !u!1 &1790971268
 GameObject:
   m_ObjectHideFlags: 0

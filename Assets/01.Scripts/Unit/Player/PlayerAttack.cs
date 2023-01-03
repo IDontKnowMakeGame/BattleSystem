@@ -34,8 +34,8 @@ namespace Unit.Player
             if(timer <= 0)
             {
                 Debug.Log("АјАн");
+                timer = Delay;
             }
-            timer = Delay;
         }
     }
 }

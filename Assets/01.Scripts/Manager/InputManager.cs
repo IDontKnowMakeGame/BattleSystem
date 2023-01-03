@@ -18,11 +18,11 @@ public class InputManager : IManager
     public InputManager()
     {
         _inputMap = new Dictionary<InputSignal, KeyCode>();
-        _inputMap.Add(InputSignal.MoveForward, KeyCode.W);
-        _inputMap.Add(InputSignal.MoveBackward, KeyCode.S);
-        _inputMap.Add(InputSignal.MoveLeft, KeyCode.A);
-        _inputMap.Add(InputSignal.MoveRight, KeyCode.D);
-        _inputMap.Add(InputSignal.Attack, KeyCode.Space);
+        _inputMap.Add(InputSignal.MoveForward, KeyCode.UpArrow);
+        _inputMap.Add(InputSignal.MoveBackward, KeyCode.DownArrow);
+        _inputMap.Add(InputSignal.MoveLeft, KeyCode.LeftArrow);
+        _inputMap.Add(InputSignal.MoveRight, KeyCode.RightArrow);
+        _inputMap.Add(InputSignal.Attack, KeyCode.Z);
     }
     
     public bool GetInput(InputSignal signal)
