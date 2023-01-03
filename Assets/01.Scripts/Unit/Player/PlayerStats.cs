@@ -9,6 +9,11 @@ namespace Unit.Player
     [System.Serializable]
     public class PlayerStats : Behaviour
     {
+        [SerializeField]
+        private float _hp;
+
+        public float HP => _hp;
+
         [Header("Percent")]
         [Range(0, 10)]
         [SerializeField] private int angerPercent;
