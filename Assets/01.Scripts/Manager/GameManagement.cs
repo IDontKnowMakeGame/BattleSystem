@@ -30,7 +30,7 @@ namespace Manager
         
         private Dictionary<Type, IManager> _managers = new Dictionary<Type, IManager>();
 
-        public IManager AddManager<T>() where T : IManager, new()
+        public IManager AddManager<T>() where T : IManager, new() //
         {
             var type = typeof(T);
             if (_managers.ContainsKey(type))
@@ -44,7 +44,7 @@ namespace Manager
             return manager;
         }
 
-        public T GetManager<T>() where T : IManager
+        public T GetManager<T>() where T : IManager //딕셔너리에 있으면 가져와주고
         {
             var type = typeof(T);
             if (!_managers.ContainsKey(type))

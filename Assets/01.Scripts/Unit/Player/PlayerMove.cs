@@ -21,13 +21,13 @@ namespace Unit.Player
 
         public override void Update()
         {
-            if (_inputManager.GetInput(InputManager.InputSignal.MoveForward))
+            if (_inputManager.GetKeyInput(InputManager.InputSignal.MoveForward))
                 _moveDirection.z = 1;
-            if (_inputManager.GetInput(InputManager.InputSignal.MoveBackward))
+            if (_inputManager.GetKeyInput(InputManager.InputSignal.MoveBackward))
                 _moveDirection.z = -1;
-            if (_inputManager.GetInput(InputManager.InputSignal.MoveRight))
+            if (_inputManager.GetKeyInput(InputManager.InputSignal.MoveRight))
                 _moveDirection.x = 1;
-            if (_inputManager.GetInput(InputManager.InputSignal.MoveLeft))
+            if (_inputManager.GetKeyInput(InputManager.InputSignal.MoveLeft))
                 _moveDirection.x = -1;
             Translate(_moveDirection);
         }

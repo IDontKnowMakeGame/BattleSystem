@@ -7,12 +7,12 @@ using UnityEngine.PlayerLoop;
 
 public class PlayerBase : UnitBase
 {
-    
+    [SerializeField] private PlayerSkill _playerSkill = null;
     [SerializeField] private PlayerMove playerMove = null;
     protected override void Init()
     {
         playerMove = AddBehaviour<PlayerMove>(playerMove);
-    }
+	}
 
     protected override void Awake()
     {

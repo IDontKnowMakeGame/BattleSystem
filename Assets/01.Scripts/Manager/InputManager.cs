@@ -24,9 +24,19 @@ public class InputManager : IManager
         _inputMap.Add(InputSignal.MoveRight, KeyCode.D);
         _inputMap.Add(InputSignal.Attack, KeyCode.Space);
     }
+	public bool GetKeyUpInput(InputSignal signal)
+	{
+		return Input.GetKeyUp(_inputMap[signal]);
+	}
     
-    public bool GetInput(InputSignal signal)
+    public bool GetKeyInput(InputSignal signal)
     {
         return Input.GetKey(_inputMap[signal]);
     }
+
+	public bool GetKeyDownInput(InputSignal signal)
+	{
+		return Input.GetKeyDown(_inputMap[signal]);
+	}
+
 }

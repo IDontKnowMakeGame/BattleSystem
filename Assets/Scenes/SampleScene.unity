@@ -451,6 +451,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16aacbcda4fcab842a2031aefbe7b7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerSkill:
+    _weapons:
+    - {fileID: 11400000, guid: 455ec911e2809ce4abe9f38c2f80b097, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   playerMove:
     Speed: 5
 --- !u!1 &1790971268
