@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unit;
 using UnityEngine;
+using System;
 
 namespace Unit.Player
 {
@@ -13,6 +14,7 @@ namespace Unit.Player
 
         private float timer;
 
+        public Action onAttackEnd;
         public override void Start()
         {
             timer = Delay;
@@ -35,7 +37,14 @@ namespace Unit.Player
             {
                 Debug.Log("공격");
                 timer = Delay;
+                onAttackEnd?.Invoke();
             }
+        }
+
+        public void DoAttack(Vector3 dir)
+		{
+            Debug.Log("공격");
+            onAttackEnd?.Invoke();
         }
     }
 }

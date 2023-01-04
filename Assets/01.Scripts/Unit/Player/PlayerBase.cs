@@ -30,8 +30,6 @@ public class PlayerBase : UnitBase
     
     protected override void Update()
     {
-        if(GameManagement.Instance.GetManager<InputManager>().GetKeyDownInput(InputManager.InputSignal.Skill))
-            playerWeapon.UseSkill();
         base.Update();
     }
 }

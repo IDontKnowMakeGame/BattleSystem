@@ -10,7 +10,10 @@ public class InputManager : IManager
         MoveBackward,
         MoveLeft,
         MoveRight,
-        Attack,
+        FowardAttack,
+        BackwardAttack,
+        LeftAttack,
+        RightAttack,
         Skill
     }
     
@@ -23,7 +26,10 @@ public class InputManager : IManager
         _inputMap.Add(InputSignal.MoveBackward, KeyCode.DownArrow);
         _inputMap.Add(InputSignal.MoveLeft, KeyCode.LeftArrow);
         _inputMap.Add(InputSignal.MoveRight, KeyCode.RightArrow);
-        _inputMap.Add(InputSignal.Attack, KeyCode.Z);
+        _inputMap.Add(InputSignal.FowardAttack, KeyCode.W);
+        _inputMap.Add(InputSignal.LeftAttack, KeyCode.A);
+        _inputMap.Add(InputSignal.RightAttack, KeyCode.D);
+        _inputMap.Add(InputSignal.BackwardAttack, KeyCode.S);
         _inputMap.Add(InputSignal.Skill, KeyCode.X);
     }
 	public bool GetKeyUpInput(InputSignal signal)

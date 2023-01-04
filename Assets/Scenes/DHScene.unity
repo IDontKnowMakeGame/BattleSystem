@@ -338,7 +338,7 @@ RectTransform:
   - {fileID: 873990516}
   - {fileID: 393266694}
   m_Father: {fileID: 2124043683}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -428,7 +428,7 @@ RectTransform:
   - {fileID: 767230297}
   - {fileID: 1503451274}
   m_Father: {fileID: 2124043683}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -1267,6 +1267,13 @@ MonoBehaviour:
     angerFillArea: {fileID: 1503451273}
     adrenalineSlider: {fileID: 554902715}
     adrenalineFillArea: {fileID: 393266693}
+  playerWeapon:
+    weapon: {fileID: 11400000, guid: 455ec911e2809ce4abe9f38c2f80b097, type: 2}
+    _greatSwordStat:
+      _dashBeforeWait: 0
+      _dashSpeed: 0
+      vec: {x: 0, y: 0, z: 0}
+    isSkill: 0
 --- !u!4 &1881923052
 Transform:
   m_ObjectHideFlags: 0
@@ -1419,8 +1426,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 554902714}
   - {fileID: 411206851}
+  - {fileID: 554902714}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

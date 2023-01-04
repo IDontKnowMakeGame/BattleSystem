@@ -11,7 +11,6 @@ namespace Unit.Player
     {
         [SerializeField]
         private float _hp;
-
         public float HP => _hp;
 
         [Header("Percent")]

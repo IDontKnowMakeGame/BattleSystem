@@ -2,6 +2,7 @@
 using Manager;
 using Unit;
 using UnityEngine;
+using System;
 
 namespace Unit.Player
 {
@@ -9,18 +10,27 @@ namespace Unit.Player
     public class PlayerMove : UnitMove
     {
         public float Speed;
+        public Action onMoveEnd;
+
         private Vector3 _moveDirection = Vector3.zero;
         private bool isMoving = false;
         private Sequence _seq;
         InputManager _inputManager;
 
+        PlayerWeapon _weapon;
+
         public override void Start()
         {
             _inputManager = GameManagement.Instance.GetManager<InputManager>();
+
+            _weapon = thisBase.GetBehaviour<PlayerWeapon>();
         }
 
         public override void Update()
         {
+            if (_weapon.isSkill)
+                return;
+
             if (_inputManager.GetKeyInput(InputManager.InputSignal.MoveForward))
                 _moveDirection.z = 1;
             if (_inputManager.GetKeyInput(InputManager.InputSignal.MoveBackward))
@@ -36,11 +46,14 @@ namespace Unit.Player
         {
             if (isMoving == true)
                 return;
+
             _seq = DOTween.Sequence();
             isMoving = true;
             var orignalPos = thisBase.transform.position;
             var nextPos = orignalPos + dir;
             var distance = Vector3.Distance(orignalPos, nextPos);
+
+            Debug.Log(distance);
             if (distance < 0.1f)
             {
                 isMoving = false;
@@ -52,10 +65,18 @@ namespace Unit.Player
             _seq.Append(thisBase.transform.DOMove(nextPos, duration).SetEase(Ease.Linear));
             _seq.AppendCallback(() =>
             {
+                onMoveEnd?.Invoke();
+                onMoveEnd = null;
                 _moveDirection = Vector2.zero;
                 isMoving = false;
                 _seq.Kill();
             });
+        }
+
+        public void Translation(Vector3 dir)
+		{
+            Debug.Log("?");
+            Translate(dir);
         }
     }
 }

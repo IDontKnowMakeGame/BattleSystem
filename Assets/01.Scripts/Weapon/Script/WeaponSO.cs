@@ -8,7 +8,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New WeaponSO", menuName = "SO/Weapon")]
 public class WeaponSO : ScriptableObject
 {
-	public int idx;
+	public SwordType type;
 	public WeaponBaseStat weaponStat;
 }
 
