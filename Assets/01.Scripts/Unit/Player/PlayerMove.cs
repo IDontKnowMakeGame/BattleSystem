@@ -29,7 +29,10 @@ namespace Unit.Player
         public override void Update()
         {
             if (_weapon.isSkill)
+			{
+                Debug.Log("엥");
                 return;
+			}
 
             if (_inputManager.GetKeyInput(InputManager.InputSignal.MoveForward))
                 _moveDirection.z = 1;

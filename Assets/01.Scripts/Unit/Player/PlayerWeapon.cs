@@ -33,25 +33,25 @@ public class Pair<T, K>
 [Serializable]
 public class PlayerWeapon : Behaviour
 {
-	[UnityEngine.SerializeField] private WeaponSO weapon;
-	private Dictionary<SwordType, Action> weaponSkills = new Dictionary<SwordType,Action>();
+	[UnityEngine.SerializeField] private WeaponContainer weapons;
+
+	private Dictionary<SwordType, Action> weaponSkills = new Dictionary<SwordType, Action>();
 
 	[Header("그레이트 소드라고용")]
 	[SerializeField]
 	GreatSwordStat _greatSwordStat;
 
-	[Space(6)]
-
+	//단검이라고요
 	[SerializeField]
 	ShotSwordStat _shotSwordStat;
 
-
-
+	#region 기본적인 스킬에서 쓰는 변수들
 	private float _currentTime;
 	private InputManager _inputManager;
 
 	public bool isSkill = false;
 	private bool isCoolTime = false;
+	#endregion
 	public override void Awake()
 	{
 		weaponSkills.Add(SwordType.GreatSword, OnGreatSwordDash);
@@ -68,17 +68,18 @@ public class PlayerWeapon : Behaviour
 
 	public override void Update()
 	{
-		weaponSkills[weapon.type]?.Invoke();
-	}
+		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.Test))
+		{
+			Reset();
+			weapons.ChangeWeapon();
+		}
 
-	public void SetWeapon(WeaponSO weapon)
-	{
-		this.weapon = weapon;
+		weaponSkills[weapons.CurrentWeapon.type]?.Invoke();
 	}
 
 	public void UseSkill()
 	{
-		weaponSkills[weapon.type]?.Invoke();
+		weaponSkills[weapons.CurrentWeapon.type]?.Invoke();
 	}
 
 	public void Reset()
@@ -90,8 +91,6 @@ public class PlayerWeapon : Behaviour
 	}
 	#endregion
 
-	//Skills are added to the list in the order they are in the weaponSO
-
 	#region 대검 스킬
 	private void OnGreatSwordDash()
 	{
@@ -100,6 +99,8 @@ public class PlayerWeapon : Behaviour
 
 		if (_inputManager.GetKeyInput(InputManager.InputSignal.Skill))
 			isSkill = true;
+		else if (_inputManager.GetKeyUpInput(InputManager.InputSignal.Skill))
+			isSkill = false;
 
 		if (!isSkill)
 			return;
@@ -134,7 +135,8 @@ public class PlayerWeapon : Behaviour
 	}
 	private void GreatSwordEnd()
 	{
-
+		Debug.Log("끝");
+		Reset();
 	}
 
 	[Serializable]
@@ -175,7 +177,7 @@ public class PlayerWeapon : Behaviour
 
 		if (_inputManager.GetKeyInput(InputManager.InputSignal.Skill))
 			isSkill = true;
-		else if(_inputManager.GetKeyUpInput(InputManager.InputSignal.Skill))
+		else if (_inputManager.GetKeyUpInput(InputManager.InputSignal.Skill))
 			isSkill = false;
 
 		if (!isSkill)

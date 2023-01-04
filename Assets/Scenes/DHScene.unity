@@ -342,7 +342,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -1.2999878, y: -16.399994}
+  m_AnchoredPosition: {x: -1.2999878, y: -16.400024}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &411206852
@@ -432,7 +432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -1.2999878, y: 3.3000183}
+  m_AnchoredPosition: {x: -1.2999878, y: 3.3000488}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &554902715
@@ -1268,7 +1268,7 @@ MonoBehaviour:
     adrenalineSlider: {fileID: 554902715}
     adrenalineFillArea: {fileID: 393266693}
   playerWeapon:
-    weapon: {fileID: 11400000, guid: 455ec911e2809ce4abe9f38c2f80b097, type: 2}
+    weapons: {fileID: 11400000, guid: 0cd7e0bd3d92a6648b46c81a4d9210bc, type: 2}
     _greatSwordStat:
       _dashBeforeWait: 0
       _dashSpeed: 0
