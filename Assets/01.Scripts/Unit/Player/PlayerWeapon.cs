@@ -13,22 +13,22 @@ public enum SwordType
 	ShotSword
 }
 
-public class Pair<T, K>
-{
-	public Pair()
-	{
+//public class Pair<T, K>
+//{
+//	public Pair()
+//	{
 
-	}
+//	}
 
-	public Pair(T first, K secound)
-	{
-		this.first = first;
-		this.secound = secound;
-	}
+//	public Pair(T first, K secound)
+//	{
+//		this.first = first;
+//		this.secound = secound;
+//	}
 
-	public T first;
-	public K secound;
-}
+//	public T first;
+//	public K secound;
+//}
 
 [Serializable]
 public class PlayerWeapon : Behaviour
@@ -37,16 +37,17 @@ public class PlayerWeapon : Behaviour
 
 	private Dictionary<SwordType, Action> weaponSkills = new Dictionary<SwordType, Action>();
 
-	[Header("그레이트 소드라고용")]
+	[Header("대검이라고용")]
 	[SerializeField]
 	GreatSwordStat _greatSwordStat;
 
-	//단검이라고요
+	[Header("단검이라고용")]
 	[SerializeField]
 	ShotSwordStat _shotSwordStat;
 
 	#region 기본적인 스킬에서 쓰는 변수들
 	private float _currentTime;
+	private float _maxTime;
 	private InputManager _inputManager;
 
 	public bool isSkill = false;
@@ -68,13 +69,15 @@ public class PlayerWeapon : Behaviour
 
 	public override void Update()
 	{
-		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.Test))
+		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.TestWeaponChange))
 		{
 			Reset();
 			weapons.ChangeWeapon();
 		}
 
 		weaponSkills[weapons.CurrentWeapon.type]?.Invoke();
+
+		Timer();
 	}
 
 	public void UseSkill()
@@ -90,6 +93,22 @@ public class PlayerWeapon : Behaviour
 		_shotSwordStat.count = 0;
 	}
 	#endregion
+
+	/// <summary>
+	/// 타이머
+	/// </summary>
+	private void Timer()
+	{
+		if(_currentTime < _maxTime && isCoolTime)
+		{
+			_currentTime += Time.deltaTime;
+		}
+		else
+		{
+			isCoolTime = false;
+			_currentTime = 0;
+		}
+	}
 
 	#region 대검 스킬
 	private void OnGreatSwordDash()
@@ -135,8 +154,10 @@ public class PlayerWeapon : Behaviour
 	}
 	private void GreatSwordEnd()
 	{
-		Debug.Log("끝");
-		Reset();
+		isCoolTime = true;
+		isSkill = false;
+		_currentTime = 0;
+		_maxTime = _greatSwordStat.CoolTime;
 	}
 
 	[Serializable]
@@ -147,6 +168,10 @@ public class PlayerWeapon : Behaviour
 		[SerializeField]
 		private float _dashSpeed;
 
+		[SerializeField]
+		private float _coolTime;
+
+		public float CoolTime => _coolTime;
 		public float DashBeforeWait => _dashBeforeWait;
 		public float DashSpeed => _dashSpeed;
 
@@ -228,6 +253,9 @@ public class PlayerWeapon : Behaviour
 		{
 			_shotSwordStat.count = 0;
 			isSkill = false;
+
+			_currentTime = 0;
+			_maxTime = _shotSwordStat.CoolTime;
 			return;
 		}
 		isSkill = true;
@@ -244,9 +272,17 @@ public class PlayerWeapon : Behaviour
 		Scotch(_shotSwordStat.vec);
 	}
 
+	[Serializable]
 	private struct ShotSwordStat
 	{
+		[SerializeField]
+		private float _coolTime;
+
+		public float CoolTime => _coolTime;
+
+		[HideInInspector]
 		public Vector3 vec;
+		[HideInInspector]
 		public int count;
 	}
 	#endregion

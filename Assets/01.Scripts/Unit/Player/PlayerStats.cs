@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unit;
 using UnityEngine.UI;
+using Manager;
 
 namespace Unit.Player
 {
     [System.Serializable]
-    public class PlayerStats : Behaviour
+    public class PlayerStats : UnitStat
     {
-        [SerializeField]
-        private float _hp;
-        public float HP => _hp;
-
         [Header("Percent")]
         [Range(0, 10)]
         [SerializeField] private int angerPercent;
@@ -27,14 +24,19 @@ namespace Unit.Player
         private Slider adrenalineSlider;
         [SerializeField]
         private GameObject adrenalineFillArea;
-        
+
+
+        private InputManager _testInputManager;
         public override void Start()
         {
-           
+            _testInputManager = GameManagement.Instance.GetManager<InputManager>();
         }
 
         public override void Update()
         {
+            if (_testInputManager.GetKeyDownInput(InputManager.InputSignal.TestHit))
+                Damage(5);
+
             ChangeStatsUI();
         }
 

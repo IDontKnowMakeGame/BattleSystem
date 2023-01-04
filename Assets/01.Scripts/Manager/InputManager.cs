@@ -15,7 +15,8 @@ public class InputManager : IManager
         LeftAttack,
         RightAttack,
         Skill,
-        Test
+        TestWeaponChange,
+        TestHit
     }
     
     private Dictionary<InputSignal, KeyCode> _inputMap;
@@ -32,7 +33,8 @@ public class InputManager : IManager
         _inputMap.Add(InputSignal.RightAttack, KeyCode.D);
         _inputMap.Add(InputSignal.BackwardAttack, KeyCode.S);
         _inputMap.Add(InputSignal.Skill, KeyCode.X);
-        _inputMap.Add(InputSignal.Test, KeyCode.T);
+        _inputMap.Add(InputSignal.TestWeaponChange, KeyCode.T);
+        _inputMap.Add(InputSignal.TestHit, KeyCode.P);
     }
 	public bool GetKeyUpInput(InputSignal signal)
 	{

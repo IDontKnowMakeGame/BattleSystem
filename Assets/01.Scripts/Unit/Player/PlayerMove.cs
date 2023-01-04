@@ -22,7 +22,6 @@ namespace Unit.Player
         public override void Start()
         {
             _inputManager = GameManagement.Instance.GetManager<InputManager>();
-
             _weapon = thisBase.GetBehaviour<PlayerWeapon>();
         }
 
@@ -55,8 +54,6 @@ namespace Unit.Player
             var orignalPos = thisBase.transform.position;
             var nextPos = orignalPos + dir;
             var distance = Vector3.Distance(orignalPos, nextPos);
-
-            Debug.Log(distance);
             if (distance < 0.1f)
             {
                 isMoving = false;

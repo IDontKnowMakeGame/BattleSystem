@@ -8,6 +8,10 @@
         // This Behaviour is enabled
         public bool IsEnabled { get; set; }
 
+        public virtual void OnEnable()
+        {
+            // Do stuff when the Base is disabled
+        }
         public virtual void Awake()
         {
             if (IsEnabled)

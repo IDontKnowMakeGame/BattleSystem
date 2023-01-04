@@ -2,6 +2,7 @@
 {
     public class UnitBase : Unit
     {
+        
         protected virtual void Init()
         {
             // Add Behaviours
@@ -44,6 +45,14 @@
             foreach (var behaviour in behaviours.Values)
             {
                 behaviour.OnDisable();
+            }
+        }
+
+        protected virtual void OnEnable()
+		{
+            foreach (var behaviour in behaviours.Values)
+            {
+                behaviour.OnEnable();
             }
         }
         

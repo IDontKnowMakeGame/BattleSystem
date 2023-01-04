@@ -289,7 +289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5595085135134373131}
   - component: {fileID: 5595085135134373132}
-  - component: {fileID: 5595085135134373133}
+  - component: {fileID: 5305500302803648441}
   m_Layer: 5
   m_Name: PlayerHpSlider
   m_TagString: Untagged
@@ -371,7 +371,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5595085135134373133
+--- !u!114 &5305500302803648441
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -380,12 +380,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5595085135134373130}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba56266a33841ab42849ecb6ead9e745, type: 3}
+  m_Script: {fileID: 11500000, guid: 03a88f3eb6865ce41b4aa18cd7140297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BasicSlider: {fileID: 5595085135134373132}
   whiteSlider: {fileID: 5595085134711880204}
-  sliderSpeed: 5
+  sliderSpeed: 2
 --- !u!1 &5595085135481468936
 GameObject:
   m_ObjectHideFlags: 0
