@@ -1,50 +1,78 @@
-using System.Collections;
-using System.Collections.Generic;
+// using System.Collections;
+// using System.Collections.Generic;
+// using UnityEngine;
+
+// namespace Unit.Player
+// {
+// 	public class UnitStat : Behaviour
+// 	{
+// 		[SerializeField]
+// 		private UnitSO _unitSO;
+// 		[SerializeField]
+// 		private BasicHPSlider _hpSlider;
+
+// 		private float _baseHP;
+
+// 		#region ï¿½âº» ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½
+// 		//protected virtual void OnEnable()
+// 		//{
+
+// 		//}
+// 		#endregion
+
+// 		public virtual void Damage(int damage)
+// 		{
+// 			_baseHP -= damage;
+// 			_hpSlider.SetSlider(_baseHP);
+// 			if (_baseHP <= 0)
+// 			{
+// 				Die();
+// 			}
+// 		}
+
+// 		protected virtual void Die()
+// 		{
+// 			thisBase.enabled = true;
+// 		}
+
+// 		protected virtual void Reset()
+// 		{
+// 			_baseHP = _unitSO.BaseHP;
+// 			_hpSlider.InitSlider(_baseHP);
+// 		}
+
+// 		public override void OnEnable()
+// 		{
+// 			Reset();
+// 		}
+
+// 	}
+// }
+using System;
 using UnityEngine;
 
-namespace Unit.Player
+namespace Unit
 {
-	public class UnitStat : Behaviour
-	{
-		[SerializeField]
-		private UnitSO _unitSO;
-		[SerializeField]
-		private BasicHPSlider _hpSlider;
+    [Serializable]
+    public class UnitStat : Behaviour
+    {
+        [SerializeField] private BaseStat originalStat;
 
-		private float _baseHP;
+        [SerializeField] private BaseStat currentStat;
 
-		#region ±âº» ½ÃÀÛ ÇÔ¼öµé
-		//protected virtual void OnEnable()
-		//{
+        public BaseStat GetOriginalStat()
+        {
+            return originalStat;
+        }
 
-		//}
-		#endregion
+        public BaseStat GetCurrentStat()
+        {
+            return currentStat;
+        }
 
-		public virtual void Damage(int damage)
-		{
-			_baseHP -= damage;
-			_hpSlider.SetSlider(_baseHP);
-			if (_baseHP <= 0)
-			{
-				Die();
-			}
-		}
-
-		protected virtual void Die()
-		{
-			thisBase.enabled = true;
-		}
-
-		protected virtual void Reset()
-		{
-			_baseHP = _unitSO.BaseHP;
-			_hpSlider.InitSlider(_baseHP);
-		}
-
-		public override void OnEnable()
-		{
-			Reset();
-		}
-
-	}
+        public override void Start()
+        {
+            currentStat = originalStat;
+        }
+    }
 }

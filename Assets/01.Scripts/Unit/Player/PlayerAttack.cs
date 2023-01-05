@@ -15,9 +15,12 @@ namespace Unit.Player
         private float timer;
 
         public Action onAttackEnd;
+        private PlayerStats playerStats;
+
         public override void Start()
         {
             timer = Delay;
+            playerStats = thisBase?.GetBehaviour<PlayerStats>();
         }
 
         public override void Update()
@@ -35,7 +38,8 @@ namespace Unit.Player
         {
             if(timer <= 0)
             {
-                Debug.Log("°ø°Ý");
+                if (playerStats != null) playerStats.AddAdrenaline(1);
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½");
                 timer = Delay;
                 onAttackEnd?.Invoke();
             }
@@ -43,7 +47,7 @@ namespace Unit.Player
 
         public void DoAttack(Vector3 dir)
 		{
-            Debug.Log("°ø°Ý");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½");
             onAttackEnd?.Invoke();
         }
     }
