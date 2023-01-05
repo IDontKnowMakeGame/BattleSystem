@@ -175,6 +175,7 @@ public class PlayerWeapon : Behaviour
 		public float DashBeforeWait => _dashBeforeWait;
 		public float DashSpeed => _dashSpeed;
 
+		[HideInInspector]
 		public Vector3 vec;
 	}
 	#endregion
