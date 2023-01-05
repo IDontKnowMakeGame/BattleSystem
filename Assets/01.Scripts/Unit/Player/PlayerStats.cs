@@ -50,6 +50,11 @@ namespace Unit.Player
             else if (angerPercent > 0 && !angerFillArea.activeSelf)
                 angerFillArea.SetActive(true);
 
+            if (adrenalinePercent == 0 && adrenalineFillArea.activeSelf)
+                adrenalineFillArea.SetActive(false);
+            else if (adrenalinePercent > 0 && !adrenalineFillArea.activeSelf)
+                adrenalineFillArea.SetActive(true);
+
 
             angerSlider.value = angerPercent;
             adrenalineSlider.value = adrenalinePercent;

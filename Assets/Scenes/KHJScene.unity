@@ -1046,7 +1046,11 @@ MonoBehaviour:
     angerPercent: 0
     adrenalinePercent: 0
     angerSlider: {fileID: 1543647458}
-    adrenalineSlider: {fileID: 1543647458}
+    angerFillArea: {fileID: 996681671}
+    adrenalineSlider: {fileID: 477561317}
+    adrenalineFillArea: {fileID: 2019747104}
+  playerWeapon:
+    weapon: {fileID: 0}
 --- !u!1 &1543647456
 GameObject:
   m_ObjectHideFlags: 0
