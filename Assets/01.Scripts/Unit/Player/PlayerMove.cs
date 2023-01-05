@@ -21,6 +21,8 @@ namespace Unit.Player
 
         public override void Update()
         {
+            Speed = thisBase.GetBehaviour<PlayerStats>().GetCurrentStat().agi;
+            
             if (_inputManager.GetKeyInput(InputManager.InputSignal.MoveForward))
                 _moveDirection.z = 1;
             if (_inputManager.GetKeyInput(InputManager.InputSignal.MoveBackward))

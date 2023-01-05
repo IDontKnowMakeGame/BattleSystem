@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace Unit.Player
 {
     [System.Serializable]
-    public class PlayerStats : Behaviour
+    public class PlayerStats : UnitStat
     {
         [Header("Percent")]
         [Range(0, 10)]
@@ -23,11 +23,6 @@ namespace Unit.Player
         private Slider adrenalineSlider;
         [SerializeField]
         private GameObject adrenalineFillArea;
-        
-        public override void Start()
-        {
-           
-        }
 
         public override void Update()
         {

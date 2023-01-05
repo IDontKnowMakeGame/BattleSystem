@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e2892df0b605924bbeb68c31961bd5f, type: 3}
   m_Name: LongSword
   m_EditorClassIdentifier: 
-  types: PlayerGreatSwordSkill
+  idx: 1
+  weaponStat:
+    damage: 0
+    weight: 0
+    attackTime: 0
+    waitTime: 0
+    range: 0

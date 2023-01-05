@@ -2,18 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Manager;
-using Unit;
 using Unit.Player;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
+using UnitBase = Unit.UnitBase;
 
 public class PlayerBase : UnitBase
 {
     
-    [SerializeField] private PlayerMove playerMove = null;
-    [SerializeField] private PlayerAttack playerAttack = null;
-    [SerializeField] private PlayerStats playerStats = null;
-    [SerializeField] private PlayerWeapon playerWeapon = null;
+    [SerializeField] private PlayerMove playerMove;
+    [SerializeField] private PlayerAttack playerAttack;
+    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private PlayerWeapon playerWeapon;
 
     protected override void Init()
     {
@@ -23,11 +23,6 @@ public class PlayerBase : UnitBase
         playerWeapon = AddBehaviour<PlayerWeapon>(playerWeapon);
     }
 
-    protected override void Awake()
-    {
-        base.Awake();
-    }
-    
     protected override void Update()
     {
         if(GameManagement.Instance.GetManager<InputManager>().GetKeyDownInput(InputManager.InputSignal.Skill))
