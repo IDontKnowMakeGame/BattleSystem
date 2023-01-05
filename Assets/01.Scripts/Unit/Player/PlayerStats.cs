@@ -35,7 +35,7 @@ namespace Unit.Player
         public override void Update()
         {
             if (_testInputManager.GetKeyDownInput(InputManager.InputSignal.TestHit))
-                Damage(5);
+                //Damage(5);
 
             ChangeStatsUI();
         }
