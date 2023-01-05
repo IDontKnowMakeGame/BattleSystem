@@ -9,7 +9,7 @@ public class GridObjects
 {
     public GameObject[] tiles;
     public float offsetX;
-    public float offsetY;
+    public float offsetZ;
 }
 
 public class MapGeneration : MonoBehaviour
@@ -19,7 +19,10 @@ public class MapGeneration : MonoBehaviour
     private GridObjects gridObjects;
 
     public float startX = 0;
-    public float startY = 0;
+    public float startZ = 0;
+
+    private float changeX = 0;
+    private float changeZ = 0;
 
     public string rangeStart = "A1";
     public string rangeEnd = "B2";
@@ -34,8 +37,6 @@ public class MapGeneration : MonoBehaviour
         UnityWebRequest www = UnityWebRequest.Get(URL);
         yield return www.SendWebRequest();
         SetItemSO(www.downloadHandler.text);
-        startX = 0;
-        startY = 0;
     }
 
     void SetItemSO(string tsv)
@@ -51,10 +52,10 @@ public class MapGeneration : MonoBehaviour
             {
                 if(column[j] != string.Empty)
                     SpawnTile(Int32.Parse(column[j]));
-                startX += gridObjects.offsetX;
+                changeX += gridObjects.offsetX;
             }
-            startX = 0;
-            startY -= gridObjects.offsetY;
+            changeX = startX;
+            changeZ -= gridObjects.offsetZ;
         }
     }
 
@@ -62,7 +63,7 @@ public class MapGeneration : MonoBehaviour
     {
         if (idx >= 0)
         {
-            Instantiate(gridObjects.tiles[idx], new Vector3(startX, startY, 0), Quaternion.identity, tiledParent.transform);
+            Instantiate(gridObjects.tiles[idx], new Vector3(changeX, 0, changeZ), Quaternion.identity, tiledParent.transform);
         }
     }
     #endregion
@@ -70,6 +71,8 @@ public class MapGeneration : MonoBehaviour
     [ContextMenu("SpawnMap")]
     private void SpawnMap()
     {
+        changeX = startX;
+        changeZ = startZ;
         URL = "https://docs.google.com/spreadsheets/d/14rbIKCHzWCK1VHf1qcgOi7S3TwRGIfXlDE-SGML7kxs/export?format=tsv&range=" + $"{rangeStart}:{rangeEnd}";
         tiledParent = new GameObject("MapTiled");
         StartCoroutine(DownloadItemSO());

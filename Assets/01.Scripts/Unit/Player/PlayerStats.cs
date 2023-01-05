@@ -38,6 +38,7 @@ namespace Unit.Player
             _testInputManager = GameManagement.Instance.GetManager<InputManager>();
             _myStat = GetOriginalStat();
             _basicHPSlider.InitSlider(GetOriginalStat().hp);
+            base.Start();
         }
 
         public override void Update()

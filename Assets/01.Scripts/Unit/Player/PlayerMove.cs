@@ -9,7 +9,7 @@ namespace Unit.Player
     [System.Serializable]
     public class PlayerMove : UnitMove
     {
-        public float Speed;
+        private float speed;
         public Action onMoveEnd;
 
         private Vector3 _moveDirection = Vector3.zero;
@@ -33,7 +33,7 @@ namespace Unit.Player
                 return;
 			}
 
-            Speed = thisBase.GetBehaviour<PlayerStats>().GetCurrentStat().agi;
+            speed = thisBase.GetBehaviour<PlayerStats>().GetCurrentStat().agi;
             
             if (_inputManager.GetKeyInput(InputManager.InputSignal.MoveForward))
                 _moveDirection.z = 1;
@@ -63,7 +63,7 @@ namespace Unit.Player
                 return;
             }
 
-            var duration = distance / Speed;
+            var duration = distance / speed;
             _seq.Append(thisBase.transform.DOMove(nextPos, duration).SetEase(Ease.Linear));
             _seq.AppendCallback(() =>
             {
