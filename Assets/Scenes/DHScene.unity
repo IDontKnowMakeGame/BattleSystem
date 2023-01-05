@@ -1390,14 +1390,25 @@ MonoBehaviour:
   playerAttack:
     Delay: 1
   playerStats:
-    _unitSO: {fileID: 11400000, guid: 08584742e0e617c45b666b54e1c3a631, type: 2}
-    _hpSlider: {fileID: 966927178}
+    originalStat:
+      hp: 10
+      atk: 0
+      agi: 0
+      ats: 0
+      def: 0
+    currentStat:
+      hp: 0
+      atk: 0
+      agi: 0
+      ats: 0
+      def: 0
     angerPercent: 0
     adrenalinePercent: 0
     angerSlider: {fileID: 554902715}
     angerFillArea: {fileID: 1503451273}
     adrenalineSlider: {fileID: 554902715}
     adrenalineFillArea: {fileID: 393266693}
+    _basicHPSlider: {fileID: 966927178}
   playerWeapon:
     weapons: {fileID: 11400000, guid: 0cd7e0bd3d92a6648b46c81a4d9210bc, type: 2}
     _greatSwordStat:
