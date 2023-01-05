@@ -13,9 +13,12 @@ namespace Unit.Player
 
         private float timer;
 
+        private PlayerStats playerStats;
+
         public override void Start()
         {
             timer = Delay;
+            playerStats = thisBase?.GetBehaviour<PlayerStats>();
         }
 
         public override void Update()
@@ -33,6 +36,7 @@ namespace Unit.Player
         {
             if(timer <= 0)
             {
+                if (playerStats != null) playerStats.AddAdrenaline(1);
                 Debug.Log("АјАн");
                 timer = Delay;
             }

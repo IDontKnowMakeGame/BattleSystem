@@ -59,5 +59,25 @@ namespace Unit.Player
             angerSlider.value = angerPercent;
             adrenalineSlider.value = adrenalinePercent;
         }
+
+        public void AddAngerPercent(int percent)
+        {
+            angerPercent = Mathf.Clamp(angerPercent + percent, 0, 10);
+        }
+
+        public void AddAdrenaline(int percent)
+        {
+            adrenalinePercent = Mathf.Clamp(adrenalinePercent + percent, 0, 10);
+        }
+
+        public void SetAngerPercent(int percent)
+        {
+            angerPercent = Mathf.Clamp(percent, 0, 10);
+        }
+
+        public void SetAdrenaline(int percent)
+        {
+            adrenalinePercent = Mathf.Clamp(percent, 0, 10);
+        }
     }
 }
