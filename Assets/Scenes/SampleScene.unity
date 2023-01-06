@@ -165,7 +165,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 362123529}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be8edf9d34a719d4d86ebd39bbfa6de5, type: 3}
+  m_Script: {fileID: 11500000, guid: 666dc08dd7713c04b8227abc448d26ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStat:
@@ -532,8 +532,19 @@ MonoBehaviour:
     angerFillArea: {fileID: 0}
     adrenalineSlider: {fileID: 0}
     adrenalineFillArea: {fileID: 0}
+    _basicHPSlider: {fileID: 0}
   playerWeapon:
-    weapon: {fileID: 11400000, guid: 455ec911e2809ce4abe9f38c2f80b097, type: 2}
+    weapons: {fileID: 0}
+    _greatSwordStat:
+      _dashBeforeWait: 0
+      _dashSpeed: 0
+      _coolTime: 0
+      vec: {x: 0, y: 0, z: 0}
+    _shotSwordStat:
+      _coolTime: 0
+      vec: {x: 0, y: 0, z: 0}
+      count: 0
+    isSkill: 0
 --- !u!1 &1790971268
 GameObject:
   m_ObjectHideFlags: 0
