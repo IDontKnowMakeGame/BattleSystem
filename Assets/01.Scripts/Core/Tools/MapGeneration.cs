@@ -46,6 +46,40 @@ public class MapGeneration : MonoBehaviour
         int columnSize = row[0].Split('\t').Length;
         int num;
 
+        for(int i = rowSize / 2; i < rowSize; i++)
+        {
+            string[] column = row[i].Split('\t');
+            for(int j = columnSize / 2; j < columnSize; j++)
+            {
+                if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
+                    SpawnTile(num, Mathf.Abs((columnSize / 2) - j) * -gridObjects.offsetX + startX, Mathf.Abs((rowSize / 2) - i) * gridObjects.offsetZ + startZ);
+            }
+            for(int j = (columnSize / 2) - 1; j >= 0; j--)
+            {
+                if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
+                    SpawnTile(num, Mathf.Abs((columnSize / 2) - j) * gridObjects.offsetX + startX, Mathf.Abs((rowSize / 2) - i) *  
+                        gridObjects.offsetZ + startZ);
+            }
+        }
+
+        for(int i = (rowSize / 2) - 1; i >= 0; i--)
+        {
+            string[] column = row[i].Split('\t');
+            for (int j = columnSize / 2; j < columnSize; j++)
+            {
+                if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
+                    SpawnTile(num, Mathf.Abs((columnSize / 2) - j) * -gridObjects.offsetX + startX, Mathf.Abs((rowSize / 2) - i) * 
+                        -gridObjects.offsetZ + startZ);
+            }
+            for (int j = (columnSize / 2) - 1; j >= 0; j--)
+            {
+                if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
+                    SpawnTile(num, Mathf.Abs((columnSize / 2) - j) * gridObjects.offsetX + startX, Mathf.Abs((rowSize / 2) - i) *
+                        -gridObjects.offsetZ + startZ);
+            }
+        }
+
+        /*
         for(int i = 0; i < rowSize; i++)
         {
             string[] column = row[i].Split('\t');
@@ -59,13 +93,14 @@ public class MapGeneration : MonoBehaviour
             changeX = startX;
             changeZ -= gridObjects.offsetZ;
         }
+        */
     }
 
-    void SpawnTile(int idx)
+    void SpawnTile(int idx, float spawnX, float spawnZ)
     {
         if (idx >= 0)
         {
-            Instantiate(gridObjects.tiles[idx], new Vector3(changeX, 0, changeZ), Quaternion.identity, tiledParent.transform);
+            Instantiate(gridObjects.tiles[idx], new Vector3(spawnX, 0, spawnZ), Quaternion.identity, tiledParent.transform);
         }
     }
     #endregion
