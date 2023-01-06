@@ -46,36 +46,37 @@ public class MapGeneration : MonoBehaviour
         int columnSize = row[0].Split('\t').Length;
         int num;
 
-        for(int i = rowSize / 2; i < rowSize; i++)
-        {
-            string[] column = row[i].Split('\t');
-            for(int j = columnSize / 2; j < columnSize; j++)
-            {
-                if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
-                    SpawnTile(num, Mathf.Abs((columnSize / 2) - j) * -gridObjects.offsetX + startX, Mathf.Abs((rowSize / 2) - i) * gridObjects.offsetZ + startZ);
-            }
-            for(int j = (columnSize / 2) - 1; j >= 0; j--)
-            {
-                if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
-                    SpawnTile(num, Mathf.Abs((columnSize / 2) - j) * gridObjects.offsetX + startX, Mathf.Abs((rowSize / 2) - i) *  
-                        gridObjects.offsetZ + startZ);
-            }
-        }
-
-        for(int i = (rowSize / 2) - 1; i >= 0; i--)
+        for (int i = rowSize / 2; i < rowSize; i++)
         {
             string[] column = row[i].Split('\t');
             for (int j = columnSize / 2; j < columnSize; j++)
             {
                 if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
-                    SpawnTile(num, Mathf.Abs((columnSize / 2) - j) * -gridObjects.offsetX + startX, Mathf.Abs((rowSize / 2) - i) * 
+                    SpawnTile(num, Mathf.Abs((columnSize / 2) - j) * gridObjects.offsetX + startX, Mathf.Abs((rowSize / 2) - i) * 
                         -gridObjects.offsetZ + startZ);
             }
             for (int j = (columnSize / 2) - 1; j >= 0; j--)
             {
                 if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
-                    SpawnTile(num, Mathf.Abs((columnSize / 2) - j) * gridObjects.offsetX + startX, Mathf.Abs((rowSize / 2) - i) *
+                    SpawnTile(num, Mathf.Abs((columnSize / 2) - j) * -gridObjects.offsetX + startX, Mathf.Abs((rowSize / 2) - i) *
                         -gridObjects.offsetZ + startZ);
+            }
+        }
+
+        for (int i = (rowSize / 2) - 1; i >= 0; i--)
+        {
+            string[] column = row[i].Split('\t');
+            for (int j = columnSize / 2; j < columnSize; j++)
+            {
+                if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
+                    SpawnTile(num, Mathf.Abs((columnSize / 2) - j) * gridObjects.offsetX + startX, Mathf.Abs((rowSize / 2) - i) *
+                        gridObjects.offsetZ + startZ);
+            }
+            for (int j = (columnSize / 2) - 1; j >= 0; j--)
+            {
+                if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
+                    SpawnTile(num, Mathf.Abs((columnSize / 2) - j) * -gridObjects.offsetX + startX, Mathf.Abs((rowSize / 2) - i) *
+                        gridObjects.offsetZ + startZ);
             }
         }
 
