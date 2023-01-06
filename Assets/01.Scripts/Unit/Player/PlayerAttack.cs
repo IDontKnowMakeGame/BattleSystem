@@ -39,7 +39,6 @@ namespace Unit.Player
             if(timer <= 0)
             {
                 if (playerStats != null) playerStats.AddAdrenaline(1);
-                Debug.Log("����");
                 timer = Delay;
                 onAttackEnd?.Invoke();
             }
@@ -47,7 +46,6 @@ namespace Unit.Player
 
         public void DoAttack(Vector3 dir)
 		{
-            Debug.Log("����");
             onAttackEnd?.Invoke();
         }
     }

@@ -1385,17 +1385,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16aacbcda4fcab842a2031aefbe7b7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMove:
-    Speed: 5
   playerAttack:
     Delay: 1
   playerStats:
     originalStat:
       hp: 10
-      atk: 0
-      agi: 0
-      ats: 0
-      def: 0
+      atk: 1
+      agi: 1
+      ats: 1
+      def: 1
     currentStat:
       hp: 0
       atk: 0
