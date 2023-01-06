@@ -67,6 +67,7 @@ namespace Unit.Player
             _seq.Append(thisBase.transform.DOMove(nextPos, duration).SetEase(Ease.Linear));
             _seq.AppendCallback(() =>
             {
+                GameManagement.Instance.GetManager<MapManager>().GetBlock(thisBase.transform.position).MoveUnitOnBlock(thisBase);
                 onMoveEnd?.Invoke();
                 onMoveEnd = null;
                 _moveDirection = Vector2.zero;

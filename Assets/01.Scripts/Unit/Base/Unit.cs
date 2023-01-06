@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Manager;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -66,7 +67,5 @@ namespace Unit
                 type = typeof(T);
             behaviours.Remove(type);
         }
-        
-        
     }
 }

@@ -59,6 +59,7 @@ namespace Manager
         private void Init()
         {
             AddManager<InputManager>();
+            AddManager<MapManager>();
         }
         public void Awake()
         {

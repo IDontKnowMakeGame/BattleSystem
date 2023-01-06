@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Unit
 {
     [Serializable]
-    public class UnitStat : Behaviour
+    public class UnitStat : Behaviour, IDamaged
     {
         [SerializeField] private BaseStat originalStat;
 
@@ -22,7 +22,21 @@ namespace Unit
 
         public override void Start()
         {
-            currentStat = originalStat;
+            currentStat.hp = originalStat.hp;
+            currentStat.atk = originalStat.atk;
+            currentStat.agi = originalStat.agi;
+            currentStat.ats = originalStat.ats;
+            currentStat.def = originalStat.def;
+        }
+
+        public virtual void Damaged(float damage)
+        {
+            
+        }
+
+        public virtual void Die()
+        {
+            
         }
     }
 }
