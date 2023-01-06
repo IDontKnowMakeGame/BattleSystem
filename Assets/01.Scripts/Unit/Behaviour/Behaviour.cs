@@ -6,7 +6,7 @@
         protected Unit thisBase = null;
         
         // This Behaviour is enabled
-        public bool IsEnabled { get; set; }
+        public bool IsEnabled { get; set; } = true;
 
         public virtual void OnEnable()
         {
