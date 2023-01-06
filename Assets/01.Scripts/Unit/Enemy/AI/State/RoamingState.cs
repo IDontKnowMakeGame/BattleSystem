@@ -4,29 +4,29 @@ using UnityEngine;
 
 namespace Unit.Enemy.AI.State
 {
-    public class ChaseState : AIState
+    public class RoamingState : AIState
     {
-        public ChaseState()
+        public RoamingState()
         {
-            Name = "Chase";
+            Name = "Roaming";
         }
         public override void Awake()
         {
-            AITransition toRoaming = new AITransition();
-            toRoaming.SetConditionState(true, false);
-            toRoaming.SetTarget(new RoamingState());
+            AITransition toChase = new AITransition();
+            toChase.SetConditionState(true, false);
+            toChase.SetTarget(new ChaseState());
             var rangeCondition = new RangeCheckCondition();
-            rangeCondition.SetRange(3);
+            rangeCondition.SetRange(1);
             rangeCondition.SetPos(GameObject.Find("Enemy").transform, GameObject.Find("Player").transform);
-            toRoaming.AddCondition(rangeCondition.CheckCondition, false);
-            AddTransition(toRoaming);
+            toChase.AddCondition(rangeCondition.CheckCondition, true);
+            AddTransition(toChase);
         }
 
         protected override void OnEnter()
         {
-            Debug.Log("Chase");
+            Debug.Log(Name);
         }
-
+        
         protected override void OnStay()
         {
             var pos = GameObject.Find("Enemy").transform.position;
@@ -37,14 +37,14 @@ namespace Unit.Enemy.AI.State
                 {
                     var blockPos = pos + new Vector3(i, 0, j);
                     var block = GameManagement.Instance.GetManager<MapManager>().GetBlock(blockPos);
-                    if (Mathf.FloorToInt(Vector3.Distance(pos, blockPos)) <= 3)
+                    if (Mathf.FloorToInt(Vector3.Distance(pos, blockPos)) <= 1)
                     {
-                        block.GetComponent<MeshRenderer>().material.color = Color.green;
+                        block.GetComponent<MeshRenderer>().material.color = Color.red;
                     }
                 }
             }
         }
-
+        
         protected override void OnExit()
         {
             var pos = GameObject.Find("Enemy").transform.position;
