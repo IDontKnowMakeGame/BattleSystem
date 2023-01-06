@@ -44,14 +44,16 @@ public class MapGeneration : MonoBehaviour
         string[] row = tsv.Split('\n');
         int rowSize = row.Length;
         int columnSize = row[0].Split('\t').Length;
+        int num;
 
         for(int i = 0; i < rowSize; i++)
         {
             string[] column = row[i].Split('\t');
             for(int j = 0; j < columnSize; j++)
             {
-                if(column[j] != string.Empty)
-                    SpawnTile(Int32.Parse(column[j]));
+                Debug.Log(column[j]);
+                if(column[j] != string.Empty && Int32.TryParse(column[j], out num))
+                    SpawnTile(num);
                 changeX += gridObjects.offsetX;
             }
             changeX = startX;
