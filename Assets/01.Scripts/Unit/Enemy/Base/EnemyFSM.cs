@@ -29,6 +29,7 @@ public class EnemyFSM : Behaviour
     {
         if (states.ContainsKey(state) == false)
         {
+            aiState.unit = thisBase;
             aiState.Awake();
             states.Add(state, aiState);
         }

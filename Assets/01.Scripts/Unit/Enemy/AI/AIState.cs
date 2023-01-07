@@ -6,6 +6,7 @@ namespace Unit.Enemy.AI
 {
     public class AIState : Behaviour
     {
+        public Unit unit;
         public string Name;
         private List<AITransition> transitions = new List<AITransition>();
         private bool isEntered = false;

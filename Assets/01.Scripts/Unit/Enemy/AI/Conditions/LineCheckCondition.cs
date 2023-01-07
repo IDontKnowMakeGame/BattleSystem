@@ -11,12 +11,21 @@ namespace Unit.Enemy.AI.Conditions
         
         public override bool CheckCondition()
         {
-            if(TargetPos.position.x == MyPos.position.x || TargetPos.position.z == MyPos.position.z)
+            for (var i = -length; i <= length; i++)
             {
-                if (Vector3.Distance(TargetPos.position, MyPos.position) <= length)
+                if (TargetPos.position.x == MyPos.position.x + i && TargetPos.position.z == MyPos.position.z)
+                {
+                    direction = TargetPos.position -  MyPos.position;
+                    direction.y = 0;
+                    Debug.Log(direction);
+                    return true;
+                }
+                
+                if (TargetPos.position.z == MyPos.position.z + i && TargetPos.position.x == MyPos.position.x )
                 {
                     direction = TargetPos.position - MyPos.position;
-                    direction.Normalize();
+                    direction.y = 0;
+                    Debug.Log(direction);
                     return true;
                 }
             }
@@ -33,6 +42,11 @@ namespace Unit.Enemy.AI.Conditions
         {
             MyPos = my;
             TargetPos = target;
+        }
+
+        public Vector3 GetDirection()
+        {
+            return direction;
         }
     }
 }

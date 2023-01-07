@@ -6,6 +6,7 @@ public class ElderBrokenBase : EnemyBase
 {
     protected override void Init()
     {
+        base.Init();
         AddBehaviour<EnemyFSM>();
     }
-}
+} 

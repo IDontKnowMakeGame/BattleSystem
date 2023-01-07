@@ -28,7 +28,7 @@ public class PlayerBase : UnitBase
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameManagement.Instance.GetManager<MapManager>().GiveDamage(transform.position, 1);
+            GameManagement.Instance.GetManager<MapManager>().GiveDamage(transform.position, 1, 0);
         }
         base.Update();
     }

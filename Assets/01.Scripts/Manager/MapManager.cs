@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Cinemachine.Utility;
 using Core;
 using Unit;
 using UnityEngine;
@@ -30,10 +29,17 @@ public class MapManager : IManager
         blocks.ForEach(AddBlock);
     }
 
-    public void GiveDamage(Vector3 position, float damage)
+    public void GiveDamage(Vector3 position, float damage, float delay)
     {
+        instance.StartCoroutine(DamageCoroutine(position, damage, delay));
+    }
+    
+    private IEnumerator DamageCoroutine(Vector3 position, float damage, float delay)
+    {
+        yield return new WaitForSeconds(delay);
         position.y = 0;
         var block = GetBlock(position);
+        Debug.Log(position);
         if (block != null)
         {
             var unit = block.GetUnit();

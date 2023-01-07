@@ -37,15 +37,15 @@ public class PlayerWeapon : Behaviour
 
 	private Dictionary<SwordType, Action> weaponSkills = new Dictionary<SwordType, Action>();
 
-	[Header("´ë°ËÀÌ¶ó°í¿ë")]
+	[Header("ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ï¿½ï¿½")]
 	[SerializeField]
 	GreatSwordStat _greatSwordStat;
 
-	[Header("´Ü°ËÀÌ¶ó°í¿ë")]
+	[Header("ï¿½Ü°ï¿½ï¿½Ì¶ï¿½ï¿½ï¿½ï¿½")]
 	[SerializeField]
 	ShotSwordStat _shotSwordStat;
 
-	#region ±âº»ÀûÀÎ ½ºÅ³¿¡¼­ ¾²´Â º¯¼öµé
+	#region ï¿½âº»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private float _currentTime;
 	private float _maxTime;
 	private InputManager _inputManager;
@@ -60,7 +60,7 @@ public class PlayerWeapon : Behaviour
 		weaponSkills.Add(SwordType.ShotSword, OnScotchSkill);
 	}
 
-	#region ±âº» ¼³Á¤ ÇØÁÖ±â
+	#region ï¿½âº» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö±ï¿½
 	public override void Start()
 	{
 		Reset();
@@ -95,7 +95,7 @@ public class PlayerWeapon : Behaviour
 	#endregion
 
 	/// <summary>
-	/// Å¸ÀÌ¸Ó
+	/// Å¸ï¿½Ì¸ï¿½
 	/// </summary>
 	private void Timer()
 	{
@@ -110,7 +110,7 @@ public class PlayerWeapon : Behaviour
 		}
 	}
 
-	#region ´ë°Ë ½ºÅ³
+	#region ï¿½ï¿½ï¿½ ï¿½ï¿½Å³
 	private void OnGreatSwordDash()
 	{
 		if (isCoolTime)
@@ -180,11 +180,11 @@ public class PlayerWeapon : Behaviour
 	}
 	#endregion
 
-	#region ·Õ¼Òµå ½ºÅ³
+	#region ï¿½Õ¼Òµï¿½ ï¿½ï¿½Å³
 	private void RollSkill(Vector3 vec)
 	{
 		isCoolTime = true;
-		Debug.Log("½ºÅ³ ½ÃÀÛ");
+		Debug.Log("ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½");
 		PlayerMove playerMove = thisBase.GetBehaviour<PlayerMove>();
 		playerMove.onMoveEnd = RollSkillEnd;
 		playerMove.Translation(vec * 2);
@@ -223,7 +223,7 @@ public class PlayerWeapon : Behaviour
 	}
 	#endregion
 
-	#region ´Ü°Ë ½ºÅ³
+	#region ï¿½Ü°ï¿½ ï¿½ï¿½Å³
 	private void OnScotchSkill()
 	{
 		if (isCoolTime)

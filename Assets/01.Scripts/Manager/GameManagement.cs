@@ -40,6 +40,7 @@ namespace Manager
             }
 
             var manager = new T();
+            manager.instance = this;
             _managers.Add(type, manager);
             return manager;
         }
