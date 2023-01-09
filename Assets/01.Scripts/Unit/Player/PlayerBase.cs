@@ -10,7 +10,6 @@ using UnitBase = Unit.UnitBase;
 
 public class PlayerBase : UnitBase
 {
-    
     [SerializeField] private PlayerMove playerMove;
     [SerializeField] private PlayerAttack playerAttack;
     [SerializeField] private PlayerStats playerStats;

@@ -13,23 +13,6 @@ public enum SwordType
 	ShotSword
 }
 
-//public class Pair<T, K>
-//{
-//	public Pair()
-//	{
-
-//	}
-
-//	public Pair(T first, K secound)
-//	{
-//		this.first = first;
-//		this.secound = secound;
-//	}
-
-//	public T first;
-//	public K secound;
-//}
-
 [Serializable]
 public class PlayerWeapon : Behaviour
 {
@@ -37,15 +20,15 @@ public class PlayerWeapon : Behaviour
 
 	private Dictionary<SwordType, Action> weaponSkills = new Dictionary<SwordType, Action>();
 
-	[Header("����̶����")]
+	[Header("GreatSword")]
 	[SerializeField]
 	GreatSwordStat _greatSwordStat;
 
-	[Header("�ܰ��̶����")]
+	[Header("ShotSword")]
 	[SerializeField]
 	ShotSwordStat _shotSwordStat;
 
-	#region �⺻���� ��ų���� ���� ������
+	#region Basic
 	private float _currentTime;
 	private float _maxTime;
 	private InputManager _inputManager;
@@ -60,7 +43,7 @@ public class PlayerWeapon : Behaviour
 		weaponSkills.Add(SwordType.ShotSword, OnScotchSkill);
 	}
 
-	#region �⺻ ���� ���ֱ�
+	#region Basic Setting
 	public override void Start()
 	{
 		Reset();
@@ -95,7 +78,7 @@ public class PlayerWeapon : Behaviour
 	#endregion
 
 	/// <summary>
-	/// Ÿ�̸�
+	/// CoolTimer
 	/// </summary>
 	private void Timer()
 	{
@@ -110,7 +93,7 @@ public class PlayerWeapon : Behaviour
 		}
 	}
 
-	#region ��� ��ų
+	#region GreatSword
 	private void OnGreatSwordDash()
 	{
 		if (isCoolTime)
@@ -180,7 +163,7 @@ public class PlayerWeapon : Behaviour
 	}
 	#endregion
 
-	#region �ռҵ� ��ų
+	#region RongSword
 	private void RollSkill(Vector3 vec)
 	{
 		isCoolTime = true;
@@ -223,7 +206,7 @@ public class PlayerWeapon : Behaviour
 	}
 	#endregion
 
-	#region �ܰ� ��ų
+	#region ScotchSword
 	private void OnScotchSkill()
 	{
 		if (isCoolTime)

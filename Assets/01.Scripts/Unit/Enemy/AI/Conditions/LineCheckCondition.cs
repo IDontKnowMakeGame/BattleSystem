@@ -17,7 +17,7 @@ namespace Unit.Enemy.AI.Conditions
                 {
                     direction = TargetPos.position -  MyPos.position;
                     direction.y = 0;
-                    Debug.Log(direction);
+                    //Debug.Log(direction);
                     return true;
                 }
                 
@@ -25,7 +25,7 @@ namespace Unit.Enemy.AI.Conditions
                 {
                     direction = TargetPos.position - MyPos.position;
                     direction.y = 0;
-                    Debug.Log(direction);
+                    //Debug.Log(direction);
                     return true;
                 }
             }

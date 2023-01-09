@@ -31,7 +31,10 @@ namespace Unit
 
         public virtual void Damaged(float damage)
         {
-            
+            Debug.Log(">");
+            currentStat.hp -= damage;
+            if (currentStat.hp <= 0)
+                Die();
         }
 
         public virtual void Die()

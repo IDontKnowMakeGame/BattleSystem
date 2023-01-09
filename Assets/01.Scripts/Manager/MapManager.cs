@@ -39,10 +39,10 @@ public class MapManager : IManager
         yield return new WaitForSeconds(delay);
         position.y = 0;
         var block = GetBlock(position);
-        Debug.Log(position);
         if (block != null)
         {
             var unit = block.GetUnit();
+            Debug.Log(unit);
             if (unit != null)
                 unit.GetBehaviour<UnitStat>().Damaged(damage);
         }
