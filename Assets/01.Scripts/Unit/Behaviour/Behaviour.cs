@@ -1,4 +1,6 @@
-﻿namespace Unit
+﻿using System;
+
+namespace Unit
 {
     public class Behaviour
     {
@@ -7,6 +9,8 @@
         
         // This Behaviour is enabled
         public bool IsEnabled { get; set; } = true;
+
+        public Action onBehaviourEnd;
 
         public virtual void OnEnable()
         {

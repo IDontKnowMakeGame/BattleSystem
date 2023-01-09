@@ -10,7 +10,6 @@ namespace Unit.Player
     public class PlayerMove : UnitMove
     {
         private float speed;
-        public Action onMoveEnd;
 
         private Vector3 _moveDirection = Vector3.zero;
         private bool isMoving = false;
@@ -18,15 +17,14 @@ namespace Unit.Player
         private Sequence _seq;
 
         PlayerWeapon _weapon;
-
-        public override void Start()
+		public override void Start()
         {
             _weapon = thisBase.GetBehaviour<PlayerWeapon>();
         }
 
         public override void Update()
         {
-            if (_weapon.isSkill)
+            if (_weapon.currentWeapon.isSkill)
                 return;
 
             speed = thisBase.GetBehaviour<PlayerStats>().GetCurrentStat().agi;
@@ -57,8 +55,8 @@ namespace Unit.Player
                 
                 GameManagement.Instance.GetManager<MapManager>().GetBlock(thisBase.transform.position).MoveUnitOnBlock(thisBase);
                 GameManagement.Instance.GetManager<MapManager>().GetBlock(_originPosition).RemoveUnitOnBlock();
-                onMoveEnd?.Invoke();
-                onMoveEnd = null;
+                onBehaviourEnd?.Invoke();
+                onBehaviourEnd = null;
                 _moveDirection = Vector2.zero;
                 isMoving = false;
                 _seq.Kill();

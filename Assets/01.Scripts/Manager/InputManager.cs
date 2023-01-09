@@ -32,7 +32,7 @@ public class InputManager : IManager
         _inputMap.Add(InputSignal.LeftAttack, KeyCode.A);
         _inputMap.Add(InputSignal.RightAttack, KeyCode.D);
         _inputMap.Add(InputSignal.BackwardAttack, KeyCode.S);
-        _inputMap.Add(InputSignal.Skill, KeyCode.X);
+        _inputMap.Add(InputSignal.Skill, KeyCode.Space);
         _inputMap.Add(InputSignal.TestWeaponChange, KeyCode.T);
         _inputMap.Add(InputSignal.TestHit, KeyCode.P);
     }

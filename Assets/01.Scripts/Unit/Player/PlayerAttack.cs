@@ -15,7 +15,6 @@ namespace Unit.Player
 
         private float timer;
 
-        public Action onAttackEnd;
         private PlayerStats playerStats;
 
         public override void Start()
@@ -38,13 +37,13 @@ namespace Unit.Player
                 if (playerStats != null) playerStats.AddAdrenaline(1);
                 timer = Delay;
                 GameManagement.Instance.GetManager<MapManager>().GiveDamage(thisBase.transform.position+dir, playerStats.GetCurrentStat().atk, 0);
-                onAttackEnd?.Invoke();
+                onBehaviourEnd?.Invoke();
             }
         }
 
         public void DoAttack(Vector3 dir)
 		{
-            onAttackEnd?.Invoke();
+            onBehaviourEnd?.Invoke();
         }
     }
 }

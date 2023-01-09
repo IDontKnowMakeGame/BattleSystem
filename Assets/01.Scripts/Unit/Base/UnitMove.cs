@@ -7,7 +7,7 @@ namespace Unit
     {
         public virtual void Translate(Vector3 dir)
         {
-            
+
         }
     }
 }

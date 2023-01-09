@@ -13,6 +13,12 @@ public class Weapon
 	protected UnitMove _move;
 	protected UnitAttack _attack;
 
+	protected float _currentTime;
+	protected float _maxTime;
+
+	protected bool isCoolTime = false;
+
+	public bool isSkill = false;
 	public Weapon(Unit.Unit unit)
 	{
 		SetBase(unit);
@@ -51,9 +57,22 @@ public class Weapon
 
 	}
 
-	protected virtual void Skii()
+	protected virtual void Skill()
 	{
 
+	}
+
+	protected void Timer()
+	{
+		if (_currentTime < _maxTime && isCoolTime)
+		{
+			_currentTime += Time.deltaTime;
+		}
+		else
+		{
+			isCoolTime = false;
+			_currentTime = 0;
+		}
 	}
 
 	public void SetBase(Unit.Unit _base)

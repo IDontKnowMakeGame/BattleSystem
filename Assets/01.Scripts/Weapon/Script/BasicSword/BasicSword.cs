@@ -11,9 +11,10 @@ public class BasicSword : Weapon
 
 	public override void Update()
 	{
+		Timer();
+		Skill();
 		Move();
 		Attack();
-		Skii();
 	}
 
 	protected override void Move()

@@ -64,10 +64,10 @@ public class MapManager : IManager
 
             if (_map.ContainsKey(checkPos))
             {
-                if (_map[checkPos].isWalkable)
-                    walkableUDLR[i] = true;
+                //if (_map[checkPos].isWalkable)
+                //    walkableUDLR[i] = true;
 
-                neighbors.Add(_map[checkPos]);
+                //neighbors.Add(_map[checkPos]);
             }
         }
 

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: WeaponContainer
   m_EditorClassIdentifier: 
   weapons:
-  - {fileID: 11400000, guid: 455ec911e2809ce4abe9f38c2f80b097, type: 2}
   - {fileID: 11400000, guid: 6662a7c17639b6943a4dac1f09d1af4b, type: 2}
+  - {fileID: 11400000, guid: 455ec911e2809ce4abe9f38c2f80b097, type: 2}
   - {fileID: 11400000, guid: b01be3fb83df6204690beaa08123471a, type: 2}
+  _swordType: 0

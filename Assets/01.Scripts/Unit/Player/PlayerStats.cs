@@ -30,11 +30,10 @@ namespace Unit.Player
 
         [SerializeField]
         private BasicHPSlider _basicHPSlider;
-
 		public override void Start()
         {
-            _testInputManager = GameManagement.Instance.GetManager<InputManager>();
             _basicHPSlider.InitSlider(GetOriginalStat().hp);
+            _testInputManager = GameManagement.Instance.GetManager<InputManager>();
             base.Start();
         }
 
