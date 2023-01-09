@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using Core;
 using Manager;
+using Unit.Block;
 using UnityEngine.Networking;
 
 public enum Mode
@@ -54,6 +55,9 @@ public class MapGeneration : MonoBehaviour
         string[] row = tsv.Split('\n');
         int rowSize = row.Length;
         int columnSize = row[0].Split('\t').Length;
+
+        //tiledParent.GetComponent<MapController>().Height = rowSize;
+        //tiledParent.GetComponent<MapController>().Width = columnSize;
 
         if (posMode == Mode.StartPos)
         {
@@ -114,7 +118,7 @@ public class MapGeneration : MonoBehaviour
         {
             var position = new Vector3(spawnX, 0, spawnZ);
             var blockObject = Instantiate(gridObjects.tiles[idx], position, Quaternion.identity, tiledParent.transform);
-            blockObject.AddComponent<Block>();
+            blockObject.AddComponent<BlockBase>();
             blockObject.name = $"Tile #{count++}";
         }
     }
