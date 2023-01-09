@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Manager;
-using Core;
+using Unit;
+using Unit.Block;
 
 public class Astar : MonoBehaviour
 {
-    public Block start, end;
+    public BlockBase start, end;
     public LineRenderer line;
     public bool isFinding = false;
 
@@ -31,18 +32,18 @@ public class Astar : MonoBehaviour
 
         isFinding = true;
 
-        List<Block> openList = new List<Block>();
-        List<Block> closeList = new List<Block>();
+        List<BlockBase> openList = new List<BlockBase>();
+        List<BlockBase> closeList = new List<BlockBase>();
 
         openList.Add(start);
 
         while(openList.Count > 0)
         {
             // CurrentNode 탐색 -> openList 코스트 가장 작은 것 찾기
-            Block currentTile = openList[0];
+            BlockBase currentTile = openList[0];
             for(int i = 1; i < openList.Count; i++)
             {
-                if(openList[i].fCost + openList[i].h < currentTile.fCost + currentTile.h)
+                if(openList[i].fCost + openList[i].H < currentTile.fCost + currentTile.H)
                 {
                     currentTile = openList[i];
                 }
@@ -60,17 +61,17 @@ public class Astar : MonoBehaviour
             yield return new WaitUntil(() => isFinding);
 
             // 이웃된 타일 가져오기
-            foreach (Block tile in GameManagement.Instance.GetManager<MapManager>().GetNeighbors(currentTile))
+            foreach (BlockBase tile in GameManagement.Instance.GetManager<MapManager>().GetNeighbors(currentTile))
             {
                 if (!tile.isWalkable || closeList.Contains(tile))
                     continue;
 
-                int nowCost = currentTile.g + GetDistance(currentTile, tile);
-                if (nowCost < tile.g || !openList.Contains(tile))
+                int nowCost = currentTile.G + GetDistance(currentTile, tile);
+                if (nowCost < tile.G || !openList.Contains(tile))
                 {
-                    tile.g = nowCost;
-                    tile.h = GetDistance(tile, end);
-                    tile.parent = currentTile;
+                    tile.G = nowCost;
+                    tile.H = GetDistance(tile, end);
+                    tile.Parent = currentTile;
 
                     if (!openList.Contains(tile))
                     {
@@ -89,25 +90,25 @@ public class Astar : MonoBehaviour
         yield return null;
     }
 
-    void RedPath(Block startTile, Block endTile)
+    void RedPath(BlockBase startTile, BlockBase endTile)
     {
-        Block currentTile = endTile;
+        BlockBase currentTile = endTile;
         while (currentTile != startTile)
         {
             if(currentTile != start && currentTile != end)
                 currentTile.GetComponent<Renderer>().material = red;
-            currentTile = currentTile.parent;
+            currentTile = currentTile.Parent;
         }
     }
 
-    Vector3[] RetracePath(Block startTile, Block endTile)
+    Vector3[] RetracePath(BlockBase startTile, BlockBase endTile)
     {
-        List<Block> path = new List<Block>();
-        Block currentTile = endTile;
+        List<BlockBase> path = new List<BlockBase>();
+        BlockBase currentTile = endTile;
         while (currentTile != startTile)
         {
             path.Add(currentTile);
-            currentTile = currentTile.parent;
+            currentTile = currentTile.Parent;
         }
         Vector3[] waypoints = SimplefyPath(path);
         Array.Reverse(waypoints);
@@ -115,21 +116,21 @@ public class Astar : MonoBehaviour
 
     }
 
-    Vector3[] SimplefyPath(List<Block> path)
+    Vector3[] SimplefyPath(List<BlockBase> path)
     {
         List<Vector3> waypoints = new List<Vector3>();
         Vector3 oldDir = Vector3.zero;
 
         for (int i = 1; i < path.Count; i++)
         {
-            Vector3 newDir = new Vector3(path[i - 1].x - path[i].x, 0, path[i - 1].z - path[i].z);
+            Vector3 newDir = new Vector3(path[i - 1].X - path[i].X, 0, path[i - 1].Z - path[i].Z);
             if (oldDir != newDir)
             {
-                waypoints.Add(path[i - 1].tileOBJ.transform.position + Vector3.back * 0.1f);
+                waypoints.Add(path[i - 1].TileOBJ.transform.position + Vector3.back * 0.1f);
             }
             oldDir = newDir;
         }
-        waypoints.Add(start.tileOBJ.transform.position + Vector3.back * 0.1f);
+        waypoints.Add(start.TileOBJ.transform.position + Vector3.back * 0.1f);
         return waypoints.ToArray();
     }
 
@@ -142,10 +143,10 @@ public class Astar : MonoBehaviour
         }
     }
 
-    int GetDistance(Block tile1, Block tile2)
+    int GetDistance(BlockBase tile1, BlockBase tile2)
     {
-        int destX = Mathf.Abs(tile1.x - tile2.x);
-        int destY = Mathf.Abs(tile1.z - tile2.z);
+        int destX = Mathf.Abs(tile1.X - tile2.X);
+        int destY = Mathf.Abs(tile1.Z - tile2.Z);
 
         if (destX > destY)
             return 14 * destY + 10 * (destX - destY);
