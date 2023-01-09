@@ -18,7 +18,7 @@ public class PlayerWeapon : Behaviour
 {
 	[UnityEngine.SerializeField] private WeaponContainer weapons;
 
-	private Dictionary<SwordType, Action> weaponSkills = new Dictionary<SwordType, Action>();
+	private Dictionary<SwordType, Weapon> weaponSkills = new Dictionary<SwordType, Weapon>();
 
 	[Header("GreatSword")]
 	[SerializeField]
@@ -38,9 +38,12 @@ public class PlayerWeapon : Behaviour
 	#endregion
 	public override void Awake()
 	{
-		weaponSkills.Add(SwordType.GreatSword, OnGreatSwordDash);
-		weaponSkills.Add(SwordType.LongSword, OnRollSkill);
-		weaponSkills.Add(SwordType.ShotSword, OnScotchSkill);
+		weaponSkills.Add(SwordType.LongSword, new LongSword() { _baseObject = thisBase }) ;
+		weaponSkills.Add(SwordType.GreatSword, new LongSword() { _baseObject = thisBase });
+		weaponSkills.Add(SwordType.ShotSword, new LongSword() { _baseObject = thisBase });
+		//weaponSkills.Add(SwordType.LongSword, OnRollSkill);
+		//weaponSkills.Add(SwordType.ShotSword, OnScotchSkill);
+		//weaponSkills[weapons.CurrentWeapon.type]?.Awake();
 	}
 
 	#region Basic Setting
@@ -48,25 +51,27 @@ public class PlayerWeapon : Behaviour
 	{
 		Reset();
 		_inputManager = GameManagement.Instance.GetManager<InputManager>();
+
+		weaponSkills[weapons.CurrentWeapon.type]?.Start();
 	}
 
 	public override void Update()
 	{
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.TestWeaponChange))
 		{
-			Reset();
+			//Reset();
 			weapons.ChangeWeapon();
 		}
 
-		weaponSkills[weapons.CurrentWeapon.type]?.Invoke();
+		weaponSkills[weapons.CurrentWeapon.type]?.Update();
 
 		Timer();
 	}
 
-	public void UseSkill()
-	{
-		weaponSkills[weapons.CurrentWeapon.type]?.Invoke();
-	}
+	//public void UseSkill()
+	//{
+	//	weaponSkills[weapons.CurrentWeapon.type]?.Invoke();
+	//}
 
 	public void Reset()
 	{
@@ -125,7 +130,7 @@ public class PlayerWeapon : Behaviour
 		PlayerMove playerMove = thisBase.GetBehaviour<PlayerMove>();
 		playerMove.onMoveEnd = GreatSwordAttack;
 		_greatSwordStat.vec = direction;
-		playerMove.Translation(direction);
+		playerMove.Translate(direction);
 	}
 
 
@@ -170,7 +175,7 @@ public class PlayerWeapon : Behaviour
 		Debug.Log("��ų ����");
 		PlayerMove playerMove = thisBase.GetBehaviour<PlayerMove>();
 		playerMove.onMoveEnd = RollSkillEnd;
-		playerMove.Translation(vec * 2);
+		playerMove.Translate(vec * 2);
 	}
 
 	private void RollSkillEnd()

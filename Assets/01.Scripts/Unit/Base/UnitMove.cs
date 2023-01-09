@@ -5,7 +5,7 @@ namespace Unit
 {
     public class UnitMove : Behaviour
     {
-        protected virtual void Translate(Vector3 dir)
+        public virtual void Translate(Vector3 dir)
         {
             
         }

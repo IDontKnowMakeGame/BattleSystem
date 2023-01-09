@@ -6,7 +6,7 @@ namespace Unit
 {
     public class UnitAttack : Behaviour
     {
-        protected virtual void Attack(Vector3 dir)
+        public virtual void Attack(Vector3 dir)
         {
 
         }

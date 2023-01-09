@@ -17,11 +17,9 @@ namespace Unit.Player
 
         public Action onAttackEnd;
         private PlayerStats playerStats;
-        private InputManager _inputManager;
 
         public override void Start()
         {
-            _inputManager = GameManagement.Instance.GetManager<InputManager>();
             timer = Delay;
             playerStats = thisBase?.GetBehaviour<PlayerStats>();
         }
@@ -30,11 +28,9 @@ namespace Unit.Player
         {
             if (timer > 0)
                 timer -= Time.deltaTime;
-
-            AttackCheck();
         }
 
-        protected override void Attack(Vector3 dir)
+        public override void Attack(Vector3 dir)
         {
             if(timer <= 0)
             {
@@ -49,26 +45,6 @@ namespace Unit.Player
         public void DoAttack(Vector3 dir)
 		{
             onAttackEnd?.Invoke();
-        }
-
-        public void AttackCheck()
-		{
-            if (_inputManager.GetKeyDownInput(InputManager.InputSignal.FowardAttack))
-			{
-                Attack(Vector3.forward);
-            }
-            if (_inputManager.GetKeyDownInput(InputManager.InputSignal.BackwardAttack))
-            {
-                Attack(Vector3.back);
-            }
-            if (_inputManager.GetKeyDownInput(InputManager.InputSignal.LeftAttack))
-            {
-                Attack(Vector3.left);
-            }
-            if (_inputManager.GetKeyDownInput(InputManager.InputSignal.RightAttack))
-            {
-                Attack(Vector3.right);
-            }
         }
     }
 }

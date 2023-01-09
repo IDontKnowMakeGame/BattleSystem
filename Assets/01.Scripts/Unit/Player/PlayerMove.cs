@@ -16,37 +16,23 @@ namespace Unit.Player
         private bool isMoving = false;
         private Vector3 _originPosition;
         private Sequence _seq;
-        InputManager _inputManager;
 
         PlayerWeapon _weapon;
 
         public override void Start()
         {
-            _inputManager = GameManagement.Instance.GetManager<InputManager>();
             _weapon = thisBase.GetBehaviour<PlayerWeapon>();
         }
 
         public override void Update()
         {
             if (_weapon.isSkill)
-			{
                 return;
-			}
 
             speed = thisBase.GetBehaviour<PlayerStats>().GetCurrentStat().agi;
-            
-            if (_inputManager.GetKeyInput(InputManager.InputSignal.MoveForward))
-                _moveDirection.z = 1;
-            if (_inputManager.GetKeyInput(InputManager.InputSignal.MoveBackward))
-                _moveDirection.z = -1;
-            if (_inputManager.GetKeyInput(InputManager.InputSignal.MoveRight))
-                _moveDirection.x = 1;
-            if (_inputManager.GetKeyInput(InputManager.InputSignal.MoveLeft))
-                _moveDirection.x = -1;
-            Translate(_moveDirection);
         }
-        
-        protected override void Translate(Vector3 dir)
+
+        public override void Translate(Vector3 dir)
         {
             if (isMoving == true)
                 return;
@@ -77,11 +63,6 @@ namespace Unit.Player
                 isMoving = false;
                 _seq.Kill();
             });
-        }
-
-        public void Translation(Vector3 dir)
-		{
-            Translate(dir);
         }
     }
 }
