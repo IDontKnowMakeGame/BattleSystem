@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Manager;
+using TreeEditor;
 using Unit.Player;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -25,6 +26,10 @@ public class PlayerBase : UnitBase
 
     protected override void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameManagement.Instance.GetManager<MapManager>().GiveDamage(transform.position, 1, 0);
+        }
         base.Update();
     }
 }

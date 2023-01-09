@@ -29,6 +29,7 @@ public class EnemyFSM : Behaviour
     {
         if (states.ContainsKey(state) == false)
         {
+            aiState.unit = thisBase;
             aiState.Awake();
             states.Add(state, aiState);
         }
@@ -38,8 +39,8 @@ public class EnemyFSM : Behaviour
 
     public override void Awake()
     {
-        var idleState = new IdleState();
-        currentState = AddState(idleState.Name, idleState);
+        var roamingState = new RoamingState();
+        currentState = AddState(roamingState.Name, roamingState);
     }
 
     public override void Update()

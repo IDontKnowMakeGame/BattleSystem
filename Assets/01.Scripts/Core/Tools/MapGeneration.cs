@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Core;
+using Manager;
 using UnityEngine.Networking;
 
 [Serializable]
@@ -101,7 +103,10 @@ public class MapGeneration : MonoBehaviour
     {
         if (idx >= 0)
         {
-            Instantiate(gridObjects.tiles[idx], new Vector3(spawnX, 0, spawnZ), Quaternion.identity, tiledParent.transform);
+            var position = new Vector3(spawnX, 0, spawnZ);
+            var blockObject = Instantiate(gridObjects.tiles[idx], position, Quaternion.identity, tiledParent.transform);
+            blockObject.AddComponent<Block>();
+            blockObject.name = $"Tile #{idx}";
         }
     }
     #endregion
