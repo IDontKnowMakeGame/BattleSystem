@@ -55,6 +55,9 @@ public class MapGeneration : MonoBehaviour
         int rowSize = row.Length;
         int columnSize = row[0].Split('\t').Length;
 
+        //tiledParent.GetComponent<MapController>().Height = rowSize;
+        //tiledParent.GetComponent<MapController>().Width = columnSize;
+
         if (posMode == Mode.StartPos)
         {
             SearchStartModeTile(row, rowSize, columnSize);

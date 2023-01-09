@@ -47,4 +47,29 @@ public class MapManager : IManager
                 unit.GetBehaviour<UnitStat>().Damaged(damage);
         }
     }
+
+    public List<Block> GetNeighbors(Block tile)
+    {
+        List<Block> neighbors = new List<Block>();
+        int[,] temp = { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } };
+        bool[] walkableUDLR = new bool[4];
+
+        for(int i = 0; i < 4; i++)
+        {
+            int checkX = tile.x + temp[i, 0];
+            int checkZ = tile.z + temp[i, 1];
+
+            Vector3 checkPos = new Vector3(checkX, 0, checkZ);
+
+            if (_map.ContainsKey(checkPos))
+            {
+                if (_map[checkPos].isWalkable)
+                    walkableUDLR[i] = true;
+
+                neighbors.Add(_map[checkPos]);
+            }
+        }
+
+        return neighbors;
+    }
 }
