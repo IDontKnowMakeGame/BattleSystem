@@ -8,5 +8,10 @@ namespace Unit.Enemy.AI
         {
             return true;
         }
+
+        public virtual void DebugCondition()
+        {
+            
+        }
     }
 }

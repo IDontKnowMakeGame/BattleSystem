@@ -2,7 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Core;
+using Manager;
 using UnityEngine.Networking;
+
+public enum Mode
+{
+    StartPos,
+    CenterPos
+}
 
 [Serializable]
 public class GridObjects
@@ -18,8 +26,9 @@ public class MapGeneration : MonoBehaviour
     [SerializeField]
     private GridObjects gridObjects;
 
-    public float startX = 0;
-    public float startZ = 0;
+    public Mode posMode = Mode.StartPos;
+    public float posX = 0;
+    public float posZ = 0;
 
     private float changeX = 0;
     private float changeZ = 0;
@@ -28,6 +37,7 @@ public class MapGeneration : MonoBehaviour
     public string rangeEnd = "B2";
 
     private GameObject tiledParent;
+    private int count = 1;
 
     #region excel
     private string URL;
@@ -44,64 +54,68 @@ public class MapGeneration : MonoBehaviour
         string[] row = tsv.Split('\n');
         int rowSize = row.Length;
         int columnSize = row[0].Split('\t').Length;
+
+        if (posMode == Mode.StartPos)
+        {
+            SearchStartModeTile(row, rowSize, columnSize);
+        }
+        else if (posMode == Mode.CenterPos)
+        {
+            for (int i = rowSize / 2; i < rowSize; i++)
+            {
+                FindMapTile(i, row, rowSize, columnSize, -1);
+            }
+
+            for (int i = (rowSize / 2) - 1; i >= 0; i--)
+            {
+                FindMapTile(i, row, rowSize, columnSize, 1);
+            }
+        }
+    }
+
+    void SearchStartModeTile(string[] row, int rowSize, int columnSize)
+    {
         int num;
-
-        for (int i = rowSize / 2; i < rowSize; i++)
+        for (int i = 0; i < rowSize; i++)
         {
             string[] column = row[i].Split('\t');
-            for (int j = columnSize / 2; j < columnSize; j++)
+            for (int j = 0; j < columnSize; j++)
             {
                 if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
-                    SpawnTile(num, Mathf.Abs((columnSize / 2) - j) * gridObjects.offsetX + startX, Mathf.Abs((rowSize / 2) - i) * 
-                        -gridObjects.offsetZ + startZ);
-            }
-            for (int j = (columnSize / 2) - 1; j >= 0; j--)
-            {
-                if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
-                    SpawnTile(num, Mathf.Abs((columnSize / 2) - j) * -gridObjects.offsetX + startX, Mathf.Abs((rowSize / 2) - i) *
-                        -gridObjects.offsetZ + startZ);
-            }
-        }
-
-        for (int i = (rowSize / 2) - 1; i >= 0; i--)
-        {
-            string[] column = row[i].Split('\t');
-            for (int j = columnSize / 2; j < columnSize; j++)
-            {
-                if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
-                    SpawnTile(num, Mathf.Abs((columnSize / 2) - j) * gridObjects.offsetX + startX, Mathf.Abs((rowSize / 2) - i) *
-                        gridObjects.offsetZ + startZ);
-            }
-            for (int j = (columnSize / 2) - 1; j >= 0; j--)
-            {
-                if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
-                    SpawnTile(num, Mathf.Abs((columnSize / 2) - j) * -gridObjects.offsetX + startX, Mathf.Abs((rowSize / 2) - i) *
-                        gridObjects.offsetZ + startZ);
-            }
-        }
-
-        /*
-        for(int i = 0; i < rowSize; i++)
-        {
-            string[] column = row[i].Split('\t');
-            for(int j = 0; j < columnSize; j++)
-            {
-                Debug.Log(column[j]);
-                if(column[j] != string.Empty && Int32.TryParse(column[j], out num))
-                    SpawnTile(num);
+                    SpawnTile(num, changeX, changeZ);
                 changeX += gridObjects.offsetX;
             }
-            changeX = startX;
+            changeX = posX;
             changeZ -= gridObjects.offsetZ;
         }
-        */
+    }
+
+    void FindMapTile(int curRow, string[] row, int rowSize, int columnSize, int increase)
+    {
+        int num;
+        string[] column = row[curRow].Split('\t');
+        for (int j = columnSize / 2; j < columnSize; j++)
+        {
+            if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
+                SpawnTile(num, Mathf.Abs((columnSize / 2) - j) * gridObjects.offsetX + posX, Mathf.Abs((rowSize / 2) - curRow) *
+                    (increase * gridObjects.offsetZ) + posZ);
+        }
+        for (int j = (columnSize / 2) - 1; j >= 0; j--)
+        {
+            if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
+                SpawnTile(num, Mathf.Abs((columnSize / 2) - j) * -gridObjects.offsetX + posX, Mathf.Abs((rowSize / 2) - curRow) *
+                    (increase * gridObjects.offsetZ) + posZ);
+        }
     }
 
     void SpawnTile(int idx, float spawnX, float spawnZ)
     {
         if (idx >= 0)
         {
-            Instantiate(gridObjects.tiles[idx], new Vector3(spawnX, 0, spawnZ), Quaternion.identity, tiledParent.transform);
+            var position = new Vector3(spawnX, 0, spawnZ);
+            var blockObject = Instantiate(gridObjects.tiles[idx], position, Quaternion.identity, tiledParent.transform);
+            blockObject.AddComponent<Block>();
+            blockObject.name = $"Tile #{count++}";
         }
     }
     #endregion
@@ -109,8 +123,9 @@ public class MapGeneration : MonoBehaviour
     [ContextMenu("SpawnMap")]
     private void SpawnMap()
     {
-        changeX = startX;
-        changeZ = startZ;
+        changeX = posX;
+        changeZ = posZ;
+        count = 1;
         URL = "https://docs.google.com/spreadsheets/d/14rbIKCHzWCK1VHf1qcgOi7S3TwRGIfXlDE-SGML7kxs/export?format=tsv&range=" + $"{rangeStart}:{rangeEnd}";
         tiledParent = new GameObject("MapTiled");
         StartCoroutine(DownloadItemSO());

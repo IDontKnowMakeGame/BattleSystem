@@ -14,6 +14,7 @@ namespace Unit.Player
 
         private Vector3 _moveDirection = Vector3.zero;
         private bool isMoving = false;
+        private Vector3 _originPosition;
         private Sequence _seq;
         InputManager _inputManager;
 
@@ -52,9 +53,10 @@ namespace Unit.Player
 
             _seq = DOTween.Sequence();
             isMoving = true;
-            var orignalPos = thisBase.transform.position;
-            var nextPos = orignalPos + dir;
-            var distance = Vector3.Distance(orignalPos, nextPos);
+            var originalPos = thisBase.transform.position;
+            _originPosition = originalPos;
+            var nextPos = originalPos + dir;
+            var distance = Vector3.Distance(originalPos, nextPos);
             if (distance < 0.1f)
             {
                 isMoving = false;
@@ -66,6 +68,9 @@ namespace Unit.Player
             _seq.Append(thisBase.transform.DOMove(nextPos, duration).SetEase(Ease.Linear));
             _seq.AppendCallback(() =>
             {
+                
+                GameManagement.Instance.GetManager<MapManager>().GetBlock(thisBase.transform.position).MoveUnitOnBlock(thisBase);
+                GameManagement.Instance.GetManager<MapManager>().GetBlock(_originPosition).RemoveUnitOnBlock();
                 onMoveEnd?.Invoke();
                 onMoveEnd = null;
                 _moveDirection = Vector2.zero;

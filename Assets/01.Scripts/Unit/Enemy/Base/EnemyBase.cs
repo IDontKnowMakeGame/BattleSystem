@@ -9,6 +9,6 @@ public class EnemyBase : UnitBase
 
     protected override void Init()
     {
-        enemyStat = AddBehaviour<UnitStat>();
+        enemyStat = AddBehaviour<UnitStat>(enemyStat);
     }
 }

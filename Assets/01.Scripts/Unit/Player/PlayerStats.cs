@@ -8,7 +8,7 @@ using Manager;
 namespace Unit.Player
 {
     [System.Serializable]
-    public class PlayerStats : UnitStat, IDamaged
+    public class PlayerStats : UnitStat
     {
         [Header("Percent")]
         [Range(0, 10)]
@@ -31,12 +31,9 @@ namespace Unit.Player
         [SerializeField]
         private BasicHPSlider _basicHPSlider;
 
-        private BaseStat _myStat;
-
 		public override void Start()
         {
             _testInputManager = GameManagement.Instance.GetManager<InputManager>();
-            _myStat = GetOriginalStat();
             _basicHPSlider.InitSlider(GetOriginalStat().hp);
             base.Start();
         }
@@ -95,17 +92,17 @@ namespace Unit.Player
             adrenalinePercent = Mathf.Clamp(percent, 0, 10);
         }
 
-		public void Damaged(int damage)
+		public override void Damaged(float damage)
 		{
-            _myStat.hp -= damage;
-            _basicHPSlider.SetSlider(_myStat.hp);
-            if (_myStat.hp <= 0)
+            GetCurrentStat().hp -= damage;
+            _basicHPSlider.SetSlider(GetCurrentStat().hp);
+            if (GetCurrentStat().hp <= 0)
 			{
                 Die();
             }
 		}
 
-        public void Die()
+        public override void Die()
 		{
 
 		}

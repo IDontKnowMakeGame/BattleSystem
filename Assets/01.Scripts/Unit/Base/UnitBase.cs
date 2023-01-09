@@ -1,4 +1,7 @@
-﻿namespace Unit
+﻿using Manager;
+using UnityEngine;
+
+namespace Unit
 {
     public class UnitBase : Unit
     {
@@ -10,6 +13,7 @@
         protected virtual void Awake()
         {
             Init();
+
             foreach (var behaviour in behaviours.Values)
             {
                 behaviour.Awake();
@@ -18,6 +22,8 @@
         
         protected virtual void Start()
         {
+            GameManagement.Instance.GetManager<MapManager>().GetBlock(transform.position).MoveUnitOnBlock(this);
+
             foreach (var behaviour in behaviours.Values)
             {
                 behaviour.Start();

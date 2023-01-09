@@ -40,6 +40,7 @@ namespace Manager
             }
 
             var manager = new T();
+            manager.instance = this;
             _managers.Add(type, manager);
             return manager;
         }
@@ -59,6 +60,7 @@ namespace Manager
         private void Init()
         {
             AddManager<InputManager>();
+            AddManager<MapManager>();
         }
         public void Awake()
         {
