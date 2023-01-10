@@ -74,8 +74,15 @@ namespace Unit.Block
         }
         
         private Unit unitOnBlock;
-        
-        public Unit GetUnit()
+
+		protected override void Start()
+		{
+            foreach (var behaviour in behaviours.Values)
+            {
+                behaviour.Start();
+            }
+        }
+		public Unit GetUnit()
         {
             return unitOnBlock;
         }

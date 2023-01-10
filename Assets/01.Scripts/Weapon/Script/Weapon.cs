@@ -4,10 +4,12 @@ using UnityEngine;
 using DG.Tweening;
 using Manager;
 using Unit;
+
+[System.Serializable]
 public class Weapon
 {
 	public Unit.Unit _baseObject;
-	protected int range;
+	[SerializeField] protected int range;
 	protected InputManager _inputManager;
 
 	protected UnitMove _move;

@@ -8,7 +8,7 @@ namespace Unit
     {
         [SerializeField] private BaseStat originalStat;
 
-        [SerializeField] private BaseStat currentStat;
+        [SerializeField] private BaseStat currentStat;  
 
         public BaseStat GetOriginalStat()
         {

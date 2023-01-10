@@ -7,7 +7,7 @@ namespace Unit
     {
         
         protected virtual void Init()
-        {
+        { 
             // Add Behaviours
         }
         protected virtual void Awake()

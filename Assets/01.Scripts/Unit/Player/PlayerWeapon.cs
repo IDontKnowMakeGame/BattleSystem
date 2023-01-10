@@ -10,58 +10,48 @@ public enum SwordType
 {
 	LongSword,
 	GreatSword,
-	ShotSword
+	ShotSword,
+	End
 }
 
 [Serializable]
 public class PlayerWeapon : Behaviour
 {
-	[UnityEngine.SerializeField] private WeaponContainer weapons;
+	private SwordType _currentSword;
 
 	private Dictionary<SwordType, Weapon> weaponSkills = new Dictionary<SwordType, Weapon>();
-
-	public Weapon currentWeapon { get { return weaponSkills[weapons.CurrentWeapon.type]; } }
-
-	//[Header("GreatSword")]
-	//[SerializeField]
-	//GreatSwordStat _greatSwordStat;
-
-	//[Header("ShotSword")]
-	//[SerializeField]
-	//ShotSwordStat _shotSwordStat;
-
-	#region Basic
-	//private float _currentTime;
-	//private float _maxTime;
+	public Weapon currentWeapon { get { return weaponSkills[_currentSword]; } }
 	private InputManager _inputManager;
-
-	//public bool isSkill = false;
-	//private bool isCoolTime = false;
-	#endregion
 	public override void Awake()
 	{
 		weaponSkills.Add(SwordType.LongSword, new LongSword() { _baseObject = thisBase }) ;
 		weaponSkills.Add(SwordType.GreatSword, new LongSword() { _baseObject = thisBase });
 		weaponSkills.Add(SwordType.ShotSword, new LongSword() { _baseObject = thisBase });
+		weaponSkills[_currentSword]?.Awake();
 	}
-
-	#region Basic Setting
 	public override void Start()
 	{
-		weaponSkills[weapons.CurrentWeapon.type]?.Start();
-		Debug.Log(currentWeapon);
+		_inputManager = GameManagement.Instance.GetManager<InputManager>();
+		weaponSkills[_currentSword]?.Start();
 	}
 
 	public override void Update()
 	{
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.TestWeaponChange))
 		{
-			weapons.ChangeWeapon();
+			ChangeWeapon();
 		}
 
-		weaponSkills[weapons.CurrentWeapon.type]?.Update();
+		weaponSkills[_currentSword]?.Update();
 	}
 
+	public void ChangeWeapon()
+	{
+		int index = (int)_currentSword++ % (int)SwordType.End;
+		_currentSword = (SwordType)index;
+
+		Debug.Log(_currentSword);
+	}
 	//public void UseSkill()
 	//{
 	//	weaponSkills[weapons.CurrentWeapon.type]?.Invoke();
@@ -74,7 +64,6 @@ public class PlayerWeapon : Behaviour
 
 	//	_shotSwordStat.count = 0;
 	//}
-	#endregion
 
 	/// <summary>
 	/// CoolTimer
