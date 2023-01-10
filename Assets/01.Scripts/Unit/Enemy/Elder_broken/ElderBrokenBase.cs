@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unit.Enemy.Base;
 using UnityEngine;
 
 public class ElderBrokenBase : EnemyBase
@@ -8,5 +9,6 @@ public class ElderBrokenBase : EnemyBase
     {
         base.Init();
         AddBehaviour<EnemyFSM>();
+        AddBehaviour<EnemyMove>();
     }
 } 

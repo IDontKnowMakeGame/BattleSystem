@@ -20,6 +20,7 @@ namespace Unit.Player
 		public override void Start()
         {
             _weapon = thisBase.GetBehaviour<PlayerWeapon>();
+            base.Start();  
         }
 
         public override void Update()
@@ -52,7 +53,7 @@ namespace Unit.Player
             _seq.Append(thisBase.transform.DOMove(nextPos, duration).SetEase(Ease.Linear));
             _seq.AppendCallback(() =>
             {
-                
+                position = nextPos;
                 GameManagement.Instance.GetManager<MapManager>().GetBlock(thisBase.transform.position).MoveUnitOnBlock(thisBase);
                 GameManagement.Instance.GetManager<MapManager>().GetBlock(_originPosition).RemoveUnitOnBlock();
                 onBehaviourEnd?.Invoke();
