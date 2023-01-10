@@ -43,7 +43,7 @@ public class TwinSword : BasicTwinSword
 	{
 		for(int i = 0; i<6; i++)
 		{
-			_attack.WaitAttack(dir,1,0.5f);
+			_attack.WaitAttack(dir,1,TwinSwordData.freeze);
 		}
 	}
 }

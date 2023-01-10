@@ -6,5 +6,5 @@ public class ConverterFormat
     {1}
 }}";
     public static string variableFormat =
-        @"public {0};";
+        @"public static readonly {0};";
 }

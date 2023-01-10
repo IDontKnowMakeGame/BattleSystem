@@ -1,15 +1,18 @@
 public class LongSwordData
 {
-    public int skilltime = 15;
-	public int hello = 5;
+    public static readonly float coolTime = 1;
+	public static readonly float skillTime = 0.5f;
+	
 }
 public class GreatSwordData
 {
-    public float ghd = 5.0f;
-	public int gh = 1;
+    public static readonly float ghd = 5.0f;
+	public static readonly int gh = 1;
+	
 }
-public class OneSwordData
+public class TwinSwordData
 {
-    public int check = 0;
-	//public ;
+    public static readonly float coolTime = 10;
+	public static readonly float freeze = 0.5f;
+	
 }
