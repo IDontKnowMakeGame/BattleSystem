@@ -61,6 +61,8 @@ namespace Manager
         {
             AddManager<InputManager>();
             AddManager<MapManager>();
+            AddManager<PoolManager>();
+            AddManager<ResourceManagers>();
         }
         public void Awake()
         {

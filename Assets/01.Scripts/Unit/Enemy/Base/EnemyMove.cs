@@ -1,36 +1,15 @@
 ﻿using DG.Tweening;
 using Manager;
-using Unit;
 using UnityEngine;
-using System;
 
-namespace Unit.Player
+namespace Unit.Enemy.Base
 {
-    [System.Serializable]
-    public class PlayerMove : UnitMove
+    public class EnemyMove : UnitMove
     {
         private float speed;
-
-        private Vector3 _moveDirection = Vector3.zero;
+        private Sequence _seq;
         private bool isMoving = false;
         private Vector3 _originPosition;
-        private Sequence _seq;
-
-        PlayerWeapon _weapon;
-		public override void Start()
-        {
-            _weapon = thisBase.GetBehaviour<PlayerWeapon>();
-            base.Start();  
-        }
-
-        public override void Update()
-        {
-            if (_weapon.currentWeapon.isSkill)
-                return;
-
-            speed = thisBase.GetBehaviour<PlayerStats>().GetCurrentStat().agi;
-        }
-
         public override void Translate(Vector3 dir)
         {
             if (isMoving == true)
@@ -40,7 +19,8 @@ namespace Unit.Player
             isMoving = true;
             var originalPos = thisBase.transform.position;
             _originPosition = originalPos;
-            var nextPos = originalPos + dir;
+            dir.y = originalPos.y;
+            var nextPos = dir;
             var distance = Vector3.Distance(originalPos, nextPos);
             if (distance < 0.1f)
             {
@@ -58,7 +38,6 @@ namespace Unit.Player
                 GameManagement.Instance.GetManager<MapManager>().GetBlock(_originPosition).RemoveUnitOnBlock();
                 onBehaviourEnd?.Invoke();
                 onBehaviourEnd = null;
-                _moveDirection = Vector2.zero;
                 isMoving = false;
                 _seq.Kill();
             });
