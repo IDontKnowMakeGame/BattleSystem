@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Networking;
+using System.Runtime.CompilerServices;
+using System;
+using System.Threading.Tasks;
+
+
 
 public class DataJson : MonoBehaviour
 {
@@ -44,16 +50,91 @@ public class DataJson : MonoBehaviour
 
 }
 
+public class SavePoint
+{
+    public bool firstFloor = false;
+    public bool scecondFloor = false;
+    public bool thirdFloor = false;
+}
+
 public class User
 {
 
+    public SavePoint savePoint;
 }
 
+public class WeaponStateData
+{
+    public WeaponStateData(string name,string weaponClass, int damage, float attackSpeed, float attackAfterDelay, int weaponWeight)
+    {
+        this.name = name;
+        this.weaponClass = weaponClass;
+        this.damage = damage;
+        this.attackSpeed = attackSpeed;
+        this.attackAfterDelay = attackAfterDelay;
+        this.weaponWeight = weaponWeight;
+    }
+
+    public string name;
+    public string weaponClass;
+    public int damage;
+    public float attackSpeed;
+    public float attackAfterDelay;
+    public int weaponWeight;
+}
 
 public class DataManager : IManager
 {
+    public static User UserData;
+
+    public List<WeaponStateData> weaponStateDataList = new List<WeaponStateData>();
+
+    private string URL;
     public override void Init()
     {
-        
+        UserData = DataJson.LoadJsonFile<User>(Application.dataPath + "/SAVE/User", "UserData");
+
+        URL = "https://docs.google.com/spreadsheets/d/1y6kR8URl2pG-sAijzFArfcsj1SRQXP1CvNo_k19Vbjs/export?format=tsv&range=A2:F30";
+
+        DownloadItemSO();
     }
+
+    private async void DownloadItemSO()
+    {
+        UnityWebRequest www = UnityWebRequest.Get(URL);
+        await www.SendWebRequest();
+        SetWeaponStateData(www.downloadHandler.text);
+    }
+
+    private void SetWeaponStateData(string tsv)
+    {
+        string[] row = tsv.Split('\n');
+
+        int weaponCount = row.Length;
+        for (int i = 0;i<weaponCount;i++)
+        {
+            string[] col = row[i].Split("\t");
+            Debug.Log(col);
+            weaponStateDataList.Add(new WeaponStateData(
+                col[0],
+                col[1],
+                int.Parse(col[2]), 
+                float.Parse(col[3]), 
+                float.Parse(col[4]), 
+                int.Parse(col[5]))
+            );
+        }
+    }
+
+    public WeaponStateData GetWeaponStateData(string name)
+    {
+        foreach(WeaponStateData data in weaponStateDataList)
+        {
+            if (data.name == name)
+                return data;
+        }
+
+        return null;
+    }
+
 }
