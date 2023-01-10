@@ -61,6 +61,7 @@ namespace Manager
         {
             AddManager<InputManager>();
             AddManager<MapManager>();
+            AddManager<CameraManager>();
         }
         public void Awake()
         {
