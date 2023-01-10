@@ -63,6 +63,7 @@ namespace Manager
             AddManager<MapManager>();
             AddManager<PoolManager>();
             AddManager<ResourceManagers>();
+            AddManager<DataManager>();
         }
         public void Awake()
         {
