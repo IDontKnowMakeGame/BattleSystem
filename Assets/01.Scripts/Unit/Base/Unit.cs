@@ -55,6 +55,10 @@ namespace Unit
             type = typeof(T).BaseType;
             if (typeof(T).BaseType == typeof(Behaviour))
                 type = typeof(T);
+            if (behaviours.ContainsKey(type) == false)
+            {
+                Debug.LogError($"{this} Doesn't have {type} behaviour");
+            }
             return (T)behaviours[type];
         }
         
