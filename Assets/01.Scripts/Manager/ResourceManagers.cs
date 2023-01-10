@@ -35,6 +35,7 @@ public class ResourceManagers : IManager
             Debug.Log($"Failed to load prefab : {path}");
             return null;
         }
+
         if (original.GetComponent<Poolable>() != null)
             return (GameManagement.Instance.GetManager<PoolManager>() as PoolManager).Pop(original, parent).gameObject;
 
