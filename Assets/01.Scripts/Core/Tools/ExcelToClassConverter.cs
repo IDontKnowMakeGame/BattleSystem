@@ -15,7 +15,6 @@ public class ExcelToClassConverter : MonoBehaviour
     public string rangeStart = "A1";
     public string rangeEnd = "B2";
     public string fileName = "WeaponData";
-
     IEnumerator DownloadExcel()
     {
         UnityWebRequest www = UnityWebRequest.Get(URL);
@@ -38,7 +37,6 @@ public class ExcelToClassConverter : MonoBehaviour
         }
         if(File.Exists(fullPth))
         {
-            Debug.Log("??");
             File.Delete(fullPth);
         }
 
@@ -53,8 +51,11 @@ public class ExcelToClassConverter : MonoBehaviour
             className = column[0];
             for (int j = 1; j < columnSize; j++)
             {
-                temp += string.Format(ConverterFormat.variableFormat, column[j]);
-                if (j < columnSize - 1) temp += Environment.NewLine + '\t';
+                if(string.IsNullOrWhiteSpace(column[j]))
+                {
+                    continue;
+                }
+                temp += string.Format(ConverterFormat.variableFormat, column[j]) + Environment.NewLine + '\t';
             }
             allClass += string.Format(ConverterFormat.classFormat, className, temp) + Environment.NewLine;
         }
