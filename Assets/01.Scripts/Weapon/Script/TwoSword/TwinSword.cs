@@ -41,7 +41,6 @@ public class TwinSword : BasicTwinSword
 
 	private void SixTimeAttak(Vector3 dir)
 	{
-		Debug.Log("SixTimeAttak");
 		for(int i = 0; i<6; i++)
 		{
 			_attack.WaitAttack(dir,1,0.5f);
