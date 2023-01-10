@@ -78,7 +78,7 @@ public class PoolManager : IManager
     Dictionary<string, Pool> _pool = new Dictionary<string, Pool>();
     Transform _root;
 
-    public void Init()
+    public override void Init()
     {
         if (_root == null)
         {
