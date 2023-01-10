@@ -30,7 +30,6 @@ namespace Unit.Player
         {
             if (_weapon.isSkill)
 			{
-                Debug.Log("엥");
                 return;
 			}
 
@@ -82,7 +81,6 @@ namespace Unit.Player
 
         public void Translation(Vector3 dir)
 		{
-            Debug.Log("?");
             Translate(dir);
         }
     }

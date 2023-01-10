@@ -1,22 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Core;
 using Unit;
+using Unit.Block;
 using UnityEngine;
 
 public class MapManager : IManager
 {
-    private Dictionary<Vector3, Block> _map = new Dictionary<Vector3, Block>();
+    private Dictionary<Vector3, BlockBase> _map = new Dictionary<Vector3, BlockBase>();
     
-    public void AddBlock(Block block)
+    public void AddBlock(BlockBase block)
     {
         var position = block.transform.position;
         position.y = 0;
         _map.Add(position, block);
     }
     
-    public Block GetBlock(Vector3 position)
+    public BlockBase GetBlock(Vector3 position)
     {
         position.y = 0;
         _map.TryGetValue(position, out var block);
@@ -25,7 +25,7 @@ public class MapManager : IManager
 
     public override void Awake()
     {
-        var blocks = GameObject.FindObjectsOfType<Block>().ToList();
+        var blocks = GameObject.FindObjectsOfType<BlockBase>().ToList();
         blocks.ForEach(AddBlock);
     }
 
@@ -46,5 +46,30 @@ public class MapManager : IManager
             if (unit != null)
                 unit.GetBehaviour<UnitStat>().Damaged(damage);
         }
+    }
+
+    public List<BlockBase> GetNeighbors(BlockBase tile)
+    {
+        List<BlockBase> neighbors = new List<BlockBase>();
+        int[,] temp = { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } };
+        bool[] walkableUDLR = new bool[4];
+
+        for(int i = 0; i < 4; i++)
+        {
+            int checkX = tile.X + temp[i, 0];
+            int checkZ = tile.Z + temp[i, 1];
+
+            Vector3 checkPos = new Vector3(checkX, 0, checkZ);
+
+            if (_map.ContainsKey(checkPos))
+            {
+                if (_map[checkPos].isWalkable)
+                    walkableUDLR[i] = true;
+
+                neighbors.Add(_map[checkPos]);
+            }
+        }
+
+        return neighbors;
     }
 }
