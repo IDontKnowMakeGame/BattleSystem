@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Manager;
 
+
+/// <summary>
+/// Instantiate(DataPath);
+/// </summary>
 public class ResourceManagers : IManager
 {
     public T Load<T>(string path) where T : Object

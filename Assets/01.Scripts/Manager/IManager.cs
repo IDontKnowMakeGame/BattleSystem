@@ -13,7 +13,7 @@ public class IManager
     
     public virtual void Awake()
     {
-        
+        Init();
     }
 
     public virtual void Start()
