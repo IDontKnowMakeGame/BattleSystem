@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Core;
 using Unit;
 using Unit.Block;
 using UnityEngine;
@@ -49,16 +48,16 @@ public class MapManager : IManager
         }
     }
 
-    public List<Block> GetNeighbors(Block tile)
+    public List<BlockBase> GetNeighbors(BlockBase tile)
     {
-        List<Block> neighbors = new List<Block>();
+        List<BlockBase> neighbors = new List<BlockBase>();
         int[,] temp = { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } };
         bool[] walkableUDLR = new bool[4];
 
         for(int i = 0; i < 4; i++)
         {
-            int checkX = tile.x + temp[i, 0];
-            int checkZ = tile.z + temp[i, 1];
+            int checkX = tile.X + temp[i, 0];
+            int checkZ = tile.Z + temp[i, 1];
 
             Vector3 checkPos = new Vector3(checkX, 0, checkZ);
 
