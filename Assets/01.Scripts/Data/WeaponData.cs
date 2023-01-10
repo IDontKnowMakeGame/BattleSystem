@@ -11,5 +11,5 @@ public class GreatSwordData
 public class OneSwordData
 {
     public int check = 0;
-	public int er = 2;
+	//public ;
 }
