@@ -10,7 +10,7 @@ public enum SwordType
 {
 	LongSword,
 	GreatSword,
-	ShotSword,
+	TwinSword,
 	End
 }
 
@@ -26,7 +26,7 @@ public class PlayerWeapon : Behaviour
 	{
 		weaponSkills.Add(SwordType.LongSword, new LongSword() { _baseObject = thisBase }) ;
 		weaponSkills.Add(SwordType.GreatSword, new LongSword() { _baseObject = thisBase });
-		weaponSkills.Add(SwordType.ShotSword, new TwinSword() { _baseObject = thisBase });
+		weaponSkills.Add(SwordType.TwinSword, new TwinSword() { _baseObject = thisBase });
 
 		foreach(var value in weaponSkills)
 		{
@@ -57,10 +57,11 @@ public class PlayerWeapon : Behaviour
 	{
 		int index = (int)_currentSword;
 		index++;
-		_currentSword = SwordType.ShotSword;
+		_currentSword = SwordType.TwinSword;
 
 		Debug.Log(_currentSword);
 	}
+
 	//public void UseSkill()
 	//{
 	//	weaponSkills[weapons.CurrentWeapon.type]?.Invoke();
@@ -72,22 +73,6 @@ public class PlayerWeapon : Behaviour
 	//	isCoolTime = false;
 
 	//	_shotSwordStat.count = 0;
-	//}
-
-	/// <summary>
-	/// CoolTimer
-	/// </summary>
-	//private void Timer()
-	//{
-	//	if(_currentTime < _maxTime && isCoolTime)
-	//	{
-	//		_currentTime += Time.deltaTime;
-	//	}
-	//	else
-	//	{
-	//		isCoolTime = false;
-	//		_currentTime = 0;
-	//	}
 	//}
 
 	//#region GreatSword

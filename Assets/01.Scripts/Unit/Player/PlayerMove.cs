@@ -15,22 +15,14 @@ namespace Unit.Player
         private bool isMoving = false;
         private Vector3 _originPosition;
         private Sequence _seq;
-
-        PlayerWeapon _weapon;
 		public override void Start()
         {
-            _weapon = thisBase.GetBehaviour<PlayerWeapon>();
             speed = thisBase.GetBehaviour<PlayerStats>().GetCurrentStat().agi;
             base.Start();  
         }
 
         public override void Update()
         {
-            if (_weapon.currentWeapon.isSkill)
-			{
-                Debug.Log("ㅋ");
-                return;
-			}
         }
 
         public override void Translate(Vector3 dir, float s = 0)
@@ -45,7 +37,6 @@ namespace Unit.Player
 
             if (GameManagement.Instance.GetManager<MapManager>().IsMovablePosition(nextPos) == false)
                 return;
-            Debug.Log("ㅋ");
 
             _seq = DOTween.Sequence();
             isMoving = true;
