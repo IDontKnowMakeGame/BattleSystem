@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6192724089161036655}
   - component: {fileID: 6192724089161036654}
   - component: {fileID: -4646663500756240075}
+  - component: {fileID: 7878561559266034706}
   m_Layer: 0
   m_Name: Impact
   m_TagString: Untagged
@@ -4833,7 +4834,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 68334d56da6cd0044bdfb728a30c93d7, type: 2}
-  - {fileID: 2100000, guid: 68334d56da6cd0044bdfb728a30c93d7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4897,3 +4897,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isUsing: 0
+--- !u!114 &7878561559266034706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6192724089161036641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbf6375ffd9ca3f42a7a146b1d6bd530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnlyDeactivate: 1
