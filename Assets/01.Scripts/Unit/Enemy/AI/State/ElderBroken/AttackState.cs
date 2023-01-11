@@ -3,7 +3,7 @@ using Unit.Enemy.AI.Conditions;
 using Unit.Player;
 using UnityEngine;
 
-namespace Unit.Enemy.AI.State
+namespace Unit.Enemy.AI.ElderBroken.State
 {
     public class AttackState : AIState
     {

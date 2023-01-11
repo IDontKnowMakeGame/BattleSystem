@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unit.Enemy.AI;
-using Unit.Enemy.AI.State;
 using UnityEditor.Rendering;
 using UnityEngine;
 using Behaviour = Unit.Behaviour;
@@ -37,9 +36,9 @@ public class EnemyFSM : Behaviour
         return aiState;
     }
 
-    public override void Awake()
+    public void SetDefaultState<T>() where T : AIState, new()
     {
-        var roamingState = new RoamingState();
+        var roamingState = new T();
         currentState = AddState(roamingState.Name, roamingState);
     }
 

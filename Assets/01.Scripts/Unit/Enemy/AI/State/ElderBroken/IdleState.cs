@@ -1,7 +1,7 @@
 ﻿using Unit.Enemy.AI.Conditions;
 using UnityEngine;
 
-namespace Unit.Enemy.AI.State
+namespace Unit.Enemy.AI.ElderBroken.State
 {
     public class IdleState : AIState
     {
