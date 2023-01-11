@@ -71,9 +71,16 @@ namespace Unit.Enemy.AI.State
             unit.StartCoroutine(pathfinding.FindPath());
 
             yield return new WaitUntil(() => pathfinding.HasFound());
-                Debug.Log("start chase");
-            var path = pathfinding.GetNextPath().GetUnit().transform.position;
+            var nextBlock = pathfinding.GetNextPath();
+            if (nextBlock == null)
+            {
+                isChasing = false;
+                yield break;
+            }
+
+            var path = nextBlock.transform.position;
             Debug.Log(path);
+            path.y = unit.transform.position.y;
             unit.GetBehaviour<EnemyMove>().Translate(path);
             yield return new WaitUntil(() => path == unit.transform.position);
 

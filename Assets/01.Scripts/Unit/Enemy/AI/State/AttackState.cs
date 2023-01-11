@@ -1,5 +1,6 @@
 ﻿using Manager;
 using Unit.Enemy.AI.Conditions;
+using Unit.Player;
 using UnityEngine;
 
 namespace Unit.Enemy.AI.State
@@ -32,16 +33,16 @@ namespace Unit.Enemy.AI.State
             var pos = GameObject.Find("Enemy").transform.position;
             if (direction.x != 0)
             {
-                GameManagement.Instance.GetManager<MapManager>().GiveDamage(pos + direction + Vector3.forward, 1, delay);
-                GameManagement.Instance.GetManager<MapManager>().GiveDamage(pos + direction, 1, delay);
-                GameManagement.Instance.GetManager<MapManager>().GiveDamage(pos + direction + Vector3.back, 1, delay);
+                GameManagement.Instance.GetManager<MapManager>().GiveDamage<PlayerStats>(pos + direction + Vector3.forward, 1, delay);
+                GameManagement.Instance.GetManager<MapManager>().GiveDamage<PlayerStats>(pos + direction, 1, delay);
+                GameManagement.Instance.GetManager<MapManager>().GiveDamage<PlayerStats>(pos + direction + Vector3.back, 1, delay);
             }
 
             if (direction.z != 0)
             {
-                GameManagement.Instance.GetManager<MapManager>().GiveDamage(pos + direction + Vector3.right, 1, delay);
-                GameManagement.Instance.GetManager<MapManager>().GiveDamage(pos + direction, 1, delay);
-                GameManagement.Instance.GetManager<MapManager>().GiveDamage(pos + direction + Vector3.left, 1, delay);
+                GameManagement.Instance.GetManager<MapManager>().GiveDamage<PlayerStats>(pos + direction + Vector3.right, 1, delay);
+                GameManagement.Instance.GetManager<MapManager>().GiveDamage<PlayerStats>(pos + direction, 1, delay);
+                GameManagement.Instance.GetManager<MapManager>().GiveDamage<PlayerStats>(pos + direction + Vector3.left, 1, delay);
             }
         }
     }

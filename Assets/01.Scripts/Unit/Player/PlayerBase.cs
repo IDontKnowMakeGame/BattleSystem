@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Manager;
 using TreeEditor;
+using Unit;
 using Unit.Player;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -27,7 +28,7 @@ public class PlayerBase : UnitBase
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameManagement.Instance.GetManager<MapManager>().GiveDamage(transform.position, 1, 0);
+            GameManagement.Instance.GetManager<MapManager>().GiveDamage<UnitStat>(transform.position, 1, 0);
         }
         base.Update();
     }

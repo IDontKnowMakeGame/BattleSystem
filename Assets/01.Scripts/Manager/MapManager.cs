@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unit;
 using Unit.Block;
+using Unit.Player;
 using UnityEngine;
 
 public class MapManager : IManager
@@ -29,22 +30,42 @@ public class MapManager : IManager
         blocks.ForEach(AddBlock);
     }
 
-    public void GiveDamage(Vector3 position, float damage, float delay)
+    public void GiveDamage<T>(Vector3 position, float damage, float delay) where T : UnitStat
     {
-        instance.StartCoroutine(DamageCoroutine(position, damage, delay));
+        instance.StartCoroutine(DamageCoroutine<T>(position, damage, delay));
     }
-    
-    private IEnumerator DamageCoroutine(Vector3 position, float damage, float delay)
+
+    public bool BlockInUnit(Vector3 position)
     {
-        yield return new WaitForSeconds(delay);
         position.y = 0;
         var block = GetBlock(position);
         if (block != null)
         {
             var unit = block.GetUnit();
-            Debug.Log(unit);
             if (unit != null)
-                unit.GetBehaviour<UnitStat>().Damaged(damage);
+                return true;
+        }
+        return false;
+    }
+
+    public bool IsMovablePosition(Vector3 position)
+    {
+        position.y = 0;
+        if(_map.ContainsKey(position) == false)
+            return false;
+        bool result = BlockInUnit(position);
+        return result;
+    }
+    
+    private IEnumerator DamageCoroutine<T>(Vector3 position, float damage, float delay) where T : UnitStat
+    {
+        yield return new WaitForSeconds(delay);
+        if (BlockInUnit(position))
+        {
+            position.y = 0;
+            var block = GetBlock(position);
+            var unit = block.GetUnit();
+            unit.GetBehaviour<T>().Damaged(damage);
         }
     }
 
@@ -66,7 +87,7 @@ public class MapManager : IManager
                 //if (_map[checkPos].isWalkable)
                 //    walkableUDLR[i] = true;
 
-                //neighbors.Add(_map[checkPos]);
+                neighbors.Add(_map[checkPos]);
             }
         }
 
