@@ -11,16 +11,12 @@ public class CameraManager : IManager
         usingCamera = GameObject.FindObjectOfType<BaseCam>();
     }
 
-    public override void Update()
+    public void CameraShaking(float strength, float shakingTime)
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            CameraShaking();
-        }
+        usingCamera.CameraShake(strength, shakingTime);
     }
-
-    public void CameraShaking()
+    public void CameraZooming(float strength, float zoominTime, float waitTime, float zoomOutTime)
     {
-        usingCamera.CameraZoom(2,1f,2f,0.5f);
+        usingCamera.CameraZoom(strength,zoominTime,waitTime,zoomOutTime);
     }
 }
