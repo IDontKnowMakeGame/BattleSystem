@@ -41,6 +41,9 @@ public class BasicTwinSword : Weapon
 
 	protected override void Attack()
 	{
+		if (isSkill)
+			return;
+
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveForward))
 		{
 			_attack.Attack(Vector3.left + Vector3.forward, _basicData.attackSpeed, _basicData.attackAfterDelay, _basicData.damage);
