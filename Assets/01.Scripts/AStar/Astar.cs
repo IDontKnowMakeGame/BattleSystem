@@ -102,7 +102,7 @@ public class Astar
         BlockBase currentTile = endTile;
         while (currentTile != startTile)
         {
-            if (currentTile != start)
+            if (currentTile != start && currentTile != end)
             {
                 route.Push(currentTile);
                 currentTile = currentTile.Parent;
