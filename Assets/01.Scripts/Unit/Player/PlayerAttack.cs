@@ -35,7 +35,7 @@ namespace Unit.Player
             {
                 Vector3 checkPos = thisBase.transform.position + dir;
                 if (playerStats != null && GameManagement.Instance.GetManager<MapManager>().BlockInUnit(checkPos))      playerStats.AddAdrenaline(1);
-                GameManagement.Instance.GetManager<MapManager>().GiveDamage(checkPos, playerStats.GetCurrentStat().atk, time);
+                GameManagement.Instance.GetManager<MapManager>().GiveDamage<UnitStat>(checkPos, playerStats.GetCurrentStat().atk, time);
                 timer = Delay;
                 onBehaviourEnd?.Invoke();
             }

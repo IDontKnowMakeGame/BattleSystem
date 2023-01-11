@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unit;
 using Unit.Block;
+using Unit.Player;
 using UnityEngine;
 
 public class MapManager : IManager
@@ -29,9 +30,9 @@ public class MapManager : IManager
         blocks.ForEach(AddBlock);
     }
 
-    public void GiveDamage(Vector3 position, float damage, float delay)
+    public void GiveDamage<T>(Vector3 position, float damage, float delay) where T : UnitStat
     {
-        instance.StartCoroutine(DamageCoroutine(position, damage, delay));
+        instance.StartCoroutine(DamageCoroutine<T>(position, damage, delay));
     }
 
     public bool BlockInUnit(Vector3 position)
@@ -56,7 +57,7 @@ public class MapManager : IManager
         return result;
     }
     
-    private IEnumerator DamageCoroutine(Vector3 position, float damage, float delay)
+    private IEnumerator DamageCoroutine<T>(Vector3 position, float damage, float delay) where T : UnitStat
     {
         yield return new WaitForSeconds(delay);
         if (BlockInUnit(position))
@@ -64,7 +65,7 @@ public class MapManager : IManager
             position.y = 0;
             var block = GetBlock(position);
             var unit = block.GetUnit();
-            unit.GetBehaviour<UnitStat>().Damaged(damage);
+            unit.GetBehaviour<T>().Damaged(damage);
         }
     }
 
