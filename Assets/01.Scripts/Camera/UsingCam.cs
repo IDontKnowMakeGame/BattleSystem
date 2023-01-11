@@ -49,7 +49,6 @@ public class UsingCam : BaseCam
         shaketimer = shaketime;
     }
 
-
     public override void CameraZoom(float strength = 1.5f, float zoominTime = 0.5f, float waitingTime = 1f, float zoomOutTime = 0.5f)
     {
         StartCoroutine(CameraZoomCoroutine(strength, zoominTime, zoomOutTime,new WaitForSeconds(waitingTime)));
