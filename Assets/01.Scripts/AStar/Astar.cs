@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using Manager;
 using Unit;
 using Unit.Block;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class Astar
@@ -43,15 +44,17 @@ public class Astar
                 }
             }
 
+            Debug.Log(currentTile);
             openList.Remove(currentTile);
             closeList.Add(currentTile);
 
             if(currentTile == end)
             {
                 pathSuccess = true;
+                Debug.Log(1);
                 break;
             }
-
+            
             yield return new WaitUntil(() => isFinding);
             // 이웃된 타일 가져오기
             foreach (BlockBase tile in GameManagement.Instance.GetManager<MapManager>().GetNeighbors(currentTile))
@@ -69,6 +72,7 @@ public class Astar
                     if (!openList.Contains(tile))
                     {
                         openList.Add(tile);
+                        Debug.Log(tile);
                     }
                 }
             }
