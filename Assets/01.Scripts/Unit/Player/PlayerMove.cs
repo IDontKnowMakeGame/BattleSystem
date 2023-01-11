@@ -40,16 +40,20 @@ namespace Unit.Player
 
             _seq = DOTween.Sequence();
             isMoving = true;
+            thisBase.GetBehaviour<PlayerAnimation>().SetMovement(isMoving);
+
+            thisBase.transform.localScale = new Vector3(dir == Vector3.left ? -1 : dir == Vector3.right ? 1 : thisBase.transform.localScale.x, 1, 1);
+
             var distance = Vector3.Distance(originalPos, nextPos);
             if (distance < 0.1f)
             {
                 isMoving = false;
+                thisBase.GetBehaviour<PlayerAnimation>().SetMovement(isMoving);
                 _seq.Kill();
                 return;
             }
 
             float speeds = s != 0 ? s : speed;
-            Debug.Log(speeds);
             _seq.Append(thisBase.transform.DOMove(nextPos, speeds).SetEase(Ease.Linear));
             _seq.AppendCallback(() =>
             {
@@ -60,6 +64,7 @@ namespace Unit.Player
                 onBehaviourEnd = null;
                 _moveDirection = Vector2.zero;
                 isMoving = false;
+                thisBase.GetBehaviour<PlayerAnimation>().SetMovement(isMoving);
                 _seq.Kill();
             });
         }
