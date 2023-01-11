@@ -15,6 +15,7 @@ public class PlayerBase : UnitBase
     [SerializeField] private PlayerAttack playerAttack;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private PlayerWeapon playerWeapon;
+    [SerializeField] private PlayerAnimation playerAnimation;
 
     protected override void Init()
     {
@@ -22,6 +23,7 @@ public class PlayerBase : UnitBase
         playerAttack = AddBehaviour<PlayerAttack>(playerAttack);
         playerStats = AddBehaviour<PlayerStats>(playerStats);
         playerWeapon = AddBehaviour<PlayerWeapon>(playerWeapon);
+        playerAnimation = AddBehaviour<PlayerAnimation>(playerAnimation);
     }
 
     protected override void Update()
