@@ -7,7 +7,7 @@ namespace Unit
 {
     public class UnitAttack : Behaviour
     {
-        public virtual void Attack(Vector3 dir, float time, float damage = 0)
+        public virtual void Attack(Vector3 dir, float time, float atferTime,float damage = 0)
         {
 
         }

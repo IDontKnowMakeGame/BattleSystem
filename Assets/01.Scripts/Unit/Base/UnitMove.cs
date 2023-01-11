@@ -6,7 +6,7 @@ namespace Unit
     public class UnitMove : Behaviour
     {
         public Vector3 position;
-
+        protected bool isMoving = false;
         public override void Start()
         {
             position = thisBase.transform.position;
@@ -16,5 +16,6 @@ namespace Unit
         {
 
         }
+        public bool IsMoving() => isMoving;
     }
 }

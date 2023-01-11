@@ -28,10 +28,6 @@ public class PlayerBase : UnitBase
 
     protected override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GameManagement.Instance.GetManager<MapManager>().GiveDamage<UnitStat>(transform.position, 1, 0);
-        }
         base.Update();
     }
 }

@@ -9,6 +9,7 @@ public class LongSword : BasicSword
 	{
 		base.Start();
 		GetWeaponStateData("sword");
+		_maxTime = LongSwordData.coolTime;
 	}
 	protected override void Skill()
 	{
@@ -38,7 +39,7 @@ public class LongSword : BasicSword
 			}
 		}
 
-		if (_inputManager.GetKeyUpInput(InputManager.InputSignal.Skill))
+		if (_inputManager.GetKeyUpInput(InputManager.InputSignal.Skill) && !isCoolTime)
 		{
 			isCoolTime = true;
 			RollSkill(Vector3.forward * 2);
@@ -57,6 +58,5 @@ public class LongSword : BasicSword
 	private void RollSkillEnd()
 	{
 		isSkill = false;
-		isCoolTime = false;
 	}
 }
