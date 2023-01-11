@@ -31,12 +31,13 @@ namespace Unit.Enemy.AI.State
             
             AITransition toAttack = new AITransition();
             attack = new AttackState();
-            toAttack.SetConditionState(true, false);
+            toAttack.SetConditionState(true, true);
             toAttack.SetTarget(attack);
             lineCheck = new LineCheckCondition();
             lineCheck.SetLength(1);
             lineCheck.SetPos(GameObject.Find("Enemy").transform, GameObject.Find("Player").transform);
             toAttack.AddCondition(lineCheck.CheckCondition, true);
+            toAttack.AddCondition(unit.GetBehaviour<EnemyMove>().IsMoving, false);
             AddTransition(toAttack);
 
             pathfinding = new Astar();
