@@ -29,7 +29,7 @@ namespace Unit.Enemy.AI.State
 
         protected override void OnEnter()
         {
-            //Debug.Log(Name);
+            Debug.Log(Name);
             var pos = GameObject.Find("Enemy").transform.position;
             if (direction.x != 0)
             {

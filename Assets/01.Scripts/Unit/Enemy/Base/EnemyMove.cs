@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using Manager;
 using UnityEngine;
+using UnityEngine.Formats.Alembic.Timeline;
 
 namespace Unit.Enemy.Base
 {
@@ -23,7 +24,10 @@ namespace Unit.Enemy.Base
             var nextPos = dir;
             var distance = Vector3.Distance(originalPos, nextPos);
             if (GameManagement.Instance.GetManager<MapManager>().IsMovablePosition(nextPos) == false)
+            {
+                isMoving = false;
                 return;
+            }
             if (distance < 0.1f)
             {
                 isMoving = false;

@@ -27,17 +27,18 @@ namespace Unit.Enemy.AI.State
             rangeCondition.SetRange(3);
             rangeCondition.SetPos(GameObject.Find("Enemy").transform, GameObject.Find("Player").transform);
             toRoaming.AddCondition(rangeCondition.CheckCondition, false);
+            toRoaming.AddCondition(() => !isChasing, true);
             AddTransition(toRoaming);
             
             AITransition toAttack = new AITransition();
             attack = new AttackState();
-            toAttack.SetConditionState(true, true);
+            toAttack.SetConditionState(true, false);
             toAttack.SetTarget(attack);
             lineCheck = new LineCheckCondition();
             lineCheck.SetLength(1);
             lineCheck.SetPos(GameObject.Find("Enemy").transform, GameObject.Find("Player").transform);
             toAttack.AddCondition(lineCheck.CheckCondition, true);
-            toAttack.AddCondition(unit.GetBehaviour<EnemyMove>().IsMoving, false);
+            toAttack.AddCondition(() => !isChasing, true);
             AddTransition(toAttack);
 
             pathfinding = new Astar();
@@ -50,6 +51,7 @@ namespace Unit.Enemy.AI.State
 
         protected override void OnStay()
         {
+            Debug.Log(isChasing);
             if (!isChasing)
             {
                 unit.StartCoroutine(ChaseCoroutine());

@@ -45,7 +45,6 @@ namespace Unit.Player
 
             if (GameManagement.Instance.GetManager<MapManager>().IsMovablePosition(nextPos) == false)
                 return;
-            Debug.Log("ㅋ");
 
             _seq = DOTween.Sequence();
             isMoving = true;
@@ -58,7 +57,6 @@ namespace Unit.Player
             }
 
             float speeds = s != 0 ? s : speed;
-            Debug.Log(speeds);
             _seq.Append(thisBase.transform.DOMove(nextPos, speeds).SetEase(Ease.Linear));
             _seq.AppendCallback(() =>
             {
