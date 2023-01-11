@@ -31,7 +31,6 @@ public class Astar
         List<BlockBase> closeList = new List<BlockBase>();
 
         openList.Add(start);
-
         while(openList.Count > 0)
         {
             // CurrentNode 탐색 -> openList 코스트 가장 작은 것 찾기
@@ -173,7 +172,9 @@ public class Astar
 
     public BlockBase GetNextPath()
     {
-        return route.Pop();
+        if(route.Count > 0)
+            return route.Pop();
+        return null;
     }
     
     public bool HasFound()

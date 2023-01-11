@@ -21,7 +21,7 @@ namespace Unit
             return currentStat;
         }
 
-        public override void Start()
+        public override void Awake()
         {
             currentStat.hp = originalStat.hp;
             currentStat.atk = originalStat.atk;

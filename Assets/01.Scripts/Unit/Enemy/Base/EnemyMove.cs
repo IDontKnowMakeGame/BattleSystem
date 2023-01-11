@@ -10,6 +10,13 @@ namespace Unit.Enemy.Base
         private Sequence _seq;
         private bool isMoving = false;
         private Vector3 _originPosition;
+
+        public override void Start()
+        {
+            speed = thisBase.GetBehaviour<UnitStat>().GetCurrentStat().agi;
+            Debug.Log(speed);
+        }
+
         public override void Translate(Vector3 dir)
         {
             if (isMoving == true)
@@ -30,9 +37,11 @@ namespace Unit.Enemy.Base
             }
 
             var duration = distance / speed;
+            
             _seq.Append(thisBase.transform.DOMove(nextPos, duration).SetEase(Ease.Linear));
             _seq.AppendCallback(() =>
             {
+
                 position = nextPos;
                 GameManagement.Instance.GetManager<MapManager>().GetBlock(thisBase.transform.position).MoveUnitOnBlock(thisBase);
                 GameManagement.Instance.GetManager<MapManager>().GetBlock(_originPosition).RemoveUnitOnBlock();
