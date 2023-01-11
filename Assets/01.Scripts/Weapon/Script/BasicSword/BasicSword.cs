@@ -23,20 +23,20 @@ public class BasicSword : Weapon
 	{
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveForward))
 		{
-			((PlayerMove)_move).Translate(Vector3.forward, _basicData.Speed);
+			((PlayerMove)_move).InputMovement(Vector3.forward, _basicData.Speed);
 			Debug.Log(_move);
 		}
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveBackward))
 		{
-			_move.Translate(Vector3.back, _basicData.Speed);
+			((PlayerMove)_move).InputMovement(Vector3.back, _basicData.Speed);
 		}
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveLeft))
 		{
-			_move.Translate(Vector3.left, _basicData.Speed);
+			((PlayerMove)_move).InputMovement(Vector3.left, _basicData.Speed);
 		}
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveRight))
 		{
-			_move.Translate(Vector3.right, _basicData.Speed);
+			((PlayerMove)_move).InputMovement(Vector3.right, _basicData.Speed);
 		}
 	}
 

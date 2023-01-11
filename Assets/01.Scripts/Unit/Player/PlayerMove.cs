@@ -2,7 +2,20 @@
 using Manager;
 using Unit;
 using UnityEngine;
+using System.Collections.Generic;
 using System;
+
+struct MoveNode
+{
+    public Vector3 dir;
+    public float speed;
+
+    public MoveNode(Vector3 dir, float speed)
+    {
+        this.dir = dir;
+        this.speed = speed;
+    }
+}
 
 namespace Unit.Player
 {
@@ -15,6 +28,8 @@ namespace Unit.Player
         private bool isMoving = false;
         private Vector3 _originPosition;
         private Sequence _seq;
+
+        Queue<MoveNode> moveDir = new Queue<MoveNode>();
 
         PlayerWeapon _weapon;
 		public override void Start()
@@ -31,6 +46,21 @@ namespace Unit.Player
                 Debug.Log("ㅋ");
                 return;
 			}
+        }
+
+        public void InputMovement(Vector3 dir, float speed = 0)
+        {
+            if (moveDir.Count > 2) return;
+            moveDir.Enqueue(new MoveNode(dir, speed));
+        }
+
+        public void PopMove()
+        {
+            if(moveDir.Count > 0 && !isMoving)
+            {
+                MoveNode nextNode = moveDir.Dequeue();
+                Translate(nextNode.dir, nextNode.speed);
+            }
         }
 
         public override void Translate(Vector3 dir, float s = 0)
