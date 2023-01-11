@@ -51,7 +51,6 @@ namespace Unit.Enemy.AI.State
 
         protected override void OnStay()
         {
-            Debug.Log(isChasing);
             if (!isChasing)
             {
                 unit.StartCoroutine(ChaseCoroutine());

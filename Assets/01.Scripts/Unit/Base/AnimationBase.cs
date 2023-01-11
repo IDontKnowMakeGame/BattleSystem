@@ -10,6 +10,7 @@ namespace Unit
 
         // StringToHash
         protected readonly int _moveHash = Animator.StringToHash("Move");
+        protected readonly int _attackHash = Animator.StringToHash("Attack");
 
         public override void Awake()
         {

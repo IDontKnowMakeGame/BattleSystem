@@ -4,6 +4,7 @@ using UnityEngine;
 using Unit;
 using UnityEngine.UI;
 using Manager;
+using UnityEngine.SceneManagement;
 
 namespace Unit.Player
 {
@@ -23,6 +24,8 @@ namespace Unit.Player
         [SerializeField]
         private Slider adrenalineSlider;
         [SerializeField]
+        private GameObject restartText;
+        [SerializeField]
         private GameObject adrenalineFillArea;
 
 
@@ -40,6 +43,10 @@ namespace Unit.Player
         public override void Update()
         {
             ChangeStatsUI();
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
 
         private void ChangeStatsUI()
@@ -101,7 +108,7 @@ namespace Unit.Player
 
         public override void Die()
 		{
-
+            restartText.SetActive(true);
 		}
 	}
 }
