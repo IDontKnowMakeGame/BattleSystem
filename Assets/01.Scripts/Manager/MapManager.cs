@@ -46,6 +46,15 @@ public class MapManager : IManager
         }
         return false;
     }
+
+    public bool IsMovablePosition(Vector3 position)
+    {
+        position.y = 0;
+        if(_map.ContainsKey(position) == false)
+            return false;
+        bool result = BlockInUnit(position);
+        return result;
+    }
     
     private IEnumerator DamageCoroutine(Vector3 position, float damage, float delay)
     {

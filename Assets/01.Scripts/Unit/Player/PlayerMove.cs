@@ -40,7 +40,7 @@ namespace Unit.Player
             _originPosition = originalPos;
             var nextPos = originalPos + dir;
 
-            if (GameManagement.Instance.GetManager<MapManager>().BlockInUnit(nextPos))
+            if (GameManagement.Instance.GetManager<MapManager>().IsMovablePosition(nextPos) == false)
                 return;
 
             _seq = DOTween.Sequence();

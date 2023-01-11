@@ -28,6 +28,9 @@ namespace Unit.Enemy.Base
             _originPosition = originalPos;
             dir.y = originalPos.y;
             var nextPos = dir;
+            if (GameManagement.Instance.GetManager<MapManager>().IsMovablePosition(nextPos) == false)
+                return;
+            
             var distance = Vector3.Distance(originalPos, nextPos);
             if (distance < 0.1f)
             {
