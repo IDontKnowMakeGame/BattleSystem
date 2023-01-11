@@ -15,20 +15,27 @@ namespace Unit.Enemy.AI.MadBroken.State
         {
             AITransition toNormal = new AITransition();
             toNormal.SetConditionState(true);
-            toNormal.SetTarget(new NormalState());
+            var normal = new NormalState();
+            //normal.
+            toNormal.SetTarget(normal);
             toNormal.AddCondition(() => randomValue == 0, true);
+            AddTransition(toNormal);
             
             AITransition toBack = new AITransition();
             toBack.SetConditionState(true);
-            toBack.SetTarget(new BackAttackState());
-            toNormal.AddCondition(() => randomValue == 1, true);
-            
+            var back = new BackAttackState();
+            //back.
+            toBack.SetTarget(back);
+            toBack.AddCondition(() => randomValue == 1, true);
+            AddTransition(toBack);
             
             AITransition toTriple = new AITransition();
-            toBack.SetConditionState(true);
-            toTriple.SetTarget(new TripleAttackState());
-            toNormal.AddCondition(() => randomValue == 2, true);
-            
+            toTriple.SetConditionState(true);
+            var triple = new TripleAttackState();
+            //triple.
+            toTriple.SetTarget(triple);
+            toTriple.AddCondition(() => randomValue == 2, true);
+            AddTransition(toTriple);
             
         }
 
