@@ -83,7 +83,7 @@ namespace Unit.Enemy.AI.State
             path.y = unit.transform.position.y;
             var move = unit.GetBehaviour<EnemyMove>();
             move.Translate(path);
-            yield return new WaitUntil(() => move.IsMoving());
+            yield return new WaitUntil(() => !move.IsMoving());
 
             isChasing = false;
         }
