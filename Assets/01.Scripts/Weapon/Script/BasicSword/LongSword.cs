@@ -51,7 +51,7 @@ public class LongSword : BasicSword
 		isCoolTime = true;
 		UnitMove playerMove = _baseObject.GetBehaviour<UnitMove>();
 		playerMove.onBehaviourEnd = RollSkillEnd;
-		playerMove.Translate(vec * 2);
+		playerMove.Translate(vec * 2,LongSwordData.skillTime);
 	}
 
 	private void RollSkillEnd()

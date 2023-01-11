@@ -9,7 +9,7 @@ namespace Unit.Player
     [System.Serializable]
     public class PlayerMove : UnitMove
     {
-        public float speed;
+        private float speed;
 
         private Vector3 _moveDirection = Vector3.zero;
         private bool isMoving = false;
@@ -27,11 +27,15 @@ namespace Unit.Player
         public override void Update()
         {
             if (_weapon.currentWeapon.isSkill)
+			{
+                Debug.Log("ㅋ");
                 return;
+			}
         }
 
         public override void Translate(Vector3 dir, float s = 0)
         {
+
             if (isMoving == true)
                 return;
 
@@ -41,6 +45,7 @@ namespace Unit.Player
 
             if (GameManagement.Instance.GetManager<MapManager>().IsMovablePosition(nextPos) == false)
                 return;
+            Debug.Log("ㅋ");
 
             _seq = DOTween.Sequence();
             isMoving = true;
@@ -53,6 +58,7 @@ namespace Unit.Player
             }
 
             float speeds = s != 0 ? s : speed;
+            Debug.Log(speeds);
             _seq.Append(thisBase.transform.DOMove(nextPos, speeds).SetEase(Ease.Linear));
             _seq.AppendCallback(() =>
             {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Manager;
+using Unit.Player;
 
 public class BasicSword : Weapon
 {
@@ -12,18 +13,18 @@ public class BasicSword : Weapon
 
 	public override void Update()
 	{
-		Timer();
-		Skill();
 		Move();
 		Attack();
+		Timer();
+		Skill();
 	}
 
 	protected override void Move()
 	{
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveForward))
 		{
-			_move.Translate(Vector3.forward, _basicData.Speed);
-			Debug.Log(_basicData.Speed);
+			((PlayerMove)_move).Translate(Vector3.forward, _basicData.Speed);
+			Debug.Log(_move);
 		}
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveBackward))
 		{
@@ -43,19 +44,19 @@ public class BasicSword : Weapon
 	{
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.FowardAttack))
 		{
-			_attack.Attack(Vector3.forward, _basicData.attackSpeed);
+			_attack.Attack(Vector3.forward, _basicData.attackSpeed, _basicData.damage);
 		}
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.BackwardAttack))
 		{
-			_attack.Attack(Vector3.back, _basicData.attackSpeed);
+			_attack.Attack(Vector3.back, _basicData.attackSpeed, _basicData.damage);
 		}
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.LeftAttack))
 		{
-			_attack.Attack(Vector3.left, _basicData.attackSpeed);
+			_attack.Attack(Vector3.left, _basicData.attackSpeed, _basicData.damage);
 		}
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.RightAttack))
 		{
-			_attack.Attack(Vector3.right, _basicData.attackSpeed);
+			_attack.Attack(Vector3.right, _basicData.attackSpeed, _basicData.damage);
 		}
 	}
 }

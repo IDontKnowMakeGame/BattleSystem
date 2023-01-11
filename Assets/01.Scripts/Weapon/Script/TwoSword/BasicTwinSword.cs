@@ -10,10 +10,10 @@ public class BasicTwinSword : Weapon
 	}
 	public override void Update()
 	{
-		Timer();
-		Skill();
 		Move();
 		Attack();
+		Timer();
+		Skill();
 	}
 
 	protected override void Move()
@@ -40,23 +40,23 @@ public class BasicTwinSword : Weapon
 	{
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveForward))
 		{
-			_attack.Attack(Vector3.left + Vector3.forward, _basicData.attackSpeed);
-			_attack.Attack(Vector3.right + Vector3.forward, _basicData.attackSpeed);
+			_attack.Attack(Vector3.left + Vector3.forward, _basicData.attackSpeed, _basicData.damage);
+			_attack.Attack(Vector3.right + Vector3.forward, _basicData.attackSpeed, _basicData.damage);
 		}
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveBackward))
 		{
-			_attack.Attack(Vector3.left + Vector3.back, _basicData.attackSpeed);
-			_attack.Attack(Vector3.right + Vector3.back, _basicData.attackSpeed);
+			_attack.Attack(Vector3.left + Vector3.back, _basicData.attackSpeed, _basicData.damage);
+			_attack.Attack(Vector3.right + Vector3.back, _basicData.attackSpeed, _basicData.damage);
 		}
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveLeft))
 		{
-			_attack.Attack(Vector3.forward + Vector3.left, _basicData.attackSpeed);
-			_attack.Attack(Vector3.back + Vector3.left, _basicData.attackSpeed);
+			_attack.Attack(Vector3.forward + Vector3.left, _basicData.attackSpeed, _basicData.damage);
+			_attack.Attack(Vector3.back + Vector3.left, _basicData.attackSpeed, _basicData.damage);
 		}
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveRight))
 		{
-			_attack.Attack(Vector3.forward + Vector3.right, _basicData.attackSpeed);
-			_attack.Attack(Vector3.back + Vector3.right, _basicData.attackSpeed);
+			_attack.Attack(Vector3.forward + Vector3.right, _basicData.attackSpeed, _basicData.damage);
+			_attack.Attack(Vector3.back + Vector3.right, _basicData.attackSpeed, _basicData.damage);
 		}
 	}
 }

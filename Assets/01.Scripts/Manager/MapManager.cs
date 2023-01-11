@@ -53,7 +53,7 @@ public class MapManager : IManager
         position.y = 0;
         if(_map.ContainsKey(position) == false)
             return false;
-        bool result = BlockInUnit(position);
+        bool result = !BlockInUnit(position);
         return result;
     }
     
