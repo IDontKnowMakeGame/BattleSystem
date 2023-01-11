@@ -2,12 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using System.Security.Cryptography;
 using Manager;
 using Unit;
 using Unit.Block;
-using UnityEngine.AI;
-using UnityEngine.UI;
 
 public class Astar
 {
@@ -15,6 +12,8 @@ public class Astar
     private BlockBase start, end;
     public LineRenderer line;
     public bool isFinding = false;
+    private bool isChasing;
+    private Unit.Unit unit;
 
     // Test Material
     public Material red;
@@ -61,7 +60,6 @@ public class Astar
             {
                 if (!tile.isWalkable || closeList.Contains(tile))
                     continue;
-
                 int nowCost = currentTile.G + GetDistance(currentTile, tile);
                 if (nowCost < tile.G || !openList.Contains(tile))
                 {
@@ -167,6 +165,11 @@ public class Astar
         return 14 * destX + 10 * (destY - destX);
 
     }
+
+    public void SetUnit(Unit.Unit unit)
+    {
+        this.unit = unit;
+    }
     
     public void SetRoute(BlockBase start, BlockBase end)
     {
@@ -184,5 +187,31 @@ public class Astar
     public bool HasFound()
     {
         return !isFinding;
+    }
+
+    public bool IsChasing() => isChasing;
+    
+    public IEnumerator ChaseCoroutine()
+    {
+        isChasing = true;
+
+        unit.StartCoroutine(FindPath());
+
+        yield return new WaitUntil(() => HasFound());
+        var nextBlock = GetNextPath();
+        if (nextBlock == null)
+        {
+            isChasing = false;
+            yield break;
+        }
+
+        var path = nextBlock.transform.position;
+        Debug.Log(path);
+        path.y = unit.transform.position.y;
+        var move = unit.GetBehaviour<UnitMove>();
+        move.Translate(path);
+        yield return new WaitUntil(() => !move.IsMoving());
+
+        isChasing = false;
     }
 }
