@@ -21,6 +21,8 @@ public class Weapon
 	protected bool isCoolTime = false;
 
 	public bool isSkill = false;
+
+	protected WeaponStateData _basicData;
 	public Weapon(Unit.Unit unit)
 	{
 		SetBase(unit);
@@ -80,5 +82,18 @@ public class Weapon
 	public void SetBase(Unit.Unit _base)
 	{
 		_baseObject = _base;
+	}
+
+	public void GetWeaponStateData(string str)
+	{
+		_baseObject.StartCoroutine(Coroutine(str));
+	}
+
+	IEnumerator Coroutine(string str)
+	{
+		yield return new WaitUntil(()=>GameManagement.Instance.GetManager<DataManager>().isSettingComplate);
+
+		_basicData = GameManagement.Instance.GetManager<DataManager>().GetWeaponStateData(str);
+		Debug.Log($"{_basicData.name} : {_basicData.damage} : {_basicData.attackSpeed} : {_basicData.attackAfterDelay} : {_basicData.weaponClass}: {_basicData.weaponWeight}");
 	}
 }

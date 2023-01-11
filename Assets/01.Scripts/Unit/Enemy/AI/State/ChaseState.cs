@@ -44,7 +44,7 @@ namespace Unit.Enemy.AI.State
 
         protected override void OnEnter()
         {
-            Debug.Log("Chase");
+            //Debug.Log("Chase");
         }
 
         protected override void OnStay()

@@ -1,5 +1,5 @@
+using Manager;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BasicTwinSword : Weapon
@@ -8,12 +8,6 @@ public class BasicTwinSword : Weapon
 	{
 		base.Awake();
 	}
-
-	public override void Start()
-	{
-		base.Start();
-	}
-
 	public override void Update()
 	{
 		Timer();
@@ -26,19 +20,19 @@ public class BasicTwinSword : Weapon
 	{
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveForward))
 		{
-			_move.Translate(Vector3.forward);
+			_move.Translate(Vector3.forward, _basicData.Speed);
 		}
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveBackward))
 		{
-			_move.Translate(Vector3.back);
+			_move.Translate(Vector3.back, _basicData.Speed);
 		}
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveLeft))
 		{
-			_move.Translate(Vector3.left);
+			_move.Translate(Vector3.left, _basicData.Speed);
 		}
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveRight))
 		{
-			_move.Translate(Vector3.right);
+			_move.Translate(Vector3.right, _basicData.Speed);
 		}
 	}
 
@@ -46,23 +40,23 @@ public class BasicTwinSword : Weapon
 	{
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveForward))
 		{
-			_attack.Attack(Vector3.left + Vector3.forward,.1f);
-			_attack.Attack(Vector3.right + Vector3.forward,.1f);
+			_attack.Attack(Vector3.left + Vector3.forward, _basicData.attackSpeed);
+			_attack.Attack(Vector3.right + Vector3.forward, _basicData.attackSpeed);
 		}
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveBackward))
 		{
-			_attack.Attack(Vector3.left + Vector3.back,.1f);
-			_attack.Attack(Vector3.right + Vector3.back,.1f);
+			_attack.Attack(Vector3.left + Vector3.back, _basicData.attackSpeed);
+			_attack.Attack(Vector3.right + Vector3.back, _basicData.attackSpeed);
 		}
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveLeft))
 		{
-			_attack.Attack(Vector3.forward + Vector3.left,.1f);
-			_attack.Attack(Vector3.back + Vector3.left,.1f);
+			_attack.Attack(Vector3.forward + Vector3.left, _basicData.attackSpeed);
+			_attack.Attack(Vector3.back + Vector3.left, _basicData.attackSpeed);
 		}
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveRight))
 		{
-			_attack.Attack(Vector3.forward + Vector3.right,.1f);
-			_attack.Attack(Vector3.back + Vector3.right,.1f);
+			_attack.Attack(Vector3.forward + Vector3.right, _basicData.attackSpeed);
+			_attack.Attack(Vector3.back + Vector3.right, _basicData.attackSpeed);
 		}
 	}
 }

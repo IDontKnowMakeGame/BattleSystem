@@ -9,7 +9,7 @@ namespace Unit.Player
     [System.Serializable]
     public class PlayerMove : UnitMove
     {
-        private float speed;
+        public float speed;
 
         private Vector3 _moveDirection = Vector3.zero;
         private bool isMoving = false;
@@ -20,6 +20,7 @@ namespace Unit.Player
 		public override void Start()
         {
             _weapon = thisBase.GetBehaviour<PlayerWeapon>();
+            speed = thisBase.GetBehaviour<PlayerStats>().GetCurrentStat().agi;
             base.Start();  
         }
 
@@ -27,11 +28,9 @@ namespace Unit.Player
         {
             if (_weapon.currentWeapon.isSkill)
                 return;
-
-            speed = thisBase.GetBehaviour<PlayerStats>().GetCurrentStat().agi;
         }
 
-        public override void Translate(Vector3 dir)
+        public override void Translate(Vector3 dir, float s = 0)
         {
             if (isMoving == true)
                 return;
@@ -49,8 +48,8 @@ namespace Unit.Player
                 return;
             }
 
-            var duration = distance / speed;
-            _seq.Append(thisBase.transform.DOMove(nextPos, duration).SetEase(Ease.Linear));
+            float speeds = s != 0 ? s : speed;
+            _seq.Append(thisBase.transform.DOMove(nextPos, speeds).SetEase(Ease.Linear));
             _seq.AppendCallback(() =>
             {
                 position = nextPos;

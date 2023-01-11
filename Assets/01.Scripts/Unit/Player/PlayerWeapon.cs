@@ -36,6 +36,7 @@ public class PlayerWeapon : Behaviour
 	public override void Start()
 	{
 		_inputManager = GameManagement.Instance.GetManager<InputManager>();
+
 		foreach (var value in weaponSkills)
 		{
 			value.Value?.Start();

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class TwinSword : BasicTwinSword
 {
+	public override void Start()
+	{
+		GetWeaponStateData("twin");
+		base.Start();
+	}
 	protected override void Skill()
 	{
 		if (isCoolTime)
@@ -43,7 +48,7 @@ public class TwinSword : BasicTwinSword
 	{
 		for(int i = 0; i<6; i++)
 		{
-			_attack.WaitAttack(dir,1,TwinSwordData.freeze);
+			_attack.WaitAttack(dir,_basicData.damage,TwinSwordData.freeze);
 		}
 	}
 }

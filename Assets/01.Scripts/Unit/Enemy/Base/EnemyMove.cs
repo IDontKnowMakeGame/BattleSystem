@@ -10,7 +10,7 @@ namespace Unit.Enemy.Base
         private Sequence _seq;
         private bool isMoving = false;
         private Vector3 _originPosition;
-        public override void Translate(Vector3 dir)
+        public override void Translate(Vector3 dir, float speed = 0)
         {
             if (isMoving == true)
                 return;
@@ -29,8 +29,8 @@ namespace Unit.Enemy.Base
                 return;
             }
 
-            var duration = distance / speed;
-            _seq.Append(thisBase.transform.DOMove(nextPos, duration).SetEase(Ease.Linear));
+            float speeds = speed != 0 ? speed : 1;
+            _seq.Append(thisBase.transform.DOMove(nextPos, speeds).SetEase(Ease.Linear));
             _seq.AppendCallback(() =>
             {
                 position = nextPos;

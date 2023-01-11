@@ -5,6 +5,11 @@ using Unit;
 
 public class LongSword : BasicSword
 {
+	public override void Start()
+	{
+		base.Start();
+		GetWeaponStateData("sword");
+	}
 	protected override void Skill()
 	{
 		if (isCoolTime)

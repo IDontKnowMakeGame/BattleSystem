@@ -33,10 +33,10 @@ namespace Unit.Player
         {
             if(timer <= 0)
             {
-                Debug.Log("PAttack");
                 if (playerStats != null) playerStats.AddAdrenaline(1);
                 timer = Delay;
-                GameManagement.Instance.GetManager<MapManager>().GiveDamage(thisBase.transform.position+dir, playerStats.GetCurrentStat().atk, time);
+				Debug.Log("PAttack");
+				GameManagement.Instance.GetManager<MapManager>().GiveDamage(thisBase.transform.position+dir, playerStats.GetCurrentStat().atk, time);
                 onBehaviourEnd?.Invoke();
             }
         }

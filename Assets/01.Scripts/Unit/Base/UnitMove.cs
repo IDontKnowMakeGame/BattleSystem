@@ -12,7 +12,7 @@ namespace Unit
             position = thisBase.transform.position;
         }
 
-        public virtual void Translate(Vector3 dir)
+        public virtual void Translate(Vector3 dir, float speed = 0)
         {
 
         }

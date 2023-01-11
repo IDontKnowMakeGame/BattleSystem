@@ -73,6 +73,7 @@ public class WeaponStateData
         this.attackSpeed = attackSpeed;
         this.attackAfterDelay = attackAfterDelay;
         this.weaponWeight = weaponWeight;
+        WeightChange();
     }
 
     public string name;
@@ -81,6 +82,32 @@ public class WeaponStateData
     public float attackSpeed;
     public float attackAfterDelay;
     public int weaponWeight;
+
+    public float Speed => _speed;
+
+    private float _speed;
+
+    private void WeightChange()
+	{
+        switch(weaponWeight)
+		{
+            case 5:
+                _speed = 0.8f;
+                break;
+            case 4:
+                _speed = 0.6f;
+                break;
+            case 3:
+                _speed = 0.4f;
+                break;
+            case 2:
+                _speed = 0.2f;
+                break;
+            case 1:
+                _speed = 0.1f;
+                break;
+        }
+    }
 }
 
 public class DataManager : IManager
@@ -88,6 +115,8 @@ public class DataManager : IManager
     public static User UserData;
 
     public List<WeaponStateData> weaponStateDataList = new List<WeaponStateData>();
+
+    public bool isSettingComplate = false;
 
     private string URL;
     public override void Init()
@@ -114,7 +143,6 @@ public class DataManager : IManager
         for (int i = 0;i<weaponCount;i++)
         {
             string[] col = row[i].Split("\t");
-            Debug.Log(col);
             weaponStateDataList.Add(new WeaponStateData(
                 col[0],
                 col[1],
@@ -124,6 +152,8 @@ public class DataManager : IManager
                 int.Parse(col[5]))
             );
         }
+
+        isSettingComplate = true;
     }
 
     public WeaponStateData GetWeaponStateData(string name)
