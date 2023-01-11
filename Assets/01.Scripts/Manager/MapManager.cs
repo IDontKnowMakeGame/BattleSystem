@@ -33,18 +33,29 @@ public class MapManager : IManager
     {
         instance.StartCoroutine(DamageCoroutine(position, damage, delay));
     }
-    
-    private IEnumerator DamageCoroutine(Vector3 position, float damage, float delay)
+
+    public bool BlockInUnit(Vector3 position)
     {
-        yield return new WaitForSeconds(delay);
         position.y = 0;
         var block = GetBlock(position);
         if (block != null)
         {
             var unit = block.GetUnit();
-            Debug.Log(unit);
             if (unit != null)
-                unit.GetBehaviour<UnitStat>().Damaged(damage);
+                return true;
+        }
+        return false;
+    }
+    
+    private IEnumerator DamageCoroutine(Vector3 position, float damage, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (BlockInUnit(position))
+        {
+            position.y = 0;
+            var block = GetBlock(position);
+            var unit = block.GetUnit();
+            unit.GetBehaviour<UnitStat>().Damaged(damage);
         }
     }
 

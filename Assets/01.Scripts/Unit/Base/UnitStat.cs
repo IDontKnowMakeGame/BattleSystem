@@ -9,7 +9,7 @@ namespace Unit
     {
         [SerializeField] private BaseStat originalStat;
 
-        [SerializeField] private BaseStat currentStat;  
+        [SerializeField] private BaseStat currentStat;
 
         public BaseStat GetOriginalStat()
         {
@@ -34,6 +34,10 @@ namespace Unit
         {
             GameObject obj = GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("Damage");
             obj.GetComponent<DamagePopUp>().DamageText((int)damage, this.thisBase.transform.position);
+
+            GameObject impact = GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("Impact");
+            impact.transform.position = thisBase.transform.position;
+
             currentStat.hp -= damage;
             if (currentStat.hp <= 0)
                 Die();

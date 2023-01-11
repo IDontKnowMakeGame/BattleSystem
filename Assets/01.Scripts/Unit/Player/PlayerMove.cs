@@ -36,11 +36,15 @@ namespace Unit.Player
             if (isMoving == true)
                 return;
 
-            _seq = DOTween.Sequence();
-            isMoving = true;
             var originalPos = thisBase.transform.position;
             _originPosition = originalPos;
             var nextPos = originalPos + dir;
+
+            if (GameManagement.Instance.GetManager<MapManager>().BlockInUnit(nextPos))
+                return;
+
+            _seq = DOTween.Sequence();
+            isMoving = true;
             var distance = Vector3.Distance(originalPos, nextPos);
             if (distance < 0.1f)
             {

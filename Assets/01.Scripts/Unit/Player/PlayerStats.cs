@@ -94,6 +94,7 @@ namespace Unit.Player
 		public override void Damaged(float damage)
 		{
             GetCurrentStat().hp -= damage;
+            AddAngerPercent(1);
             _basicHPSlider.SetSlider(GetCurrentStat().hp);
             if (GetCurrentStat().hp <= 0)
 			{
