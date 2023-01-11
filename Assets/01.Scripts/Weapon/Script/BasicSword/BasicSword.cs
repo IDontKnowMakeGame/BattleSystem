@@ -6,9 +6,10 @@ using Unit.Player;
 
 public class BasicSword : Weapon
 {
-	public override void Awake()
+
+	public override void Start()
 	{
-		base.Awake();
+		base.Start();
 	}
 
 	public override void Update()

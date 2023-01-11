@@ -20,8 +20,6 @@ public class BasicTwinSword : Weapon
 	{
 		if (isSkill)
 			return;
-		if(_move.IsMoving())
-			return;
 
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveForward))
 		{
@@ -44,6 +42,9 @@ public class BasicTwinSword : Weapon
 	protected override void Attack()
 	{
 		if (isSkill)
+			return;
+
+		if (_move.IsMoving())
 			return;
 
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveForward))
