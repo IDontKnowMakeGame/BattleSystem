@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Security.Cryptography;
 using Manager;
 using Unit;
 using Unit.Block;
+using UnityEngine.UI;
 
-public class Astar : MonoBehaviour
+public class Astar
 {
-    public BlockBase start, end;
+    private Stack<BlockBase> route = new Stack<BlockBase>();
+    private BlockBase start, end;
     public LineRenderer line;
     public bool isFinding = false;
 
@@ -17,17 +20,9 @@ public class Astar : MonoBehaviour
     public Material blue;
     public Material green;
 
-    private void Update()
+    public IEnumerator FindPath()
     {
-        if(Input.GetKeyDown(KeyCode.O))
-        {
-            start.GetComponent<Renderer>().material = blue;
-            end.GetComponent<Renderer>().material = green;
-            StartCoroutine("FindPath"); 
-        }
-    }
-    IEnumerator FindPath()
-    {
+        
         bool pathSuccess = false;
 
         isFinding = true;
@@ -36,7 +31,6 @@ public class Astar : MonoBehaviour
         List<BlockBase> closeList = new List<BlockBase>();
 
         openList.Add(start);
-
         while(openList.Count > 0)
         {
             // CurrentNode 탐색 -> openList 코스트 가장 작은 것 찾기
@@ -59,7 +53,6 @@ public class Astar : MonoBehaviour
             }
 
             yield return new WaitUntil(() => isFinding);
-
             // 이웃된 타일 가져오기
             foreach (BlockBase tile in GameManagement.Instance.GetManager<MapManager>().GetNeighbors(currentTile))
             {
@@ -81,10 +74,12 @@ public class Astar : MonoBehaviour
             }
         }
 
+        
         // 라인 그리기
         if(pathSuccess)
         {
-            RedPath(start, end);
+            MakePath(start, end);
+            isFinding = false;
         }
 
         yield return null;
@@ -98,6 +93,20 @@ public class Astar : MonoBehaviour
             if(currentTile != start && currentTile != end)
                 currentTile.GetComponent<Renderer>().material = red;
             currentTile = currentTile.Parent;
+        }
+    }
+    
+    void MakePath(BlockBase startTile, BlockBase endTile)
+    {
+        route.Clear();
+        BlockBase currentTile = endTile;
+        while (currentTile != startTile)
+        {
+            if (currentTile != start)
+            {
+                route.Push(currentTile);
+                currentTile = currentTile.Parent;
+            }
         }
     }
 
@@ -153,5 +162,23 @@ public class Astar : MonoBehaviour
 
         return 14 * destX + 10 * (destY - destX);
 
+    }
+    
+    public void SetRoute(BlockBase start, BlockBase end)
+    {
+        this.start = start;
+        this.end = end;
+    }
+
+    public BlockBase GetNextPath()
+    {
+        if(route.Count > 0)
+            return route.Pop();
+        return null;
+    }
+    
+    public bool HasFound()
+    {
+        return !isFinding;
     }
 }

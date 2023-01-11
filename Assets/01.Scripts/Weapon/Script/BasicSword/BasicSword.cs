@@ -41,19 +41,19 @@ public class BasicSword : Weapon
 	{
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.FowardAttack))
 		{
-			_attack.Attack(Vector3.forward);
+			_attack.Attack(Vector3.forward,0.5f);
 		}
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.BackwardAttack))
 		{
-			_attack.Attack(Vector3.back);
+			_attack.Attack(Vector3.back,0.5f);
 		}
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.LeftAttack))
 		{
-			_attack.Attack(Vector3.left);
+			_attack.Attack(Vector3.left,0.5f);
 		}
 		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.RightAttack))
 		{
-			_attack.Attack(Vector3.right);
+			_attack.Attack(Vector3.right,.5f);
 		}
 	}
 }

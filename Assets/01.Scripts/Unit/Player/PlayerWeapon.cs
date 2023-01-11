@@ -26,13 +26,20 @@ public class PlayerWeapon : Behaviour
 	{
 		weaponSkills.Add(SwordType.LongSword, new LongSword() { _baseObject = thisBase }) ;
 		weaponSkills.Add(SwordType.GreatSword, new LongSword() { _baseObject = thisBase });
-		weaponSkills.Add(SwordType.ShotSword, new LongSword() { _baseObject = thisBase });
-		weaponSkills[_currentSword]?.Awake();
+		weaponSkills.Add(SwordType.ShotSword, new TwinSword() { _baseObject = thisBase });
+
+		foreach(var value in weaponSkills)
+		{
+			value.Value?.Awake();
+		}
 	}
 	public override void Start()
 	{
 		_inputManager = GameManagement.Instance.GetManager<InputManager>();
-		weaponSkills[_currentSword]?.Start();
+		foreach (var value in weaponSkills)
+		{
+			value.Value?.Start();
+		}
 	}
 
 	public override void Update()
@@ -47,8 +54,9 @@ public class PlayerWeapon : Behaviour
 
 	public void ChangeWeapon()
 	{
-		int index = (int)_currentSword++ % (int)SwordType.End;
-		_currentSword = (SwordType)index;
+		int index = (int)_currentSword;
+		index++;
+		_currentSword = SwordType.ShotSword;
 
 		Debug.Log(_currentSword);
 	}

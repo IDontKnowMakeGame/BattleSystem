@@ -29,14 +29,14 @@ namespace Unit.Player
                 timer -= Time.deltaTime;
         }
 
-        public override void Attack(Vector3 dir)
+        public override void Attack(Vector3 dir, float time)
         {
             if(timer <= 0)
             {
                 Debug.Log("PAttack");
                 if (playerStats != null) playerStats.AddAdrenaline(1);
                 timer = Delay;
-                GameManagement.Instance.GetManager<MapManager>().GiveDamage(thisBase.transform.position+dir, playerStats.GetCurrentStat().atk, 0);
+                GameManagement.Instance.GetManager<MapManager>().GiveDamage(thisBase.transform.position+dir, playerStats.GetCurrentStat().atk, time);
                 onBehaviourEnd?.Invoke();
             }
         }

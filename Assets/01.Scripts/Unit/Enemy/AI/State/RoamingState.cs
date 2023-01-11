@@ -29,35 +29,12 @@ namespace Unit.Enemy.AI.State
         
         protected override void OnStay()
         {
-            var pos = GameObject.Find("Enemy").transform.position;
-            pos.y = 0;
-            for (var i = -6; i <= 6; i++)
-            {
-                for (var j = -6; j <= 6; j++)
-                {
-                    var blockPos = pos + new Vector3(i, 0, j);
-                    var block = GameManagement.Instance.GetManager<MapManager>().GetBlock(blockPos);
-                    if (Mathf.FloorToInt(Vector3.Distance(pos, blockPos)) <= 1)
-                    {
-                        block.GetComponent<MeshRenderer>().material.color = Color.red;
-                    }
-                }
-            }
+            
         }
         
         protected override void OnExit()
         {
-            var pos = GameObject.Find("Enemy").transform.position;
-            pos.y = 0;
-            for (var i = -6; i <= 6; i++)
-            {
-                for (var j = -6; j <= 6; j++)
-                {
-                    var blockPos = pos + new Vector3(i, 0, j);
-                    var block = GameManagement.Instance.GetManager<MapManager>().GetBlock(blockPos);
-                    block.GetComponent<MeshRenderer>().material.color = Color.white;
-                }
-            }
+            
         }
     }
 }

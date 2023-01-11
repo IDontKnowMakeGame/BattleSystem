@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Manager;
 
 namespace Unit
 {
@@ -20,7 +21,7 @@ namespace Unit
             return currentStat;
         }
 
-        public override void Start()
+        public override void Awake()
         {
             currentStat.hp = originalStat.hp;
             currentStat.atk = originalStat.atk;
@@ -31,7 +32,8 @@ namespace Unit
 
         public virtual void Damaged(float damage)
         {
-            Debug.Log(">");
+            GameObject obj = GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("Damage");
+            obj.GetComponent<DamagePopUp>().DamageText((int)damage, this.thisBase.transform.position);
             currentStat.hp -= damage;
             if (currentStat.hp <= 0)
                 Die();
