@@ -42,5 +42,7 @@ namespace Unit.Enemy.Base
                 _seq.Kill();
             });
         }
+
+        public bool IsMoving() => isMoving;
     }
 }

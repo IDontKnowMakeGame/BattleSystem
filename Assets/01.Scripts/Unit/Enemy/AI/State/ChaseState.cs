@@ -44,7 +44,7 @@ namespace Unit.Enemy.AI.State
 
         protected override void OnEnter()
         {
-            //Debug.Log("Chase");
+            Debug.Log("Chase");
         }
 
         protected override void OnStay()
@@ -81,8 +81,9 @@ namespace Unit.Enemy.AI.State
             var path = nextBlock.transform.position;
             Debug.Log(path);
             path.y = unit.transform.position.y;
-            unit.GetBehaviour<EnemyMove>().Translate(path);
-            yield return new WaitUntil(() => path == unit.transform.position);
+            var move = unit.GetBehaviour<EnemyMove>();
+            move.Translate(path);
+            yield return new WaitUntil(() => move.IsMoving());
 
             isChasing = false;
         }
