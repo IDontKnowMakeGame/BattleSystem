@@ -59,10 +59,15 @@ public class MapManager : IManager
     
     private IEnumerator DamageCoroutine<T>(Vector3 position, float damage, float delay) where T : UnitStat
     {
+        position.y = 0;
+        var render = _map[position].GetBehaviour<BlockRender>();
+        render.SetOutlineColor(Color.red);
         yield return new WaitForSeconds(delay);
+        render.SetOutlineColor(Color.black);
+        
+        
         if (BlockInUnit(position))
         {
-            position.y = 0;
             var block = GetBlock(position);
             var unit = block.GetUnit();
             unit.GetBehaviour<T>().Damaged(damage);

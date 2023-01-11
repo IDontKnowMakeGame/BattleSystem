@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEditor.Build;
 using UnityEngine;
 
 namespace Unit.Block
@@ -8,7 +9,7 @@ namespace Unit.Block
     {
         [SerializeField] private Color mainColor;
         [SerializeField] private Color outlineColor;
-        [SerializeField] private float thickness = 0.01f;
+        [SerializeField] private float thickness = 0.1f;
         private Material thisMaterial;
         private static readonly int MainColor = Shader.PropertyToID("_MainColor");
         private static readonly int OutlineColor = Shader.PropertyToID("_OutlineColor");
@@ -26,6 +27,14 @@ namespace Unit.Block
             thisMaterial.SetFloat(Thickness, thickness);
         }
         
-        
+        public void SetMainColor(Color color)
+        {
+            mainColor = color;
+        }
+
+        public void SetOutlineColor(Color color)
+        {
+            outlineColor = color;
+        }
     }
 }
