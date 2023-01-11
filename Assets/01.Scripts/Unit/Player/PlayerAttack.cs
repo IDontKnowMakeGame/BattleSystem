@@ -35,7 +35,7 @@ namespace Unit.Player
             {
                 if (playerStats != null) playerStats.AddAdrenaline(1);
                 timer = afterTime;
-				GameManagement.Instance.GetManager<MapManager>().GiveDamage<UnitStat>(thisBase.transform.position+dir, playerStats.GetCurrentStat().atk, time);
+				GameManagement.Instance.GetManager<MapManager>().GiveDamage<UnitStat>(thisBase.transform.position+dir, damage, time);
                 onBehaviourEnd?.Invoke();
             }
         }

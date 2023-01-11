@@ -6,9 +6,9 @@ public class TwinSword : BasicTwinSword
 {
 	public override void Start()
 	{
+		base.Start();
 		GetWeaponStateData("twin");
 		_maxTime = TwinSwordData.coolTime;
-		base.Start();
 	}
 	protected override void Skill()
 	{

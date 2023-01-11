@@ -42,7 +42,6 @@ namespace Unit.Player
         {
             if (_weapon.currentWeapon.isSkill)
 			{
-                Debug.Log("ㅋ");
                 return;
 			}
         }

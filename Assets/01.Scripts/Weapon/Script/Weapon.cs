@@ -21,7 +21,7 @@ public class Weapon
 
 	public bool isSkill = false;
 
-	protected bool _isEnemy = false;
+	public bool _isEnemy = false;
 
 	protected WeaponStateData _basicData;
 	public Weapon(Unit.Unit unit)

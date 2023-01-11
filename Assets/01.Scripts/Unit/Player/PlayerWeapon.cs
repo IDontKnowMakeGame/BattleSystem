@@ -14,6 +14,8 @@ public class PlayerWeapon : UnitWeapon
 	{
 		base.Start();
 		_inputManager = GameManagement.Instance.GetManager<InputManager>();
+
+		SetPlayer();
 	}
 
 	public override void Update()
@@ -26,9 +28,8 @@ public class PlayerWeapon : UnitWeapon
 	}
 	public void ChangeWeapon()
 	{
-		int index = (int)_currentSword;
-		index++;
 		_currentSword = SwordType.TwinSword;
+		SetPlayer();
 	}
 
 	//public void UseSkill()

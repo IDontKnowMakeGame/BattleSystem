@@ -44,5 +44,15 @@ namespace Unit
         {
             weaponSkills[_currentSword]?.Update();
         }
+
+        protected void SetEnemy()
+        {
+            weaponSkills[_currentSword]._isEnemy = true;
+        }
+
+        protected void SetPlayer()
+        {
+            weaponSkills[_currentSword]._isEnemy = false;
+        }
     }
 }
