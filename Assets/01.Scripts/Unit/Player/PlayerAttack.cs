@@ -31,12 +31,15 @@ namespace Unit.Player
 
         public override void Attack(Vector3 dir, float time, float afterTime,float damage = 0)
         {
-            if(timer <= 0)
+            if (timer <= 0)
             {
                 thisBase.transform.localScale = new Vector3(dir == Vector3.left ? -1 : dir == Vector3.right ? 1 : thisBase.transform.localScale.x, 1, 1);
                 thisBase.GetBehaviour<PlayerAnimation>().DoAttack();
-                GameManagement.Instance.GetManager<CameraManager>().CameraShaking(3, 0.1f);
-                if (playerStats != null) playerStats.AddAdrenaline(1);
+                if (GameManagement.Instance.GetManager<MapManager>().GetBlock(thisBase.transform.position + dir).GetUnit() != null)
+                {
+                    thisBase.StartCoroutine(GameManagement.Instance.GetManager<CameraManager>().CameraShaking(3, 0.1f, 0.3f));
+                    if (playerStats != null) playerStats.AddAdrenaline(1);
+                }
                 timer = afterTime;
 				GameManagement.Instance.GetManager<MapManager>().GiveDamage<UnitStat>(thisBase.transform.position+dir, damage, time);
                 onBehaviourEnd?.Invoke();
