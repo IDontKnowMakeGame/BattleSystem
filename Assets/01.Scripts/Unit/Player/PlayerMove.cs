@@ -25,6 +25,7 @@ namespace Unit.Player
         private float speed;
 
         private Vector3 _moveDirection = Vector3.zero;
+        private Vector3 _originPosition;
         private Sequence _seq;
 
         Queue<MoveNode> moveDir = new Queue<MoveNode>();
@@ -41,7 +42,6 @@ namespace Unit.Player
         {
             if (_weapon.currentWeapon.isSkill)
 			{
-                Debug.Log("ㅋ");
                 return;
 			}
         }
@@ -93,7 +93,9 @@ namespace Unit.Player
             _seq.Append(thisBase.transform.DOMove(nextPos, speeds).SetEase(Ease.Linear));
             _seq.AppendCallback(() =>
             {
-                Move(nextPos);
+                position = nextPos;
+                GameManagement.Instance.GetManager<MapManager>().GetBlock(thisBase.transform.position).MoveUnitOnBlock(thisBase);
+                GameManagement.Instance.GetManager<MapManager>().GetBlock(_originPosition).RemoveUnitOnBlock();
                 onBehaviourEnd?.Invoke();
                 onBehaviourEnd = null;
                 _moveDirection = Vector2.zero;

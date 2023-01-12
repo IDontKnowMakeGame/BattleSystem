@@ -9,7 +9,6 @@ using Unit;
 public class Weapon
 {
 	public Unit.Unit _baseObject;
-	[SerializeField] protected int range;
 	protected InputManager _inputManager;
 
 	protected UnitMove _move;
@@ -18,9 +17,11 @@ public class Weapon
 	protected float _currentTime;
 	protected float _maxTime;
 
-	protected bool isCoolTime = false;
+	protected bool _isCoolTime = false;
 
 	public bool isSkill = false;
+
+	public bool _isEnemy = false;
 
 	protected WeaponStateData _basicData;
 	public Weapon(Unit.Unit unit)
@@ -68,13 +69,13 @@ public class Weapon
 
 	protected void Timer()
 	{
-		if (_currentTime < _maxTime && isCoolTime)
+		if (_currentTime < _maxTime && _isCoolTime)
 		{
 			_currentTime += Time.deltaTime;
 		}
 		else
 		{
-			isCoolTime = false;
+			_isCoolTime = false;
 			_currentTime = 0;
 		}
 	}

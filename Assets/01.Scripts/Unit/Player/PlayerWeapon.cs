@@ -1,46 +1,21 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Behaviour = Unit.Behaviour;
 using DG.Tweening;
 using Unit.Player;
+using Unit;
 using Manager;
-public enum SwordType
-{
-	LongSword,
-	GreatSword,
-	TwinSword,
-	End
-}
 
 [Serializable]
-public class PlayerWeapon : Behaviour
+public class PlayerWeapon : UnitWeapon
 {
-	private SwordType _currentSword;
+	protected InputManager _inputManager;
 
-	private Dictionary<SwordType, Weapon> weaponSkills = new Dictionary<SwordType, Weapon>();
-	public Weapon currentWeapon { get { return weaponSkills[_currentSword]; } }
-	private InputManager _inputManager;
-	public override void Awake()
-	{
-		weaponSkills.Add(SwordType.LongSword, new LongSword() { _baseObject = thisBase }) ;
-		weaponSkills.Add(SwordType.GreatSword, new LongSword() { _baseObject = thisBase });
-		weaponSkills.Add(SwordType.TwinSword, new TwinSword() { _baseObject = thisBase });
-
-		foreach(var value in weaponSkills)
-		{
-			value.Value?.Awake();
-		}
-	}
 	public override void Start()
 	{
+		base.Start();
 		_inputManager = GameManagement.Instance.GetManager<InputManager>();
 
-		foreach (var value in weaponSkills)
-		{
-			value.Value?.Start();
-		}
+		SetPlayer();
 	}
 
 	public override void Update()
@@ -49,17 +24,12 @@ public class PlayerWeapon : Behaviour
 		{
 			ChangeWeapon();
 		}
-
-		weaponSkills[_currentSword]?.Update();
+		base.Update();
 	}
-
 	public void ChangeWeapon()
 	{
-		int index = (int)_currentSword;
-		index++;
 		_currentSword = SwordType.TwinSword;
-
-		Debug.Log(_currentSword);
+		SetPlayer();
 	}
 
 	//public void UseSkill()

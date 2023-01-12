@@ -6,13 +6,13 @@ public class TwinSword : BasicTwinSword
 {
 	public override void Start()
 	{
+		base.Start();
 		GetWeaponStateData("twin");
 		_maxTime = TwinSwordData.coolTime;
-		base.Start();
 	}
 	protected override void Skill()
 	{
-		if (isCoolTime)
+		if (_isCoolTime)
 			return;
 
 		if (_inputManager.GetKeyInput(InputManager.InputSignal.Skill))
@@ -36,16 +36,16 @@ public class TwinSword : BasicTwinSword
 			}
 		}
 
-		if (_inputManager.GetKeyUpInput(InputManager.InputSignal.Skill) && !isCoolTime)
+		if (_inputManager.GetKeyUpInput(InputManager.InputSignal.Skill) && !_isCoolTime)
 		{
-			isCoolTime = true;
+			_isCoolTime = true;
 			SixTimeAttak(Vector3.forward);
 		}
 	}
 
 	private void SixTimeAttak(Vector3 dir)
 	{
-		isCoolTime = true;
+		_isCoolTime = true;
 		for (int i = 0; i<6; i++)
 		{
 			_attack.WaitAttack(dir,_basicData.damage,TwinSwordData.freeze);

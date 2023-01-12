@@ -23,5 +23,10 @@ namespace Unit
         {
             _animator.SetBool(_moveHash, isMoving);
         }
+
+        public void DoAttack()
+        {
+            _animator.SetTrigger(_attackHash);
+        }
     }
 }

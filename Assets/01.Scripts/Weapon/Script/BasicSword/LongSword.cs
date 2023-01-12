@@ -13,7 +13,7 @@ public class LongSword : BasicSword
 	}
 	protected override void Skill()
 	{
-		if (isCoolTime)
+		if (_isCoolTime)
 			return;
 
 		if (isSkill)
@@ -39,9 +39,9 @@ public class LongSword : BasicSword
 			}
 		}
 
-		if (_inputManager.GetKeyUpInput(InputManager.InputSignal.Skill) && !isCoolTime)
+		if (_inputManager.GetKeyUpInput(InputManager.InputSignal.Skill) && !_isCoolTime)
 		{
-			isCoolTime = true;
+			_isCoolTime = true;
 			RollSkill(Vector3.forward * 2);
 		}
 	}
@@ -49,7 +49,7 @@ public class LongSword : BasicSword
 	private void RollSkill(Vector3 vec)
 	{
 		isSkill = true;
-		isCoolTime = true;
+		_isCoolTime = true;
 		UnitMove playerMove = _baseObject.GetBehaviour<UnitMove>();
 		playerMove.onBehaviourEnd = RollSkillEnd;
 		playerMove.Translate(vec * 2,LongSwordData.skillTime);
