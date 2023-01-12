@@ -9,12 +9,12 @@ namespace Unit
     {
         public virtual void Attack(Vector3 dir, float time, float atferTime,float damage = 0)
         {
-
+            
         }
 
         public virtual void WaitAttack(Vector3 dir, float damage,float time)
 		{
-            GameManagement.Instance.GetManager<MapManager>().GiveDamage<UnitStat>(thisBase.transform.position + dir, damage, time);
+            GameManagement.Instance.GetManager<MapManager>().GiveDamage<UnitStat>(thisBase.GetBehaviour<UnitMove>().position + dir, damage, time);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Manager;
 using UnityEngine;
 
 namespace Unit
@@ -7,6 +8,7 @@ namespace Unit
     {
         public Vector3 position;
         protected bool isMoving = false;
+        protected Vector3 _originPosition;
         public override void Start()
         {
             position = thisBase.transform.position;
@@ -17,5 +19,13 @@ namespace Unit
 
         }
         public bool IsMoving() => isMoving;
+
+        public void Move(Vector3 nextPos)
+        {
+            position = nextPos;
+            GameManagement.Instance.GetManager<MapManager>().GetBlock(position).MoveUnitOnBlock(thisBase);
+            GameManagement.Instance.GetManager<MapManager>().GetBlock(_originPosition).RemoveUnitOnBlock();
+            _originPosition = nextPos;
+        }
     }
 }

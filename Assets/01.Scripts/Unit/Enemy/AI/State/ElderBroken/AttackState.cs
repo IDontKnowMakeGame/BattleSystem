@@ -20,7 +20,7 @@ namespace Unit.Enemy.AI.ElderBroken.State
             toChase.SetConditionState(true, false);
             toChase.SetTarget(new ChaseState());
             var timeCondition = new TimeCheckCondition();
-            delay = unit.GetBehaviour<UnitStat>().GetCurrentStat().ats;
+            delay = unit.GetBehaviour<UnitStat>().GetCurrentStat().ats + unit.GetBehaviour<UnitStat>().GetCurrentStat().afs;
             timeCondition.SetTime(delay);
             toChase.AddCondition(timeCondition.CheckCondition, true);
             AddTransition(toChase);
@@ -30,6 +30,7 @@ namespace Unit.Enemy.AI.ElderBroken.State
         protected override void OnEnter()
         {
             Debug.Log(Name);
+            delay = unit.GetBehaviour<UnitStat>().GetCurrentStat().ats;
             var pos = GameObject.Find("Enemy").transform.position;
             if (direction.x != 0)
             {

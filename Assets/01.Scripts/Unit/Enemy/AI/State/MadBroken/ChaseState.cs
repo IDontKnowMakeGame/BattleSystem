@@ -27,6 +27,7 @@ namespace Unit.Enemy.AI.MadBroken.State
             lineCheck.SetLength(1);
             lineCheck.SetPos(unit.transform, Core.Define.PlayerBase.transform);
             toRandom.AddCondition(lineCheck.CheckCondition, true);
+            toRandom.AddCondition(() => !unit.GetBehaviour<EnemyMove>().IsMoving(), true);
             
             AddTransition(toRandom);
             

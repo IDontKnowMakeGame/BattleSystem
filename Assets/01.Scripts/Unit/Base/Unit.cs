@@ -57,9 +57,15 @@ namespace Unit
                 type = typeof(T);
             if (behaviours.ContainsKey(type) == false)
             {
-                Debug.LogError($"{this} Doesn't have {type} behaviour");
+                return null;
             }
-            return (T)behaviours[type];
+
+            if (behaviours[type] is T)
+            {
+                return (T) behaviours[type];
+            }
+
+            return null;
         }
         
         //Remove a behaviour from the unit

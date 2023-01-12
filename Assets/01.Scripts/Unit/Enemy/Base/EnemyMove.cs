@@ -9,8 +9,6 @@ namespace Unit.Enemy.Base
     {
         private float speed;
         private Sequence _seq;
-        private bool isMoving = false;
-        private Vector3 _originPosition;
         public override void Translate(Vector3 dir, float speed = 0)
         {
             if (isMoving == true)
@@ -23,11 +21,6 @@ namespace Unit.Enemy.Base
             dir.y = originalPos.y;
             var nextPos = dir;
             var distance = Vector3.Distance(originalPos, nextPos);
-            if (GameManagement.Instance.GetManager<MapManager>().IsMovablePosition(nextPos) == false)
-            {
-                isMoving = false;
-                return;
-            }
             if (distance < 0.1f)
             {
                 isMoving = false;
@@ -39,9 +32,7 @@ namespace Unit.Enemy.Base
             _seq.Append(thisBase.transform.DOMove(nextPos, speeds).SetEase(Ease.Linear));
             _seq.AppendCallback(() =>
             {
-                position = nextPos;
-                GameManagement.Instance.GetManager<MapManager>().GetBlock(thisBase.transform.position).MoveUnitOnBlock(thisBase);
-                GameManagement.Instance.GetManager<MapManager>().GetBlock(_originPosition).RemoveUnitOnBlock();
+                Move(nextPos);
                 onBehaviourEnd?.Invoke();
                 onBehaviourEnd = null;
                 isMoving = false;

@@ -9,6 +9,7 @@ namespace Unit
         public float atk;
         public float agi; // Movement Speed
         public float ats; // Attack Speed
+        public float afs; // After Speed
         public float def;
     }
 }
