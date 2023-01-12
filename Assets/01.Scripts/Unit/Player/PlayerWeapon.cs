@@ -14,7 +14,6 @@ public class PlayerWeapon : UnitWeapon
 	{
 		base.Start();
 		_inputManager = GameManagement.Instance.GetManager<InputManager>();
-
 		SetPlayer();
 	}
 
@@ -29,7 +28,14 @@ public class PlayerWeapon : UnitWeapon
 	public void ChangeWeapon()
 	{
 		_currentSword = SwordType.TwinSword;
-		SetPlayer();
+	}
+
+	private void SetPlayer()
+	{
+		foreach(var v in weaponSkills)
+		{
+			v.Value._isEnemy = false;
+		}
 	}
 
 	//public void UseSkill()

@@ -25,7 +25,6 @@ namespace Unit.Player
         private float speed;
 
         private Vector3 _moveDirection = Vector3.zero;
-        private Vector3 _originPosition;
         private Sequence _seq;
 
         Queue<MoveNode> moveDir = new Queue<MoveNode>();
@@ -44,6 +43,7 @@ namespace Unit.Player
 			{
                 return;
 			}
+            PopMove();
         }
 
         public void InputMovement(Vector3 dir, float speed = 0)
@@ -63,7 +63,7 @@ namespace Unit.Player
 
         public override void Translate(Vector3 dir, float s = 0)
         {
-
+            Debug.Log("HI");
             if (isMoving == true)
                 return;
 

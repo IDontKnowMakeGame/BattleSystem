@@ -1,9 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 using Manager;
 using Unit;
+using Unit.Player;
 
 [System.Serializable]
 public class Weapon
@@ -21,9 +20,11 @@ public class Weapon
 
 	public bool isSkill = false;
 
-	public bool _isEnemy = false;
+	public bool _isEnemy = true;
 
 	protected WeaponStateData _basicData;
+
+	protected PlayerMove _playerMove;
 	public Weapon(Unit.Unit unit)
 	{
 		SetBase(unit);
@@ -44,6 +45,7 @@ public class Weapon
 		_inputManager = GameManagement.Instance.GetManager<InputManager>();
 		_move = _baseObject.GetBehaviour<UnitMove>();
 		_attack = _baseObject.GetBehaviour<UnitAttack>();
+		_playerMove = _move as PlayerMove;
 	}
 
 	public virtual void Update()
@@ -52,12 +54,12 @@ public class Weapon
 	}
 
 
-	protected virtual void Move()
+	protected virtual void Move(Vector3 vec)
 	{
 
 	}
 
-	protected virtual void Attack()
+	protected virtual void Attack(Vector3 vec)
 	{
 
 	}
