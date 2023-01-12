@@ -92,13 +92,13 @@ public class WeaponStateData
         switch(weaponWeight)
 		{
             case 5:
-                _speed = 0.8f;
-                break;
-            case 4:
                 _speed = 0.6f;
                 break;
-            case 3:
+            case 4:
                 _speed = 0.4f;
+                break;
+            case 3:
+                _speed = 0.25f;
                 break;
             case 2:
                 _speed = 0.2f;

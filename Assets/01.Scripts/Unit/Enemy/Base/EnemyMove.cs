@@ -29,6 +29,7 @@ namespace Unit.Enemy.Base
             }
 
             float speeds = speed != 0 ? speed : 1;
+            speeds = 0.2f;
             _seq.Append(thisBase.transform.DOMove(nextPos, speeds).SetEase(Ease.Linear));
             _seq.AppendCallback(() =>
             {

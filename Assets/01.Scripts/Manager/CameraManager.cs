@@ -11,8 +11,9 @@ public class CameraManager : IManager
         usingCamera = GameObject.FindObjectOfType<BaseCam>();
     }
 
-    public void CameraShaking(float strength, float shakingTime)
+    public IEnumerator CameraShaking(float strength, float shakingTime, float delay)
     {
+        yield return new WaitForSeconds(delay);
         usingCamera.CameraShake(strength, shakingTime);
     }
     public void CameraZooming(float strength, float zoominTime, float waitTime, float zoomOutTime)

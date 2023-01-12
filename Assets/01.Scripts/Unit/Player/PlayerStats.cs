@@ -4,6 +4,7 @@ using UnityEngine;
 using Unit;
 using UnityEngine.UI;
 using Manager;
+using UnityEngine.SceneManagement;
 
 namespace Unit.Player
 {
@@ -23,6 +24,8 @@ namespace Unit.Player
         [SerializeField]
         private Slider adrenalineSlider;
         [SerializeField]
+        private GameObject restartText;
+        [SerializeField]
         private GameObject adrenalineFillArea;
 
 
@@ -40,6 +43,10 @@ namespace Unit.Player
         public override void Update()
         {
             ChangeStatsUI();
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
 
         private void ChangeStatsUI()
@@ -93,6 +100,7 @@ namespace Unit.Player
             GetCurrentStat().hp -= damage;
             AddAngerPercent(1);
             _basicHPSlider.SetSlider(GetCurrentStat().hp);
+            thisBase.StartCoroutine(GameManagement.Instance.GetManager<CameraManager>().CameraShaking(5, 0.1f, 0f));
             if (GetCurrentStat().hp <= 0)
 			{
                 Die();
@@ -101,7 +109,7 @@ namespace Unit.Player
 
         public override void Die()
 		{
-
+            restartText.SetActive(true);
 		}
 	}
 }

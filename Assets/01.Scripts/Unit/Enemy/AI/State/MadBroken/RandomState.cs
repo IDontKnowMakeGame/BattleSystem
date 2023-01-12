@@ -43,7 +43,6 @@ namespace Unit.Enemy.AI.MadBroken.State
         protected override void OnEnter()
         {
             randomValue = Random.Range(0, 3);
-            randomValue = 2;
             Debug.Log(Name);
             Debug.Log(_attackDireciton);
         }

@@ -50,11 +50,9 @@ namespace Unit.Enemy.AI.MadBroken.State
             yield return new WaitUntil(() => !move.IsMoving());
             if (areaCheck.CheckCondition())
             {
-                unit.transform.DOMove(playerPos, 1).OnComplete(() =>
-                {
-                    attack.KnockBackAttack(playerPos, _unitStat.atk, _attackDireciton);
-                    move.Move(playerPos);
-                });
+                move.Translate(playerPos + _attackDireciton);
+                yield return new WaitUntil(() => !move.IsMoving());
+                attack.KnockBackAttack(playerPos, _unitStat.atk, _attackDireciton);
                 yield return new WaitForSeconds(_unitStat.afs + 1);
             }
             isStateOver = true;
