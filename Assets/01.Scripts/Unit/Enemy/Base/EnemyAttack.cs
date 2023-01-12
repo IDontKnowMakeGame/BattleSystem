@@ -33,5 +33,25 @@ namespace Unit.Enemy.Base
                 target.GetBehaviour<PlayerMove>().Translate(-knockbackDir, 0.3f);
             }
         }
+
+        public void HalfAttack(Vector3 dir, float damage, float delay)
+        {
+            if (dir.x != 0)
+            {
+                WaitAttack(dir + Vector3.back, damage, delay);
+                WaitAttack(dir, damage, delay);
+                WaitAttack(dir + Vector3.forward, damage, delay);
+                WaitAttack(Vector3.back, damage, delay);
+                WaitAttack(Vector3.forward, damage, delay);
+            }
+            else if (dir.z != 0)
+            {
+                WaitAttack(dir + Vector3.left, damage, delay);
+                WaitAttack(dir, damage, delay);
+                WaitAttack(dir + Vector3.right, damage, delay);
+                WaitAttack(Vector3.left, damage, delay);
+                WaitAttack(Vector3.right, damage, delay);
+            }
+        }
     }
 }
