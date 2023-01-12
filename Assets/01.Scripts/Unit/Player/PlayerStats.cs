@@ -100,6 +100,7 @@ namespace Unit.Player
             GetCurrentStat().hp -= damage;
             AddAngerPercent(1);
             _basicHPSlider.SetSlider(GetCurrentStat().hp);
+            thisBase.StartCoroutine(GameManagement.Instance.GetManager<CameraManager>().CameraShaking(5, 0.1f, 0f));
             if (GetCurrentStat().hp <= 0)
 			{
                 Die();
