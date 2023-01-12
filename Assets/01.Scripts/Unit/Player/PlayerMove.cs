@@ -25,7 +25,6 @@ namespace Unit.Player
         private float speed;
 
         private Vector3 _moveDirection = Vector3.zero;
-        private Vector3 _originPosition;
         private Sequence _seq;
 
         Queue<MoveNode> moveDir = new Queue<MoveNode>();

@@ -30,6 +30,7 @@ namespace Unit.Enemy.Base
             var target = targetBlock.GetUnit();
             if (target != null)
             {
+                if (target == thisBase) return;
                 target.GetBehaviour<PlayerMove>().Translate(-knockbackDir, 0.3f);
             }
         }

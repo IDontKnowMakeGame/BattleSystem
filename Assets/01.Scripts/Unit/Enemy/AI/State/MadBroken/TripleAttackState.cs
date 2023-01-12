@@ -58,6 +58,7 @@ namespace Unit.Enemy.AI.MadBroken.State
             }
             yield return new WaitUntil(() => !move.IsMoving());
             attack.HalfAttack(_attackDireciton, _unitStat.atk, _unitStat.ats);
+            yield return new WaitForSeconds(_unitStat.ats + _unitStat.afs);
             
             
             isStateOver = true;
