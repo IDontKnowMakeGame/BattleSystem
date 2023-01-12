@@ -60,7 +60,7 @@ public class MapManager : IManager
     private IEnumerator DamageCoroutine<T>(Vector3 position, float damage, float delay) where T : UnitStat
     {
         position.y = 0;
-        var render = _map[position].GetBehaviour<BlockRender>();
+        var render = _map[position].GetBehaviour<BlockRender>(); 
         render.SetOutlineColor(Color.red);
         yield return new WaitForSeconds(delay);
         render.SetOutlineColor(Color.black);
@@ -70,7 +70,13 @@ public class MapManager : IManager
         {
             var block = GetBlock(position);
             var unit = block.GetUnit();
-            unit.GetBehaviour<T>().Damaged(damage);
+            var stat = unit.GetBehaviour<T>();
+            if (stat == null)
+                yield break;
+            if(stat.GetType() == typeof(T))
+                stat.Damaged(damage);
+            else if(stat.GetType().BaseType == typeof(T))
+                stat.Damaged(damage);
         }
     }
 

@@ -10,6 +10,7 @@ namespace Unit.Boss.MadBroken
             base.Init();
             AddBehaviour<EnemyFSM>().SetDefaultState<ChaseState>();
             AddBehaviour<EnemyMove>();
+            AddBehaviour<EnemyAttack>();
         }
     }
 }

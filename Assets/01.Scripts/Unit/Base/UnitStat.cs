@@ -27,6 +27,7 @@ namespace Unit
             currentStat.atk = originalStat.atk;
             currentStat.agi = originalStat.agi;
             currentStat.ats = originalStat.ats;
+            currentStat.afs = originalStat.afs;
             currentStat.def = originalStat.def;
         }
 

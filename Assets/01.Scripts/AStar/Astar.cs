@@ -43,14 +43,12 @@ public class Astar
                 }
             }
 
-            Debug.Log(currentTile);
             openList.Remove(currentTile);
             closeList.Add(currentTile);
 
             if(currentTile == end)
             {
                 pathSuccess = true;
-                Debug.Log(1);
                 break;
             }
             
@@ -70,7 +68,6 @@ public class Astar
                     if (!openList.Contains(tile))
                     {
                         openList.Add(tile);
-                        Debug.Log(tile);
                     }
                 }
             }
