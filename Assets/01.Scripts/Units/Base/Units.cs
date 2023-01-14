@@ -8,6 +8,7 @@ namespace Units.Base
     public class Units : MonoBehaviour
     {
         private Dictionary<Type, Behaviour> _behaviours = new();
+        public Vector3 Position { get; set; }
 
         #region Unit_LifeCycle
 
