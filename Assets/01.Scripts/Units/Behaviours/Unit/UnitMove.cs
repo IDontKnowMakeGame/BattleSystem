@@ -9,12 +9,12 @@ namespace Units.Behaviours.Unit
         private float _duration;
         private Sequence _seq;
 
-        public void Translate(Vector3 dir)
+        public virtual void Translate(Vector3 dir)
         {
             MoveTo(thisBase.Position + dir);
         }
 
-        public void MoveTo(Vector3 pos)
+        public virtual void MoveTo(Vector3 pos)
         {
                
         }

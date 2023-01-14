@@ -164,6 +164,26 @@ namespace Units.Base
                 Debug.LogError($"This unit doesn't have {thisType}.");
             }
         }
+        
+        public T GetBehaviour<T>() where T : Behaviour
+        {
+            var thisType = typeof(T);
+            var baseType = typeof(T).BaseType;
+            if (baseType != typeof(Behaviour))
+            {
+                thisType = baseType;
+            }
+
+            if (_behaviours.ContainsKey(thisType))
+            {
+                return (T) _behaviours[thisType];
+            }
+            else
+            {
+                //Debug.LogError($"This unit doesn't have {thisType}.");
+                return null;
+            }
+        }
         #endregion
         
     }
