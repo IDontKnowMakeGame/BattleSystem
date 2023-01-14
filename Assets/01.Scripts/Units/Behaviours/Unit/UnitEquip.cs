@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Units.Behaviours.Base;
 using Unit.Core.Weapon;
-public class UnitEquip : Behaviour
+using Units.Behaviours.Unit;
+
+public class UnitEquip : UnitBehaviour
 {
 	protected Weapon _currentWeapon;
 	public Weapon CurrentWeapon => _currentWeapon;

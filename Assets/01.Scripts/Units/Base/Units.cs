@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Units.Behaviours.Unit;
 using UnityEngine;
 using Behaviour = Units.Behaviours.Base.Behaviour;
 
@@ -87,12 +88,7 @@ namespace Units.Base
         #region Control_Behaviours
         public T AddBehaviour<T>() where T : Behaviour, new()
         {
-            var thisType = typeof(T);
-            var baseType = typeof(T).BaseType;
-            if (baseType != typeof(Behaviour))
-            {
-                thisType = baseType;
-            }
+            var thisType = GetBaseType<T>();
 
             if (_behaviours.ContainsKey(thisType))
             {
@@ -101,20 +97,15 @@ namespace Units.Base
             }
             
             var thisBehaviour = new T();
-            thisBehaviour.thisBase = this;
+            thisBehaviour.ThisBase = this;
             _behaviours.Add(thisType, thisBehaviour);
             return thisBehaviour;
         }
 
         public void AddBehaviour<T>(T instance) where T : Behaviour
         {
-            var thisType = typeof(T);
-            var baseType = typeof(T).BaseType;
-            if (baseType != typeof(Behaviour))
-            {
-                thisType = baseType;
-            }
-            
+            var thisType = GetBaseType<T>();
+
             if (_behaviours.ContainsKey(thisType))
             {
                 Debug.LogError($"{thisType} is already in this Unit.");
@@ -122,23 +113,18 @@ namespace Units.Base
             }
             
             var thisBehaviour = instance;
-            thisBehaviour.thisBase = this;
+            thisBehaviour.ThisBase = this;
             _behaviours.Add(thisType, thisBehaviour);
         }
 
         public void UpdateBehaviour<T>(T instance) where T : Behaviour
         {
-            var thisType = typeof(T);
-            var baseType = typeof(T).BaseType;
-            if (baseType != typeof(Behaviour))
-            {
-                thisType = baseType;
-            }
+            var thisType = GetBaseType<T>();
 
             if (_behaviours.ContainsKey(thisType))
             {
                 _behaviours[thisType] = instance;
-                _behaviours[thisType].thisBase = this;
+                _behaviours[thisType].ThisBase = this;
             }
             else
             {
@@ -148,12 +134,7 @@ namespace Units.Base
 
         public void RemoveBehaviour<T>() where T : Behaviour
         {
-            var thisType = typeof(T);
-            var baseType = typeof(T).BaseType;
-            if (baseType != typeof(Behaviour))
-            {
-                thisType = baseType;
-            }
+            var thisType = GetBaseType<T>();
 
             if (_behaviours.ContainsKey(thisType))
             {
@@ -167,12 +148,7 @@ namespace Units.Base
         
         public T GetBehaviour<T>() where T : Behaviour
         {
-            var thisType = typeof(T);
-            var baseType = typeof(T).BaseType;
-            if (baseType != typeof(Behaviour))
-            {
-                thisType = baseType;
-            }
+            var thisType = GetBaseType<T>();
 
             if (_behaviours.ContainsKey(thisType))
             {
@@ -184,6 +160,22 @@ namespace Units.Base
                 return null;
             }
         }
+
+        private Type GetBaseType<T>() where T : Behaviour
+        {
+            var thisType = typeof(T);
+            var baseType = typeof(T).BaseType;
+
+            while (baseType != typeof(Behaviour) && baseType != typeof(UnitBehaviour))
+            {
+                thisType = baseType;
+                if (thisType != null) baseType = thisType.BaseType;
+            }
+
+            return thisType;
+        }
+        
+        
         #endregion
         
     }
