@@ -5,6 +5,7 @@ using Unit;
 using Unit.Block;
 using Unit.Player;
 using UnityEngine;
+using System;
 
 public class MapManager : IManager
 {
@@ -30,9 +31,9 @@ public class MapManager : IManager
         blocks.ForEach(AddBlock);
     }
 
-    public void GiveDamage<T>(Vector3 position, float damage, float delay) where T : UnitStat
+    public void GiveDamage<T>(Vector3 position, float damage, float delay, Action action = null) where T : UnitStat
     {
-        instance.StartCoroutine(DamageCoroutine<T>(position, damage, delay));
+        instance.StartCoroutine(DamageCoroutine<T>(position, damage, delay,action));
     }
 
     public bool BlockInUnit(Vector3 position)
@@ -57,7 +58,7 @@ public class MapManager : IManager
         return result;
     }
     
-    private IEnumerator DamageCoroutine<T>(Vector3 position, float damage, float delay) where T : UnitStat
+    private IEnumerator DamageCoroutine<T>(Vector3 position, float damage, float delay, Action action) where T : UnitStat
     {
         position.y = 0;
         var render = _map[position].GetBehaviour<BlockRender>(); 
@@ -78,6 +79,8 @@ public class MapManager : IManager
             else if(stat.GetType().BaseType == typeof(T))
                 stat.Damaged(damage);
         }
+
+        action?.Invoke();
     }
 
     public List<BlockBase> GetNeighbors(BlockBase tile)

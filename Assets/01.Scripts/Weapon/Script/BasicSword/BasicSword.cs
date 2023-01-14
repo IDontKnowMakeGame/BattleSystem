@@ -13,19 +13,23 @@ public class BasicSword : Weapon
 
 	public override void Update()
 	{
+		Timer();
 		if(!_isEnemy)
 		{
 			Skill();
 			Move(Vector3.zero);
 			Attack(Vector3.zero);
 		}
-		Timer();
 	}
 
 	protected override void Move(Vector3 vec)
 	{
 		if (isSkill)
 			return;
+
+		if (_attack.IsAttack)
+			return;
+
 		if (!_isEnemy)
 		{
 			if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveForward))
@@ -51,6 +55,9 @@ public class BasicSword : Weapon
 
 	protected override void Attack(Vector3 vec)
 	{
+		if (_move.IsMoving())
+			return;
+
 		if (!_isEnemy)
 		{
 			if (_inputManager.GetKeyDownInput(InputManager.InputSignal.FowardAttack))

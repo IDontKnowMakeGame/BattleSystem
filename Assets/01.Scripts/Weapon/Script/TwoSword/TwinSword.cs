@@ -48,14 +48,12 @@ public class TwinSword : BasicTwinSword
 		_isCoolTime = true;
 		for (int i = 0; i<6; i++)
 		{
-			_attack.WaitAttack(dir,_basicData.damage,TwinSwordData.freeze);
+			_attack.WaitAttack(dir,_basicData.damage,TwinSwordData.freeze, Reset);
 		}
-		_baseObject.StartCoroutine(waitReset());
 	}
 
-	private IEnumerator waitReset()
+	private void Reset()
 	{
-		yield return new WaitForSeconds(TwinSwordData.freeze);
 		isSkill = false;
 	}
 }

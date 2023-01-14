@@ -11,6 +11,9 @@ namespace Unit
 
         [SerializeField] private BaseStat currentStat;
 
+        [SerializeField]
+        protected BasicHPSlider _basicHPSlider;
+
         public BaseStat GetOriginalStat()
         {
             return originalStat;

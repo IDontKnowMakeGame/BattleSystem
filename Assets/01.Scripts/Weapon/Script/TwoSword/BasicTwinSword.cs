@@ -52,8 +52,8 @@ public class BasicTwinSword : Weapon
 		if (isSkill)
 			return;
 
-		if (_move.IsMoving())
-			return;
+		//if (_move.IsMoving())
+		//	return;
 
 		if (!_isEnemy)
 		{

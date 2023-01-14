@@ -33,6 +33,7 @@ namespace Unit.Player
         {
             if (timer <= 0)
             {
+                isAttak = true;
                 thisBase.transform.localScale = new Vector3(dir == Vector3.left ? -1 : dir == Vector3.right ? 1 : thisBase.transform.localScale.x, 1, 1);
                 thisBase.GetBehaviour<PlayerAnimation>().DoAttack();
                 if (GameManagement.Instance.GetManager<MapManager>().GetBlock(thisBase.transform.position + dir).GetUnit() != null)
@@ -41,11 +42,15 @@ namespace Unit.Player
                     if (playerStats != null) playerStats.AddAdrenaline(1);
                 }
                 timer = afterTime;
-				GameManagement.Instance.GetManager<MapManager>().GiveDamage<UnitStat>(thisBase.transform.position+dir, damage, time);
+				GameManagement.Instance.GetManager<MapManager>().GiveDamage<UnitStat>(thisBase.transform.position+dir, damage, time, AttackEnd);
                 onBehaviourEnd?.Invoke();
             }
         }
 
+        public void AttackEnd()
+		{
+            isAttak = false;
+		}
         public void DoAttack(Vector3 dir)
 		{
             onBehaviourEnd?.Invoke();
