@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Units;
 
 namespace Unit.Core.Weapon
 {
@@ -16,8 +17,9 @@ namespace Unit.Core.Weapon
         protected WeaponStats weaponStats = null;
 
         //인풋 매니저
-
+		
         //유닛 공격, 유닛 move
+		
 
         protected float _currentTime;
         protected float _maxTime;
