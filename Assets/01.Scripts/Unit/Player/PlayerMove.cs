@@ -25,6 +25,7 @@ namespace Unit.Player
         private float speed;
 
         private Vector3 _moveDirection = Vector3.zero;
+        public Vector3 beforeMove = Vector3.zero;
         private Sequence _seq;
 
         Queue<MoveNode> moveDir = new Queue<MoveNode>();
@@ -48,8 +49,13 @@ namespace Unit.Player
 
         public void InputMovement(Vector3 dir, float speed = 0)
         {
-            if (moveDir.Count > 2) return;
+            if (moveDir.Count > 1) return;
             moveDir.Enqueue(new MoveNode(dir, speed));
+        }
+
+        public void ClearMove()
+        {
+            moveDir.Clear();
         }
 
         public void PopMove()
@@ -63,8 +69,7 @@ namespace Unit.Player
 
         public override void Translate(Vector3 dir, float s = 0)
         {
-            Debug.Log("HI");
-            if (isMoving == true)
+            if (isMoving == true || GameManagement.Instance.GetManager<MapManager>().GetBlock(thisBase.transform.position + dir).GetUnit() != null)
                 return;
 
             var originalPos = thisBase.transform.position;
@@ -73,6 +78,10 @@ namespace Unit.Player
 
             if (GameManagement.Instance.GetManager<MapManager>().IsMovablePosition(nextPos) == false)
                 return;
+
+            //GameManagement.Instance.GetManager<MapManager>().GetBlock(beforeMove).isWalkable = true;
+            //GameManagement.Instance.GetManager<MapManager>().GetBlock(nextPos).isWalkable = false;
+            beforeMove = nextPos;
 
             _seq = DOTween.Sequence();
             isMoving = true;
@@ -88,6 +97,7 @@ namespace Unit.Player
                 _seq.Kill();
                 return;
             }
+
 
             float speeds = s != 0 ? s : speed;
             _seq.Append(thisBase.transform.DOMove(nextPos, speeds).SetEase(Ease.Linear));

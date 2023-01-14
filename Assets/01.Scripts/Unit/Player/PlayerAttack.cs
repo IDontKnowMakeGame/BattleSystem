@@ -34,8 +34,9 @@ namespace Unit.Player
             if (timer <= 0)
             {
                 thisBase.transform.localScale = new Vector3(dir == Vector3.left ? -1 : dir == Vector3.right ? 1 : thisBase.transform.localScale.x, 1, 1);
+                thisBase.GetBehaviour<PlayerMove>().ClearMove();
                 thisBase.GetBehaviour<PlayerAnimation>().DoAttack();
-                if (GameManagement.Instance.GetManager<MapManager>().GetBlock(thisBase.transform.position + dir).GetUnit() != null)
+                if (GameManagement.Instance.GetManager<MapManager>().GetBlock(thisBase.transform.position + dir)?.GetUnit() != null)
                 {
                     thisBase.StartCoroutine(GameManagement.Instance.GetManager<CameraManager>().CameraShaking(3, 0.1f, 0.3f));
                     if (playerStats != null) playerStats.AddAdrenaline(1);
