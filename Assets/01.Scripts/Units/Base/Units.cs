@@ -8,6 +8,7 @@ namespace Units.Base
     public class Units : MonoBehaviour
     {
         private Dictionary<Type, Behaviour> _behaviours = new();
+        public Vector3 Position { get; set; }
 
         #region Unit_LifeCycle
 
@@ -161,6 +162,26 @@ namespace Units.Base
             else
             {
                 Debug.LogError($"This unit doesn't have {thisType}.");
+            }
+        }
+        
+        public T GetBehaviour<T>() where T : Behaviour
+        {
+            var thisType = typeof(T);
+            var baseType = typeof(T).BaseType;
+            if (baseType != typeof(Behaviour))
+            {
+                thisType = baseType;
+            }
+
+            if (_behaviours.ContainsKey(thisType))
+            {
+                return (T) _behaviours[thisType];
+            }
+            else
+            {
+                //Debug.LogError($"This unit doesn't have {thisType}.");
+                return null;
             }
         }
         #endregion

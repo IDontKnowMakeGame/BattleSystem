@@ -43,6 +43,7 @@ namespace Managements
             }
             
             var thisManager = new T();
+            thisManager.Instance = this;
             _managers.Add(thisType, thisManager);
             return thisManager;
         }
@@ -63,6 +64,7 @@ namespace Managements
             }
             
             var thisManager = instance;
+            thisManager.Instance = this;
             _managers.Add(thisType, thisManager);
         }
 
@@ -78,6 +80,7 @@ namespace Managements
             if (_managers.ContainsKey(thisType))
             {
                 _managers[thisType] = instance;
+                _managers[thisType].Instance = this;
             }
             else
             {
@@ -101,6 +104,26 @@ namespace Managements
             else
             {
                 Debug.LogError($"This unit doesn't have {thisType}.");
+            }
+        }
+        
+        public T GetManager<T>() where T : Manager
+        {
+            var thisType = typeof(T);
+            var baseType = typeof(T).BaseType;
+            if (baseType != typeof(Manager))
+            {
+                thisType = baseType;
+            }
+
+            if (_managers.ContainsKey(thisType))
+            {
+                return (T) _managers[thisType];
+            }
+            else
+            {
+                //Debug.LogError($"This unit doesn't have {thisType}.");
+                return null;
             }
         }
         #endregion

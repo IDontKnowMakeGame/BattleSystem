@@ -2,6 +2,7 @@
 {
     public class Manager
     {
+        public GameManagement Instance { get; set; }
         public virtual void Awake()
         {
             
