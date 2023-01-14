@@ -100,6 +100,7 @@ namespace Units.Base
             }
             
             var thisBehaviour = new T();
+            thisBehaviour.thisBase = this;
             _behaviours.Add(thisType, thisBehaviour);
             return thisBehaviour;
         }
@@ -120,6 +121,7 @@ namespace Units.Base
             }
             
             var thisBehaviour = instance;
+            thisBehaviour.thisBase = this;
             _behaviours.Add(thisType, thisBehaviour);
         }
 
@@ -135,6 +137,7 @@ namespace Units.Base
             if (_behaviours.ContainsKey(thisType))
             {
                 _behaviours[thisType] = instance;
+                _behaviours[thisType].thisBase = this;
             }
             else
             {
