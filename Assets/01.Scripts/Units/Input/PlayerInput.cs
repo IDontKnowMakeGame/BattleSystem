@@ -6,12 +6,12 @@ namespace Units.Base.Player
 {
     public class PlayerInput : UnitInput
     {
-        public UnitInputAction.PlayerActions playerActions { get; private set; }
+        public UnitInputAction.PlayerActions PlayerActions { get; private set; }
 
         protected override void Awake()
         {
             base.Awake();
-            playerActions = InputActions.Player;
+            PlayerActions = InputActions.Player;
         }
     }
 }
