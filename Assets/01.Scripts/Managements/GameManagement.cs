@@ -14,11 +14,18 @@ namespace Managements
         {
             get
             {
-                if (instance == null)
+                if (instance != null) 
+                    return instance;
+                instance = FindObjectOfType<GameManagement>();
+                
+                if (instance != null)
+                    return instance;
+                var obj = new GameObject
                 {
-                    instance = FindObjectOfType<GameManagement>();
-                }
-
+                    name = nameof(GameManagement)
+                };
+                
+                instance = obj.AddComponent<GameManagement>();
                 return instance;
             }
         }

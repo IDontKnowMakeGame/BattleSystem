@@ -16,6 +16,7 @@ namespace Units.Base
         protected virtual void Init()
         {
             //Add or Init Behaviours
+            Position = transform.position;
         }
 
         protected virtual void Awake()

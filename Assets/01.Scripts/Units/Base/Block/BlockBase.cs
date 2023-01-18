@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core;
+using Managements.Managers;
 using UnityEngine;
 
-public class BlockBase : MonoBehaviour
+public class BlockBase : Units.Base.Units
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void Init()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Define.GetManager<MapManager>().AddBlock(this);
+        base.Init();
     }
 }
