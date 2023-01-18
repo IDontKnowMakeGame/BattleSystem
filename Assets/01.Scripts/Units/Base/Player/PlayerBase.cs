@@ -20,15 +20,7 @@ namespace Units.Base.Player
 
         protected override void Start()
         {
-            Define.GetManager<InputManager>().InitInGameInput(InputTarget.Left, new Input(){
-                action = () =>
-                {
-                    Define.GetManager<InputManager>().ChangeInGameKey(InputTarget.Left, KeyCode.O);
-                    Debug.Log("Left");
-                },
-                keyCode = KeyCode.A,
-                inputStatus = InputStatus.Press}
-            );
+            Define.GetManager<InputManager>();
             base.Start();
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Managements.Managers;
 using Managements.Managers.Base;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -134,9 +135,15 @@ namespace Managements
             }
         }
         #endregion
+
+        private void Init()
+        {
+            AddManager<InputManager>();
+        }
         
         public void Awake()
         {
+            Init();
             foreach (var manager in _managers.Values)
             {
                 manager.Awake();

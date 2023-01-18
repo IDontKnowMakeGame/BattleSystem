@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Core;
 using Managements.Managers.Base;
 using UnityEngine;
 
@@ -14,11 +15,10 @@ namespace Managements.Managers
 
     public enum InputTarget
     {
-        Left,
-        Right,
-        Up,
-        Down,
-        Attack,
+        LeftMove,
+        RightMove,
+        UpMove,
+        DownMove,
     }
 
     public class Input
@@ -60,6 +60,11 @@ namespace Managements.Managers
             }
         }
 
+        public override void Start()
+        {
+            InitMovementInput();
+        }
+
         public void InitInGameInput(InputTarget target, Input input)
         {
             _inGameInputs.Add(target, input);
@@ -88,6 +93,53 @@ namespace Managements.Managers
         public void ChangeInGameStatus(InputTarget target, InputStatus status)
         {
             _inGameInputs[target].inputStatus = status;
+        }
+
+        private void InitMovementInput()
+        {
+            InitInGameInput(InputTarget.LeftMove, 
+                new Input() {
+                    action = () =>
+                    {
+                        Debug.Log("Left");
+                    },
+                    keyCode = KeyCode.LeftArrow,
+                    inputStatus = InputStatus.Press
+                }
+            );
+            
+            InitInGameInput(InputTarget.RightMove, 
+                new Input() {
+                    action = () =>
+                    {
+                        Debug.Log("Right");
+                    },
+                    keyCode = KeyCode.RightArrow,
+                    inputStatus = InputStatus.Press
+                }
+            );
+            
+            InitInGameInput(InputTarget.UpMove, 
+                new Input() {
+                    action = () =>
+                    {
+                        Debug.Log("Up");
+                    },
+                    keyCode = KeyCode.UpArrow,
+                    inputStatus = InputStatus.Press
+                }
+            );
+            
+            InitInGameInput(InputTarget.DownMove, 
+                new Input() {
+                    action = () =>
+                    {
+                        Debug.Log("Down");
+                    },
+                    keyCode = KeyCode.DownArrow,
+                    inputStatus = InputStatus.Press
+                }
+            );
         }
     }
 }
