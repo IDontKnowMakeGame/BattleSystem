@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Managements.Managers;
 using Managements.Managers.Base;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -134,5 +135,75 @@ namespace Managements
             }
         }
         #endregion
+
+        private void Init()
+        {
+            AddManager<InputManager>();
+        }
+        
+        public void Awake()
+        {
+            Init();
+            foreach (var manager in _managers.Values)
+            {
+                manager.Awake();
+            }
+        }
+
+        public void Start()
+        {
+            foreach (var manager in _managers.Values)
+            {
+                manager.Start();
+            }
+        }
+
+        public void Update()
+        {
+            foreach (var manager in _managers.Values)
+            {
+                manager.Update();
+            }
+        }
+
+        public void FixedUpdate()
+        {
+            foreach (var manager in _managers.Values)
+            {
+                manager.FixedUpdate();
+            }
+        }
+
+        public void LateUpdate()
+        {
+            foreach (var manager in _managers.Values)
+            {
+                manager.LateUpdate();
+            }
+        }
+
+        public void OnEnable()
+        {
+            foreach (var manager in _managers.Values)
+            {
+                manager.OnEnable();
+            }
+        }
+
+        public void OnDisable()
+        {
+            foreach (var manager in _managers.Values)
+            {
+                manager.OnDisable();
+            }
+        }
+
+        public void OnDestroy()
+        {
+            foreach (var manager in _managers.Values)
+            {
+                manager.OnDestroy();
+            }
+        }
     }
 }
