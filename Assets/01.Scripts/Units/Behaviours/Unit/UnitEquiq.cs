@@ -6,16 +6,50 @@ using Units.Behaviours.Unit;
 
 public class UnitEquiq : UnitBehaviour
 {
-	protected Weapon _currentWeapon;
-	public Weapon CurrentWeapon => _currentWeapon;
-
+	protected WeaponType _currentWeapon;
+	protected WeaponType _secoundWeapon;
+	public WeaponType CurrentWeapon => _currentWeapon;
 
 	public Dictionary<WeaponType, Weapon> weapons;
 
 	public List<Helo> _helos;
+    
+    public override void Awake()
+    {
+        weapons.Add(WeaponType.OldStraightSword, new OldStraightSword() { _thisBase = this.ThisBase });
+        weapons.Add(WeaponType.OldGreatSword, new OldGreatSword() { _thisBase = this.ThisBase });
+        weapons.Add(WeaponType.OldTwinSword, new OldTwinSword() { _thisBase = this.ThisBase });
 
-	public override void Start()
-	{
+        foreach (var value in weapons)
+        {
+            value.Value?.Awake();
+        }
 
-	}
+        foreach (var value in _helos)
+        {
+            value.Awake();
+        }
+    }
+
+    public override void Start()
+    {
+        foreach (var value in weapons)
+        {
+            value.Value?.Start();
+        }
+
+        foreach (var value in _helos)
+        {
+            value.Start();
+        }
+    }
+    public override void Update()
+    {
+        weapons[_currentWeapon]?.Update();
+
+        foreach (var value in _helos)
+        {
+            value.Update();
+        }
+    }
 }

@@ -9,67 +9,55 @@ public class BaseStraightSword : Weapon
 	{
 		base.Start();
 	}
+	protected override void Move(Vector3 vec)
+	{
+		if (isSkill)
+			return;
+		if (!_isEnemy)
+		{
+			if (Input.GetKeyDown(KeyCode.UpArrow))
+			{
+				_unitMove.Translate(Vector3.forward);
+			}
+			if (Input.GetKeyDown(KeyCode.DownArrow))
+			{
+				_unitMove.Translate(Vector3.back);
+			}
+			if (Input.GetKeyDown(KeyCode.LeftArrow))
+			{
+				_unitMove.Translate(Vector3.left);
+			}
+			if (Input.GetKeyDown(KeyCode.RightArrow))
+			{
+				_unitMove.Translate(Vector3.right);
+			}
+		}
+		else
+			_unitMove.Translate(vec);
+	}
 
-	public override void Update()
+	protected override void Attack(Vector3 vec)
 	{
 		if (!_isEnemy)
 		{
-			Skill();
-			Move(Vector3.zero);
-			Attack(Vector3.zero);
+			if (Input.GetKeyDown(KeyCode.W))
+			{
+				_unitAttack.Attack(Vector3.forward);
+			}
+			if (Input.GetKeyDown(KeyCode.S))
+			{
+				_unitAttack.Attack(Vector3.back);
+			}
+			if (Input.GetKeyDown(KeyCode.A))
+			{
+				_unitAttack.Attack(Vector3.left);
+			}
+			if (Input.GetKeyDown(KeyCode.D))
+			{
+				_unitAttack.Attack(Vector3.right);
+			}
 		}
-		Timer();
+		else
+			_unitAttack.Attack(vec);
 	}
-
-//	protected override void Move(Vector3 vec)
-//	{
-//		if (isSkill)
-//			return;
-//		if (!_isEnemy)
-//		{
-//			if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveForward))
-//			{
-//				_playerMove.InputMovement(Vector3.forward, _basicData.Speed);
-//			}
-//			if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveBackward))
-//			{
-//				_playerMove.InputMovement(Vector3.back, _basicData.Speed);
-//			}
-//			if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveLeft))
-//			{
-//				_playerMove.InputMovement(Vector3.left, _basicData.Speed);
-//			}
-//			if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveRight))
-//			{
-//				_playerMove.InputMovement(Vector3.right, _basicData.Speed);
-//			}
-//		}
-//		else
-//			_move.Translate(vec, _basicData.Speed);
-//	}
-
-//	protected override void Attack(Vector3 vec)
-//	{
-//		if (!_isEnemy)
-//		{
-//			if (_inputManager.GetKeyDownInput(InputManager.InputSignal.FowardAttack))
-//			{
-//				_attack.Attack(Vector3.forward, _basicData.attackSpeed, _basicData.attackAfterDelay, _basicData.damage);
-//			}
-//			if (_inputManager.GetKeyDownInput(InputManager.InputSignal.BackwardAttack))
-//			{
-//				_attack.Attack(Vector3.back, _basicData.attackSpeed, _basicData.attackAfterDelay, _basicData.damage);
-//			}
-//			if (_inputManager.GetKeyDownInput(InputManager.InputSignal.LeftAttack))
-//			{
-//				_attack.Attack(Vector3.left, _basicData.attackSpeed, _basicData.attackAfterDelay, _basicData.damage);
-//			}
-//			if (_inputManager.GetKeyDownInput(InputManager.InputSignal.RightAttack))
-//			{
-//				_attack.Attack(Vector3.right, _basicData.attackSpeed, _basicData.attackAfterDelay, _basicData.damage);
-//			}
-//		}
-//		else
-//			_attack.Attack(vec, _basicData.attackSpeed, _basicData.attackAfterDelay, _basicData.damage);
-//	}
 }

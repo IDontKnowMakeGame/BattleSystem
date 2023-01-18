@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GreatSword : BaseGreatSword
+public class Poolable : MonoBehaviour
 {
-
+    public bool isUsing = false;
 }
