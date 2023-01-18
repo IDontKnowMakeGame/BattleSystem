@@ -6,7 +6,9 @@ namespace Unit.Core.Weapon
 {
 	public enum WeaponType
 	{
-
+		OldStraightSword,
+		OldGreatSword,
+		OldTwinSword
 	}
 
     [Serializable]
@@ -14,7 +16,7 @@ namespace Unit.Core.Weapon
     {
         public Units.Base.Units _thisBase;
 
-        protected WeaponStats weaponStats = null;
+        protected WeaponStats _weaponStats = null;
 
 		//인풋 매니저
 
@@ -37,6 +39,17 @@ namespace Unit.Core.Weapon
 			//여기서 다 받아주고
 			_unitAttack = _thisBase.GetBehaviour<UnitAttack>();
 			_unitMove = _thisBase.GetBehaviour<UnitMove>();
+		}
+
+		public override void Update()
+		{
+			if (!_isEnemy)
+			{
+				Skill();
+				Move(Vector3.zero);
+				Attack(Vector3.zero);
+			}
+			Timer();
 		}
 
 		protected void Timer()
