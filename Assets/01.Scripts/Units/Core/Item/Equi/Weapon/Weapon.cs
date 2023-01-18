@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Units.Behaviours.Unit;
 
 namespace Unit.Core.Weapon
 {
@@ -15,9 +16,11 @@ namespace Unit.Core.Weapon
 
         protected WeaponStats weaponStats = null;
 
-        //인풋 매니저
+		//인풋 매니저
 
-        //유닛 공격, 유닛 move
+		//유닛 공격, 유닛 move
+		protected UnitAttack _unitAttack;
+		protected UnitMove _unitMove;
 
         protected float _currentTime;
         protected float _maxTime;
@@ -31,7 +34,9 @@ namespace Unit.Core.Weapon
 
 		public override void Start()
 		{
-            //여기서 다 받아주고
+			//여기서 다 받아주고
+			_unitAttack = _thisBase.GetBehaviour<UnitAttack>();
+			_unitMove = _thisBase.GetBehaviour<UnitMove>();
 		}
 
 		protected void Timer()
@@ -45,6 +50,21 @@ namespace Unit.Core.Weapon
 				_isCoolTime = false;
 				_currentTime = 0;
 			}
+		}
+
+		protected virtual void Move(Vector3 vec)
+		{
+
+		}
+
+		protected virtual void Attack(Vector3 vec)
+		{
+
+		}
+
+		protected virtual void Skill()
+		{
+
 		}
 	}
 }

@@ -12,9 +12,9 @@ namespace Units.Behaviours.Unit
         protected Sequence _seq;
         protected bool isMoving = false;
 
-        public virtual void Translate(InputAction.CallbackContext dir)
+        public virtual void Translate(Vector3 dir)
         {
-            MoveTo(ThisBase.Position + dir.ReadValue<Vector3>());
+            MoveTo(ThisBase.Position + dir);
         }
 
         public virtual void MoveTo(Vector3 pos, float spd = 1)

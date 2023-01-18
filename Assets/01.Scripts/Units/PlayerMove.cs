@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Units.Behaviours.Unit;
 using DG.Tweening;
-using UnityEngine.InputSystem;
 
 struct MoveNode
 {
@@ -31,12 +30,11 @@ namespace Units.Base.Player
             PopMove();
         }
 
-        public override void Translate(InputAction.CallbackContext dir)
+        public override void Translate(Vector3 dir)
         {
-            Debug.Log(dir.ReadValue<Vector3>());
             if (moveDir.Count > 1) return;
             // 현재 스피드를 계산하는 식 필요
-            moveDir.Enqueue(new MoveNode(dir.ReadValue<Vector3>(), 0.5f));
+            moveDir.Enqueue(new MoveNode(dir, 0.5f));
         }
 
         public void ClearMove()
