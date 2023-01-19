@@ -67,8 +67,7 @@ namespace Unit.Core.Weapon
 
 		protected void GetWeaponStateData(string name)
 		{
-			GameManagement.Instance.StartCoroutine((string)GameManagement.Instance.GetManager<DataManager>().GetWeaponStateData(name, GetWeaponStateData));
-			Debug.Log("이게 된다고?!?!?!?");
+			GameManagement.Instance.AddManager<DataManager>().GetWeaponStateData(name, GetWeaponStateData);
         }
 		protected void GetWeaponStateData(WeaponStats data)
         {

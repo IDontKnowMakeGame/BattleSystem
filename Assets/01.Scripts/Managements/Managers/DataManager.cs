@@ -9,6 +9,7 @@ using System;
 using System.Threading.Tasks;
 using Managements.Managers.Base;
 using Unit.Core;
+using Managements;
 
 public class DataJson : MonoBehaviour
 {
@@ -157,20 +158,23 @@ public class DataManager : Manager
         isSettingComplate = true;
     }
 
-    public IEnumerable GetWeaponStateData(string name,Action<WeaponStats> action)
+    public void GetWeaponStateData(string name,Action<WeaponStats> action)
     {
-        yield return new WaitUntil(()=> isSettingComplate);
-        foreach(WeaponStateData data in weaponStateDataList)
+        GameManagement.Instance.StartCoroutine(WaitForGetWeaponData(name, action));
+    }
+    public IEnumerator WaitForGetWeaponData(string name, Action<WeaponStats> action)
+    {
+        yield return new WaitUntil(() => isSettingComplate);
+        foreach (WeaponStateData data in weaponStateDataList)
         {
             if (data.name == name)
             {
                 action(WeaponSearilize(data));
-                yield break;
             }
-                
+
         }
         action(null);
-        yield break;
+        Debug.Log("이게 된다고?!?!?!?");
     }
 
     public WeaponStats WeaponSearilize(WeaponStateData data)
