@@ -11,7 +11,7 @@ public class OldStraightSword : BaseStraightSword
 		//GetWeaponStateData("sword");
 		//_maxTime = LongSwordData.coolTime;
 
-		Debug.Log(_weaponStats.Afs);
+		
 	}
 	protected override void Skill()
 	{

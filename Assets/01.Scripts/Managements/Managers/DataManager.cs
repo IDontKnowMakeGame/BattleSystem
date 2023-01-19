@@ -134,6 +134,8 @@ public class DataManager : Manager
             );
         }
 
+        Debug.Log(weaponStateDataList.Count);
+
         isSettingComplate = true;
     }
 
@@ -149,11 +151,11 @@ public class DataManager : Manager
             if (data.name == name)
             {
                 action(WeaponSerializable(data));
+                yield break;
             }
 
         }
         action(null);
-        Debug.Log("이게 된다고?!?!?!?");
     }
 
     public WeaponStats WeaponSerializable(WeaponStateData data)
