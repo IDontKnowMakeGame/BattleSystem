@@ -1,6 +1,8 @@
 ﻿using System;
 using UnityEngine;
 using Units.Behaviours.Unit;
+using Managements.Managers;
+using Managements;
 
 namespace Unit.Core.Weapon
 {
@@ -19,7 +21,7 @@ namespace Unit.Core.Weapon
         protected WeaponStats _weaponStats = null;
 
 		//인풋 매니저
-
+		protected InputManager _inputManager;
 		//유닛 공격, 유닛 move
 		protected UnitAttack _unitAttack;
 		protected UnitMove _unitMove;
@@ -37,8 +39,11 @@ namespace Unit.Core.Weapon
 		public override void Start()
 		{
 			//여기서 다 받아주고
+			_inputManager = GameManagement.Instance.GetManager<InputManager>();
 			_unitAttack = _thisBase.GetBehaviour<UnitAttack>();
 			_unitMove = _thisBase.GetBehaviour<UnitMove>();
+
+			_inputManager.AddInGameAction(InputTarget.Skill, Skill);
 		}
 
 		public override void Update()

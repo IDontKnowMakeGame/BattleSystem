@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Units.Behaviours.Unit;
+//using Managements.Managers;
 public class OldStraightSword : BaseStraightSword
 {
 	public override void Start()

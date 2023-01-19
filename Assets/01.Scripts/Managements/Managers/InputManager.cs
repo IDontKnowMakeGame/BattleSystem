@@ -19,6 +19,7 @@ namespace Managements.Managers
         RightMove,
         UpMove,
         DownMove,
+        Skill
     }
 
     public class Input
