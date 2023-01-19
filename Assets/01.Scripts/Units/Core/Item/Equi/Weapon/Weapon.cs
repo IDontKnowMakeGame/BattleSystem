@@ -35,7 +35,6 @@ namespace Unit.Core.Weapon
 
         public bool _isEnemy = true;
 
-
 		public override void Start()
 		{
 			//여기서 다 받아주고
@@ -70,6 +69,16 @@ namespace Unit.Core.Weapon
 			}
 		}
 
+		protected void GetWeaponStateData(string name)
+		{
+			GameManagement.Instance.StartCoroutine((string)GameManagement.Instance.GetManager<DataManager>().GetWeaponStateData(name, GetWeaponStateData));
+			Debug.Log("이게 된다고?!?!?!?");
+        }
+		protected void GetWeaponStateData(WeaponStats data)
+        {
+			_weaponStats = data;
+		}
+
 		protected virtual void Move(Vector3 vec)
 		{
 
@@ -77,7 +86,7 @@ namespace Unit.Core.Weapon
 
 		protected virtual void Attack(Vector3 vec)
 		{
-
+			//_weaponStats = 
 		}
 
 		protected virtual void Skill()

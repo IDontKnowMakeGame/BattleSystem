@@ -8,6 +8,7 @@ public class OldStraightSword : BaseStraightSword
 	public override void Start()
 	{
 		base.Start();
+		GetWeaponStateData("sword");
 		//GetWeaponStateData("sword");
 		//_maxTime = LongSwordData.coolTime;
 	}
