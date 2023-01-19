@@ -62,7 +62,13 @@ public class User
 {
     public SavePoint savePoint;
 
-     
+    public string currentWeapon;
+    public string firstWeapon;
+    public string SecondWeapon;
+
+    public List<string> inventoryInWeaponList;
+    public List<string> inventoryInHeloList;
+    public List<string> inventoryInUsableItemList;
 }
 
 public class WeaponStateData
@@ -75,7 +81,6 @@ public class WeaponStateData
         this.attackSpeed = attackSpeed;
         this.attackAfterDelay = attackAfterDelay;
         this.weaponWeight = weaponWeight;
-        WeightChange();
     }
 
     public string name;
@@ -84,32 +89,6 @@ public class WeaponStateData
     public float attackSpeed;
     public float attackAfterDelay;
     public int weaponWeight;
-
-    public float Speed => _speed;
-
-    private float _speed;
-
-    private void WeightChange()
-	{
-        switch(weaponWeight)
-		{
-            case 5:
-                _speed = 0.6f;
-                break;
-            case 4:
-                _speed = 0.4f;
-                break;
-            case 3:
-                _speed = 0.25f;
-                break;
-            case 2:
-                _speed = 0.2f;
-                break;
-            case 1:
-                _speed = 0.1f;
-                break;
-        }
-    }
 }
 
 public class DataManager : Manager
@@ -169,7 +148,7 @@ public class DataManager : Manager
         {
             if (data.name == name)
             {
-                action(WeaponSearilize(data));
+                action(WeaponSerializable(data));
             }
 
         }
@@ -177,7 +156,7 @@ public class DataManager : Manager
         Debug.Log("이게 된다고?!?!?!?");
     }
 
-    public WeaponStats WeaponSearilize(WeaponStateData data)
+    public WeaponStats WeaponSerializable(WeaponStateData data)
     {
         WeaponStats state = new WeaponStats();
 
