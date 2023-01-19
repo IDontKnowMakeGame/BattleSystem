@@ -4,58 +4,57 @@ using UnityEngine;
 using Unit.Core.Weapon;
 public class OldTwinSword : Weapon
 {
-	//public override void Start()
-	//{
-	//	base.Start();
-	//	//GetWeaponStateData("twin");
-	//	//_maxTime = TwinSwordData.coolTime;
-	//}
-	//protected override void Skill()
-	//{
-	//	if (_isCoolTime)
-	//		return;
+	public override void Start()
+	{
+		base.Start();
+		//GetWeaponStateData("twin");
+		//_maxTime = TwinSwordData.coolTime;
+	}
+	protected override void Skill()
+	{
+		if (_isCoolTime)
+			return;
 
-	//	if (_inputManager.GetKeyInput(InputManager.InputSignal.Skill))
-	//	{
-	//		isSkill = true;
-	//		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveForward))
-	//		{
-	//			SixTimeAttak(Vector3.forward);
-	//		}
-	//		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveBackward))
-	//		{
-	//			SixTimeAttak(Vector3.back);
-	//		}
-	//		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveLeft))
-	//		{
-	//			SixTimeAttak(Vector3.left);
-	//		}
-	//		if (_inputManager.GetKeyDownInput(InputManager.InputSignal.MoveRight))
-	//		{
-	//			SixTimeAttak(Vector3.right);
-	//		}
-	//	}
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			isSkill = true;
+			if (Input.GetKeyDown(KeyCode.UpArrow))
+			{
+				SixTimeAttak(Vector3.forward);
+			}
+			if (Input.GetKeyDown(KeyCode.DownArrow))
+			{
+				SixTimeAttak(Vector3.back);
+			}
+			if (Input.GetKeyDown(KeyCode.LeftArrow))
+			{
+				SixTimeAttak(Vector3.left);
+			}
+			if (Input.GetKeyDown(KeyCode.RightArrow))
+			{
+				SixTimeAttak(Vector3.right);
+			}
+		}
 
-	//	if (_inputManager.GetKeyUpInput(InputManager.InputSignal.Skill) && !_isCoolTime)
-	//	{
-	//		_isCoolTime = true;
-	//		SixTimeAttak(Vector3.forward);
-	//	}
-	//}
+		if (Input.GetKeyDown(KeyCode.Space) && !_isCoolTime)
+		{
+			_isCoolTime = true;
+			SixTimeAttak(Vector3.forward);
+		}
+	}
 
-	//private void SixTimeAttak(Vector3 dir)
-	//{
-	//	_isCoolTime = true;
-	//	for (int i = 0; i < 6; i++)
-	//	{
-	//		_unitAttack.Attack(dir, _basicData.damage, TwinSwordData.freeze);
-	//	}
-	//	_baseObject.StartCoroutine(waitReset());
-	//}
+	private void SixTimeAttak(Vector3 dir)
+	{
+		_isCoolTime = true;
+		for (int i = 0; i < 6; i++)
+		{
+			_unitAttack.Attack(dir/*, _basicData.damage, TwinSwordData.freeze*/);
+			_unitAttack.onBehaviourEnd = waitReset;
+		}
+	}
 
-	//private IEnumerator waitReset()
-	//{
-	//	yield return new WaitForSeconds(TwinSwordData.freeze);
-	//	isSkill = false;
-	//}
+	private void waitReset()
+	{
+		isSkill = false;
+	}
 }

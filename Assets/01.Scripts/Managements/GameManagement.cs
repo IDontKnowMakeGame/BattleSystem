@@ -139,6 +139,7 @@ namespace Managements
         private void Init()
         {
             AddManager<InputManager>();
+            AddManager<DataManager>();
         }
         
         public void Awake()

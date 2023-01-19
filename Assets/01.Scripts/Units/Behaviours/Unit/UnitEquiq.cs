@@ -10,9 +10,9 @@ public class UnitEquiq : UnitBehaviour
 	protected WeaponType _secoundWeapon;
 	public WeaponType CurrentWeapon => _currentWeapon;
 
-	public Dictionary<WeaponType, Weapon> weapons;
+	public Dictionary<WeaponType, Weapon> weapons = new Dictionary<WeaponType, Weapon>();
 
-	public List<Helo> _helos;
+	public List<Helo> _helos = new List<Helo>();
     
     public override void Awake()
     {
@@ -27,7 +27,7 @@ public class UnitEquiq : UnitBehaviour
 
         foreach (var value in _helos)
         {
-            value.Awake();
+            value?.Awake();
         }
     }
 
@@ -40,7 +40,7 @@ public class UnitEquiq : UnitBehaviour
 
         foreach (var value in _helos)
         {
-            value.Start();
+            value?.Start();
         }
     }
     public override void Update()
@@ -49,7 +49,7 @@ public class UnitEquiq : UnitBehaviour
 
         foreach (var value in _helos)
         {
-            value.Update();
+            value?.Update();
         }
     }
 }

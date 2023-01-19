@@ -8,6 +8,8 @@ using System.Runtime.CompilerServices;
 using System;
 using System.Threading.Tasks;
 using Managements.Managers.Base;
+using Unit.Core;
+using Managements;
 
 public class DataJson : MonoBehaviour
 {
@@ -60,7 +62,13 @@ public class User
 {
     public SavePoint savePoint;
 
-     
+    public string currentWeapon;
+    public string firstWeapon;
+    public string SecondWeapon;
+
+    public List<string> inventoryInWeaponList;
+    public List<string> inventoryInHeloList;
+    public List<string> inventoryInUsableItemList;
 }
 
 public class WeaponStateData
@@ -73,7 +81,6 @@ public class WeaponStateData
         this.attackSpeed = attackSpeed;
         this.attackAfterDelay = attackAfterDelay;
         this.weaponWeight = weaponWeight;
-        WeightChange();
     }
 
     public string name;
@@ -82,32 +89,6 @@ public class WeaponStateData
     public float attackSpeed;
     public float attackAfterDelay;
     public int weaponWeight;
-
-    public float Speed => _speed;
-
-    private float _speed;
-
-    private void WeightChange()
-	{
-        switch(weaponWeight)
-		{
-            case 5:
-                _speed = 0.6f;
-                break;
-            case 4:
-                _speed = 0.4f;
-                break;
-            case 3:
-                _speed = 0.25f;
-                break;
-            case 2:
-                _speed = 0.2f;
-                break;
-            case 1:
-                _speed = 0.1f;
-                break;
-        }
-    }
 }
 
 public class DataManager : Manager
@@ -153,18 +134,39 @@ public class DataManager : Manager
             );
         }
 
+        Debug.Log(weaponStateDataList.Count);
+
         isSettingComplate = true;
     }
 
-    public WeaponStateData GetWeaponStateData(string name)
+    public void GetWeaponStateData(string name,Action<WeaponStats> action)
     {
-        foreach(WeaponStateData data in weaponStateDataList)
+        GameManagement.Instance.StartCoroutine(WaitForGetWeaponData(name, action));
+    }
+    public IEnumerator WaitForGetWeaponData(string name, Action<WeaponStats> action)
+    {
+        yield return new WaitUntil(() => isSettingComplate);
+        foreach (WeaponStateData data in weaponStateDataList)
         {
             if (data.name == name)
-                return data;
-        }
+            {
+                action(WeaponSerializable(data));
+                yield break;
+            }
 
-        return null;
+        }
+        action(null);
     }
 
+    public WeaponStats WeaponSerializable(WeaponStateData data)
+    {
+        WeaponStats state = new WeaponStats();
+
+        state.Afs = data.attackAfterDelay;
+        state.Atk = data.damage;
+        state.Ats = data.attackSpeed;
+        state.Weight = data.weaponWeight;
+
+        return state;
+    }
 }
