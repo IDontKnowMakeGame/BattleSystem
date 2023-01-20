@@ -60,7 +60,7 @@ namespace Managements.Managers
             }
         }
 
-        public override void Start()
+        public override void Awake()
         {
             InitMovementInput();
         }

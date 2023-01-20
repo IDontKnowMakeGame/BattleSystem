@@ -27,6 +27,14 @@ namespace Units.Base.Player
     {
         private Queue<MoveNode> moveDir = new Queue<MoveNode>();
 
+        public override void Start()
+        {
+            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.UpMove, () => Translate(Vector3.forward));
+            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.DownMove, () => Translate(Vector3.back));
+            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.RightMove, () => Translate(Vector3.right));
+            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.LeftMove, () => Translate(Vector3.left));
+        }
+
         public override void Update()
         {
             base.Update();
@@ -75,9 +83,11 @@ namespace Units.Base.Player
             }
 
             _seq.Append(ThisBase.transform.DOMove(nextPos, spd).SetEase(Ease.Linear));
+            _seq.InsertCallback(spd / 2, () => ThisBase.Position = nextPos);
             _seq.AppendCallback(() =>
             {
                 isMoving = false;
+                ThisBase.Position = nextPos;
                 _seq.Kill();
             });
         }
