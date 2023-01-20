@@ -1,5 +1,6 @@
 ﻿using Core;
 using Managements.Managers;
+using Unit.Block;
 using Units.Base.Unit;
 using Units.Behaviours.Unit;
 using UnityEngine;
@@ -24,6 +25,13 @@ namespace Units.Base.Player
         {
             Define.GetManager<InputManager>();
             base.Start();
+        }
+
+        protected override void Update()
+        {
+            var block = Define.GetManager<MapManager>().GetBlock(Position);
+            block.GetBehaviour<BlockRender>().SetOutlineColor(Color.white);
+            base.Update();
         }
     }
 }

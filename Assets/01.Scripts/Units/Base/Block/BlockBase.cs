@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using Core;
 using Managements.Managers;
+using Unit.Block;
 using UnityEngine;
 
 public class BlockBase : Units.Base.Units
 {
+    [SerializeField] private BlockRender blockRender;
     private Units.Base.Units _unitOnBlock;
     protected override void Init()
     {
         Define.GetManager<MapManager>().AddBlock(this);
+        AddBehaviour<BlockRender>(blockRender);
         base.Init();
     }
     
