@@ -19,6 +19,7 @@ namespace Units.Base.Player
             playerMove = AddBehaviour<PlayerMove>();
             PlayerAttack = AddBehaviour<PlayerAttack>();
             //playerEqiq = AddBehaviour<PlayerEqiq>();
+            base.Init();
         }
 
         protected override void Start()
