@@ -86,14 +86,6 @@ public class AttackCollider : MonoBehaviour
         ChangeSizeX(2);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Destroy(CurrntDirNearEnemy());
-        }
-    }
-
     public BoxCollider GetAttackCol(int direction)
     {
         if(direction <= -1 && direction >= (int)DirType.Size)

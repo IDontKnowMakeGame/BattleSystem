@@ -3,31 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using Units.Behaviours.Unit;
 
-[System.Serializable]
-public class PlayerAttack : UnitAttack
+namespace Units.Base.Player
 {
-    private AttackCollider attackColParent;
-    public AttackCollider AttackColParent
+    [System.Serializable]
+    public class PlayerAttack : UnitAttack
     {
-        get
+        private AttackCollider attackColParent;
+        public AttackCollider AttackColParent
         {
-            if (attackColParent == null)
+            get
             {
-                Debug.LogError("attackColParent가 NULL입니다.");
-                return new AttackCollider();
+                if (attackColParent == null)
+                {
+                    Debug.LogError("attackColParent가 NULL입니다.");
+                    return new AttackCollider();
+                }
+                return attackColParent;
             }
-            return attackColParent;
         }
-    }
-      
-    public override void Start()
-    {
-        base.Start();
-        attackColParent = GameObject.FindObjectOfType<AttackCollider>();
-    }
 
-    public override void Attack(Vector3 idx)
-    {
-        // To Do 콜라이더를 통한 Attack Check
+        public override void Start()
+        {
+            base.Start();
+            attackColParent = GameObject.FindObjectOfType<AttackCollider>();
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            // To Do InputManager로 변환
+            if (Input.GetKeyDown(KeyCode.W))
+                Attack(Vector3.up);
+        }
+
+        public override void Attack(Vector3 idx)
+        {
+            // To Do 콜라이더를 통한 Attack Check
+            ThisBase.GetBehaviour<PlayerMove>().ClearMove();
+            ThisBase.GetBehaviour<PlayerAnimation>().AttackAnimation();
+        }
     }
 }
