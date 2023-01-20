@@ -12,6 +12,7 @@ namespace Units.Base.Player
     {
         [SerializeField] private PlayerMove playerMove; 
         [SerializeField] private PlayerAttack PlayerAttack;
+        [SerializeField] private PlayerBuff playerBuff;
         [SerializeField] private PlayerAnimation playerAnimation;
         //[SerializeField] private PlayerEqiq playerEqiq;
         protected override void Init()
@@ -19,6 +20,7 @@ namespace Units.Base.Player
             AddBehaviour(thisStat);
             playerMove = AddBehaviour<PlayerMove>();
             PlayerAttack = AddBehaviour<PlayerAttack>();
+            playerBuff = AddBehaviour<PlayerBuff>();
             playerAnimation = AddBehaviour<PlayerAnimation>();
             //playerEqiq = AddBehaviour<PlayerEqiq>();
         }
