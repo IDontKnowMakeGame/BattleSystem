@@ -60,6 +60,8 @@ public class SavePoint
 
 public class User
 {
+
+    public int currentFloor = 0;
     public SavePoint savePoint;
 
     public string currentWeapon;

@@ -9,7 +9,16 @@ namespace Units.Base
     public class Units : MonoBehaviour
     {
         private Dictionary<Type, Behaviour> _behaviours = new();
-        public Vector3 Position { get; set; }
+        private Vector3 position = Vector3.zero;
+        public Vector3 Position
+        {
+            get => position;
+            set
+            {
+                value.y = 0;
+                position = value;
+            }
+        }
 
         #region Unit_LifeCycle
 
