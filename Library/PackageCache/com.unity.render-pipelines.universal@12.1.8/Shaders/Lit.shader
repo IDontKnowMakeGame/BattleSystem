@@ -4,7 +4,8 @@ Shader "Universal Render Pipeline/Lit"
     {
         // Specular vs Metallic workflow
         _WorkflowMode("WorkflowMode", Float) = 1.0
-
+        
+        [ToggleUI] _CastShadows("Cast Shadows", Float) = 1.0
         [MainTexture] _BaseMap("Albedo", 2D) = "white" {}
         [MainColor] _BaseColor("Color", Color) = (1,1,1,1)
 
@@ -39,12 +40,10 @@ Shader "Universal Render Pipeline/Lit"
         _DetailAlbedoMap("Detail Albedo x2", 2D) = "linearGrey" {}
         _DetailNormalMapScale("Scale", Range(0.0, 2.0)) = 1.0
         [Normal] _DetailNormalMap("Normal Map", 2D) = "bump" {}
-
         
         // SRP batching compatibility for Clear Coat (Not used in Lit)
         [HideInInspector] _ClearCoatMask("_ClearCoatMask", Float) = 0.0
         [HideInInspector] _ClearCoatSmoothness("_ClearCoatSmoothness", Float) = 0.0
-
         
         // Blending state
         _Surface("__surface", Float) = 0.0
