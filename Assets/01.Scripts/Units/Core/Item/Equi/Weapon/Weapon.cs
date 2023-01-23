@@ -19,7 +19,7 @@ namespace Unit.Core.Weapon
 
         protected WeaponStats _weaponStats = null;
 
-		//인풋 매니저
+		public WeaponStats WeaponStat => _weaponStats;
 
 		//유닛 공격, 유닛 move
 		protected UnitAttack _unitAttack;
