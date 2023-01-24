@@ -23,7 +23,9 @@ namespace Managements.Managers
 		RightAttack,
 		UpAttack,
 		DownAttack,
-		Skill
+		Skill,
+		a,
+		b
 	}
 
 	public class Input
@@ -102,6 +104,32 @@ namespace Managements.Managers
 
 		private void InitMovementInput()
 		{
+			InitInGameInput(InputTarget.a,
+				new Input()
+				{
+					action = () =>
+					{
+						Debug.Log("a");
+					},
+					keyCode = KeyCode.P,
+					inputStatus = InputStatus.Hold
+				}
+			);
+			
+			InitInGameInput(InputTarget.b,
+				new Input()
+				{
+					action = () =>
+					{
+						Debug.Log("b");
+					},
+					keyCode = KeyCode.Y,
+					inputStatus = InputStatus.Hold
+				}
+			);
+			
+			
+			
 			InitInGameInput(InputTarget.LeftMove,
 				new Input()
 				{
