@@ -10,7 +10,7 @@ public class OldStraightSword : BaseStraightSword
 	public override void Start()
 	{
 		base.Start();
-		_inputManager.ChangeInGameAction(InputTarget.Skill, () => Skill(Vector3.zero));
+		_inputManager.ChangeInGameAction(InputTarget.Skill, InputStatus.Press, () => Skill(Vector3.zero));
 	}
 	protected override void Skill(Vector3 vec)
 	{
@@ -22,10 +22,10 @@ public class OldStraightSword : BaseStraightSword
 
 		if (!_isEnemy)
 		{
-			_inputManager.ChangeInGameAction(InputTarget.UpMove, () => RollSkill(Vector3.forward * 2));
-			_inputManager.ChangeInGameAction(InputTarget.DownMove, () => RollSkill(Vector3.back * 2));
-			_inputManager.ChangeInGameAction(InputTarget.LeftMove, () => RollSkill(Vector3.left * 2));
-			_inputManager.ChangeInGameAction(InputTarget.RightMove, () => RollSkill(Vector3.right * 2));
+			_inputManager.ChangeInGameAction(InputTarget.UpMove, InputStatus.Press,() => RollSkill(Vector3.forward * 2));
+			_inputManager.ChangeInGameAction(InputTarget.DownMove, InputStatus.Press, () => RollSkill(Vector3.back * 2));
+			_inputManager.ChangeInGameAction(InputTarget.LeftMove, InputStatus.Press, () => RollSkill(Vector3.left * 2));
+			_inputManager.ChangeInGameAction(InputTarget.RightMove, InputStatus.Press, () => RollSkill(Vector3.right * 2));
 		}
 		else
 			RollSkill(vec);
@@ -47,12 +47,12 @@ public class OldStraightSword : BaseStraightSword
 		Debug.Log(2);
 		isSkill = false;
 
-		_inputManager.ChangeInGameAction(InputTarget.UpMove, () =>
+		_inputManager.ChangeInGameAction(InputTarget.UpMove, InputStatus.Press, () =>
 		{
 			Move(Vector3.forward);
 		});
-		_inputManager.ChangeInGameAction(InputTarget.DownMove, () => Move(Vector3.back));
-		_inputManager.ChangeInGameAction(InputTarget.LeftMove, () => Move(Vector3.left));
-		_inputManager.ChangeInGameAction(InputTarget.RightMove, () => Move(Vector3.right));
+		_inputManager.ChangeInGameAction(InputTarget.DownMove, InputStatus.Press, () => Move(Vector3.back));
+		_inputManager.ChangeInGameAction(InputTarget.LeftMove, InputStatus.Press, () => Move(Vector3.left));
+		_inputManager.ChangeInGameAction(InputTarget.RightMove, InputStatus.Press, () => Move(Vector3.right));
 	}
 }

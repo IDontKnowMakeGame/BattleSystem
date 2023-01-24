@@ -24,6 +24,7 @@ namespace Units.Base.Player
     public class PlayerMove : UnitMove
     {
         private Queue<MoveNode> moveDir = new Queue<MoveNode>();
+        private float spd = 0.5f;
 
         public override void Start()
         {
@@ -34,35 +35,20 @@ namespace Units.Base.Player
             PopMove();
         }
 
-        public override void Translate(Vector3 dir)
+        public void EnqueueMove(Vector3 dir)
         {
             if (moveDir.Count > 1) return;
             // 현재 스피드를 계산하는 식 필요
             moveDir.Enqueue(new MoveNode(dir, 0.5f));
         }
 
-        public void ClearMove()
-        {
-            moveDir.Clear();
-        }
-
-        public void PopMove()
-        {
-            if (moveDir.Count > 0 && !isMoving)
-            {
-                MoveNode nextNode = moveDir.Dequeue();
-                MoveTo(nextNode.dir, nextNode.speed);
-                Debug.Log(3);
-            }
-        }
-
-        public override void MoveTo(Vector3 pos, float spd = 1)
+        public override void Translate(Vector3 dir)
         {
             if (isMoving)
                 return;
 
             Vector3 originalPos = ThisBase.transform.position;
-            Vector3 nextPos = originalPos + pos;
+            Vector3 nextPos = originalPos + dir;
 
             _seq = DOTween.Sequence();
             isMoving = true;
@@ -86,6 +72,21 @@ namespace Units.Base.Player
                 onBehaviourEnd?.Invoke();
                 _seq.Kill();
             });
+        }
+
+        public void ClearMove()
+        {
+            moveDir.Clear();
+        }
+
+        public void PopMove()
+        {
+            if (moveDir.Count > 0 && !isMoving)
+            {
+                MoveNode nextNode = moveDir.Dequeue();
+                Translate(nextNode.dir);
+                Debug.Log(3);
+            }
         }
         public void PlayerStop()
         {

@@ -24,15 +24,12 @@ namespace Managements.Managers
 		UpAttack,
 		DownAttack,
 		Skill,
-		a,
-		b
 	}
 
 	public class Input
 	{
-		public Action action;
+		public List<Action> actions;
 		public KeyCode keyCode;
-		public InputStatus inputStatus;
 	}
 
 	public class InputManager : Manager
@@ -43,201 +40,52 @@ namespace Managements.Managers
 		{
 			foreach (var input in _inGameInputs)
 			{
-				switch (input.Value.inputStatus)
+				if (UnityEngine.Input.GetKeyDown(input.Value.keyCode))
 				{
-					case InputStatus.Press:
-						if (UnityEngine.Input.GetKeyDown(input.Value.keyCode))
-						{
-							input.Value.action?.Invoke();
-						}
-						break;
-					case InputStatus.Hold:
-						if (UnityEngine.Input.GetKey(input.Value.keyCode))
-						{
-							input.Value.action?.Invoke();
-						}
-						break;
-					case InputStatus.Release:
-						if (UnityEngine.Input.GetKeyUp(input.Value.keyCode))
-						{
-							input.Value.action?.Invoke();
-						}
-						break;
+					input.Value.actions[(int)InputStatus.Press]?.Invoke();
+				}
+				if (UnityEngine.Input.GetKey(input.Value.keyCode))
+				{
+					input.Value.actions[(int)InputStatus.Hold]?.Invoke();
+				}
+				if (UnityEngine.Input.GetKeyUp(input.Value.keyCode))
+				{
+					input.Value.actions[(int)InputStatus.Release]?.Invoke();
 				}
 			}
 		}
 
 		public override void Awake()
 		{
-			InitMovementInput();
+			InitInGameInput(InputTarget.LeftMove, new Input() { keyCode = KeyCode.A});
+			InitInGameInput(InputTarget.RightMove, new Input() { keyCode = KeyCode.D});
+			InitInGameInput(InputTarget.UpMove, new Input() { keyCode = KeyCode.W});
+			InitInGameInput(InputTarget.DownMove, new Input() { keyCode = KeyCode.S});
 		}
 
 		public void InitInGameInput(InputTarget target, Input input)
 		{
 			_inGameInputs.Add(target, input);
 		}
-
-		public void ChangeInGameAction(InputTarget target, Action action)
+		
+		public void ChangeInGameAction(InputTarget target, InputStatus status, Action action)
 		{
-			_inGameInputs[target].action = action;
+			_inGameInputs[target].actions[(int)status] = action;
 		}
 
-		public void AddInGameAction(InputTarget target, Action action)
+		public void AddInGameAction(InputTarget target, InputStatus status, Action action)
 		{
-			_inGameInputs[target].action += action;
+			_inGameInputs[target].actions[(int)status] += action;
 		}
 
-		public void RemoveInGameAction(InputTarget target, Action action)
+		public void RemoveInGameAction(InputTarget target, InputStatus status, Action action)
 		{
-			_inGameInputs[target].action -= action;
+			_inGameInputs[target].actions[(int)status] -= action;
 		}
 
 		public void ChangeInGameKey(InputTarget target, KeyCode keyCode)
 		{
 			_inGameInputs[target].keyCode = keyCode;
-		}
-
-		public void ChangeInGameStatus(InputTarget target, InputStatus status)
-		{
-			_inGameInputs[target].inputStatus = status;
-		}
-
-		private void InitMovementInput()
-		{
-			InitInGameInput(InputTarget.a,
-				new Input()
-				{
-					action = () =>
-					{
-						Debug.Log("a");
-					},
-					keyCode = KeyCode.P,
-					inputStatus = InputStatus.Hold
-				}
-			);
-			
-			InitInGameInput(InputTarget.b,
-				new Input()
-				{
-					action = () =>
-					{
-						Debug.Log("b");
-					},
-					keyCode = KeyCode.Y,
-					inputStatus = InputStatus.Hold
-				}
-			);
-			
-			
-			
-			InitInGameInput(InputTarget.LeftMove,
-				new Input()
-				{
-					action = () =>
-					{
-						Debug.Log("Left");
-					},
-					keyCode = KeyCode.LeftArrow,
-					inputStatus = InputStatus.Press
-				}
-			);
-
-			InitInGameInput(InputTarget.RightMove,
-				new Input()
-				{
-					action = () =>
-					{
-						Debug.Log("Right");
-					},
-					keyCode = KeyCode.RightArrow,
-					inputStatus = InputStatus.Press
-				}
-			);
-
-			InitInGameInput(InputTarget.UpMove,
-				new Input()
-				{
-					action = () =>
-					{
-						Debug.Log("Up");
-					},
-					keyCode = KeyCode.UpArrow,
-					inputStatus = InputStatus.Press
-				}
-			);
-
-			InitInGameInput(InputTarget.DownMove,
-				new Input()
-				{
-					action = () =>
-					{
-						Debug.Log("Down");
-					},
-					keyCode = KeyCode.DownArrow,
-					inputStatus = InputStatus.Press
-				}
-			);
-
-
-			InitInGameInput(InputTarget.LeftAttack,
-		new Input()
-		{
-			action = () =>
-			{
-				Debug.Log("Left");
-			},
-			keyCode = KeyCode.LeftArrow,
-			inputStatus = InputStatus.Press
-		}
-	);
-
-			InitInGameInput(InputTarget.RightAttack,
-				new Input()
-				{
-					action = () =>
-					{
-						Debug.Log("Right");
-					},
-					keyCode = KeyCode.RightArrow,
-					inputStatus = InputStatus.Press
-				}
-			);
-
-			InitInGameInput(InputTarget.UpAttack,
-				new Input()
-				{
-					action = () =>
-					{
-						Debug.Log("Up");
-					},
-					keyCode = KeyCode.UpArrow,
-					inputStatus = InputStatus.Press
-				}
-			);
-
-			InitInGameInput(InputTarget.DownAttack,
-				new Input()
-				{
-					action = () =>
-					{
-						Debug.Log("Down");
-					},
-					keyCode = KeyCode.DownArrow,
-					inputStatus = InputStatus.Press
-				}
-			);
-
-			InitInGameInput(InputTarget.Skill,
-				new Input()
-				{
-					action = () =>
-					{
-						Debug.Log("Down");
-					},
-					keyCode = KeyCode.Space,
-					inputStatus = InputStatus.Press
-				}
-			);
 		}
 	}
 }
