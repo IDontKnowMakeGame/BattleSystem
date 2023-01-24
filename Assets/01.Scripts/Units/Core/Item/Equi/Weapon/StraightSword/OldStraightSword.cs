@@ -8,7 +8,6 @@ public class OldStraightSword : BaseStraightSword
 	public override void Start()
 	{
 		base.Start();
-		GetWeaponStateData("sword");
 		_inputManager.ChangeInGameAction(InputTarget.Skill, () => Skill(Vector3.zero));
 	}
 	protected override void Skill(Vector3 vec)

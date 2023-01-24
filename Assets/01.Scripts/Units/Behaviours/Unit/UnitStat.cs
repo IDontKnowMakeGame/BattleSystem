@@ -18,7 +18,6 @@ namespace Units.Behaviours.Unit
 		{
 			base.Start();
 			_unitEquiq = ThisBase.GetBehaviour<UnitEquiq>();
-			StartStats();
 		}
 
 		protected virtual void StartStats()
