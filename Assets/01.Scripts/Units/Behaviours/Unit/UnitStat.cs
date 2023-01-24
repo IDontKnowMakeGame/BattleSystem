@@ -18,12 +18,25 @@ namespace Units.Behaviours.Unit
 		{
 			base.Start();
 			_unitEquiq = ThisBase.GetBehaviour<UnitEquiq>();
+			StartStats();
 		}
 
-		protected virtual void ChangeStats()
+		protected virtual void StartStats()
 		{
-			changeStats.Agi = WeightToSpeed(_unitEquiq.CurrentWeapon.WeaponStat.Weight);
-			changeStats.Atk = _unitEquiq.CurrentWeapon.WeaponStat.Atk;
+			int Weight = 0;
+			float Atk = 0;
+
+			Weight = _unitEquiq.CurrentWeapon.WeaponStat.Weight;
+			Atk = _unitEquiq.CurrentWeapon.WeaponStat.Atk;
+
+			foreach(var a in _unitEquiq._helos)
+			{
+				//헤일로에 능력에 따라 무언가를 해준다.
+
+			}
+
+			changeStats.Agi = WeightToSpeed(Weight);
+			changeStats.Atk = Atk;
 		}
 
 		private float WeightToSpeed(int a) => a switch
