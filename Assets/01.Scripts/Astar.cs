@@ -37,7 +37,8 @@ public class Astar : MonoBehaviour
         openList.Add(start);
         while (openList.Count > 0)
         {
-            // CurrentNode 탐색 -> openList 코스트 가장 작은 것 찾기
+            // CurrentNode Research -> Find the smallest openList cost
+
             BlockBase currentTile = openList[0];
             for (int i = 1; i < openList.Count; i++)
             {
@@ -57,7 +58,7 @@ public class Astar : MonoBehaviour
             }
 
             yield return new WaitUntil(() => isFinding);
-            // 이웃된 타일 가져오기
+            // Get Neighbored Tiles
             foreach (BlockBase tile in GameManagement.Instance.GetManager<MapManager>().GetNeighbors(currentTile))
             {
                 if (!tile.isWalkable || closeList.Contains(tile))
@@ -78,7 +79,7 @@ public class Astar : MonoBehaviour
         }
 
 
-        // 라인 그리기
+        // Line Draw
         if (pathSuccess)
         {
             MakePath(start, end);
