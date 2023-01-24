@@ -51,24 +51,42 @@ public class DataJson : MonoBehaviour
 
 }
 
+#region Data
+public enum Floor
+{
+    LOBBY = 0,
+    FIRST,
+    SECOND,
+    THIRD
+}
 public class SavePoint
 {
-    public bool firstFloor = false;
-    public bool scecondFloor = false;
+    public Floor currentFloor = Floor.LOBBY;
+
+    public bool firstFloor = true;
+    public bool secondFloor = false;
     public bool thirdFloor = false;
 }
 
 public class User
 {
-    public SavePoint savePoint;
+    public int maxHp = 100;
 
     public string currentWeapon;
     public string firstWeapon;
-    public string SecondWeapon;
+    public string secondWeapon;
+}
 
+public class Inventory
+{
     public List<string> inventoryInWeaponList;
     public List<string> inventoryInHeloList;
     public List<string> inventoryInUsableItemList;
+}
+
+public class MapInformation
+{
+
 }
 
 public class WeaponStateData
@@ -90,10 +108,13 @@ public class WeaponStateData
     public float attackAfterDelay;
     public int weaponWeight;
 }
+#endregion
 
 public class DataManager : Manager
 {
     public static User UserData;
+    public static SavePoint SavePointData;
+    public static Inventory InventoryData;
 
     public List<WeaponStateData> weaponStateDataList = new List<WeaponStateData>();
 
@@ -103,19 +124,100 @@ public class DataManager : Manager
     public override void Awake()
     {
         UserData = DataJson.LoadJsonFile<User>(Application.dataPath + "/SAVE/User", "UserData");
+        SavePointData = DataJson.LoadJsonFile<SavePoint>(Application.dataPath + "/SAVE/User", "SavePointData");
+        InventoryData = DataJson.LoadJsonFile<Inventory>(Application.dataPath + "/SAVE/User", "InvectoryData");
 
         URL = "https://docs.google.com/spreadsheets/d/1y6kR8URl2pG-sAijzFArfcsj1SRQXP1CvNo_k19Vbjs/export?format=tsv&range=A2:F30";
 
         DownloadItemSO();
     }
+    #region UserData
+    public void SaveToUserData()
+    {
+        string json = DataJson.ObjectToJson(UserData);
+        DataJson.SaveJsonFile(Application.dataPath + "/SAVE/User", "UserData", json);
+    }
+    public void SwapCurrentWeaponData()
+    {
+        UserData.currentWeapon = "";
+    }
+    public void SwapCurrentWeaponData(string name)
+    {
+        if(UserData.firstWeapon != name && UserData.secondWeapon != name)
+        {
+            Debug.LogError($"User Haven't Weapon : {name}");
+            return;
+        }
 
+        UserData.currentWeapon = name;
+        
+    }
+    public void ChangeUserWeaponData(string name,bool isFirstWeapon = true)
+    {
+        if(isFirstWeapon)
+        {
+            if(UserData.currentWeapon == UserData.firstWeapon)
+            {
+                UserData.currentWeapon = name;
+            }
+            UserData.firstWeapon = name;
+        }
+        else
+        {
+            if (UserData.currentWeapon == UserData.secondWeapon)
+            {
+                UserData.currentWeapon = name;
+            }
+            UserData.secondWeapon = name;
+        }
+
+        SaveToUserData();
+    }
+    public void ChangeUserMaxHp(int value)
+    {
+        UserData.maxHp = value < 0 ? 1 : value;
+
+        SaveToUserData();
+    }
+    #endregion
+
+    #region SavePointData
+    public void SaveToSavePointData()
+    {
+        string json = DataJson.ObjectToJson(SavePointData);
+        DataJson.SaveJsonFile(Application.dataPath + "/SAVE/User", "SavePointData", json);
+    }
+    public void ChangeCurrentFloor(Floor floor)
+    {
+        SavePointData.currentFloor = floor;
+
+        SaveToSavePointData();
+    }
+    public void OpenFloor(Floor floor)
+    {
+        switch(floor)
+        {
+            case Floor.SECOND:
+                SavePointData.secondFloor = true;
+                break;
+            case Floor.THIRD:
+                SavePointData.thirdFloor = true;
+                break;
+            default:
+                break;
+        }
+
+        SaveToSavePointData();
+    }
+    #endregion
+
+    #region WeaponStateData
     private async void DownloadItemSO()
     {
         UnityWebRequest www = UnityWebRequest.Get(URL);
         await www.SendWebRequest();
         SetWeaponStateData(www.downloadHandler.text);
     }
-
     private void SetWeaponStateData(string tsv)
     {
         string[] row = tsv.Split('\n');
@@ -138,7 +240,6 @@ public class DataManager : Manager
 
         isSettingComplate = true;
     }
-
     public void GetWeaponStateData(string name,Action<WeaponStats> action)
     {
         GameManagement.Instance.StartCoroutine(WaitForGetWeaponData(name, action));
@@ -157,7 +258,6 @@ public class DataManager : Manager
         }
         action(null);
     }
-
     public WeaponStats WeaponSerializable(WeaponStateData data)
     {
         WeaponStats state = new WeaponStats();
@@ -169,4 +269,5 @@ public class DataManager : Manager
 
         return state;
     }
+    #endregion
 }

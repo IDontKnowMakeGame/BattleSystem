@@ -8,7 +8,13 @@ public class UnitEquiq : UnitBehaviour
 {
 	protected WeaponType _currentWeapon;
 	protected WeaponType _secoundWeapon;
-	public WeaponType CurrentWeapon => _currentWeapon;
+	public Weapon CurrentWeapon
+	{
+        get
+		{
+            return weapons[_currentWeapon];
+		}
+	}
 
 	public Dictionary<WeaponType, Weapon> weapons = new Dictionary<WeaponType, Weapon>();
 
