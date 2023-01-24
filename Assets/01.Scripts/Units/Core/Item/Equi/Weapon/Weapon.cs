@@ -2,6 +2,7 @@
 using UnityEngine;
 using Units.Behaviours.Unit;
 using Managements;
+using Managements.Managers;
 
 namespace Unit.Core.Weapon
 {
@@ -32,23 +33,30 @@ namespace Unit.Core.Weapon
 
         public bool isSkill = false;
 
-        public bool _isEnemy = true;
+        public bool _isEnemy = false;
 
 		public override void Start()
 		{
 			//여기서 다 받아주고
 			_unitAttack = _thisBase.GetBehaviour<UnitAttack>();
 			_unitMove = _thisBase.GetBehaviour<UnitMove>();
+
+			if(!_isEnemy)
+			{
+				_inputManager.ChangeInGameAction(InputTarget.UpMove, () => Move(Vector3.forward));
+				_inputManager.ChangeInGameAction(InputTarget.DownMove, () => Move(Vector3.back));
+				_inputManager.ChangeInGameAction(InputTarget.LeftMove, () => Move(Vector3.left));
+				_inputManager.ChangeInGameAction(InputTarget.RightMove, () => Move(Vector3.right));
+
+				_inputManager.ChangeInGameAction(InputTarget.UpAttack, () => Attack(Vector3.forward));
+				_inputManager.ChangeInGameAction(InputTarget.DownAttack, () => Attack(Vector3.back));
+				_inputManager.ChangeInGameAction(InputTarget.LeftAttack, () => Attack(Vector3.left));
+				_inputManager.ChangeInGameAction(InputTarget.RightAttack, () => Attack(Vector3.right));
+			}
 		}
 
 		public override void Update()
 		{
-			if (!_isEnemy)
-			{
-				Skill();
-				Move(Vector3.zero);
-				Attack(Vector3.zero);
-			}
 			Timer();
 		}
 
@@ -84,7 +92,7 @@ namespace Unit.Core.Weapon
 			//_weaponStats = 
 		}
 
-		protected virtual void Skill()
+		protected virtual void Skill(Vector3 vec)
 		{
 
 		}

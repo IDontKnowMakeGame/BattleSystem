@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Units.Behaviours.Unit;
+using Managements.Managers;
 public class OldStraightSword : BaseStraightSword
 {
 	public override void Start()
 	{
 		base.Start();
 		GetWeaponStateData("sword");
-		//GetWeaponStateData("sword");
-		//_maxTime = LongSwordData.coolTime;
-
-		
+		_inputManager.ChangeInGameAction(InputTarget.Skill, () => Skill(Vector3.zero));
 	}
-	protected override void Skill()
+	protected override void Skill(Vector3 vec)
 	{
 		if (_isCoolTime)
 			return;
@@ -21,31 +19,15 @@ public class OldStraightSword : BaseStraightSword
 		if (isSkill)
 			return;
 
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (!_isEnemy)
 		{
-			if (Input.GetKeyDown(KeyCode.UpArrow))
-			{
-				RollSkill(Vector3.forward * 2);
-			}
-			if (Input.GetKeyDown(KeyCode.DownArrow))
-			{
-				RollSkill(Vector3.back * 2);
-			}
-			if (Input.GetKeyDown(KeyCode.LeftArrow))
-			{
-				RollSkill(Vector3.left * 2);
-			}
-			if (Input.GetKeyDown(KeyCode.RightArrow))
-			{
-				RollSkill(Vector3.right * 2);
-			}
+			_inputManager.ChangeInGameAction(InputTarget.UpMove, () => RollSkill(Vector3.forward * 2));
+			_inputManager.ChangeInGameAction(InputTarget.DownMove, () => RollSkill(Vector3.back * 2));
+			_inputManager.ChangeInGameAction(InputTarget.LeftMove, () => RollSkill(Vector3.left * 2));
+			_inputManager.ChangeInGameAction(InputTarget.RightMove, () => RollSkill(Vector3.right * 2));
 		}
-
-		if (Input.GetKeyDown(KeyCode.Space) && !_isCoolTime)
-		{
-			_isCoolTime = true;
-			RollSkill(Vector3.forward * 2);
-		}
+		else
+			RollSkill(vec);
 	}
 
 	private void RollSkill(Vector3 vec)
@@ -54,11 +36,16 @@ public class OldStraightSword : BaseStraightSword
 		_isCoolTime = true;
 		UnitMove unitMove = _thisBase.GetBehaviour<UnitMove>();
 		unitMove.onBehaviourEnd = RollSkillEnd;
-		unitMove.Translate(vec * 2 /*, speed*/);
+		unitMove.Translate(vec * 2);
 	}
 
 	private void RollSkillEnd()
 	{
 		isSkill = false;
+
+		_inputManager.ChangeInGameAction(InputTarget.UpMove, () => Move(Vector3.forward));
+		_inputManager.ChangeInGameAction(InputTarget.DownMove, () => Move(Vector3.back));
+		_inputManager.ChangeInGameAction(InputTarget.LeftMove, () => Move(Vector3.left));
+		_inputManager.ChangeInGameAction(InputTarget.RightMove, () => Move(Vector3.right));
 	}
 }

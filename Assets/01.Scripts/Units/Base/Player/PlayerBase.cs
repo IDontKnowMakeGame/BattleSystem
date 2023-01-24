@@ -12,13 +12,13 @@ namespace Units.Base.Player
     {
         [SerializeField] private PlayerMove playerMove; 
         [SerializeField] private PlayerAttack PlayerAttack;
-        //[SerializeField] private PlayerEqiq playerEqiq;
+        [SerializeField] private PlayerEqiq PlayerEqiq;
         protected override void Init()
         {
             AddBehaviour(thisStat);
             playerMove = AddBehaviour<PlayerMove>();
             PlayerAttack = AddBehaviour<PlayerAttack>();
-            //playerEqiq = AddBehaviour<PlayerEqiq>();
+            PlayerEqiq = AddBehaviour<PlayerEqiq>();
             base.Init();
         }
 

@@ -5,8 +5,6 @@ using Core;
 using UnityEngine;
 using Units.Behaviours.Unit;
 using DG.Tweening;
-using Managements.Managers;
-using Input = Managements.Managers.Input;
 
 struct MoveNode
 {
@@ -29,10 +27,6 @@ namespace Units.Base.Player
 
         public override void Start()
         {
-            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.UpMove, () => Translate(Vector3.forward));
-            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.DownMove, () => Translate(Vector3.back));
-            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.RightMove, () => Translate(Vector3.right));
-            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.LeftMove, () => Translate(Vector3.left));
         }
 
         public override void Update()
@@ -88,6 +82,7 @@ namespace Units.Base.Player
             {
                 isMoving = false;
                 ThisBase.Position = nextPos;
+                onBehaviourEnd?.Invoke();
                 _seq.Kill();
             });
         }
