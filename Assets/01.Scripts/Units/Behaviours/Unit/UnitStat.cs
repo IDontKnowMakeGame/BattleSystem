@@ -6,12 +6,14 @@ using Behaviour = Units.Behaviours.Base.Behaviour;
 namespace Units.Behaviours.Unit
 {
     [Serializable]
-    public class UnitStat : UnitBehaviour
+    public class UnitStat : UnitBehaviour,IDamaged
     {
         [SerializeField] private UnitStats originStats = null;
         [SerializeField] private UnitStats changeStats = null;
 
 		public UnitStats NowStats => changeStats;
+
+		public float Half { get; set; }
 
 		private UnitEquiq _unitEquiq;
 		public override void Start()
@@ -47,5 +49,23 @@ namespace Units.Behaviours.Unit
 			5 => 1f,
 			_ => 0.1f
 		};
+
+		public void Damaged(float damage)
+		{
+			if(changeStats.Hp <= 0)
+			{
+				Die();
+				return;
+			}
+
+			float half = Half / 100;
+
+			changeStats.Hp -= damage* half;
+		}
+
+		public void Die()
+		{
+
+		}
 	}
 }

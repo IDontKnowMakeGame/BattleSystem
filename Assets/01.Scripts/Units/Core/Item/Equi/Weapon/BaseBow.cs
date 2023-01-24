@@ -1,7 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using Unit.Core.Weapon;
 using Managements.Managers;
-public class BaseGreatSword : Weapon
+using Unit.Core.Weapon;
+public class BaseBow : Weapon
 {
 	private bool _isCharge;
 	protected float _chargeTime;
@@ -22,11 +24,6 @@ public class BaseGreatSword : Weapon
 			_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.DownArrow);
 			_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.LeftArrow);
 			_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.RightArrow);
-
-			_inputManager.ChangeInGameAction(InputTarget.UpAttack, InputStatus.Hold, () => Attack(Vector3.forward));
-			_inputManager.ChangeInGameAction(InputTarget.DownAttack, InputStatus.Hold, () => Attack(Vector3.back));
-			_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Hold, () => Attack(Vector3.left));
-			_inputManager.ChangeInGameAction(InputTarget.RightAttack, InputStatus.Hold, () => Attack(Vector3.right));
 		}
 	}
 
@@ -47,11 +44,8 @@ public class BaseGreatSword : Weapon
 
 	protected override void Attack(Vector3 vec)
 	{
-		if(!_isCharge)
-		{
-			_isCharge = true;
-			_currentVector = vec;
-		}
+		_isCharge = true;
+		_currentVector = vec;
 	}
 
 	private void Charge()
@@ -59,7 +53,7 @@ public class BaseGreatSword : Weapon
 		if (!_isCharge)
 			return;
 
-		if(_chargeTime >= _maxChargeTime)
+		if (_chargeTime >= _maxChargeTime)
 		{
 			_isCharge = false;
 			_unitAttack.Attack(_currentVector);

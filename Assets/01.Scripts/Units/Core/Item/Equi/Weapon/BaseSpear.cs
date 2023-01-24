@@ -1,13 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Unit.Core.Weapon;
 using Managements.Managers;
-public class BaseGreatSword : Weapon
+using Core;
+public class BaseSpear : Weapon
 {
-	private bool _isCharge;
-	protected float _chargeTime;
-	protected float _maxChargeTime;
-
-	private Vector3 _currentVector;
+	protected bool _isAttack;
+	protected Vector3 _currentAttackPos;
+	protected int count;
+	protected bool isOut;
 	public override void Start()
 	{
 		base.Start();
@@ -22,51 +24,48 @@ public class BaseGreatSword : Weapon
 			_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.DownArrow);
 			_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.LeftArrow);
 			_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.RightArrow);
-
-			_inputManager.ChangeInGameAction(InputTarget.UpAttack, InputStatus.Hold, () => Attack(Vector3.forward));
-			_inputManager.ChangeInGameAction(InputTarget.DownAttack, InputStatus.Hold, () => Attack(Vector3.back));
-			_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Hold, () => Attack(Vector3.left));
-			_inputManager.ChangeInGameAction(InputTarget.RightAttack, InputStatus.Hold, () => Attack(Vector3.right));
 		}
 	}
 
 	public override void Update()
 	{
 		base.Update();
-		Charge();
+		if (_isAttack && InGame.GetUnit(_thisBase.Position + _currentAttackPos) && isOut)
+		{
+			isOut = false;
+			count++;
+			_unitAttack.Attack(_currentAttackPos);
+		}
+		else if(_isAttack)
+		{
+			isOut = true;
+		}
 	}
 
 	protected override void Move(Vector3 vec)
 	{
 		if (isSkill)
 			return;
-		_isCharge = false;
 
 		_unitMove.Translate(vec);
 	}
 
 	protected override void Attack(Vector3 vec)
 	{
-		if(!_isCharge)
+		if(!_isAttack)
 		{
-			_isCharge = true;
-			_currentVector = vec;
+			_currentAttackPos = Vector3.zero;
+			_isAttack = true;
+			_thisBase.StartCoroutine(DownLate(vec));
 		}
+
+		if (_isAttack && _currentAttackPos == vec)
+			_isAttack = false;
 	}
 
-	private void Charge()
+	private IEnumerator DownLate(Vector3 vec)
 	{
-		if (!_isCharge)
-			return;
-
-		if(_chargeTime >= _maxChargeTime)
-		{
-			_isCharge = false;
-			_unitAttack.Attack(_currentVector);
-		}
-		else
-		{
-			_chargeTime += Time.deltaTime;
-		}
+		yield return new WaitForSeconds(_weaponStats.Ats);
+		_currentAttackPos = vec;
 	}
 }

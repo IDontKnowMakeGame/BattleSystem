@@ -26,6 +26,7 @@ namespace Unit.Core.Weapon
 		//유닛 공격, 유닛 move
 		protected UnitAttack _unitAttack;
 		protected UnitMove _unitMove;
+		protected UnitStat _unitStat;
 
         protected float _currentTime;
         protected float _maxTime;
@@ -41,8 +42,9 @@ namespace Unit.Core.Weapon
 			//여기서 다 받아주고
 			_unitAttack = _thisBase.GetBehaviour<UnitAttack>();
 			_unitMove = _thisBase.GetBehaviour<UnitMove>();
+			_unitStat = _thisBase.GetBehaviour<UnitStat>();
 
-			if(!_isEnemy)
+			if (!_isEnemy)
 			{
 				_inputManager.ChangeInGameAction(InputTarget.UpMove, InputStatus.Press, () => Move(Vector3.forward));
 				_inputManager.ChangeInGameAction(InputTarget.DownMove, InputStatus.Press, () => Move(Vector3.back));
