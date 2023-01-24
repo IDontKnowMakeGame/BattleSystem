@@ -19,6 +19,7 @@ namespace Units.Base.Player
         protected override void Init()
         {
             AddBehaviour(thisStat);
+            AddBehaviour(unitAnimation);
             playerMove = AddBehaviour<PlayerMove>();
             PlayerAttack = AddBehaviour<PlayerAttack>();
             PlayerEqiq = AddBehaviour<PlayerEqiq>();

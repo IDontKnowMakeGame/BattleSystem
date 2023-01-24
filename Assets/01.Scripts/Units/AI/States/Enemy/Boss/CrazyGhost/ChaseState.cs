@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Core;
 using Unit.Base.AI;
+using Units.Behaviours.Unit;
 using UnityEngine;
 
 namespace Units.AI.States.Enemy.Boss.CrazyGhost
@@ -23,10 +24,12 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
         private IEnumerator ChaseCoroutine()
         {
             isChasing = true;
-            astar.SetPath(InGame.PlayerBase.Position, ThisBase.Position);
+            astar.SetPath(ThisBase.Position, InGame.PlayerBase.Position);
             ThisBase.StartCoroutine(astar.FindPath());
-            yield return new WaitUntil(astar.IsPathFining);
-            Debug.Log(astar.GetNextPath().Position);
+            yield return new WaitUntil(astar.IsFinished);
+            Debug.Log(ThisBase.Position);
+            var move = ThisBase.GetBehaviour<UnitMove>();
+            move.MoveTo(astar.GetNextPath().Position);
             yield return new WaitForSeconds(5);
             isChasing = false;
             yield break;

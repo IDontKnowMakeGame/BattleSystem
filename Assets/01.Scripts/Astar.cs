@@ -122,7 +122,7 @@ public class Astar
         return null;
     }
 
-    public bool IsPathFining()
+    public bool IsFinished()
     {
         return isFinding == false;
     }

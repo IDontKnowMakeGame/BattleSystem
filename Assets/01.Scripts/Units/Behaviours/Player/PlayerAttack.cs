@@ -15,7 +15,7 @@ namespace Units.Base.Player
             {
                 if (attackColParent == null)
                 {
-                    Debug.LogError("attackColParent가 NULL입니다.");
+                    Debug.LogError("attackColParent?? NULL????.");
                     return new AttackCollider();
                 }
                 return attackColParent;
@@ -31,15 +31,15 @@ namespace Units.Base.Player
         public override void Update()
         {
             base.Update();
-            // To Do InputManager로 변환
+            // To Do InputManager?? ???
             if (Input.GetKeyDown(KeyCode.W))
                 Attack(Vector3.up);
         }
 
         public override void Attack(Vector3 idx)
         {
-            // To Do 콜라이더를 통한 Attack Check
-            ThisBase.GetBehaviour<PlayerMove>().ClearMove();
+            // To Do ???????? ???? Attack Check
+            //ThisBase.GetBehaviour<PlayerMove>().ClearMove();
         }
     }
 }

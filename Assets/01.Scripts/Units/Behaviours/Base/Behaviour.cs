@@ -2,7 +2,7 @@
 {
     public class Behaviour
     {
-        public bool IsEnabled { get; set; }
+        public bool IsEnabled { get; set; } = true;
         public Units.Base.Units ThisBase { get; set; }
         public virtual void Awake()
         {

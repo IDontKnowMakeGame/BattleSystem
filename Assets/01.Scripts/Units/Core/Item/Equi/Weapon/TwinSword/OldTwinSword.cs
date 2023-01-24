@@ -13,7 +13,7 @@ public class OldTwinSword : BaseTwinSword
 	public override void Start()
 	{
 		base.Start();
-		_inputManager.ChangeInGameAction(InputTarget.Skill, () => Skill(Vector3.zero));
+		//_inputManager.ChangeInGameAction(InputTarget.Skill, () => Skill(Vector3.zero));
 	}
 	protected override void Skill(Vector3 vec)
 	{

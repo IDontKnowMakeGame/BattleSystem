@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Units.Behaviours.Unit;
 using Managements.Managers;
+using Units.Base.Player;
+
 public class OldStraightSword : BaseStraightSword
 {
 	public override void Start()
@@ -31,18 +33,24 @@ public class OldStraightSword : BaseStraightSword
 
 	private void RollSkill(Vector3 vec)
 	{
+		
+		Debug.Log(1);
 		isSkill = true;
 		_isCoolTime = true;
-		UnitMove unitMove = _thisBase.GetBehaviour<UnitMove>();
+		PlayerMove unitMove = _thisBase.GetBehaviour<PlayerMove>();
 		unitMove.onBehaviourEnd = RollSkillEnd;
 		unitMove.Translate(vec * 2);
 	}
 
 	private void RollSkillEnd()
 	{
+		Debug.Log(2);
 		isSkill = false;
 
-		_inputManager.ChangeInGameAction(InputTarget.UpMove, () => Move(Vector3.forward));
+		_inputManager.ChangeInGameAction(InputTarget.UpMove, () =>
+		{
+			Move(Vector3.forward);
+		});
 		_inputManager.ChangeInGameAction(InputTarget.DownMove, () => Move(Vector3.back));
 		_inputManager.ChangeInGameAction(InputTarget.LeftMove, () => Move(Vector3.left));
 		_inputManager.ChangeInGameAction(InputTarget.RightMove, () => Move(Vector3.right));

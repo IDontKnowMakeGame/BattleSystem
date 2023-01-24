@@ -29,7 +29,7 @@ public class UnitFSM : Behaviour
     {
         if (states.ContainsKey(state) == false)
         {
-            aiState.unit = ThisBase;
+            aiState.ThisBase = ThisBase;
             aiState.Awake();
             states.Add(state, aiState);
         }
