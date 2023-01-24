@@ -149,6 +149,9 @@ public class MapGeneration : MonoBehaviour
 
     void SpawnWall()
     {
+        GameObject wallParent = new GameObject("Wall");
+        wallParent.transform.SetParent(tiledParent.transform);
+
         // 왼쪽 오른쪽 아래 위
         Dictionary<Vector3, bool[]> checkWall = new Dictionary<Vector3, bool[]>();
         foreach (Vector3 checkTile in currentTile)
@@ -196,7 +199,7 @@ public class MapGeneration : MonoBehaviour
                             checkPos.z -= gridObjects.wallOffsetZ;
                             break;
                     }
-                    Instantiate(gridObjects.wall, checkPos, Quaternion.Euler(rotateVal));
+                    Instantiate(gridObjects.wall, checkPos, Quaternion.Euler(rotateVal), wallParent.transform);
                 }
             }
         }
