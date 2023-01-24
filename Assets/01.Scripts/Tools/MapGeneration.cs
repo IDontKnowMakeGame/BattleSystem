@@ -23,6 +23,8 @@ public class MapGeneration : MonoBehaviour
     [Header("GridObjects(Prefab)")]
     [SerializeField]
     private GridObjects gridObjects;
+    [SerializeField]
+    private GameObject wall;
 
     public Mode posMode = Mode.StartPos;
     public float posX = 0;
@@ -34,7 +36,17 @@ public class MapGeneration : MonoBehaviour
     public string rangeStart = "A1";
     public string rangeEnd = "B2";
 
+    public bool SpawnWall = false;
+    private Vector3[] dir =
+    {
+        // ¿ÞÂÊ
+        new Vector3(-1, 0, 0),
+        // ¿À¸¥ÂÊ
+        new Vector3(1, 0 , 0),
+    };
+
     private GameObject tiledParent;
+
     private int count = 1;
 
     #region excel
