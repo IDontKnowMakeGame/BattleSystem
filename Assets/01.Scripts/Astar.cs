@@ -1,28 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 using Managements;
 using Managements.Managers;
 
-public class Astar : MonoBehaviour
+public class Astar
 {
     private Stack<BlockBase> route = new Stack<BlockBase>();
-    [SerializeField]
     private BlockBase start, end;
     public bool isFinding = false;
-
-    // Test Material
-    public Material red;
-
-    private void Update()
-    {
-        if (UnityEngine.Input.GetKeyDown(KeyCode.Q))
-        {
-            Debug.Log("AStar");
-            StartCoroutine(FindPath());
-        }
-    }
-
 
     public IEnumerator FindPath()
     {
@@ -59,7 +46,7 @@ public class Astar : MonoBehaviour
 
             yield return new WaitUntil(() => isFinding);
             // Get Neighbored Tiles
-            foreach (BlockBase tile in GameManagement.Instance.GetManager<MapManager>().GetNeighbors(currentTile))
+            foreach (BlockBase tile in Define.GetManager<MapManager>().GetNeighbors(currentTile))
             {
                 if (!tile.isWalkable || closeList.Contains(tile))
                     continue;
@@ -101,6 +88,19 @@ public class Astar : MonoBehaviour
         return 14 * destX + 10 * (destY - destX);
     }
 
+    public void SetPath(Vector3 startPos, Vector3 endPos)
+    {
+        var startTile = Define.GetManager<MapManager>().GetBlock(startPos);
+        var endTile = Define.GetManager<MapManager>().GetBlock(endPos);
+        SetPath(startTile, endTile);
+    }
+    
+    public void SetPath(BlockBase startTile, BlockBase endTile)
+    {
+        start = startTile;
+        end = endTile;
+    }
+        
     void MakePath(BlockBase startTile, BlockBase endTile)
     {
         route.Clear();
@@ -115,14 +115,15 @@ public class Astar : MonoBehaviour
         }
     }
 
-    void RedPath(BlockBase startTile, BlockBase endTile)
+    public BlockBase GetNextPath()
     {
-        BlockBase currentTile = endTile;
-        while (currentTile != startTile)
-        {
-            if (currentTile != start && currentTile != end)
-                currentTile.GetComponent<Renderer>().material = red;
-            currentTile = currentTile.Parent;
-        }
+        if(route.Count > 0)
+            return route.Pop();
+        return null;
+    }
+
+    public bool IsPathFining()
+    {
+        return isFinding == false;
     }
 }
