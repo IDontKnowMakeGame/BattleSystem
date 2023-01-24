@@ -40,7 +40,6 @@ namespace Units.Base.Player
         {
             // To Do 콜라이더를 통한 Attack Check
             ThisBase.GetBehaviour<PlayerMove>().ClearMove();
-            ThisBase.GetBehaviour<PlayerAnimation>().AttackAnimation();
         }
     }
 }

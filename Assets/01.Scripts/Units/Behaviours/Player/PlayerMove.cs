@@ -68,7 +68,6 @@ namespace Units.Base.Player
 
             _seq = DOTween.Sequence();
             isMoving = true;
-            ThisBase.GetBehaviour<PlayerAnimation>().SetMove(isMoving);
 
             if (pos.x > 0)
                 playerRenderer.flipX = false;
@@ -97,8 +96,10 @@ namespace Units.Base.Player
         }
         public void PlayerStop()
         {
-            if(moveDir.Count == 0)
-                ThisBase.GetBehaviour<PlayerAnimation>().SetMove(false);
+            if (moveDir.Count == 0)
+            {
+                
+            }
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Units.Behaviours.Unit
         private Material material;
         public int state = 0;
 
-        public override void Awake()
+        public override void Start()
         {
             material = renderer.material;
         }
