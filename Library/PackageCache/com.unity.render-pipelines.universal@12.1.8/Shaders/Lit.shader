@@ -7,7 +7,7 @@ Shader "Universal Render Pipeline/Lit"
 
         [MainTexture] _BaseMap("Albedo", 2D) = "white" {}
         [MainColor] _BaseColor("Color", Color) = (1,1,1,1)
-
+        [ToggleUI] _CastShadows("Cast Shadows", Float) = 1.0
         _Cutoff("Alpha Cutoff", Range(0.0, 1.0)) = 0.5
 
         _Smoothness("Smoothness", Range(0.0, 1.0)) = 0.5
