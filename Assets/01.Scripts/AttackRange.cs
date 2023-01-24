@@ -24,27 +24,6 @@ public class AttackRange : MonoBehaviour
     {
         enemys = new HashSet<GameObject>();
     }
-
-    private void Start()
-    {
-
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            /*
-            foreach (GameObject obj in enemys)
-            {
-                Destroy(obj);
-            }
-            enemys.Clear();
-            */
-            Destroy(NearEnemy().obj);
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if(!enemys.Contains(other.gameObject))

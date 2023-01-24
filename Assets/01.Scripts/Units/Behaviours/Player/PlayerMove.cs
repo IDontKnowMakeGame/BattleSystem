@@ -24,6 +24,7 @@ namespace Units.Base.Player
     public class PlayerMove : UnitMove
     {
         private Queue<MoveNode> moveDir = new Queue<MoveNode>();
+        private SpriteRenderer playerRenderer;
 
         public override void Start()
         {
@@ -50,7 +51,7 @@ namespace Units.Base.Player
 
         public void PopMove()
         {
-            if(moveDir.Count > 0 && !isMoving)
+            if (moveDir.Count > 0 && !isMoving)
             {
                 MoveNode nextNode = moveDir.Dequeue();
                 MoveTo(nextNode.dir, nextNode.speed);
@@ -67,11 +68,18 @@ namespace Units.Base.Player
 
             _seq = DOTween.Sequence();
             isMoving = true;
+            ThisBase.GetBehaviour<PlayerAnimation>().SetMove(isMoving);
+
+            if (pos.x > 0)
+                playerRenderer.flipX = false;
+            else if (pos.x < 0)
+                playerRenderer.flipX = true;
 
             var distance = Vector3.Distance(originalPos, nextPos);
             if (distance < 0.1f)
             {
                 isMoving = false;
+                PlayerStop();
                 _seq.Kill();
                 return;
             }
@@ -81,10 +89,16 @@ namespace Units.Base.Player
             _seq.AppendCallback(() =>
             {
                 isMoving = false;
+                PlayerStop();
                 ThisBase.Position = nextPos;
                 onBehaviourEnd?.Invoke();
                 _seq.Kill();
             });
+        }
+        public void PlayerStop()
+        {
+            if(moveDir.Count == 0)
+                ThisBase.GetBehaviour<PlayerAnimation>().SetMove(false);
         }
     }
 }
