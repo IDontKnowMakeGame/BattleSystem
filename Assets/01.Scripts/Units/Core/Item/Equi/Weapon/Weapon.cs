@@ -20,6 +20,7 @@ namespace Unit.Core.Weapon
 
         protected WeaponStats _weaponStats = null;
 
+		protected AttackCollider _attackCollider = null;
 		public WeaponStats WeaponStat => _weaponStats;
 
 		//유닛 공격, 유닛 move

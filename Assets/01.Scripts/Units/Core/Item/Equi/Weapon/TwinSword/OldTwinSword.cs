@@ -5,6 +5,11 @@ using Unit.Core.Weapon;
 using Managements.Managers;
 public class OldTwinSword : BaseTwinSword
 {
+	public override void Awake()
+	{
+		base.Awake();
+		GetWeaponStateData("sword");
+	}
 	public override void Start()
 	{
 		base.Start();

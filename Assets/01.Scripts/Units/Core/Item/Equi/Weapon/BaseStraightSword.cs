@@ -9,7 +9,6 @@ public class BaseStraightSword : Weapon
 	public override void Start()
 	{
 		base.Start();
-
 		if (!_isEnemy)
 		{
 			_inputManager.ChangeInGameKey(InputTarget.UpMove, KeyCode.UpArrow);
