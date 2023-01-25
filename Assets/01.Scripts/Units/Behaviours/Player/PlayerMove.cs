@@ -26,12 +26,19 @@ namespace Units.Base.Player
         private Queue<MoveNode> moveDir = new Queue<MoveNode>();
         private float spd = 0.5f;
 
+        private GameObject mainCam;
+
+        private Vector3 playerDir;
+
         public override void Start()
         {
+            mainCam = Camera.main.gameObject;
         }
 
         public override void Update()
         {
+            ChangeRotate();
+            ChangeDir();
             PopMove();
         }
 
@@ -48,6 +55,18 @@ namespace Units.Base.Player
                 return;
 
             Vector3 originalPos = ThisBase.transform.position;
+
+            if (playerDir.x != 0)
+            {
+                float swap = dir.x;
+                dir.x = dir.z * playerDir.x;
+                dir.z = playerDir.x * -swap;
+            }
+            else if (playerDir.z != 0)
+            {
+                dir.x = dir.x * playerDir.z;
+                dir.z = dir.z * playerDir.z;
+            }
             Vector3 nextPos = originalPos + dir;
 
             _seq = DOTween.Sequence();
@@ -93,6 +112,32 @@ namespace Units.Base.Player
             if (moveDir.Count == 0)
             {
                 
+            }
+        }
+
+        private void ChangeRotate()
+        {
+            Vector3 playerRotate = ThisBase.transform.rotation.eulerAngles;
+            playerRotate.y = mainCam.transform.rotation.eulerAngles.y;
+
+            ThisBase.transform.rotation = Quaternion.Euler(playerRotate);
+        }
+
+        private void ChangeDir()
+        {
+            Vector3 heading = mainCam.transform.localRotation * Vector3.forward;
+            heading.y = 0;
+            heading = heading.normalized;
+
+            if(Math.Abs(heading.x) >= Math.Abs(heading.z))
+            {
+                if (heading.x >= 0) playerDir = Vector3.right;
+                else playerDir = Vector3.left;
+            }
+            else
+            {
+                if (heading.z >= 0) playerDir = Vector3.forward;
+                else playerDir = Vector3.back;
             }
         }
     }
