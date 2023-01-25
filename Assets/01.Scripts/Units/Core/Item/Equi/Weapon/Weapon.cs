@@ -10,7 +10,8 @@ namespace Unit.Core.Weapon
 	{
 		OldStraightSword,
 		OldGreatSword,
-		OldTwinSword
+		OldTwinSword,
+		OldSpear
 	}
 
     [Serializable]

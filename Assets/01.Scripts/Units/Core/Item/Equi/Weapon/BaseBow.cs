@@ -10,6 +10,8 @@ public class BaseBow : Weapon
 	protected float _maxChargeTime;
 
 	private Vector3 _currentVector;
+
+
 	public override void Start()
 	{
 		base.Start();
@@ -24,6 +26,21 @@ public class BaseBow : Weapon
 			_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.DownArrow);
 			_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.LeftArrow);
 			_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.RightArrow);
+
+			_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Press, () => Attack(Vector3.forward));
+			_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Press, () => Attack(Vector3.back));
+			_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => Attack(Vector3.left));
+			_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Press, () => Attack(Vector3.right));
+
+			_inputManager.ChangeInGameAction(InputTarget.UpAttack, InputStatus.Hold, () => Attack(Vector3.forward));
+			_inputManager.ChangeInGameAction(InputTarget.DownAttack, InputStatus.Hold, () => Attack(Vector3.back));
+			_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Hold, () => Attack(Vector3.left));
+			_inputManager.ChangeInGameAction(InputTarget.RightAttack, InputStatus.Hold, () => Attack(Vector3.right));
+
+			_inputManager.ChangeInGameAction(InputTarget.UpAttack, InputStatus.Release, () => AttackUP());
+			_inputManager.ChangeInGameAction(InputTarget.DownAttack, InputStatus.Release, () => AttackUP());
+			_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Release, () => AttackUP());
+			_inputManager.ChangeInGameAction(InputTarget.RightAttack, InputStatus.Release, () => AttackUP());
 		}
 	}
 
@@ -37,7 +54,8 @@ public class BaseBow : Weapon
 	{
 		if (isSkill)
 			return;
-		_isCharge = false;
+		if (_isCharge)
+			return;
 
 		_unitMove.Translate(vec);
 	}
@@ -46,6 +64,12 @@ public class BaseBow : Weapon
 	{
 		_isCharge = true;
 		_currentVector = vec;
+	}
+
+	private void AttackUP()
+	{
+		_isCharge = false;
+		_chargeTime = 0;
 	}
 
 	private void Charge()
@@ -57,6 +81,7 @@ public class BaseBow : Weapon
 		{
 			_isCharge = false;
 			_unitAttack.Attack(_currentVector);
+			_chargeTime = 0;
 		}
 		else
 		{
