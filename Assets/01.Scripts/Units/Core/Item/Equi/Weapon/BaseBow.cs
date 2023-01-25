@@ -11,7 +11,6 @@ public class BaseBow : Weapon
 
 	private Vector3 _currentVector;
 
-
 	public override void Start()
 	{
 		base.Start();
