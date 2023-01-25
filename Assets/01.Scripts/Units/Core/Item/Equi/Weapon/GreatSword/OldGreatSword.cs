@@ -4,13 +4,15 @@ using UnityEngine;
 using Managements.Managers;
 public class OldGreatSword : BaseGreatSword
 {
+	public override void Awake()
+	{
+		base.Awake();
+		GetWeaponStateData("oldGreatSword");
+	}
 	public override void Start()
 	{
 		base.Start();
-		GetWeaponStateData("oldGreatSword");
 		_inputManager.ChangeInGameAction(InputTarget.Skill, InputStatus.Press, () => Skill(Vector3.zero));
-
-		_maxChargeTime = _weaponStats.Ats;
 	}
 
 	protected override void Skill(Vector3 vec)
