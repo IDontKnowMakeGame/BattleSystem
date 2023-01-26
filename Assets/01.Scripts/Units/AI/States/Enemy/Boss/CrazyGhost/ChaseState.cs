@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Core;
 using Unit.Base.AI;
+using Units.Base.Enemy;
 using Units.Behaviours.Unit;
 using UnityEngine;
 
@@ -28,9 +29,9 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             ThisBase.StartCoroutine(astar.FindPath());
             yield return new WaitUntil(astar.IsFinished);
             Debug.Log(ThisBase.Position);
-            var move = ThisBase.GetBehaviour<UnitMove>();
+            var move = ThisBase.GetBehaviour<EnemyMove>();
             move.MoveTo(astar.GetNextPath().Position);
-            yield return new WaitForSeconds(5);
+            yield return new WaitUntil(() => !move.IsMoving());
             isChasing = false;
             yield break;
         }

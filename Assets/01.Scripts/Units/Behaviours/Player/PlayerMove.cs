@@ -26,13 +26,11 @@ namespace Units.Base.Player
         private Queue<MoveNode> moveDir = new Queue<MoveNode>();
         private float spd = 0.5f;
 
-        private GameObject mainCam;
-
         private Vector3 playerDir;
 
         public override void Start()
         {
-            mainCam = Camera.main.gameObject;
+            
         }
 
         public override void Update()
@@ -45,14 +43,14 @@ namespace Units.Base.Player
         {
             if (moveDir.Count > 1) return;
             // 현재 스피드를 계산하는 식 필요
-            moveDir.Enqueue(new MoveNode(dir, 0.5f));
+            var speed = ThisBase.GetBehaviour<UnitStat>().NowStats.Agi;
+            moveDir.Enqueue(new MoveNode(dir, speed));
         }
 
-        public override void Translate(Vector3 dir)
+        public override void Translate(Vector3 dir, float spd = 1)
         {
             if (isMoving)
                 return;
-            Vector3 originalPos = ThisBase.transform.position;
 
             if (playerDir.x != 0)
             {
@@ -65,12 +63,20 @@ namespace Units.Base.Player
                 dir.x = dir.x * playerDir.z;
                 dir.z = dir.z * playerDir.z;
             }
-            Vector3 nextPos = originalPos + dir;
+            
+            MoveTo(ThisBase.Position + dir, spd);
+        }
 
+        public override void MoveTo(Vector3 pos, float spd = 1)
+        {
+
+            Vector3 nextPos = pos;
+            nextPos.y = 1;
+            
             _seq = DOTween.Sequence();
             isMoving = true;
 
-            var distance = Vector3.Distance(originalPos, nextPos);
+            var distance = Vector3.Distance(ThisBase.Position, nextPos);
             if (distance < 0.1f)
             {
                 isMoving = false;
@@ -101,7 +107,7 @@ namespace Units.Base.Player
             if (moveDir.Count > 0 && !isMoving)
             {
                 MoveNode nextNode = moveDir.Dequeue();
-                Translate(nextNode.dir);
+                Translate(nextNode.dir, nextNode.speed);
                 Debug.Log(3);
             }
         }
@@ -115,7 +121,7 @@ namespace Units.Base.Player
 
         private void ChangeDir()
         {
-            Vector3 heading = mainCam.transform.localRotation * Vector3.forward;
+            Vector3 heading = Define.MainCam.transform.localRotation * Vector3.forward;
             heading.y = 0;
             heading = heading.normalized;
 

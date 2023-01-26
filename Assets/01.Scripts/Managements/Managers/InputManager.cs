@@ -104,5 +104,11 @@ namespace Managements.Managers
 				_inGameInputs[target].Actions[i] = null;
 			}
 		}
+		
+		public void InvokeInGameAction(InputTarget target, InputStatus status)
+		{
+			_inGameInputs[target].Actions[(int)status]?.Invoke();
+		}
+		
 	}
 }
