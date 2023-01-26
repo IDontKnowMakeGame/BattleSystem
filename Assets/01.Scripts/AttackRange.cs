@@ -36,6 +36,13 @@ public class AttackRange : MonoBehaviour
             enemys.Remove(other.gameObject);
     }
 
+    public List<GameObject> AllEnemy()
+    {
+        List<GameObject> currentEnemys = enemys.ToList();
+
+        return currentEnemys;
+    }
+
     public MinDistanceObj NearEnemy()
     {
         float minDistnace = float.MaxValue;

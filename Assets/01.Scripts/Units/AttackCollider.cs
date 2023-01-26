@@ -188,6 +188,21 @@ public class AttackCollider : MonoBehaviour
         }
     }
 
+    public List<GameObject> AllCurrentDirEnemy()
+    {
+        List<GameObject> currentEnemys = new List<GameObject>();
+
+        for (int i = 0; i < (int)DirType.Size; i++)
+        {
+            if (attackCol[i].enabled)
+            {
+                currentEnemys.AddRange(attackRanges[i].AllEnemy());
+            }
+        }
+
+        return currentEnemys;
+    }
+
     public GameObject CurrntDirNearEnemy()
     {
         float minDistnace = float.MaxValue;
