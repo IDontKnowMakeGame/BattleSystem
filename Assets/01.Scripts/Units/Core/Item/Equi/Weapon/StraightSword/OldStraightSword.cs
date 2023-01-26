@@ -7,10 +7,14 @@ using Units.Base.Player;
 
 public class OldStraightSword : BaseStraightSword
 {
+	public override void Awake()
+	{
+		base.Awake();
+		GetWeaponStateData("oldSword");
+	}
 	public override void Start()
 	{
 		base.Start();
-		GetWeaponStateData("oldSword");
 		_inputManager.ChangeInGameAction(InputTarget.Skill, InputStatus.Press, () => Skill(Vector3.zero));
 	}
 	protected override void Skill(Vector3 vec)

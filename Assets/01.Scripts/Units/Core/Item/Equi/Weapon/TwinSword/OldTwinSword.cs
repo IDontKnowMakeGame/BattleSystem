@@ -5,10 +5,14 @@ using Unit.Core.Weapon;
 using Managements.Managers;
 public class OldTwinSword : BaseTwinSword
 {
+	public override void Awake()
+	{
+		base.Awake();
+		GetWeaponStateData("oldTwinSword");
+	}
 	public override void Start()
 	{
 		base.Start();
-		GetWeaponStateData("oldTwinSword");
 		_inputManager.ChangeInGameAction(InputTarget.Skill, InputStatus.Press, () => Skill(Vector3.zero));
 	}
 	protected override void Skill(Vector3 vec)

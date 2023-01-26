@@ -7,7 +7,7 @@ public class OldSpear : BaseSpear
 	public override void Start()
 	{
 		base.Start();
-		GetWeaponStateData("oldTwinSword");
+		GetWeaponStateData("oldSpear");
 	}
 
 	public override void Update()
