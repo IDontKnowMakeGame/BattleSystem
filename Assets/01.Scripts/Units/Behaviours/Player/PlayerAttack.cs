@@ -36,10 +36,13 @@ namespace Units.Base.Player
                 Attack(Vector3.up);
         }
 
-        public override void Attack(Vector3 idx)
+        public void Attack(bool near = false)
         {
-            // To Do ???????? ???? Attack Check
-            //ThisBase.GetBehaviour<PlayerMove>().ClearMove();
+            ThisBase.GetBehaviour<PlayerMove>().ClearMove();
+            if (near)
+                attackColParent.CurrntDirNearEnemy();
+            else
+                attackColParent.AllCurrentDirEnemy();
         }
     }
 }
