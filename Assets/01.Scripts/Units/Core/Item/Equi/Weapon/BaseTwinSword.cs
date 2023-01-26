@@ -33,21 +33,13 @@ public class BaseTwinSword : Weapon
 		{
 			_unitAttack.Attack(vec + Vector3.left);
 			_unitAttack.Attack(vec + Vector3.right);
-
-			// _attackCollider.AllDisableDir();
-			// DirType dirType = vec == Vector3.forward ? DirType.Up : DirType.Down;
-			// _attackCollider.ChangeSizeZ(dirType,2);
-			// _attackCollider.EnableDir(DirType.Left, DirType.Right);
+			Debug.Log("twinSword" + vec);
 		}
 		else
 		{
 			_unitAttack.Attack(vec + Vector3.forward);
 			_unitAttack.Attack(vec + Vector3.back);
-
-			// _attackCollider.AllDisableDir();
-			// DirType dirType = vec == Vector3.forward ? DirType.Up : DirType.Down;
-			// _attackCollider.ChangeSizeX(dirType,2);
-			// _attackCollider.EnableDir(DirType.Up, DirType.Down);
+			Debug.Log("twinSword" + vec);
 		}
 	}
 }
