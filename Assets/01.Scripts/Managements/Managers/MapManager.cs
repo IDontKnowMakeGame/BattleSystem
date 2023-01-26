@@ -10,11 +10,12 @@ namespace Managements.Managers
         
         public void AddBlock(BlockBase block)
         {
-            _map.Add(block.transform.position, block);
+            _map.Add(block.Position, block);
         }
 
         public BlockBase GetBlock(Vector3 pos)
         {
+            pos.y = 0;
             return _map[pos];
         }
 

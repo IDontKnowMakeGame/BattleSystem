@@ -9,7 +9,7 @@ public class CrazyGhostBase : EnemyBase
 {
     protected override void Init()
     {
-        AddBehaviour<UnitEquiq>();
+        AddBehaviour<UnitEquiq>().isEnemy = true;
         AddBehaviour<PlayerMove>();
         var fsm = AddBehaviour<UnitFSM>();
         fsm.SetDefaultState<IdleState>();

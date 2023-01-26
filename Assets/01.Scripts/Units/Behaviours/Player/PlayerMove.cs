@@ -52,7 +52,6 @@ namespace Units.Base.Player
         {
             if (isMoving)
                 return;
-
             Vector3 originalPos = ThisBase.transform.position;
 
             if (playerDir.x != 0)

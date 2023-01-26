@@ -1,4 +1,6 @@
 ﻿using System;
+using Core;
+using Managements.Managers;
 using Units.Behaviours.Unit;
 using UnityEngine;
 
@@ -27,6 +29,13 @@ namespace Units.Base.Unit
         {
             AddBehaviour<UnitRender>();
             base.Init();
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            InGame.SetUnit(this, Position);
+
         }
 
         public void AddState(BaseState state)

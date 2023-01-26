@@ -6,7 +6,7 @@ using Managements.Managers;
 using Core;
 public class BaseSpear : Weapon
 {
-	protected bool _isAttack;
+	protected bool _isAttack = false;
 	protected Vector3 _currentAttackPos;
 	protected int count;
 	protected bool isOut;
@@ -18,20 +18,22 @@ public class BaseSpear : Weapon
 		_inputManager.ChangeInGameKey(InputTarget.LeftMove, KeyCode.LeftArrow);
 		_inputManager.ChangeInGameKey(InputTarget.RightMove, KeyCode.RightArrow);
 
-		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.UpArrow);
-		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.DownArrow);
-		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.LeftArrow);
-		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.RightArrow);
+		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.W);
+		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.A);
+		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.S);
+		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.D);
 	}
 
 	public override void Update()
 	{
 		base.Update();
+		Debug.Log(InGame.GetUnit(_thisBase.Position + _currentAttackPos));
 		if (_isAttack && InGame.GetUnit(_thisBase.Position + _currentAttackPos) && isOut)
 		{
 			isOut = false;
 			count++;
 			_unitAttack.Attack(_currentAttackPos);
+			Debug.Log("spear" + _currentAttackPos);
 		}
 		else if(_isAttack)
 		{

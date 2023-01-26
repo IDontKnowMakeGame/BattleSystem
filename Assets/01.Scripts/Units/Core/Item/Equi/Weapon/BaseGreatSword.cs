@@ -58,7 +58,6 @@ public class BaseGreatSword : Weapon
 
 	protected override void Attack(Vector3 vec)
 	{
-		Debug.Log("?");
 		if (_isCharge)
 			return;
 
