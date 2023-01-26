@@ -15,6 +15,10 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             timeCheck.SetTime(2);
             toChase.AddCondition(timeCheck);
             toChase.SetTarget(new ChaseState());
+            var crossDetect = new CrossDetectCondition();
+            crossDetect.SetDistance(1);
+            crossDetect.SetResult(false);
+            toChase.AddCondition(crossDetect);
             AddTransition(toChase);
         }
 
