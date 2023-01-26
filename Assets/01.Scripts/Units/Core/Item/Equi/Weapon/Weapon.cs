@@ -52,15 +52,25 @@ namespace Unit.Core.Weapon
 
 		public virtual void ChangeKey()
 		{
-			_inputManager.ChangeInGameAction(InputTarget.UpMove, InputStatus.Press, () => Move(Vector3.forward));
-			_inputManager.ChangeInGameAction(InputTarget.DownMove, InputStatus.Press, () => Move(Vector3.back));
-			_inputManager.ChangeInGameAction(InputTarget.LeftMove, InputStatus.Press, () => Move(Vector3.left));
-			_inputManager.ChangeInGameAction(InputTarget.RightMove, InputStatus.Press, () => Move(Vector3.right));
+			_inputManager.ClearInGameAction(InputTarget.UpMove);
+			_inputManager.ClearInGameAction(InputTarget.DownMove);
+			_inputManager.ClearInGameAction(InputTarget.LeftMove);
+			_inputManager.ClearInGameAction(InputTarget.RightMove);
 
-			_inputManager.ChangeInGameAction(InputTarget.UpAttack, InputStatus.Press, () => Attack(Vector3.forward));
-			_inputManager.ChangeInGameAction(InputTarget.DownAttack, InputStatus.Press, () => Attack(Vector3.back));
-			_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => Attack(Vector3.left));
-			_inputManager.ChangeInGameAction(InputTarget.RightAttack, InputStatus.Press, () => Attack(Vector3.right));
+			_inputManager.ClearInGameAction(InputTarget.UpAttack);
+			_inputManager.ClearInGameAction(InputTarget.DownAttack);
+			_inputManager.ClearInGameAction(InputTarget.LeftAttack);
+			_inputManager.ClearInGameAction(InputTarget.RightAttack);
+
+			_inputManager.AddInGameAction(InputTarget.UpMove, InputStatus.Press, () => Move(Vector3.forward));
+			_inputManager.AddInGameAction(InputTarget.DownMove, InputStatus.Press, () => Move(Vector3.back));
+			_inputManager.AddInGameAction(InputTarget.LeftMove, InputStatus.Press, () => Move(Vector3.left));
+			_inputManager.AddInGameAction(InputTarget.RightMove, InputStatus.Press, () => Move(Vector3.right));
+
+			_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Press, () => Attack(Vector3.forward));
+			_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Press, () => Attack(Vector3.back));
+			_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => Attack(Vector3.left));
+			_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Press, () => Attack(Vector3.right));
 			_isEnemy = false;
 		}
 

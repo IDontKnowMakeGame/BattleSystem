@@ -96,7 +96,11 @@ namespace Managements.Managers
 		
 		public void ClearInGameAction(InputTarget target)
 		{
-			_inGameInputs[target].Actions.Clear();
+			//_inGameInputs[target].Actions.Clear();
+			for (int i = 0; i<3; i++)
+			{
+				_inGameInputs[target].Actions[i] = null;
+			}
 		}
 	}
 }
