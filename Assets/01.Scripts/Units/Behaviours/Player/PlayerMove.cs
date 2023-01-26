@@ -37,7 +37,6 @@ namespace Units.Base.Player
 
         public override void Update()
         {
-            ChangeRotate();
             ChangeDir();
             PopMove();
         }
@@ -113,14 +112,6 @@ namespace Units.Base.Player
             {
                 
             }
-        }
-
-        private void ChangeRotate()
-        {
-            Vector3 playerRotate = ThisBase.transform.rotation.eulerAngles;
-            playerRotate.y = mainCam.transform.rotation.eulerAngles.y;
-
-            ThisBase.transform.rotation = Quaternion.Euler(playerRotate);
         }
 
         private void ChangeDir()

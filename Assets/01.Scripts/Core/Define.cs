@@ -13,6 +13,8 @@ namespace Core
             var manager = GameManagement.Instance.GetManager<T>() ?? GameManagement.Instance.AddManager<T>();
             return manager;
         }
+
+        public static Camera MainCam => Camera.main;
     }
 
     public static class InGame
