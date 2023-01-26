@@ -93,5 +93,10 @@ namespace Managements.Managers
 		{
 			_inGameInputs[target].KeyCode = keyCode;
 		}
+		
+		public void ClearInGameAction(InputTarget target)
+		{
+			_inGameInputs[target].Actions.Clear();
+		}
 	}
 }
