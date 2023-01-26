@@ -11,7 +11,13 @@ namespace Units.Behaviours.Unit
         [SerializeField] private UnitStats originStats = null;
         [SerializeField] private UnitStats changeStats = null;
 
-		public UnitStats NowStats => changeStats;
+		public UnitStats NowStats {
+			get
+			{
+				ChangeStats();
+				return changeStats;
+			}
+		}
 
 		public float Half { get; set; }
 
@@ -22,7 +28,7 @@ namespace Units.Behaviours.Unit
 			_unitEquiq = ThisBase.GetBehaviour<UnitEquiq>();
 		}
 
-		protected virtual void StartStats()
+		protected virtual void ChangeStats()
 		{
 			int Weight = 0;
 			float Atk = 0;

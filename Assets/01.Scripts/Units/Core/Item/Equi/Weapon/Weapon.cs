@@ -36,32 +36,32 @@ namespace Unit.Core.Weapon
 
         public bool isSkill = false;
 
-        public bool _isEnemy = false;
-
+		protected bool _isEnemy = true;
 		public override void Start()
 		{
 			//여기서 다 받아주고
 			_unitAttack = _thisBase.GetBehaviour<UnitAttack>();
 			_unitMove = _thisBase.GetBehaviour<UnitMove>();
 			_unitStat = _thisBase.GetBehaviour<UnitStat>();
-
-			if (!_isEnemy)
-			{
-				_inputManager.ChangeInGameAction(InputTarget.UpMove, InputStatus.Press, () => Move(Vector3.forward));
-				_inputManager.ChangeInGameAction(InputTarget.DownMove, InputStatus.Press, () => Move(Vector3.back));
-				_inputManager.ChangeInGameAction(InputTarget.LeftMove, InputStatus.Press, () => Move(Vector3.left));
-				_inputManager.ChangeInGameAction(InputTarget.RightMove, InputStatus.Press, () => Move(Vector3.right));
-
-				_inputManager.ChangeInGameAction(InputTarget.UpAttack, InputStatus.Press, () => Attack(Vector3.forward));
-				_inputManager.ChangeInGameAction(InputTarget.DownAttack, InputStatus.Press, () => Attack(Vector3.back));
-				_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => Attack(Vector3.left));
-				_inputManager.ChangeInGameAction(InputTarget.RightAttack, InputStatus.Press, () => Attack(Vector3.right));
-			}
 		}
 
 		public override void Update()
 		{
 			Timer();
+		}
+
+		public virtual void ChangeKey()
+		{
+			_inputManager.ChangeInGameAction(InputTarget.UpMove, InputStatus.Press, () => Move(Vector3.forward));
+			_inputManager.ChangeInGameAction(InputTarget.DownMove, InputStatus.Press, () => Move(Vector3.back));
+			_inputManager.ChangeInGameAction(InputTarget.LeftMove, InputStatus.Press, () => Move(Vector3.left));
+			_inputManager.ChangeInGameAction(InputTarget.RightMove, InputStatus.Press, () => Move(Vector3.right));
+
+			_inputManager.ChangeInGameAction(InputTarget.UpAttack, InputStatus.Press, () => Attack(Vector3.forward));
+			_inputManager.ChangeInGameAction(InputTarget.DownAttack, InputStatus.Press, () => Attack(Vector3.back));
+			_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => Attack(Vector3.left));
+			_inputManager.ChangeInGameAction(InputTarget.RightAttack, InputStatus.Press, () => Attack(Vector3.right));
+			_isEnemy = false;
 		}
 
 		protected void Timer()

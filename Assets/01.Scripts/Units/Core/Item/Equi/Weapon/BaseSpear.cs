@@ -10,21 +10,18 @@ public class BaseSpear : Weapon
 	protected Vector3 _currentAttackPos;
 	protected int count;
 	protected bool isOut;
-	public override void Start()
+	public override void ChangeKey()
 	{
-		base.Start();
-		if (!_isEnemy)
-		{
-			_inputManager.ChangeInGameKey(InputTarget.UpMove, KeyCode.UpArrow);
-			_inputManager.ChangeInGameKey(InputTarget.DownMove, KeyCode.DownArrow);
-			_inputManager.ChangeInGameKey(InputTarget.LeftMove, KeyCode.LeftArrow);
-			_inputManager.ChangeInGameKey(InputTarget.RightMove, KeyCode.RightArrow);
+		base.ChangeKey();
+		_inputManager.ChangeInGameKey(InputTarget.UpMove, KeyCode.UpArrow);
+		_inputManager.ChangeInGameKey(InputTarget.DownMove, KeyCode.DownArrow);
+		_inputManager.ChangeInGameKey(InputTarget.LeftMove, KeyCode.LeftArrow);
+		_inputManager.ChangeInGameKey(InputTarget.RightMove, KeyCode.RightArrow);
 
-			_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.UpArrow);
-			_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.DownArrow);
-			_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.LeftArrow);
-			_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.RightArrow);
-		}
+		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.UpArrow);
+		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.DownArrow);
+		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.LeftArrow);
+		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.RightArrow);
 	}
 
 	public override void Update()

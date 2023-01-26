@@ -5,63 +5,79 @@ using UnityEngine;
 
 namespace Units.Behaviours.Unit
 {
-    [Serializable]
-    public class UnitEquiq : UnitBehaviour
-    {
-        [SerializeField]
-        protected WeaponType _currentWeapon;
+	[Serializable]
+	public class UnitEquiq : UnitBehaviour
+	{
+		[SerializeField]
+		protected WeaponType _currentWeapon;
 
-        protected WeaponType _secoundWeapon;
-        public Weapon CurrentWeapon
-        {
-            get
-            {
-                return weapons[_currentWeapon];
-            }
-        }
+		protected WeaponType _secoundWeapon;
 
-        public Dictionary<WeaponType, Weapon> weapons = new Dictionary<WeaponType, Weapon>();
+		public bool isEnemy;
+		public Weapon CurrentWeapon
+		{
+			get
+			{
+				if (_currentWeapon == _beforeWeaponType)
+					return weapons[_currentWeapon];
+				else
+				{
+					_beforeWeaponType = _currentWeapon;
 
-        public List<Helo> _helos = new List<Helo>();
+					if (!isEnemy)
+						weapons[_currentWeapon].ChangeKey();
 
-        public override void Awake()
-        {
-            weapons.Add(WeaponType.OldStraightSword, new OldStraightSword() { _thisBase = this.ThisBase });
-            weapons.Add(WeaponType.OldGreatSword, new OldGreatSword() { _thisBase = this.ThisBase });
-            weapons.Add(WeaponType.OldTwinSword, new OldTwinSword() { _thisBase = this.ThisBase });
-            weapons.Add(WeaponType.OldSpear, new OldSpear() { _thisBase = this.ThisBase });
+					return weapons[_currentWeapon];
+				}
+			}
+		}
+		private WeaponType _beforeWeaponType;
 
-            foreach (var value in weapons)
-            {
-                value.Value?.Awake();
-            }
+		public Dictionary<WeaponType, Weapon> weapons = new Dictionary<WeaponType, Weapon>();
 
-            foreach (var value in _helos)
-            {
-                value?.Awake();
-            }
-        }
+		public List<Helo> _helos = new List<Helo>();
 
-        public override void Start()
-        {
-            foreach (var value in weapons)
-            {
-                value.Value?.Start();
-            }
+		public override void Awake()
+		{
+			weapons.Add(WeaponType.OldStraightSword, new OldStraightSword() { _thisBase = this.ThisBase });
+			weapons.Add(WeaponType.OldGreatSword, new OldGreatSword() { _thisBase = this.ThisBase });
+			weapons.Add(WeaponType.OldTwinSword, new OldTwinSword() { _thisBase = this.ThisBase });
+			weapons.Add(WeaponType.OldSpear, new OldSpear() { _thisBase = this.ThisBase });
 
-            foreach (var value in _helos)
-            {
-                value?.Start();
-            }
-        }
-        public override void Update()
-        {
-            CurrentWeapon?.Update();
+			foreach (var value in weapons)
+			{
+				value.Value?.Awake();
+			}
 
-            foreach (var value in _helos)
-            {
-                value?.Update();
-            }
-        }
-    }
+			foreach (var value in _helos)
+			{
+				value?.Awake();
+			}
+		}
+
+		public override void Start()
+		{
+			foreach (var value in weapons)
+			{
+				value.Value?.Start();
+			}
+
+			if (!isEnemy)
+				weapons[_currentWeapon].ChangeKey();
+
+			foreach (var value in _helos)
+			{
+				value?.Start();
+			}
+		}
+		public override void Update()
+		{
+			CurrentWeapon?.Update();
+
+			foreach (var value in _helos)
+			{
+				value?.Update();
+			}
+		}
+	}
 }
