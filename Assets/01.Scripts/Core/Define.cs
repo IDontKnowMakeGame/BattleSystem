@@ -2,6 +2,7 @@
 using Managements.Managers;
 using Managements.Managers.Base;
 using Units.Base.Player;
+using Units.Base.Unit;
 using UnityEngine;
 
 namespace Core
@@ -38,6 +39,12 @@ namespace Core
         {
             var block = Define.GetManager<MapManager>().GetBlock(pos);
             return block == null ? null : block.GetUnit();
+        }
+        
+        public static void SetUnit(UnitBase unit, Vector3 pos)
+        {
+            var block = Define.GetManager<MapManager>().GetBlock(pos);
+            block.UnitOnBlock(unit);
         }
     }
 }

@@ -74,6 +74,7 @@ public class BlockBase : Units.Base.Units
     private Units.Base.Units _unitOnBlock;
     protected override void Init()
     {
+        base.Init();
         Define.GetManager<MapManager>().AddBlock(this);
         AddBehaviour(blockRender);
         tileOBJ = this.gameObject;
@@ -81,7 +82,6 @@ public class BlockBase : Units.Base.Units
         Vector3 pos = transform.position;
         x = (int)pos.x;
         z = (int)pos.z;
-        base.Init();
     }
     
     public void UnitOnBlock(Units.Base.Units unit = null)
