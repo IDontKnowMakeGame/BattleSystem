@@ -1,10 +1,10 @@
 ﻿using Core;
-using Units.Behaviours.Base;
 using UnityEngine;
+using Behaviour = Units.Behaviours.Base.Behaviour;
 
 namespace Units.Behaviours.Unit
 {
-    public class UnitRender : UnitBehaviour
+    public class UnitRender : Behaviour
     {
         public override void Update()
         {

@@ -184,7 +184,15 @@ namespace Units.Base
 
             return thisType;
         }
-        
+
+
+        protected void LogBehaviours()
+        {
+            foreach (var behaviour in _behaviours.Values)
+            {
+                Debug.Log(behaviour);
+            }
+        }
         
         #endregion
         

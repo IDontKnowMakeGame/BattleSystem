@@ -22,7 +22,13 @@ namespace Units.Base.Unit
             get => state;
             set => state = value;
         }
-        
+
+        protected override void Init()
+        {
+            AddBehaviour<UnitRender>();
+            base.Init();
+        }
+
         public void AddState(BaseState state)
         {
             this.state |= state;

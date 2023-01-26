@@ -75,7 +75,7 @@ public class BlockBase : Units.Base.Units
     protected override void Init()
     {
         Define.GetManager<MapManager>().AddBlock(this);
-        AddBehaviour<BlockRender>(blockRender);
+        AddBehaviour(blockRender);
         tileOBJ = this.gameObject;
         isWalkable = true;
         Vector3 pos = transform.position;
