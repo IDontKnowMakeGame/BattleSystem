@@ -5,7 +5,7 @@ using Core;
 using UnityEngine;
 using Units.Behaviours.Unit;
 using DG.Tweening;
-
+using Managements.Managers;
 struct MoveNode
 {
     public Vector3 dir;
@@ -24,19 +24,43 @@ namespace Units.Base.Player
     public class PlayerMove : UnitMove
     {
         private Queue<MoveNode> moveDir = new Queue<MoveNode>();
-        private float spd = 0.5f;
 
         private Vector3 playerDir;
 
+        [SerializeField]
+        private Vector3 spawnPos;
+
+        public override void Awake()
+        {
+            base.Awake();
+        }
+
         public override void Start()
         {
-            
+            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.UpMove, InputStatus.Press, () => Translate(Vector3.forward));
+            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.DownMove, InputStatus.Press, () => Translate(Vector3.back));
+            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.LeftMove, InputStatus.Press, () => Translate(Vector3.left));
+            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.RightMove, InputStatus.Press, () => Translate(Vector3.right));
+
+            SpawnSetting();
         }
 
         public override void Update()
         {
             ChangeDir();
             PopMove();
+        }
+
+        public void SpawnSetting()
+        {
+            // SpawnPostion Setting
+            _seq.Kill();
+            isMoving = false;
+            onBehaviourEnd?.Invoke();
+            ClearMove();
+
+            ThisBase.Position = spawnPos;
+            ThisBase.transform.position = spawnPos;
         }
 
         public void EnqueueMove(Vector3 dir)
@@ -49,6 +73,8 @@ namespace Units.Base.Player
 
         public override void Translate(Vector3 dir, float spd = 1)
         {
+            Debug.Log("HI");
+
             if (isMoving)
                 return;
 
@@ -64,12 +90,11 @@ namespace Units.Base.Player
                 dir.z = dir.z * playerDir.z;
             }
             
-            MoveTo(ThisBase.Position + dir, spd);
+            MoveTo(ThisBase.Position + dir* distance, spd);
         }
 
         public override void MoveTo(Vector3 pos, float spd = 1)
         {
-
             Vector3 nextPos = pos;
             nextPos.y = 1;
             
@@ -86,7 +111,11 @@ namespace Units.Base.Player
             }
 
             _seq.Append(ThisBase.transform.DOMove(nextPos, spd).SetEase(Ease.Linear));
-            _seq.InsertCallback(spd / 2, () => ThisBase.Position = nextPos);
+            _seq.InsertCallback(spd / 2, () =>
+            {
+                ThisBase.Position = nextPos;
+                InGame.SetUnit(ThisBase, ThisBase.Position);
+            });
             _seq.AppendCallback(() =>
             {
                 isMoving = false;

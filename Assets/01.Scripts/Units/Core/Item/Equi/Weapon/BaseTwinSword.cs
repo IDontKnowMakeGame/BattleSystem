@@ -19,14 +19,6 @@ public class BaseTwinSword : Weapon
 		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.RightArrow);
 	}
 
-	protected override void Move(Vector3 vec)
-	{
-		if (isSkill)
-			return;
-
-		_unitMove.Translate(vec);
-	}
-
 	protected override void Attack(Vector3 vec)
 	{
 		if (vec == Vector3.forward || vec == Vector3.back)

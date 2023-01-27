@@ -19,7 +19,7 @@ namespace Units.Behaviours.Unit
 			}
 		}
 
-		public float Half { get; set; }
+		public float Half { get; set; } = 100;
 
 		private UnitEquiq _unitEquiq;
 		public override void Start()
@@ -69,7 +69,7 @@ namespace Units.Behaviours.Unit
 			changeStats.Hp -= damage* half;
 		}
 
-		public void Die()
+		public virtual void Die()
 		{
 
 		}

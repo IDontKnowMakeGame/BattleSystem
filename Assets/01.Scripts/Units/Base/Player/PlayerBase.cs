@@ -15,12 +15,13 @@ namespace Units.Base.Player
         [SerializeField] private PlayerEqiq PlayerEqiq;
         [SerializeField] private UnitAnimation unitAnimation;
         [SerializeField] private PlayerBuff playerBuff;
+        [SerializeField] private PlayerStat thisStat;
 
         protected override void Init()
         {
             AddBehaviour(thisStat);
             AddBehaviour(unitAnimation);
-            playerMove = AddBehaviour<PlayerMove>();
+            AddBehaviour(playerMove);
             PlayerAttack = AddBehaviour<PlayerAttack>();
             PlayerEqiq = AddBehaviour<PlayerEqiq>();
             playerBuff = AddBehaviour<PlayerBuff>();
@@ -29,6 +30,14 @@ namespace Units.Base.Player
 
         protected override void Start()
         {
+            GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
+            if (player.Length >= 2)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            DontDestroyOnLoad(gameObject);
             Define.GetManager<InputManager>();
             base.Start();
         }

@@ -21,6 +21,7 @@ public class OldSpear : BaseSpear
 		{
 			count = 0;
 			_unitAttack.Attack(_currentAttackPos);
+			Debug.Log("spear Skill");
 		}
 	}
 }

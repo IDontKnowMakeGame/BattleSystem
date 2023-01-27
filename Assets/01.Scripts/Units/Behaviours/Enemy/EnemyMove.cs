@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Core;
+using DG.Tweening;
 using Units.Behaviours.Unit;
 using UnityEngine;
 
@@ -23,7 +24,11 @@ namespace Units.Base.Enemy
             }
 
             _seq.Append(ThisBase.transform.DOMove(nextPos, spd).SetEase(Ease.Linear));
-            _seq.InsertCallback(spd / 2, () => ThisBase.Position = nextPos);
+            _seq.InsertCallback(spd / 2, () =>
+            {
+                ThisBase.Position = nextPos;
+                InGame.SetUnit(ThisBase, ThisBase.Position);
+            });
             _seq.AppendCallback(() =>
             {
                 isMoving = false;

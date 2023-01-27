@@ -4,7 +4,7 @@ using UnityEngine;
 using Units.Behaviours.Unit;
 using Managements.Managers;
 using Units.Base.Player;
-
+using Units.Base.Unit;
 public class OldStraightSword : BaseStraightSword
 {
 	public override void Awake()
@@ -15,6 +15,10 @@ public class OldStraightSword : BaseStraightSword
 	public override void Start()
 	{
 		base.Start();
+	}
+	public override void ChangeKey()
+	{
+		base.ChangeKey();
 		_inputManager.ChangeInGameAction(InputTarget.Skill, InputStatus.Press, () => Skill(Vector3.zero));
 	}
 	protected override void Skill(Vector3 vec)
@@ -22,42 +26,25 @@ public class OldStraightSword : BaseStraightSword
 		if (_isCoolTime)
 			return;
 
-		if (isSkill)
+		if (_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Skill))
 			return;
 
-		if (!_isEnemy)
-		{
-			_inputManager.ChangeInGameAction(InputTarget.UpMove, InputStatus.Press,() => RollSkill(Vector3.forward * 2));
-			_inputManager.ChangeInGameAction(InputTarget.DownMove, InputStatus.Press, () => RollSkill(Vector3.back * 2));
-			_inputManager.ChangeInGameAction(InputTarget.LeftMove, InputStatus.Press, () => RollSkill(Vector3.left * 2));
-			_inputManager.ChangeInGameAction(InputTarget.RightMove, InputStatus.Press, () => RollSkill(Vector3.right * 2));
-		}
-		else
-			RollSkill(vec);
+		RollSkill();
 	}
 
-	private void RollSkill(Vector3 vec)
+	private void RollSkill()
 	{
-		
-		Debug.Log(1);
-		isSkill = true;
+		_thisBase.AddState(BaseState.Skill);
 		_isCoolTime = true;
-		PlayerMove unitMove = _thisBase.GetBehaviour<PlayerMove>();
-		unitMove.onBehaviourEnd = RollSkillEnd;
-		unitMove.Translate(vec * 2);
+
+		_unitMove.distance = 2;
+		_unitMove.onBehaviourEnd = RollSkillEnd;
 	}
 
 	private void RollSkillEnd()
 	{
-		Debug.Log(2);
-		isSkill = false;
+		_unitMove.distance = 1;
 
-		_inputManager.ChangeInGameAction(InputTarget.UpMove, InputStatus.Press, () =>
-		{
-			Move(Vector3.forward);
-		});
-		_inputManager.ChangeInGameAction(InputTarget.DownMove, InputStatus.Press, () => Move(Vector3.back));
-		_inputManager.ChangeInGameAction(InputTarget.LeftMove, InputStatus.Press, () => Move(Vector3.left));
-		_inputManager.ChangeInGameAction(InputTarget.RightMove, InputStatus.Press, () => Move(Vector3.right));
+		_thisBase.RemoveState(BaseState.Skill);
 	}
 }

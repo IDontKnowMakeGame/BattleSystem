@@ -3,7 +3,6 @@ using Unit.Core.Weapon;
 using Managements.Managers;
 public class BaseGreatSword : Weapon
 {
-	private bool _isCharge;
 	protected float _chargeTime;
 	protected float _maxChargeTime => WeaponStat.Ats;
 
@@ -32,6 +31,11 @@ public class BaseGreatSword : Weapon
 		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.A);
 		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.D);
 
+		_inputManager.AddInGameAction(InputTarget.UpMove, InputStatus.Press, Move);
+		_inputManager.AddInGameAction(InputTarget.DownMove, InputStatus.Press, Move);
+		_inputManager.AddInGameAction(InputTarget.LeftMove, InputStatus.Press, Move);
+		_inputManager.AddInGameAction(InputTarget.RightMove, InputStatus.Press, Move);
+
 		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Press, () => Attack(Vector3.forward));
 		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Press, () => Attack(Vector3.back));
 		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => Attack(Vector3.left));
@@ -47,38 +51,38 @@ public class BaseGreatSword : Weapon
 		_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Release, () => AttackUP());
 		_inputManager.ChangeInGameAction(InputTarget.RightAttack, InputStatus.Release, () => AttackUP());
 	}
-	protected override void Move(Vector3 vec)
+	private void Move()
 	{
-		if (isSkill)
-			return;
-		_isCharge = false;
-
-		_unitMove.Translate(vec);
+		if (!_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Skill))
+		{
+			_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
+			_chargeTime = 0;
+		}
 	}
 
 	protected override void Attack(Vector3 vec)
 	{
-		if (_isCharge)
+		if (_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Charge))
 			return;
 
-		_isCharge = true;
+		_thisBase.AddState(Units.Base.Unit.BaseState.Charge);
 		_currentVector = vec;
 	}
 
 	private void AttackUP()
 	{
-		_isCharge = false;
+		_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 		_chargeTime = 0;
 	}
 
 	private void Charge()
 	{
-		if (!_isCharge)
+		if (!_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Charge))
 			return;
 
 		if (_chargeTime >= _maxChargeTime)
 		{
-			_isCharge = false;
+			_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 			_unitAttack.Attack(_currentVector);
 			Debug.Log("?");
 			_chargeTime = 0;

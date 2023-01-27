@@ -15,7 +15,7 @@ public class TaintedSword : BaseStraightSword
 		if (_isCoolTime)
 			return;
 
-		if (isSkill)
+		if (_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Skill))
 			return;
 
 		_thisBase.StartCoroutine(SoulRealm());
@@ -23,7 +23,7 @@ public class TaintedSword : BaseStraightSword
 
 	private IEnumerator SoulRealm()
 	{
-		isSkill = true;
+		_thisBase.AddState(Units.Base.Unit.BaseState.Skill);
 		yield return new WaitForSeconds(0.5f);
 		float atk = _weaponStats.Atk;
 		_weaponStats.Atk = atk * 1.5f;
@@ -36,6 +36,6 @@ public class TaintedSword : BaseStraightSword
 		_unitAttack.Attack(Vector3.back + Vector3.left);
 		_unitAttack.Attack(Vector3.back + Vector3.right);
 		_weaponStats.Atk = atk;
-		isSkill = false;
+		_thisBase.RemoveState(Units.Base.Unit.BaseState.Skill);
 	}
 }
