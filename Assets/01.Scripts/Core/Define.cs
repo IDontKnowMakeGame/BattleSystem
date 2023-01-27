@@ -43,12 +43,14 @@ namespace Core
 
         public static Units.Base.Units GetUnit(Vector3 pos)
         {
+            pos.y = 0;
             var block = Define.GetManager<MapManager>().GetBlock(pos);
             return block == null ? null : block.GetUnit();
         }
         
         public static void SetUnit(UnitBase unit, Vector3 pos)
         {
+            pos.y = 0;
             var block = Define.GetManager<MapManager>().GetBlock(pos);
             block.UnitOnBlock(unit);
         }

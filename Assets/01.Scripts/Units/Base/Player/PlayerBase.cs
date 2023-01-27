@@ -30,14 +30,6 @@ namespace Units.Base.Player
 
         protected override void Start()
         {
-            GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
-            if (player.Length >= 2)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            DontDestroyOnLoad(gameObject);
             Define.GetManager<InputManager>();
             base.Start();
         }

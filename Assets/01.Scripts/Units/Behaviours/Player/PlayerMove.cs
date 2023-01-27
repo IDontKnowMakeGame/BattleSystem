@@ -73,8 +73,6 @@ namespace Units.Base.Player
 
         public override void Translate(Vector3 dir, float spd = 1)
         {
-            Debug.Log("HI");
-
             if (isMoving)
                 return;
 
@@ -95,7 +93,10 @@ namespace Units.Base.Player
 
         public override void MoveTo(Vector3 pos, float spd = 1)
         {
-            Vector3 nextPos = pos;
+            if (InGame.GetUnit(pos) != null)
+                return;
+            var nextPos = pos;
+            var orignalPos = ThisBase.Position;
             nextPos.y = 1;
             
             _seq = DOTween.Sequence();
@@ -109,18 +110,19 @@ namespace Units.Base.Player
                 _seq.Kill();
                 return;
             }
-
+            
+            InGame.SetUnit(ThisBase, nextPos);
             _seq.Append(ThisBase.transform.DOMove(nextPos, spd).SetEase(Ease.Linear));
             _seq.InsertCallback(spd / 2, () =>
             {
                 ThisBase.Position = nextPos;
-                InGame.SetUnit(ThisBase, ThisBase.Position);
             });
             _seq.AppendCallback(() =>
             {
                 isMoving = false;
                 PlayerStop();
                 ThisBase.Position = nextPos;
+                InGame.SetUnit(null, orignalPos);
                 onBehaviourEnd?.Invoke();
                 _seq.Kill();
             });
