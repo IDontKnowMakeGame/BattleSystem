@@ -16,6 +16,7 @@ public class CrazyGhostBase : EnemyBase
         InGame.BossBase = this;
         AddBehaviour<UnitEquiq>().isEnemy = true;
         AddBehaviour<EnemyMove>();
+        AddBehaviour(thisStat);
         var fsm = AddBehaviour<UnitFSM>();
         fsm.SetDefaultState<IdleState>();
         base.Init();

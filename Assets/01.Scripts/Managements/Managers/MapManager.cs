@@ -22,6 +22,8 @@ namespace Managements.Managers
         public BlockBase GetBlock(Vector3 pos)
         {
             pos.y = 0;
+            pos.x = Mathf.RoundToInt(pos.x);
+            pos.z = Mathf.RoundToInt(pos.z);
             return _map[pos];
         }
 

@@ -15,14 +15,14 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
 
         public override void Awake()
         {
-            var toIdle = new AITransition();
-            toIdle.SetLogicCondition(true);
+            var toRandom = new AITransition();
+            toRandom.SetLogicCondition(true);
             var crossDetect = new CrossDetectCondition();
             crossDetect.SetDistance(1);
             crossDetect.SetResult(true);
-            toIdle.AddCondition(crossDetect);
-            toIdle.SetTarget(new IdleState());
-            AddTransition(toIdle);
+            toRandom.AddCondition(crossDetect);
+            toRandom.SetTarget(new RandomState());
+            AddTransition(toRandom);
         }
 
         protected override void OnEnter()
@@ -45,7 +45,11 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             yield return new WaitUntil(astar.IsFinished);
             Debug.Log(ThisBase.Position);
             var move = ThisBase.GetBehaviour<EnemyMove>();
-            move.MoveTo(astar.GetNextPath().Position);
+            var path = astar.GetNextPath();
+            if (path != null)
+            {
+                move.MoveTo(path.Position);
+            }
             yield return new WaitUntil(() => !move.IsMoving());
             isChasing = false;
             yield break;
