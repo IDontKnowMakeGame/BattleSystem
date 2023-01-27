@@ -1,1 +1,6 @@
-{}
+{
+    "maxHp": 100,
+    "currentWeapon": "",
+    "firstWeapon": "oldGreatSword",
+    "secondWeapon": "oldSword"
+}

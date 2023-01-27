@@ -127,6 +127,15 @@ public class DataManager : Manager
         SavePointData = DataJson.LoadJsonFile<SavePoint>(Application.dataPath + "/SAVE/User", "SavePointData");
         InventoryData = DataJson.LoadJsonFile<Inventory>(Application.dataPath + "/SAVE/User", "InvectoryData");
 
+        //test
+        //UserData.firstWeapon = "oldSword";
+        //UserData.secondWeapon = "oldTwinSword";
+
+        //SaveToUserData();
+        //
+
+
+
         URL = "https://docs.google.com/spreadsheets/d/1y6kR8URl2pG-sAijzFArfcsj1SRQXP1CvNo_k19Vbjs/export?format=tsv&range=A2:F30";
 
         DownloadItemSO();

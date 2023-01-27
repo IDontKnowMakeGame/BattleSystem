@@ -140,6 +140,8 @@ namespace Managements
         {
             AddManager<InputManager>();
             AddManager<DataManager>();
+            AddManager<ResourceManagers>();
+            AddManager<PoolManager>();
         }
         
         public void Awake()
