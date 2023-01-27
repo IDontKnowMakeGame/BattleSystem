@@ -12,7 +12,9 @@ namespace Units.Base.Unit
         None = 1 << 0,
         Moving = 1 << 1,
         Attacking = 1 << 2,
-        Dying = 1 << 3,
+        Skill = 1 << 3,
+        Charge = 1 << 4,
+        Dying = 1 << 5,
     }
     public class UnitBase : Units
     {

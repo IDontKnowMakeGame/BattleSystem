@@ -41,14 +41,6 @@ public class BaseSpear : Weapon
 		}
 	}
 
-	protected override void Move(Vector3 vec)
-	{
-		if (isSkill)
-			return;
-
-		_unitMove.Translate(vec);
-	}
-
 	protected override void Attack(Vector3 vec)
 	{
 		if(!_isAttack)

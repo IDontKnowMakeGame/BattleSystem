@@ -5,7 +5,6 @@ using Managements.Managers;
 using Unit.Core.Weapon;
 public class BaseBow : Weapon
 {
-	private bool _isCharge;
 	protected float _chargeTime;
 	protected float _maxChargeTime;
 
@@ -24,11 +23,6 @@ public class BaseBow : Weapon
 		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.LeftArrow);
 		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.RightArrow);
 
-		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Press, () => Attack(Vector3.forward));
-		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Press, () => Attack(Vector3.back));
-		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => Attack(Vector3.left));
-		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Press, () => Attack(Vector3.right));
-
 		_inputManager.ChangeInGameAction(InputTarget.UpAttack, InputStatus.Hold, () => Attack(Vector3.forward));
 		_inputManager.ChangeInGameAction(InputTarget.DownAttack, InputStatus.Hold, () => Attack(Vector3.back));
 		_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Hold, () => Attack(Vector3.left));
@@ -45,36 +39,26 @@ public class BaseBow : Weapon
 		Charge();
 	}
 
-	protected override void Move(Vector3 vec)
-	{
-		if (isSkill)
-			return;
-		if (_isCharge)
-			return;
-
-		_unitMove.Translate(vec);
-	}
-
 	protected override void Attack(Vector3 vec)
 	{
-		_isCharge = true;
+		_thisBase.AddState(Units.Base.Unit.BaseState.Charge);
 		_currentVector = vec;
 	}
 
 	private void AttackUP()
 	{
-		_isCharge = false;
+		_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 		_chargeTime = 0;
 	}
 
 	private void Charge()
 	{
-		if (!_isCharge)
+		if (!_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Charge))
 			return;
 
 		if (_chargeTime >= _maxChargeTime)
 		{
-			_isCharge = false;
+			_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 			_unitAttack.Attack(_currentVector);
 			_chargeTime = 0;
 		}

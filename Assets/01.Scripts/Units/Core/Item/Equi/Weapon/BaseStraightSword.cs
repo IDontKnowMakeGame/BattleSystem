@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unit.Core.Weapon;
 using Managements.Managers;
+using Core;
 
 public class BaseStraightSword : Weapon
 {
@@ -18,13 +19,6 @@ public class BaseStraightSword : Weapon
 		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.S);
 		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.A);
 		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.D);
-	}
-	protected override void Move(Vector3 vec)
-	{
-		if (isSkill)
-			return;
-
-		_unitMove.Translate(vec);
 	}
 
 	protected override void Attack(Vector3 vec)

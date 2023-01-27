@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unit.Core.Weapon;
 using Managements.Managers;
+using Units.Base.Unit;
 public class OldTwinSword : BaseTwinSword
 {
 	public override void Awake()
@@ -13,6 +14,11 @@ public class OldTwinSword : BaseTwinSword
 	public override void Start()
 	{
 		base.Start();
+	}
+
+	public override void ChangeKey()
+	{
+		base.ChangeKey();
 		_inputManager.ChangeInGameAction(InputTarget.Skill, InputStatus.Press, () => Skill(Vector3.zero));
 	}
 	protected override void Skill(Vector3 vec)
@@ -20,7 +26,7 @@ public class OldTwinSword : BaseTwinSword
 		if (_isCoolTime)
 			return;
 
-		isSkill = true;
+		_thisBase.AddState(BaseState.Skill);
 		SixTimeAttak(vec);
 	}
 
@@ -36,6 +42,6 @@ public class OldTwinSword : BaseTwinSword
 
 	private void waitReset()
 	{
-		isSkill = false;
+		_thisBase.RemoveState(BaseState.Skill);
 	}
 }

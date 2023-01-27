@@ -5,7 +5,7 @@ using Core;
 using UnityEngine;
 using Units.Behaviours.Unit;
 using DG.Tweening;
-
+using Managements.Managers;
 struct MoveNode
 {
     public Vector3 dir;
@@ -30,7 +30,10 @@ namespace Units.Base.Player
 
         public override void Start()
         {
-            
+            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.UpMove, InputStatus.Press, () => Translate(Vector3.forward));
+            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.DownMove, InputStatus.Press, () => Translate(Vector3.back));
+            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.LeftMove, InputStatus.Press, () => Translate(Vector3.left));
+            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.RightMove, InputStatus.Press, () => Translate(Vector3.right));
         }
 
         public override void Update()
@@ -64,12 +67,11 @@ namespace Units.Base.Player
                 dir.z = dir.z * playerDir.z;
             }
             
-            MoveTo(ThisBase.Position + dir, spd);
+            MoveTo(ThisBase.Position + dir* distance, spd);
         }
 
         public override void MoveTo(Vector3 pos, float spd = 1)
         {
-
             Vector3 nextPos = pos;
             nextPos.y = 1;
             

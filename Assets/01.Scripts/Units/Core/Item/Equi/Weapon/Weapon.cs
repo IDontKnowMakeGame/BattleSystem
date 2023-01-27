@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using Units.Behaviours.Unit;
+using Units.Base.Unit;
 using Managements;
 using Managements.Managers;
 
@@ -17,7 +18,7 @@ namespace Unit.Core.Weapon
     [Serializable]
     public class Weapon:EquipmentItem
     {
-        public Units.Base.Units _thisBase;
+        public UnitBase _thisBase;
 
         protected WeaponStats _weaponStats = null;
 
@@ -52,25 +53,15 @@ namespace Unit.Core.Weapon
 
 		public virtual void ChangeKey()
 		{
-			_inputManager.ClearInGameAction(InputTarget.UpMove);
-			_inputManager.ClearInGameAction(InputTarget.DownMove);
-			_inputManager.ClearInGameAction(InputTarget.LeftMove);
-			_inputManager.ClearInGameAction(InputTarget.RightMove);
-
 			_inputManager.ClearInGameAction(InputTarget.UpAttack);
 			_inputManager.ClearInGameAction(InputTarget.DownAttack);
 			_inputManager.ClearInGameAction(InputTarget.LeftAttack);
 			_inputManager.ClearInGameAction(InputTarget.RightAttack);
 
-			_inputManager.AddInGameAction(InputTarget.UpMove, InputStatus.Press, () => Move(Vector3.forward));
-			_inputManager.AddInGameAction(InputTarget.DownMove, InputStatus.Press, () => Move(Vector3.back));
-			_inputManager.AddInGameAction(InputTarget.LeftMove, InputStatus.Press, () => Move(Vector3.left));
-			_inputManager.AddInGameAction(InputTarget.RightMove, InputStatus.Press, () => Move(Vector3.right));
-
-			_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Press, () => Attack(Vector3.forward));
-			_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Press, () => Attack(Vector3.back));
-			_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => Attack(Vector3.left));
-			_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Press, () => Attack(Vector3.right));
+			_inputManager.ChangeInGameAction(InputTarget.UpAttack, InputStatus.Press, () => Attack(Vector3.forward));
+			_inputManager.ChangeInGameAction(InputTarget.DownAttack, InputStatus.Press, () => Attack(Vector3.back));
+			_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => Attack(Vector3.left));
+			_inputManager.ChangeInGameAction(InputTarget.RightAttack, InputStatus.Press, () => Attack(Vector3.right));
 			_isEnemy = false;
 		}
 
@@ -94,11 +85,6 @@ namespace Unit.Core.Weapon
 		protected void GetWeaponStateData(WeaponStats data)
         {
 			_weaponStats = data;
-		}
-
-		protected virtual void Move(Vector3 vec)
-		{
-
 		}
 
 		protected virtual void Attack(Vector3 vec)
