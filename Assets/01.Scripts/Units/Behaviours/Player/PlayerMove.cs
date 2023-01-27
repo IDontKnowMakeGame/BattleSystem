@@ -88,7 +88,11 @@ namespace Units.Base.Player
             }
 
             _seq.Append(ThisBase.transform.DOMove(nextPos, spd).SetEase(Ease.Linear));
-            _seq.InsertCallback(spd / 2, () => ThisBase.Position = nextPos);
+            _seq.InsertCallback(spd / 2, () =>
+            {
+                ThisBase.Position = nextPos;
+                InGame.SetUnit(ThisBase, ThisBase.Position);
+            });
             _seq.AppendCallback(() =>
             {
                 isMoving = false;

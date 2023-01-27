@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using Units.Behaviours.Unit;
 using UnityEditor.Build;
 using UnityEngine;
@@ -34,10 +35,20 @@ namespace Unit.Block
         {
             mainColor = color;
         }
+        
+        public void DOSetMainColor(Color color, float duration)
+        {
+            thisMaterial.DOColor(color, MainColor, duration);
+        }
 
         public void SetOutlineColor(Color color)
         {
             outlineColor = color;
+        }
+        
+        public void DOSetOutlineColor(Color color, float duration)
+        {
+            thisMaterial.DOColor(color, OutlineColor, duration);
         }
     }
 }
