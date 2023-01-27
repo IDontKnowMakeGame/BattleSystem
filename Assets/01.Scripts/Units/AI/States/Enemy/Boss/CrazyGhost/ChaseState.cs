@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Core;
 using Unit.Base.AI;
+using Unit.Enemy.AI.Conditions;
 using Units.Base.Enemy;
 using Units.Behaviours.Unit;
 using UnityEngine;
@@ -11,6 +12,19 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
     {
         private Astar astar = new ();
         private bool isChasing = false;
+
+        public override void Awake()
+        {
+            var toIdle = new AITransition();
+            toIdle.SetLogicCondition(true);
+            var crossDetect = new CrossDetectCondition();
+            crossDetect.SetDistance(1);
+            crossDetect.SetResult(true);
+            toIdle.AddCondition(crossDetect);
+            toIdle.SetTarget(new IdleState());
+            AddTransition(toIdle);
+        }
+
         protected override void OnEnter()
         {
             Debug.Log("ChaseState");
@@ -21,6 +35,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             if (isChasing == false)
                 ThisBase.StartCoroutine(ChaseCoroutine());
         }
+
 
         private IEnumerator ChaseCoroutine()
         {

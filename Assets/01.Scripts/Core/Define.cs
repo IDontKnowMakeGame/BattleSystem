@@ -21,7 +21,7 @@ namespace Core
     public static class InGame
     {
         private static PlayerBase _playerBase = null;
-
+        private static EnemyBase _bossBase = null;
         public static PlayerBase PlayerBase
         {
             get
@@ -33,6 +33,12 @@ namespace Core
 
                 return _playerBase;
             }
+        }
+
+        public static EnemyBase BossBase
+        {
+            get => _bossBase;
+            set => _bossBase = value;
         }
 
         public static Units.Base.Units GetUnit(Vector3 pos)
