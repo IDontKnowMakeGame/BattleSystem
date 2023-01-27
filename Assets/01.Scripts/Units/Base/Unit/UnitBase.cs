@@ -19,7 +19,6 @@ namespace Units.Base.Unit
     public class UnitBase : Units
     {
         [SerializeField] private BaseState state = BaseState.None;
-        [SerializeField] protected UnitStat thisStat = null;
         
         public BaseState State
         {

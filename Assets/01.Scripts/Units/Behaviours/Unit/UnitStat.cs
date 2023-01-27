@@ -69,7 +69,7 @@ namespace Units.Behaviours.Unit
 			changeStats.Hp -= damage* half;
 		}
 
-		public void Die()
+		public virtual void Die()
 		{
 
 		}

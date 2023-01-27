@@ -24,9 +24,16 @@ namespace Units.Base.Player
     public class PlayerMove : UnitMove
     {
         private Queue<MoveNode> moveDir = new Queue<MoveNode>();
-        private float spd = 0.5f;
 
         private Vector3 playerDir;
+
+        [SerializeField]
+        private Vector3 spawnPos;
+
+        public override void Awake()
+        {
+            base.Awake();
+        }
 
         public override void Start()
         {
@@ -34,12 +41,26 @@ namespace Units.Base.Player
             Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.DownMove, InputStatus.Press, () => Translate(Vector3.back));
             Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.LeftMove, InputStatus.Press, () => Translate(Vector3.left));
             Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.RightMove, InputStatus.Press, () => Translate(Vector3.right));
+
+            SpawnSetting();
         }
 
         public override void Update()
         {
             ChangeDir();
             PopMove();
+        }
+
+        public void SpawnSetting()
+        {
+            // SpawnPostion Setting
+            _seq.Kill();
+            isMoving = false;
+            onBehaviourEnd?.Invoke();
+            ClearMove();
+
+            ThisBase.Position = spawnPos;
+            ThisBase.transform.position = spawnPos;
         }
 
         public void EnqueueMove(Vector3 dir)
@@ -52,6 +73,8 @@ namespace Units.Base.Player
 
         public override void Translate(Vector3 dir, float spd = 1)
         {
+            Debug.Log("HI");
+
             if (isMoving)
                 return;
 
