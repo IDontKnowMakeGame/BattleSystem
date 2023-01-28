@@ -1,4 +1,5 @@
-﻿using Unit.Base.AI;
+﻿using Core;
+using Unit.Base.AI;
 using Unit.Enemy.AI.Conditions;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             toChase.AddCondition(timeCheck);
             toChase.SetTarget(new ChaseState());
             var crossDetect = new CrossDetectCondition();
+            crossDetect.SetUnits(InGame.PlayerBase, InGame.BossBase);
             crossDetect.SetDistance(1);
             crossDetect.SetResult(false);
             toChase.AddCondition(crossDetect);

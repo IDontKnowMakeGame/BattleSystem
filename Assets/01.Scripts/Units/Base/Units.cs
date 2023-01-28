@@ -9,7 +9,7 @@ namespace Units.Base
     public class Units : MonoBehaviour
     {
         private Dictionary<Type, Behaviour> _behaviours = new();
-        private Vector3 position = Vector3.zero;
+        [SerializeField] private Vector3 position = Vector3.zero;
         public Vector3 Position
         {
             get => position;

@@ -18,6 +18,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             var toRandom = new AITransition();
             toRandom.SetLogicCondition(true);
             var crossDetect = new CrossDetectCondition();
+            crossDetect.SetUnits(InGame.PlayerBase, InGame.BossBase);
             crossDetect.SetDistance(1);
             crossDetect.SetResult(true);
             toRandom.AddCondition(crossDetect);
@@ -43,12 +44,12 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             astar.SetPath(ThisBase.Position, InGame.PlayerBase.Position);
             ThisBase.StartCoroutine(astar.FindPath());
             yield return new WaitUntil(astar.IsFinished);
-            Debug.Log(ThisBase.Position);
             var move = ThisBase.GetBehaviour<EnemyMove>();
+            var stat = ThisBase.GetBehaviour<UnitStat>().NowStats;
             var path = astar.GetNextPath();
             if (path != null)
             {
-                move.MoveTo(path.Position);
+                move.MoveTo(path.Position, stat.Agi);
             }
             yield return new WaitUntil(() => !move.IsMoving());
             isChasing = false;

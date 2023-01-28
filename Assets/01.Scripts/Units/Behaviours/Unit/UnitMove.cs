@@ -12,10 +12,10 @@ namespace Units.Behaviours.Unit
         protected Sequence _seq;
         protected bool isMoving = false;
 
-        public float distance=1;
+        public float distance = 1;
         public virtual void Translate(Vector3 dir, float spd = 1)
         {
-            MoveTo(ThisBase.Position + dir* distance, spd);
+            MoveTo(ThisBase.Position + dir * distance, spd);
         }
 
         public virtual void MoveTo(Vector3 pos, float spd = 1)

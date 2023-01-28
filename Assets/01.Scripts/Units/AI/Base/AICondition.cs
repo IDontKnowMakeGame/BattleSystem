@@ -13,7 +13,7 @@ namespace Unit.Base.AI
         
         public virtual bool CheckCondition()
         {
-            var result = CheckConditionInternal() == _resultCondition;
+            var result = (CheckConditionInternal() == _resultCondition);
             return result;
         }
         
