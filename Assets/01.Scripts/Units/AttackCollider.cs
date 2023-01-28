@@ -104,12 +104,29 @@ public class AttackCollider : MonoBehaviour
         SetAttackSize((int)direction);
     }
 
+    public void ChangeOffsetX(DirType direction, int space)
+    {
+        changeCenterSize[(int)direction].x = space;
+
+        SetAttackSize((int)direction);
+    }
+
     public void ChangeSizeX(int space)
     {
         for(int i = 0; i < (int)DirType.Size; i++)
         {
             changeCenterSize[i].x = oriCenterSize[i].x + ((oriCenterSize[i].x * 0.5f) * (space - 1));
             changeSize[i].x = oriSize[i].x * space;
+
+            SetAttackSize(i);
+        }
+    }
+
+    public void ChangeOffsetX(int space)
+    {
+        for (int i = 0; i < (int)DirType.Size; i++)
+        {
+            changeCenterSize[i].x = space;
 
             SetAttackSize(i);
         }
@@ -123,12 +140,29 @@ public class AttackCollider : MonoBehaviour
         SetAttackSize((int)direction);
     }
 
+    public void ChangeOffsetZ(DirType direction, int space)
+    {
+        changeCenterSize[(int)direction].z = space;
+
+        SetAttackSize((int)direction);
+    }
+
     public void ChangeSizeZ(int space)
     {
         for (int i = 0; i < (int)DirType.Size; i++)
         {
             changeCenterSize[i].z = oriCenterSize[i].z + (oriCenterSize[i].z > 0 ? 1 : -1) * 0.5f * (space - 1);
             changeSize[i].z = oriSize[i].z * space;
+
+            SetAttackSize(i);
+        }
+    }
+
+    public void ChangeOffsetZ(int space)
+    {
+        for (int i = 0; i < (int)DirType.Size; i++)
+        {
+            changeCenterSize[i].z = space;
 
             SetAttackSize(i);
         }
