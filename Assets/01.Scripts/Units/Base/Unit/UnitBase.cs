@@ -14,7 +14,8 @@ namespace Units.Base.Unit
         Attacking = 1 << 2,
         Skill = 1 << 3,
         Charge = 1 << 4,
-        Dying = 1 << 5,
+        StopMove = 1<< 5,
+        Dying = 1 << 6,
     }
     public class UnitBase : Units
     {

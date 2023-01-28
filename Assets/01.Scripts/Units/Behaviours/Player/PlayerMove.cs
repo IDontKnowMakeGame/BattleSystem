@@ -6,6 +6,8 @@ using UnityEngine;
 using Units.Behaviours.Unit;
 using DG.Tweening;
 using Managements.Managers;
+using Units.Base.Unit;
+
 struct MoveNode
 {
     public Vector3 dir;
@@ -73,7 +75,7 @@ namespace Units.Base.Player
 
         public override void Translate(Vector3 dir, float spd = 1)
         {
-            if (isMoving)
+            if (isMoving || ThisBase.State.HasFlag(BaseState.StopMove))
                 return;
 
             if (playerDir.x != 0)

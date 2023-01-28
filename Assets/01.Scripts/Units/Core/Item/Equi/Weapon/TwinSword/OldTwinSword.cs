@@ -27,6 +27,7 @@ public class OldTwinSword : BaseTwinSword
 			return;
 
 		_thisBase.AddState(BaseState.Skill);
+		_thisBase.AddState(BaseState.StopMove);
 
 		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.W);
 		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.S);
@@ -53,6 +54,7 @@ public class OldTwinSword : BaseTwinSword
 	private void waitReset()
 	{
 		_thisBase.RemoveState(BaseState.Skill);
+		_thisBase.RemoveState(BaseState.StopMove);
 
 		_inputManager.ChangeInGameKey(InputTarget.UpMove, KeyCode.UpArrow);
 		_inputManager.ChangeInGameKey(InputTarget.DownMove, KeyCode.DownArrow);

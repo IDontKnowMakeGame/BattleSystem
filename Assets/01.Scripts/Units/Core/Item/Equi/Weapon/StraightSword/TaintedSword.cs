@@ -30,6 +30,7 @@ public class TaintedSword : BaseStraightSword
 	private void SoulRealm()
 	{
 		_thisBase.AddState(Units.Base.Unit.BaseState.Skill);
+		_thisBase.AddState(Units.Base.Unit.BaseState.StopMove);
 		float atk = _weaponStats.Atk;
 		_weaponStats.Atk = atk * 1.5f;
 		Debug.Log(">");
@@ -47,5 +48,6 @@ public class TaintedSword : BaseStraightSword
 	{
 		_weaponStats.Atk = atk;
 		_thisBase.RemoveState(Units.Base.Unit.BaseState.Skill);
+		_thisBase.RemoveState(Units.Base.Unit.BaseState.StopMove);
 	}
 }

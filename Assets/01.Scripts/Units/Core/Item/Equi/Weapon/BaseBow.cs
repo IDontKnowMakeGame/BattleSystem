@@ -27,11 +27,6 @@ public class BaseBow : Weapon
 		_inputManager.ChangeInGameAction(InputTarget.DownAttack, InputStatus.Hold, () => Attack(Vector3.back));
 		_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Hold, () => Attack(Vector3.left));
 		_inputManager.ChangeInGameAction(InputTarget.RightAttack, InputStatus.Hold, () => Attack(Vector3.right));
-
-		_inputManager.ChangeInGameAction(InputTarget.UpAttack, InputStatus.Release, () => AttackUP());
-		_inputManager.ChangeInGameAction(InputTarget.DownAttack, InputStatus.Release, () => AttackUP());
-		_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Release, () => AttackUP());
-		_inputManager.ChangeInGameAction(InputTarget.RightAttack, InputStatus.Release, () => AttackUP());
 	}
 	public override void Update()
 	{
@@ -42,13 +37,8 @@ public class BaseBow : Weapon
 	protected override void Attack(Vector3 vec)
 	{
 		_thisBase.AddState(Units.Base.Unit.BaseState.Charge);
+		_thisBase.AddState(Units.Base.Unit.BaseState.StopMove);
 		_currentVector = vec;
-	}
-
-	private void AttackUP()
-	{
-		_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
-		_chargeTime = 0;
 	}
 
 	private void Charge()
