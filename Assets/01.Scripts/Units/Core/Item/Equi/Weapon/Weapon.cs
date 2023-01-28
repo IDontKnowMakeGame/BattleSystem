@@ -49,8 +49,7 @@ namespace Unit.Core.Weapon
 			_unitMove = _thisBase.GetBehaviour<UnitMove>();
 			_unitStat = _thisBase.GetBehaviour<UnitStat>();
 
-			if (!_isEnemy)
-				_playerAttack = ((PlayerAttack)_unitAttack);
+			_playerAttack = _unitAttack as PlayerAttack;
 		}
 
 		public override void Update()

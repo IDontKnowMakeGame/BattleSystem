@@ -45,18 +45,25 @@ public class BaseSpear : Weapon
 	{
 		if(!_isAttack)
 		{
+			_playerAttack.AttackColParent.AllDisableDir();
 			_currentAttackPos = Vector3.zero;
 			_isAttack = true;
 			_thisBase.StartCoroutine(DownLate(vec));
 		}
 
 		if (_isAttack && _currentAttackPos == vec)
+		{
+			_playerAttack.AttackColParent.AllDisableDir();
 			_isAttack = false;
+		}
 	}
 
 	private IEnumerator DownLate(Vector3 vec)
 	{
 		yield return new WaitForSeconds(_weaponStats.Ats);
 		_currentAttackPos = vec;
+		_playerAttack.AttackColParent.ChangeSizeZ(1);
+		_playerAttack.AttackColParent.ChangeSizeX(1);
+		_playerAttack.AttackColParent.EnableDir(_playerAttack.AttackColParent.DirReturn(_currentAttackPos));
 	}
 }

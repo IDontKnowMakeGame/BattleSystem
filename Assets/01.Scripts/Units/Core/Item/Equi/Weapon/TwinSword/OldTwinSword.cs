@@ -46,8 +46,6 @@ public class OldTwinSword : BaseTwinSword
 		for (int i = 0; i < 6; i++)
 		{
 			Define.GetManager<MapManager>().Damage(_thisBase.Position+dir,_unitStat.NowStats.Atk,0.5f,waitReset);
-			//_unitAttack.Attack(dir);
-			//_unitAttack.onBehaviourEnd = waitReset;
 		}
 	}
 

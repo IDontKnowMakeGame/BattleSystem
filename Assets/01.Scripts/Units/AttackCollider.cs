@@ -83,7 +83,7 @@ public class AttackCollider : MonoBehaviour
         EnableDir(DirType.Up); 
         */
 
-        ChangeSizeX(2);
+        //ChangeSizeX(2);
     }
 
     public BoxCollider GetAttackCol(int direction)
@@ -220,5 +220,18 @@ public class AttackCollider : MonoBehaviour
         }
 
         return temp;
+    }
+
+    public DirType DirReturn(Vector3 vec)
+    {
+        if (vec == Vector3.forward)
+            return DirType.Up;
+        if (vec == Vector3.back)
+            return DirType.Down;
+        if (vec == Vector3.left)
+            return DirType.Left;
+        if (vec == Vector3.right)
+            return DirType.Right;
+        return DirType.Up;
     }
 }
