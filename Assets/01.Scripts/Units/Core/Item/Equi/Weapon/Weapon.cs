@@ -4,7 +4,7 @@ using Units.Behaviours.Unit;
 using Units.Base.Unit;
 using Managements;
 using Managements.Managers;
-
+using Units.Base.Player;
 namespace Unit.Core.Weapon
 {
 	public enum WeaponType
@@ -12,7 +12,9 @@ namespace Unit.Core.Weapon
 		OldStraightSword,
 		OldGreatSword,
 		OldTwinSword,
-		OldSpear
+		OldSpear,
+		TaintedSword,
+		End
 	}
 
     [Serializable]
@@ -30,6 +32,8 @@ namespace Unit.Core.Weapon
 		protected UnitMove _unitMove;
 		protected UnitStat _unitStat;
 
+		protected PlayerAttack _playerAttack;
+
         protected float _currentTime;
         protected float _maxTime;
 
@@ -44,6 +48,9 @@ namespace Unit.Core.Weapon
 			_unitAttack = _thisBase.GetBehaviour<UnitAttack>();
 			_unitMove = _thisBase.GetBehaviour<UnitMove>();
 			_unitStat = _thisBase.GetBehaviour<UnitStat>();
+
+			if (!_isEnemy)
+				_playerAttack = ((PlayerAttack)_unitAttack);
 		}
 
 		public override void Update()
@@ -93,6 +100,11 @@ namespace Unit.Core.Weapon
 		}
 
 		protected virtual void Skill(Vector3 vec)
+		{
+
+		}
+
+		public virtual void Reset()
 		{
 
 		}

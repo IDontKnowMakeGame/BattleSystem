@@ -84,7 +84,6 @@ public class BaseGreatSword : Weapon
 		{
 			_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 			_unitAttack.Attack(_currentVector);
-			Debug.Log("?");
 			_chargeTime = 0;
 		}
 		else

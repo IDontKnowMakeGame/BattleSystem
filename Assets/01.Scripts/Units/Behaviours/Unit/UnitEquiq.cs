@@ -43,6 +43,7 @@ namespace Units.Behaviours.Unit
 			weapons.Add(WeaponType.OldGreatSword, new OldGreatSword() { _thisBase = this.ThisBase });
 			weapons.Add(WeaponType.OldTwinSword, new OldTwinSword() { _thisBase = this.ThisBase });
 			weapons.Add(WeaponType.OldSpear, new OldSpear() { _thisBase = this.ThisBase });
+			weapons.Add(WeaponType.TaintedSword, new TaintedSword() { _thisBase = this.ThisBase });
 
 			foreach (var value in weapons)
 			{

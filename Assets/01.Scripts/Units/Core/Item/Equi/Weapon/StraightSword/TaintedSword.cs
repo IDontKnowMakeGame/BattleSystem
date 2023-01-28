@@ -2,12 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Managements.Managers;
+using Core;
 public class TaintedSword : BaseStraightSword
 {
 	public override void Start()
 	{
 		base.Start();
 		GetWeaponStateData("oldSword");
+	}
+
+	public override void ChangeKey()
+	{
+		base.ChangeKey();
 		_inputManager.ChangeInGameAction(InputTarget.Skill, InputStatus.Press, () => Skill(Vector3.zero));
 	}
 	protected override void Skill(Vector3 vec)
@@ -18,23 +24,27 @@ public class TaintedSword : BaseStraightSword
 		if (_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Skill))
 			return;
 
-		_thisBase.StartCoroutine(SoulRealm());
+		SoulRealm();
 	}
 
-	private IEnumerator SoulRealm()
+	private void SoulRealm()
 	{
 		_thisBase.AddState(Units.Base.Unit.BaseState.Skill);
-		yield return new WaitForSeconds(0.5f);
 		float atk = _weaponStats.Atk;
 		_weaponStats.Atk = atk * 1.5f;
-		_unitAttack.Attack(Vector3.forward);
-		_unitAttack.Attack(Vector3.back);
-		_unitAttack.Attack(Vector3.left);
-		_unitAttack.Attack(Vector3.right);
-		_unitAttack.Attack(Vector3.forward + Vector3.left);
-		_unitAttack.Attack(Vector3.forward + Vector3.right);
-		_unitAttack.Attack(Vector3.back + Vector3.left);
-		_unitAttack.Attack(Vector3.back + Vector3.right);
+		Debug.Log(">");
+		Define.GetManager<MapManager>().Damage(_thisBase.Position + Vector3.forward, _unitStat.NowStats.Atk, 0.5f, () => RealmEnd(atk));
+		Define.GetManager<MapManager>().Damage(_thisBase.Position + Vector3.forward + Vector3.left, _unitStat.NowStats.Atk, 0.5f, () => RealmEnd(atk));
+		Define.GetManager<MapManager>().Damage(_thisBase.Position + Vector3.forward + Vector3.right, _unitStat.NowStats.Atk, 0.5f, () => RealmEnd(atk));
+		Define.GetManager<MapManager>().Damage(_thisBase.Position + Vector3.back, _unitStat.NowStats.Atk, 0.5f, () => RealmEnd(atk));
+		Define.GetManager<MapManager>().Damage(_thisBase.Position + Vector3.back + Vector3.left, _unitStat.NowStats.Atk, 0.5f, () => RealmEnd(atk));
+		Define.GetManager<MapManager>().Damage(_thisBase.Position + Vector3.back + Vector3.right, _unitStat.NowStats.Atk, 0.5f, () => RealmEnd(atk));
+		Define.GetManager<MapManager>().Damage(_thisBase.Position + Vector3.left, _unitStat.NowStats.Atk, 0.5f, () => RealmEnd(atk));
+		Define.GetManager<MapManager>().Damage(_thisBase.Position + Vector3.right, _unitStat.NowStats.Atk, 0.5f, () => RealmEnd(atk));
+	}
+
+	private void RealmEnd(float atk)
+	{
 		_weaponStats.Atk = atk;
 		_thisBase.RemoveState(Units.Base.Unit.BaseState.Skill);
 	}

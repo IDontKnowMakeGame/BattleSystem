@@ -35,7 +35,6 @@ public class OldStraightSword : BaseStraightSword
 	private void RollSkill()
 	{
 		_thisBase.AddState(BaseState.Skill);
-		_isCoolTime = true;
 
 		_unitMove.distance = 2;
 		_unitMove.onBehaviourEnd = RollSkillEnd;
@@ -44,7 +43,7 @@ public class OldStraightSword : BaseStraightSword
 	private void RollSkillEnd()
 	{
 		_unitMove.distance = 1;
-
+		_isCoolTime = true;
 		_thisBase.RemoveState(BaseState.Skill);
 	}
 }

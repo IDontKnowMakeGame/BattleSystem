@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unit.Core.Weapon;
+using Core;
 using Managements.Managers;
 using Units.Base.Unit;
 public class OldTwinSword : BaseTwinSword
@@ -27,7 +27,16 @@ public class OldTwinSword : BaseTwinSword
 			return;
 
 		_thisBase.AddState(BaseState.Skill);
-		SixTimeAttak(vec);
+
+		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.W);
+		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.S);
+		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.A);
+		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.D);
+
+		_inputManager.ChangeInGameAction(InputTarget.UpAttack, InputStatus.Press, ()=>SixTimeAttak(Vector3.forward));
+		_inputManager.ChangeInGameAction(InputTarget.DownAttack, InputStatus.Press, ()=>SixTimeAttak(Vector3.back));
+		_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Press, ()=>SixTimeAttak(Vector3.left));
+		_inputManager.ChangeInGameAction(InputTarget.RightAttack, InputStatus.Press, ()=>SixTimeAttak(Vector3.right));
 	}
 
 	private void SixTimeAttak(Vector3 dir)
@@ -35,13 +44,24 @@ public class OldTwinSword : BaseTwinSword
 		_isCoolTime = true;
 		for (int i = 0; i < 6; i++)
 		{
-			_unitAttack.Attack(dir);
-			_unitAttack.onBehaviourEnd = waitReset;
+			Define.GetManager<MapManager>().Damage(_thisBase.Position+dir,_unitStat.NowStats.Atk,0.5f,waitReset);
+			//_unitAttack.Attack(dir);
+			//_unitAttack.onBehaviourEnd = waitReset;
 		}
 	}
 
 	private void waitReset()
 	{
 		_thisBase.RemoveState(BaseState.Skill);
+
+		_inputManager.ChangeInGameKey(InputTarget.UpMove, KeyCode.UpArrow);
+		_inputManager.ChangeInGameKey(InputTarget.DownMove, KeyCode.DownArrow);
+		_inputManager.ChangeInGameKey(InputTarget.LeftMove, KeyCode.LeftArrow);
+		_inputManager.ChangeInGameKey(InputTarget.RightMove, KeyCode.RightArrow);
+
+		_inputManager.ChangeInGameAction(InputTarget.UpAttack, InputStatus.Press, () => Attack(Vector3.forward));
+		_inputManager.ChangeInGameAction(InputTarget.DownAttack, InputStatus.Press, () => Attack(Vector3.back));
+		_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => Attack(Vector3.left));
+		_inputManager.ChangeInGameAction(InputTarget.RightAttack, InputStatus.Press, () => Attack(Vector3.right));
 	}
 }

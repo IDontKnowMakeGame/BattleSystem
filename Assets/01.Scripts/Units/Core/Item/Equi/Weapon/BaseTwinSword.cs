@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unit.Core.Weapon;
 using Managements.Managers;
+using Units.Base.Player;
 public class BaseTwinSword : Weapon
 {
 	public override void ChangeKey()
@@ -23,12 +24,18 @@ public class BaseTwinSword : Weapon
 	{
 		if (vec == Vector3.forward || vec == Vector3.back)
 		{
+			_playerAttack.AttackColParent.AllDisableDir();
+			_playerAttack.AttackColParent.ChangeSizeZ(2);
+			_playerAttack.AttackColParent.EnableDir(DirType.Left, DirType.Right);
 			_unitAttack.Attack(vec + Vector3.left);
 			_unitAttack.Attack(vec + Vector3.right);
 			Debug.Log("twinSword" + vec);
 		}
 		else
 		{
+			_playerAttack.AttackColParent.AllDisableDir();
+			_playerAttack.AttackColParent.ChangeSizeZ(2);
+			_playerAttack.AttackColParent.EnableDir(DirType.Up, DirType.Down);
 			_unitAttack.Attack(vec + Vector3.forward);
 			_unitAttack.Attack(vec + Vector3.back);
 			Debug.Log("twinSword" + vec);

@@ -32,6 +32,7 @@ public class OldGreatSword : BaseGreatSword
 	{
 		_thisBase.AddState(Units.Base.Unit.BaseState.Skill);
 		_unitStat.Half = 30;
+		_unitStat.Damaged(100f);
 		yield return new WaitForSeconds(1.5f);
 		_unitStat.Half = 0;
 		_thisBase.RemoveState(Units.Base.Unit.BaseState.Skill);

@@ -25,7 +25,7 @@ namespace Units.Base.Player
 
 		private void TestChangeWeapon()
 		{
-			_currentWeapon = (WeaponType)(count++ % ((int)WeaponType.OldSpear + 1));
+			_currentWeapon = (WeaponType)(count++ % ((int)WeaponType.End));
 		}
 	}
 }

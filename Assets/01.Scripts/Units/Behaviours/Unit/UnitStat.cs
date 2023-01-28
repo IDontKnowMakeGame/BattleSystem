@@ -19,13 +19,14 @@ namespace Units.Behaviours.Unit
 			}
 		}
 
-		public float Half { get; set; } = 100;
+		public float Half { get; set; } = 0;
 
 		private UnitEquiq _unitEquiq;
 		public override void Start()
 		{
 			base.Start();
 			_unitEquiq = ThisBase.GetBehaviour<UnitEquiq>();
+			changeStats = originStats;
 		}
 
 		protected virtual void ChangeStats()
@@ -58,15 +59,16 @@ namespace Units.Behaviours.Unit
 
 		public void Damaged(float damage)
 		{
+
+			float half = Half / 100;
+
+			changeStats.Hp -= damage - damage * half;
+			Half = 0;
 			if(changeStats.Hp <= 0)
 			{
 				Die();
 				return;
 			}
-
-			float half = Half / 100;
-
-			changeStats.Hp -= damage* half;
 		}
 
 		public virtual void Die()

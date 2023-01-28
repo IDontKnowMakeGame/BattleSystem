@@ -7,7 +7,7 @@ using Units.Base.Player;
 using Units.Base.Unit;
 using Units.Behaviours.Unit;
 using UnityEngine;
-
+using System;
 namespace Managements.Managers
 {
     public class MapManager : Manager
@@ -52,7 +52,12 @@ namespace Managements.Managers
         {
             Instance.StartCoroutine(DamageBlockCoroutine(pos, damage, delay, color));
         }
-        
+
+        public void Damage(Vector3 pos, float damage, float delay = 0.5f,Action action = null)
+        {
+            Instance.StartCoroutine(DamageBlockCoroutine(pos, damage, delay, action));
+        }
+
         private bool DamageBlock(Vector3 pos, float damage)
         {
             var block = GetBlock(pos);
@@ -79,6 +84,21 @@ namespace Managements.Managers
             yield return new WaitForSeconds(delay);
             render.SetMainColor(Color.black);
             DamageBlock(pos, damage);
+        }
+
+        private IEnumerator DamageBlockCoroutine(Vector3 pos, float damage, float delay = 0.5f,Action action = null)
+        {
+            var block = GetBlock(pos);
+            if (block == null)
+                yield break;
+            var render = block.GetBehaviour<BlockRender>();
+            if (render == null)
+                yield break;
+            render.DOSetMainColor(Color.red, delay);
+            yield return new WaitForSeconds(delay);
+            render.SetMainColor(Color.black);
+            DamageBlock(pos, damage);
+            action?.Invoke();
         }
     }
 }
