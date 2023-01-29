@@ -43,7 +43,6 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
         {
             Debug.Log("RandomState");
             random = Random.Range(0, _commonConditions.Count);
-            random = 1;
             _commonConditions[random].SetBool(true);
         }
 
