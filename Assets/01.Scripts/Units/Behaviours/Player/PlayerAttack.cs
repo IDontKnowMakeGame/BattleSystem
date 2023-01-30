@@ -40,15 +40,16 @@ namespace Units.Base.Player
             ThisBase.GetBehaviour<PlayerMove>().ClearMove();
             List<UnitBase> enemys = new List<UnitBase>();
 
-            Debug.Log("§ª§ª§ª");
 
             if (near)
                enemys.Add(attackColParent.CurrntDirNearEnemy());
             else
-                enemys = attackColParent.AllCurrentDirEnemy();
+               enemys = attackColParent.AllCurrentDirEnemy();
 
-            Debug.Log($"{enemys.Count}¿‘¥œ¥Ÿ");
-
+            foreach(UnitBase enemy in enemys)
+            {
+                enemy.gameObject.SetActive(false);
+            }
         }
     }
 }

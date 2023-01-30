@@ -26,8 +26,9 @@ public class AttackRange : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (!enemys.Contains(other.gameObject))
+        if (other.CompareTag("Enemy") && !enemys.Contains(other.gameObject))
         {
+            Debug.Log("glgl");
             enemys.Add(other.gameObject);
         }
     }
@@ -36,6 +37,7 @@ public class AttackRange : MonoBehaviour
     {
         if (enemys.Contains(other.gameObject))
         {
+            Debug.Log("³ª°¡");
             enemys.Remove(other.gameObject);
         }
     }
@@ -43,7 +45,6 @@ public class AttackRange : MonoBehaviour
     public List<GameObject> AllEnemy()
     {
         List<GameObject> currentEnemys = enemys.ToList();
-
 
         return currentEnemys;
     }

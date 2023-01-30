@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Units.Base.Unit;
+using System.Linq;
 public enum DirType
 {
     Up,
@@ -232,22 +233,29 @@ public class AttackCollider : MonoBehaviour
 
     public List<UnitBase> AllCurrentDirEnemy()
     {
-        List<UnitBase> currentEnemys = new List<UnitBase>();
+        HashSet<UnitBase> currentEnemys = new HashSet<UnitBase>();
 
         for (int i = 0; i < (int)DirType.Size; i++)
         {
             if (attackCol[i].enabled)
             {
                 List<GameObject> checkEnemy = attackRanges[i].AllEnemy();
-                Debug.Log($"{checkEnemy.Count}¿‘¥œ¥Ÿ.22");
                 foreach(GameObject enemy in checkEnemy)
                 {
-                    currentEnemys.Add(enemy.GetComponent<EnemyBase>());
+                    UnitBase enemyBase = enemy.GetComponent<UnitBase>();
+                    if (!currentEnemys.Contains(enemyBase))
+                    {
+                        currentEnemys.Add(enemyBase);
+                    }
                 }
+            }
+            else
+            {
+                Debug.Log("cc");
             }
         }
 
-        return currentEnemys;
+        return currentEnemys.ToList();
     }
 
     public UnitBase CurrntDirNearEnemy()
