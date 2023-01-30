@@ -68,6 +68,7 @@ namespace Units.Base.Player
         public void EnqueueMove(Vector3 dir)
         {
             if (moveDir.Count > 1) return;
+            Debug.Log(">");
             var speed = ThisBase.GetBehaviour<UnitStat>().NowStats.Agi;
             moveDir.Enqueue(new MoveNode(dir, speed));
         }

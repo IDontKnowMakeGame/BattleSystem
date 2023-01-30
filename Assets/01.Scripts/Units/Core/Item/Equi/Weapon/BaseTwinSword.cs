@@ -9,15 +9,12 @@ public class BaseTwinSword : Weapon
 	public override void ChangeKey()
 	{
 		base.ChangeKey();
-		_inputManager.ChangeInGameKey(InputTarget.UpMove, KeyCode.UpArrow);
-		_inputManager.ChangeInGameKey(InputTarget.DownMove, KeyCode.DownArrow);
-		_inputManager.ChangeInGameKey(InputTarget.LeftMove, KeyCode.LeftArrow);
-		_inputManager.ChangeInGameKey(InputTarget.RightMove, KeyCode.RightArrow);
 
 		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.UpArrow);
 		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.DownArrow);
 		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.LeftArrow);
 		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.RightArrow);
+
 	}
 
 	protected override void Attack(Vector3 vec)
@@ -34,8 +31,6 @@ public class BaseTwinSword : Weapon
 			_playerAttack.AttackColParent.EnableDir(DirType.Left, DirType.Right);
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
-			_playerAttack.AttackColParent.AllDisableDir();
-			Debug.Log("twinSword" + vec);
 		}
 		else
 		{
@@ -49,8 +44,6 @@ public class BaseTwinSword : Weapon
 			_playerAttack.AttackColParent.EnableDir(DirType.Up, DirType.Down);
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
-			_playerAttack.AttackColParent.AllDisableDir();
-			Debug.Log("twinSword" + vec);
 		}
 	}
 

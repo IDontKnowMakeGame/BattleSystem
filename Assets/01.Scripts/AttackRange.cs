@@ -28,7 +28,6 @@ public class AttackRange : MonoBehaviour
     {
         if (other.CompareTag("Enemy") && !enemys.Contains(other.gameObject))
         {
-            Debug.Log("glgl");
             enemys.Add(other.gameObject);
         }
     }
@@ -37,7 +36,6 @@ public class AttackRange : MonoBehaviour
     {
         if (enemys.Contains(other.gameObject))
         {
-            Debug.Log("³ª°¡");
             enemys.Remove(other.gameObject);
         }
     }

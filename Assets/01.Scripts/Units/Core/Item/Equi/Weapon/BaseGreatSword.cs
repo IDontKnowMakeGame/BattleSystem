@@ -21,10 +21,6 @@ public class BaseGreatSword : Weapon
 	public override void ChangeKey()
 	{
 		base.ChangeKey();
-		_inputManager.ChangeInGameKey(InputTarget.UpMove, KeyCode.UpArrow);
-		_inputManager.ChangeInGameKey(InputTarget.DownMove, KeyCode.DownArrow);
-		_inputManager.ChangeInGameKey(InputTarget.LeftMove, KeyCode.LeftArrow);
-		_inputManager.ChangeInGameKey(InputTarget.RightMove, KeyCode.RightArrow);
 
 		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.W);
 		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.S);
@@ -88,7 +84,7 @@ public class BaseGreatSword : Weapon
 			_playerAttack.AttackColParent.ChangeSizeX(1);
 			_playerAttack.AttackColParent.EnableDir(_playerAttack.AttackColParent.DirReturn(_currentVector));
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
-			_playerAttack.AttackColParent.AllDisableDir();
+			Debug.Log("¿Ó");
 			_chargeTime = 0;
 		}
 		else

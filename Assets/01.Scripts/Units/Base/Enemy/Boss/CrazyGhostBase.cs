@@ -11,10 +11,12 @@ using Input = UnityEngine.Input;
 
 public class CrazyGhostBase : EnemyBase
 {
+    [SerializeField]
+    private UnitEquiq _enemyWeapons;
     protected override void Init()
     {
         InGame.BossBase = this;
-        AddBehaviour<UnitEquiq>().isEnemy = true;
+        AddBehaviour(_enemyWeapons);
         AddBehaviour<EnemyMove>();
         AddBehaviour(thisStat);
         var fsm = AddBehaviour<UnitFSM>();

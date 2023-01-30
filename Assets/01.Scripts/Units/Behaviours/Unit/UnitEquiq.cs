@@ -14,14 +14,10 @@ namespace Units.Behaviours.Unit
 		protected string _secoundWeapon;
 
 		public bool isEnemy;
-		protected bool isOff;
 		public Weapon CurrentWeapon
 		{
 			get
 			{
-				if (isOff)
-					return null;
-
 				if (_currentWeapon == _beforeWeaponType)
 					return weapons[_currentWeapon];
 				else
@@ -29,7 +25,10 @@ namespace Units.Behaviours.Unit
 					_beforeWeaponType = _currentWeapon;
 
 					if (!isEnemy)
+					{
 						weapons[_currentWeapon].ChangeKey();
+						Debug.Log("Çה");
+					}
 
 					return weapons[_currentWeapon];
 				}
@@ -62,9 +61,6 @@ namespace Units.Behaviours.Unit
 
 		public override void Start()
 		{
-			_currentWeapon = DataManager.UserData.currentWeapon;
-			_secoundWeapon = DataManager.UserData.secondWeapon;
-
 			foreach (var value in weapons)
 			{
 				value.Value?.Start();

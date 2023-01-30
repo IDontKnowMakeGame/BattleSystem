@@ -245,8 +245,6 @@ public class DataManager : Manager
             );
         }
 
-        Debug.Log(weaponStateDataList.Count);
-
         isSettingComplate = true;
     }
     public void GetWeaponStateData(string name,Action<WeaponStats> action)

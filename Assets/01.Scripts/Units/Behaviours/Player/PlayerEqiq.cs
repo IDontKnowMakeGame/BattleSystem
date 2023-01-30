@@ -14,13 +14,14 @@ namespace Units.Base.Player
 			Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.TestChangeWeapon, InputStatus.Press, TestChangeWeapon);
 			Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.ChangeWeapon, InputStatus.Press, ChangeWeapon);
 			Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.WeaponOnOff, InputStatus.Press, WeaponOnOff);
+			_currentWeapon = DataManager.UserData.currentWeapon;
+			_secoundWeapon = DataManager.UserData.secondWeapon;
 			base.Start();
 		}
 
 		private void WeaponOnOff()
 		{
 			CurrentWeapon.Reset();
-			isOff = !isOff;
 		}
 		private void ChangeWeapon()
 		{

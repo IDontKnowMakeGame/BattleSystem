@@ -13,10 +13,6 @@ public class BaseSpear : Weapon
 	public override void ChangeKey()
 	{
 		base.ChangeKey();
-		_inputManager.ChangeInGameKey(InputTarget.UpMove, KeyCode.UpArrow);
-		_inputManager.ChangeInGameKey(InputTarget.DownMove, KeyCode.DownArrow);
-		_inputManager.ChangeInGameKey(InputTarget.LeftMove, KeyCode.LeftArrow);
-		_inputManager.ChangeInGameKey(InputTarget.RightMove, KeyCode.RightArrow);
 
 		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.W);
 		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.S);
