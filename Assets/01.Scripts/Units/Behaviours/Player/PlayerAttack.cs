@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Units.Behaviours.Unit;
+using Units.Base.Unit;
 
 namespace Units.Base.Player
 {
@@ -36,13 +37,20 @@ namespace Units.Base.Player
                 Attack(Vector3.up);
         }
 
-        public void Attack(bool near = false)
+        public void Attack(float damage, bool near = false)
         {
             ThisBase.GetBehaviour<PlayerMove>().ClearMove();
+            List<UnitBase> enemys = new List<UnitBase>();
+
             if (near)
-                attackColParent.CurrntDirNearEnemy();
+               enemys.Add(attackColParent.CurrntDirNearEnemy());
             else
-                attackColParent.AllCurrentDirEnemy();
+                enemys = attackColParent.AllCurrentDirEnemy();
+
+            foreach (UnitBase enemy in enemys)
+            {
+                enemy.GetBehaviour<UnitStat>().Damaged(1);
+            }
         }
     }
 }

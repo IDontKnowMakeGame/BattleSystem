@@ -50,10 +50,14 @@ namespace Units.Behaviours.Unit
 		private float WeightToSpeed(int a) => a switch
 		{
 			1 => 0.2f,
-			2 => 0.4f,
-			3 => 0.5f,
-			4 => 0.7f,
-			5 => 1f,
+			2 => 0.25f,
+			3 => 0.3f,
+			4 => 0.35f,
+			5 => 0.45f,
+			6 => 0.5f,
+			7 => 0.7f,
+			8 => 0.8f,
+			9 => 0.9f,
 			_ => 0.1f
 		};
 

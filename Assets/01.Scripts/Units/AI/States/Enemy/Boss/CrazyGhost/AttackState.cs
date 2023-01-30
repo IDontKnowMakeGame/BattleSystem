@@ -39,7 +39,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             var stat = ThisBase.GetBehaviour<UnitEquiq>().CurrentWeapon.WeaponStat;
             yield return new WaitForSeconds(stat.Ats);
             ForwardAttack();
-            yield return new WaitForSeconds(stat.Afs);
+            yield return new WaitForSeconds(1.5f);
             attackCheck.SetBool(false);
             yield break;
         }

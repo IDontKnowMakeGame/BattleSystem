@@ -9,9 +9,9 @@ namespace Units.Behaviours.Unit
 	public class UnitEquiq : UnitBehaviour
 	{
 		[SerializeField]
-		protected WeaponType _currentWeapon;
-
-		protected WeaponType _secoundWeapon;
+		protected string _currentWeapon;
+		[SerializeField]
+		protected string _secoundWeapon;
 
 		public bool isEnemy;
 		public Weapon CurrentWeapon
@@ -31,19 +31,19 @@ namespace Units.Behaviours.Unit
 				}
 			}
 		}
-		private WeaponType _beforeWeaponType;
+		private string _beforeWeaponType;
 
-		public Dictionary<WeaponType, Weapon> weapons = new Dictionary<WeaponType, Weapon>();
+		public Dictionary<string, Weapon> weapons = new Dictionary<string, Weapon>();
 
 		public List<Helo> _helos = new List<Helo>();
 
 		public override void Awake()
 		{
-			weapons.Add(WeaponType.OldStraightSword, new OldStraightSword() { _thisBase = this.ThisBase });
-			weapons.Add(WeaponType.OldGreatSword, new OldGreatSword() { _thisBase = this.ThisBase });
-			weapons.Add(WeaponType.OldTwinSword, new OldTwinSword() { _thisBase = this.ThisBase });
-			weapons.Add(WeaponType.OldSpear, new OldSpear() { _thisBase = this.ThisBase });
-			weapons.Add(WeaponType.TaintedSword, new TaintedSword() { _thisBase = this.ThisBase });
+			weapons.Add("oldSword", new OldStraightSword() { _thisBase = this.ThisBase });
+			weapons.Add("oldGreatSword", new OldGreatSword() { _thisBase = this.ThisBase });
+			weapons.Add("oldTwinSword", new OldTwinSword() { _thisBase = this.ThisBase });
+			weapons.Add("oldSpear", new OldSpear() { _thisBase = this.ThisBase });
+			weapons.Add("taintedSword", new TaintedSword() { _thisBase = this.ThisBase });
 
 			foreach (var value in weapons)
 			{
@@ -58,6 +58,9 @@ namespace Units.Behaviours.Unit
 
 		public override void Start()
 		{
+			_currentWeapon = DataManager.UserData.currentWeapon;
+			_secoundWeapon = DataManager.UserData.secondWeapon;
+
 			foreach (var value in weapons)
 			{
 				value.Value?.Start();

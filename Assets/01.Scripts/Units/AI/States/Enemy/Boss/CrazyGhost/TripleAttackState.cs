@@ -34,7 +34,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             }
             yield return new WaitForSeconds(weaponStat.Ats);
             SwingAttack();
-            yield return new WaitForSeconds(weaponStat.Afs);
+            yield return new WaitForSeconds(1.7f);
             attackCheck.SetBool(false);
             yield break;
         }

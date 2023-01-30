@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Units.Base.Unit;
 public enum DirType
 {
     Up,
@@ -104,12 +104,29 @@ public class AttackCollider : MonoBehaviour
         SetAttackSize((int)direction);
     }
 
+    public void ChangeOffsetX(DirType direction, int space)
+    {
+        changeCenterSize[(int)direction].x = space;
+
+        SetAttackSize((int)direction);
+    }
+
     public void ChangeSizeX(int space)
     {
         for(int i = 0; i < (int)DirType.Size; i++)
         {
             changeCenterSize[i].x = oriCenterSize[i].x + ((oriCenterSize[i].x * 0.5f) * (space - 1));
             changeSize[i].x = oriSize[i].x * space;
+
+            SetAttackSize(i);
+        }
+    }
+
+    public void ChangeOffsetX(int space)
+    {
+        for (int i = 0; i < (int)DirType.Size; i++)
+        {
+            changeCenterSize[i].x = space;
 
             SetAttackSize(i);
         }
@@ -123,12 +140,29 @@ public class AttackCollider : MonoBehaviour
         SetAttackSize((int)direction);
     }
 
+    public void ChangeOffsetZ(DirType direction, int space)
+    {
+        changeCenterSize[(int)direction].z = space;
+
+        SetAttackSize((int)direction);
+    }
+
     public void ChangeSizeZ(int space)
     {
         for (int i = 0; i < (int)DirType.Size; i++)
         {
             changeCenterSize[i].z = oriCenterSize[i].z + (oriCenterSize[i].z > 0 ? 1 : -1) * 0.5f * (space - 1);
             changeSize[i].z = oriSize[i].z * space;
+
+            SetAttackSize(i);
+        }
+    }
+
+    public void ChangeOffsetZ(int space)
+    {
+        for (int i = 0; i < (int)DirType.Size; i++)
+        {
+            changeCenterSize[i].z = space;
 
             SetAttackSize(i);
         }
@@ -188,32 +222,36 @@ public class AttackCollider : MonoBehaviour
         }
     }
 
-    public List<GameObject> AllCurrentDirEnemy()
+    public List<UnitBase> AllCurrentDirEnemy()
     {
-        List<GameObject> currentEnemys = new List<GameObject>();
+        List<UnitBase> currentEnemys = new List<UnitBase>();
 
         for (int i = 0; i < (int)DirType.Size; i++)
         {
             if (attackCol[i].enabled)
             {
-                currentEnemys.AddRange(attackRanges[i].AllEnemy());
+                List<GameObject> checkEnemy = attackRanges[i].AllEnemy();
+                foreach(GameObject enemy in checkEnemy)
+                {
+                    currentEnemys.Add(enemy.GetComponent<EnemyBase>());
+                }
             }
         }
 
         return currentEnemys;
     }
 
-    public GameObject CurrntDirNearEnemy()
+    public UnitBase CurrntDirNearEnemy()
     {
         float minDistnace = float.MaxValue;
-        GameObject temp = null;
+        UnitBase temp = null;
         for (int i = 0; i < (int)DirType.Size; i++)
         {
             if(attackCol[i].enabled)
             {
                 if (attackRanges[i].NearEnemy().distance < minDistnace)
                 {
-                    temp = attackRanges[i].NearEnemy().obj;
+                    temp = attackRanges[i].NearEnemy().obj.GetComponent<UnitBase>();
                     minDistnace = attackRanges[i].NearEnemy().distance;
                 }
             }

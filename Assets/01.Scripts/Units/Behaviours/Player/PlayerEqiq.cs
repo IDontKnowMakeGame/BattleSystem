@@ -12,20 +12,21 @@ namespace Units.Base.Player
 		public override void Start()
 		{
 			Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.ChangeWeapon, InputStatus.Press, TestChangeWeapon);
-			_currentWeapon = WeaponType.OldGreatSword;
-			_secoundWeapon = WeaponType.OldStraightSword;
 			base.Start();
-		}
-		private void ChangeWeapon()
-		{
-			WeaponType type = _currentWeapon;
-			_currentWeapon = _secoundWeapon;
-			_secoundWeapon = type;
 		}
 
 		private void TestChangeWeapon()
 		{
-			_currentWeapon = (WeaponType)(count++ % ((int)WeaponType.End));
+			count = count++ % 5;
+			int dicCount = 0;
+			foreach(var a in weapons)
+			{
+				dicCount++;
+				if(dicCount == count)
+				{
+					_currentWeapon = a.Key;
+				}
+			}
 		}
 	}
 }
