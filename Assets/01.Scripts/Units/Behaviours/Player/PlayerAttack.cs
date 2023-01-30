@@ -33,23 +33,23 @@ namespace Units.Base.Player
         {
             base.Update();
             // To Do InputManager?? ???
-            if (Input.GetKeyDown(KeyCode.W))
-                Attack(Vector3.up);
         }
 
         public void Attack(float damage, bool near = false)
         {
-            ThisBase.GetBehaviour<PlayerMove>().ClearMove();
+            Debug.Log("Attack");
+
             List<UnitBase> enemys = new List<UnitBase>();
+
 
             if (near)
                enemys.Add(attackColParent.CurrntDirNearEnemy());
             else
-                enemys = attackColParent.AllCurrentDirEnemy();
+               enemys = attackColParent.AllCurrentDirEnemy();
 
-            foreach (UnitBase enemy in enemys)
+            foreach(UnitBase enemy in enemys)
             {
-                enemy.GetBehaviour<UnitStat>().Damaged(1);
+                enemy.gameObject.SetActive(false);
             }
         }
     }

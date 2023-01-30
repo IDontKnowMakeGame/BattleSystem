@@ -13,14 +13,10 @@ public class BaseSpear : Weapon
 	public override void ChangeKey()
 	{
 		base.ChangeKey();
-		_inputManager.ChangeInGameKey(InputTarget.UpMove, KeyCode.UpArrow);
-		_inputManager.ChangeInGameKey(InputTarget.DownMove, KeyCode.DownArrow);
-		_inputManager.ChangeInGameKey(InputTarget.LeftMove, KeyCode.LeftArrow);
-		_inputManager.ChangeInGameKey(InputTarget.RightMove, KeyCode.RightArrow);
 
 		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.W);
-		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.A);
-		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.S);
+		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.S);
+		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.A);
 		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.D);
 	}
 
@@ -32,8 +28,7 @@ public class BaseSpear : Weapon
 		{
 			isOut = false;
 			count++;
-			_unitAttack.Attack(_currentAttackPos);
-			Debug.Log("spear" + _currentAttackPos);
+			_playerAttack.Attack(_unitStat.NowStats.Atk);
 		}
 		else if(_isAttack)
 		{
@@ -65,5 +60,13 @@ public class BaseSpear : Weapon
 		_playerAttack.AttackColParent.ChangeSizeZ(1);
 		_playerAttack.AttackColParent.ChangeSizeX(1);
 		_playerAttack.AttackColParent.EnableDir(_playerAttack.AttackColParent.DirReturn(_currentAttackPos));
+	}
+
+	public override void Reset()
+	{
+		isOut = false;
+		_currentAttackPos = Vector3.zero;
+		_isAttack = false;
+		_playerAttack.AttackColParent.AllDisableDir();
 	}
 }

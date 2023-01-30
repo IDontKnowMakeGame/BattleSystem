@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Units.Base.Unit;
+using System.Linq;
 public enum DirType
 {
     Up,
@@ -104,7 +105,7 @@ public class AttackCollider : MonoBehaviour
         SetAttackSize((int)direction);
     }
 
-    public void ChangeOffsetX(DirType direction, int space)
+    public void ChangeOffsetX(DirType direction, float space)
     {
         changeCenterSize[(int)direction].x = space;
 
@@ -132,7 +133,7 @@ public class AttackCollider : MonoBehaviour
         }
     }
 
-    public void ChangeSizeZ(DirType direction, int space)
+    public void ChangeSizeZ(DirType direction, float space)
     {
         changeCenterSize[(int)direction].z = oriCenterSize[(int)direction].z + (oriCenterSize[(int)direction].z > 0 ? 1 : -1) * 0.5f * (space - 1);
         changeSize[(int)direction].z = oriSize[(int)direction].z * space;
@@ -140,7 +141,7 @@ public class AttackCollider : MonoBehaviour
         SetAttackSize((int)direction);
     }
 
-    public void ChangeOffsetZ(DirType direction, int space)
+    public void ChangeOffsetZ(DirType direction, float space)
     {
         changeCenterSize[(int)direction].z = space;
 
@@ -218,13 +219,21 @@ public class AttackCollider : MonoBehaviour
         for (int i = 0; i < attackCol.Length; i++)
         {
             attackCol[i].enabled = false;
+        }
+    }
+
+    public void ChangeWeapon()
+    {
+        for (int i = 0; i < attackCol.Length; i++)
+        {
+            attackCol[i].enabled = false;
             attackRanges[i].EnemysClear();
         }
     }
 
     public List<UnitBase> AllCurrentDirEnemy()
     {
-        List<UnitBase> currentEnemys = new List<UnitBase>();
+        HashSet<UnitBase> currentEnemys = new HashSet<UnitBase>();
 
         for (int i = 0; i < (int)DirType.Size; i++)
         {
@@ -233,12 +242,20 @@ public class AttackCollider : MonoBehaviour
                 List<GameObject> checkEnemy = attackRanges[i].AllEnemy();
                 foreach(GameObject enemy in checkEnemy)
                 {
-                    currentEnemys.Add(enemy.GetComponent<EnemyBase>());
+                    UnitBase enemyBase = enemy.GetComponent<UnitBase>();
+                    if (!currentEnemys.Contains(enemyBase))
+                    {
+                        currentEnemys.Add(enemyBase);
+                    }
                 }
+            }
+            else
+            {
+                Debug.Log("cc");
             }
         }
 
-        return currentEnemys;
+        return currentEnemys.ToList();
     }
 
     public UnitBase CurrntDirNearEnemy()

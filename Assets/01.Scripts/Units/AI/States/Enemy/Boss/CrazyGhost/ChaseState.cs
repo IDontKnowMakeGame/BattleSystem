@@ -28,7 +28,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
 
         protected override void OnEnter()
         {
-            Debug.Log("ChaseState");
+            //Debug.Log("ChaseState");
         }
 
         protected override void OnStay()

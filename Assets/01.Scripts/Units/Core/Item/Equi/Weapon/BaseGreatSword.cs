@@ -21,10 +21,6 @@ public class BaseGreatSword : Weapon
 	public override void ChangeKey()
 	{
 		base.ChangeKey();
-		_inputManager.ChangeInGameKey(InputTarget.UpMove, KeyCode.UpArrow);
-		_inputManager.ChangeInGameKey(InputTarget.DownMove, KeyCode.DownArrow);
-		_inputManager.ChangeInGameKey(InputTarget.LeftMove, KeyCode.LeftArrow);
-		_inputManager.ChangeInGameKey(InputTarget.RightMove, KeyCode.RightArrow);
 
 		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.W);
 		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.S);
@@ -83,16 +79,24 @@ public class BaseGreatSword : Weapon
 		if (_chargeTime >= _maxChargeTime)
 		{
 			_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
-			_unitAttack.Attack(_currentVector);
 			_playerAttack.AttackColParent.AllDisableDir();
 			_playerAttack.AttackColParent.ChangeSizeZ(1);
 			_playerAttack.AttackColParent.ChangeSizeX(1);
 			_playerAttack.AttackColParent.EnableDir(_playerAttack.AttackColParent.DirReturn(_currentVector));
+			_playerAttack.Attack(_unitStat.NowStats.Atk);
+			Debug.Log("¿Ó");
 			_chargeTime = 0;
 		}
 		else
 		{
 			_chargeTime += Time.deltaTime;
 		}
+	}
+
+	public override void Reset()
+	{
+		_chargeTime = 0;
+		_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
+		_currentVector = Vector3.zero;
 	}
 }

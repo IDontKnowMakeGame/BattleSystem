@@ -13,10 +13,6 @@ namespace Units.Base.Player
         public override void Update()
         {
             base.Update();
-            if(Input.GetKeyDown(KeyCode.Q))
-            {
-                Die();
-            }
         }
 
         public override void Die()

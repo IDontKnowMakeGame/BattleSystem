@@ -39,10 +39,10 @@ namespace Units.Base.Player
 
         public override void Start()
         {
-            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.UpMove, InputStatus.Press, () => Translate(Vector3.forward));
-            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.DownMove, InputStatus.Press, () => Translate(Vector3.back));
-            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.LeftMove, InputStatus.Press, () => Translate(Vector3.left));
-            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.RightMove, InputStatus.Press, () => Translate(Vector3.right));
+            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.UpMove, InputStatus.Press, () => EnqueueMove(Vector3.forward));
+            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.DownMove, InputStatus.Press, () => EnqueueMove(Vector3.back));
+            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.LeftMove, InputStatus.Press, () => EnqueueMove(Vector3.left));
+            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.RightMove, InputStatus.Press, () => EnqueueMove(Vector3.right));
 
             SpawnSetting();
         }
@@ -68,8 +68,9 @@ namespace Units.Base.Player
         public void EnqueueMove(Vector3 dir)
         {
             if (moveDir.Count > 1) return;
+            Debug.Log(">");
             var speed = ThisBase.GetBehaviour<UnitStat>().NowStats.Agi;
-            moveDir.Enqueue(new MoveNode(dir, 1));
+            moveDir.Enqueue(new MoveNode(dir, speed));
         }
 
         public override void Translate(Vector3 dir, float spd = 1)

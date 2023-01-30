@@ -68,7 +68,7 @@ namespace Unit.Core.Weapon
 			_inputManager.ChangeInGameAction(InputTarget.DownAttack, InputStatus.Press, () => Attack(Vector3.back));
 			_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => Attack(Vector3.left));
 			_inputManager.ChangeInGameAction(InputTarget.RightAttack, InputStatus.Press, () => Attack(Vector3.right));
-			_isEnemy = false;
+			_playerAttack.AttackColParent.ChangeWeapon();
 		}
 
 		protected void Timer()

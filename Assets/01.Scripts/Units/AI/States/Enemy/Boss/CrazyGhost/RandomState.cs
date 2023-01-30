@@ -41,7 +41,6 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
 
         protected override void OnEnter()
         {
-            Debug.Log("RandomState");
             random = Random.Range(0, _commonConditions.Count);
             _commonConditions[random].SetBool(true);
         }
