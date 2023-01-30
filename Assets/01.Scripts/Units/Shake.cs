@@ -3,21 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
+[System.Serializable]
 public class Shake : MonoBehaviour
 {
+    public string name = string.Empty;
     [SerializeField] CinemachineImpulseSource screenShake;
-    [SerializeField] private float powerAmount;
+    [SerializeField] private float minAmount;
+    [SerializeField] private float maxAmount;
 
     public void ScreenShake(Vector3 dir)
     {
-        screenShake.GenerateImpulseWithVelocity(dir * powerAmount);
-    }
-
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            ScreenShake(new Vector3(1,1,1));
-        }
+        float amount = Random.Range(minAmount, maxAmount);
+        screenShake.GenerateImpulse(amount);
     }
 }

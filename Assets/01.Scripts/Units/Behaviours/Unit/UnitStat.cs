@@ -67,7 +67,7 @@ namespace Units.Behaviours.Unit
 			_ => 0.1f
 		};
 
-		public void Damaged(float damage)
+		public virtual void Damaged(float damage)
 		{
 
 			float half = Half / 100;
