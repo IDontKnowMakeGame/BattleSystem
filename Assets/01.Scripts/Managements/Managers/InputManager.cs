@@ -24,7 +24,9 @@ namespace Managements.Managers
 		UpAttack,
 		DownAttack,
 		Skill,
-		ChangeWeapon
+		ChangeWeapon,
+		TestChangeWeapon,
+		WeaponOnOff
 	}
 
 	public class Input
@@ -67,7 +69,9 @@ namespace Managements.Managers
 			InitInGameInput(InputTarget.UpAttack, KeyCode.W );
 			InitInGameInput(InputTarget.DownAttack, KeyCode.S );
 			InitInGameInput(InputTarget.Skill, KeyCode.Space );
-			InitInGameInput(InputTarget.ChangeWeapon, KeyCode.T );
+			InitInGameInput(InputTarget.ChangeWeapon, KeyCode.R );
+			InitInGameInput(InputTarget.TestChangeWeapon, KeyCode.T );
+			InitInGameInput(InputTarget.WeaponOnOff, KeyCode.Q );
 		}
 
 		public void InitInGameInput(InputTarget target, KeyCode keyCode)

@@ -14,10 +14,14 @@ namespace Units.Behaviours.Unit
 		protected string _secoundWeapon;
 
 		public bool isEnemy;
+		protected bool isOff;
 		public Weapon CurrentWeapon
 		{
 			get
 			{
+				if (isOff)
+					return null;
+
 				if (_currentWeapon == _beforeWeaponType)
 					return weapons[_currentWeapon];
 				else

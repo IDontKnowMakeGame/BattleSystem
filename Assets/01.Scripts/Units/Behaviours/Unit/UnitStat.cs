@@ -30,11 +30,14 @@ namespace Units.Behaviours.Unit
 
 		protected virtual void ChangeStats()
 		{
-			int Weight = 0;
-			float Atk = 0;
+			int Weight = 3;
+			float Atk = originStats.Atk;
 
-			Weight = _unitEquiq.CurrentWeapon.WeaponStat.Weight;
-			Atk = _unitEquiq.CurrentWeapon.WeaponStat.Atk;
+			if(_unitEquiq.CurrentWeapon != null)
+			{
+				Weight = _unitEquiq.CurrentWeapon.WeaponStat.Weight;
+				Atk = _unitEquiq.CurrentWeapon.WeaponStat.Atk;
+			}
 
 			foreach(var a in _unitEquiq._helos)
 			{

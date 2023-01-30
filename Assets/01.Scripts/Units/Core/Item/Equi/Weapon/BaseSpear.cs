@@ -65,4 +65,12 @@ public class BaseSpear : Weapon
 		_playerAttack.AttackColParent.ChangeSizeX(1);
 		_playerAttack.AttackColParent.EnableDir(_playerAttack.AttackColParent.DirReturn(_currentAttackPos));
 	}
+
+	public override void Reset()
+	{
+		isOut = false;
+		_currentAttackPos = Vector3.zero;
+		_isAttack = false;
+		_playerAttack.AttackColParent.AllDisableDir();
+	}
 }

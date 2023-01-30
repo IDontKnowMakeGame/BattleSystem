@@ -34,6 +34,7 @@ public class BaseTwinSword : Weapon
 			_playerAttack.AttackColParent.EnableDir(DirType.Left, DirType.Right);
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
+			_playerAttack.AttackColParent.AllDisableDir();
 			Debug.Log("twinSword" + vec);
 		}
 		else
@@ -48,7 +49,13 @@ public class BaseTwinSword : Weapon
 			_playerAttack.AttackColParent.EnableDir(DirType.Up, DirType.Down);
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
+			_playerAttack.AttackColParent.AllDisableDir();
 			Debug.Log("twinSword" + vec);
 		}
+	}
+
+	public override void Reset()
+	{
+
 	}
 }
