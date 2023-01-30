@@ -11,13 +11,14 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
     public class AttackState : AIState
     {
         protected float angle = 0;
-        CommonCondition attackCheck;
+        protected CommonCondition attackCheck;
         public override void Awake()
         {
             var toChase = new AITransition();
             toChase.SetLogicCondition(true);
             attackCheck = new CommonCondition();
             attackCheck.SetResult(false);
+            attackCheck.SetBool(true);
             toChase.AddCondition(attackCheck);
             toChase.SetTarget(new ChaseState());
             AddTransition(toChase);
@@ -25,10 +26,10 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
 
         protected override void OnEnter()
         {
+            attackCheck.SetBool(true);
             Debug.Log("AttackState");
             var dir = InGame.PlayerBase.Position - InGame.BossBase.Position;
             angle = (Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg) - 90;
-            Debug.Log(angle);
             ThisBase.StartCoroutine(AttackCoroutine());
         }
 
@@ -37,13 +38,13 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             attackCheck.SetBool(true);
             var stat = ThisBase.GetBehaviour<UnitEquiq>().CurrentWeapon.WeaponStat;
             yield return new WaitForSeconds(stat.Ats);
-            SwingAttack();
-            yield return new WaitForSeconds(stat.Afs);
+            ForwardAttack();
+            yield return new WaitForSeconds(1.5f);
             attackCheck.SetBool(false);
             yield break;
         }
         
-        protected void SwingAttack()
+        protected void ForwardAttack()
         {
             var map = Define.GetManager<MapManager>();
             var damage = InGame.BossBase.GetBehaviour<UnitStat>().NowStats.Atk;
@@ -52,6 +53,29 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
                 var dir = Quaternion.Euler(0, -angle, 0) * new Vector3(i, 0, 1);
                 map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red);
             }
+        }
+
+        protected void SwingAttack()
+        {
+            var map = Define.GetManager<MapManager>();
+            var damage = InGame.BossBase.GetBehaviour<UnitStat>().NowStats.Atk;
+            Vector3 dir;
+            for (var i = -1; i <= 1; i++)
+            {
+                dir = Quaternion.Euler(0, -angle, 0) * new Vector3(i, 0, 1);
+                map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red);
+            }
+            dir = Quaternion.Euler(0, -angle, 0) * new Vector3(1, 0, 0);
+            map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red);
+            
+            dir = Quaternion.Euler(0, -angle, 0) * new Vector3(-1, 0, 0);
+            map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red);
+        }
+        
+
+        protected override void OnExit()
+        {
+            attackCheck.SetBool(true);
         }
     }
 }
