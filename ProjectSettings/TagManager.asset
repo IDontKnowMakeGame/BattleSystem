@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - AttackCol
+  - Enemy
   layers:
   - Default
   - TransparentFX
