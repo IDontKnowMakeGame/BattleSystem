@@ -26,7 +26,6 @@ namespace Units.Behaviours.Unit
 		{
 			base.Start();
 			_unitEquiq = ThisBase.GetBehaviour<UnitEquiq>();
-			changeStats = originStats;
 		}
 
 		protected virtual void ChangeStats()

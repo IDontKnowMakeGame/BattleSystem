@@ -27,7 +27,6 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
         protected override void OnEnter()
         {
             attackCheck.SetBool(true);
-            Debug.Log("AttackState");
             var dir = InGame.PlayerBase.Position - InGame.BossBase.Position;
             angle = (Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg) - 90;
             ThisBase.StartCoroutine(AttackCoroutine());

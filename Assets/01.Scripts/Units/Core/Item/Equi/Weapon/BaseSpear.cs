@@ -19,8 +19,8 @@ public class BaseSpear : Weapon
 		_inputManager.ChangeInGameKey(InputTarget.RightMove, KeyCode.RightArrow);
 
 		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.W);
-		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.A);
-		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.S);
+		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.S);
+		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.A);
 		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.D);
 	}
 
@@ -32,8 +32,7 @@ public class BaseSpear : Weapon
 		{
 			isOut = false;
 			count++;
-			_unitAttack.Attack(_currentAttackPos);
-			Debug.Log("spear" + _currentAttackPos);
+			_playerAttack.Attack(_unitStat.NowStats.Atk);
 		}
 		else if(_isAttack)
 		{

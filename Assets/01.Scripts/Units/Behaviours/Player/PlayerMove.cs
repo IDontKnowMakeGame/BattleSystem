@@ -69,7 +69,7 @@ namespace Units.Base.Player
         {
             if (moveDir.Count > 1) return;
             var speed = ThisBase.GetBehaviour<UnitStat>().NowStats.Agi;
-            moveDir.Enqueue(new MoveNode(dir, 1));
+            moveDir.Enqueue(new MoveNode(dir, speed));
         }
 
         public override void Translate(Vector3 dir, float spd = 1)

@@ -49,6 +49,7 @@ namespace Units.Base.Player
 
             foreach (UnitBase enemy in enemys)
             {
+                Debug.Log("?");
                 enemy.GetBehaviour<UnitStat>().Damaged(1);
             }
         }

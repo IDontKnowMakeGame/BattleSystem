@@ -104,7 +104,7 @@ public class AttackCollider : MonoBehaviour
         SetAttackSize((int)direction);
     }
 
-    public void ChangeOffsetX(DirType direction, int space)
+    public void ChangeOffsetX(DirType direction, float space)
     {
         changeCenterSize[(int)direction].x = space;
 
@@ -132,7 +132,7 @@ public class AttackCollider : MonoBehaviour
         }
     }
 
-    public void ChangeSizeZ(DirType direction, int space)
+    public void ChangeSizeZ(DirType direction, float space)
     {
         changeCenterSize[(int)direction].z = oriCenterSize[(int)direction].z + (oriCenterSize[(int)direction].z > 0 ? 1 : -1) * 0.5f * (space - 1);
         changeSize[(int)direction].z = oriSize[(int)direction].z * space;
@@ -140,7 +140,7 @@ public class AttackCollider : MonoBehaviour
         SetAttackSize((int)direction);
     }
 
-    public void ChangeOffsetZ(DirType direction, int space)
+    public void ChangeOffsetZ(DirType direction, float space)
     {
         changeCenterSize[(int)direction].z = space;
 

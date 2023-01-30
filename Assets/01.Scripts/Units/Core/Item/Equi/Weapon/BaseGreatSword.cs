@@ -83,11 +83,11 @@ public class BaseGreatSword : Weapon
 		if (_chargeTime >= _maxChargeTime)
 		{
 			_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
-			_unitAttack.Attack(_currentVector);
 			_playerAttack.AttackColParent.AllDisableDir();
 			_playerAttack.AttackColParent.ChangeSizeZ(1);
 			_playerAttack.AttackColParent.ChangeSizeX(1);
 			_playerAttack.AttackColParent.EnableDir(_playerAttack.AttackColParent.DirReturn(_currentVector));
+			_playerAttack.Attack(_unitStat.NowStats.Atk);
 			_chargeTime = 0;
 		}
 		else

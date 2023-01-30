@@ -23,10 +23,10 @@ public class BaseStraightSword : Weapon
 
 	protected override void Attack(Vector3 vec)
 	{
-		_unitAttack.Attack(vec);
 		_playerAttack.AttackColParent.AllDisableDir();
 		_playerAttack.AttackColParent.ChangeSizeZ(1);
 		_playerAttack.AttackColParent.ChangeSizeX(1);
 		_playerAttack.AttackColParent.EnableDir(_playerAttack.AttackColParent.DirReturn(vec));
+		_playerAttack.Attack(_unitStat.NowStats.Atk);
 	}
 }

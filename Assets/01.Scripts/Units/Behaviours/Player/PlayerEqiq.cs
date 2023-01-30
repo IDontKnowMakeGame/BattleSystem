@@ -17,7 +17,8 @@ namespace Units.Base.Player
 
 		private void TestChangeWeapon()
 		{
-			count = count++ % 5;
+			count++;
+			count = count % 5;
 			int dicCount = 0;
 			foreach(var a in weapons)
 			{
@@ -25,6 +26,7 @@ namespace Units.Base.Player
 				if(dicCount == count)
 				{
 					_currentWeapon = a.Key;
+					return;
 				}
 			}
 		}
