@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 using Units.Behaviours.Unit;
-
+using Managements;
 public class DamagePopUp : Units.Base.Units
 {
 	[SerializeField]
@@ -31,7 +31,7 @@ public class DamagePopUp : Units.Base.Units
 		AddBehaviour<UnitRender>();
 	}
 
-	public void DamageText(int text, Vector3 pos)
+	public void DamageText(float text, Vector3 pos)
 	{
 		num.alpha = 1;
 		Vector2 vec = Random.insideUnitCircle;
@@ -49,7 +49,7 @@ public class DamagePopUp : Units.Base.Units
 		mySequence.Join(transform.DOMoveY(Mathf.Abs(transform.position.y) + yPower, PowerSpeed).SetEase(Ease.Linear)).AppendCallback(() => {
 			num.DOFade(0, 0.35f);
 		});
-		mySequence.Append(transform.DOMoveY(Down, DownSpeed).SetEase(Ease.Linear)).AppendCallback(() => { /*ObjectPool.Instance.ReturnObject(PoolObjectType.PopUpDamage, this.gameObject);*/ });
+		mySequence.Append(transform.DOMoveY(Down, DownSpeed).SetEase(Ease.Linear)).AppendCallback(() => { GameManagement.Instance.GetManager<ResourceManagers>().Destroy(this.gameObject); });
 	}
 
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Units.Behaviours.Unit;
 using Units.Base.Unit;
-
+using Managements;
 namespace Units.Base.Player
 {
     [System.Serializable]
@@ -13,7 +13,7 @@ namespace Units.Base.Player
         public AttackCollider AttackColParent
         {
             get
-            {
+            { 
                 if (attackColParent == null)
                 {
                     Debug.LogError("attackColParent?? NULL????.");
@@ -37,17 +37,19 @@ namespace Units.Base.Player
 
         public void Attack(float damage, bool near = false)
         {
-            Debug.Log("Attack");
+            List<EnemyBase> enemys = new List<EnemyBase>();
 
-            List<UnitBase> enemys = new List<UnitBase>();
-
+            GameObject obj = GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("Damage");
+            obj.GetComponent<DamagePopUp>().DamageText(damage, ThisBase.transform.position);
 
             if (near)
                enemys.Add(attackColParent.CurrntDirNearEnemy());
             else
                enemys = attackColParent.AllCurrentDirEnemy();
-
-            Debug.Log(enemys.Count + "ÀÔ´Ï´Ù¶÷Áã~");
+            foreach(EnemyBase enemy in enemys)
+            {
+                enemy.ThisStat.Damaged(100);
+            }
         }
     }
 }
