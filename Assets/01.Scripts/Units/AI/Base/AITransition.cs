@@ -9,13 +9,6 @@ namespace Unit.Base.AI
         private AIState targetState;
         private List<AICondition> conditions = new();
         
-        private bool isAllConditions = false;
-
-        public void SetLogicCondition(bool logic)
-        {
-            isAllConditions = logic;
-        }
-        
         public void SetTarget(AIState target)
         {
             targetState = target;
@@ -28,11 +21,15 @@ namespace Unit.Base.AI
 
         public bool CheckCondition()
         {
-            var result = isAllConditions;
-
+            var result = true;
+            var count = 0;
             foreach (var condition in conditions)
             {
-                if (isAllConditions)
+                if (count == 0)
+                {
+                    result = condition.CheckCondition();
+                }
+                else if (condition._logicCondition)
                 {
                     result &= condition.CheckCondition();
                 }
@@ -40,6 +37,8 @@ namespace Unit.Base.AI
                 {
                     result |= condition.CheckCondition();
                 }
+
+                count = 1;
             }
             
             return result;

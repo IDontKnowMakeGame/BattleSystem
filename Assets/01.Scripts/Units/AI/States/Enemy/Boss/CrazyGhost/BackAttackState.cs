@@ -31,10 +31,10 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             if (squareCheck.CheckCondition() == true)
             {
                 move.JumpTo(InGame.PlayerBase.Position - dir,1, stat.Agi);
+                yield return new WaitUntil(() => !move.IsMoving());
+                AreaAttack(1);
+                yield return new WaitForSeconds(3f);
             }
-            yield return new WaitUntil(() => !move.IsMoving());
-            ForwardAttack();
-            yield return new WaitForSeconds(3f);
             attackCheck.SetBool(false);
         }
     }
