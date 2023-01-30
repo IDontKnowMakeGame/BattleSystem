@@ -230,9 +230,9 @@ public class AttackCollider : MonoBehaviour
         }
     }
 
-    public List<UnitBase> AllCurrentDirEnemy()
+    public List<EnemyBase> AllCurrentDirEnemy()
     {
-        HashSet<UnitBase> currentEnemys = new HashSet<UnitBase>();
+        HashSet<EnemyBase> currentEnemys = new HashSet<EnemyBase>();
 
         for (int i = 0; i < (int)DirType.Size; i++)
         {
@@ -241,33 +241,29 @@ public class AttackCollider : MonoBehaviour
                 List<GameObject> checkEnemy = attackRanges[i].AllEnemy();
                 foreach(GameObject enemy in checkEnemy)
                 {
-                    UnitBase enemyBase = enemy.GetComponent<UnitBase>();
+                    EnemyBase enemyBase = enemy.GetComponent<EnemyBase>();
                     if (!currentEnemys.Contains(enemyBase))
                     {
                         currentEnemys.Add(enemyBase);
                     }
                 }
             }
-            else
-            {
-                Debug.Log("cc");
-            }
         }
 
         return currentEnemys.ToList();
     }
 
-    public UnitBase CurrntDirNearEnemy()
+    public EnemyBase CurrntDirNearEnemy()
     {
         float minDistnace = float.MaxValue;
-        UnitBase temp = null;
+        EnemyBase temp = null;
         for (int i = 0; i < (int)DirType.Size; i++)
         {
             if(attackCol[i].enabled)
             {
                 if (attackRanges[i].NearEnemy().distance < minDistnace)
                 {
-                    temp = attackRanges[i].NearEnemy().obj.GetComponent<UnitBase>();
+                    temp = attackRanges[i].NearEnemy().obj.GetComponent<EnemyBase>();
                     minDistnace = attackRanges[i].NearEnemy().distance;
                 }
             }

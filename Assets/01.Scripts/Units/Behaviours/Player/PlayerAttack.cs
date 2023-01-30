@@ -13,7 +13,7 @@ namespace Units.Base.Player
         public AttackCollider AttackColParent
         {
             get
-            {
+            { 
                 if (attackColParent == null)
                 {
                     Debug.LogError("attackColParent?? NULL????.");
@@ -37,7 +37,7 @@ namespace Units.Base.Player
 
         public void Attack(float damage, bool near = false)
         {
-            List<UnitBase> enemys = new List<UnitBase>();
+            List<EnemyBase> enemys = new List<EnemyBase>();
 
             GameObject obj = GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("Damage");
             obj.GetComponent<DamagePopUp>().DamageText(damage, ThisBase.transform.position);
@@ -46,6 +46,10 @@ namespace Units.Base.Player
                enemys.Add(attackColParent.CurrntDirNearEnemy());
             else
                enemys = attackColParent.AllCurrentDirEnemy();
+            foreach(EnemyBase enemy in enemys)
+            {
+                enemy.ThisStat.Damaged(100);
+            }
         }
     }
 }

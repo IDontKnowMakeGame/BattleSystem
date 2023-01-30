@@ -67,7 +67,8 @@ namespace Managements.Managers
             var target = block.GetUnit();
             if (target == null)
                 return false;
-
+            if (target.GetType().BaseType == typeof(EnemyBase))
+                return false;
             var targetStat = target.GetBehaviour<UnitStat>();
             targetStat.Damaged(damage);
             return true;
