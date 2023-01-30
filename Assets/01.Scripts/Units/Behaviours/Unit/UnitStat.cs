@@ -10,7 +10,7 @@ namespace Units.Behaviours.Unit
     {
         [SerializeField] private UnitStats originStats = null;
         [SerializeField] private UnitStats changeStats = null;
-
+		public UnitStats OriginStats => originStats;
 		public UnitStats NowStats {
 			get
 			{

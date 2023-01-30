@@ -5,6 +5,7 @@ namespace Unit.Base.AI
     public class AICondition
     {
         protected bool _resultCondition = true;
+        public bool _logicCondition = true;
         
         public void SetResult(bool result)
         {

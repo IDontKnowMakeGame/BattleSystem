@@ -16,14 +16,40 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
         public override void Awake()
         {
             var toRandom = new AITransition();
-            toRandom.SetLogicCondition(true);
-            var crossDetect = new CrossDetectCondition();
-            crossDetect.SetUnits(InGame.PlayerBase, InGame.BossBase);
-            crossDetect.SetDistance(1);
-            crossDetect.SetResult(true);
-            toRandom.AddCondition(crossDetect);
+            var lineDetect = new LineDetectCondition();
+            lineDetect.SetUnits(InGame.PlayerBase, InGame.BossBase);
+            lineDetect.SetDistance(1);
+            lineDetect.SetResult(true);
+            toRandom.AddCondition(lineDetect);
             toRandom.SetTarget(new RandomState());
             AddTransition(toRandom);
+            
+            var toSpiritAttack = new AITransition();
+            var lineDetect2 = new LineDetectCondition();
+            lineDetect2.SetUnits(InGame.PlayerBase, InGame.BossBase);
+            lineDetect2.SetDistance(4);
+            lineDetect2.SetResult(true);
+            lineDetect._logicCondition = false;
+            var lineDetect3 = new LineDetectCondition();
+            lineDetect3.SetUnits(InGame.PlayerBase, InGame.BossBase);
+            lineDetect3.SetDistance(1); 
+            lineDetect3.SetResult(false);
+            lineDetect3._logicCondition = true;
+            var squareCheck = new SquareCheckCondition();
+            squareCheck.SetUnits(InGame.PlayerBase, InGame.BossBase);
+            squareCheck.SetDistance(1);
+            squareCheck.SetResult(true);
+            squareCheck._logicCondition = false;
+            var lifeCheck = new LifeCheckCondition();
+            var stat = InGame.BossBase.GetBehaviour<UnitStat>();
+            lifeCheck.SetTarget(stat, stat.OriginStats.Hp * 7 / 20);
+            lifeCheck.SetResult(true);
+            lifeCheck._logicCondition = true;
+            toSpiritAttack.AddCondition(lineDetect2);
+            toSpiritAttack.AddCondition(lineDetect3);
+            toSpiritAttack.AddCondition(squareCheck);
+            toSpiritAttack.SetTarget(new SpiritAttackState());
+            AddTransition(toSpiritAttack);
         }
 
         protected override void OnEnter()
@@ -49,7 +75,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             var path = astar.GetNextPath();
             if (path != null)
             {
-                move.MoveTo(path.Position, stat.Agi);
+                //move.MoveTo(path.Position, stat.Agi);
             }
             yield return new WaitUntil(() => !move.IsMoving());
             isChasing = false;

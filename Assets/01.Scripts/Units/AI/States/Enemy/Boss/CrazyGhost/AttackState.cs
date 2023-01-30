@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using Core;
 using Managements.Managers;
 using Unit.Base.AI;
@@ -10,12 +11,11 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
 {
     public class AttackState : AIState
     {
-        protected float angle = 0;
+        protected int angle = 0;
         protected CommonCondition attackCheck;
         public override void Awake()
         {
             var toChase = new AITransition();
-            toChase.SetLogicCondition(true);
             attackCheck = new CommonCondition();
             attackCheck.SetResult(false);
             attackCheck.SetBool(true);
@@ -28,7 +28,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
         {
             attackCheck.SetBool(true);
             var dir = InGame.PlayerBase.Position - InGame.BossBase.Position;
-            angle = (Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg) - 90;
+            angle = (int)(Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg) - 90;
             ThisBase.StartCoroutine(AttackCoroutine());
         }
 
@@ -42,11 +42,25 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             attackCheck.SetBool(false);
             yield break;
         }
+
+        protected void AreaAttack(int range)
+        {
+            var map = Define.GetManager<MapManager>();
+            var damage = InGame.BossBase.GetBehaviour<UnitEquiq>().CurrentWeapon.WeaponStat.Atk;
+            for (var i = -range; i <= range; i++)
+            {
+                for (var j = -range; j <= range; j++)
+                {
+                    var dir = Quaternion.Euler(0, -angle, 0) * new Vector3(i, 0, j);
+                    map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red);
+                }
+            }
+        }
         
         protected void ForwardAttack()
         {
             var map = Define.GetManager<MapManager>();
-            var damage = InGame.BossBase.GetBehaviour<UnitStat>().NowStats.Atk;
+            var damage = InGame.BossBase.GetBehaviour<UnitEquiq>().CurrentWeapon.WeaponStat.Atk;
             for (var i = -1; i <= 1; i++)
             {
                 var dir = Quaternion.Euler(0, -angle, 0) * new Vector3(i, 0, 1);
@@ -57,7 +71,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
         protected void SwingAttack()
         {
             var map = Define.GetManager<MapManager>();
-            var damage = InGame.BossBase.GetBehaviour<UnitStat>().NowStats.Atk;
+            var damage = InGame.BossBase.GetBehaviour<UnitEquiq>().CurrentWeapon.WeaponStat.Atk;
             Vector3 dir;
             for (var i = -1; i <= 1; i++)
             {
@@ -69,6 +83,35 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             
             dir = Quaternion.Euler(0, -angle, 0) * new Vector3(-1, 0, 0);
             map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red);
+        }
+        
+        protected void BeamAttack()
+        {
+            var map = Define.GetManager<MapManager>();
+            var damage = InGame.BossBase.GetBehaviour<UnitEquiq>().CurrentWeapon.WeaponStat.Atk;
+            var dir = Quaternion.Euler(0, -angle, 0) * new Vector3(0, 0, 1);
+            var count = 0;
+            var lastBlock = map.GetBlock(InGame.BossBase.Position + dir);
+            while (lastBlock != null)
+            {
+                count++;
+                lastBlock = map.GetBlock(InGame.BossBase.Position + dir * count);    
+            }
+
+            for (var i = 0; i < count; i++)
+            {
+                for(var j = -1; j <= 1; j++)
+                {
+                    var dir2 = Quaternion.Euler(0, -angle, 0) * new Vector3(j, 0, 0);
+                    Debug.Log(angle % 90);  
+                    if (angle % 90 != 0)
+                    {
+                        dir2.x = Mathf.Floor(dir2.x);
+                        dir2.z = Mathf.Floor(dir2.z);
+                    }
+                    map.Damage((InGame.BossBase.Position + dir * i) + dir2, damage * 2, 0.5f, Color.red);
+                }
+            }
         }
         
 
