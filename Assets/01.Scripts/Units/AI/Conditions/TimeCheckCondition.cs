@@ -12,13 +12,17 @@ namespace Unit.Enemy.AI.Conditions
         {
             time += Time.deltaTime;
             if (!(time >= goalTime)) return false;
-            time = 0;
             return true;
         }
 
         public void SetTime(float value)
         {
             goalTime = value;
+        }
+        
+        public void ResetTime()
+        {
+            time = 0;
         }
     }
 }

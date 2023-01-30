@@ -7,27 +7,33 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
 {
     public class IdleState : AIState
     {
+        private TimeCheckCondition timeCheck;
         public override void Awake()
         {
             var toChase = new AITransition();
-            var timeCheck = new TimeCheckCondition();
+            timeCheck = new TimeCheckCondition();
             timeCheck.SetResult(true);
             timeCheck.SetTime(2);
             toChase.AddCondition(timeCheck);
             toChase.SetTarget(new ChaseState());
             timeCheck._logicCondition = true;
-            var crossDetect = new LineDetectCondition();
-            crossDetect.SetUnits(InGame.PlayerBase, InGame.BossBase);
-            crossDetect.SetDistance(1);
-            crossDetect.SetResult(false);
-            crossDetect._logicCondition = true;
-            toChase.AddCondition(crossDetect);
+            var areaCheck = new AreaCheckCondition();
+            areaCheck.SetUnits(InGame.PlayerBase, null);
+            areaCheck.SetArea(Vector3.one, -Vector3.one);
+            areaCheck.SetResult(true);
+            areaCheck._logicCondition = true;
+            toChase.AddCondition(areaCheck);  
             AddTransition(toChase);
         }
 
         protected override void OnEnter()
         {
             Debug.Log("IdleState");
+        }
+
+        protected override void OnExit()
+        {
+            timeCheck.ResetTime();
         }
     }
 }
