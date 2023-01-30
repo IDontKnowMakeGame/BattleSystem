@@ -74,7 +74,7 @@ public class User
 
     public string currentWeapon = "oldSword";
     public string firstWeapon = "oldSword";
-    public string secondWeapon = "twinSword";
+    public string secondWeapon = "oldTwinSword";
 }
 
 public class Inventory
