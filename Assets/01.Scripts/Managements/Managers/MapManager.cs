@@ -23,8 +23,9 @@ namespace Managements.Managers
         {
             pos.y = 0;
             pos.x = Mathf.RoundToInt(pos.x);
-            pos.z = Mathf.RoundToInt(pos.z);
-            return _map[pos];
+            pos.z = Mathf.RoundToInt(pos.z); 
+            var block = _map.ContainsKey(pos) ? _map[pos] : null;
+            return block;
         }
 
         public List<BlockBase> GetNeighbors(BlockBase tile)

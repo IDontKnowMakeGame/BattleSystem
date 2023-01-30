@@ -12,7 +12,6 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
         public override void Awake()
         {
             var toAttack = new AITransition();
-            toAttack.SetLogicCondition(true);
             var common = new CommonCondition();
             common.SetResult(true);
             _commonConditions.Add(common);
@@ -21,7 +20,6 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             AddTransition(toAttack);
             
             var toBackAttack = new AITransition();
-            toBackAttack.SetLogicCondition(true);
             var common2 = new CommonCondition();
             common2.SetResult(true);
             _commonConditions.Add(common2);
@@ -30,7 +28,6 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             AddTransition(toBackAttack);
             
             var toTripleAttack = new AITransition();
-            toTripleAttack.SetLogicCondition(true);
             var common3 = new CommonCondition();
             common3.SetResult(true);
             _commonConditions.Add(common3);
@@ -42,6 +39,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
         protected override void OnEnter()
         {
             random = Random.Range(0, _commonConditions.Count);
+            random = 1;
             _commonConditions[random].SetBool(true);
         }
 

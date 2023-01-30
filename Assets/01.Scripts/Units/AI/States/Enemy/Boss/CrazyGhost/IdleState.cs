@@ -10,16 +10,17 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
         public override void Awake()
         {
             var toChase = new AITransition();
-            toChase.SetLogicCondition(true);
             var timeCheck = new TimeCheckCondition();
             timeCheck.SetResult(true);
             timeCheck.SetTime(2);
             toChase.AddCondition(timeCheck);
             toChase.SetTarget(new ChaseState());
-            var crossDetect = new CrossDetectCondition();
+            timeCheck._logicCondition = true;
+            var crossDetect = new LineDetectCondition();
             crossDetect.SetUnits(InGame.PlayerBase, InGame.BossBase);
             crossDetect.SetDistance(1);
             crossDetect.SetResult(false);
+            crossDetect._logicCondition = true;
             toChase.AddCondition(crossDetect);
             AddTransition(toChase);
         }

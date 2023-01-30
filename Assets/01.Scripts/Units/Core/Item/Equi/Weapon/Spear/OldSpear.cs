@@ -4,9 +4,9 @@ using UnityEngine;
 using Managements.Managers;
 public class OldSpear : BaseSpear
 {
-	public override void Start()
+	public override void Awake()
 	{
-		base.Start();
+		base.Awake();
 		GetWeaponStateData("oldSpear");
 	}
 

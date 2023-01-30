@@ -5,9 +5,9 @@ using Managements.Managers;
 using Core;
 public class TaintedSword : BaseStraightSword
 {
-	public override void Start()
+	public override void Awake()
 	{
-		base.Start();
+		base.Awake();
 		GetWeaponStateData("taintedSword");
 	}
 

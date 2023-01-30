@@ -1,21 +1,19 @@
 ﻿using System.Collections.Generic;
-using Core;
-using Unit.Base.AI;
-using Units.Base.Unit;
+using System.Linq;
 using UnityEngine;
 
 namespace Unit.Enemy.AI.Conditions
 {
     public class CrossDetectCondition : DetectCondition
     {
-        private List<Vector3> _crossPoints = new () { Vector3.forward , Vector3.back, Vector3.left, Vector3.right};
+        private List<Vector3> _crossPoints = new () { new Vector3(1, 0, 1), new Vector3(-1, 0, -1), new Vector3(1, 0, -1), new Vector3(-1, 0, 1)};
         protected override bool CheckConditionInternal()
         {
-            foreach (var crossPoint in _crossPoints)
-            {
-                if(_owner.Position + crossPoint * _distance == _target.Position)
+            for(var i = 1; i <= _distance; i++)
+                if (_crossPoints.Any(crossPoint => _owner.Position + crossPoint * i == _target.Position))
+                {
                     return true;
-            }
+                }
             return false;
         }
     }

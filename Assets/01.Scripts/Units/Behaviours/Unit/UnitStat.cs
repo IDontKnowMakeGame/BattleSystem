@@ -10,7 +10,7 @@ namespace Units.Behaviours.Unit
     {
         [SerializeField] private UnitStats originStats = null;
         [SerializeField] private UnitStats changeStats = null;
-
+		public UnitStats OriginStats => originStats;
 		public UnitStats NowStats {
 			get
 			{
@@ -24,8 +24,8 @@ namespace Units.Behaviours.Unit
 		private UnitEquiq _unitEquiq;
 		public override void Start()
 		{
-			base.Start();
 			_unitEquiq = ThisBase.GetBehaviour<UnitEquiq>();
+			base.Start();
 			changeStats = originStats;
 		}
 
@@ -36,6 +36,9 @@ namespace Units.Behaviours.Unit
 
 			if(_unitEquiq.CurrentWeapon != null)
 			{
+				Debug.Log(_unitEquiq.CurrentWeapon);
+				Debug.Log(_unitEquiq);
+				Debug.Log(_unitEquiq.CurrentWeapon.WeaponStat);
 				Weight = _unitEquiq.CurrentWeapon.WeaponStat.Weight;
 				Atk = _unitEquiq.CurrentWeapon.WeaponStat.Atk;
 			}
@@ -64,7 +67,7 @@ namespace Units.Behaviours.Unit
 			_ => 0.1f
 		};
 
-		public void Damaged(float damage)
+		public virtual void Damaged(float damage)
 		{
 
 			float half = Half / 100;

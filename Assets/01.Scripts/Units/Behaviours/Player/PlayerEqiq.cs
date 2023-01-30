@@ -9,13 +9,17 @@ namespace Units.Base.Player
 	public class PlayerEqiq : UnitEquiq
 	{
 		private int count;
+		public override void Awake()
+		{
+			base.Awake();
+			_currentWeapon = DataManager.UserData.currentWeapon;
+			_secoundWeapon = DataManager.UserData.secondWeapon;
+		}
 		public override void Start()
 		{
 			Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.TestChangeWeapon, InputStatus.Press, TestChangeWeapon);
 			Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.ChangeWeapon, InputStatus.Press, ChangeWeapon);
 			Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.WeaponOnOff, InputStatus.Press, WeaponOnOff);
-			_currentWeapon = DataManager.UserData.currentWeapon;
-			_secoundWeapon = DataManager.UserData.secondWeapon;
 			base.Start();
 		}
 

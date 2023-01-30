@@ -47,10 +47,7 @@ namespace Units.Base.Player
             else
                enemys = attackColParent.AllCurrentDirEnemy();
 
-            foreach(UnitBase enemy in enemys)
-            {
-                enemy.gameObject.SetActive(false);
-            }
+            Debug.Log(enemys.Count + "입니다람쥐~");
         }
     }
 }

@@ -226,7 +226,6 @@ public class AttackCollider : MonoBehaviour
     {
         for (int i = 0; i < attackCol.Length; i++)
         {
-            attackCol[i].enabled = false;
             attackRanges[i].EnemysClear();
         }
     }
