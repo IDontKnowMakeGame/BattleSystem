@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("KhjScene");
+        SceneManager.LoadScene("BossBattle");
     }
 
     public void QuitGame()

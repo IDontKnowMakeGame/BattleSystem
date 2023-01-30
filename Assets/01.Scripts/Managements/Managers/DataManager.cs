@@ -72,9 +72,9 @@ public class User
 {
     public int maxHp = 100;
 
-    public string currentWeapon;
-    public string firstWeapon;
-    public string secondWeapon;
+    public string currentWeapon = "oldSword";
+    public string firstWeapon = "oldSword";
+    public string secondWeapon = "twinSword";
 }
 
 public class Inventory
