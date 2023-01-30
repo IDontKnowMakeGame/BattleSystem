@@ -218,6 +218,14 @@ public class AttackCollider : MonoBehaviour
         for (int i = 0; i < attackCol.Length; i++)
         {
             attackCol[i].enabled = false;
+        }
+    }
+
+    public void ChangeWeapon()
+    {
+        for (int i = 0; i < attackCol.Length; i++)
+        {
+            attackCol[i].enabled = false;
             attackRanges[i].EnemysClear();
         }
     }
@@ -231,6 +239,7 @@ public class AttackCollider : MonoBehaviour
             if (attackCol[i].enabled)
             {
                 List<GameObject> checkEnemy = attackRanges[i].AllEnemy();
+                Debug.Log($"{checkEnemy.Count}¿‘¥œ¥Ÿ.22");
                 foreach(GameObject enemy in checkEnemy)
                 {
                     currentEnemys.Add(enemy.GetComponent<EnemyBase>());
