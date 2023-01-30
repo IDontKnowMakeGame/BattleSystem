@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Units.Base.Unit;
 public enum DirType
 {
     Up,
@@ -222,32 +222,36 @@ public class AttackCollider : MonoBehaviour
         }
     }
 
-    public List<GameObject> AllCurrentDirEnemy()
+    public List<UnitBase> AllCurrentDirEnemy()
     {
-        List<GameObject> currentEnemys = new List<GameObject>();
+        List<UnitBase> currentEnemys = new List<UnitBase>();
 
         for (int i = 0; i < (int)DirType.Size; i++)
         {
             if (attackCol[i].enabled)
             {
-                currentEnemys.AddRange(attackRanges[i].AllEnemy());
+                List<GameObject> checkEnemy = attackRanges[i].AllEnemy();
+                foreach(GameObject enemy in checkEnemy)
+                {
+                    currentEnemys.Add(enemy.GetComponent<EnemyBase>());
+                }
             }
         }
 
         return currentEnemys;
     }
 
-    public GameObject CurrntDirNearEnemy()
+    public UnitBase CurrntDirNearEnemy()
     {
         float minDistnace = float.MaxValue;
-        GameObject temp = null;
+        UnitBase temp = null;
         for (int i = 0; i < (int)DirType.Size; i++)
         {
             if(attackCol[i].enabled)
             {
                 if (attackRanges[i].NearEnemy().distance < minDistnace)
                 {
-                    temp = attackRanges[i].NearEnemy().obj;
+                    temp = attackRanges[i].NearEnemy().obj.GetComponent<UnitBase>();
                     minDistnace = attackRanges[i].NearEnemy().distance;
                 }
             }
