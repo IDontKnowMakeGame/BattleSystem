@@ -8,10 +8,12 @@ namespace Unit.Enemy.AI.Conditions
         
         protected override bool CheckConditionInternal()
         {
-            if (_startPosition.x >= _target.Position.x && _target.Position.x >= _endPosition.x)
+            var max = new Vector3(Mathf.Max(_startPosition.x, _endPosition.x), 0, Mathf.Max(_startPosition.z, _endPosition.z)); 
+            var min = new Vector3(Mathf.Min(_startPosition.x, _endPosition.x), 0, Mathf.Min(_startPosition.z, _endPosition.z)); 
+            if (max.x >= _target.Position.x && _target.Position.x >= min.x)
             {
                 Debug.Log("First");
-                if (_startPosition.z >= _target.Position.z && _target.Position.z >= _endPosition.z)
+                if (max.z >= _target.Position.z && _target.Position.z >= min.z)
                 {
                     Debug.Log("Second");
                     return true;
