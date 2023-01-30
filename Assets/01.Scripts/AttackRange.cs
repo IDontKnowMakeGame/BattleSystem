@@ -26,19 +26,24 @@ public class AttackRange : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(!enemys.Contains(other.gameObject))
+        if (!enemys.Contains(other.gameObject))
+        {
             enemys.Add(other.gameObject);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (enemys.Contains(other.gameObject))
+        {
             enemys.Remove(other.gameObject);
+        }
     }
 
     public List<GameObject> AllEnemy()
     {
         List<GameObject> currentEnemys = enemys.ToList();
+
 
         return currentEnemys;
     }

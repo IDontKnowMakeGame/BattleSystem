@@ -33,8 +33,6 @@ namespace Units.Base.Player
         {
             base.Update();
             // To Do InputManager?? ???
-            if (Input.GetKeyDown(KeyCode.W))
-                Attack(Vector3.up);
         }
 
         public void Attack(float damage, bool near = false)
@@ -42,16 +40,15 @@ namespace Units.Base.Player
             ThisBase.GetBehaviour<PlayerMove>().ClearMove();
             List<UnitBase> enemys = new List<UnitBase>();
 
+            Debug.Log("§ª§ª§ª");
+
             if (near)
                enemys.Add(attackColParent.CurrntDirNearEnemy());
             else
                 enemys = attackColParent.AllCurrentDirEnemy();
 
-            foreach (UnitBase enemy in enemys)
-            {
-                Debug.Log("?");
-                enemy.GetBehaviour<UnitStat>().Damaged(1);
-            }
+            Debug.Log($"{enemys.Count}¿‘¥œ¥Ÿ");
+
         }
     }
 }
