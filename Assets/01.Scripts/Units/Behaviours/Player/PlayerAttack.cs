@@ -39,7 +39,7 @@ namespace Units.Base.Player
         {
             Debug.Log("Attack");
 
-            List<UnitBase> enemys = new List<UnitBase>();
+            List<EnemyBase> enemys = new List<EnemyBase>();
 
 
             if (near)
@@ -47,11 +47,9 @@ namespace Units.Base.Player
             else
                enemys = attackColParent.AllCurrentDirEnemy();
 
-            Debug.Log(enemys.Count + "ÀÔ´Ï´Ù¶÷Áã~");
-
-            foreach(UnitBase enemy in enemys)
+            foreach(EnemyBase enemy in enemys)
             {
-                enemy.gameObject.SetActive(false);
+                enemy.ThisStat.Damaged(100);
             }
         }
     }
