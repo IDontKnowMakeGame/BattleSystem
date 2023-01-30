@@ -34,6 +34,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             }
             yield return new WaitUntil(() => !move.IsMoving());
             ForwardAttack();
+            yield return new WaitForSeconds(3f);
             attackCheck.SetBool(false);
         }
     }
