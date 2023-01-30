@@ -37,7 +37,7 @@ namespace Units.Base.Player
         protected override void Update()
         {
             var block = Define.GetManager<MapManager>().GetBlock(Position);
-            block.GetBehaviour<BlockRender>().SetOutlineColor(Color.white);
+            block.GetBehaviour<BlockRender>().SetOutlineColor(Color.white); 
             base.Update();
         }
     }
