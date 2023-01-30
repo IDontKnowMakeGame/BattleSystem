@@ -37,9 +37,11 @@ namespace Units.Base.Player
 
         public void Attack(float damage, bool near = false)
         {
-            //ThisBase.GetBehaviour<PlayerMove>().ClearMove();
+            Debug.Log("Attack");
+
             List<UnitBase> enemys = new List<UnitBase>();
-            Debug.Log("¶§¸®±â");
+
+
             if (near)
                enemys.Add(attackColParent.CurrntDirNearEnemy());
             else
