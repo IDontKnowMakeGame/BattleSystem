@@ -24,8 +24,8 @@ namespace Units.Behaviours.Unit
 		private UnitEquiq _unitEquiq;
 		public override void Start()
 		{
-			base.Start();
 			_unitEquiq = ThisBase.GetBehaviour<UnitEquiq>();
+			base.Start();
 			changeStats = originStats;
 		}
 
@@ -36,6 +36,9 @@ namespace Units.Behaviours.Unit
 
 			if(_unitEquiq.CurrentWeapon != null)
 			{
+				Debug.Log(_unitEquiq.CurrentWeapon);
+				Debug.Log(_unitEquiq);
+				Debug.Log(_unitEquiq.CurrentWeapon.WeaponStat);
 				Weight = _unitEquiq.CurrentWeapon.WeaponStat.Weight;
 				Atk = _unitEquiq.CurrentWeapon.WeaponStat.Atk;
 			}

@@ -27,7 +27,6 @@ namespace Units.Behaviours.Unit
 					if (!isEnemy)
 					{
 						weapons[_currentWeapon].ChangeKey();
-						Debug.Log("Çה");
 					}
 
 					return weapons[_currentWeapon];

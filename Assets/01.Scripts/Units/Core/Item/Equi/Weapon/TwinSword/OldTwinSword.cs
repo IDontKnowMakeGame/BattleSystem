@@ -11,10 +11,6 @@ public class OldTwinSword : BaseTwinSword
 		base.Awake();
 		GetWeaponStateData("oldTwinSword");
 	}
-	public override void Start()
-	{
-		base.Start();
-	}
 
 	public override void ChangeKey()
 	{
