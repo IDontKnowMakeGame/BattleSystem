@@ -68,9 +68,8 @@ namespace Units.Base.Player
         public void EnqueueMove(Vector3 dir)
         {
             if (moveDir.Count > 1) return;
-            // 현재 스피드를 계산하는 식 필요
             var speed = ThisBase.GetBehaviour<UnitStat>().NowStats.Agi;
-            moveDir.Enqueue(new MoveNode(dir, speed));
+            moveDir.Enqueue(new MoveNode(dir, 1));
         }
 
         public override void Translate(Vector3 dir, float spd = 1)
