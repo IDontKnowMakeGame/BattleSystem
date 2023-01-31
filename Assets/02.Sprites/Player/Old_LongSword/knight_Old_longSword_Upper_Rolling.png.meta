@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 84abf7da35ae3144dab917e5106fa8c7
+guid: c2943b0a4352a4e48a7d0e82f994e724
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: knight_Old_longSword_Vertical_Rolling_0
+      name: knight_Old_longSword_Upper_Rolling_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 609430da7b4cc1546ba8b5fc11855de8
-      internalID: 1786040806
+      spriteID: 96db4ea31429863459756503d565e77a
+      internalID: 1126872320
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_Old_longSword_Vertical_Rolling_1
+      name: knight_Old_longSword_Upper_Rolling_1
       rect:
         serializedVersion: 2
         x: 64
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9ead931ef7c1484387f67fe4db87b38
-      internalID: 1328616705
+      spriteID: 5e9748d640534554c889133b3fa121d0
+      internalID: 246950778
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_Old_longSword_Vertical_Rolling_2
+      name: knight_Old_longSword_Upper_Rolling_2
       rect:
         serializedVersion: 2
         x: 128
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 07b5c5f9202810746b0bf88092a14ac4
-      internalID: -880898139
+      spriteID: 98e7c339022c2c64c944df671b9fd997
+      internalID: 1605120984
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_Old_longSword_Vertical_Rolling_3
+      name: knight_Old_longSword_Upper_Rolling_3
       rect:
         serializedVersion: 2
         x: 192
@@ -182,14 +182,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 528ab4d515ad3a04aa83aad1a6fc4a94
-      internalID: -688955272
+      spriteID: e4e940874bdc1bb4e9a4296686995b78
+      internalID: 1977246620
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_Old_longSword_Vertical_Rolling_4
+      name: knight_Old_longSword_Upper_Rolling_4
       rect:
         serializedVersion: 2
         x: 256
@@ -203,14 +203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f585817ccd7c1d446a9b6f56314efe21
-      internalID: -1477838670
+      spriteID: f3e7f954b4cbb824dbfd656ab158bcf1
+      internalID: 1928666234
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_Old_longSword_Vertical_Rolling_5
+      name: knight_Old_longSword_Upper_Rolling_5
       rect:
         serializedVersion: 2
         x: 320
@@ -224,14 +224,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2fa98e26aaf0fc4194e9ce187a1a2dc
-      internalID: -1892170795
+      spriteID: 016bb6da89688034b8ef26e4cc64957b
+      internalID: -1072462453
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_Old_longSword_Vertical_Rolling_6
+      name: knight_Old_longSword_Upper_Rolling_6
       rect:
         serializedVersion: 2
         x: 384
@@ -245,14 +245,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8de6a35011758a0489e77e44d7eecc4d
-      internalID: 451628436
+      spriteID: b8620ad4ebb42f243bc29a0e26825cae
+      internalID: 943843732
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_Old_longSword_Vertical_Rolling_7
+      name: knight_Old_longSword_Upper_Rolling_7
       rect:
         serializedVersion: 2
         x: 448
@@ -266,14 +266,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e025ec9fa5895a448b377d2ad1835a77
-      internalID: 372535401
+      spriteID: a6b377ab3b5a9ce41bf1715660c4cb83
+      internalID: -1757839430
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_Old_longSword_Vertical_Rolling_8
+      name: knight_Old_longSword_Upper_Rolling_8
       rect:
         serializedVersion: 2
         x: 512
@@ -287,14 +287,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbc018b16e42a524796fde5c333f5150
-      internalID: -1746493502
+      spriteID: e48213e744bd14049b5436bee14ba5ad
+      internalID: 589670281
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: knight_Old_longSword_Vertical_Rolling_9
+      name: knight_Old_longSword_Upper_Rolling_9
       rect:
         serializedVersion: 2
         x: 576
@@ -308,8 +308,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 212acfb8370877c438615798aeda0d42
-      internalID: 1726322404
+      spriteID: 65b5bd50543c25f48aa7ba1ceefce8d9
+      internalID: -1538952859
       vertices: []
       indices: 
       edges: []
@@ -317,7 +317,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: aed908563834e8541aa0e238b4b920c8
+    spriteID: 6e18c28d55963b947895fcf12bbaadbb
     internalID: 0
     vertices: []
     indices: 
@@ -325,16 +325,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      knight_Old_longSword_Vertical_Rolling_8: -1746493502
-      knight_Old_longSword_Vertical_Rolling_4: -1477838670
-      knight_Old_longSword_Vertical_Rolling_6: 451628436
-      knight_Old_longSword_Vertical_Rolling_9: 1726322404
-      knight_Old_longSword_Vertical_Rolling_5: -1892170795
-      knight_Old_longSword_Vertical_Rolling_3: -688955272
-      knight_Old_longSword_Vertical_Rolling_0: 1786040806
-      knight_Old_longSword_Vertical_Rolling_2: -880898139
-      knight_Old_longSword_Vertical_Rolling_1: 1328616705
-      knight_Old_longSword_Vertical_Rolling_7: 372535401
+      knight_Old_longSword_Upper_Rolling_2: 1605120984
+      knight_Old_longSword_Upper_Rolling_9: -1538952859
+      knight_Old_longSword_Upper_Rolling_4: 1928666234
+      knight_Old_longSword_Upper_Rolling_0: 1126872320
+      knight_Old_longSword_Upper_Rolling_1: 246950778
+      knight_Old_longSword_Upper_Rolling_5: -1072462453
+      knight_Old_longSword_Upper_Rolling_8: 589670281
+      knight_Old_longSword_Upper_Rolling_3: 1977246620
+      knight_Old_longSword_Upper_Rolling_7: -1757839430
+      knight_Old_longSword_Upper_Rolling_6: 943843732
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
