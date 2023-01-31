@@ -34,7 +34,6 @@ public class BaseSpear : Weapon
 		base.Update();
 		if (_isAttack && InGame.GetUnit(_thisBase.Position + _currentAttackPos) != null && isOut && !_thisBase.State.HasFlag(BaseState.Moving))
 		{
-			Debug.Log("¶§¸®±â");
 			isOut = false;
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
 		}

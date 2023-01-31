@@ -56,7 +56,7 @@ namespace Managements.Managers
 
         public void Damage(Vector3 pos, float damage, float delay = 0.5f,Action action = null, UnitBase attack = null)
         {
-            Instance.StartCoroutine(DamageBlockCoroutine(pos, damage, delay, action, attack)
+            Instance.StartCoroutine(DamageBlockCoroutine(pos, damage, delay, action, attack));
         }
 
         public void RangeOn(Vector3 pos,Color color)
