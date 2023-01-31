@@ -59,6 +59,24 @@ namespace Managements.Managers
             Instance.StartCoroutine(DamageBlockCoroutine(pos, damage, delay, action));
         }
 
+        public void RangeOn(Vector3 pos,Color color)
+		{
+            var block = GetBlock(pos);
+            if (block == null)
+                return;
+            var render = block.GetBehaviour<BlockRender>();
+            render.SetMainColor(color);
+        }
+
+        public void RangeOff(Vector3 pos)
+        {
+            var block = GetBlock(pos);
+            if (block == null)
+                return;
+            var render = block.GetBehaviour<BlockRender>();
+            render.SetMainColor(Color.black);
+        }
+
         private bool DamageBlock(Vector3 pos, float damage)
         {
             var block = GetBlock(pos);
