@@ -60,6 +60,7 @@ namespace Units.Behaviours.Unit
 
         public void ChangeState(int value)
         {
+            isFinished = false;
             state = value;
             index = 0;
             time = 0f;
