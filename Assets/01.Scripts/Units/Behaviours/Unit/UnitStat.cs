@@ -26,7 +26,7 @@ namespace Units.Behaviours.Unit
 		{
 			_unitEquiq = ThisBase.GetBehaviour<UnitEquiq>();
 			base.Start();
-			changeStats = originStats;
+			changeStats.Set(OriginStats);
 		}
 
 		protected virtual void ChangeStats()
@@ -76,6 +76,14 @@ namespace Units.Behaviours.Unit
 				Die();
 				return;
 			}
+
+			if(Core.InGame.BossBase == this.ThisBase)
+            {
+				EventParam param = new EventParam();
+				param.floatParam = changeStats.Hp / originStats.Hp;
+				EventManager.TriggerEvent(EventFlag.AddBossHP, param);
+            }
+
 		}
 
 		public virtual void Die()

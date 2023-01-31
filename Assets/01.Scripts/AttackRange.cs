@@ -24,6 +24,13 @@ public class AttackRange : MonoBehaviour
     {
         enemys = new HashSet<GameObject>();
     }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.N))
+            Debug.Log($"적이 {enemys.Count}남아있습니다.");
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy") && !enemys.Contains(other.gameObject))

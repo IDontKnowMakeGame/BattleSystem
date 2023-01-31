@@ -5,7 +5,10 @@ using System;
 public enum EventFlag
 {
     ShowBossHP,
-    AddBossHP
+    AddBossHP,
+    WeaponEquip,
+    WeaponUnmount,
+    WeaponSwap
 }
 public class EventManager
 {
@@ -51,6 +54,7 @@ public class EventManager
 public struct EventParam
 {
     public Vector2Int vectorParam;
+    public string stringParam;
     public float floatParam;
     public bool boolParam;
 }

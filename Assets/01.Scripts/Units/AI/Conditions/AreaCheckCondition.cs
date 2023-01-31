@@ -15,6 +15,7 @@ namespace Unit.Enemy.AI.Conditions
                 Debug.Log("First");
                 if (max.z >= _target.Position.z && _target.Position.z >= min.z)
                 {
+                    EventManager.TriggerEvent(EventFlag.ShowBossHP, new EventParam());
                     Debug.Log("Second");
                     return true;
                 }

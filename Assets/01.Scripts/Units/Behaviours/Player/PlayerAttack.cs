@@ -47,6 +47,9 @@ namespace Units.Base.Player
             else
                enemys = attackColParent.AllCurrentDirEnemy();
 
+            Debug.Log(enemys.Count + "ÀÔ´Ï´Ù..");
+
+
             if (enemys.Count > 0)
                 ThisBase.StartCoroutine(cameraZoom.ZoomInOut(1f));
 

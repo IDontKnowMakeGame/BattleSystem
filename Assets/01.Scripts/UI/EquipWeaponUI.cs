@@ -27,10 +27,15 @@ public class EquipWeaponUI : MonoBehaviour
         Debug.Log($"{data.firstWeapon} + {data.secondWeapon}");
         _firstWeaponImage.sprite = GameManagement.Instance.GetManager<ResourceManagers>().Load<Sprite>($"{_firstWeapon}");
         _secondWeaponImage.sprite = GameManagement.Instance.GetManager<ResourceManagers>().Load<Sprite>($"{_secondWeapon}");
+
+        EventManager.StartListening(EventFlag.WeaponEquip, Equip);
+        EventManager.StartListening(EventFlag.WeaponUnmount, Unmount);
+        EventManager.StartListening(EventFlag.WeaponSwap, Swap);
     }
 
-    public void EquipWeapon(string name)
+    public void Equip(EventParam param)
     {
+        string name = param.stringParam;
         if (_firstWeapon == name || _secondWeapon == name) return;
 
         if (_firstWeapon == null)
@@ -44,10 +49,10 @@ public class EquipWeaponUI : MonoBehaviour
         }
         SaveWeaponData();
     }
-
-    public void Unmount(string name)
+    public void Unmount(EventParam param)
     {
-        if(_firstWeapon == name)
+        string name = param.stringParam;
+        if (_firstWeapon == name)
         {
             _firstWeapon = null;
             _firstWeaponImage.sprite = null;
@@ -56,6 +61,18 @@ public class EquipWeaponUI : MonoBehaviour
             _secondWeapon = null;
             _secondWeaponImage.sprite = null;
         }
+        SaveWeaponData();
+    }
+    public void Swap(EventParam param)
+    {
+        Sprite sprite = _firstWeaponImage.sprite;
+        _firstWeaponImage.sprite = _secondWeaponImage.sprite;
+        _secondWeaponImage.sprite = sprite;
+
+        string name = _firstWeapon;
+        _firstWeapon = _secondWeapon;
+        _secondWeapon = name;
+
         SaveWeaponData();
     }
 
