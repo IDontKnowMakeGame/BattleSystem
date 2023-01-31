@@ -42,6 +42,7 @@ namespace Unit.Core.Weapon
         public bool isSkill = false;
 
 		protected bool _isEnemy = true;
+
 		public override void Start()
 		{
 			//여기서 다 받아주고
