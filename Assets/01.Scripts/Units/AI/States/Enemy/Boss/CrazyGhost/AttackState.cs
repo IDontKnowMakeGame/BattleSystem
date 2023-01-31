@@ -52,7 +52,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
                 for (var j = -range; j <= range; j++)
                 {
                     var dir = Quaternion.Euler(0, -angle, 0) * new Vector3(i, 0, j);
-                    map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red);
+                    map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red, InGame.BossBase);
                 }
             }
         }
@@ -64,7 +64,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             for (var i = -1; i <= 1; i++)
             {
                 var dir = Quaternion.Euler(0, -angle, 0) * new Vector3(i, 0, 1);
-                map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red);
+                map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red, InGame.BossBase);
             }
         }
 
@@ -76,13 +76,13 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             for (var i = -1; i <= 1; i++)
             {
                 dir = Quaternion.Euler(0, -angle, 0) * new Vector3(i, 0, 1);
-                map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red);
+                map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red, InGame.BossBase);
             }
             dir = Quaternion.Euler(0, -angle, 0) * new Vector3(1, 0, 0);
-            map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red);
+            map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red, InGame.BossBase);
             
             dir = Quaternion.Euler(0, -angle, 0) * new Vector3(-1, 0, 0);
-            map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red);
+            map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red, InGame.BossBase);
         }
         
         protected void BeamAttack()
@@ -105,7 +105,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
                     var dir2 = Quaternion.Euler(0, -angle, 0) * new Vector3(j, 0, -1);
                     dir2.x = Mathf.Round(dir2.x);
                     dir2.z = Mathf.Round(dir2.z);
-                    map.Damage((InGame.BossBase.Position + dir * i) + dir2, damage * 2, 0.5f, Color.red);
+                    map.Damage((InGame.BossBase.Position + dir * i) + dir2, damage * 2, 0.5f, Color.red, InGame.BossBase);
                 }
             }
         }

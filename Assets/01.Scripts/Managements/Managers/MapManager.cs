@@ -49,17 +49,17 @@ namespace Managements.Managers
             return neighbors;
         }
 
-        public void Damage(Vector3 pos, float damage, float delay = 0.5f, Color color = new())
+        public void Damage(Vector3 pos, float damage, float delay = 0.5f, Color color = new(), UnitBase attack = null)
         {
-            Instance.StartCoroutine(DamageBlockCoroutine(pos, damage, delay, color));
+            Instance.StartCoroutine(DamageBlockCoroutine(pos, damage, delay, color, attack));
         }
 
-        public void Damage(Vector3 pos, float damage, float delay = 0.5f,Action action = null)
+        public void Damage(Vector3 pos, float damage, float delay = 0.5f,Action action = null, UnitBase attack = null)
         {
-            Instance.StartCoroutine(DamageBlockCoroutine(pos, damage, delay, action));
+            Instance.StartCoroutine(DamageBlockCoroutine(pos, damage, delay, action, attack)
         }
 
-        private bool DamageBlock(Vector3 pos, float damage)
+        private bool DamageBlock(Vector3 pos, float damage, UnitBase attack = null)
         {
             var block = GetBlock(pos);
             if(block == null)
@@ -67,14 +67,15 @@ namespace Managements.Managers
             var target = block.GetUnit();
             if (target == null)
                 return false;
-            if (target.GetType().BaseType == typeof(EnemyBase))
-                return false;
+            if(attack != null)
+                if (target.GetType() == attack.GetType())
+                    return false;
             var targetStat = target.GetBehaviour<UnitStat>();
             targetStat.Damaged(damage);
             return true;
         }
         
-        private IEnumerator DamageBlockCoroutine(Vector3 pos, float damage, float delay = 0.5f, Color color = new())
+        private IEnumerator DamageBlockCoroutine(Vector3 pos, float damage, float delay = 0.5f, Color color = new(), UnitBase attack = null)
         {
             var block = GetBlock(pos);
             if (block == null)
@@ -85,10 +86,10 @@ namespace Managements.Managers
             render.DOSetMainColor(color, delay);
             yield return new WaitForSeconds(delay);
             render.SetMainColor(Color.black);
-            DamageBlock(pos, damage);
+            DamageBlock(pos, damage, attack);
         }
 
-        private IEnumerator DamageBlockCoroutine(Vector3 pos, float damage, float delay = 0.5f,Action action = null)
+        private IEnumerator DamageBlockCoroutine(Vector3 pos, float damage, float delay = 0.5f,Action action = null, UnitBase attack = null)
         {
             var block = GetBlock(pos);
             if (block == null)
@@ -99,7 +100,7 @@ namespace Managements.Managers
             render.DOSetMainColor(Color.red, delay);
             yield return new WaitForSeconds(delay);
             render.SetMainColor(Color.black);
-            DamageBlock(pos, damage);
+            DamageBlock(pos, damage, attack);
             action?.Invoke();
         }
     }
