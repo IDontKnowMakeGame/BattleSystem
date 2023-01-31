@@ -32,6 +32,11 @@ namespace Units.Base.Player
         [SerializeField]
         private Vector3 spawnPos;
 
+        private Transform sprite;
+
+        private UnitAnimation unitAnimation;
+
+
         public override void Awake()
         {
             base.Awake();
@@ -43,6 +48,9 @@ namespace Units.Base.Player
             Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.DownMove, InputStatus.Press, () => EnqueueMove(Vector3.back));
             Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.LeftMove, InputStatus.Press, () => EnqueueMove(Vector3.left));
             Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.RightMove, InputStatus.Press, () => EnqueueMove(Vector3.right));
+
+            sprite = ThisBase.GetComponentInChildren<MeshRenderer>().transform;
+            unitAnimation = ThisBase.GetBehaviour<UnitAnimation>();
 
             SpawnSetting();
         }
@@ -90,7 +98,7 @@ namespace Units.Base.Player
                 dir.z = dir.z * playerDir.z;
             }
             
-            MoveTo(ThisBase.Position + dir* distance, spd);
+            MoveTo(ThisBase.Position + dir * distance, spd);
         }
 
         public override void MoveTo(Vector3 pos, float spd = 1)
@@ -103,6 +111,8 @@ namespace Units.Base.Player
             
             _seq = DOTween.Sequence();
             isMoving = true;
+            MoveAnimation(nextPos - orignalPos);
+                
 
             var distance = Vector3.Distance(ThisBase.Position, nextPos);
             if (distance < 0.1f)
@@ -148,7 +158,7 @@ namespace Units.Base.Player
         {
             if (moveDir.Count == 0)
             {
-                
+                unitAnimation.state = 0;
             }
         }
 
@@ -167,6 +177,38 @@ namespace Units.Base.Player
             {
                 if (heading.z >= 0) playerDir = Vector3.forward;
                 else playerDir = Vector3.back;
+            }
+        }
+
+        private void MoveAnimation(Vector3 dir)
+        {
+            dir.y = 0;
+
+            if (sprite == null)
+                Debug.LogError("Sprite is null.");
+            if(unitAnimation == null)
+                Debug.LogError("UnitAnimation is null.");
+
+            if(dir == Vector3.left)
+            {
+                sprite.localScale = new Vector3(-1,1,1);
+                unitAnimation.state = 1;
+            }
+            else if(dir == Vector3.right)
+            {
+                sprite.localScale = new Vector3(1, 1, 1);
+                unitAnimation.state = 1;
+            }
+            else if(dir == Vector3.forward)
+            {
+                sprite.localScale = new Vector3(1, 1, 1);
+                unitAnimation.state = 2;
+            }
+            else if(dir == Vector3.back)
+            {
+                Debug.Log("back");
+                sprite.localScale = new Vector3(1, 1, 1);
+                unitAnimation.state = 3;
             }
         }
     }
