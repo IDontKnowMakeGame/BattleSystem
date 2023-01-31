@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using Core;
+using Managements.Managers;
 using Units.Base.Enemy;
 using Units.Behaviours.Unit;
 using UnityEngine;
@@ -16,7 +18,15 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             nextDir.Normalize();
             nextDir.x = Mathf.Round(nextDir.x);
             nextDir.z = Mathf.Round(nextDir.z);
-            move.Translate(-nextDir * 3, 1);
+            var nextPos = ThisBase.Position - nextDir * 3;
+            var dis = 3;
+            var map = Define.GetManager<MapManager>();
+            while (map.GetBlock(nextPos) == null)
+            {
+                dis--;
+                nextPos = ThisBase.Position - nextDir * dis;
+            }
+            move.Translate(-nextDir * dis, 1);
             yield return new WaitUntil(() => !move.IsMoving());
             yield return new WaitForSeconds(weaponStat.Ats);
             BeamAttack();
