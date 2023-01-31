@@ -24,7 +24,8 @@ public class BaseStraightSword : Weapon
 		_playerAttack.AttackColParent.ChangeSizeX(1);
 		_playerAttack.AttackColParent.EnableDir(_playerAttack.AttackColParent.DirReturn(vec));
 		_playerAttack.Attack(_unitStat.NowStats.Atk);
-		_playerAttack.AttackColParent.AllDisableDir();
+		_playerAttack.AttackColParent.AllEnableDir();
+		_playerAttack.AttackColParent.ChangeWeapon();
 		//_playerAttack.AttackColParent.AllDisableDir();
 	}
 }

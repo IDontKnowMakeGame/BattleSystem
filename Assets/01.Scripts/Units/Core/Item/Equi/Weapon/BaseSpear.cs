@@ -5,6 +5,7 @@ using Unit.Core.Weapon;
 using Managements.Managers;
 using Core;
 using Units.Base.Unit;
+using Managements;
 public class BaseSpear : Weapon
 {
 	protected bool _isAttack = false;
@@ -20,17 +21,19 @@ public class BaseSpear : Weapon
 		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.S);
 		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.A);
 		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.D);
+
+		_inputManager.AddInGameAction(InputTarget.UpMove, InputStatus.Press, RangeOff);
+		_inputManager.AddInGameAction(InputTarget.DownMove, InputStatus.Press, RangeOff);
+		_inputManager.AddInGameAction(InputTarget.LeftMove, InputStatus.Press, RangeOff);
+		_inputManager.AddInGameAction(InputTarget.RightMove, InputStatus.Press, RangeOff);
+		_unitMove.onBehaviourEnd = RangeOn;
 	}
 
 	public override void Update()
 	{
 		base.Update();
-		//Debug.Log(InGame.GetUnit(_thisBase.Position + _currentAttackPos));
-		//Debug.Log(isOut);
-		//Debug.Log(_isAttack);
 		if (_isAttack && InGame.GetUnit(_thisBase.Position + _currentAttackPos) != null && isOut && !_thisBase.State.HasFlag(BaseState.Moving))
 		{
-			Debug.Log("¶§¸®±â");
 			isOut = false;
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
 		}
@@ -66,6 +69,16 @@ public class BaseSpear : Weapon
 		_playerAttack.AttackColParent.ChangeSizeX(1);
 		_playerAttack.AttackColParent.EnableDir(_playerAttack.AttackColParent.DirReturn(_currentAttackPos));
 		_playerAttack.Attack(_unitStat.NowStats.Atk);
+	}
+
+	private void RangeOff()
+	{
+		GameManagement.Instance.GetManager<MapManager>().RangeOff(_thisBase.Position + _currentAttackPos);
+	}
+
+	private void RangeOn()
+	{
+		GameManagement.Instance.GetManager<MapManager>().RangeOn(_thisBase.Position + _currentAttackPos, Color.green);
 	}
 	public override void Reset()
 	{
