@@ -1,5 +1,6 @@
 ﻿using Core;
 using DG.Tweening;
+using Managements.Managers;
 using Units.Behaviours.Unit;
 using UnityEngine;
 
@@ -10,12 +11,15 @@ namespace Units.Base.Enemy
         protected bool IsFloating = false;
         public override void MoveTo(Vector3 pos, float spd = 1)
         {
+            var map = Define.GetManager<MapManager>();
+            if (map.GetBlock(pos) == null)
+                return;
+            if (InGame.GetUnit(pos) != null)
+                return;
             if (isMoving)
             {
                 return;
             }
-            if (InGame.GetUnit(pos) != null)
-                return;
             var nextPos = pos;
             var originPos = ThisBase.Position;
             nextPos.y = 1;
@@ -49,6 +53,9 @@ namespace Units.Base.Enemy
 
         public void JumpTo(Vector3 pos, float pow = 1, float spd = 1)
         {
+            var map = Define.GetManager<MapManager>();
+            if (map.GetBlock(pos) == null)
+                return;
             if (InGame.GetUnit(pos) != null)
                 return;
             var nextPos = pos;
