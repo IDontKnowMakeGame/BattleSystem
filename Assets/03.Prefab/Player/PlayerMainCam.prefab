@@ -162,6 +162,7 @@ GameObject:
   - component: {fileID: 57911751932573268}
   - component: {fileID: 57911751932573269}
   - component: {fileID: 57911751932573271}
+  - component: {fileID: 2242452035319382347}
   m_Layer: 0
   m_Name: PlayerMainCam
   m_TagString: Untagged
@@ -246,3 +247,18 @@ MonoBehaviour:
     m_FrequencyGain: 1
     m_Duration: 1
     m_NoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!114 &2242452035319382347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57911751932573266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64956864aef51994e8cc0650c4fecbc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothTime: 0.2
+  minSize: 40
+  maxSize: 60

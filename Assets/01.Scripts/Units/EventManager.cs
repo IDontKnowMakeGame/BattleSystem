@@ -2,11 +2,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+public enum EventFlag
+{
+    ShowBossHP,
+    AddBossHP
+}
 public class EventManager
 {
-    private static Dictionary<string, Action<EventParam>> eventDictionary = new Dictionary<string, Action<EventParam>>();
+    private static Dictionary<EventFlag, Action<EventParam>> eventDictionary = new Dictionary<EventFlag, Action<EventParam>>();
 
-    public static void StartListening(string eventName, Action<EventParam> listener)
+    public static void StartListening(EventFlag eventName, Action<EventParam> listener)
     {
         Action<EventParam> thisEvent;
         if (eventDictionary.TryGetValue(eventName, out thisEvent))
@@ -20,7 +25,7 @@ public class EventManager
         }
     }
 
-    public static void StopListening(string eventName, Action<EventParam> listener)
+    public static void StopListening(EventFlag eventName, Action<EventParam> listener)
     {
         Action<EventParam> thisEvent;
         if (eventDictionary.TryGetValue(eventName, out thisEvent))
@@ -34,7 +39,7 @@ public class EventManager
         }
     }
 
-    public static void TriggerEvent(string eventName, EventParam eventParam)
+    public static void TriggerEvent(EventFlag eventName, EventParam eventParam)
     {
         Action<EventParam> thisEvent;
         if (eventDictionary.TryGetValue(eventName, out thisEvent))
@@ -46,6 +51,7 @@ public class EventManager
 public struct EventParam
 {
     public Vector2Int vectorParam;
+    public float floatParam;
     public bool boolParam;
 }
 

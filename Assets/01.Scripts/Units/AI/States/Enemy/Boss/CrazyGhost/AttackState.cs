@@ -102,13 +102,9 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             {
                 for(var j = -1; j <= 1; j++)
                 {
-                    var dir2 = Quaternion.Euler(0, -angle, 0) * new Vector3(j, 0, 0);
-                    Debug.Log(angle % 90);  
-                    if (angle % 90 != 0)
-                    {
-                        dir2.x = Mathf.Floor(dir2.x);
-                        dir2.z = Mathf.Floor(dir2.z);
-                    }
+                    var dir2 = Quaternion.Euler(0, -angle, 0) * new Vector3(j, 0, -1);
+                    dir2.x = Mathf.Round(dir2.x);
+                    dir2.z = Mathf.Round(dir2.z);
                     map.Damage((InGame.BossBase.Position + dir * i) + dir2, damage * 2, 0.5f, Color.red);
                 }
             }

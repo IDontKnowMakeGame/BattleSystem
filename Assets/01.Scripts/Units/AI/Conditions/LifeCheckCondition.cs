@@ -15,7 +15,7 @@ namespace Unit.Enemy.AI.Conditions
 
         protected override bool CheckConditionInternal()
         {
-            return _targetStat.NowStats.Hp <= 0;
+            return _targetStat.NowStats.Hp <= _targetLife;
         }
     }
 }

@@ -8,8 +8,14 @@ namespace Units.Behaviours.Unit
     [System.Serializable]
     public class UnitAnimation : Behaviour
     {
-        
-        public List<AnimeClip> clips = new();
+
+        public Clips clips;
+
+        [Header("WeaponClips[WeaponType 순서대로 넣기]")]
+        [SerializeField]
+        private List<Clips> weaponClips;
+
+        private Clips basicClips;
         private int index = 0;
         private float time = 0f;
         private bool isFinished = false;
@@ -20,24 +26,30 @@ namespace Units.Behaviours.Unit
         public override void Start()
         {
             material = renderer.material;
+
+            if(clips != null)
+            {
+                basicClips = clips;
+            }
         }
 
         public override void Update()
         {
-            if (isFinished && !clips[state].isLoop) return;
+            List<AnimeClip> _clips = clips.clips;
+            if (isFinished && !_clips[state].isLoop) return;
             isFinished = false;
             time += Time.deltaTime;
 
-            if (time >= clips[state].delay)
+            if (time >= _clips[state].delay)
             {
                 time = 0f;
-                index = (index + 1) % clips[state].fps;
+                index = (index + 1) % _clips[state].fps;
 
-                var offset = ((float)clips[state].texture.width / clips[state].fps) / clips[state].texture.width;
-                material.SetTexture("_BaseMap", clips[state].texture);
+                var offset = ((float)_clips[state].texture.width / _clips[state].fps) / _clips[state].texture.width;
+                material.SetTexture("_BaseMap", _clips[state].texture);
                 material.SetTextureOffset("_BaseMap", Vector2.right * (offset * index));
                 material.SetTextureScale("_BaseMap", new Vector2(offset, 1f));
-                material.SetTexture("_MainTex", clips[state].texture);
+                material.SetTexture("_MainTex", _clips[state].texture);
                 material.SetTextureOffset("_MainTex", Vector2.right * (offset * index));
                 material.SetTextureScale("_MainTex", new Vector2(offset, 1f));
                 renderer.material = material;
@@ -52,5 +64,11 @@ namespace Units.Behaviours.Unit
             index = 0;
             time = 0f;
         }
+
+        public void ChangeClips(Clips changeClips)
+        {
+            clips = changeClips;
+        }
+
     }
 }

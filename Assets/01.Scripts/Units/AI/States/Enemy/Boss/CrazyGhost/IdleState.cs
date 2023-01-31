@@ -19,7 +19,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             timeCheck._logicCondition = true;
             var areaCheck = new AreaCheckCondition();
             areaCheck.SetUnits(InGame.PlayerBase, null);
-            areaCheck.SetArea(Vector3.one, -Vector3.one);
+            areaCheck.SetArea(new Vector3(18, 0, -18),new Vector3(0,0,0));
             areaCheck.SetResult(true);
             areaCheck._logicCondition = true;
             toChase.AddCondition(areaCheck);  
