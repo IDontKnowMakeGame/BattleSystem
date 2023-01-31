@@ -39,7 +39,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
         protected override void OnEnter()
         {
             random = Random.Range(0, _commonConditions.Count);
-            random = 1;
+            //random = 1;
             _commonConditions[random].SetBool(true);
         }
 

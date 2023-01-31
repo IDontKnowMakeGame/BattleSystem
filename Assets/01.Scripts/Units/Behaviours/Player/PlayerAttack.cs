@@ -23,6 +23,7 @@ namespace Units.Base.Player
             }
         }
 
+
         public override void Start()
         {
             base.Start();
@@ -37,6 +38,7 @@ namespace Units.Base.Player
 
         public void Attack(float damage, bool near = false)
         {
+
             List<EnemyBase> enemys = new List<EnemyBase>();
 
             if (near)
