@@ -10,7 +10,8 @@ namespace Managements.Managers
 	{
 		Press,
 		Hold,
-		Release
+		Release,
+		Invokeee
 	}
 
 	public enum InputTarget
@@ -26,7 +27,10 @@ namespace Managements.Managers
 		Skill,
 		ChangeWeapon,
 		TestChangeWeapon,
-		WeaponOnOff
+		WeaponOnOff,
+		ShowBossHP,
+		AddBossHP,
+		SubBossHP
 	}
 
 	public class Input
@@ -72,9 +76,15 @@ namespace Managements.Managers
 			InitInGameInput(InputTarget.ChangeWeapon, KeyCode.R );
 			InitInGameInput(InputTarget.TestChangeWeapon, KeyCode.T );
 			InitInGameInput(InputTarget.WeaponOnOff, KeyCode.Q );
-		}
 
-		public void InitInGameInput(InputTarget target, KeyCode keyCode)
+            #region UI
+            InitInGameInput(InputTarget.ShowBossHP, KeyCode.None);
+			InitInGameInput(InputTarget.AddBossHP, KeyCode.None);
+			InitInGameInput(InputTarget.SubBossHP, KeyCode.None);
+            #endregion
+        }
+
+        public void InitInGameInput(InputTarget target, KeyCode keyCode)
 		{
 			var input = new Input() { KeyCode = keyCode, Actions = { null, null, null }};
 			_inGameInputs.Add(target, input);
