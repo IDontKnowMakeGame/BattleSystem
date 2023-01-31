@@ -9,6 +9,10 @@ namespace Units.Base.Player
 	public class PlayerEqiq : UnitEquiq
 	{
 		private int count;
+
+		private UnitAnimation unitAnimation;
+		private AnimationClip animationClip;
+
 		public override void Awake()
 		{
 			base.Awake();
@@ -17,6 +21,10 @@ namespace Units.Base.Player
 		}
 		public override void Start()
 		{
+			unitAnimation = ThisBase.GetBehaviour<UnitAnimation>();
+			animationClip = ThisBase.GetComponent<AnimationClip>();
+			unitAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
+
 			Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.TestChangeWeapon, InputStatus.Press, TestChangeWeapon);
 			Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.ChangeWeapon, InputStatus.Press, ChangeWeapon);
 			Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.WeaponOnOff, InputStatus.Press, WeaponOnOff);
@@ -35,6 +43,8 @@ namespace Units.Base.Player
 			string temp = _currentWeapon;
 			_currentWeapon = _secoundWeapon;
 			_secoundWeapon = temp;
+
+			unitAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
 		}
 		private void TestChangeWeapon()
 		{

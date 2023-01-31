@@ -10,6 +10,7 @@ namespace Units.Behaviours.Unit
 	{
 		[SerializeField]
 		protected string _currentWeapon;
+
 		[SerializeField]
 		protected string _secoundWeapon;
 
@@ -82,5 +83,15 @@ namespace Units.Behaviours.Unit
 				value?.Update();
 			}
 		}
+
+		public int WeaponAnimation()
+        {
+			if (_currentWeapon == "oldSword")
+				return 0;
+			else if (_currentWeapon == "oldTwinSword")
+				return 1;
+			else
+				return -1;
+        }
 	}
 }
