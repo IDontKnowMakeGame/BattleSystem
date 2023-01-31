@@ -52,6 +52,7 @@ namespace Core
         {
             pos.y = 0;
             var block = Define.GetManager<MapManager>().GetBlock(pos);
+            
             block.UnitOnBlock(unit);
         }
     }

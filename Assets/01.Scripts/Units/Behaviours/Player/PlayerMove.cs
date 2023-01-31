@@ -7,6 +7,7 @@ using Units.Behaviours.Unit;
 using DG.Tweening;
 using Managements.Managers;
 using Units.Base.Unit;
+using Unity.Burst.Intrinsics;
 
 struct MoveNode
 {
@@ -103,8 +104,18 @@ namespace Units.Base.Player
 
         public override void MoveTo(Vector3 pos, float spd = 1)
         {
-            if (InGame.GetUnit(pos) != null)
+            var map = Define.GetManager<MapManager>();
+            if (map.GetBlock(pos) == null)
+            {
+                unitAnimation.state = 0;
                 return;
+            }
+
+            if (InGame.GetUnit(pos) != null)
+            { 
+                unitAnimation.state = 0;
+                return;
+            }
             var nextPos = pos;
             var orignalPos = ThisBase.Position;
             nextPos.y = 1;
