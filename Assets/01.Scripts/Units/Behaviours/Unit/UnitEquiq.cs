@@ -34,6 +34,7 @@ namespace Units.Behaviours.Unit
 				}
 			}
 		}
+
 		private string _beforeWeaponType;
 
 		public Dictionary<string, Weapon> weapons = new Dictionary<string, Weapon>();

@@ -6,10 +6,13 @@ using Managements.Managers;
 using Units.Base.Unit;
 public class OldTwinSword : BaseTwinSword
 {
+	float _freezeTime;
 	public override void Awake()
 	{
 		base.Awake();
 		GetWeaponStateData("oldTwinSword");
+		_maxTime = OldTwinSwordData.coolTime;
+		_freezeTime = OldTwinSwordData.freeze;
 	}
 
 	public override void ChangeKey()
@@ -41,7 +44,7 @@ public class OldTwinSword : BaseTwinSword
 		_isCoolTime = true;
 		for (int i = 0; i < 6; i++)
 		{
-			Define.GetManager<MapManager>().Damage(_thisBase.Position+dir,_unitStat.NowStats.Atk,0.5f,waitReset);
+			Define.GetManager<MapManager>().Damage(_thisBase.Position+dir,_unitStat.NowStats.Atk, _freezeTime, waitReset, InGame.PlayerBase);
 		}
 	}
 

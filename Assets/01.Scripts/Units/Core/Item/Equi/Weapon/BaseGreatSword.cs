@@ -37,15 +37,15 @@ public class BaseGreatSword : Weapon
 		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => Attack(Vector3.left));
 		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Press, () => Attack(Vector3.right));
 
-		_inputManager.ChangeInGameAction(InputTarget.UpAttack, InputStatus.Hold, () => Attack(Vector3.forward));
-		_inputManager.ChangeInGameAction(InputTarget.DownAttack, InputStatus.Hold, () => Attack(Vector3.back));
-		_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Hold, () => Attack(Vector3.left));
-		_inputManager.ChangeInGameAction(InputTarget.RightAttack, InputStatus.Hold, () => Attack(Vector3.right));
+		_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Hold, () => Attack(Vector3.forward));
+		_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Hold, () => Attack(Vector3.back));
+		_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Hold, () => Attack(Vector3.left));
+		_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Hold, () => Attack(Vector3.right));
 
-		_inputManager.ChangeInGameAction(InputTarget.UpAttack, InputStatus.Release, () => AttackUP());
-		_inputManager.ChangeInGameAction(InputTarget.DownAttack, InputStatus.Release, () => AttackUP());
-		_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Release, () => AttackUP());
-		_inputManager.ChangeInGameAction(InputTarget.RightAttack, InputStatus.Release, () => AttackUP());
+		_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Release, () => AttackUP());
+		_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Release, () => AttackUP());
+		_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Release, () => AttackUP());
+		_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Release, () => AttackUP());
 	}
 	private void Move()
 	{
@@ -86,7 +86,6 @@ public class BaseGreatSword : Weapon
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
 			_playerAttack.AttackColParent.ChangeWeapon();
 			_playerAttack.AttackColParent.AllEnableDir();
-			Debug.Log("¿Ó");
 			_chargeTime = 0;
 		}
 		else

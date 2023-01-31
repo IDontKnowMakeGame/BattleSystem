@@ -60,15 +60,10 @@ namespace Unit.Core.Weapon
 
 		public virtual void ChangeKey()
 		{
-			_inputManager.ClearInGameAction(InputTarget.UpAttack);
-			_inputManager.ClearInGameAction(InputTarget.DownAttack);
-			_inputManager.ClearInGameAction(InputTarget.LeftAttack);
-			_inputManager.ClearInGameAction(InputTarget.RightAttack);
-
-			_inputManager.ChangeInGameAction(InputTarget.UpAttack, InputStatus.Press, () => Attack(Vector3.forward));
-			_inputManager.ChangeInGameAction(InputTarget.DownAttack, InputStatus.Press, () => Attack(Vector3.back));
-			_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => Attack(Vector3.left));
-			_inputManager.ChangeInGameAction(InputTarget.RightAttack, InputStatus.Press, () => Attack(Vector3.right));
+			_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Press, () => Attack(Vector3.forward));
+			_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Press, () => Attack(Vector3.back));
+			_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => Attack(Vector3.left));
+			_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Press, () => Attack(Vector3.right));
 			_playerAttack.AttackColParent.ChangeWeapon();
 		}
 
@@ -106,7 +101,10 @@ namespace Unit.Core.Weapon
 
 		public virtual void Reset()
 		{
-
+			_inputManager.ClearInGameAction(InputTarget.UpAttack);
+			_inputManager.ClearInGameAction(InputTarget.DownAttack);
+			_inputManager.ClearInGameAction(InputTarget.LeftAttack);
+			_inputManager.ClearInGameAction(InputTarget.RightAttack);
 		}
 	}
 }

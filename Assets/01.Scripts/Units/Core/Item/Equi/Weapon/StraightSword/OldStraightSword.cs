@@ -11,6 +11,7 @@ public class OldStraightSword : BaseStraightSword
 	{
 		base.Awake();
 		GetWeaponStateData("oldSword");
+		_maxTime = OldLongSwordData.coolTime;
 	}
 	public override void Start()
 	{

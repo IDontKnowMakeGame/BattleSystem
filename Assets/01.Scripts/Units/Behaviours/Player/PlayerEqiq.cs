@@ -45,6 +45,7 @@ namespace Units.Base.Player
 			_secoundWeapon = temp;
 
 			unitAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
+			CurrentWeapon.Reset();
 		}
 		private void TestChangeWeapon()
 		{

@@ -22,30 +22,30 @@ public class BaseSpear : Weapon
 		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.A);
 		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.D);
 
-		_inputManager.AddInGameAction(InputTarget.UpMove, InputStatus.Press, RangeOff);
-		_inputManager.AddInGameAction(InputTarget.DownMove, InputStatus.Press, RangeOff);
-		_inputManager.AddInGameAction(InputTarget.LeftMove, InputStatus.Press, RangeOff);
-		_inputManager.AddInGameAction(InputTarget.RightMove, InputStatus.Press, RangeOff);
-		_unitMove.onBehaviourEnd = RangeOn;
+		_playerAttack.onBehaviourEnd = IsOut;
 	}
-
+	private void IsOut() => isOut = false;
 	public override void Update()
 	{
 		base.Update();
-		if (_isAttack && InGame.GetUnit(_thisBase.Position + _currentAttackPos) != null && isOut && !_thisBase.State.HasFlag(BaseState.Moving))
+		Debug.Log(_playerAttack.HasEnemy());
+		if (_isAttack && isOut && _playerAttack.HasEnemy() && !_thisBase.State.HasFlag(BaseState.Moving))
 		{
-			isOut = false;
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
+			_playerAttack.AttackColParent.ChangeWeapon();
 		}
-		else if(_isAttack && !InGame.GetUnit(_thisBase.Position + _currentAttackPos))
+		else if (_isAttack && ! _playerAttack.HasEnemy())
 		{
 			isOut = true;
 		}
+
+		if (_isAttack)
+			RangeOn();
 	}
 
 	protected override void Attack(Vector3 vec)
 	{
-		if(!_isAttack)
+		if (!_isAttack)
 		{
 			_playerAttack.AttackColParent.AllDisableDir();
 			_currentAttackPos = Vector3.zero;
@@ -69,11 +69,6 @@ public class BaseSpear : Weapon
 		_playerAttack.AttackColParent.ChangeSizeX(1);
 		_playerAttack.AttackColParent.EnableDir(_playerAttack.AttackColParent.DirReturn(_currentAttackPos));
 		_playerAttack.Attack(_unitStat.NowStats.Atk);
-	}
-
-	private void RangeOff()
-	{
-		GameManagement.Instance.GetManager<MapManager>().RangeOff(_thisBase.Position + _currentAttackPos);
 	}
 
 	private void RangeOn()

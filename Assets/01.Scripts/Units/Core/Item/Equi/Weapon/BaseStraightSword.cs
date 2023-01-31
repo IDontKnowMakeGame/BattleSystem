@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unit.Core.Weapon;
 using Managements.Managers;
-using Core;
 
 public class BaseStraightSword : Weapon
 {
@@ -26,6 +25,5 @@ public class BaseStraightSword : Weapon
 		_playerAttack.Attack(_unitStat.NowStats.Atk);
 		_playerAttack.AttackColParent.AllEnableDir();
 		_playerAttack.AttackColParent.ChangeWeapon();
-		//_playerAttack.AttackColParent.AllDisableDir();
 	}
 }

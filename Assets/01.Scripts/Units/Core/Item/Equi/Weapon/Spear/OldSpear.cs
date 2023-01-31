@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Managements.Managers;
+using Core;
 public class OldSpear : BaseSpear
 {
 	float beforeAtk;
@@ -19,7 +20,7 @@ public class OldSpear : BaseSpear
 	protected override void Skill(Vector3 vec)
 	{
 		count++;
-
+		
 		Debug.Log("¶§¸®±â");
 		if (count == 3)
 		{
