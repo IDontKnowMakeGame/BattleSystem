@@ -22,7 +22,7 @@ namespace Units.Base.Player
             AddBehaviour(thisStat);
             AddBehaviour(unitAnimation);
             AddBehaviour(playerMove);
-            PlayerAttack = AddBehaviour<PlayerAttack>();
+            AddBehaviour(PlayerAttack);
             PlayerEqiq = AddBehaviour<PlayerEqiq>();
             playerBuff = AddBehaviour<PlayerBuff>();
             base.Init();

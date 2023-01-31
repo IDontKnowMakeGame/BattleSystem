@@ -23,6 +23,9 @@ namespace Units.Base.Player
             }
         }
 
+        [SerializeField]
+        private CameraZoom cameraZoom;
+
         public override void Start()
         {
             base.Start();
@@ -43,6 +46,10 @@ namespace Units.Base.Player
                enemys.Add(attackColParent.CurrntDirNearEnemy());
             else
                enemys = attackColParent.AllCurrentDirEnemy();
+
+            if (enemys.Count > 0)
+                ThisBase.StartCoroutine(cameraZoom.ZoomInOut(1f));
+
             foreach(EnemyBase enemy in enemys)
             {
                 enemy.ThisStat.Damaged(damage);
