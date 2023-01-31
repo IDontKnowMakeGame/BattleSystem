@@ -23,6 +23,9 @@ namespace Units.Base.Player
             }
         }
 
+        [SerializeField]
+        private CameraZoom cameraZoom;
+
         public override void Start()
         {
             base.Start();
@@ -39,16 +42,20 @@ namespace Units.Base.Player
         {
             List<EnemyBase> enemys = new List<EnemyBase>();
 
-            GameObject obj = GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("Damage");
-            obj.GetComponent<DamagePopUp>().DamageText(damage, ThisBase.transform.position);
-
             if (near)
                enemys.Add(attackColParent.CurrntDirNearEnemy());
             else
                enemys = attackColParent.AllCurrentDirEnemy();
+
+            if (enemys.Count > 0)
+                ThisBase.StartCoroutine(cameraZoom.ZoomInOut(1f));
+
             foreach(EnemyBase enemy in enemys)
             {
-                enemy.ThisStat.Damaged(100);
+                enemy.ThisStat.Damaged(damage);
+                GameObject obj = GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("Damage");
+                obj.GetComponent<DamagePopUp>().DamageText(damage, enemy.transform.position);
+                onBehaviourEnd?.Invoke();
             }
         }
     }
