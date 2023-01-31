@@ -38,6 +38,15 @@ namespace Units.Base.Player
             // To Do InputManager?? ???
         }
 
+        public bool HasEnemy()
+		{
+            List<EnemyBase> enemys = new List<EnemyBase>();
+            enemys = attackColParent.AllCurrentDirEnemy();
+            if (enemys.Count > 0)
+                return true;
+            else
+                return false;
+        }
         public void Attack(float damage, bool near = false)
         {
             List<EnemyBase> enemys = new List<EnemyBase>();

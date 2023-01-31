@@ -4,10 +4,13 @@ using UnityEngine;
 using Managements.Managers;
 public class OldGreatSword : BaseGreatSword
 {
+	private float godTime;
 	public override void Awake()
 	{
 		base.Awake();
 		GetWeaponStateData("oldGreatSword");
+		_maxTime = OldGreatSwordData.coolTime;
+		godTime = OldGreatSwordData.gt;
 	}
 	public override void Start()
 	{
@@ -33,7 +36,7 @@ public class OldGreatSword : BaseGreatSword
 		_thisBase.AddState(Units.Base.Unit.BaseState.Skill);
 		_unitStat.Half = 30;
 		_unitStat.Damaged(100f);
-		yield return new WaitForSeconds(1.5f);
+		yield return new WaitForSeconds(godTime);
 		_unitStat.Half = 0;
 		_thisBase.RemoveState(Units.Base.Unit.BaseState.Skill);
 		_isCoolTime = true;

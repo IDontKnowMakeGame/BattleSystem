@@ -35,6 +35,8 @@ namespace Units.Base.Player
 			string temp = _currentWeapon;
 			_currentWeapon = _secoundWeapon;
 			_secoundWeapon = temp;
+
+			CurrentWeapon.Reset();
 		}
 		private void TestChangeWeapon()
 		{

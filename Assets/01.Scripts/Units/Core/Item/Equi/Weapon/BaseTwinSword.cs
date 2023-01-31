@@ -22,12 +22,10 @@ public class BaseTwinSword : Weapon
 		if (vec == Vector3.forward || vec == Vector3.back)
 		{
 			_playerAttack.AttackColParent.AllDisableDir();
-			float z = vec == Vector3.forward ? 0.5f : -0.5f;
-			_playerAttack.AttackColParent.ChangeSizeZ(DirType.Left,2);
-			_playerAttack.AttackColParent.ChangeSizeZ(DirType.Right, 2);
+			float z = vec == Vector3.forward ? 1f : -1f;
+			_playerAttack.AttackColParent.ChangeSizeZ(DirType.Left,1);
+			_playerAttack.AttackColParent.ChangeSizeZ(DirType.Right, 1);
 			_playerAttack.AttackColParent.ChangeSizeX(1);
-			_playerAttack.AttackColParent.ChangeOffsetZ(DirType.Left,z);
-			_playerAttack.AttackColParent.ChangeOffsetZ(DirType.Right,z);
 			_playerAttack.AttackColParent.EnableDir(DirType.Left, DirType.Right);
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
 			_playerAttack.AttackColParent.ChangeWeapon();
@@ -36,21 +34,14 @@ public class BaseTwinSword : Weapon
 		else
 		{
 			_playerAttack.AttackColParent.AllDisableDir();
-			float x = vec == Vector3.right ? 0.5f : -0.5f;
-			_playerAttack.AttackColParent.ChangeSizeX(DirType.Up, 2);
-			_playerAttack.AttackColParent.ChangeSizeX(DirType.Down, 2);
+			float x = vec == Vector3.right ? 1f : -1f;
+			_playerAttack.AttackColParent.ChangeSizeX(DirType.Up, 1);
+			_playerAttack.AttackColParent.ChangeSizeX(DirType.Down, 1);
 			_playerAttack.AttackColParent.ChangeSizeZ(1);
-			_playerAttack.AttackColParent.ChangeOffsetX(DirType.Up, x);
-			_playerAttack.AttackColParent.ChangeOffsetX(DirType.Down, x);
 			_playerAttack.AttackColParent.EnableDir(DirType.Up, DirType.Down);
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
 			_playerAttack.AttackColParent.ChangeWeapon();
 			_playerAttack.AttackColParent.AllEnableDir();
 		}
-	}
-
-	public override void Reset()
-	{
-
 	}
 }

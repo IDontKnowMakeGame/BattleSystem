@@ -65,15 +65,13 @@ namespace Managements.Managers
             if (block == null)
                 return;
             var render = block.GetBehaviour<BlockRender>();
-            render.SetMainColor(color);
+            render.DOSetMainColor(color, 0.05f);
+            Instance.StartCoroutine(RangeOff(render));
         }
 
-        public void RangeOff(Vector3 pos)
+        public IEnumerator RangeOff(BlockRender render)
         {
-            var block = GetBlock(pos);
-            if (block == null)
-                return;
-            var render = block.GetBehaviour<BlockRender>();
+            yield return new WaitForSeconds(0.1f);
             render.SetMainColor(Color.black);
         }
 
