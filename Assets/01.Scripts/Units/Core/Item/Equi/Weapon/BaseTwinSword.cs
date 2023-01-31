@@ -22,7 +22,6 @@ public class BaseTwinSword : Weapon
 		if (vec == Vector3.forward || vec == Vector3.back)
 		{
 			_playerAttack.AttackColParent.AllDisableDir();
-			float z = vec == Vector3.forward ? 1f : -1f;
 			_playerAttack.AttackColParent.ChangeSizeZ(DirType.Left,1);
 			_playerAttack.AttackColParent.ChangeSizeZ(DirType.Right, 1);
 			_playerAttack.AttackColParent.ChangeSizeX(1);
@@ -34,7 +33,6 @@ public class BaseTwinSword : Weapon
 		else
 		{
 			_playerAttack.AttackColParent.AllDisableDir();
-			float x = vec == Vector3.right ? 1f : -1f;
 			_playerAttack.AttackColParent.ChangeSizeX(DirType.Up, 1);
 			_playerAttack.AttackColParent.ChangeSizeX(DirType.Down, 1);
 			_playerAttack.AttackColParent.ChangeSizeZ(1);

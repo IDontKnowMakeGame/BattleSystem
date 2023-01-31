@@ -40,16 +40,17 @@ namespace Units.Base.Player
             unitAnimation = ThisBase.GetBehaviour<UnitAnimation>();
 
             SetAnimation();
-            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.TestChangeWeapon, InputStatus.Press, SetAnimation);
-            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.ChangeWeapon, InputStatus.Press, SetAnimation);
+            Define.GetManager<InputManager>().AddInGameAction(InputTarget.TestChangeWeapon, InputStatus.Press, SetAnimation);
+            Define.GetManager<InputManager>().AddInGameAction(InputTarget.ChangeWeapon, InputStatus.Press, SetAnimation);
         }
 
         private void SetAnimation()
         {
-            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.UpAttack, InputStatus.Press, () => ChangeAnimation(Vector3.forward));
-            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.DownAttack, InputStatus.Press, () => ChangeAnimation(Vector3.back));
-            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => ChangeAnimation(Vector3.left));
-            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.RightAttack, InputStatus.Press, () => ChangeAnimation(Vector3.right));
+            Debug.Log("?");
+            Define.GetManager<InputManager>().AddInGameAction(InputTarget.UpAttack, InputStatus.Press, () => ChangeAnimation(Vector3.forward));
+            Define.GetManager<InputManager>().AddInGameAction(InputTarget.DownAttack, InputStatus.Press, () => ChangeAnimation(Vector3.back));
+            Define.GetManager<InputManager>().AddInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => ChangeAnimation(Vector3.left));
+            Define.GetManager<InputManager>().AddInGameAction(InputTarget.RightAttack, InputStatus.Press, () => ChangeAnimation(Vector3.right));
         }
 
         public override void Update()
@@ -76,8 +77,6 @@ namespace Units.Base.Player
             else
                enemys = attackColParent.AllCurrentDirEnemy();
 
-            Debug.Log(enemys.Count + "입니다..");
-
 
             if (enemys.Count > 0)
                 ThisBase.StartCoroutine(cameraZoom.ZoomInOut(1f));
@@ -95,8 +94,7 @@ namespace Units.Base.Player
         public void ChangeAnimation(Vector3 dir)
         {
             Debug.Log("오");
-
-            if(dir == Vector3.left)
+            if (dir == Vector3.left)
             {
                 unitAnimation.state = 4;
                 ThisBase.transform.localScale = new Vector3(-1, 1, 1);

@@ -217,7 +217,6 @@ namespace Units.Base.Player
             }
             else if(dir == Vector3.back)
             {
-                Debug.Log("back");
                 sprite.localScale = new Vector3(1, 1, 1);
                 unitAnimation.state = 3;
             }

@@ -77,6 +77,8 @@ public class BaseSpear : Weapon
 	}
 	public override void Reset()
 	{
+		base.Reset();
+
 		isOut = false;
 		_currentAttackPos = Vector3.zero;
 		_isAttack = false;

@@ -12,11 +12,9 @@ namespace Unit.Enemy.AI.Conditions
             var min = new Vector3(Mathf.Min(_startPosition.x, _endPosition.x), 0, Mathf.Min(_startPosition.z, _endPosition.z)); 
             if (max.x >= _target.Position.x && _target.Position.x >= min.x)
             {
-                Debug.Log("First");
                 if (max.z >= _target.Position.z && _target.Position.z >= min.z)
                 {
                     EventManager.TriggerEvent(EventFlag.ShowBossHP, new EventParam());
-                    Debug.Log("Second");
                     return true;
                 }
 

@@ -64,7 +64,6 @@ namespace Unit.Core.Weapon
 			_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Press, () => Attack(Vector3.back));
 			_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => Attack(Vector3.left));
 			_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Press, () => Attack(Vector3.right));
-			_playerAttack.AttackColParent.ChangeWeapon();
 		}
 
 		protected void Timer()
@@ -101,10 +100,10 @@ namespace Unit.Core.Weapon
 
 		public virtual void Reset()
 		{
-			_inputManager.ClearInGameAction(InputTarget.UpAttack);
-			_inputManager.ClearInGameAction(InputTarget.DownAttack);
-			_inputManager.ClearInGameAction(InputTarget.LeftAttack);
-			_inputManager.ClearInGameAction(InputTarget.RightAttack);
+			_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Press, () => Attack(Vector3.forward));
+			_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Press, () => Attack(Vector3.down));
+			_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => Attack(Vector3.left));
+			_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Press, () => Attack(Vector3.right));
 		}
 	}
 }

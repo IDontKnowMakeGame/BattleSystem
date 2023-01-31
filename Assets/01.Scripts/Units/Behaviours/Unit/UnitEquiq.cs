@@ -19,19 +19,7 @@ namespace Units.Behaviours.Unit
 		{
 			get
 			{
-				if (_currentWeapon == _beforeWeaponType)
-					return weapons[_currentWeapon];
-				else
-				{
-					_beforeWeaponType = _currentWeapon;
-
-					if (!isEnemy)
-					{
-						weapons[_currentWeapon].ChangeKey();
-					}
-
-					return weapons[_currentWeapon];
-				}
+				return weapons[_currentWeapon];
 			}
 		}
 
@@ -86,13 +74,13 @@ namespace Units.Behaviours.Unit
 		}
 
 		public int WeaponAnimation()
-        {
+		{
 			if (_currentWeapon == "oldSword")
 				return 0;
 			else if (_currentWeapon == "oldTwinSword")
 				return 1;
 			else
 				return -1;
-        }
+		}
 	}
 }

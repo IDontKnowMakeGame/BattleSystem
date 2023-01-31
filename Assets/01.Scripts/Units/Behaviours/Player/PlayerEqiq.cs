@@ -19,14 +19,20 @@ namespace Units.Base.Player
 			_currentWeapon = DataManager.UserData.currentWeapon;
 			_secoundWeapon = DataManager.UserData.secondWeapon;
 		}
+
+		public override void Update()
+		{
+			base.Update();
+			weapons[_secoundWeapon].Update();
+		}
 		public override void Start()
 		{
 			unitAnimation = ThisBase.GetBehaviour<UnitAnimation>();
 			animationClip = ThisBase.GetComponent<AnimationClip>();
 			unitAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
 
-			Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.TestChangeWeapon, InputStatus.Press, TestChangeWeapon);
-			Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.ChangeWeapon, InputStatus.Press, ChangeWeapon);
+			Define.GetManager<InputManager>().AddInGameAction(InputTarget.TestChangeWeapon, InputStatus.Press, TestChangeWeapon);
+			Define.GetManager<InputManager>().AddInGameAction(InputTarget.ChangeWeapon, InputStatus.Press, ChangeWeapon);
 			Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.WeaponOnOff, InputStatus.Press, WeaponOnOff);
 			base.Start();
 		}
@@ -40,12 +46,13 @@ namespace Units.Base.Player
 			if (ThisBase.State.HasFlag(Unit.BaseState.Skill))
 				return;
 
+			CurrentWeapon.Reset();
 			string temp = _currentWeapon;
 			_currentWeapon = _secoundWeapon;
 			_secoundWeapon = temp;
+			CurrentWeapon.ChangeKey();
 
 			unitAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
-			CurrentWeapon.Reset();
 		}
 		private void TestChangeWeapon()
 		{
@@ -57,7 +64,9 @@ namespace Units.Base.Player
 				dicCount++;
 				if(dicCount == count)
 				{
+					CurrentWeapon.Reset();
 					_currentWeapon = a.Key;
+					CurrentWeapon.ChangeKey();
 					return;
 				}
 			}

@@ -99,5 +99,15 @@ public class BaseGreatSword : Weapon
 		_chargeTime = 0;
 		_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 		_currentVector = Vector3.zero;
+
+		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Hold, () => Attack(Vector3.forward));
+		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Hold, () => Attack(Vector3.back));
+		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Hold, () => Attack(Vector3.left));
+		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Hold, () => Attack(Vector3.right));
+
+		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Release, () => AttackUP());
+		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Release, () => AttackUP());
+		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Release, () => AttackUP());
+		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Release, () => AttackUP());
 	}
 }
