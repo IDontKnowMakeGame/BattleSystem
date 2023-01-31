@@ -39,16 +39,16 @@ namespace Units.Base.Player
         {
             List<EnemyBase> enemys = new List<EnemyBase>();
 
-            GameObject obj = GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("Damage");
-            obj.GetComponent<DamagePopUp>().DamageText(damage, ThisBase.transform.position);
-
             if (near)
                enemys.Add(attackColParent.CurrntDirNearEnemy());
             else
                enemys = attackColParent.AllCurrentDirEnemy();
             foreach(EnemyBase enemy in enemys)
             {
-                enemy.ThisStat.Damaged(100);
+                enemy.ThisStat.Damaged(damage);
+                GameObject obj = GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("Damage");
+                obj.GetComponent<DamagePopUp>().DamageText(damage, enemy.transform.position);
+                onBehaviourEnd?.Invoke();
             }
         }
     }

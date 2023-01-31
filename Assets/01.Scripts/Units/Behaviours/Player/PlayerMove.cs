@@ -68,6 +68,7 @@ namespace Units.Base.Player
         public void EnqueueMove(Vector3 dir)
         {
             if (moveDir.Count > 1) return;
+            ThisBase.AddState(BaseState.Moving);
             var speed = ThisBase.GetBehaviour<UnitStat>().NowStats.Agi;
             moveDir.Enqueue(new MoveNode(dir, speed));
         }
@@ -125,6 +126,7 @@ namespace Units.Base.Player
                 ThisBase.Position = nextPos;
                 InGame.SetUnit(null, orignalPos);
                 onBehaviourEnd?.Invoke();
+                ThisBase.RemoveState(BaseState.Moving);
                 _seq.Kill();
             });
         }
@@ -140,7 +142,6 @@ namespace Units.Base.Player
             {
                 MoveNode nextNode = moveDir.Dequeue();
                 Translate(nextNode.dir, nextNode.speed);
-                Debug.Log(3);
             }
         }
         public void PlayerStop()

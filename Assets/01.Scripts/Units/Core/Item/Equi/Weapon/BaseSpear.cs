@@ -1,15 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using Unit.Core.Weapon;
 using Managements.Managers;
 using Core;
+using Units.Base.Unit;
 public class BaseSpear : Weapon
 {
 	protected bool _isAttack = false;
 	protected Vector3 _currentAttackPos;
-	protected int count;
 	protected bool isOut;
+
+	protected int count = 1;
 	public override void ChangeKey()
 	{
 		base.ChangeKey();
@@ -23,14 +25,16 @@ public class BaseSpear : Weapon
 	public override void Update()
 	{
 		base.Update();
-		Debug.Log(InGame.GetUnit(_thisBase.Position + _currentAttackPos));
-		if (_isAttack && InGame.GetUnit(_thisBase.Position + _currentAttackPos) && isOut)
+		//Debug.Log(InGame.GetUnit(_thisBase.Position + _currentAttackPos));
+		//Debug.Log(isOut);
+		//Debug.Log(_isAttack);
+		if (_isAttack && InGame.GetUnit(_thisBase.Position + _currentAttackPos) != null && isOut && !_thisBase.State.HasFlag(BaseState.Moving))
 		{
+			Debug.Log("¶§¸®±â");
 			isOut = false;
-			count++;
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
 		}
-		else if(_isAttack)
+		else if(_isAttack && !InGame.GetUnit(_thisBase.Position + _currentAttackPos))
 		{
 			isOut = true;
 		}
@@ -50,6 +54,7 @@ public class BaseSpear : Weapon
 		{
 			_playerAttack.AttackColParent.AllDisableDir();
 			_isAttack = false;
+			count = 0;
 		}
 	}
 
@@ -60,13 +65,14 @@ public class BaseSpear : Weapon
 		_playerAttack.AttackColParent.ChangeSizeZ(1);
 		_playerAttack.AttackColParent.ChangeSizeX(1);
 		_playerAttack.AttackColParent.EnableDir(_playerAttack.AttackColParent.DirReturn(_currentAttackPos));
+		_playerAttack.Attack(_unitStat.NowStats.Atk);
 	}
-
 	public override void Reset()
 	{
 		isOut = false;
 		_currentAttackPos = Vector3.zero;
 		_isAttack = false;
 		_playerAttack.AttackColParent.AllDisableDir();
+		_playerAttack.onBehaviourEnd = null;
 	}
 }

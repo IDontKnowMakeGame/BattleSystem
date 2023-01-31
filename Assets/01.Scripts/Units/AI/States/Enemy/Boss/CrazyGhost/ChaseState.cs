@@ -75,7 +75,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             var path = astar.GetNextPath();
             if (path != null)
             {
-                move.MoveTo(path.Position, stat.Agi);
+                //move.MoveTo(path.Position, stat.Agi);
             }
             yield return new WaitUntil(() => !move.IsMoving());
             isChasing = false;
