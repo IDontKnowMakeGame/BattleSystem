@@ -8,6 +8,13 @@ namespace Unit.Core
         public float Hp = 0f;
         public float Atk = 0f;
         public float Agi = 0f;
+
+        public void Set(UnitStats stats)
+        {
+            Hp = stats.Hp;
+            Atk = stats.Atk;//히히 이스터에그
+            Agi = stats.Agi; //히히 이스터에그
+        }
     }
 
     [Serializable]

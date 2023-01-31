@@ -12,12 +12,14 @@ public class BossHP : MonoBehaviour
     {
         _slider = GetComponent<Slider>();
 
-        _slider.gameObject.SetActive(false);
+        
     }
     void Start()
     {
         EventManager.StartListening(EventFlag.ShowBossHP, ShowBossHP);
         EventManager.StartListening(EventFlag.AddBossHP, AddBossHP);
+
+        _slider.gameObject.SetActive(false);
     }
 
     private void ShowBossHP(EventParam value)
