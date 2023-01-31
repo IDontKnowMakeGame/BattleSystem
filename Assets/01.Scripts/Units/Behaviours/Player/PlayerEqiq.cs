@@ -29,6 +29,9 @@ namespace Units.Base.Player
 		}
 		private void ChangeWeapon()
 		{
+			if (ThisBase.State.HasFlag(Unit.BaseState.Skill))
+				return;
+
 			string temp = _currentWeapon;
 			_currentWeapon = _secoundWeapon;
 			_secoundWeapon = temp;

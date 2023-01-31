@@ -31,19 +31,21 @@ public class BaseTwinSword : Weapon
 			_playerAttack.AttackColParent.EnableDir(DirType.Left, DirType.Right);
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
+			_playerAttack.AttackColParent.AllEnableDir();
 		}
 		else
 		{
 			_playerAttack.AttackColParent.AllDisableDir();
+			float x = vec == Vector3.right ? 0.5f : -0.5f;
 			_playerAttack.AttackColParent.ChangeSizeX(DirType.Up, 2);
 			_playerAttack.AttackColParent.ChangeSizeX(DirType.Down, 2);
 			_playerAttack.AttackColParent.ChangeSizeZ(1);
-			float x = vec == Vector3.right ? 0.5f : -0.5f;
 			_playerAttack.AttackColParent.ChangeOffsetX(DirType.Up, x);
 			_playerAttack.AttackColParent.ChangeOffsetX(DirType.Down, x);
 			_playerAttack.AttackColParent.EnableDir(DirType.Up, DirType.Down);
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
+			_playerAttack.AttackColParent.AllEnableDir();
 		}
 	}
 
