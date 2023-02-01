@@ -19,7 +19,7 @@ namespace Units.Behaviours.Unit
 		{
 			get
 			{
-				if (_currentWeapon != null)
+				if (_currentWeapon != null && _currentWeapon != "")
 					return weapons[_currentWeapon];
 				else
 					return null;

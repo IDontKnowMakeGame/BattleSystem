@@ -11,6 +11,7 @@ public enum EventFlag
     WeaponEquip,
     WeaponUnmount,
     WeaponSwap,
+    WeaponChange
 }
 public class EventManager
 {
