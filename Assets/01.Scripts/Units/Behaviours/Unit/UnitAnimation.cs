@@ -36,7 +36,11 @@ namespace Units.Behaviours.Unit
         public override void Update()
         {
             List<AnimeClip> _clips = clips.clips;
-            if (isFinished && !_clips[state].isLoop) return;
+            if (isFinished && !_clips[state].isLoop)
+            {
+                ChangeState(0);
+                return;
+            }
             isFinished = false;
             time += Time.deltaTime;
 

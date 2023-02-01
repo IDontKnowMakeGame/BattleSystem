@@ -104,7 +104,8 @@ namespace Units.Base.Player
 
         public override void MoveTo(Vector3 pos, float spd = 1)
         {
-            if (ThisBase.GetBehaviour<PlayerAttack>().IsAttack)
+            var attack = ThisBase.GetBehaviour<PlayerAttack>();
+            if (attack.IsAttack)
                 return;
 
             var map = Define.GetManager<MapManager>();
@@ -146,7 +147,8 @@ namespace Units.Base.Player
             _seq.AppendCallback(() =>
             {
                 isMoving = false;
-                PlayerStop();
+                if(!attack.IsAttack)
+                    PlayerStop();
                 ThisBase.Position = nextPos;
                 InGame.SetUnit(null, orignalPos);
                 onBehaviourEnd?.Invoke();
