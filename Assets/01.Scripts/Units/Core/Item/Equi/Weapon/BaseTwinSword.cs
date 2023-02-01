@@ -19,6 +19,7 @@ public class BaseTwinSword : Weapon
 
 	protected override void Attack(Vector3 vec)
 	{
+		base.Attack(vec);
 		if (vec == Vector3.forward || vec == Vector3.back)
 		{
 			_playerAttack.AttackColParent.AllDisableDir();

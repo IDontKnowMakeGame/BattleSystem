@@ -58,6 +58,7 @@ public class BaseGreatSword : Weapon
 
 	protected override void Attack(Vector3 vec)
 	{
+		base.Attack(vec);
 		if (_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Charge))
 			return;
 

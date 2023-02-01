@@ -45,6 +45,8 @@ public class BaseSpear : Weapon
 
 	protected override void Attack(Vector3 vec)
 	{
+
+		base.Attack(vec);
 		if (!_isAttack)
 		{
 			_playerAttack.AttackColParent.AllDisableDir();
