@@ -37,7 +37,7 @@ namespace Units.Base.Player
 
         private float timer;
 
-        private bool isAttack = false;
+        public bool isAttack = false;
         public bool IsAttack => isAttack;
         
         private UnitAnimation unitAnimation;

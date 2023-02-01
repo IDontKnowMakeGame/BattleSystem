@@ -36,6 +36,7 @@ namespace Unit.Core.Weapon
 
         protected float _currentTime;
         protected float _maxTime;
+		protected float _currentAttackTime;
 
         protected bool _isCoolTime = false;
 
@@ -56,6 +57,8 @@ namespace Unit.Core.Weapon
 		public override void Update()
 		{
 			Timer();
+			if (_thisBase.State.HasFlag(BaseState.Attacking))
+				_currentAttackTime += Time.deltaTime;
 		}
 
 		public virtual void ChangeKey()
@@ -90,7 +93,19 @@ namespace Unit.Core.Weapon
 
 		protected virtual void Attack(Vector3 vec)
 		{
-			//_weaponStats = 
+			AttackTimer();
+		}
+
+		private void AttackTimer()
+		{
+			if(_currentAttackTime < WeaponStat.Ats)
+			{
+				_thisBase.AddState(BaseState.Attacking);
+				return;
+			}
+
+			_thisBase.RemoveState(BaseState.Attacking);
+			_currentAttackTime = 0;
 		}
 
 		protected virtual void Skill(Vector3 vec)

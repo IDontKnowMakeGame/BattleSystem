@@ -47,6 +47,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             lifeCheck._logicCondition = true;
             toSpiritAttack.AddCondition(lineDetect2);
             toSpiritAttack.AddCondition(lineDetect3);
+            toSpiritAttack.AddCondition(lifeCheck);
             toSpiritAttack.AddCondition(squareCheck);
             toSpiritAttack.SetTarget(new SpiritAttackState());
             AddTransition(toSpiritAttack);

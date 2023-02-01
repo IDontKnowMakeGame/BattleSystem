@@ -33,6 +33,7 @@ namespace Units.Base.Player
 			animationClip = ThisBase.GetComponent<AnimationClip>();
 
 			unitAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
+			unitAnimation.ChangeState(10);
 
 			Define.GetManager<InputManager>().AddInGameAction(InputTarget.TestChangeWeapon, InputStatus.Press, TestChangeWeapon);
 			Define.GetManager<InputManager>().AddInGameAction(InputTarget.ChangeWeapon, InputStatus.Press, ChangeWeapon);
@@ -65,7 +66,7 @@ namespace Units.Base.Player
 
 			playerAttack.ChangeDelay(CurrentWeapon.WeaponStat.Afs);
 			unitAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
-
+			unitAnimation.ChangeState(10);
 			EventManager.TriggerEvent(EventFlag.WeaponSwap, new EventParam());
 		}
 

@@ -21,7 +21,7 @@ namespace Units.Behaviours.Unit
         private bool isFinished = false;
         public Renderer renderer;
         private Material material;
-        private int state = 0;
+        public int state = 0;
 
         public override void Start()
         {
@@ -38,7 +38,10 @@ namespace Units.Behaviours.Unit
             List<AnimeClip> _clips = clips.clips;
             if (isFinished && !_clips[state].isLoop)
             {
-                ChangeState(0);
+                if(_clips[state].nextIdx != -1)
+                {
+                    ChangeState(_clips[state].nextIdx);
+                }
                 return;
             }
             isFinished = false;
@@ -47,8 +50,13 @@ namespace Units.Behaviours.Unit
             if (time >= _clips[state].delay)
             {
                 time = 0f;
-                index = (index + 1) % _clips[state].fps;
-
+                index += 1;
+                if (index == _clips[state].fps)
+                {
+                    index = -1;
+                    isFinished = true;
+                    return;
+                }
                 var offset = ((float)_clips[state].texture.width / _clips[state].fps) / _clips[state].texture.width;
                 material.SetTexture("_BaseMap", _clips[state].texture);
                 material.SetTextureOffset("_BaseMap", Vector2.right * (offset * index));
@@ -57,8 +65,6 @@ namespace Units.Behaviours.Unit
                 material.SetTextureOffset("_MainTex", Vector2.right * (offset * index));
                 material.SetTextureScale("_MainTex", new Vector2(offset, 1f));
                 renderer.material = material;
-                if (index == 0)
-                    isFinished = true;
             }
         }
 
@@ -66,7 +72,7 @@ namespace Units.Behaviours.Unit
         {
             isFinished = false;
             state = value;
-            index = 0;
+            index = -1;
             time = 0f;
         }
 
