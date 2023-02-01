@@ -10,7 +10,8 @@ public enum EventFlag
     AddPlayerHP,
     WeaponEquip,
     WeaponUnmount,
-    WeaponSwap
+    WeaponSwap,
+    WeaponChange
 }
 public class EventManager
 {
@@ -58,6 +59,7 @@ public struct EventParam
     public Vector2Int vectorParam;
     public string stringParam;
     public float floatParam;
+    public int intParam;
     public bool boolParam;
 }
 

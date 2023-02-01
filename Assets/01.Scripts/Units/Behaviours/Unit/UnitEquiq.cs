@@ -19,11 +19,12 @@ namespace Units.Behaviours.Unit
 		{
 			get
 			{
-				return weapons[_currentWeapon];
+				if (_currentWeapon != null && _currentWeapon != "")
+					return weapons[_currentWeapon];
+				else
+					return null;
 			}
 		}
-
-		private string _beforeWeaponType;
 
 		public Dictionary<string, Weapon> weapons = new Dictionary<string, Weapon>();
 
@@ -56,7 +57,7 @@ namespace Units.Behaviours.Unit
 			}
 
 			if (!isEnemy)
-				weapons[_currentWeapon].ChangeKey();
+				CurrentWeapon?.ChangeKey();
 
 			foreach (var value in _helos)
 			{
@@ -80,7 +81,7 @@ namespace Units.Behaviours.Unit
 			else if (_currentWeapon == "oldTwinSword")
 				return 1;
 			else
-				return -1;
+				return 0;
 		}
 	}
 }

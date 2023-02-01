@@ -24,7 +24,7 @@ namespace Units.Base.Player
 		public override void Update()
 		{
 			base.Update();
-			weapons[_secoundWeapon].Update();
+			CurrentWeapon?.Update();
 		}
 		public override void Start()
 		{
@@ -38,10 +38,18 @@ namespace Units.Base.Player
 			Define.GetManager<InputManager>().AddInGameAction(InputTarget.TestChangeWeapon, InputStatus.Press, TestChangeWeapon);
 			Define.GetManager<InputManager>().AddInGameAction(InputTarget.ChangeWeapon, InputStatus.Press, ChangeWeapon);
 			Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.WeaponOnOff, InputStatus.Press, WeaponOnOff);
+
+			EventManager.StartListening(EventFlag.WeaponChange, ChangeWeapon);
 			base.Start();
 		}
 
-		private void WeaponOnOff()
+        public override void OnDisable()
+        {
+			EventManager.StopListening(EventFlag.WeaponChange, ChangeWeapon);
+			base.OnDisable();
+        }
+
+        private void WeaponOnOff()
 		{
 			CurrentWeapon.Reset();
 		}
@@ -59,6 +67,21 @@ namespace Units.Base.Player
 			playerAttack.ChangeDelay(CurrentWeapon.WeaponStat.Afs);
 			unitAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
 			unitAnimation.ChangeState(10);
+			EventManager.TriggerEvent(EventFlag.WeaponSwap, new EventParam());
+		}
+
+		public void ChangeWeapon(EventParam eventParam)
+		{
+			switch(eventParam.intParam)
+			{
+				case 1:
+					_currentWeapon = eventParam.stringParam;
+					break;
+				case 2:
+					_secoundWeapon = eventParam.stringParam;
+					break;
+			}
+			CurrentWeapon?.ChangeKey();
 		}
 		private void TestChangeWeapon()
 		{
