@@ -23,7 +23,7 @@ namespace Units.Base.Player
 		public override void Update()
 		{
 			base.Update();
-			weapons[_secoundWeapon].Update();
+			CurrentWeapon?.Update();
 		}
 		public override void Start()
 		{
@@ -34,6 +34,8 @@ namespace Units.Base.Player
 			Define.GetManager<InputManager>().AddInGameAction(InputTarget.TestChangeWeapon, InputStatus.Press, TestChangeWeapon);
 			Define.GetManager<InputManager>().AddInGameAction(InputTarget.ChangeWeapon, InputStatus.Press, ChangeWeapon);
 			Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.WeaponOnOff, InputStatus.Press, WeaponOnOff);
+
+			EventManager.StartListening(EventFlag.WeaponSwap, ChangeWeapon);
 			base.Start();
 		}
 
@@ -53,6 +55,20 @@ namespace Units.Base.Player
 			CurrentWeapon.ChangeKey();
 
 			unitAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
+		}
+
+		public void ChangeWeapon(EventParam eventParam)
+		{
+			switch(eventParam.intParam)
+			{
+				case 1:
+					_currentWeapon = eventParam.stringParam;
+					break;
+				case 2:
+					_secoundWeapon = eventParam.stringParam;
+					break;
+			}
+			CurrentWeapon?.ChangeKey();
 		}
 		private void TestChangeWeapon()
 		{
