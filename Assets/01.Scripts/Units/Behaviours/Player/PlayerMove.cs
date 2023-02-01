@@ -184,6 +184,7 @@ namespace Units.Base.Player
         {
             if (moveDir.Count == 0)
             {
+                Debug.Log("¤»¤»");
                 unitAnimation.ChangeState(0);
             }
         }
