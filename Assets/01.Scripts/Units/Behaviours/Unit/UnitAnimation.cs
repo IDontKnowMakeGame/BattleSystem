@@ -50,8 +50,13 @@ namespace Units.Behaviours.Unit
             if (time >= _clips[state].delay)
             {
                 time = 0f;
-                index = (index + 1) % _clips[state].fps;
-
+                index += 1;
+                if (index == _clips[state].fps)
+                {
+                    index = -1;
+                    isFinished = true;
+                    return;
+                }
                 var offset = ((float)_clips[state].texture.width / _clips[state].fps) / _clips[state].texture.width;
                 material.SetTexture("_BaseMap", _clips[state].texture);
                 material.SetTextureOffset("_BaseMap", Vector2.right * (offset * index));
@@ -60,8 +65,6 @@ namespace Units.Behaviours.Unit
                 material.SetTextureOffset("_MainTex", Vector2.right * (offset * index));
                 material.SetTextureScale("_MainTex", new Vector2(offset, 1f));
                 renderer.material = material;
-                if (index == 0)
-                    isFinished = true;
             }
         }
 
@@ -69,7 +72,7 @@ namespace Units.Behaviours.Unit
         {
             isFinished = false;
             state = value;
-            index = 0;
+            index = -1;
             time = 0f;
         }
 
