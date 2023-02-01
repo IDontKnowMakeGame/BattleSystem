@@ -21,7 +21,7 @@ namespace Units.Behaviours.Unit
         private bool isFinished = false;
         public Renderer renderer;
         private Material material;
-        private int state = 0;
+        public int state = 0;
 
         public override void Start()
         {

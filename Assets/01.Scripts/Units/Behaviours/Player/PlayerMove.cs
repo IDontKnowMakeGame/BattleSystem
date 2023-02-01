@@ -105,24 +105,33 @@ namespace Units.Base.Player
         public override void MoveTo(Vector3 pos, float spd = 1)
         {
             var attack = ThisBase.GetBehaviour<PlayerAttack>();
-            if (attack.IsAttack)
+            PlayerEqiq playerEqiq = ThisBase.GetBehaviour<PlayerEqiq>();
+            if (attack.IsAttack && playerEqiq.WeaponAnimation() != 1)
                 return;
 
             var map = Define.GetManager<MapManager>();
+
+            var nextPos = pos;
+            var orignalPos = ThisBase.Position;
+            nextPos.y = 1;
+
             if (map.GetBlock(pos) == null)
             {
-                unitAnimation.ChangeState(0);
+                if(playerEqiq.WeaponAnimation() != 1)
+                    unitAnimation.ChangeState(0);
+                else
+                    MoveAnimation(nextPos - orignalPos);
                 return;
             }
 
             if (InGame.GetUnit(pos) != null)
             {
-                unitAnimation.ChangeState(0);
+                if (playerEqiq.WeaponAnimation() != 1)
+                    unitAnimation.ChangeState(0);
+                else
+                    MoveAnimation(nextPos - orignalPos);
                 return;
             }
-            var nextPos = pos;
-            var orignalPos = ThisBase.Position;
-            nextPos.y = 1;
             
             _seq = DOTween.Sequence();
             isMoving = true;
@@ -139,6 +148,7 @@ namespace Units.Base.Player
             }
             
             InGame.SetUnit(ThisBase, nextPos);
+
             _seq.Append(ThisBase.transform.DOMove(nextPos, spd).SetEase(Ease.Linear));
             _seq.InsertCallback(spd / 2, () =>
             {
@@ -147,7 +157,7 @@ namespace Units.Base.Player
             _seq.AppendCallback(() =>
             {
                 isMoving = false;
-                if(!attack.IsAttack)
+                if(!attack.IsAttack || playerEqiq.WeaponAnimation() == 1)
                     PlayerStop();
                 ThisBase.Position = nextPos;
                 InGame.SetUnit(null, orignalPos);
