@@ -21,7 +21,7 @@ namespace Units.Behaviours.Unit
         private bool isFinished = false;
         public Renderer renderer;
         private Material material;
-        public int state = 0;
+        private int state = 0;
 
         public override void Start()
         {
@@ -71,5 +71,9 @@ namespace Units.Behaviours.Unit
             clips = changeClips;
         }
 
+        public bool IsFinished()
+        {
+            return isFinished;
+        }
     }
 }

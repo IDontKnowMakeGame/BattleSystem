@@ -76,7 +76,7 @@ namespace Units.Base.Player
 
         public void EnqueueMove(Vector3 dir)
         {
-            if (moveDir.Count > 1) return;
+            if (moveDir.Count >= 1) return;
             ThisBase.AddState(BaseState.Moving);
             var speed = ThisBase.GetBehaviour<UnitStat>().NowStats.Agi;
             moveDir.Enqueue(new MoveNode(dir, speed));
@@ -104,16 +104,19 @@ namespace Units.Base.Player
 
         public override void MoveTo(Vector3 pos, float spd = 1)
         {
+            if (ThisBase.GetBehaviour<PlayerAttack>().IsAttack)
+                return;
+
             var map = Define.GetManager<MapManager>();
             if (map.GetBlock(pos) == null)
             {
-                unitAnimation.state = 0;
+                unitAnimation.ChangeState(0);
                 return;
             }
 
             if (InGame.GetUnit(pos) != null)
-            { 
-                unitAnimation.state = 0;
+            {
+                unitAnimation.ChangeState(0);
                 return;
             }
             var nextPos = pos;
@@ -169,7 +172,7 @@ namespace Units.Base.Player
         {
             if (moveDir.Count == 0)
             {
-                unitAnimation.state = 0;
+                unitAnimation.ChangeState(0);
             }
         }
 
@@ -203,22 +206,22 @@ namespace Units.Base.Player
             if(dir == Vector3.left)
             {
                 sprite.localScale = new Vector3(-1,1,1);
-                unitAnimation.state = 1;
+                unitAnimation.ChangeState(1);
             }
             else if(dir == Vector3.right)
             {
                 sprite.localScale = new Vector3(1, 1, 1);
-                unitAnimation.state = 1;
+                unitAnimation.ChangeState(1);
             }
             else if(dir == Vector3.forward)
             {
                 sprite.localScale = new Vector3(1, 1, 1);
-                unitAnimation.state = 2;
+                unitAnimation.ChangeState(2);
             }
             else if(dir == Vector3.back)
             {
                 sprite.localScale = new Vector3(1, 1, 1);
-                unitAnimation.state = 3;
+                unitAnimation.ChangeState(3);
             }
         }
     }
