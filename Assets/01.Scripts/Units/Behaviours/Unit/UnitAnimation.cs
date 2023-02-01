@@ -38,7 +38,10 @@ namespace Units.Behaviours.Unit
             List<AnimeClip> _clips = clips.clips;
             if (isFinished && !_clips[state].isLoop)
             {
-                ChangeState(0);
+                if(_clips[state].nextIdx != -1)
+                {
+                    ChangeState(_clips[state].nextIdx);
+                }
                 return;
             }
             isFinished = false;
