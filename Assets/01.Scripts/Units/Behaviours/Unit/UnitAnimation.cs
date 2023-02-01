@@ -21,7 +21,7 @@ namespace Units.Behaviours.Unit
         private bool isFinished = false;
         public Renderer renderer;
         private Material material;
-        public int state = 0;
+        private int state = 0;
 
         public override void Start()
         {
@@ -36,7 +36,11 @@ namespace Units.Behaviours.Unit
         public override void Update()
         {
             List<AnimeClip> _clips = clips.clips;
-            if (isFinished && !_clips[state].isLoop) return;
+            if (isFinished && !_clips[state].isLoop)
+            {
+                ChangeState(0);
+                return;
+            }
             isFinished = false;
             time += Time.deltaTime;
 
@@ -71,5 +75,9 @@ namespace Units.Behaviours.Unit
             clips = changeClips;
         }
 
+        public bool IsFinished()
+        {
+            return isFinished;
+        }
     }
 }

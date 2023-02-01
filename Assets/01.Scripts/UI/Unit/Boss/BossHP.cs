@@ -8,11 +8,10 @@ using UnityEngine.UI;
 public class BossHP : MonoBehaviour
 {
     private Slider _slider;
+
     private void Awake()
     {
-        _slider = GetComponent<Slider>();
-
-        
+        _slider = GetComponent<Slider>();     
     }
     void Start()
     {
@@ -29,5 +28,17 @@ public class BossHP : MonoBehaviour
     private void AddBossHP(EventParam value)
     {
         _slider.value = value.floatParam;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.StopListening(EventFlag.ShowBossHP, ShowBossHP);
+        EventManager.StopListening(EventFlag.AddBossHP, AddBossHP);
+    }
+
+    private void OnApplicationQuit()
+    {
+        EventManager.StopListening(EventFlag.ShowBossHP, ShowBossHP);
+        EventManager.StopListening(EventFlag.AddBossHP, AddBossHP);
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3562661168614408686}
   - component: {fileID: 3562661168614408687}
   - component: {fileID: 3562661168614408684}
+  - component: {fileID: 1423464762}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -53,27 +54,16 @@ MonoBehaviour:
   playerMove:
     distance: 1
     spawnPos: {x: 1, y: 1, z: 0}
+  PlayerAttack:
+    cameraZoom: {fileID: 0}
   PlayerEqiq:
     _currentWeapon: 
     _secoundWeapon: 
     isEnemy: 0
   unitAnimation:
-    clips:
-    - name: 
-      texture: {fileID: 2800000, guid: 454b491ac77e29a439534c7821c1c060, type: 3}
-      fps: 11
-      isLoop: 1
-      delay: 0.1
-    - name: 
-      texture: {fileID: 2800000, guid: b3cd96158d77cce47a433dad60c07a55, type: 3}
-      fps: 9
-      isLoop: 1
-      delay: 0.1
-    - name: 
-      texture: {fileID: 2800000, guid: adf281e7631c6024ba577ba07b37c7a1, type: 3}
-      fps: 11
-      isLoop: 0
-      delay: 0.1
+    clips: {fileID: 11400000, guid: 03473dd626637364aa247afd26b964ef, type: 2}
+    weaponClips:
+    - {fileID: 11400000, guid: 42eff23c5e338724d83a20cca426c814, type: 2}
     renderer: {fileID: 3562661170690825864}
     state: 0
   playerBuff:
@@ -214,6 +204,23 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0, y: -1, z: 0}
+--- !u!114 &1423464762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3562661168614408593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87ae00bd83488014baf32eed36a0f869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationClip:
+  - {fileID: 11400000, guid: 42eff23c5e338724d83a20cca426c814, type: 2}
+  - {fileID: 11400000, guid: 42eff23c5e338724d83a20cca426c814, type: 2}
+  - {fileID: 11400000, guid: 42eff23c5e338724d83a20cca426c814, type: 2}
+  - {fileID: 11400000, guid: 42eff23c5e338724d83a20cca426c814, type: 2}
 --- !u!1 &3562661169909680278
 GameObject:
   m_ObjectHideFlags: 0
