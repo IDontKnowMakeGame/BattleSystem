@@ -38,14 +38,21 @@ public class EquipWeaponUI : MonoBehaviour
         string name = param.stringParam;
         if (_firstWeapon == name || _secondWeapon == name) return;
 
-        if (_firstWeapon == null)
+        if ( _firstWeapon == null || _firstWeapon == "" )
         {
+            
             _firstWeapon = name;
             _firstWeaponImage.sprite = GameManagement.Instance.GetManager<ResourceManagers>().Load<Sprite>($"{_firstWeapon}");
-        }else if(_secondWeapon == null)
+
+            param.intParam = 1;
+            EventManager.TriggerEvent(EventFlag.WeaponChange, param);
+        }else if(_secondWeapon == null || _secondWeapon == "")
         {
             _secondWeapon = name;
             _secondWeaponImage.sprite = GameManagement.Instance.GetManager<ResourceManagers>().Load<Sprite>($"{_secondWeapon}");
+
+            param.intParam = 2;
+            EventManager.TriggerEvent(EventFlag.WeaponChange, param);
         }
         SaveWeaponData();
     }
@@ -56,10 +63,19 @@ public class EquipWeaponUI : MonoBehaviour
         {
             _firstWeapon = null;
             _firstWeaponImage.sprite = null;
-        }else if(_secondWeapon == name)
+
+            param.intParam = 1;
+            param.stringParam = null;
+            EventManager.TriggerEvent(EventFlag.WeaponChange, param);
+        }
+        else if(_secondWeapon == name)
         {
             _secondWeapon = null;
             _secondWeaponImage.sprite = null;
+
+            param.intParam = 2;
+            param.stringParam = null;
+            EventManager.TriggerEvent(EventFlag.WeaponChange, param);
         }
         SaveWeaponData();
     }
