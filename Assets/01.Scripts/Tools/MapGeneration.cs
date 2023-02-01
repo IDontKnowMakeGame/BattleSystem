@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.Networking;
+using UnityEditor;
 
 public enum Mode
 {
@@ -206,6 +207,8 @@ public class MapGeneration : MonoBehaviour
     }
 
     #endregion
+
+
 
     [ContextMenu("SpawnMap")]
     private void SpawnMap()

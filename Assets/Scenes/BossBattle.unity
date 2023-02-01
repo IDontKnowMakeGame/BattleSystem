@@ -15582,6 +15582,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3562661168614408687, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: unitAnimation.clips
+      value: 
+      objectReference: {fileID: 11400000, guid: 5f1585553fe21c942addc9e2b9d2c714, type: 2}
+    - target: {fileID: 3562661168614408687, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
       propertyPath: playerMove.spawnPos.x
       value: 9
       objectReference: {fileID: 0}
@@ -34896,7 +34900,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1299825383}
-  - component: {fileID: 1299825382}
+  - component: {fileID: 1299825384}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -34904,18 +34908,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1299825382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1299825381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7852063f2f5d48be8fdf60bb32850591, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1299825383
 Transform:
   m_ObjectHideFlags: 0
@@ -34931,6 +34923,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1299825384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299825381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7852063f2f5d48be8fdf60bb32850591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1304112635
 GameObject:
   m_ObjectHideFlags: 0
