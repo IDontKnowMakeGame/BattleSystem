@@ -6,6 +6,8 @@ public enum EventFlag
 {
     ShowBossHP,
     AddBossHP,
+    ShowPlayerHP,
+    AddPlayerHP,
     WeaponEquip,
     WeaponUnmount,
     WeaponSwap

@@ -77,12 +77,16 @@ namespace Units.Behaviours.Unit
 				return;
 			}
 
+			EventParam param = new EventParam();
+			param.floatParam = changeStats.Hp / originStats.Hp;
 			if(Core.InGame.BossBase == this.ThisBase)
             {
-				EventParam param = new EventParam();
-				param.floatParam = changeStats.Hp / originStats.Hp;
 				EventManager.TriggerEvent(EventFlag.AddBossHP, param);
             }
+			if(Core.InGame.PlayerBase == ThisBase)
+            {
+				EventManager.TriggerEvent(EventFlag.AddPlayerHP, param);
+			}
 
 		}
 
