@@ -102,11 +102,14 @@ namespace Units.Base.Player
                enemys = attackColParent.AllCurrentDirEnemy();
 
 
-            //if (enemys.Count > 0)
-                //ThisBase.StartCoroutine(cameraZoom.ZoomInOut(1f));
+            if (enemys.Count > 0)
+            {
+                ThisBase.StartCoroutine(cameraZoom.ZoomInOut(1f));
+                EventManager.TriggerEvent(EventFlag.CameraShake,new EventParam());
+            }
 
 
-            foreach(EnemyBase enemy in enemys)
+            foreach (EnemyBase enemy in enemys)
             {
                 enemy.ThisStat.Damaged(damage);
                 GameObject obj = GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("Damage");

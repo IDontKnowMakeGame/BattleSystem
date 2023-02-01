@@ -6,9 +6,12 @@ using UnityEngine.UI;
 
 public class EquipWeaponUI : MonoBehaviour
 {
+
+
     [SerializeField]
     private Image _firstWeaponImage;
     private string _firstWeapon;
+
     [SerializeField]
     private Image _secondWeaponImage;
     private string _secondWeapon;
@@ -84,10 +87,6 @@ public class EquipWeaponUI : MonoBehaviour
         Sprite sprite = _firstWeaponImage.sprite;
         _firstWeaponImage.sprite = _secondWeaponImage.sprite;
         _secondWeaponImage.sprite = sprite;
-
-        string name = _firstWeapon;
-        _firstWeapon = _secondWeapon;
-        _secondWeapon = name;
 
         SaveWeaponData();
     }

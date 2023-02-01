@@ -11,7 +11,11 @@ public class Shake : MonoBehaviour
     [SerializeField] private float minAmount;
     [SerializeField] private float maxAmount;
 
-    public void ScreenShake(Vector3 dir)
+    private void Start()
+    {
+        EventManager.StartListening(EventFlag.CameraShake, ScreenShake);
+    }
+    public void ScreenShake(EventParam dir)
     {
         float amount = Random.Range(minAmount, maxAmount);
         screenShake.GenerateImpulse(amount);
