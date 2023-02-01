@@ -21,7 +21,7 @@ namespace Units.Base.Player
         public override void Damaged(float damage)
         {
             base.Damaged(damage);
-            DamageShake.ScreenShake(Vector3.one);
+            DamageShake.ScreenShake(new EventParam());
         }
 
         public override void Die()

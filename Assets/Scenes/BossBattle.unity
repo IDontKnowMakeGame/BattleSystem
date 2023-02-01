@@ -1800,7 +1800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 57911751932573268, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 21.1
       objectReference: {fileID: 0}
     - target: {fileID: 57911751932573268, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -1818,6 +1818,18 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 1747205862}
+    - target: {fileID: 57911751932573271, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
+      propertyPath: m_ChannelMask
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242452035319382347, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
+      propertyPath: maxSize
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242452035319382347, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
+      propertyPath: minSize
+      value: 55
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
 --- !u!1 &70320490
@@ -17432,7 +17444,7 @@ MonoBehaviour:
   name: Damaged
   screenShake: {fileID: 719013348}
   minAmount: 1
-  maxAmount: 3
+  maxAmount: 100
 --- !u!114 &719013348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44386,7 +44398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1635147063
 RectTransform:
   m_ObjectHideFlags: 0

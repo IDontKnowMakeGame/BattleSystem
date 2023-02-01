@@ -1,6 +1,6 @@
 {
     "maxHp": 100,
-    "currentWeapon": "oldTwinSword",
-    "firstWeapon": "oldSpear",
+    "currentWeapon": "oldSword",
+    "firstWeapon": "oldSword",
     "secondWeapon": "oldTwinSword"
 }
