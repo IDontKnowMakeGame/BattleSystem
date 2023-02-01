@@ -45,10 +45,10 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             lifeCheck.SetTarget(stat, stat.OriginStats.Hp * 2 / 10);
             lifeCheck.SetResult(true);
             lifeCheck._logicCondition = true;
+            toSpiritAttack.AddCondition(squareCheck);
             toSpiritAttack.AddCondition(lineDetect2);
             toSpiritAttack.AddCondition(lineDetect3);
             toSpiritAttack.AddCondition(lifeCheck);
-            toSpiritAttack.AddCondition(squareCheck);
             toSpiritAttack.SetTarget(new SpiritAttackState());
             AddTransition(toSpiritAttack);
         }
@@ -76,7 +76,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             var path = astar.GetNextPath();
             if (path != null)
             {
-                //move.MoveTo(path.Position, stat.Agi);
+                move.MoveTo(path.Position, stat.Agi);
             }
             yield return new WaitUntil(() => !move.IsMoving());
             isChasing = false;

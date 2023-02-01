@@ -1759,6 +1759,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 57911751873857267, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
+      propertyPath: m_VerticalAxis.Value
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 57911751873857267, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
+      propertyPath: m_VerticalAxis.m_MaxValue
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 57911751873857267, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
+      propertyPath: m_VerticalAxis.m_MinValue
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 57911751873857267, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
       propertyPath: m_HorizontalAxis.m_MaxValue
       value: 0
       objectReference: {fileID: 0}
@@ -1820,7 +1832,7 @@ PrefabInstance:
       objectReference: {fileID: 1747205862}
     - target: {fileID: 57911751932573271, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
       propertyPath: m_ChannelMask
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2242452035319382347, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
       propertyPath: maxSize
@@ -15669,6 +15681,10 @@ PrefabInstance:
       propertyPath: thisStat.changeStats.Hp
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 3562661168614408687, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: thisStat.originStats.Hp
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 3562661169909680279, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -17455,8 +17471,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Damaged
   screenShake: {fileID: 719013348}
-  minAmount: 1
-  maxAmount: 100
+  minAmount: 0.01
+  maxAmount: 0.5
 --- !u!114 &719013348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47310,11 +47326,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3041935593448038436, guid: 3310a305a449e094f97d81087b882af4, type: 3}
       propertyPath: thisStat.changeStats.Hp
-      value: 1500
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 3041935593448038436, guid: 3310a305a449e094f97d81087b882af4, type: 3}
       propertyPath: thisStat.originStats.Hp
-      value: 1500
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 3041935593448038437, guid: 3310a305a449e094f97d81087b882af4, type: 3}
       propertyPath: m_RootOrder
