@@ -37,7 +37,7 @@ MonoBehaviour:
     texture: {fileID: 2800000, guid: 842eb53c5241b524bb291102dcfb0d0e, type: 3}
     fps: 10
     isLoop: 0
-    delay: 0.1
+    delay: 0.07
   - name: UpAttack
     texture: {fileID: 2800000, guid: 914dfd1f3a4b8634787249a11870d1c9, type: 3}
     fps: 10

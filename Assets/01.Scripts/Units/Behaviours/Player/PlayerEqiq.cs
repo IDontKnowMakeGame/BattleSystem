@@ -11,6 +11,7 @@ namespace Units.Base.Player
 		private int count;
 
 		private UnitAnimation unitAnimation;
+		private PlayerAttack playerAttack;
 		private AnimationClip animationClip;
 
 		public override void Awake()
@@ -28,7 +29,9 @@ namespace Units.Base.Player
 		public override void Start()
 		{
 			unitAnimation = ThisBase.GetBehaviour<UnitAnimation>();
+			playerAttack = ThisBase.GetBehaviour<PlayerAttack>();
 			animationClip = ThisBase.GetComponent<AnimationClip>();
+
 			unitAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
 
 			Define.GetManager<InputManager>().AddInGameAction(InputTarget.TestChangeWeapon, InputStatus.Press, TestChangeWeapon);
@@ -52,6 +55,7 @@ namespace Units.Base.Player
 			_secoundWeapon = temp;
 			CurrentWeapon.ChangeKey();
 
+			playerAttack.ChangeDelay(CurrentWeapon.WeaponStat.Afs);
 			unitAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
 		}
 		private void TestChangeWeapon()

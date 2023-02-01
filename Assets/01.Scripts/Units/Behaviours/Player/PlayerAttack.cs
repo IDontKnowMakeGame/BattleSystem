@@ -29,8 +29,22 @@ namespace Units.Base.Player
         [SerializeField]
         private CameraZoom cameraZoom;
 
+
+        private float attackDelay;
+
+
+        private bool isInit = false;
+
+        private float timer;
+
+        private bool isAttack = false;
+        public bool IsAttack => isAttack;
         
         private UnitAnimation unitAnimation;
+
+        private Transform sprite;
+
+       
 
         public override void Start()
         {
@@ -38,6 +52,7 @@ namespace Units.Base.Player
             attackColParent = GameObject.FindObjectOfType<AttackCollider>();
 
             unitAnimation = ThisBase.GetBehaviour<UnitAnimation>();
+            sprite = ThisBase.GetComponentInChildren<MeshRenderer>().transform;
 
             SetAnimation();
             Define.GetManager<InputManager>().AddInGameAction(InputTarget.TestChangeWeapon, InputStatus.Press, SetAnimation);
@@ -56,6 +71,7 @@ namespace Units.Base.Player
         public override void Update()
         {
             base.Update();
+            Timer();
             // To Do InputManager?? ???
         }
 
@@ -70,6 +86,14 @@ namespace Units.Base.Player
         }
         public void Attack(float damage, bool near = false)
         {
+            if (!isInit)
+            {
+                ChangeDelay(ThisBase.GetBehaviour<PlayerEqiq>().CurrentWeapon.WeaponStat.Afs);
+                isInit = true;
+            }
+
+
+            if (timer > 0) return;
             List<EnemyBase> enemys = new List<EnemyBase>();
 
             if (near)
@@ -78,8 +102,8 @@ namespace Units.Base.Player
                enemys = attackColParent.AllCurrentDirEnemy();
 
 
-            if (enemys.Count > 0)
-                ThisBase.StartCoroutine(cameraZoom.ZoomInOut(1f));
+            //if (enemys.Count > 0)
+                //ThisBase.StartCoroutine(cameraZoom.ZoomInOut(1f));
 
 
             foreach(EnemyBase enemy in enemys)
@@ -89,31 +113,56 @@ namespace Units.Base.Player
                 obj.GetComponent<DamagePopUp>().DamageText(damage, enemy.transform.position);
                 onBehaviourEnd?.Invoke();
             }
+
+            timer = attackDelay;
         }
 
         public void ChangeAnimation(Vector3 dir)
         {
-            Debug.Log("¿À");
+            if(!isInit)
+            {
+                ChangeDelay(ThisBase.GetBehaviour<PlayerEqiq>().CurrentWeapon.WeaponStat.Afs);
+                isInit = true;
+            }
+
+
+            if (timer > 0) return;
             if (dir == Vector3.left)
             {
-                unitAnimation.state = 4;
-                ThisBase.transform.localScale = new Vector3(-1, 1, 1);
+                unitAnimation.ChangeState(4);
+                sprite.localScale = new Vector3(-1, 1, 1);
             }
             else if(dir == Vector3.right)
             {
-                unitAnimation.state = 4;
-                ThisBase.transform.localScale = new Vector3(1, 1, 1);
+                unitAnimation.ChangeState(4);
+                sprite.localScale = new Vector3(1, 1, 1);
             }
             else if(dir == Vector3.forward)
             {
-                unitAnimation.state = 5;
-                ThisBase.transform.localScale = new Vector3(1, 1, 1);
+                unitAnimation.ChangeState(5);
+                sprite.localScale = new Vector3(1, 1, 1);
             }
             else if(dir == Vector3.back)
             {
-                unitAnimation.state = 6;
-                ThisBase.transform.localScale = new Vector3(1, 1, 1);
+                unitAnimation.ChangeState(6);
+                sprite.localScale = new Vector3(1, 1, 1);
             }
+            isAttack = true;    
+        }
+
+        public void Timer()
+        {
+            if(timer > 0)
+                timer -= Time.deltaTime;
+
+            if (isAttack && unitAnimation.IsFinished())
+                isAttack = false;              
+        }
+
+        public void ChangeDelay(float delay)
+        {
+            attackDelay = delay;
+            timer = 0;
         }
     }
 }
