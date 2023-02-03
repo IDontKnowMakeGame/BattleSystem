@@ -2,6 +2,7 @@
 using Unit.Core;
 using UnityEngine;
 using Behaviour = Units.Behaviours.Base.Behaviour;
+using Units.Base.Player;
 
 namespace Units.Behaviours.Unit
 {
@@ -85,7 +86,9 @@ namespace Units.Behaviours.Unit
             }
 			if(Core.InGame.PlayerBase == ThisBase)
             {
+				ThisBase.GetBehaviour<PlayerBuff>().ChangeAnger(2);
 				EventManager.TriggerEvent(EventFlag.AddPlayerHP, param);
+
 			}
 
 		}

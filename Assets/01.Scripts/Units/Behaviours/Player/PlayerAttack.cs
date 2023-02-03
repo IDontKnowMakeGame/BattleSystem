@@ -42,6 +42,8 @@ namespace Units.Base.Player
         
         private UnitAnimation unitAnimation;
 
+        private PlayerBuff playerBuff;
+
         private Transform sprite;
 
        
@@ -52,6 +54,7 @@ namespace Units.Base.Player
             attackColParent = GameObject.FindObjectOfType<AttackCollider>();
 
             unitAnimation = ThisBase.GetBehaviour<UnitAnimation>();
+            playerBuff = ThisBase.GetBehaviour<PlayerBuff>();
             sprite = ThisBase.GetComponentInChildren<MeshRenderer>().transform;
 
             SetAnimation();
@@ -105,8 +108,11 @@ namespace Units.Base.Player
             if (enemys.Count > 0)
             {
                 ThisBase.StartCoroutine(cameraZoom.ZoomInOut(1f));
+                playerBuff.ChangeAdneraline(1);
                 EventManager.TriggerEvent(EventFlag.CameraShake,new EventParam());
             }
+            else
+                playerBuff.ChangeAdneraline(-1);
 
 
             foreach (EnemyBase enemy in enemys)
