@@ -138,10 +138,10 @@ namespace Managements
 
         private void Init()
         {
-            AddManager<InputManager>();
-            AddManager<DataManager>();
-            AddManager<ResourceManagers>();
-            AddManager<PoolManager>();
+            Instance.AddManager<InputManager>();
+            Instance.AddManager<DataManager>();
+            Instance.AddManager<ResourceManagers>();
+            Instance.AddManager<PoolManager>();
         }
         
         public void Awake()
