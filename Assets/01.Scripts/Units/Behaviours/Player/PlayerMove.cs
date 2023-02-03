@@ -149,7 +149,7 @@ namespace Units.Base.Player
             
             InGame.SetUnit(ThisBase, nextPos);
 
-            _seq.Append(ThisBase.transform.DOMove(nextPos, spd).SetEase(Ease.Linear));
+            _seq.Append(ThisBase.transform.DOMove(nextPos, spd).SetEase(Ease.OutCubic));
             _seq.InsertCallback(spd / 2, () =>
             {
                 ThisBase.Position = nextPos;
