@@ -21,10 +21,10 @@ public class OldSpear : BaseSpear
 	{
 		count++;
 		
-		Debug.Log("때리기");
+		Debug.Log("??????");
 		if (count == 3)
 		{
-			Debug.Log("터지기");
+			Debug.Log("??????");
 			beforeAtk = _weaponStats.Atk;
 			_weaponStats.Atk *= 2;
 		}

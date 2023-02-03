@@ -6,7 +6,7 @@ namespace Units.Behaviours.Unit
 {
     public class UnitRender : Behaviour
     {
-        public override void Update()
+        public override void FixedUpdate()
         {
             Render();
         }

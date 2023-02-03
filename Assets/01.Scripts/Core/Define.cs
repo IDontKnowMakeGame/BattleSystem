@@ -33,6 +33,7 @@ namespace Core
 
                 return _playerBase;
             }
+            set => _playerBase = value;
         }
 
         public static EnemyBase BossBase

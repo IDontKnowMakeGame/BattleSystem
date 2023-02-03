@@ -15,17 +15,17 @@ namespace Managements
         {
             get
             {
-                if (instance != null) 
+                if (instance != null)
                     return instance;
                 instance = FindObjectOfType<GameManagement>();
-                
+
                 if (instance != null)
                     return instance;
                 var obj = new GameObject
                 {
                     name = nameof(GameManagement)
                 };
-                
+
                 instance = obj.AddComponent<GameManagement>();
                 return instance;
             }
@@ -35,6 +35,7 @@ namespace Managements
 
 
         #region Control_Managers
+
         public T AddManager<T>() where T : Manager, new()
         {
             var thisType = typeof(T);
@@ -49,7 +50,7 @@ namespace Managements
                 Debug.LogError($"{thisType} is already in this Unit.");
                 return null;
             }
-            
+
             var thisManager = new T();
             thisManager.Instance = this;
             _managers.Add(thisType, thisManager);
@@ -64,13 +65,13 @@ namespace Managements
             {
                 thisType = baseType;
             }
-            
+
             if (_managers.ContainsKey(thisType))
             {
                 Debug.LogError($"{thisType} is already in this Unit.");
                 return;
             }
-            
+
             var thisManager = instance;
             thisManager.Instance = this;
             _managers.Add(thisType, thisManager);
@@ -93,7 +94,7 @@ namespace Managements
             else
             {
                 Debug.LogError($"This unit doesn't have {thisType}.");
-            }   
+            }
         }
 
         public void RemoveManager<T>() where T : Manager
@@ -114,7 +115,7 @@ namespace Managements
                 Debug.LogError($"This unit doesn't have {thisType}.");
             }
         }
-        
+
         public T GetManager<T>() where T : Manager
         {
             var thisType = typeof(T);
@@ -126,7 +127,7 @@ namespace Managements
 
             if (_managers.ContainsKey(thisType))
             {
-                return (T) _managers[thisType];
+                return (T)_managers[thisType];
             }
             else
             {
@@ -138,12 +139,13 @@ namespace Managements
 
         private void Init()
         {
+            instance = this;
             Instance.AddManager<InputManager>();
             Instance.AddManager<DataManager>();
             Instance.AddManager<ResourceManagers>();
             Instance.AddManager<PoolManager>();
         }
-        
+
         public void Awake()
         {
             Init();

@@ -19,6 +19,7 @@ namespace Units.Base.Player
 
         protected override void Init()
         {
+            InGame.PlayerBase = this;
             AddBehaviour(thisStat);
             AddBehaviour(unitAnimation);
             AddBehaviour(playerMove);
