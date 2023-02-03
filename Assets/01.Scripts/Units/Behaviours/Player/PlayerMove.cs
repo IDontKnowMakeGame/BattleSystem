@@ -37,6 +37,7 @@ namespace Units.Base.Player
 
         private UnitAnimation unitAnimation;
 
+        private bool twoAnimation = true;
 
         public override void Awake()
         {
@@ -235,6 +236,15 @@ namespace Units.Base.Player
             {
                 sprite.localScale = new Vector3(1, 1, 1);
                 unitAnimation.ChangeState(3);
+            }
+
+            if (ThisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() == 1)
+            {
+                twoAnimation = !twoAnimation;
+                if (twoAnimation)
+                {
+                    unitAnimation.ChangeState(7);
+                }
             }
         }
     }

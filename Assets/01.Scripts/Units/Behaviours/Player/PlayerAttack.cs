@@ -46,8 +46,6 @@ namespace Units.Base.Player
 
         private Transform sprite;
 
-       
-
         public override void Start()
         {
             base.Start();
