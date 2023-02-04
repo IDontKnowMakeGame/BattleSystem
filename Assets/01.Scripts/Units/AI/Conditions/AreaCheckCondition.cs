@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Core;
+using UnityEngine;
 
 namespace Unit.Enemy.AI.Conditions
 {
@@ -14,7 +15,7 @@ namespace Unit.Enemy.AI.Conditions
             {
                 if (max.z >= _target.Position.z && _target.Position.z >= min.z)
                 {
-                    EventManager.TriggerEvent(EventFlag.ShowBossHP, new EventParam());
+                    Define.GetManager<EventManager>().TriggerEvent(EventFlag.ShowBossHP, new EventParam());
                     return true;
                 }
 

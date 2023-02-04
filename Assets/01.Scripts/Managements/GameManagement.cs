@@ -144,6 +144,7 @@ namespace Managements
             Instance.AddManager<DataManager>();
             Instance.AddManager<ResourceManagers>();
             Instance.AddManager<PoolManager>();
+            Instance.AddManager<EventManager>();
         }
 
         public void Awake()

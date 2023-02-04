@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +14,7 @@ public class PlayerHP : MonoBehaviour
     }
     void Start()
     {
-        EventManager.StartListening(EventFlag.AddPlayerHP, AddPlayerHP);
+        Define.GetManager<EventManager>().StartListening(EventFlag.AddPlayerHP, AddPlayerHP);
     }
     private void AddPlayerHP(EventParam value)
     {
@@ -22,11 +23,11 @@ public class PlayerHP : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventManager.StopListening(EventFlag.AddPlayerHP, AddPlayerHP);
+        Define.GetManager<EventManager>().StopListening(EventFlag.AddPlayerHP, AddPlayerHP);
     }
 
     private void OnApplicationQuit()
     {
-        EventManager.StopListening(EventFlag.AddPlayerHP, AddPlayerHP);
+        Define.GetManager<EventManager>().StopListening(EventFlag.AddPlayerHP, AddPlayerHP);
     }
 }

@@ -15,8 +15,8 @@ public class BossHP : MonoBehaviour
     }
     void Start()
     {
-        EventManager.StartListening(EventFlag.ShowBossHP, ShowBossHP);
-        EventManager.StartListening(EventFlag.AddBossHP, AddBossHP);
+        Define.GetManager<EventManager>().StartListening(EventFlag.ShowBossHP, ShowBossHP);
+        Define.GetManager<EventManager>().StartListening(EventFlag.AddBossHP, AddBossHP);
 
         _slider.gameObject.SetActive(false);
     }
@@ -32,13 +32,13 @@ public class BossHP : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventManager.StopListening(EventFlag.ShowBossHP, ShowBossHP);
-        EventManager.StopListening(EventFlag.AddBossHP, AddBossHP);
+        Define.GetManager<EventManager>().StopListening(EventFlag.ShowBossHP, ShowBossHP);
+        Define.GetManager<EventManager>().StopListening(EventFlag.AddBossHP, AddBossHP);
     }
 
     private void OnApplicationQuit()
     {
-        EventManager.StopListening(EventFlag.ShowBossHP, ShowBossHP);
-        EventManager.StopListening(EventFlag.AddBossHP, AddBossHP);
+        Define.GetManager<EventManager>().StopListening(EventFlag.ShowBossHP, ShowBossHP);
+        Define.GetManager<EventManager>().StopListening(EventFlag.AddBossHP, AddBossHP);
     }
 }

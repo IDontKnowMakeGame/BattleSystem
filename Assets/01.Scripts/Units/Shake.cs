@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using Core;
 
 [System.Serializable]
 public class Shake : MonoBehaviour
@@ -13,7 +14,7 @@ public class Shake : MonoBehaviour
 
     private void Start()
     {
-        EventManager.StartListening(EventFlag.CameraShake, ScreenShake);
+        Define.GetManager<EventManager>().StartListening(EventFlag.CameraShake, ScreenShake);
     }
     public void ScreenShake(EventParam dir)
     {

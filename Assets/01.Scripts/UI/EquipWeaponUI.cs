@@ -1,6 +1,7 @@
 using Managements;
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,9 +32,9 @@ public class EquipWeaponUI : MonoBehaviour
         _firstWeaponImage.sprite = GameManagement.Instance.GetManager<ResourceManagers>().Load<Sprite>($"{_firstWeapon}");
         _secondWeaponImage.sprite = GameManagement.Instance.GetManager<ResourceManagers>().Load<Sprite>($"{_secondWeapon}");
 
-        EventManager.StartListening(EventFlag.WeaponEquip, Equip);
-        EventManager.StartListening(EventFlag.WeaponUnmount, Unmount);
-        EventManager.StartListening(EventFlag.WeaponSwap, Swap);
+        Define.GetManager<EventManager>().StartListening(EventFlag.WeaponEquip, Equip);
+        Define.GetManager<EventManager>().StartListening(EventFlag.WeaponUnmount, Unmount);
+        Define.GetManager<EventManager>().StartListening(EventFlag.WeaponSwap, Swap);
     }
 
     public void Equip(EventParam param)
@@ -48,14 +49,14 @@ public class EquipWeaponUI : MonoBehaviour
             _firstWeaponImage.sprite = GameManagement.Instance.GetManager<ResourceManagers>().Load<Sprite>($"{_firstWeapon}");
 
             param.intParam = 1;
-            EventManager.TriggerEvent(EventFlag.WeaponChange, param);
+            Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponChange, param);
         }else if(_secondWeapon == null || _secondWeapon == "")
         {
             _secondWeapon = name;
             _secondWeaponImage.sprite = GameManagement.Instance.GetManager<ResourceManagers>().Load<Sprite>($"{_secondWeapon}");
 
             param.intParam = 2;
-            EventManager.TriggerEvent(EventFlag.WeaponChange, param);
+            Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponChange, param);
         }
         SaveWeaponData();
     }
@@ -69,7 +70,7 @@ public class EquipWeaponUI : MonoBehaviour
 
             param.intParam = 1;
             param.stringParam = null;
-            EventManager.TriggerEvent(EventFlag.WeaponChange, param);
+            Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponChange, param);
         }
         else if(_secondWeapon == name)
         {
@@ -78,7 +79,7 @@ public class EquipWeaponUI : MonoBehaviour
 
             param.intParam = 2;
             param.stringParam = null;
-            EventManager.TriggerEvent(EventFlag.WeaponChange, param);
+            Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponChange, param);
         }
         SaveWeaponData();
     }

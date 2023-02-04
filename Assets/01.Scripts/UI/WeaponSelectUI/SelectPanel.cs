@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,13 +31,13 @@ public class SelectPanel : MonoBehaviour
     {
         EventParam param = new EventParam();
         param.stringParam = weaponName;
-        EventManager.TriggerEvent(EventFlag.WeaponEquip, param);
+        Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponEquip, param);
     }
 
     private void Unmount()
     {
         EventParam param = new EventParam();
         param.stringParam = weaponName;
-        EventManager.TriggerEvent(EventFlag.WeaponUnmount, param);
+        Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponUnmount, param);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Managements.Managers.Base;
 
 public enum EventFlag
 {
@@ -14,11 +15,11 @@ public enum EventFlag
     WeaponChange,
     CameraShake
 }
-public class EventManager
+public class EventManager : Manager
 {
-    private static Dictionary<EventFlag, Action<EventParam>> eventDictionary = new Dictionary<EventFlag, Action<EventParam>>();
+    private Dictionary<EventFlag, Action<EventParam>> eventDictionary = new Dictionary<EventFlag, Action<EventParam>>();
 
-    public static void StartListening(EventFlag eventName, Action<EventParam> listener)
+    public void StartListening(EventFlag eventName, Action<EventParam> listener)
     {
         Action<EventParam> thisEvent;
         if (eventDictionary.TryGetValue(eventName, out thisEvent))
@@ -32,7 +33,7 @@ public class EventManager
         }
     }
 
-    public static void StopListening(EventFlag eventName, Action<EventParam> listener)
+    public void StopListening(EventFlag eventName, Action<EventParam> listener)
     {
         Action<EventParam> thisEvent;
         if (eventDictionary.TryGetValue(eventName, out thisEvent))
@@ -46,7 +47,7 @@ public class EventManager
         }
     }
 
-    public static void TriggerEvent(EventFlag eventName, EventParam eventParam)
+    public void TriggerEvent(EventFlag eventName, EventParam eventParam)
     {
         Action<EventParam> thisEvent;
         if (eventDictionary.TryGetValue(eventName, out thisEvent))

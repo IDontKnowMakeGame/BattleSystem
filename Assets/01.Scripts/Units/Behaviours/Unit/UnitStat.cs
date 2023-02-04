@@ -82,12 +82,12 @@ namespace Units.Behaviours.Unit
 			param.floatParam = changeStats.Hp / originStats.Hp;
 			if(Core.InGame.BossBase == this.ThisBase)
             {
-				EventManager.TriggerEvent(EventFlag.AddBossHP, param);
+				Core.Define.GetManager<EventManager>().TriggerEvent(EventFlag.AddBossHP, param);
             }
 			if(Core.InGame.PlayerBase == ThisBase)
             {
 				ThisBase.GetBehaviour<PlayerBuff>().ChangeAnger(2);
-				EventManager.TriggerEvent(EventFlag.AddPlayerHP, param);
+				Core.Define.GetManager<EventManager>().TriggerEvent(EventFlag.AddPlayerHP, param);
 
 			}
 

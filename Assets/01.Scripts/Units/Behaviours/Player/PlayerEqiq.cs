@@ -39,13 +39,13 @@ namespace Units.Base.Player
 			Define.GetManager<InputManager>().AddInGameAction(InputTarget.ChangeWeapon, InputStatus.Press, ChangeWeapon);
 			Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.WeaponOnOff, InputStatus.Press, WeaponOnOff);
 
-			EventManager.StartListening(EventFlag.WeaponChange, ChangeWeapon);
+			Define.GetManager<EventManager>().StartListening(EventFlag.WeaponChange, ChangeWeapon);
 			base.Start();
 		}
 
         public override void OnDisable()
         {
-			EventManager.StopListening(EventFlag.WeaponChange, ChangeWeapon);
+			Define.GetManager<EventManager>().StopListening(EventFlag.WeaponChange, ChangeWeapon);
 			base.OnDisable();
         }
 
@@ -67,7 +67,7 @@ namespace Units.Base.Player
 			playerAttack.ChangeDelay(CurrentWeapon.WeaponStat.Afs);
 			unitAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
 			unitAnimation.ChangeState(10);
-			EventManager.TriggerEvent(EventFlag.WeaponSwap, new EventParam());
+			Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponSwap, new EventParam());
 		}
 
 		public void ChangeWeapon(EventParam eventParam)
