@@ -116,15 +116,6 @@ namespace Units.Base.Player
             var orignalPos = ThisBase.Position;
             nextPos.y = 1;
 
-            if (map.GetBlock(pos) == null)
-            {
-                if(playerEqiq.WeaponAnimation() != 1)
-                    unitAnimation.ChangeState(0);
-                else
-                    MoveAnimation(nextPos - orignalPos);
-                return;
-            }
-
             if (InGame.GetUnit(pos) != null)
             {
                 if (playerEqiq.WeaponAnimation() != 1)
@@ -133,6 +124,23 @@ namespace Units.Base.Player
                     MoveAnimation(nextPos - orignalPos);
                 return;
             }
+
+            if (map.GetBlock(pos) == null || !map.GetBlock(pos).isWalkable)
+            {
+                if(playerEqiq.WeaponAnimation() != 1)
+                    unitAnimation.ChangeState(0);
+                else
+                    MoveAnimation(nextPos - orignalPos);
+                return;
+            }
+            else
+            {
+                LockTile lockTile = map.GetBlock(orignalPos)?.GetComponent<LockTile>();
+
+                if (lockTile != null)
+                    lockTile.CheckDir(nextPos);
+            }
+
             
             _seq = DOTween.Sequence();
             isMoving = true;

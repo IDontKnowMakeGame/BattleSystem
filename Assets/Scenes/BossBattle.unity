@@ -53620,6 +53620,7 @@ GameObject:
   - component: {fileID: 2055749946}
   - component: {fileID: 2055749945}
   - component: {fileID: 2055749944}
+  - component: {fileID: 2055749948}
   m_Layer: 0
   m_Name: Tile #362
   m_TagString: Untagged
@@ -53723,6 +53724,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2055749942}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2055749948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055749942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 385698fde13382242a65fb557b46e22a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeLockDir: 1
 --- !u!1 &2057493484
 GameObject:
   m_ObjectHideFlags: 0
