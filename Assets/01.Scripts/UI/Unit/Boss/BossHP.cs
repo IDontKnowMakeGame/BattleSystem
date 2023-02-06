@@ -2,21 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Core;
-using Managements.Managers;
-using UnityEngine.UI;
 
-public class BossHP : MonoBehaviour
+public class BossHP : SliderUI
 {
-    private Slider _slider;
-
-    private void Awake()
+    public override void Start()
     {
-        _slider = GetComponent<Slider>();     
-    }
-    void Start()
-    {
+        base.Start();
         Define.GetManager<EventManager>().StartListening(EventFlag.ShowBossHP, ShowBossHP);
-        Define.GetManager<EventManager>().StartListening(EventFlag.AddBossHP, AddBossHP);
 
         _slider.gameObject.SetActive(false);
     }
@@ -25,20 +17,16 @@ public class BossHP : MonoBehaviour
     {
         _slider.gameObject.SetActive(true);
     }
-    private void AddBossHP(EventParam value)
+
+    public override void OnDestroy()
     {
-        _slider.value = value.floatParam;
+        base.OnDestroy();
+        Define.GetManager<EventManager>().StopListening(EventFlag.ShowBossHP, ShowBossHP);
     }
 
-    private void OnDestroy()
+    public override void OnApplicationQuit()
     {
+        base.OnApplicationQuit();
         Define.GetManager<EventManager>().StopListening(EventFlag.ShowBossHP, ShowBossHP);
-        Define.GetManager<EventManager>().StopListening(EventFlag.AddBossHP, AddBossHP);
-    }
-
-    private void OnApplicationQuit()
-    {
-        Define.GetManager<EventManager>().StopListening(EventFlag.ShowBossHP, ShowBossHP);
-        Define.GetManager<EventManager>().StopListening(EventFlag.AddBossHP, AddBossHP);
     }
 }

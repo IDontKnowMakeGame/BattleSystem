@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Units.Behaviours.Unit;
+using Core;
 
 namespace Units.Base.Player
 {
@@ -27,6 +28,8 @@ namespace Units.Base.Player
         private float attackCheckTimer;
         private int attackCount;
 
+        private EventParam eventParam;
+
         public override void Start()
         {
             attackCount = 0;
@@ -44,6 +47,8 @@ namespace Units.Base.Player
         public void ChangeAnger(float percent)
         {
             anger = Mathf.Clamp(anger + percent, 0, 10);
+            eventParam.floatParam = anger;
+            Define.GetManager<EventManager>().TriggerEvent(EventFlag.AddAnger, eventParam);
         }
 
         public void ChangeAdneraline(float percent)
@@ -51,6 +56,8 @@ namespace Units.Base.Player
             if (percent > 0)
                 attackCount++;
             adneraline = Mathf.Clamp(adneraline + percent, 0, 10);
+            eventParam.floatParam = adneraline;
+            Define.GetManager<EventManager>().TriggerEvent(EventFlag.AddAdrenaline, eventParam);
         }
 
         private void DecreaseAnger()

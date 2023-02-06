@@ -17,7 +17,9 @@ public enum EventFlag
     ShowInterection,
     HideInterection,
     WeaponPanelConnecting,
-    WeaponPanelDisConnecting
+    WeaponPanelDisConnecting,
+    AddAnger,
+    AddAdrenaline
 }
 public class EventManager : Manager
 {
@@ -68,4 +70,3 @@ public struct EventParam
     public int intParam;
     public bool boolParam;
 }
-
