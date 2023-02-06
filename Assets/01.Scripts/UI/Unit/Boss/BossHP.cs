@@ -7,6 +7,7 @@ public class BossHP : SliderUI
 {
     public override void Start()
     {
+        addflag = EventFlag.AddBossHP;
         base.Start();
         Define.GetManager<EventManager>().StartListening(EventFlag.ShowBossHP, ShowBossHP);
 

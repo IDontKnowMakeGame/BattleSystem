@@ -7,8 +7,7 @@ using Core;
 public class SliderUI : MonoBehaviour
 {
     protected Slider _slider;
-    [SerializeField]
-    private EventFlag addflag;
+    protected EventFlag addflag;
 
     public virtual void Awake()
     {
