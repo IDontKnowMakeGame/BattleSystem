@@ -13,7 +13,11 @@ public enum EventFlag
     WeaponUnmount,
     WeaponSwap,
     WeaponChange,
-    CameraShake
+    CameraShake,
+    ShowInterection,
+    HideInterection,
+    WeaponPanelConnecting,
+    WeaponPanelDisConnecting
 }
 public class EventManager : Manager
 {
