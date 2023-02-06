@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using Core;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class PlayerHP : SliderUI
+public class PlayerAdrenaline : SliderUI
 {
     public override void Start()
     {
-        addflag = EventFlag.AddPlayerHP;
+        addflag = EventFlag.AddAdrenaline;
         base.Start();
     }
 }
