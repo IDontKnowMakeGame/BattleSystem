@@ -36,7 +36,6 @@ namespace Unit.Core.Weapon
 
         protected float _currentTime;
         protected float _maxTime;
-		protected float _currentAttackTime;
 
         protected bool _isCoolTime = false;
 
@@ -57,16 +56,14 @@ namespace Unit.Core.Weapon
 		public override void Update()
 		{
 			Timer();
-			if (_thisBase.State.HasFlag(BaseState.Attacking))
-				_currentAttackTime += Time.deltaTime;
 		}
 
 		public virtual void ChangeKey()
 		{
-			_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Press, () => Attack(Vector3.forward));
-			_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Press, () => Attack(Vector3.back));
-			_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => Attack(Vector3.left));
-			_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Press, () => Attack(Vector3.right));
+			_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Press, UpAttack);
+			_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Press, DownAttack);
+			_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Press, LeftAttack);
+			_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Press, RightAttack);
 		}
 
 		protected void Timer()
@@ -93,19 +90,24 @@ namespace Unit.Core.Weapon
 
 		protected virtual void Attack(Vector3 vec)
 		{
-			AttackTimer();
+
 		}
 
-		private void AttackTimer()
+		protected virtual void UpAttack()
 		{
-			if(_currentAttackTime < WeaponStat.Ats)
-			{
-				_thisBase.AddState(BaseState.Attacking);
-				return;
-			}
-
-			_thisBase.RemoveState(BaseState.Attacking);
-			_currentAttackTime = 0;
+			Attack(Vector3.forward);
+		}
+		protected virtual void DownAttack()
+		{
+			Attack(Vector3.back);
+		}
+		protected virtual void LeftAttack()
+		{
+			Attack(Vector3.left);
+		}
+		protected virtual void RightAttack()
+		{
+			Attack(Vector3.right);
 		}
 
 		protected virtual void Skill(Vector3 vec)
@@ -115,10 +117,10 @@ namespace Unit.Core.Weapon
 
 		public virtual void Reset()
 		{
-			_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Press, () => Attack(Vector3.forward));
-			_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Press, () => Attack(Vector3.down));
-			_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => Attack(Vector3.left));
-			_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Press, () => Attack(Vector3.right));
+			_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Press, UpAttack);
+			_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Press, DownAttack);
+			_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Press, LeftAttack);
+			_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Press, RightAttack);
 		}
 	}
 }

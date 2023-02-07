@@ -22,7 +22,7 @@ public class OldTwinSword : BaseTwinSword
 	}
 	protected override void Skill(Vector3 vec)
 	{
-		if (_isCoolTime)
+		if (_thisBase.State.HasFlag(BaseState.Skill))
 			return;
 
 		_thisBase.AddState(BaseState.Skill);
@@ -33,34 +33,51 @@ public class OldTwinSword : BaseTwinSword
 		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.A);
 		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.D);
 
-		_inputManager.ChangeInGameAction(InputTarget.UpAttack, InputStatus.Press, ()=>SixTimeAttak(Vector3.forward));
-		_inputManager.ChangeInGameAction(InputTarget.DownAttack, InputStatus.Press, ()=>SixTimeAttak(Vector3.back));
-		_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Press, ()=>SixTimeAttak(Vector3.left));
-		_inputManager.ChangeInGameAction(InputTarget.RightAttack, InputStatus.Press, ()=>SixTimeAttak(Vector3.right));
+		_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Press, AttackFoword);
+		_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Press, AttackBack);
+		_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Press, AttackLeft);
+		_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Press, AttackRight);
+	}
+
+	protected override void Attack(Vector3 vec)
+	{
+		if (_thisBase.State.HasFlag(BaseState.Skill))
+			return;
+		base.Attack(vec);
 	}
 
 	private void SixTimeAttak(Vector3 dir)
 	{
-		_isCoolTime = true;
 		for (int i = 0; i < 6; i++)
 		{
 			Define.GetManager<MapManager>().Damage(_thisBase.Position+dir,_unitStat.NowStats.Atk, _freezeTime, waitReset, InGame.PlayerBase);
 		}
 	}
 
+	private void AttackFoword() => SixTimeAttak(Vector3.forward);
+	private void AttackBack() => SixTimeAttak(Vector3.back);
+	private void AttackLeft() => SixTimeAttak(Vector3.left);
+	private void AttackRight() => SixTimeAttak(Vector3.right);
+
 	private void waitReset()
 	{
+		_isCoolTime = true;
 		_thisBase.RemoveState(BaseState.Skill);
 		_thisBase.RemoveState(BaseState.StopMove);
 
-		_inputManager.ChangeInGameKey(InputTarget.UpMove, KeyCode.UpArrow);
-		_inputManager.ChangeInGameKey(InputTarget.DownMove, KeyCode.DownArrow);
-		_inputManager.ChangeInGameKey(InputTarget.LeftMove, KeyCode.LeftArrow);
-		_inputManager.ChangeInGameKey(InputTarget.RightMove, KeyCode.RightArrow);
+		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.UpArrow);
+		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.DownArrow);
+		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.LeftArrow);
+		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.RightArrow);
 
-		_inputManager.ChangeInGameAction(InputTarget.UpAttack, InputStatus.Press, () => Attack(Vector3.forward));
-		_inputManager.ChangeInGameAction(InputTarget.DownAttack, InputStatus.Press, () => Attack(Vector3.back));
-		_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => Attack(Vector3.left));
-		_inputManager.ChangeInGameAction(InputTarget.RightAttack, InputStatus.Press, () => Attack(Vector3.right));
+		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Press, AttackFoword);
+		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Press, AttackBack);
+		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Press, AttackLeft);
+		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Press, AttackRight);
+	}
+
+	public override void Reset()
+	{
+		base.Reset();
 	}
 }

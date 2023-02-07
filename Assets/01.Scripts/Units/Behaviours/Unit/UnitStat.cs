@@ -10,7 +10,7 @@ namespace Units.Behaviours.Unit
     public class UnitStat : UnitBehaviour,IDamaged
     {
         [SerializeField] private UnitStats originStats = null;
-        [SerializeField] private UnitStats changeStats = null;
+        [SerializeField] protected UnitStats changeStats = null;
 		public UnitStats OriginStats => originStats;
 		public UnitStats NowStats {
 			get
@@ -19,7 +19,6 @@ namespace Units.Behaviours.Unit
 				return changeStats;
 			}
 		}
-
 		public float Half { get; set; } = 0;
 
 		private UnitEquiq _unitEquiq;

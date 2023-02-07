@@ -3,6 +3,7 @@ using System;
 using Core;
 using Managements.Managers;
 using Unit.Core.Weapon;
+using UnityEngine;
 namespace Units.Base.Player
 {
 	[Serializable]
@@ -58,16 +59,17 @@ namespace Units.Base.Player
 			if (ThisBase.State.HasFlag(Unit.BaseState.Skill))
 				return;
 
-			CurrentWeapon.Reset();
+			weapons[_currentWeapon].Reset();
+			weapons[_secoundWeapon].ChangeKey();
 			string temp = _currentWeapon;
 			_currentWeapon = _secoundWeapon;
 			_secoundWeapon = temp;
-			CurrentWeapon.ChangeKey();
+
+			Debug.Log(weapons[_currentWeapon]);
 
 			playerAttack.ChangeDelay(CurrentWeapon.WeaponStat.Afs);
 			unitAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
 			unitAnimation.ChangeState(10);
-			Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponSwap, new EventParam());
 		}
 
 		public void ChangeWeapon(EventParam eventParam)

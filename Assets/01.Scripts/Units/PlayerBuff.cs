@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Units.Behaviours.Unit;
+using Unit.Core;
 
 namespace Units.Base.Player
 {
@@ -12,6 +13,10 @@ namespace Units.Base.Player
         [Range(0, 10)] private float anger;
         [SerializeField]
         [Range(0, 10)] private float adneraline;
+
+        private UnitStats _stat = new UnitStats { Agi = 1, Atk = 1, Hp = 1}; //여기다가 몆 배할지 정해주면 될 듯함;
+
+        public UnitStats Stat => _stat;
 
         private bool angerDecrease = false;
         private bool adneralineDecrease = false;

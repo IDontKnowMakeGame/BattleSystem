@@ -16,7 +16,7 @@ public class BaseSpear : Weapon
 	public override void ChangeKey()
 	{
 		base.ChangeKey();
-
+		Debug.Log("SpearChange");
 		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.W);
 		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.S);
 		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.A);
@@ -80,7 +80,7 @@ public class BaseSpear : Weapon
 	public override void Reset()
 	{
 		base.Reset();
-
+		Debug.Log("Spear");
 		isOut = false;
 		_currentAttackPos = Vector3.zero;
 		_isAttack = false;
