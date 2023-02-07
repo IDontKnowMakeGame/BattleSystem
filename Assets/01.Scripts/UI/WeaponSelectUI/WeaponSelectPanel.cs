@@ -38,4 +38,10 @@ public class WeaponSelectPanel : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    private void OnDisable()
+    {
+        Managements.GameManagement.Instance.GetManager<EventManager>().StopListening(EventFlag.WeaponPanelConnecting, InterectionConecting);
+        Managements.GameManagement.Instance.GetManager<EventManager>().StopListening(EventFlag.WeaponPanelDisConnecting, InterectionDisConecting);
+    }
 }
