@@ -15,13 +15,29 @@ public class BaseTwinSword : Weapon
 		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.LeftArrow);
 		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.RightArrow);
 
+
 	}
 
+	protected override void UpAttack()
+	{
+		_unitMove.onBehaviourEnd = base.UpAttack;
+	}
+	protected override void DownAttack()
+	{
+		_unitMove.onBehaviourEnd = base.DownAttack;
+	}
+	protected override void LeftAttack()
+	{
+		_unitMove.onBehaviourEnd = base.LeftAttack;
+	}
+	protected override void RightAttack()
+	{
+		_unitMove.onBehaviourEnd = base.RightAttack;
+	}
 	protected override void Attack(Vector3 vec)
 	{
 		if (vec == Vector3.forward || vec == Vector3.back)
 		{
-			Debug.Log("¾ÕµÚ" + vec);
 			_playerAttack.AttackColParent.AllDisableDir();
 			_playerAttack.AttackColParent.ChangeSizeZ(DirType.Left,1);
 			_playerAttack.AttackColParent.ChangeSizeZ(DirType.Right, 1);
@@ -33,7 +49,6 @@ public class BaseTwinSword : Weapon
 		}
 		else
 		{
-			Debug.Log("¿À¿Þ" + vec);
 			_playerAttack.AttackColParent.AllDisableDir();
 			_playerAttack.AttackColParent.ChangeSizeX(DirType.Up, 1);
 			_playerAttack.AttackColParent.ChangeSizeX(DirType.Down, 1);
@@ -47,7 +62,7 @@ public class BaseTwinSword : Weapon
 
 	public override void Reset()
 	{
-		Debug.Log("Twin");
+		_unitMove.onBehaviourEnd = null;
 		base.Reset();
 	}
 }
