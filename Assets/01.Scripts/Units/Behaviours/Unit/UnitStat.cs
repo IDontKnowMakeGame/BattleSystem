@@ -21,7 +21,7 @@ namespace Units.Behaviours.Unit
 		}
 		public float Half { get; set; } = 0;
 
-		private UnitEquiq _unitEquiq;
+		protected UnitEquiq _unitEquiq;
 		public override void Start()
 		{
 			_unitEquiq = ThisBase.GetBehaviour<UnitEquiq>();
@@ -50,7 +50,7 @@ namespace Units.Behaviours.Unit
 			changeStats.Atk = Atk;
 		}
 
-		private float WeightToSpeed(int a) => a switch
+		protected float WeightToSpeed(int a) => a switch
 		{
 			1 => 0.1f,
 			2 => 0.2f,

@@ -33,12 +33,29 @@ namespace Units.Base.Player
 
 		protected override void ChangeStats()
 		{
-            base.ChangeStats();
-			changeStats.Atk *= _playerBuff.Stat.Atk;
-			changeStats.Agi += _playerBuff.Stat.Agi;
-		}
+            int Weight = 3;
+            float Atk = OriginStats.Atk;
 
-		public override void Die()
+            if (_unitEquiq.CurrentWeapon != null)
+            {
+                Weight = _unitEquiq.CurrentWeapon.WeaponStat.Weight;
+                Atk = _unitEquiq.CurrentWeapon.WeaponStat.Atk;
+            }
+
+            foreach (var a in _unitEquiq._helos)
+            {
+                //헤일로에 능력에 따라 무언가를 해준다.
+
+            }
+
+            Weight -= (int)_playerBuff.Stat.Agi;
+            Atk *= _playerBuff.Stat.Atk;
+
+            changeStats.Agi = WeightToSpeed(Weight);
+            changeStats.Atk = Atk;
+        }
+
+        public override void Die()
         {
             base.Die();
             DOTween.KillAll();
