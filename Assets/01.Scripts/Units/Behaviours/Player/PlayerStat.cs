@@ -14,7 +14,13 @@ namespace Units.Base.Player
         private Shake DamageShake;
 
         private PlayerBuff _playerBuff;
-        public override void Update()
+
+		public override void Start()
+		{
+			base.Start();
+            _playerBuff = ThisBase.GetBehaviour<PlayerBuff>();
+        }
+		public override void Update()
         {
             base.Update();
         }
@@ -28,9 +34,9 @@ namespace Units.Base.Player
 		protected override void ChangeStats()
 		{
             base.ChangeStats();
-            changeStats.Atk *= _playerBuff.Stat.Atk;
-            changeStats.Agi *= _playerBuff.Stat.Atk;
-        }
+			changeStats.Atk *= _playerBuff.Stat.Atk;
+			changeStats.Agi *= _playerBuff.Stat.Atk;
+		}
 
 		public override void Die()
         {

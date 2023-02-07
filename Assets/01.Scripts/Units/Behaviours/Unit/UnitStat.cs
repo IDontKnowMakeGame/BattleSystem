@@ -25,8 +25,8 @@ namespace Units.Behaviours.Unit
 		public override void Start()
 		{
 			_unitEquiq = ThisBase.GetBehaviour<UnitEquiq>();
-			base.Start();
 			changeStats.Set(OriginStats);
+			base.Start();
 		}
 
 		protected virtual void ChangeStats()
