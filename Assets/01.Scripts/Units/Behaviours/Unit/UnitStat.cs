@@ -70,7 +70,6 @@ namespace Units.Behaviours.Unit
 			float half = Half / 100;
 
 			changeStats.Hp -= damage - damage * half;
-			Half = 0;
 			if(changeStats.Hp <= 0)
 			{
 				Die();
