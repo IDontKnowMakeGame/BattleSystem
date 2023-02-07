@@ -30,7 +30,8 @@ namespace Managements.Managers
 		WeaponOnOff,
 		ShowBossHP,
 		AddBossHP,
-		SubBossHP
+		SubBossHP,
+		ShowWeaponChangePanel,
 	}
 
 	public class Input
@@ -81,6 +82,8 @@ namespace Managements.Managers
             InitInGameInput(InputTarget.ShowBossHP, KeyCode.None);
 			InitInGameInput(InputTarget.AddBossHP, KeyCode.None);
 			InitInGameInput(InputTarget.SubBossHP, KeyCode.None);
+
+			InitInGameInput(InputTarget.ShowWeaponChangePanel, KeyCode.E);
             #endregion
         }
 

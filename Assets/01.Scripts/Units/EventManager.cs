@@ -13,7 +13,13 @@ public enum EventFlag
     WeaponUnmount,
     WeaponSwap,
     WeaponChange,
-    CameraShake
+    CameraShake,
+    ShowInterection,
+    HideInterection,
+    WeaponPanelConnecting,
+    WeaponPanelDisConnecting,
+    AddAnger,
+    AddAdrenaline
 }
 public class EventManager : Manager
 {
@@ -64,4 +70,3 @@ public struct EventParam
     public int intParam;
     public bool boolParam;
 }
-
