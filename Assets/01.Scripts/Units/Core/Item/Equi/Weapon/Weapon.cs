@@ -5,6 +5,8 @@ using Units.Base.Unit;
 using Managements;
 using Managements.Managers;
 using Units.Base.Player;
+using Core;
+
 namespace Unit.Core.Weapon
 {
 	public enum WeaponType

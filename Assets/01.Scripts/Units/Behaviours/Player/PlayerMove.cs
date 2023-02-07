@@ -191,7 +191,7 @@ namespace Units.Base.Player
         }
         public void PlayerStop()
         {
-            if (moveDir.Count == 0)
+            if (moveDir.Count == 0 && !ThisBase.State.HasFlag(BaseState.Skill))
             {
                 unitAnimation.ChangeState(0);
             }
@@ -218,6 +218,8 @@ namespace Units.Base.Player
         private void MoveAnimation(Vector3 dir)
         {
             dir.y = 0;
+            dir.Normalize();
+            Debug.Log(dir);
 
             if (sprite == null)
                 Debug.LogError("Sprite is null.");
@@ -227,22 +229,36 @@ namespace Units.Base.Player
             if(dir == Vector3.left)
             {
                 sprite.localScale = new Vector3(-1,1,1);
-                unitAnimation.ChangeState(1);
+                if (ThisBase.State.HasFlag(BaseState.Skill))
+                    unitAnimation.ChangeState(7);
+                else
+                    unitAnimation.ChangeState(1);
             }
             else if(dir == Vector3.right)
             {
                 sprite.localScale = new Vector3(1, 1, 1);
-                unitAnimation.ChangeState(1);
+                if (ThisBase.State.HasFlag(BaseState.Skill))
+                {
+                    unitAnimation.ChangeState(7);
+                }
+                else
+                    unitAnimation.ChangeState(1);
             }
             else if(dir == Vector3.forward)
             {
                 sprite.localScale = new Vector3(1, 1, 1);
-                unitAnimation.ChangeState(2);
+                if (ThisBase.State.HasFlag(BaseState.Skill))
+                    unitAnimation.ChangeState(8);
+                else
+                    unitAnimation.ChangeState(2);
             }
             else if(dir == Vector3.back)
             {
                 sprite.localScale = new Vector3(1, 1, 1);
-                unitAnimation.ChangeState(3);
+                if (ThisBase.State.HasFlag(BaseState.Skill))
+                    unitAnimation.ChangeState(9);
+                else
+                    unitAnimation.ChangeState(3);
             }
 
             if (ThisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() == 1)
