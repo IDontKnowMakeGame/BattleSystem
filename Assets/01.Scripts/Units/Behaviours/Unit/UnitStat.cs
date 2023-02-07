@@ -10,7 +10,7 @@ namespace Units.Behaviours.Unit
     public class UnitStat : UnitBehaviour,IDamaged
     {
         [SerializeField] private UnitStats originStats = null;
-        [SerializeField] private UnitStats changeStats = null;
+        [SerializeField] protected UnitStats changeStats = null;
 		public UnitStats OriginStats => originStats;
 		public UnitStats NowStats {
 			get
@@ -19,15 +19,14 @@ namespace Units.Behaviours.Unit
 				return changeStats;
 			}
 		}
-
 		public float Half { get; set; } = 0;
 
 		private UnitEquiq _unitEquiq;
 		public override void Start()
 		{
 			_unitEquiq = ThisBase.GetBehaviour<UnitEquiq>();
-			base.Start();
 			changeStats.Set(OriginStats);
+			base.Start();
 		}
 
 		protected virtual void ChangeStats()
@@ -71,7 +70,6 @@ namespace Units.Behaviours.Unit
 			float half = Half / 100;
 
 			changeStats.Hp -= damage - damage * half;
-			Half = 0;
 			if(changeStats.Hp <= 0)
 			{
 				Die();

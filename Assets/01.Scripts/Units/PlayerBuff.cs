@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Units.Behaviours.Unit;
+using Unit.Core;
 using Core;
 
 namespace Units.Base.Player
@@ -13,6 +14,10 @@ namespace Units.Base.Player
         [Range(0, 10)] private float anger;
         [SerializeField]
         [Range(0, 10)] private float adneraline;
+
+        private UnitStats _stat = new UnitStats { Agi = 1, Atk = 1, Hp = 1}; //여기다가 몆 배할지 정해주면 될 듯함;
+
+        public UnitStats Stat => _stat;
 
         private bool angerDecrease = false;
         private bool adneralineDecrease = false;
@@ -66,6 +71,8 @@ namespace Units.Base.Player
             {
                 angerDecrease = true;
                 decreaseAngerTimer = decreaseTime;
+                _stat.Atk = 2;
+                ThisBase.GetBehaviour<PlayerStat>().Half = 50;
             }
             if (angerDecrease)
             {
@@ -73,6 +80,8 @@ namespace Units.Base.Player
                 {
                     anger = 0;
                     angerDecrease = false;
+                    _stat.Atk = 1;
+                    ThisBase.GetBehaviour<PlayerStat>().Half = 0;
                     return;
                 }
 
@@ -103,6 +112,8 @@ namespace Units.Base.Player
             {
                 adneralineDecrease = true;
                 decreaseAdneralineTimer = decreaseTime;
+                _stat.Atk = 1.5f;
+                _stat.Agi += 1;
             }
             if (adneralineDecrease)
             {

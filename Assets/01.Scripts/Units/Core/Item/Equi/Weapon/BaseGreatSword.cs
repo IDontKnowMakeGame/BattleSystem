@@ -21,7 +21,7 @@ public class BaseGreatSword : Weapon
 	public override void ChangeKey()
 	{
 		base.ChangeKey();
-
+		Debug.Log("greatSword");
 		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.W);
 		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.S);
 		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.A);
@@ -97,6 +97,7 @@ public class BaseGreatSword : Weapon
 
 	public override void Reset()
 	{
+		Debug.Log("greatSword");
 		_chargeTime = 0;
 		_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 		_currentVector = Vector3.zero;

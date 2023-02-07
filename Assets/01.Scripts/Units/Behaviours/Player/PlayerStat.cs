@@ -13,7 +13,14 @@ namespace Units.Base.Player
         [SerializeField]
         private Shake DamageShake;
 
-        public override void Update()
+        private PlayerBuff _playerBuff;
+
+		public override void Start()
+		{
+			base.Start();
+            _playerBuff = ThisBase.GetBehaviour<PlayerBuff>();
+        }
+		public override void Update()
         {
             base.Update();
         }
@@ -24,7 +31,14 @@ namespace Units.Base.Player
             DamageShake.ScreenShake(new EventParam());
         }
 
-        public override void Die()
+		protected override void ChangeStats()
+		{
+            base.ChangeStats();
+			changeStats.Atk *= _playerBuff.Stat.Atk;
+			changeStats.Agi *= _playerBuff.Stat.Atk;
+		}
+
+		public override void Die()
         {
             base.Die();
             DOTween.KillAll();
