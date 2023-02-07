@@ -35,7 +35,7 @@ namespace Units.Base.Player
 		{
             base.ChangeStats();
 			changeStats.Atk *= _playerBuff.Stat.Atk;
-			changeStats.Agi += _playerBuff.Stat.Atk;
+			changeStats.Agi += _playerBuff.Stat.Agi;
 		}
 
 		public override void Die()
