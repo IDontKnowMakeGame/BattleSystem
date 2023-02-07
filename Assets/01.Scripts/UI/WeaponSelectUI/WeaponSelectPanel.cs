@@ -5,19 +5,27 @@ using UnityEngine;
 
 public class WeaponSelectPanel : MonoBehaviour
 {
+    private Transform _panel;
     bool _isActive = false;
+    private void Awake()
+    {
+        _panel = transform.Find("Panel").GetComponent<Transform>();
+    }
     private void Start()
     {
+        Debug.Log("asd");
         Managements.GameManagement.Instance.GetManager<EventManager>().StartListening(EventFlag.WeaponPanelConnecting, InterectionConecting);
         Managements.GameManagement.Instance.GetManager<EventManager>().StartListening(EventFlag.WeaponPanelDisConnecting, InterectionDisConecting);
-        gameObject.SetActive(false);
+        _panel.gameObject.SetActive(false);
     }
     private void InterectionConecting(EventParam eventParam)
     {
+        Debug.Log("asdasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         Managements.GameManagement.Instance.GetManager<InputManager>().AddInGameAction(InputTarget.ShowWeaponChangePanel, InputStatus.Press, ShowWeaponSelectPanel);
     }
     private void InterectionDisConecting(EventParam eventParam)
     {
+        Debug.Log("2asdasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         Managements.GameManagement.Instance.GetManager<InputManager>().RemoveInGameAction(InputTarget.ShowWeaponChangePanel, InputStatus.Press, ShowWeaponSelectPanel);
     }
 
@@ -26,7 +34,7 @@ public class WeaponSelectPanel : MonoBehaviour
         if(!_isActive)
         {
             _isActive = true;
-            gameObject.SetActive(true);
+            _panel.gameObject.SetActive(true);
         }
     }
 
@@ -35,7 +43,7 @@ public class WeaponSelectPanel : MonoBehaviour
         if (_isActive)
         {
             _isActive = false;
-            gameObject.SetActive(false);
+            _panel.gameObject.SetActive(false);
         }
     }
 

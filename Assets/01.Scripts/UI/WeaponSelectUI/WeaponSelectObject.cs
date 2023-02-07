@@ -12,6 +12,7 @@ public class WeaponSelectObject : MonoBehaviour
             Debug.Log("InPlayer");
             EventParam eventParam = new EventParam();
             eventParam.stringParam = "E : Click";
+
             Managements.GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.ShowInterection, eventParam);
             Managements.GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponPanelConnecting, eventParam);
         }    
@@ -20,6 +21,7 @@ public class WeaponSelectObject : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("OutPlayer");
             Managements.GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.HideInterection, new EventParam());
             Managements.GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponPanelDisConnecting, new EventParam());
         }
