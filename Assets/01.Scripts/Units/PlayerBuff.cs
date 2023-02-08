@@ -71,8 +71,8 @@ namespace Units.Base.Player
             {
                 angerDecrease = true;
                 decreaseAngerTimer = decreaseTime;
-                _stat.Atk = 2;
-                ThisBase.GetBehaviour<PlayerStat>().Half = 50;
+                _stat.Atk += 1;
+                ThisBase.GetBehaviour<PlayerStat>().Half += 50;
             }
             if (angerDecrease)
             {
@@ -80,8 +80,8 @@ namespace Units.Base.Player
                 {
                     anger = 0;
                     angerDecrease = false;
-                    _stat.Atk = 1;
-                    ThisBase.GetBehaviour<PlayerStat>().Half = 0;
+                    _stat.Atk -= 1;
+                    ThisBase.GetBehaviour<PlayerStat>().Half -= 50;
                     return;
                 }
 
@@ -112,7 +112,7 @@ namespace Units.Base.Player
             {
                 adneralineDecrease = true;
                 decreaseAdneralineTimer = decreaseTime;
-                _stat.Atk = 1.5f;
+                _stat.Atk += 0.5f;
                 _stat.Agi += 1;
             }
             if (adneralineDecrease)
@@ -121,8 +121,8 @@ namespace Units.Base.Player
                 {
                     adneraline = 0;
                     adneralineDecrease = false;
-                    _stat.Atk = 1f;
-                    _stat.Agi = 0;
+                    _stat.Atk -= 0.5f;
+                    _stat.Agi -= 1;
                     return;
                 }
 
