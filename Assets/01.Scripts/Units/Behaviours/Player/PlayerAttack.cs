@@ -160,7 +160,7 @@ namespace Units.Base.Player
             if(timer > 0)
                 timer -= Time.deltaTime;
 
-            if (isAttack && unitAnimation.IsFinished())
+            if (isAttack && unitAnimation.CurIndex() > unitAnimation.GetFPS() / 2)
                 isAttack = false;              
         }
 
