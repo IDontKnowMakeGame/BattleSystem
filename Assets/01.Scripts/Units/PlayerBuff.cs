@@ -121,6 +121,8 @@ namespace Units.Base.Player
                 {
                     adneraline = 0;
                     adneralineDecrease = false;
+                    _stat.Atk = 1f;
+                    _stat.Agi = 0;
                     return;
                 }
 

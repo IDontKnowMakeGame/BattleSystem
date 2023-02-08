@@ -21,9 +21,4 @@ public class BaseArrow : MonoBehaviour
 	{
 		this.gameObject.transform.DOMove(pos + (dir * 5), speed);
 	}
-
-	private void Update()
-	{
-		_arrows[_arrowType].
-	}
 }
