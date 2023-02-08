@@ -20,12 +20,10 @@ public class WeaponSelectPanel : MonoBehaviour
     }
     private void InterectionConecting(EventParam eventParam)
     {
-        Debug.Log("asdasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         Managements.GameManagement.Instance.GetManager<InputManager>().AddInGameAction(InputTarget.ShowWeaponChangePanel, InputStatus.Press, ShowWeaponSelectPanel);
     }
     private void InterectionDisConecting(EventParam eventParam)
     {
-        Debug.Log("2asdasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         Managements.GameManagement.Instance.GetManager<InputManager>().RemoveInGameAction(InputTarget.ShowWeaponChangePanel, InputStatus.Press, ShowWeaponSelectPanel);
     }
 
