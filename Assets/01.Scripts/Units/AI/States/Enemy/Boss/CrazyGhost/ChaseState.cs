@@ -15,21 +15,12 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
 
         public override void Awake()
         {
-            var toRandom = new AITransition();
-            var lineDetect = new LineDetectCondition();
-            lineDetect.SetUnits(InGame.PlayerBase, InGame.BossBase);
-            lineDetect.SetDistance(1);
-            lineDetect.SetResult(true);
-            toRandom.AddCondition(lineDetect);
-            toRandom.SetTarget(new RandomState());
-            AddTransition(toRandom);
-            
             var toSpiritAttack = new AITransition();
             var lineDetect2 = new LineDetectCondition();
             lineDetect2.SetUnits(InGame.PlayerBase, InGame.BossBase);
             lineDetect2.SetDistance(4);
             lineDetect2.SetResult(true);
-            lineDetect._logicCondition = false;
+            lineDetect2._logicCondition = false;
             var lineDetect3 = new LineDetectCondition();
             lineDetect3.SetUnits(InGame.PlayerBase, InGame.BossBase);
             lineDetect3.SetDistance(1); 
@@ -51,6 +42,15 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             toSpiritAttack.AddCondition(lifeCheck);
             toSpiritAttack.SetTarget(new SpiritAttackState());
             AddTransition(toSpiritAttack);
+            
+            var toRandom = new AITransition();
+            var lineDetect = new LineDetectCondition();
+            lineDetect.SetUnits(InGame.PlayerBase, InGame.BossBase);
+            lineDetect.SetDistance(1);
+            lineDetect.SetResult(true);
+            toRandom.AddCondition(lineDetect);
+            toRandom.SetTarget(new RandomState());
+            AddTransition(toRandom);
         }
 
         protected override void OnEnter()
