@@ -10,23 +10,25 @@ public class BaseBow : Weapon
 
 	private Vector3 _currentVector;
 
+	private float projectileSpeed = 1;
+
 	public override void ChangeKey()
 	{
 		base.ChangeKey();
-		_inputManager.ChangeInGameKey(InputTarget.UpMove, KeyCode.UpArrow);
-		_inputManager.ChangeInGameKey(InputTarget.DownMove, KeyCode.DownArrow);
-		_inputManager.ChangeInGameKey(InputTarget.LeftMove, KeyCode.LeftArrow);
-		_inputManager.ChangeInGameKey(InputTarget.RightMove, KeyCode.RightArrow);
-
 		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.UpArrow);
 		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.DownArrow);
 		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.LeftArrow);
 		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.RightArrow);
 
-		_inputManager.ChangeInGameAction(InputTarget.UpAttack, InputStatus.Hold, () => Attack(Vector3.forward));
-		_inputManager.ChangeInGameAction(InputTarget.DownAttack, InputStatus.Hold, () => Attack(Vector3.back));
-		_inputManager.ChangeInGameAction(InputTarget.LeftAttack, InputStatus.Hold, () => Attack(Vector3.left));
-		_inputManager.ChangeInGameAction(InputTarget.RightAttack, InputStatus.Hold, () => Attack(Vector3.right));
+		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Press, UpAttack);
+		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Press, DownAttack);
+		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Press, LeftAttack);
+		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Press, RightAttack);
+
+		_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Hold, UpAttack);
+		_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Hold, DownAttack);
+		_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Hold, LeftAttack);
+		_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Hold, RightAttack);
 	}
 	public override void Update()
 	{
@@ -49,12 +51,21 @@ public class BaseBow : Weapon
 		if (_chargeTime >= _maxChargeTime)
 		{
 			_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
-			_unitAttack.Attack(_currentVector);
+			Shooting(_currentVector);
 			_chargeTime = 0;
 		}
 		else
 		{
 			_chargeTime += Time.deltaTime;
 		}
+	}
+
+	private void Shooting(Vector3 vec)
+	{
+		GameObject obj = Managements.GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("BasicBow");
+		BaseArrow arrow = obj.GetComponent<BaseArrow>();
+		arrow.speed = projectileSpeed;
+		arrow.pos = _thisBase.Position + vec;
+		arrow.dir = vec;
 	}
 }
