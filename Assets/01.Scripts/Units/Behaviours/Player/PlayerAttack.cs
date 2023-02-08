@@ -109,8 +109,6 @@ namespace Units.Base.Player
                 playerBuff.ChangeAdneraline(1);
                 Define.GetManager<EventManager>().TriggerEvent(EventFlag.CameraShake,new EventParam());
             }
-            else
-                playerBuff.ChangeAdneraline(-1);
 
 
             foreach (EnemyBase enemy in enemys)
