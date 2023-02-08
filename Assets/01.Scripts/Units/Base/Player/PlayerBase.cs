@@ -25,7 +25,7 @@ namespace Units.Base.Player
             AddBehaviour(playerMove);
             AddBehaviour(PlayerAttack);
             AddBehaviour(playerBuff);
-            PlayerEqiq = AddBehaviour<PlayerEqiq>();
+            AddBehaviour(PlayerEqiq);
             base.Init();
         }
 
