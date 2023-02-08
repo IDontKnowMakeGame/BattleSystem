@@ -14,6 +14,10 @@ namespace Units.Base.Player
         [Range(0, 10)] private float anger;
         [SerializeField]
         [Range(0, 10)] private float adneraline;
+        [SerializeField]
+        private ParticleSystem angerParticle;
+        [SerializeField]
+        private ParticleSystem adneralineParticle;
 
         private UnitStats _stat = new UnitStats { Agi = 0, Atk = 1, Hp = 1}; //여기다가 몆 배할지 정해주면 될 듯함;
 
@@ -39,6 +43,11 @@ namespace Units.Base.Player
         {
             attackCount = 0;
             attackCheckTimer = attckCheckTime;
+
+            angerParticle.gameObject.SetActive(false);
+            adneralineParticle.gameObject.SetActive(false);
+
+
             base.Start();
         }
 
@@ -73,6 +82,7 @@ namespace Units.Base.Player
                 decreaseAngerTimer = decreaseTime;
                 _stat.Atk += 1;
                 ThisBase.GetBehaviour<PlayerStat>().Half += 50;
+                angerParticle.gameObject.SetActive(true);
             }
             if (angerDecrease)
             {
@@ -82,6 +92,7 @@ namespace Units.Base.Player
                     angerDecrease = false;
                     _stat.Atk -= 1;
                     ThisBase.GetBehaviour<PlayerStat>().Half -= 50;
+                    angerParticle.gameObject.SetActive(false);
                     return;
                 }
 
@@ -114,6 +125,7 @@ namespace Units.Base.Player
                 decreaseAdneralineTimer = decreaseTime;
                 _stat.Atk += 0.5f;
                 _stat.Agi += 1;
+                adneralineParticle.gameObject.SetActive(true);
             }
             if (adneralineDecrease)
             {
@@ -123,6 +135,7 @@ namespace Units.Base.Player
                     adneralineDecrease = false;
                     _stat.Atk -= 0.5f;
                     _stat.Agi -= 1;
+                    adneralineParticle.gameObject.SetActive(false);
                     return;
                 }
 
