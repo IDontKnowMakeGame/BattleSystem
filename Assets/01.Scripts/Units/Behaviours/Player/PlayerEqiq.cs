@@ -88,7 +88,7 @@ namespace Units.Base.Player
 		private void TestChangeWeapon()
 		{
 			count++;
-			count = count % 5;
+			count = count % 7;
 			int dicCount = 0;
 			foreach(var a in weapons)
 			{

@@ -38,6 +38,7 @@ namespace Units.Base.Player
 
             if (_unitEquiq.CurrentWeapon != null)
             {
+                Debug.Log(_unitEquiq.CurrentWeapon.WeaponStat);
                 Weight = _unitEquiq.CurrentWeapon.WeaponStat.Weight;
                 Atk = _unitEquiq.CurrentWeapon.WeaponStat.Atk;
             }
