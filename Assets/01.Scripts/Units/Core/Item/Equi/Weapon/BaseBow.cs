@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Managements.Managers;
 using Unit.Core.Weapon;
+using Core;
+
 public class BaseBow : Weapon
 {
 	protected float _chargeTime;
@@ -12,13 +14,14 @@ public class BaseBow : Weapon
 
 	private float projectileSpeed = 1;
 
+	public bool hasArrow = true;
 	public override void ChangeKey()
 	{
-		base.ChangeKey();
-		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.UpArrow);
-		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.DownArrow);
-		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.LeftArrow);
-		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.RightArrow);
+		//base.ChangeKey();
+		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.W);
+		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.A);
+		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.S);
+		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.D);
 
 		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Press, UpAttack);
 		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Press, DownAttack);
@@ -62,10 +65,13 @@ public class BaseBow : Weapon
 
 	private void Shooting(Vector3 vec)
 	{
-		GameObject obj = Managements.GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("BasicBow");
+		GameObject obj = Managements.GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("Arrow");
 		BaseArrow arrow = obj.GetComponent<BaseArrow>();
 		arrow.speed = projectileSpeed;
 		arrow.pos = _thisBase.Position + vec;
 		arrow.dir = vec;
+		arrow.damage = _weaponStats.Atk;
+
+		hasArrow = false;
 	}
 }

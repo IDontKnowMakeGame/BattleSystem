@@ -32,20 +32,20 @@ public class BaseGreatSword : Weapon
 		_inputManager.AddInGameAction(InputTarget.LeftMove, InputStatus.Press, Move);
 		_inputManager.AddInGameAction(InputTarget.RightMove, InputStatus.Press, Move);
 
-		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Press, () => Attack(Vector3.forward));
-		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Press, () => Attack(Vector3.back));
-		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => Attack(Vector3.left));
-		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Press, () => Attack(Vector3.right));
+		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Press, UpAttack);
+		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Press, DownAttack);
+		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Press, LeftAttack);
+		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Press, RightAttack);
 
-		_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Hold, () => Attack(Vector3.forward));
-		_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Hold, () => Attack(Vector3.back));
-		_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Hold, () => Attack(Vector3.left));
-		_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Hold, () => Attack(Vector3.right));
+		_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Hold, UpAttack);
+		_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Hold, DownAttack);
+		_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Hold, LeftAttack);
+		_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Hold, RightAttack);
 
-		_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Release, () => AttackUP());
-		_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Release, () => AttackUP());
-		_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Release, () => AttackUP());
-		_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Release, () => AttackUP());
+		_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Release, AttackUP);
+		_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Release, AttackUP);
+		_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Release, AttackUP);
+		_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Release, AttackUP);
 	}
 	private void Move()
 	{
@@ -102,14 +102,14 @@ public class BaseGreatSword : Weapon
 		_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 		_currentVector = Vector3.zero;
 
-		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Hold, () => Attack(Vector3.forward));
-		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Hold, () => Attack(Vector3.back));
-		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Hold, () => Attack(Vector3.left));
-		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Hold, () => Attack(Vector3.right));
+		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Hold, UpAttack);
+		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Hold, DownAttack);
+		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Hold, LeftAttack);
+		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Hold, RightAttack);
 
-		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Release, () => AttackUP());
-		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Release, () => AttackUP());
-		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Release, () => AttackUP());
-		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Release, () => AttackUP());
+		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Release, AttackUP);
+		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Release, AttackUP);
+		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Release, AttackUP);
+		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Release, AttackUP);
 	}
 }

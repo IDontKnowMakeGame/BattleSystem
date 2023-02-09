@@ -30,6 +30,10 @@ public class OldStraightSword : BaseStraightSword
 		if (_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Skill))
 			return;
 
+
+		if (_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Moving))
+			return;
+
 		RollSkill();
 	}
 
