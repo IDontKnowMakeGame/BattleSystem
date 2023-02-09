@@ -85,8 +85,10 @@ namespace Units.Base.Player
 
         public override void Translate(Vector3 dir, float spd = 1)
         {
-            if (isMoving || ThisBase.State.HasFlag(BaseState.StopMove))
+            if (isMoving || ThisBase.State.HasFlag(BaseState.StopMove) || unitAnimation.CurState() == 10)
                 return;
+
+            Debug.Log("Move");
 
             if (playerDir.x != 0)
             {
