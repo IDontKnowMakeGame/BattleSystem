@@ -43,12 +43,6 @@ namespace Units.Base.Player
                 Atk = _unitEquiq.CurrentWeapon.WeaponStat.Atk;
             }
 
-            foreach (var a in _unitEquiq._helos)
-            {
-                //헤일로에 능력에 따라 무언가를 해준다.
-
-            }
-
             Weight -= (int)_playerBuff.Stat.Agi;
             Atk *= _playerBuff.Stat.Atk;
 
