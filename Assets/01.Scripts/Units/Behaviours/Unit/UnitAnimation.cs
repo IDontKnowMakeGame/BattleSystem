@@ -17,6 +17,7 @@ namespace Units.Behaviours.Unit
 
         private Clips basicClips;
         private int index = 0;
+
         private float time = 0f;
         private bool isFinished = false;
         public Renderer renderer;
@@ -80,6 +81,18 @@ namespace Units.Behaviours.Unit
         {
             clips = changeClips;
         }
+
+        public int GetFPS()
+        {
+            List<AnimeClip> _clips = clips.clips;
+            return _clips[state].fps;
+        }
+
+        public int CurIndex()
+        {
+            return index;
+        }
+
 
         public bool IsFinished()
         {
