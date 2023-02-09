@@ -94,7 +94,7 @@ namespace Units.Base.Player
             }
 
 
-            if (timer > 0) return;
+            if (timer > 0 || unitAnimation.CurState() == 10) return;
             List<EnemyBase> enemys = new List<EnemyBase>();
 
             if (near)
@@ -131,7 +131,7 @@ namespace Units.Base.Player
             }
 
 
-            if (timer > 0) return;
+            if (timer > 0 || unitAnimation.CurState() == 10) return;
             if (dir == Vector3.left)
             {
                 unitAnimation.ChangeState(4);
