@@ -93,6 +93,11 @@ namespace Units.Behaviours.Unit
             return index;
         }
 
+        public int CurState()
+        {
+            return state;
+        }
+
 
         public bool IsFinished()
         {
