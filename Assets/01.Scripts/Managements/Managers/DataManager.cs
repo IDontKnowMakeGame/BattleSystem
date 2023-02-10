@@ -117,14 +117,15 @@ public class DataManager : Manager
     private string URL;
     public override void Awake()
     {
+        weaponStateDataList = DataJson.LoadJsonFile<WeaponStateDataList>(Application.dataPath + "/SAVE/Weapon", "WeaponStatus");
+        isSettingComplate = true;
+
         GameObject oas = GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("DamagePoppu");
         GameManagement.Instance.GetManager<ResourceManagers>().Destroy(oas);
         UserData = DataJson.LoadJsonFile<User>(Application.dataPath + "/SAVE/User", "UserData");
         SavePointData = DataJson.LoadJsonFile<SavePoint>(Application.dataPath + "/SAVE/User", "SavePointData");
         InventoryData = DataJson.LoadJsonFile<Inventory>(Application.dataPath + "/SAVE/User", "InvectoryData");
-        weaponStateDataList = DataJson.LoadJsonFile<WeaponStateDataList>(Application.dataPath + "/SAVE/Weapon", "WeaponStatus");
-
-        isSettingComplate = true;
+       
     }
     #region UserData
     public void SaveToUserData()
