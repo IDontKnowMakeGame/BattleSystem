@@ -3,23 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using Units.Base.Player;
 using Core;
+using Units.Base.Unit;
 
 public class DirtyHalo : Halo
 {
     private PlayerAttack playerAttack;
+    private bool trigger = false;
 
     public override void Init()
     {
         base.Init();
         playerAttack = InGame.PlayerBase.GetBehaviour<PlayerAttack>();
-        percent = 5;
+        percent = 50;
     }
 
     protected override void Using()
     {
-        if(playerAttack.isAttack && ConditionCheck())
+        if (!InGame.PlayerBase.State.HasFlag(BaseState.Attacking) && !trigger)
         {
-            Debug.Log("데미지 50");
+            trigger = true;
+            if (ConditionCheck())
+            {
+                Debug.Log("데미지 50");
+            }
         }
+        else if (InGame.PlayerBase.State.HasFlag(BaseState.Attacking) && trigger)
+            trigger = false;
     }
 }
