@@ -27,7 +27,9 @@ public abstract class Halo : EquipmentItem
         int random = Random.Range(1, 101);
 
         if (random <= percent)
+        {
             return true;
+        }
         return false;
     }
 }
