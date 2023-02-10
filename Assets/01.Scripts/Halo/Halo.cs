@@ -18,6 +18,7 @@ public abstract class Halo : EquipmentItem
     public virtual void Init() 
     {
         playerStat = InGame.PlayerBase.GetBehaviour<PlayerStat>();
+        float asd = playerStat.NowStats.Atk;
     }
     protected virtual void Using() { }
 

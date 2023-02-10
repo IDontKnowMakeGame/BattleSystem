@@ -110,16 +110,9 @@ public class DataManager : Manager
     public static SavePoint SavePointData;
     public static Inventory InventoryData;
 
-    public WeaponStateDataList weaponStateDataList = new WeaponStateDataList();
-
-    public bool isSettingComplate = false;
-
     private string URL;
     public override void Awake()
     {
-        weaponStateDataList = DataJson.LoadJsonFile<WeaponStateDataList>(Application.dataPath + "/SAVE/Weapon", "WeaponStatus");
-        isSettingComplate = true;
-
         GameObject oas = GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("DamagePoppu");
         GameManagement.Instance.GetManager<ResourceManagers>().Destroy(oas);
         UserData = DataJson.LoadJsonFile<User>(Application.dataPath + "/SAVE/User", "UserData");
@@ -209,34 +202,6 @@ public class DataManager : Manager
 
     #region WeaponStateData
   
-    public void GetWeaponStateData(string name,Action<WeaponStats> action)
-    {
-        GameManagement.Instance.StartCoroutine(WaitForGetWeaponData(name, action));
-    }
-    public IEnumerator WaitForGetWeaponData(string name, Action<WeaponStats> action)
-    {
-        yield return new WaitUntil(() => isSettingComplate);
-        foreach (WeaponStateData data in weaponStateDataList.weaponList)
-        {
-            if (data.name == name)
-            {
-                action(WeaponSerializable(data));
-                yield break;
-            }
 
-        }
-        action(null);
-    }
-    public WeaponStats WeaponSerializable(WeaponStateData data)
-    {
-        WeaponStats state = new WeaponStats();
-
-        state.Afs = data.attackAfterDelay;
-        state.Atk = data.damage;
-        state.Ats = data.attackSpeed;
-        state.Weight = data.weaponWeight;
-
-        return state;
-    }
     #endregion
 }
