@@ -22,11 +22,11 @@ namespace Units.Behaviours.Unit
 		public float Half { get; set; } = 0;
 
 		protected UnitEquiq _unitEquiq;
-		public override void Start()
+		public override void Awake()
 		{
 			_unitEquiq = ThisBase.GetBehaviour<UnitEquiq>();
 			changeStats.Set(OriginStats);
-			base.Start();
+			base.Awake();
 		}
 
 		protected virtual void ChangeStats()
@@ -38,12 +38,6 @@ namespace Units.Behaviours.Unit
 			{
 				Weight = _unitEquiq.CurrentWeapon.WeaponStat.Weight;
 				Atk = _unitEquiq.CurrentWeapon.WeaponStat.Atk;
-			}
-
-			foreach(var a in _unitEquiq._helos)
-			{
-				//헤일로에 능력에 따라 무언가를 해준다.
-
 			}
 
 			changeStats.Agi = WeightToSpeed(Weight);
