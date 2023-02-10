@@ -88,19 +88,13 @@ public class MapInformation
 {
 
 }
-
+public class WeaponStateDataList
+{
+    public List<WeaponStateData> weaponList;
+}
+[Serializable]
 public class WeaponStateData
 {
-    public WeaponStateData(string name,string weaponClass, int damage, float attackSpeed, float attackAfterDelay, int weaponWeight)
-    {
-        this.name = name;
-        this.weaponClass = weaponClass;
-        this.damage = damage;
-        this.attackSpeed = attackSpeed;
-        this.attackAfterDelay = attackAfterDelay;
-        this.weaponWeight = weaponWeight;
-    }
-
     public string name;
     public string weaponClass;
     public int damage;
@@ -116,10 +110,6 @@ public class DataManager : Manager
     public static SavePoint SavePointData;
     public static Inventory InventoryData;
 
-    public List<WeaponStateData> weaponStateDataList = new List<WeaponStateData>();
-
-    public bool isSettingComplate = false;
-
     private string URL;
     public override void Awake()
     {
@@ -128,19 +118,7 @@ public class DataManager : Manager
         UserData = DataJson.LoadJsonFile<User>(Application.dataPath + "/SAVE/User", "UserData");
         SavePointData = DataJson.LoadJsonFile<SavePoint>(Application.dataPath + "/SAVE/User", "SavePointData");
         InventoryData = DataJson.LoadJsonFile<Inventory>(Application.dataPath + "/SAVE/User", "InvectoryData");
-
-        //test
-        //UserData.firstWeapon = "oldSword";
-        //UserData.secondWeapon = "oldTwinSword";
-
-        //SaveToUserData();
-        //
-
-
-
-        URL = "https://docs.google.com/spreadsheets/d/1y6kR8URl2pG-sAijzFArfcsj1SRQXP1CvNo_k19Vbjs/export?format=tsv&range=A2:F30";
-
-        DownloadItemSO();
+       
     }
     #region UserData
     public void SaveToUserData()
@@ -223,60 +201,7 @@ public class DataManager : Manager
     #endregion
 
     #region WeaponStateData
-    private async void DownloadItemSO()
-    {
-        UnityWebRequest www = UnityWebRequest.Get(URL);
-        await www.SendWebRequest();
-        SetWeaponStateData(www.downloadHandler.text);
-    }
-    private void SetWeaponStateData(string tsv)
-    {
-        string[] row = tsv.Split('\n');
+  
 
-        int weaponCount = row.Length;
-        for (int i = 0;i<weaponCount;i++)
-        {
-            string[] col = row[i].Split("\t");
-            weaponStateDataList.Add(new WeaponStateData(
-                col[0],
-                col[1],
-                int.Parse(col[2]), 
-                float.Parse(col[3]), 
-                float.Parse(col[4]), 
-                int.Parse(col[5]))
-            );
-        }
-
-        isSettingComplate = true;
-    }
-    public void GetWeaponStateData(string name,Action<WeaponStats> action)
-    {
-        GameManagement.Instance.StartCoroutine(WaitForGetWeaponData(name, action));
-    }
-    public IEnumerator WaitForGetWeaponData(string name, Action<WeaponStats> action)
-    {
-        yield return new WaitUntil(() => isSettingComplate);
-        foreach (WeaponStateData data in weaponStateDataList)
-        {
-            if (data.name == name)
-            {
-                action(WeaponSerializable(data));
-                yield break;
-            }
-
-        }
-        action(null);
-    }
-    public WeaponStats WeaponSerializable(WeaponStateData data)
-    {
-        WeaponStats state = new WeaponStats();
-
-        state.Afs = data.attackAfterDelay;
-        state.Atk = data.damage;
-        state.Ats = data.attackSpeed;
-        state.Weight = data.weaponWeight;
-
-        return state;
-    }
     #endregion
 }
