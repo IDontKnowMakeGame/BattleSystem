@@ -123,6 +123,8 @@ public class DataManager : Manager
         SavePointData = DataJson.LoadJsonFile<SavePoint>(Application.dataPath + "/SAVE/User", "SavePointData");
         InventoryData = DataJson.LoadJsonFile<Inventory>(Application.dataPath + "/SAVE/User", "InvectoryData");
         weaponStateDataList = DataJson.LoadJsonFile<WeaponStateDataList>(Application.dataPath + "/SAVE/Weapon", "WeaponStatus");
+
+        isSettingComplate = true;
     }
     #region UserData
     public void SaveToUserData()
