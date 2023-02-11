@@ -68,8 +68,6 @@ namespace Units.Base.Player
 			_currentWeapon = _secoundWeapon;
 			_secoundWeapon = temp;
 
-			Debug.Log(weapons[_currentWeapon]);
-
 			playerAttack.ChangeDelay(CurrentWeapon.WeaponStat.Afs);
 			unitAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
 			unitAnimation.ChangeState(10);
@@ -77,16 +75,25 @@ namespace Units.Base.Player
 
 		public void ChangeWeapon(EventParam eventParam)
 		{
-			switch(eventParam.intParam)
+			if(eventParam.stringParam == null)
 			{
-				case 1:
+				if(eventParam.intParam == 1)
+				{
+					weapons[_currentWeapon].Reset();
 					_currentWeapon = eventParam.stringParam;
-					break;
-				case 2:
+				}
+				else
 					_secoundWeapon = eventParam.stringParam;
-					break;
 			}
-			CurrentWeapon?.ChangeKey();
+			else
+			{
+				if (eventParam.intParam == 1)
+					_currentWeapon = eventParam.stringParam;
+				else
+					_secoundWeapon = eventParam.stringParam;
+
+				CurrentWeapon?.ChangeKey();
+			}	
 		}
 
 		public void ChangeHallo(string halloName)

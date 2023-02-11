@@ -100,7 +100,6 @@ namespace Managements.Managers
 
 		public void AddInGameAction(InputTarget target, InputStatus status, Action action)
 		{
-			Debug.Log(action);
 			_inGameInputs[target].Actions[(int)status] += action;
 		}
 

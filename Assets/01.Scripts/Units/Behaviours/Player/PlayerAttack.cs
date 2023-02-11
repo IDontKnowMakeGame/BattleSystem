@@ -62,7 +62,6 @@ namespace Units.Base.Player
 
         private void SetAnimation()
         {
-            Debug.Log("?");
             Define.GetManager<InputManager>().AddInGameAction(InputTarget.UpAttack, InputStatus.Press, () => ChangeAnimation(Vector3.forward));
             Define.GetManager<InputManager>().AddInGameAction(InputTarget.DownAttack, InputStatus.Press, () => ChangeAnimation(Vector3.back));
             Define.GetManager<InputManager>().AddInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => ChangeAnimation(Vector3.left));

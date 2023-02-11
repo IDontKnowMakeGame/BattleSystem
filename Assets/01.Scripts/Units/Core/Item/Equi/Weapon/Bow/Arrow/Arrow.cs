@@ -10,14 +10,13 @@ public class Arrow
 	public GameObject thisObject;
 
 	public bool isStick;
-
 	public virtual void Start()
 	{
 		
 	}
-	public virtual void Stick(EnemyBase enemyBase)
+	public virtual void Stick(EnemyBase enemyBase, Vector3 vec = new())
 	{
-		enemyBase.transform.parent = thisObject.transform;
+		Debug.Log(vec);
 		isStick = true;
 	}
 

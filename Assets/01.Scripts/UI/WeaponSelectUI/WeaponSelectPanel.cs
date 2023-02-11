@@ -13,7 +13,6 @@ public class WeaponSelectPanel : MonoBehaviour
     }
     private void Start()
     {
-        Debug.Log("asd");
         Managements.GameManagement.Instance.GetManager<EventManager>().StartListening(EventFlag.WeaponPanelConnecting, InterectionConecting);
         Managements.GameManagement.Instance.GetManager<EventManager>().StartListening(EventFlag.WeaponPanelDisConnecting, InterectionDisConecting);
         _panel.gameObject.SetActive(false);

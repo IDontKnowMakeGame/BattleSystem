@@ -12,8 +12,8 @@ namespace Unit.Core
         public void Set(UnitStats stats)
         {
             Hp = stats.Hp;
-            Atk = stats.Atk;//히히 이스터에그
-            Agi = stats.Agi; //히히 이스터에그
+            Atk = stats.Atk;
+            Agi = stats.Agi;
         }
     }
 

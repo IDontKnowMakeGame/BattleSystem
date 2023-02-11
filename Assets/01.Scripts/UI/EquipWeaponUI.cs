@@ -28,7 +28,6 @@ public class EquipWeaponUI : MonoBehaviour
         _firstWeapon = data.firstWeapon;
         _secondWeapon = data.secondWeapon;
 
-        Debug.Log($"{data.firstWeapon} + {data.secondWeapon}");
         _firstWeaponImage.sprite = GameManagement.Instance.GetManager<ResourceManagers>().Load<Sprite>($"{_firstWeapon}");
         _secondWeaponImage.sprite = GameManagement.Instance.GetManager<ResourceManagers>().Load<Sprite>($"{_secondWeapon}");
 

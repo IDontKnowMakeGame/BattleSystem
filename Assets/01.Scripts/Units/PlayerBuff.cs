@@ -8,7 +8,7 @@ using Core;
 namespace Units.Base.Player
 {
     [System.Serializable]
-    public class PlayerBuff : UnitBehaviour
+    public class PlayerBuff : UnitBehaviour,IStatChange
     {
         [SerializeField]
         [Range(0, 10)] private float anger;
@@ -19,11 +19,10 @@ namespace Units.Base.Player
         [SerializeField]
         private ParticleSystem adneralineParticle;
 
-        private UnitStats _stat = new UnitStats { Agi = 0, Atk = 1, Hp = 1}; //여기다가 몆 배할지 정해주면 될 듯함;
-
-        public UnitStats Stat => _stat;
-            
-
+        private UnitStats _addstat = new UnitStats { Agi = 0, Atk = 0, Hp = 0};
+        private UnitStats _multistat = new UnitStats { Agi = 1, Atk = 1, Hp = 1};
+		public UnitStats addstat { get => _addstat; set => value = null; }
+		public UnitStats multistat { get => _multistat; set => value = null; }
 
         private bool angerDecrease = false;
         private bool adneralineDecrease = false;
@@ -41,7 +40,7 @@ namespace Units.Base.Player
 
         private EventParam eventParam;
 
-        public override void Start()
+		public override void Start()
         {
             attackCount = 0;
             attackCheckTimer = attckCheckTime;
@@ -82,7 +81,7 @@ namespace Units.Base.Player
             {
                 angerDecrease = true;
                 decreaseAngerTimer = decreaseTime;
-                _stat.Atk += 1;
+                _multistat.Atk += 1;
                 ThisBase.GetBehaviour<PlayerStat>().Half += 50;
                 angerParticle.gameObject.SetActive(true);
             }
@@ -92,7 +91,7 @@ namespace Units.Base.Player
                 {
                     anger = 0;
                     angerDecrease = false;
-                    _stat.Atk -= 1;
+                    _multistat.Atk -= 1;
                     ThisBase.GetBehaviour<PlayerStat>().Half -= 50;
                     angerParticle.gameObject.SetActive(false);
                     return;
@@ -125,8 +124,8 @@ namespace Units.Base.Player
             {
                 adneralineDecrease = true;
                 decreaseAdneralineTimer = decreaseTime;
-                _stat.Atk += 0.5f;
-                _stat.Agi += 1;
+                _multistat.Atk += 0.5f;
+                _addstat.Agi += 1;
                 adneralineParticle.gameObject.SetActive(true);
             }
             if (adneralineDecrease)
@@ -135,8 +134,8 @@ namespace Units.Base.Player
                 {
                     adneraline = 0;
                     adneralineDecrease = false;
-                    _stat.Atk -= 0.5f;
-                    _stat.Agi -= 1;
+                    _multistat.Atk -= 0.5f;
+                    _addstat.Agi -= 1;
                     adneralineParticle.gameObject.SetActive(false);
                     return;
                 }

@@ -6,6 +6,7 @@ public class OldBow : BaseBow
 {
 	public override void Awake()
 	{
+		base.Awake();
 		GetWeaponStateData("oldBow");
 	}
 }
