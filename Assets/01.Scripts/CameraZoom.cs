@@ -67,7 +67,6 @@ public class CameraZoom : MonoBehaviour
         Zoom(size, minSize);
     }
 
-
     public void ZoomOut()
     {
         float size = cmVCamera.m_Lens.FieldOfView;

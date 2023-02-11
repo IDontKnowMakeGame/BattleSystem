@@ -28,7 +28,7 @@ namespace Units.Base.Player
         public override void Damaged(float damage)
         {
             base.Damaged(damage);
-            DamageShake.ScreenShake(new EventParam());
+            //DamageShake.ScreenShake(new EventParam()); //Kim
         }
 
 		protected override void ChangeStats()
