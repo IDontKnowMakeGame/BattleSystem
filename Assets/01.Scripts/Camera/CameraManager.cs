@@ -15,6 +15,10 @@ public class CameraManager : MonoBehaviour
     private void Awake()
     {
         _cvCam = GetComponent<CinemachineVirtualCamera>();
+
+        _damagedShake = transform.Find("DamagedShake").GetComponent<Shake>();
+        _basicShake = transform.Find("BasicShake").GetComponent<Shake>();
+        _greateSwordShake = transform.Find("GreateSwordShake").GetComponent<Shake>();
     }
     public void DamagedShake()
     {
@@ -28,12 +32,14 @@ public class CameraManager : MonoBehaviour
     {
         _greateSwordShake.ScreenShake();
     }
-    public void ZoomIn()
+    public void ZoomIn(float value)
     {
-        StartCoroutine(ZoomInOut(50, 0.002f));
+        StopAllCoroutines();
+        StartCoroutine(ZoomInOut(value, 0.002f));
     }
     public void ZoomOut()
     {
+        StopAllCoroutines();
         StartCoroutine(ZoomInOut(60, 0.002f));
     }
     private IEnumerator ZoomInOut(float value, float smoothTime)

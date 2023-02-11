@@ -1846,8 +1846,17 @@ PrefabInstance:
       propertyPath: smoothTime
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 3056637903407075284, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
+      propertyPath: name
+      value: Damanged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
+--- !u!1 &69673803 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 57911751932573266, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
+  m_PrefabInstance: {fileID: 69673802}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &70320490
 GameObject:
   m_ObjectHideFlags: 0
@@ -21129,6 +21138,57 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 605263376}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &606893513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 606893515}
+  - component: {fileID: 606893514}
+  m_Layer: 0
+  m_Name: PlayableDirector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!320 &606893514
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606893513}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 2979209d5cd23dd4a8dc0e5d39cc7de9, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -4216266828427359169, guid: 2979209d5cd23dd4a8dc0e5d39cc7de9, type: 2}
+    value: {fileID: 659410824}
+  m_ExposedReferences:
+    m_References: []
+--- !u!4 &606893515
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606893513}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.252799, y: 3.0170991, z: -16.939686}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &609121917
 GameObject:
   m_ObjectHideFlags: 0
@@ -22144,12 +22204,145 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2242452035319382347, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
   m_PrefabInstance: {fileID: 69673802}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 69673803}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64956864aef51994e8cc0650c4fecbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &659410823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69673803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcbce9ee100383449965a3fe3c9baf7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 0
+--- !u!114 &659410824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69673803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 73348c41e7a45b14e935dab0e7e4c044, type: 2}
+    - {fileID: 11400000, guid: 93a009acd8544124d9ea40d5c14bfeb3, type: 2}
+    - {fileID: 11400000, guid: 0636a4c3c9e61484f908dfd4063b1431, type: 2}
+    - {fileID: 11400000, guid: 0be1d2a17f343d64e80315cab435c16f, type: 2}
+    - {fileID: 11400000, guid: 1523d339fcad12f4c94e7ab220533592, type: 2}
+    - {fileID: 11400000, guid: 255ef3e220ff8de4783fe3ff2c9db0ef, type: 2}
+    - {fileID: 11400000, guid: ca55414037e40ce40b5dc0cfed647717, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 659410823}
+          m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
+          m_MethodName: TimeSlow
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 659410823}
+          m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
+          m_MethodName: TimeSet
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 659410823}
+          m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
+          m_MethodName: ZoomIn
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 30
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 659410823}
+          m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
+          m_MethodName: ZoomOut
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 659410823}
+          m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
+          m_MethodName: DamagedShake
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 659410823}
+          m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
+          m_MethodName: BasicAttackShake
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 659410823}
+          m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
+          m_MethodName: GreateSwordAttackShake
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &662063611
 PrefabInstance:
   m_ObjectHideFlags: 0
