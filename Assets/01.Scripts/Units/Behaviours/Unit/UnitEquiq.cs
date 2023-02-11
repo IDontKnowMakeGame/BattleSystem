@@ -15,6 +15,9 @@ namespace Units.Behaviours.Unit
 		[SerializeField]
 		protected string _secoundWeapon;
 
+		[SerializeField]
+		protected string _currentHalo;
+
 		public bool isEnemy;
 		public Weapon CurrentWeapon
 		{
@@ -28,8 +31,7 @@ namespace Units.Behaviours.Unit
 		}
 
 		public Dictionary<string, Weapon> weapons = new Dictionary<string, Weapon>();
-
-		public List<Helo> _helos = new List<Helo>();
+		protected Dictionary<string, Halo> halos = new Dictionary<string, Halo>();
 
 		public override void Awake()
 		{
@@ -40,14 +42,17 @@ namespace Units.Behaviours.Unit
 			weapons.Add("oldBow", new OldBow() { _thisBase = this.ThisBase });
 			weapons.Add("taintedSword", new TaintedSword() { _thisBase = this.ThisBase });
 
+			halos.Add("DirtyHalo", new DirtyHalo());
+			halos.Add("EvilSpiritHalo", new EvilSpiritHalo());
+
+
 			foreach (var value in weapons)
 			{
 				value.Value?.Awake();
 			}
-
-			foreach (var value in _helos)
+			foreach (var value in halos)
 			{
-				value?.Awake();
+				value.Value?.Awake();
 			}
 		}
 
@@ -57,23 +62,20 @@ namespace Units.Behaviours.Unit
 			{
 				value.Value?.Start();
 			}
+			foreach (var value in halos)
+			{
+				value.Value?.Start();
+			}
 
 			if (!isEnemy)
 				CurrentWeapon?.ChangeKey();
 
-			foreach (var value in _helos)
-			{
-				value?.Start();
-			}
+			_currentHalo = "EvilSpiritHalo";
 		}
 		public override void Update()
 		{
 			CurrentWeapon?.Update();
-
-			foreach (var value in _helos)
-			{
-				value?.Update();
-			}
+			halos[_currentHalo].Update();
 		}
 
 		public int WeaponAnimation()

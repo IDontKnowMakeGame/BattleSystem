@@ -83,11 +83,27 @@ namespace Unit.Core.Weapon
 
 		protected void GetWeaponStateData(string name)
 		{
-			GameManagement.Instance.GetManager<DataManager>().GetWeaponStateData(name, GetWeaponStateData);
-        }
-		protected void GetWeaponStateData(WeaponStats data)
-        {
-			_weaponStats = data;
+			//GameManagement.Instance.GetManager<DataManager>().GetWeaponStateData(name, GetWeaponStateData);
+			WeaponStateDataList weaponStateDataList = DataJson.LoadJsonFile<WeaponStateDataList>(Application.dataPath + "/SAVE/Weapon", "WeaponStatus");
+			foreach (WeaponStateData data in weaponStateDataList.weaponList)
+			{
+				if (data.name == name)
+				{
+					_weaponStats = WeaponSerializable(data);
+					break;
+				}
+			}
+		}
+		public WeaponStats WeaponSerializable(WeaponStateData data)
+		{
+			WeaponStats state = new WeaponStats();
+
+			state.Afs = data.attackAfterDelay;
+			state.Atk = data.damage;
+			state.Ats = data.attackSpeed;
+			state.Weight = data.weaponWeight;
+
+			return state;
 		}
 
 		protected virtual void Attack(Vector3 vec)

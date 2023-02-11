@@ -41,7 +41,10 @@ namespace Units.Base.Player
 			Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.WeaponOnOff, InputStatus.Press, WeaponOnOff);
 
 			Define.GetManager<EventManager>().StartListening(EventFlag.WeaponChange, ChangeWeapon);
+
 			base.Start();
+
+			ThisBase.GetBehaviour<PlayerEqiq>().ChangeHallo("DirtyHalo");
 		}
 
         public override void OnDisable()
@@ -92,6 +95,13 @@ namespace Units.Base.Player
 				CurrentWeapon?.ChangeKey();
 			}	
 		}
+
+		public void ChangeHallo(string halloName)
+        {
+			_currentHalo = halloName;
+			halos[_currentHalo].Init();
+        }
+
 		private void TestChangeWeapon()
 		{
 			count++;
