@@ -99,7 +99,7 @@ namespace Units.Base.Player
 		public void ChangeHallo(string halloName)
         {
 			_currentHalo = halloName;
-			halos[_currentHalo].Init();
+			helos[_currentHalo].Init();
         }
 
 		private void TestChangeWeapon()
