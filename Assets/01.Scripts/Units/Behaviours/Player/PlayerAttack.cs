@@ -133,7 +133,7 @@ namespace Units.Base.Player
             }
 
 
-            if (timer > 0 || unitAnimation.CurState() == 10) return;
+            if (timer > 0 || unitAnimation.CurState() == 10 || isAttack) return;
             if (dir == Vector3.left)
             {
                 unitAnimation.ChangeState(4);
@@ -162,10 +162,21 @@ namespace Units.Base.Player
             if(timer > 0)
                 timer -= Time.deltaTime;
 
-            if (isAttack && unitAnimation.CurIndex() > unitAnimation.GetFPS() / 2)
+            if (ThisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() == 1)
             {
-                isAttack = false;
-                ThisBase.RemoveState(BaseState.Attacking);
+                if (isAttack)
+                {
+                    isAttack = false;
+                    ThisBase.RemoveState(BaseState.Attacking);
+                }
+            }
+            else
+            {
+                if (isAttack && unitAnimation.CurIndex() > unitAnimation.GetFPS() / 2)
+                {
+                    isAttack = false;
+                    ThisBase.RemoveState(BaseState.Attacking);
+                }
             }
         }
 
