@@ -45,6 +45,8 @@ namespace Units.Base.Player
 			base.Start();
 
 			ThisBase.GetBehaviour<PlayerEqiq>().InsertHelo("DirtyHalo", 0);
+			ThisBase.GetBehaviour<PlayerEqiq>().InsertHelo("EvilSpiritHalo", 1);
+
 		}
 
         public override void OnDisable()

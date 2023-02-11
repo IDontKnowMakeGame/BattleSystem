@@ -25,12 +25,17 @@ public class DirtyHalo : Halo
             {
                 UpDamage = true;
                 Debug.Log("데미지 50");
+                playerStat.addstat.Atk += 50;
             }
         }
         else if (InGame.PlayerBase.State.HasFlag(BaseState.Attacking) && trigger)
         {
             trigger = false;
-            UpDamage = false;
+            if (UpDamage)
+            {
+                playerStat.addstat.Atk -= 50;
+                UpDamage = false;
+            }
         }
     }
 
@@ -39,6 +44,7 @@ public class DirtyHalo : Halo
         if(UpDamage)
         {
             Debug.Log("데미지 50 감소");
+            playerStat.addstat.Atk -= 50;
             UpDamage = false;
         }
     }
