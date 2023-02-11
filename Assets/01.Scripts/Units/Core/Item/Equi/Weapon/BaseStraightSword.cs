@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unit.Core.Weapon;
 using Managements.Managers;
+using Core;
 
 public class BaseStraightSword : Weapon
 {

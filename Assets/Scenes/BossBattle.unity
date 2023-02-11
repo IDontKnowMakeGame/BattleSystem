@@ -1852,7 +1852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3056637903407075284, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
       propertyPath: shakeForce
-      value: 0.75
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 3464524612274843908, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
       propertyPath: shakeForce
@@ -21185,13 +21185,15 @@ PlayableDirector:
   m_GameObject: {fileID: 606893513}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 2979209d5cd23dd4a8dc0e5d39cc7de9, type: 2}
-  m_InitialState: 1
+  m_PlayableAsset: {fileID: 11400000, guid: 9461c4f6326ddab4a9c1882af2a9cf77, type: 2}
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -4216266828427359169, guid: 2979209d5cd23dd4a8dc0e5d39cc7de9, type: 2}
+    value: {fileID: 659410824}
+  - key: {fileID: 21954259252054231, guid: 9461c4f6326ddab4a9c1882af2a9cf77, type: 2}
     value: {fileID: 659410824}
   m_ExposedReferences:
     m_References: []
@@ -21224,6 +21226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timelines:
   - {fileID: 11400000, guid: 2979209d5cd23dd4a8dc0e5d39cc7de9, type: 2}
+  - {fileID: 11400000, guid: 9461c4f6326ddab4a9c1882af2a9cf77, type: 2}
 --- !u!1 &609121917
 GameObject:
   m_ObjectHideFlags: 0

@@ -109,7 +109,7 @@ namespace Units.Base.Player
             {
                 ThisBase.StartCoroutine(cameraZoom.ZoomInOut(1f));
                 playerBuff.ChangeAdneraline(1);
-                Define.GetManager<EventManager>().TriggerEvent(EventFlag.CameraShake,new EventParam());
+                //Define.GetManager<EventManager>().TriggerEvent(EventFlag.CameraShake,new EventParam());
             }
 
 
