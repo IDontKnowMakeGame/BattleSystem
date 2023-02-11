@@ -1850,6 +1850,26 @@ PrefabInstance:
       propertyPath: name
       value: Damanged
       objectReference: {fileID: 0}
+    - target: {fileID: 3056637903407075284, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
+      propertyPath: shakeForce
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464524612274843908, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
+      propertyPath: shakeForce
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3964729682967954873, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
+      propertyPath: m_ImpulseDefinition.m_RawSignal
+      value: 
+      objectReference: {fileID: 11400000, guid: 9a5217f3e7bc42441a5285e7c5c461ef, type: 2}
+    - target: {fileID: 5322203634168192649, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
+      propertyPath: m_ImpulseDefinition.m_ImpactRadius
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485016880985342223, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
+      propertyPath: shakeForce
+      value: 0.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07aa0613c90bbb34688f0b862b0001ce, type: 3}
 --- !u!1 &69673803 stripped
@@ -21148,6 +21168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 606893515}
   - component: {fileID: 606893514}
+  - component: {fileID: 606893516}
   m_Layer: 0
   m_Name: PlayableDirector
   m_TagString: Untagged
@@ -21189,6 +21210,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &606893516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606893513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7788fc87fdcc942499c4b01360ff092b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timelines:
+  - {fileID: 11400000, guid: 2979209d5cd23dd4a8dc0e5d39cc7de9, type: 2}
 --- !u!1 &609121917
 GameObject:
   m_ObjectHideFlags: 0
