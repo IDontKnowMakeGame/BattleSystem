@@ -21,6 +21,9 @@ namespace Units.Base.Player
 
         private UnitStats _stat = new UnitStats { Agi = 0, Atk = 1, Hp = 1}; //여기다가 몆 배할지 정해주면 될 듯함;
 
+        public UnitStats Stat => _stat;
+            
+
 
         private bool angerDecrease = false;
         private bool adneralineDecrease = false;
