@@ -13,9 +13,6 @@ namespace Units.Base.Player
     {
         [SerializeField]
         private Shake DamageShake;
-
-        public UnitStats addstat = new UnitStats { Agi = 0, Atk = 0, Hp = 0 };
-        public UnitStats multistat = new UnitStats { Agi = 1, Atk = 1, Hp = 1 };
         public override void Start()
 		{
 			base.Start();

@@ -113,19 +113,19 @@ namespace Unit.Core.Weapon
 
 		protected virtual void UpAttack()
 		{
-			Attack(Vector3.forward);
+			_thisBase.StartCoroutines(_weaponStats.Ats, () => Attack(Vector3.forward));
 		}
 		protected virtual void DownAttack()
 		{
-			Attack(Vector3.back);
+			_thisBase.StartCoroutines(_weaponStats.Ats, () => Attack(Vector3.back));
 		}
 		protected virtual void LeftAttack()
 		{
-			Attack(Vector3.left);
+			_thisBase.StartCoroutines(_weaponStats.Ats, () => Attack(Vector3.left));
 		}
 		protected virtual void RightAttack()
 		{
-			Attack(Vector3.right);
+			_thisBase.StartCoroutines(_weaponStats.Ats, () => Attack(Vector3.right));
 		}
 
 		protected virtual void Skill(Vector3 vec)

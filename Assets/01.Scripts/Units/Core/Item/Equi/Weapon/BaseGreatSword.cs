@@ -32,15 +32,10 @@ public class BaseGreatSword : Weapon
 		_inputManager.AddInGameAction(InputTarget.LeftMove, InputStatus.Press, Move);
 		_inputManager.AddInGameAction(InputTarget.RightMove, InputStatus.Press, Move);
 
-		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Press, UpAttack);
-		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Press, DownAttack);
-		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Press, LeftAttack);
-		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Press, RightAttack);
-
-		_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Hold, UpAttack);
-		_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Hold, DownAttack);
-		_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Hold, LeftAttack);
-		_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Hold, RightAttack);
+		_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Hold, Charge);
+		_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Hold, Charge);
+		_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Hold, Charge);
+		_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Hold, Charge);
 
 		_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Release, AttackUP);
 		_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Release, AttackUP);
@@ -54,6 +49,26 @@ public class BaseGreatSword : Weapon
 			_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 			_chargeTime = 0;
 		}
+	}
+
+	protected override void UpAttack()
+	{
+		Attack(Vector3.forward);
+	}
+
+	protected override void DownAttack()
+	{
+		Attack(Vector3.back);
+	}
+
+	protected override void LeftAttack()
+	{
+		Attack(Vector3.left);
+	}
+
+	protected override void RightAttack()
+	{
+		Attack(Vector3.right);
 	}
 
 	protected override void Attack(Vector3 vec)
@@ -74,9 +89,6 @@ public class BaseGreatSword : Weapon
 
 	private void Charge()
 	{
-		if (!_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Charge))
-			return;
-
 		if (_chargeTime >= _maxChargeTime)
 		{
 			_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
@@ -97,7 +109,7 @@ public class BaseGreatSword : Weapon
 
 	public override void Reset()
 	{
-		Debug.Log("greatSword");
+		base.Reset();
 		_chargeTime = 0;
 		_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 		_currentVector = Vector3.zero;
@@ -111,5 +123,10 @@ public class BaseGreatSword : Weapon
 		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Release, AttackUP);
 		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Release, AttackUP);
 		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Release, AttackUP);
+
+		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Press, Move);
+		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Press, Move);
+		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Press, Move);
+		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Press, Move);
 	}
 }

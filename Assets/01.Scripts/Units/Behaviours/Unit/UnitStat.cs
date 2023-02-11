@@ -21,6 +21,9 @@ namespace Units.Behaviours.Unit
 		}
 		public float Half { get; set; } = 0;
 
+		public UnitStats addstat = new UnitStats { Agi = 0, Atk = 0, Hp = 0 };
+		public UnitStats multistat = new UnitStats { Agi = 1, Atk = 1, Hp = 1 };
+
 		protected UnitEquiq _unitEquiq;
 		public override void Awake()
 		{
@@ -39,6 +42,12 @@ namespace Units.Behaviours.Unit
 				Weight = _unitEquiq.CurrentWeapon.WeaponStat.Weight;
 				Atk = _unitEquiq.CurrentWeapon.WeaponStat.Atk;
 			}
+
+			Weight += (int)addstat.Agi;
+			Atk += addstat.Atk;
+
+			Weight *= (int)multistat.Agi;
+			Atk *= multistat.Atk;
 
 			changeStats.Agi = WeightToSpeed(Weight);
 			changeStats.Atk = Atk;

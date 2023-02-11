@@ -28,8 +28,6 @@ public class LockTile : MonoBehaviour
     {
         Vector3 distance = targetPos - transform.position.SetY(1);
 
-        Debug.Log(distance);
-
         if ((changeLockDir.HasFlag(ChangeLockDir.UP) && distance == Vector3.forward)
             || (changeLockDir.HasFlag(ChangeLockDir.DOWN) && distance == Vector3.back)
             || (changeLockDir.HasFlag(ChangeLockDir.LEFT) && distance == Vector3.left)

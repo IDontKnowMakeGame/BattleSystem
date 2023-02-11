@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Core;
 using Managements.Managers;
 using Units.Behaviours.Unit;
@@ -48,6 +49,14 @@ namespace Units.Base.Unit
         public void RemoveState(BaseState state)
         {
             this.state &= ~state;
+        }
+
+        public void StartCoroutines(float time, Action after = null, Action before = null) => StartCoroutine(Coroutine(time, after, before));
+        public virtual IEnumerator Coroutine(float time, Action after = null, Action before = null)
+		{
+            before?.Invoke();
+            yield return new WaitForSeconds(time);
+            after?.Invoke();
         }
     }
 }
