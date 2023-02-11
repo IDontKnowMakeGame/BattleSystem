@@ -10,29 +10,43 @@ namespace Units.Base.Wall
         public readonly int PosId = Shader.PropertyToID("_Position");
         public readonly int SizeId = Shader.PropertyToID("_Size");
 
+        private Renderer renderer;
         private Material thisMaterial;
         public LayerMask Mask;
-        public int Size = 1;
+        public float Size = 1;
 
         public override void Start()
         {
-            thisMaterial = ThisBase.GetComponent<Renderer>().material;
+            renderer = ThisBase.GetComponent<Renderer>();
+            thisMaterial = renderer.material;
         }
 
         protected override void Render()
         {
+            var material = thisMaterial;
             var playerPos = InGame.PlayerBase.transform.position;
             var cam = Define.MainCam;
             var dir = cam.transform.position - playerPos;
-            var ray = new Ray(playerPos, dir.normalized);
-
-            if (Physics.Raycast(ray, 3000, Mask))
-                thisMaterial.SetFloat(SizeId, Size);
-            else
-                thisMaterial.SetFloat(SizeId, 0);
             
+            material.SetFloat(SizeId, 0);
+            for (var i = -2; i <= 2; i++)
+            {
+                dir = cam.transform.position - playerPos;
+                var hits = Physics.RaycastAll(playerPos + new Vector3(i, 0), dir, 3000, Mask);
+                foreach (var hit in hits)
+                {
+                    hit.collider.GetComponent<WallBase>().GetBehaviour<WallRender>().Invisible();
+                }
+            }
+
             var view = cam.WorldToViewportPoint(playerPos);
-            thisMaterial.SetVector(PosId, view);
+            material.SetVector(PosId, view);
+            renderer.material = material;
+        }
+        
+        public void Invisible()
+        {
+            thisMaterial.SetFloat(SizeId, Size);
         }
     }
 }
