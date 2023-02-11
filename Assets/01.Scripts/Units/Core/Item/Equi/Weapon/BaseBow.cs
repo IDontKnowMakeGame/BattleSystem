@@ -8,19 +8,28 @@ using Core;
 public class BaseBow : Weapon
 {
 	protected float _chargeTime;
-	protected float _maxChargeTime;
+	protected float _maxChargeTime => WeaponStat.Ats;
+
+	protected string _arrowName;
 
 	private Vector3 _currentVector;
 
-	private float projectileSpeed = 1;
+	private float projectileSpeed = 10;
 
 	public bool hasArrow = true;
+
+	public override void Start()
+	{
+		base.Start();
+		_arrowName = this.GetType().Name + "Arrow";
+		Debug.Log(_arrowName);
+	}
 	public override void ChangeKey()
 	{
-		//base.ChangeKey();
+		base.ChangeKey();
 		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.W);
-		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.A);
-		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.S);
+		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.S);
+		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.A);
 		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.D);
 
 		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Press, UpAttack);
@@ -41,6 +50,12 @@ public class BaseBow : Weapon
 
 	protected override void Attack(Vector3 vec)
 	{
+		if (!hasArrow)
+			return;
+
+		if (_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Charge))
+			return;
+
 		_thisBase.AddState(Units.Base.Unit.BaseState.Charge);
 		_thisBase.AddState(Units.Base.Unit.BaseState.StopMove);
 		_currentVector = vec;
@@ -54,6 +69,7 @@ public class BaseBow : Weapon
 		if (_chargeTime >= _maxChargeTime)
 		{
 			_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
+			_thisBase.RemoveState(Units.Base.Unit.BaseState.StopMove);
 			Shooting(_currentVector);
 			_chargeTime = 0;
 		}
@@ -67,10 +83,10 @@ public class BaseBow : Weapon
 	{
 		GameObject obj = Managements.GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("Arrow");
 		BaseArrow arrow = obj.GetComponent<BaseArrow>();
-		arrow.speed = projectileSpeed;
-		arrow.pos = _thisBase.Position + vec;
-		arrow.dir = vec;
-		arrow.damage = _weaponStats.Atk;
+
+		arrow.InitArrow(projectileSpeed, _weaponStats.Atk,
+			_thisBase.Position + vec,vec, _arrowName);
+		arrow.ShootArrow();
 
 		hasArrow = false;
 	}

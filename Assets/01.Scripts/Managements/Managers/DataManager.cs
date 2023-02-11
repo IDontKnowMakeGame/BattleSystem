@@ -123,8 +123,6 @@ public class DataManager : Manager
     private string URL;
     public override void Awake()
     {
-        GameObject oas = GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("DamagePoppu");
-        GameManagement.Instance.GetManager<ResourceManagers>().Destroy(oas);
         UserData = DataJson.LoadJsonFile<User>(Application.dataPath + "/SAVE/User", "UserData");
         SavePointData = DataJson.LoadJsonFile<SavePoint>(Application.dataPath + "/SAVE/User", "SavePointData");
         InventoryData = DataJson.LoadJsonFile<Inventory>(Application.dataPath + "/SAVE/User", "InvectoryData");

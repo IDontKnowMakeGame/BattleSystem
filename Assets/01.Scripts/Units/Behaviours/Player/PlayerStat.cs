@@ -38,23 +38,38 @@ namespace Units.Base.Player
 
             if (_unitEquiq.CurrentWeapon != null)
             {
-                Debug.Log(_unitEquiq.CurrentWeapon.WeaponStat);
                 Weight = _unitEquiq.CurrentWeapon.WeaponStat.Weight;
                 Atk = _unitEquiq.CurrentWeapon.WeaponStat.Atk;
             }
 
             foreach (var a in _unitEquiq._helos)
             {
-                //헤일로에 능력에 따라 무언가를 해준다.
+                Weight += (int)a.addstat.Agi;
+                Atk += a.addstat.Atk;
 
+                Weight *= (int)a.addstat.Agi;
+                Atk *= a.addstat.Atk;
             }
 
-            Weight -= (int)_playerBuff.Stat.Agi;
-            Atk *= _playerBuff.Stat.Atk;
+            Weight += (int)_playerBuff.addstat.Agi;
+            Atk += _playerBuff.addstat.Atk;
+
+            Weight *= (int)_playerBuff.multistat.Agi;
+            Atk *= _playerBuff.multistat.Atk;
 
             changeStats.Agi = WeightToSpeed(Weight);
             changeStats.Atk = Atk;
         }
+
+        private void PlusStat()
+		{
+
+		}
+
+        private void MultiStat()
+		{
+
+		}
 
         public override void Die()
         {

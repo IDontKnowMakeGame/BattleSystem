@@ -80,10 +80,7 @@ namespace Units.Base.Player
             if (moveDir.Count >= 1) return;
             ThisBase.AddState(BaseState.Moving);
             var speed = ThisBase.GetBehaviour<UnitStat>().NowStats.Agi;
-            Debug.Log(speed);
-            Debug.Log(moveDir);
             moveDir.Enqueue(new MoveNode(dir, speed));
-			Debug.Log(moveDir.Count);
 		}
 
 		public override void Translate(Vector3 dir, float spd = 1)
@@ -222,7 +219,6 @@ namespace Units.Base.Player
         {
             dir.y = 0;
             dir.Normalize();
-            Debug.Log(dir);
 
             if (sprite == null)
                 Debug.LogError("Sprite is null.");

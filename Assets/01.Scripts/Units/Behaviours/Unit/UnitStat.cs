@@ -64,6 +64,20 @@ namespace Units.Behaviours.Unit
 			_ => 0.1f
 		};
 
+		protected float SpeedToWeight(float a) => a switch
+		{
+			0.1f => 1,
+			0.2f => 2,
+			0.23f =>3,
+			0.25f =>4,
+			0.3f =>5 ,
+			0.5f =>6 ,
+			0.7f =>7 ,
+			0.8f =>8 ,
+			0.9f =>9,
+			_ => 0.1f
+		};
+
 		public virtual void Damaged(float damage)
 		{
 
