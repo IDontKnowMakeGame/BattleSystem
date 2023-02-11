@@ -10,5 +10,6 @@ public class EvilSpiritHalo : Halo
     {
         base.Init();
         playerStat = InGame.PlayerBase.GetBehaviour<PlayerStat>();
+        playerStat.NowStats.Hp += 100;
     }
 }

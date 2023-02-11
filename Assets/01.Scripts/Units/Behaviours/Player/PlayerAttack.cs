@@ -95,6 +95,9 @@ namespace Units.Base.Player
 
 
             if (timer > 0 || unitAnimation.CurState() == 10) return;
+
+            ThisBase.AddState(BaseState.Attacking);
+
             List<EnemyBase> enemys = new List<EnemyBase>();
 
             if (near)
@@ -161,7 +164,10 @@ namespace Units.Base.Player
                 timer -= Time.deltaTime;
 
             if (isAttack && unitAnimation.CurIndex() > unitAnimation.GetFPS() / 2)
-                isAttack = false;              
+            {
+                isAttack = false;
+                ThisBase.RemoveState(BaseState.Attacking);
+            }
         }
 
         public void ChangeDelay(float delay)
