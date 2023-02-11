@@ -4,6 +4,7 @@ using UnityEngine;
 using Units.Behaviours.Unit;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using Unit.Core;
 
 namespace Units.Base.Player
 {
@@ -13,12 +14,11 @@ namespace Units.Base.Player
         [SerializeField]
         private Shake DamageShake;
 
-        private PlayerBuff _playerBuff;
-
-		public override void Start()
+        public UnitStats addstat = new UnitStats { Agi = 0, Atk = 0, Hp = 0 };
+        public UnitStats multistat = new UnitStats { Agi = 1, Atk = 1, Hp = 1 };
+        public override void Start()
 		{
 			base.Start();
-            _playerBuff = ThisBase.GetBehaviour<PlayerBuff>();
         }
 		public override void Update()
         {
@@ -28,7 +28,7 @@ namespace Units.Base.Player
         public override void Damaged(float damage)
         {
             base.Damaged(damage);
-            DamageShake.ScreenShake(new EventParam());
+            //DamageShake.ScreenShake(new EventParam());
         }
 
 		protected override void ChangeStats()
@@ -42,20 +42,11 @@ namespace Units.Base.Player
                 Atk = _unitEquiq.CurrentWeapon.WeaponStat.Atk;
             }
 
-            foreach (var a in _unitEquiq._helos)
-            {
-                Weight += (int)a.addstat.Agi;
-                Atk += a.addstat.Atk;
+            Weight += (int)addstat.Agi;
+            Atk += addstat.Atk;
 
-                Weight *= (int)a.addstat.Agi;
-                Atk *= a.addstat.Atk;
-            }
-
-            Weight += (int)_playerBuff.addstat.Agi;
-            Atk += _playerBuff.addstat.Atk;
-
-            Weight *= (int)_playerBuff.multistat.Agi;
-            Atk *= _playerBuff.multistat.Atk;
+            Weight *= (int)multistat.Agi;
+            Atk *= multistat.Atk;
 
             changeStats.Agi = WeightToSpeed(Weight);
             changeStats.Atk = Atk;

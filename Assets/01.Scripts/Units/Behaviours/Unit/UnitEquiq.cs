@@ -31,8 +31,12 @@ namespace Units.Behaviours.Unit
 		}
 
 		public Dictionary<string, Weapon> weapons = new Dictionary<string, Weapon>();
-		protected Dictionary<string, Halo> halos = new Dictionary<string, Halo>();
+		protected Dictionary<string, Halo> helos = new Dictionary<string, Halo>();
 
+		private int _heloCount = 1;
+
+		public List<Halo> UseHelo => usingHelos;
+		protected List<Halo> usingHelos = new List<Halo>();
 		public override void Awake()
 		{
 			weapons.Add("oldSword", new OldStraightSword() { _thisBase = this.ThisBase });
@@ -42,15 +46,15 @@ namespace Units.Behaviours.Unit
 			weapons.Add("oldBow", new OldBow() { _thisBase = this.ThisBase });
 			weapons.Add("taintedSword", new TaintedSword() { _thisBase = this.ThisBase });
 
-			halos.Add("DirtyHalo", new DirtyHalo());
-			halos.Add("EvilSpiritHalo", new EvilSpiritHalo());
+			helos.Add("DirtyHalo", new DirtyHalo());
+			helos.Add("EvilSpiritHalo", new EvilSpiritHalo());
 
 
 			foreach (var value in weapons)
 			{
 				value.Value?.Awake();
 			}
-			foreach (var value in halos)
+			foreach (var value in helos)
 			{
 				value.Value?.Awake();
 			}
@@ -62,7 +66,7 @@ namespace Units.Behaviours.Unit
 			{
 				value.Value?.Start();
 			}
-			foreach (var value in halos)
+			foreach (var value in helos)
 			{
 				value.Value?.Start();
 			}
@@ -75,7 +79,28 @@ namespace Units.Behaviours.Unit
 		public override void Update()
 		{
 			CurrentWeapon?.Update();
-			halos[_currentHalo].Update();
+			helos[_currentHalo].Update();
+
+			foreach(var value in usingHelos)
+			{
+
+			}
+		}
+
+		public virtual void PushHelo(string name)
+		{
+			if (usingHelos.Count >= _heloCount)
+				return;
+
+			usingHelos.Add(helos[name]);
+		}
+
+		public virtual void PopHelo(string name)
+		{
+			if (usingHelos.Count >= _heloCount)
+				return;
+
+			usingHelos.Remove(helos[name]);
 		}
 
 		public int WeaponAnimation()
