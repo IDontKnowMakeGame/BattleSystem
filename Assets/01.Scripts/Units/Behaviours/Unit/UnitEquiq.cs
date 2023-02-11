@@ -15,9 +15,6 @@ namespace Units.Behaviours.Unit
 		[SerializeField]
 		protected string _secoundWeapon;
 
-		[SerializeField]
-		protected string _currentHalo;
-
 		public bool isEnemy;
 		public Weapon CurrentWeapon
 		{
@@ -31,12 +28,12 @@ namespace Units.Behaviours.Unit
 		}
 
 		public Dictionary<string, Weapon> weapons = new Dictionary<string, Weapon>();
-		protected Dictionary<string, Halo> helos = new Dictionary<string, Halo>();
+		protected Dictionary<string, Halo> halos = new Dictionary<string, Halo>();
 
-		private int _heloCount = 1;
+		private int _haloCount = 2;
 
-		public List<Halo> UseHelo => usingHelos;
-		protected List<Halo> usingHelos = new List<Halo>();
+		public Halo[] UseHalo => usingHalos;
+		protected Halo[] usingHalos = new Halo[3];
 		public override void Awake()
 		{
 			weapons.Add("oldSword", new OldStraightSword() { _thisBase = this.ThisBase });
@@ -46,15 +43,15 @@ namespace Units.Behaviours.Unit
 			weapons.Add("oldBow", new OldBow() { _thisBase = this.ThisBase });
 			weapons.Add("taintedSword", new TaintedSword() { _thisBase = this.ThisBase });
 
-			helos.Add("DirtyHalo", new DirtyHalo());
-			helos.Add("EvilSpiritHalo", new EvilSpiritHalo());
+			halos.Add("DirtyHalo", new DirtyHalo());
+			halos.Add("EvilSpiritHalo", new EvilSpiritHalo());
 
 
 			foreach (var value in weapons)
 			{
 				value.Value?.Awake();
 			}
-			foreach (var value in helos)
+			foreach (var value in halos)
 			{
 				value.Value?.Awake();
 			}
@@ -66,41 +63,39 @@ namespace Units.Behaviours.Unit
 			{
 				value.Value?.Start();
 			}
-			foreach (var value in helos)
+			foreach (var value in halos)
 			{
 				value.Value?.Start();
 			}
 
 			if (!isEnemy)
 				CurrentWeapon?.ChangeKey();
-
-			_currentHalo = "EvilSpiritHalo";
 		}
 		public override void Update()
 		{
 			CurrentWeapon?.Update();
-			helos[_currentHalo].Update();
 
-			foreach(var value in usingHelos)
+			for(int i = 0; i < _haloCount; i++)
 			{
-
+				if (usingHalos[i] != null)
+					usingHalos[i].Update();
 			}
 		}
 
-		public virtual void PushHelo(string name)
+		public virtual void InsertHelo(string name, int idx)
 		{
-			if (usingHelos.Count >= _heloCount)
-				return;
+			EraseHelo(idx);
 
-			usingHelos.Add(helos[name]);
+			usingHalos[idx] = halos[name];
+			usingHalos[idx].Init();
 		}
 
-		public virtual void PopHelo(string name)
+		public virtual void EraseHelo(int idx)
 		{
-			if (usingHelos.Count >= _heloCount)
-				return;
+			if (usingHalos[idx] != null)
+				usingHalos[idx].Exit();
 
-			usingHelos.Remove(helos[name]);
+			usingHalos[idx] = null;
 		}
 
 		public int WeaponAnimation()

@@ -44,7 +44,7 @@ namespace Units.Base.Player
 
 			base.Start();
 
-			ThisBase.GetBehaviour<PlayerEqiq>().ChangeHallo("DirtyHalo");
+			ThisBase.GetBehaviour<PlayerEqiq>().InsertHelo("DirtyHalo", 0);
 		}
 
         public override void OnDisable()
@@ -95,12 +95,6 @@ namespace Units.Base.Player
 				CurrentWeapon?.ChangeKey();
 			}	
 		}
-
-		public void ChangeHallo(string halloName)
-        {
-			_currentHalo = halloName;
-			helos[_currentHalo].Init();
-        }
 
 		private void TestChangeWeapon()
 		{
