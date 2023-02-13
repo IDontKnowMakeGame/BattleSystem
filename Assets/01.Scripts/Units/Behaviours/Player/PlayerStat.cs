@@ -32,9 +32,7 @@ namespace Units.Base.Player
 
             EventParam param = new EventParam();
             param.intParam = 0;
-            Define.GetManager<EventManager>().TriggerEvent(EventFlag.
-
-
+            Core.Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, param);
         }
 
 		protected override void ChangeStats()
