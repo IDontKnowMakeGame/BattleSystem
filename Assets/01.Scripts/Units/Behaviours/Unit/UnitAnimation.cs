@@ -21,12 +21,14 @@ namespace Units.Behaviours.Unit
         private float time = 0f;
         private bool isFinished = false;
         public Renderer renderer;
-        private Material material;
+        private Material baseMaterial;
+        private Material whiteMaterial;
         public int state = 0;
 
         public override void Start()
         {
-            material = renderer.material;
+            baseMaterial = renderer.materials[0];
+            whiteMaterial = renderer.materials[1];
 
             if(clips != null)
             {
@@ -59,13 +61,19 @@ namespace Units.Behaviours.Unit
                     return;
                 }
                 var offset = ((float)_clips[state].texture.width / _clips[state].fps) / _clips[state].texture.width;
-                material.SetTexture("_BaseMap", _clips[state].texture);
-                material.SetTextureOffset("_BaseMap", Vector2.right * (offset * index));
-                material.SetTextureScale("_BaseMap", new Vector2(offset, 1f));
-                material.SetTexture("_MainTex", _clips[state].texture);
-                material.SetTextureOffset("_MainTex", Vector2.right * (offset * index));
-                material.SetTextureScale("_MainTex", new Vector2(offset, 1f));
-                renderer.material = material;
+                baseMaterial.SetTexture("_BaseMap", _clips[state].texture);
+                baseMaterial.SetTextureOffset("_BaseMap", Vector2.right * (offset * index));
+                baseMaterial.SetTextureScale("_BaseMap", new Vector2(offset, 1f));
+                baseMaterial.SetTexture("_MainTex", _clips[state].texture);
+                baseMaterial.SetTextureOffset("_MainTex", Vector2.right * (offset * index));
+                baseMaterial.SetTextureScale("_MainTex", new Vector2(offset, 1f));
+                
+                
+                whiteMaterial.SetTexture("_MainTex", _clips[state].texture);
+                whiteMaterial.SetVector("_Offset", Vector2.right * (offset * index));
+                whiteMaterial.SetVector("_Tiling", new Vector2(offset, 1f));
+                
+                renderer.material = baseMaterial;
             }
         }
 
