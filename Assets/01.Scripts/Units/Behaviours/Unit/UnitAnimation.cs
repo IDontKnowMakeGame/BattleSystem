@@ -92,6 +92,10 @@ namespace Units.Behaviours.Unit
         public void ChangeClips(Clips changeClips)
         {
             clips = changeClips;
+            isFinished = false;
+            state = 0;
+            index = -1;
+            time = 0f;
         }
 
         public int GetFPS()
