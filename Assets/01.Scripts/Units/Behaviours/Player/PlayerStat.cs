@@ -29,7 +29,10 @@ namespace Units.Base.Player
         public override void Damaged(float damage, UnitBase giveUnit)
         {
             base.Damaged(damage, giveUnit);
-          
+
+            EventParam param = new EventParam();
+            param.intParam = 0;
+            Core.Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, param);
         }
 
 		protected override void ChangeStats()

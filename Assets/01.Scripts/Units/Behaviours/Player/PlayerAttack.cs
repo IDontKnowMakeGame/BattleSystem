@@ -107,9 +107,12 @@ namespace Units.Base.Player
 
             if (enemys.Count > 0)
             {
-                ThisBase.StartCoroutine(cameraZoom.ZoomInOut(1f));
+                //ThisBase.StartCoroutine(cameraZoom.ZoomInOut(1f));
                 playerBuff.ChangeAdneraline(1);
-                //Define.GetManager<EventManager>().TriggerEvent(EventFlag.CameraShake,new EventParam());
+
+                EventParam param = new EventParam();
+                param.intParam = 1;
+                Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, param);
             }
 
 
