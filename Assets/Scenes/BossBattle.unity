@@ -23376,6 +23376,10 @@ PrefabInstance:
       propertyPath: animationClip.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: 5f1585553fe21c942addc9e2b9d2c714, type: 2}
+    - target: {fileID: 1423464762, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: animationClip.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3a099b72c7955e7408bdbd4b46e96421, type: 2}
     - target: {fileID: 3562661168614408593, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
       propertyPath: m_Name
       value: Player
