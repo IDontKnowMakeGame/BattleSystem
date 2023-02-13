@@ -4,7 +4,7 @@ using Unit.Block;
 using Units.Base.Unit;
 using Units.Behaviours.Unit;
 using UnityEngine;
-using Input = Managements.Managers.Input;
+using Input = UnityEngine.Input;
 
 namespace Units.Base.Player
 {
@@ -15,7 +15,8 @@ namespace Units.Base.Player
         [SerializeField] private PlayerEqiq PlayerEqiq;
         [SerializeField] private UnitAnimation unitAnimation;
         [SerializeField] private PlayerBuff playerBuff;
-        [SerializeField] private PlayerStat thisStat;
+        [SerializeField] private PlayerStat thisStat;      
+        [SerializeField] private CharacterRender characterRender;
 
         protected override void Init()
         {
@@ -27,6 +28,7 @@ namespace Units.Base.Player
             AddBehaviour(playerBuff);
             AddBehaviour(PlayerEqiq);
             base.Init();
+            ChangeBehaviour(characterRender);
         }
 
         protected override void Start()
@@ -40,6 +42,9 @@ namespace Units.Base.Player
             var block = Define.GetManager<MapManager>().GetBlock(Position);
             block.GetBehaviour<BlockRender>().SetOutlineColor(Color.white); 
             base.Update();
+            
+            if(Input.GetKeyDown(KeyCode.Space))
+                characterRender.DamageRender();
         }
     }
 }
