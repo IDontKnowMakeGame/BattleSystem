@@ -70,6 +70,8 @@ namespace Units.Base.Player
 			_currentWeapon = _secoundWeapon;
 			_secoundWeapon = temp;
 
+			InGame.PlayerBase.GetBehaviour<PlayerMove>().ClearMove();
+
 			playerAttack.ChangeDelay(CurrentWeapon.WeaponStat.Afs);
 			unitAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
 			unitAnimation.ChangeState(10);

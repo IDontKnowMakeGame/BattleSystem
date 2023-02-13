@@ -79,10 +79,14 @@ namespace Units.Behaviours.Unit
 
         public void ChangeState(int value)
         {
-            isFinished = false;
-            state = value;
-            index = -1;
-            time = 0f;
+            List<AnimeClip> _clips = clips.clips;
+            if (_clips[state].changeAble || isFinished)
+            {
+                isFinished = false;
+                state = value;
+                index = -1;
+                time = 0f;
+            }
         }
 
         public void ChangeClips(Clips changeClips)
