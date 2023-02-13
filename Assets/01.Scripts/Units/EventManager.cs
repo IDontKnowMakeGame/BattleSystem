@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Managements.Managers.Base;
+using Units.Base.Unit;
 
 public enum EventFlag
 {
@@ -71,4 +72,5 @@ public struct EventParam
     public float floatParam;
     public int intParam;
     public bool boolParam;
+    public UnitBase unitParam;
 }

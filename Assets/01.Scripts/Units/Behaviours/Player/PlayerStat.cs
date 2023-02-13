@@ -5,7 +5,7 @@ using Units.Behaviours.Unit;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 using Unit.Core;
-using Core;
+using Units.Base.Unit;
 
 namespace Units.Base.Player
 {
@@ -26,10 +26,10 @@ namespace Units.Base.Player
             base.Update();
         }
 
-        public override void Damaged(float damage)
+        public override void Damaged(float damage, UnitBase giveUnit)
         {
-            base.Damaged(damage);
-           
+            base.Damaged(damage, giveUnit);
+          
         }
 
 		protected override void ChangeStats()

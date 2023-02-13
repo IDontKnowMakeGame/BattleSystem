@@ -3,6 +3,7 @@ using Unit.Core;
 using UnityEngine;
 using Behaviour = Units.Behaviours.Base.Behaviour;
 using Units.Base.Player;
+using Units.Base.Unit;
 
 namespace Units.Behaviours.Unit
 {
@@ -72,7 +73,7 @@ namespace Units.Behaviours.Unit
 			_ => 0.1f
 		};
 
-		public virtual void Damaged(float damage)
+		public virtual void Damaged(float damage, UnitBase giveUnit)
 		{
 
 			float half = Half / 100;
@@ -82,6 +83,14 @@ namespace Units.Behaviours.Unit
 			{
 				Die();
 				return;
+			}
+
+
+			if (Core.InGame.BossBase == giveUnit)
+            {
+				EventParam haloParam = new EventParam();
+				haloParam.unitParam = giveUnit;
+				Core.Define.GetManager<EventManager>().TriggerEvent(EventFlag.DirtyHalo, haloParam);
 			}
 
 			EventParam param = new EventParam();
