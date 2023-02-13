@@ -16762,6 +16762,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444379545}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &445412554 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3562661170690825864, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+  m_PrefabInstance: {fileID: 668612013}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &446094649
 GameObject:
   m_ObjectHideFlags: 0
@@ -23444,6 +23449,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 288083496}
     - target: {fileID: 3562661168614408687, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: characterRender._blinkCnt
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3562661168614408687, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: characterRender._renderer
+      value: 
+      objectReference: {fileID: 445412554}
+    - target: {fileID: 3562661168614408687, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: characterRender._blinkTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3562661168614408687, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: characterRender._blinkDelay
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3562661168614408687, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
       propertyPath: playerBuff.adneralineParticle
       value: 
       objectReference: {fileID: 738477715}
@@ -23459,6 +23480,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3562661170690825864, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3562661170690825864, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7f7fa4cecedea4e4db92cf6cf07534d3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
 --- !u!1 &668612014 stripped

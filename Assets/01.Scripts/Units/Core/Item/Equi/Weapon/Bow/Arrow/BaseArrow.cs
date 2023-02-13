@@ -122,7 +122,7 @@ public class BaseArrow : MonoBehaviour
 		if (units as EnemyBase && !_thisArrow.isStick)
 		{
 			_enemyBase = units as EnemyBase;
-			_enemyBase.GetBehaviour<UnitStat>().Damaged(_damage);
+			_enemyBase.GetBehaviour<UnitStat>().Damaged(_damage, InGame.PlayerBase);
 			_thisArrow.Stick(_enemyBase);
 			this.gameObject.transform.DOKill();
 		}

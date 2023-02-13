@@ -118,7 +118,7 @@ namespace Units.Base.Player
 
             foreach (EnemyBase enemy in enemys)
             {
-                enemy.ThisStat.Damaged(damage);
+                enemy.ThisStat.Damaged(damage, ThisBase);
                 GameObject obj = GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("Damage");
                 obj.GetComponent<DamagePopUp>().DamageText(damage, enemy.transform.position);
                 onBehaviourEnd?.Invoke();

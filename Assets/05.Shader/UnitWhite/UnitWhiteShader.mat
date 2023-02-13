@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7412787913831339254
+--- !u!114 &-8423393831889285506
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wall
-  m_Shader: {fileID: -6465566751694194690, guid: 26185b88c9354934f9ac3cafdd0b1648, type: 3}
+  m_Name: UnitWhiteShader
+  m_Shader: {fileID: -6465566751694194690, guid: 1347e2ea9a2fbc943bcffeee0d109cd3, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -34,7 +34,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 580463794dc1de446a571eb88be93bff, type: 3}
+        m_Texture: {fileID: 2800000, guid: 454b491ac77e29a439534c7821c1c060, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -51,13 +51,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Opacity: 1
+    - _On: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Size: 0
-    - _Smoothness: 0.5
     m_Colors:
-    - _Offset: {r: 0, g: 0.09, b: 0, a: 0}
-    - _Position: {r: 0.5, g: 0.5, b: 0, a: 0}
-    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Offset: {r: 0.0909, g: 0, b: 0, a: 0}
+    - _Tiling: {r: 0.0909, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

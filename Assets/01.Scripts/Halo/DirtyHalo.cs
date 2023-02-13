@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Units.Base.Player;
 using Core;
-using Units.Base.Unit;
+using Managements;
+using Units.Behaviours.Unit;
 
 public class DirtyHalo : Halo
 {
-    bool UpDamage = false;
     public override void Init()
     {
         base.Init();
@@ -19,23 +19,10 @@ public class DirtyHalo : Halo
     {
         if (ConditionCheck())
         {
-            if(!UpDamage)
-                playerStat.addstat.Atk += 50;
-            UpDamage = true;
-        }  
-        else
-        {
-            Exit();
+            eventParam.unitParam.GetBehaviour<UnitStat>().Damaged(50, InGame.PlayerBase);
+            GameObject obj = GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("Damage");
+            obj.GetComponent<DamagePopUp>().DamageText(50, eventParam.unitParam.Position);
         }
-    }
-
-    public override void Exit()
-    {
-        if(UpDamage)
-        {
-            playerStat.addstat.Atk -= 50;
-        }
-        UpDamage = false;
     }
 
     public override void OnDestroy()
