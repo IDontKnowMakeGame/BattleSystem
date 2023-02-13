@@ -14,8 +14,8 @@ public class MeshParticle : MonoBehaviour
         public Vector2 UV11;
     }
 
-    [System.Serializable]    
-    private struct Particle
+    [System.Serializable]
+    public struct Particle
     {
         public int quadIndex;
         public Vector3 position;
@@ -23,10 +23,29 @@ public class MeshParticle : MonoBehaviour
         public Vector3 quadSize;
         public bool skewed;
         public int uvIndex;
+
+        public ParticleRandomProperties randomProperties;
     }
 
-    [SerializeField]
-    private Particle particle;
+    public struct ParticleRandomProperties
+    {
+        public Vector3 minPosition;
+        public Vector3 maxPosition;
+        public int minRotation;
+        public int maxRotation;
+        public Vector3 minQuadSize;
+        public Vector3 maxQuadSize;
+        
+        public Vector3 RandomPos => new Vector3(
+            UnityEngine.Random.Range(minPosition.x, maxPosition.x),
+            UnityEngine.Random.Range(minPosition.y, maxPosition.y),
+            UnityEngine.Random.Range(minPosition.z, maxPosition.z));
+        public int RandomRot => UnityEngine.Random.Range(minRotation, maxRotation);
+        public Vector3 RandomQuadSize => new Vector3(
+            UnityEngine.Random.Range(minQuadSize.x, maxQuadSize.x),
+            UnityEngine.Random.Range(minQuadSize.y, maxQuadSize.y),
+            UnityEngine.Random.Range(minQuadSize.z, maxQuadSize.z));
+    }
     
     [SerializeField]    
     private List<Particle> particleList = new();
@@ -46,7 +65,7 @@ public class MeshParticle : MonoBehaviour
     private Vector2[] uvs;
     private int[] triangles;
 
-    private int quadIndex;
+    public int quadIndex;
 
     private void Awake()
     {
@@ -63,11 +82,6 @@ public class MeshParticle : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            AddQuad(particle);  
-        }
-        
         UpdateQuad();
     }
 
@@ -89,7 +103,7 @@ public class MeshParticle : MonoBehaviour
         }
     }
 
-    private int AddQuad(Particle particle)
+    public int AddQuad(Particle particle)
     {
         
         if(quadIndex >= MAX_QUADS)

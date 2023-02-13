@@ -41,6 +41,22 @@ namespace Core
             get => _bossBase;
             set => _bossBase = value;
         }
+        
+        private static MeshParticle _meshParticle = null;
+        
+        public static MeshParticle MeshParticle
+        {
+            get
+            {
+                if (_meshParticle == null)
+                {
+                    _meshParticle = Object.FindObjectOfType<MeshParticle>();
+                }
+
+                return _meshParticle;
+            }
+            set => _meshParticle = value;
+        }
 
         public static Units.Base.Units GetUnit(Vector3 pos)
         {
