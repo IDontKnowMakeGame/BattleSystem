@@ -9,17 +9,11 @@ public abstract class Halo : EquipmentItem
     protected float percent = 0;
     protected PlayerStat playerStat; 
 
-    public override void Update()
-    {
-        base.Update();
-        Using();
-    }
-
     public virtual void Init() 
     {
         playerStat = InGame.PlayerBase.GetBehaviour<PlayerStat>();
     }
-    protected virtual void Using() { }
+    protected virtual void Using(EventParam eventParam) { }
 
     public virtual void Exit() { }
 
@@ -32,5 +26,14 @@ public abstract class Halo : EquipmentItem
             return true;
         }
         return false;
+    }
+
+    public virtual void OnDestroy()
+    {
+
+    }
+    public virtual void OnApplicationQuit()
+    {
+
     }
 }

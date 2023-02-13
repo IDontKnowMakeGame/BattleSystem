@@ -82,7 +82,24 @@ namespace Units.Behaviours.Unit
 			}
 		}
 
-		public virtual void InsertHelo(string name, int idx)
+        public override void OnDestroy()
+        {
+			foreach (var value in halos)
+			{
+				value.Value?.OnDestroy();
+			}
+		}
+
+        public override void OnApplicationQuit()
+        {
+			foreach (var value in halos)
+			{
+				value.Value?.OnApplicationQuit();
+			}
+		}
+
+
+        public virtual void InsertHelo(string name, int idx)
 		{
 			EraseHelo(idx);
 

@@ -93,8 +93,16 @@ namespace Units.Base
             }
         }
 
+        protected virtual void OnApplicationQuit()
+        {
+            foreach (var behaviour in _behaviours.Values)
+            {
+                behaviour.OnApplicationQuit();
+            }
+        }
+
         #endregion
-        
+
         #region Control_Behaviours
         public T AddBehaviour<T>() where T : Behaviour, new()
         {

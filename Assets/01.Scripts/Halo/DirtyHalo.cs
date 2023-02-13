@@ -7,35 +7,25 @@ using Units.Base.Unit;
 
 public class DirtyHalo : Halo
 {
-    private bool trigger = false;
-    private bool UpDamage = false;
-
+    bool UpDamage = false;
     public override void Init()
     {
         base.Init();
         percent = 50;
+        Define.GetManager<EventManager>().StartListening(EventFlag.DirtyHalo, Using);
     }
 
-    protected override void Using()
+    protected override void Using(EventParam eventParam)
     {
-        if (!InGame.PlayerBase.State.HasFlag(BaseState.Attacking) && !trigger)
+        if (ConditionCheck())
         {
-            trigger = true;
-            if (ConditionCheck())
-            {
-                UpDamage = true;
-                Debug.Log("데미지 50");
+            if(!UpDamage)
                 playerStat.addstat.Atk += 50;
-            }
-        }
-        else if (InGame.PlayerBase.State.HasFlag(BaseState.Attacking) && trigger)
+            UpDamage = true;
+        }  
+        else
         {
-            trigger = false;
-            if (UpDamage)
-            {
-                playerStat.addstat.Atk -= 50;
-                UpDamage = false;
-            }
+            Exit();
         }
     }
 
@@ -43,9 +33,17 @@ public class DirtyHalo : Halo
     {
         if(UpDamage)
         {
-            Debug.Log("데미지 50 감소");
             playerStat.addstat.Atk -= 50;
-            UpDamage = false;
         }
+        UpDamage = false;
+    }
+
+    public override void OnDestroy()
+    {
+        Define.GetManager<EventManager>().StopListening(EventFlag.DirtyHalo, Using);
+    }
+    public override void OnApplicationQuit()
+    {
+        Define.GetManager<EventManager>().StopListening(EventFlag.DirtyHalo, Using);    
     }
 }

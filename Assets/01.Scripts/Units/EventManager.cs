@@ -20,7 +20,8 @@ public enum EventFlag
     WeaponPanelDisConnecting,
     AddAnger,
     AddAdrenaline,
-    PlayTimeLine
+    PlayTimeLine,
+    DirtyHalo
 }
 public class EventManager : Manager
 {
