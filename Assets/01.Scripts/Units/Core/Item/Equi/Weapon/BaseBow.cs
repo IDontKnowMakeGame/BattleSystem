@@ -32,22 +32,35 @@ public class BaseBow : Weapon
 		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.A);
 		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.D);
 
-		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Press, UpAttack);
-		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Press, DownAttack);
-		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Press, LeftAttack);
-		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Press, RightAttack);
-
-		_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Hold, UpAttack);
-		_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Hold, DownAttack);
-		_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Hold, LeftAttack);
-		_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Hold, RightAttack);
+		_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Hold, Charge);
+		_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Hold, Charge);
+		_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Hold, Charge);
+		_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Hold, Charge);
 	}
 	public override void Update()
 	{
 		base.Update();
-		Charge();
 	}
 
+	protected override void UpAttack()
+	{
+		Attack(Vector3.forward);
+	}
+
+	protected override void DownAttack()
+	{
+		Attack(Vector3.down);
+	}
+
+	protected override void LeftAttack()
+	{
+		Attack(Vector3.left);
+	}
+
+	protected override void RightAttack()
+	{
+		Attack(Vector3.right);
+	}
 	protected override void Attack(Vector3 vec)
 	{
 		if (!hasArrow)

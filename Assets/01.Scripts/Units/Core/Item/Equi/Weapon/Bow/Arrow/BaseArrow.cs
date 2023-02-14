@@ -6,10 +6,27 @@ using Units.Base.Player;
 using Units.Behaviours.Unit;
 using Core;
 using Managements.Managers;
+using Managements;
 using System;
 public enum ArrowType
 {
 	OldArrow
+}
+
+public class ArrowStat
+{
+	public Vector3 dir;
+	public Vector3 pos;
+	public float speed = 10;
+	public float damage;
+
+	public ArrowStat(Vector3 direction, Vector3 position, float speeds, float damages)
+	{
+		dir = direction;
+		pos = position;
+		speed = speeds;
+		damage = damages;
+	}
 }
 public class BaseArrow : MonoBehaviour
 {
@@ -31,10 +48,7 @@ public class BaseArrow : MonoBehaviour
 
 	private Dictionary<string, Arrow> _arrows = new Dictionary<string, Arrow>();
 
-	private Vector3 _dir;
-	private Vector3 _pos;
-	private float _speed = 10;
-	private float _damage;
+	private ArrowStat _arrowStat;
 
 	public bool isPull = false;
 
@@ -51,16 +65,11 @@ public class BaseArrow : MonoBehaviour
 			a.Value.thisObject = this.gameObject;
 		}
 	}
-
-	private void Update()
-	{
-		Pull();
-	}
-
 	private void OnTriggerEnter(Collider other)
 	{
 		var units = other.GetComponent<Units.Base.Units>();
-		StickOrPull(units);
+		if (units as EnemyBase || units as PlayerBase)
+			StickOrPull(units);
 	}
 
 	private void OnTriggerExit(Collider other)
@@ -71,23 +80,19 @@ public class BaseArrow : MonoBehaviour
 			isPull = false;
 		}
 	}
-
 	public void ShootArrow() => Shoot();
 
 	public void InitArrow(float speed, float damage, Vector3 pos, Vector3 dir, string name)
 	{
-		_speed = speed;
-		_damage = damage;
-		_pos = pos;
-		_dir = dir;
 		arrowType = name;
+		_arrowStat = new ArrowStat(dir, pos, speed, damage);
 	}
 	private void Shoot()
 	{
-		this.transform.position = _pos + Vector3.up;
+		this.transform.position = _arrowStat.pos + Vector3.up;
 
 		int count = 6;
-		goalPos = this.transform.position + (_dir * 5);
+		goalPos = this.transform.position + (_arrowStat.dir * 5);
 
 		var map = Define.GetManager<MapManager>();
 
@@ -96,34 +101,45 @@ public class BaseArrow : MonoBehaviour
 			while (map.GetBlock(goalPos) == null)
 			{
 				count--;
-				goalPos -= _dir;
+				goalPos -= _arrowStat.dir;
 			}
 		}
-		float time = count / _speed;
+		float time = count / _arrowStat.speed;
 		this.transform.DOMove(goalPos, time).OnComplete(
 			() =>
 			{
+				Debug.Log(_thisArrow);
+				_thisArrow.Stick(GameManagement.Instance.GetManager<MapManager>().GetBlock(goalPos), _arrowStat.dir);
+				AddKey();
 				_thisArrow.isStick = true;
 			}
 		);
 	}
-
 	private void Pull()
 	{
-		if (UnityEngine.Input.GetKeyDown(KeyCode.V) && isPull && _thisArrow.isStick)
+		Debug.Log(_thisArrow.isStick);
+		if (isPull && _thisArrow.isStick &&  _playerBase.GetBehaviour<UnitEquiq>().CurrentWeapon is BaseBow)
 		{
+			Debug.Log(">");
 			isPull = false;
 			_thisArrow.PullOut(_playerBase);
+			if (_enemyBase is EnemyBase)
+			{
+				_enemyBase.GetBehaviour<UnitStat>().Damaged(_arrowStat.damage / 2);
+				_enemyBase = null;
+			}
+
+			DelKey();
 		}
 	}
-
 	private void StickOrPull(Units.Base.Units units)
 	{
-		if (units as EnemyBase && !_thisArrow.isStick)
+		if (units != null && !_thisArrow.isStick)
 		{
 			_enemyBase = units as EnemyBase;
-			_enemyBase.GetBehaviour<UnitStat>().Damaged(_damage);
-			_thisArrow.Stick(_enemyBase);
+			_enemyBase.GetBehaviour<UnitStat>()?.Damaged(_arrowStat.damage);
+			_thisArrow.Stick(units, _arrowStat.dir);
+			AddKey();
 			this.gameObject.transform.DOKill();
 		}
 		else if (units as PlayerBase && _thisArrow.isStick)
@@ -131,5 +147,14 @@ public class BaseArrow : MonoBehaviour
 			isPull = true;
 			_playerBase = units as PlayerBase;
 		}
+	}
+
+	private void AddKey()
+	{
+		Define.GetManager<InputManager>().AddInGameAction(InputTarget.SubSkillKey, InputStatus.Press, Pull);
+	}
+	private void DelKey()
+	{
+		Define.GetManager<InputManager>().RemoveInGameAction(InputTarget.SubSkillKey, InputStatus.Press, Pull);
 	}
 }

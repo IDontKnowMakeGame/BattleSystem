@@ -15,7 +15,7 @@ public class BaseGreatSword : Weapon
 	public override void Update()
 	{
 		base.Update();
-		Charge();
+		//Charge();
 	}
 
 	public override void ChangeKey()

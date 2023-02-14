@@ -32,6 +32,7 @@ namespace Managements.Managers
 		AddBossHP,
 		SubBossHP,
 		ShowWeaponChangePanel,
+		SubSkillKey
 	}
 
 	public class Input
@@ -77,6 +78,7 @@ namespace Managements.Managers
 			InitInGameInput(InputTarget.ChangeWeapon, KeyCode.R );
 			InitInGameInput(InputTarget.TestChangeWeapon, KeyCode.T );
 			InitInGameInput(InputTarget.WeaponOnOff, KeyCode.Q );
+			InitInGameInput(InputTarget.SubSkillKey, KeyCode.V );
 
             #region UI
             InitInGameInput(InputTarget.ShowBossHP, KeyCode.None);
