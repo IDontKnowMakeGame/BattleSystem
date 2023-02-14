@@ -22,12 +22,14 @@ public class BossHP : SliderUI
     public override void OnDestroy()
     {
         base.OnDestroy();
-        Define.GetManager<EventManager>().StopListening(EventFlag.ShowBossHP, ShowBossHP);
+        var manager = Define.GetManager<EventManager>();
+        manager.StopListening(EventFlag.ShowBossHP, ShowBossHP);
     }
 
     public override void OnApplicationQuit()
     {
         base.OnApplicationQuit();
-        Define.GetManager<EventManager>().StopListening(EventFlag.ShowBossHP, ShowBossHP);
+        var manager = Define.GetManager<EventManager>();
+        manager.StopListening(EventFlag.ShowBossHP, ShowBossHP);
     }
 }
