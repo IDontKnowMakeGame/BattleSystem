@@ -17,6 +17,7 @@ namespace Units.Base.Player
         [SerializeField] private PlayerBuff playerBuff;
         [SerializeField] private PlayerStat thisStat;      
         [SerializeField] private CharacterRender characterRender;
+        [SerializeField] private PlayerPortion playerPortion;
 
         protected override void Init()
         {
@@ -27,6 +28,7 @@ namespace Units.Base.Player
             AddBehaviour(PlayerAttack);
             AddBehaviour(playerBuff);
             AddBehaviour(PlayerEqiq);
+            AddBehaviour(playerPortion);
             base.Init();
             ChangeBehaviour(characterRender);
         }
