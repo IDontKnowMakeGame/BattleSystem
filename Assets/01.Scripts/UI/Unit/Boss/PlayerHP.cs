@@ -10,7 +10,13 @@ public class PlayerHP : SliderUI
     private RectTransform whiteHP;
     [SerializeField]
     private float sliderSpeed;
+    [SerializeField]
+    private float waitingTime;
+
+    private float hittime;
     private bool isDamage = false;
+
+
     public override void Start()
     {
         addflag = EventFlag.AddPlayerHP;
@@ -19,10 +25,11 @@ public class PlayerHP : SliderUI
 
     private void Update()
     {
-        if(isDamage)
+        if (isDamage)
         {
-            UpdateSlider();
+            hittime += Time.deltaTime;
         }
+        UpdateSlider();
     }
 
     public override void AddHP(EventParam value)
@@ -33,14 +40,15 @@ public class PlayerHP : SliderUI
 
     private void UpdateSlider()
     {
-        if (isDamage)
+        if (hittime > waitingTime && isDamage)
         {
             float whiteHPCheck = Mathf.Lerp(whiteHP.localEulerAngles.x, _slider.value, sliderSpeed * Time.deltaTime);
-
             whiteHP.localScale = whiteHP.localScale.SetX(whiteHPCheck);
+            Debug.Log(whiteHP.localScale);
             if (_slider.value >= whiteHPCheck - 0.01f)
             {
                 isDamage = false;
+                hittime = 0;
                 whiteHP.localScale = whiteHP.localScale.SetX(_slider.value);
             }
         }

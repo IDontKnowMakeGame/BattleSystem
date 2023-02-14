@@ -32429,7 +32429,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   whiteHP: {fileID: 81813983}
-  sliderSpeed: 1
+  sliderSpeed: 0.1
+  waitingTime: 0.5
 --- !u!1 &774151693
 GameObject:
   m_ObjectHideFlags: 0
