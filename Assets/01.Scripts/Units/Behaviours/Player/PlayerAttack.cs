@@ -107,15 +107,18 @@ namespace Units.Base.Player
 
             if (enemys.Count > 0)
             {
-                ThisBase.StartCoroutine(cameraZoom.ZoomInOut(1f));
+                //ThisBase.StartCoroutine(cameraZoom.ZoomInOut(1f));
                 playerBuff.ChangeAdneraline(1);
-                Define.GetManager<EventManager>().TriggerEvent(EventFlag.CameraShake,new EventParam());
+
+                EventParam param = new EventParam();
+                param.intParam = 1;
+                Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, param);
             }
 
 
             foreach (EnemyBase enemy in enemys)
             {
-                enemy.ThisStat.Damaged(damage);
+                enemy.ThisStat.Damaged(damage, ThisBase);
                 GameObject obj = GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("Damage");
                 obj.GetComponent<DamagePopUp>().DamageText(damage, enemy.transform.position);
                 onBehaviourEnd?.Invoke();
@@ -133,7 +136,7 @@ namespace Units.Base.Player
             }
 
 
-            if (timer > 0 || unitAnimation.CurState() == 10) return;
+            if (timer > 0 || unitAnimation.CurState() == 10 || isAttack) return;
             if (dir == Vector3.left)
             {
                 unitAnimation.ChangeState(4);
@@ -162,10 +165,21 @@ namespace Units.Base.Player
             if(timer > 0)
                 timer -= Time.deltaTime;
 
-            if (isAttack && unitAnimation.CurIndex() > unitAnimation.GetFPS() / 2)
+            if (ThisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() == 1)
             {
-                isAttack = false;
-                ThisBase.RemoveState(BaseState.Attacking);
+                if (isAttack)
+                {
+                    isAttack = false;
+                    ThisBase.RemoveState(BaseState.Attacking);
+                }
+            }
+            else
+            {
+                if (isAttack && unitAnimation.CurIndex() > unitAnimation.GetFPS() / 2)
+                {
+                    isAttack = false;
+                    ThisBase.RemoveState(BaseState.Attacking);
+                }
             }
         }
 

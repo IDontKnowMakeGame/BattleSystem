@@ -5,6 +5,7 @@ using Units.Behaviours.Unit;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 using Unit.Core;
+using Units.Base.Unit;
 
 namespace Units.Base.Player
 {
@@ -22,10 +23,13 @@ namespace Units.Base.Player
             base.Update();
         }
 
-        public override void Damaged(float damage)
+        public override void Damaged(float damage, UnitBase giveUnit)
         {
-            base.Damaged(damage);
-            //DamageShake.ScreenShake(new EventParam());
+            base.Damaged(damage, giveUnit);
+
+            EventParam param = new EventParam();
+            param.intParam = 0;
+            Core.Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, param);
         }
 
 		protected override void ChangeStats()

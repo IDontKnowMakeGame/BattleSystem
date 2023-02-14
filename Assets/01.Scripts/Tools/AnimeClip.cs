@@ -12,5 +12,6 @@ namespace Tools
         public int fps;
         public bool isLoop;
         public float delay;
+        public bool changeAble = true;
     }
 }

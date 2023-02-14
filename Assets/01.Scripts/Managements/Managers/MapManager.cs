@@ -87,7 +87,7 @@ namespace Managements.Managers
                 if (target.GetType() == attack.GetType())
                     return false;
             var targetStat = target.GetBehaviour<UnitStat>();
-            targetStat.Damaged(damage);
+            targetStat.Damaged(damage, attack);
             return true;
         }
         

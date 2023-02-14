@@ -3,43 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using Units.Base.Player;
 using Core;
-using Units.Base.Unit;
+using Managements;
+using Units.Behaviours.Unit;
 
 public class DirtyHalo : Halo
 {
-    private bool trigger = false;
-    private bool UpDamage = false;
-
     public override void Init()
     {
         base.Init();
         percent = 50;
+        Define.GetManager<EventManager>().StartListening(EventFlag.DirtyHalo, Using);
     }
 
-    protected override void Using()
+    protected override void Using(EventParam eventParam)
     {
-        if (!InGame.PlayerBase.State.HasFlag(BaseState.Attacking) && !trigger)
+        if (ConditionCheck())
         {
-            trigger = true;
-            if (ConditionCheck())
-            {
-                UpDamage = true;
-                Debug.Log("데미지 50");
-            }
-        }
-        else if (InGame.PlayerBase.State.HasFlag(BaseState.Attacking) && trigger)
-        {
-            trigger = false;
-            UpDamage = false;
+            eventParam.unitParam.GetBehaviour<UnitStat>().Damaged(50, InGame.PlayerBase);
+            GameObject obj = GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("Damage");
+            obj.GetComponent<DamagePopUp>().DamageText(50, eventParam.unitParam.Position);
         }
     }
 
-    public override void Exit()
+    public override void OnDestroy()
     {
-        if(UpDamage)
-        {
-            Debug.Log("데미지 50 감소");
-            UpDamage = false;
-        }
+        Define.GetManager<EventManager>().StopListening(EventFlag.DirtyHalo, Using);
+    }
+    public override void OnApplicationQuit()
+    {
+        Define.GetManager<EventManager>().StopListening(EventFlag.DirtyHalo, Using);    
     }
 }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Managements.Managers.Base;
+using Units.Base.Unit;
 
 public enum EventFlag
 {
@@ -19,7 +20,9 @@ public enum EventFlag
     WeaponPanelConnecting,
     WeaponPanelDisConnecting,
     AddAnger,
-    AddAdrenaline
+    AddAdrenaline,
+    PlayTimeLine,
+    DirtyHalo
 }
 public class EventManager : Manager
 {
@@ -69,4 +72,5 @@ public struct EventParam
     public float floatParam;
     public int intParam;
     public bool boolParam;
+    public UnitBase unitParam;
 }

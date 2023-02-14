@@ -44,7 +44,9 @@ namespace Units.Base.Player
 
 			base.Start();
 
-			ThisBase.GetBehaviour<PlayerEqiq>().ChangeHallo("DirtyHalo");
+			ThisBase.GetBehaviour<PlayerEqiq>().InsertHelo("DirtyHalo", 0);
+			ThisBase.GetBehaviour<PlayerEqiq>().InsertHelo("EvilSpiritHalo", 1);
+
 		}
 
         public override void OnDisable()
@@ -67,6 +69,8 @@ namespace Units.Base.Player
 			string temp = _currentWeapon;
 			_currentWeapon = _secoundWeapon;
 			_secoundWeapon = temp;
+
+			InGame.PlayerBase.GetBehaviour<PlayerMove>().ClearMove();
 
 			playerAttack.ChangeDelay(CurrentWeapon.WeaponStat.Afs);
 			unitAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
@@ -95,12 +99,6 @@ namespace Units.Base.Player
 				CurrentWeapon?.ChangeKey();
 			}	
 		}
-
-		public void ChangeHallo(string halloName)
-        {
-			_currentHalo = halloName;
-			helos[_currentHalo].Init();
-        }
 
 		private void TestChangeWeapon()
 		{

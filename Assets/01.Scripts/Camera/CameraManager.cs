@@ -9,16 +9,27 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     private float value;
 
+    private bool _isCameraAction;
+
     private Shake _damagedShake;
     private Shake _basicShake;
     private Shake _greateSwordShake;
     private void Awake()
     {
+        Time.timeScale = 1;
         _cvCam = GetComponent<CinemachineVirtualCamera>();
 
         _damagedShake = transform.Find("DamagedShake").GetComponent<Shake>();
         _basicShake = transform.Find("BasicShake").GetComponent<Shake>();
         _greateSwordShake = transform.Find("GreateSwordShake").GetComponent<Shake>();
+    }
+    public void StartCameraAction()
+    {
+
+    }
+    public void EndCameraAction()
+    {
+
     }
     public void DamagedShake()
     {

@@ -7,8 +7,6 @@ using Core;
 [System.Serializable]
 public class Shake : MonoBehaviour
 {
-    public string name = "";
-
     CinemachineImpulseSource screenShake;
 
     [SerializeField] float shakeForce;

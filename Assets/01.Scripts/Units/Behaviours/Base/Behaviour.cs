@@ -48,5 +48,10 @@
         {
             
         }
+
+        public virtual void OnApplicationQuit()
+        {
+
+        }
     }
 }

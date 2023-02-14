@@ -93,8 +93,16 @@ namespace Units.Base
             }
         }
 
+        protected virtual void OnApplicationQuit()
+        {
+            foreach (var behaviour in _behaviours.Values)
+            {
+                behaviour.OnApplicationQuit();
+            }
+        }
+
         #endregion
-        
+
         #region Control_Behaviours
         public T AddBehaviour<T>() where T : Behaviour, new()
         {
@@ -169,6 +177,38 @@ namespace Units.Base
                 //Debug.LogError($"This unit doesn't have {thisType}.");
                 return null;
             }
+        }
+        
+        public void ChangeBehaviour<T>(T instance) where T : Behaviour
+        {
+            var thisType = GetBaseType<T>();
+
+            if (_behaviours.ContainsKey(thisType))
+            {
+                _behaviours[thisType] = instance;
+                _behaviours[thisType].ThisBase = this;
+            }
+            else
+            {
+                Debug.LogError($"This unit doesn't have {thisType}.");
+            }
+        }
+        
+        public T ChangeBehaviour<T> () where T : Behaviour, new()
+        {
+            var thisType = GetBaseType<T>();
+
+            if (_behaviours.ContainsKey(thisType))
+            {
+                var thisBehaviour = new T();
+                thisBehaviour.ThisBase = this;
+                _behaviours[thisType] = thisBehaviour;
+            }
+            else
+            {
+                Debug.LogError($"This unit doesn't have {thisType}.");
+            }
+            return _behaviours[thisType] as T;
         }
 
         private Type GetBaseType<T>() where T : Behaviour
