@@ -18,7 +18,7 @@ public class Arrow
 	}
 	public virtual void Stick(Units.Base.Units unitBase, Vector3 vec)
 	{
-		StickDir(unitBase,vec);
+		StickDir(unitBase, vec);
 		isStick = true;
 	}
 
@@ -37,6 +37,8 @@ public class Arrow
 
 		thisObject.transform.parent = unitBase.transform;
 		thisObject.transform.localPosition = unitBase is EnemyBase ? Vector3.zero : Vector3.up;
+		if (unitBase is BlockBase)
+			return;
 		thisObject.transform.localPosition -= vec;
 	}
 }

@@ -109,7 +109,7 @@ public class BaseArrow : MonoBehaviour
 			() =>
 			{
 				Debug.Log(_thisArrow);
-				_thisArrow.Stick(GameManagement.Instance.GetManager<MapManager>().GetBlock(goalPos), _arrowStat.dir);
+				_thisArrow.Stick(GameManagement.Instance.GetManager<MapManager>().GetBlock(this.transform.position), _arrowStat.dir);
 				AddKey();
 				_thisArrow.isStick = true;
 			}
@@ -125,7 +125,7 @@ public class BaseArrow : MonoBehaviour
 			_thisArrow.PullOut(_playerBase);
 			if (_enemyBase is EnemyBase)
 			{
-				_enemyBase.GetBehaviour<UnitStat>().Damaged(_arrowStat.damage / 2);
+				_enemyBase.GetBehaviour<UnitStat>().Damaged(_arrowStat.damage / 2, InGame.PlayerBase);
 				_enemyBase = null;
 			}
 
@@ -137,7 +137,7 @@ public class BaseArrow : MonoBehaviour
 		if (units != null && !_thisArrow.isStick)
 		{
 			_enemyBase = units as EnemyBase;
-			_enemyBase.GetBehaviour<UnitStat>()?.Damaged(_arrowStat.damage);
+			_enemyBase.GetBehaviour<UnitStat>()?.Damaged(_arrowStat.damage, InGame.PlayerBase);
 			_thisArrow.Stick(units, _arrowStat.dir);
 			AddKey();
 			this.gameObject.transform.DOKill();

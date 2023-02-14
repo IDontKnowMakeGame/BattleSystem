@@ -49,7 +49,7 @@ public class BaseBow : Weapon
 
 	protected override void DownAttack()
 	{
-		Attack(Vector3.down);
+		Attack(Vector3.back);
 	}
 
 	protected override void LeftAttack()

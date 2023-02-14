@@ -100,12 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a59bee4a8baf6384b864697045796ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _arrowType: 0
-  dir: {x: 0, y: 0, z: 0}
-  pos: {x: 0, y: 0, z: 0}
-  speed: 0
-  damage: 0
-  isPool: 0
+  isPull: 0
 --- !u!65 &7919820754271044451
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -117,8 +112,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.74311674, z: 0.8091583}
+  m_Center: {x: 0, y: 0.12844163, z: -0.09542084}
 --- !u!54 &3998730030648661833
 Rigidbody:
   m_ObjectHideFlags: 0
