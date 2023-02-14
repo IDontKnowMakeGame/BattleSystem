@@ -23640,11 +23640,11 @@ PrefabInstance:
       objectReference: {fileID: 659410822}
     - target: {fileID: 3562661168614408687, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
       propertyPath: thisStat.changeStats.Hp
-      value: 500
+      value: 220
       objectReference: {fileID: 0}
     - target: {fileID: 3562661168614408687, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
       propertyPath: thisStat.originStats.Hp
-      value: 500
+      value: 220
       objectReference: {fileID: 0}
     - target: {fileID: 3562661168614408687, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
       propertyPath: playerBuff.angerParticle
@@ -63730,11 +63730,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3041935593448038436, guid: 3310a305a449e094f97d81087b882af4, type: 3}
       propertyPath: thisStat.changeStats.Hp
-      value: 1000
+      value: 1600
       objectReference: {fileID: 0}
     - target: {fileID: 3041935593448038436, guid: 3310a305a449e094f97d81087b882af4, type: 3}
       propertyPath: thisStat.originStats.Hp
-      value: 1000
+      value: 1600
       objectReference: {fileID: 0}
     - target: {fileID: 3041935593448038436, guid: 3310a305a449e094f97d81087b882af4, type: 3}
       propertyPath: _enemyRender._blinkDelay
@@ -69486,6 +69486,14 @@ PrefabInstance:
     - target: {fileID: 8285238759245771718, guid: c30be702f1b236d4da5c71ec8c8d61c3, type: 3}
       propertyPath: m_Name
       value: P_AncientRuins_Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285238759245771718, guid: c30be702f1b236d4da5c71ec8c8d61c3, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285238759245771718, guid: c30be702f1b236d4da5c71ec8c8d61c3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c30be702f1b236d4da5c71ec8c8d61c3, type: 3}
