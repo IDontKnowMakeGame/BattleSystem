@@ -23429,6 +23429,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3562661168614408687, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: playerPortion.hp
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3562661168614408687, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
       propertyPath: thisStat.DamageShake
       value: 
       objectReference: {fileID: 0}
