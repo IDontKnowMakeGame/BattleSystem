@@ -15,9 +15,10 @@ public class OldSpear : BaseSpear
 	public override void ChangeKey()
 	{
 		base.ChangeKey();
+		_inputManager.RemoveInGameAction(InputTarget.Skill, InputStatus.Press, Skill);
 		_playerAttack.onBehaviourEnd = CountUp;
 	}
-	protected override void Skill(Vector3 vec)
+	protected override void Skill()
 	{
 		count++;
 		
@@ -35,5 +36,5 @@ public class OldSpear : BaseSpear
 		}
 	}
 
-	private void CountUp() => Skill(Vector3.zero);
+	private void CountUp() => Skill();
 }

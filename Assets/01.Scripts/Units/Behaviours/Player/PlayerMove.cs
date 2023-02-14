@@ -88,8 +88,6 @@ namespace Units.Base.Player
             if (isMoving || ThisBase.State.HasFlag(BaseState.StopMove) || unitAnimation.CurState() == 10)
                 return;
 
-            Debug.Log("Move");
-
             if (playerDir.x != 0)
             {
                 float swap = dir.x;
