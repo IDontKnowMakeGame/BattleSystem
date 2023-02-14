@@ -63556,12 +63556,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3041935593448038436, guid: 3310a305a449e094f97d81087b882af4, type: 3}
+      propertyPath: _enemyRender._blinkCnt
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041935593448038436, guid: 3310a305a449e094f97d81087b882af4, type: 3}
+      propertyPath: _enemyRender._renderer
+      value: 
+      objectReference: {fileID: 1955609737}
+    - target: {fileID: 3041935593448038436, guid: 3310a305a449e094f97d81087b882af4, type: 3}
+      propertyPath: _enemyRender._blinkTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041935593448038436, guid: 3310a305a449e094f97d81087b882af4, type: 3}
       propertyPath: thisStat.changeStats.Hp
       value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 3041935593448038436, guid: 3310a305a449e094f97d81087b882af4, type: 3}
       propertyPath: thisStat.originStats.Hp
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041935593448038436, guid: 3310a305a449e094f97d81087b882af4, type: 3}
+      propertyPath: _enemyRender._blinkDelay
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3041935593448038437, guid: 3310a305a449e094f97d81087b882af4, type: 3}
       propertyPath: m_RootOrder
@@ -63615,6 +63631,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3041935593643957799, guid: 3310a305a449e094f97d81087b882af4, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041935593643957799, guid: 3310a305a449e094f97d81087b882af4, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7f7fa4cecedea4e4db92cf6cf07534d3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3310a305a449e094f97d81087b882af4, type: 3}
 --- !u!1 &1740445751
@@ -68752,6 +68776,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1954586667}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1955609737 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3041935593643957799, guid: 3310a305a449e094f97d81087b882af4, type: 3}
+  m_PrefabInstance: {fileID: 1738155719}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1968560857
 GameObject:
   m_ObjectHideFlags: 0
