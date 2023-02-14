@@ -41,6 +41,7 @@ namespace Units.Base.Player
         public bool IsAttack => isAttack;
         
         private UnitAnimation unitAnimation;
+        private PlayerPortion playerPortion;
 
         private PlayerBuff playerBuff;
 
@@ -52,6 +53,7 @@ namespace Units.Base.Player
             attackColParent = GameObject.FindObjectOfType<AttackCollider>();
 
             unitAnimation = ThisBase.GetBehaviour<UnitAnimation>();
+            playerPortion = ThisBase.GetBehaviour<PlayerPortion>();
             playerBuff = ThisBase.GetBehaviour<PlayerBuff>();
             sprite = ThisBase.GetComponentInChildren<MeshRenderer>().transform;
 
@@ -93,7 +95,7 @@ namespace Units.Base.Player
             }
 
 
-            if (timer > 0 || unitAnimation.CurState() == 10) return;
+            if (timer > 0 || unitAnimation.CurState() == 10 || playerPortion.UsePortion) return;
 
             ThisBase.AddState(BaseState.Attacking);
 
@@ -136,7 +138,7 @@ namespace Units.Base.Player
             }
 
 
-            if (timer > 0 || unitAnimation.CurState() == 10 || isAttack) return;
+            if (timer > 0 || unitAnimation.CurState() == 10 || isAttack || playerPortion.UsePortion) return;
             if (dir == Vector3.left)
             {
                 unitAnimation.ChangeState(4);

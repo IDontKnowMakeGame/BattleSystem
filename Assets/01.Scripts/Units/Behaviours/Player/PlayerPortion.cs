@@ -12,7 +12,10 @@ public class PlayerPortion : UnitBehaviour
 
     private float timer = 0;
     private int cnt = 0;
-    public bool hp = false;
+
+    private bool hp = false;
+
+    public bool UsePortion => hp;
 
     public override void Start()
     {
