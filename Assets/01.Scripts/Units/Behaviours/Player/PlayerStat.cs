@@ -35,7 +35,19 @@ namespace Units.Base.Player
             Core.Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, param);
         }
 
-		protected override void ChangeStats()
+        public void AddHP(float addVal)
+        {
+            if (originStats.Hp <= changeStats.Hp) return;
+
+            changeStats.Hp += addVal;
+
+            EventParam param = new EventParam();
+            param.floatParam = changeStats.Hp / originStats.Hp;
+
+            Core.Define.GetManager<EventManager>().TriggerEvent(EventFlag.AddPlayerHP, param);
+        }
+
+        protected override void ChangeStats()
 		{
             int Weight = 3;
             float Atk = OriginStats.Atk;

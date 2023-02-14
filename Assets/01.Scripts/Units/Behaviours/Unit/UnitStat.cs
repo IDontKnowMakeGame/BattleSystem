@@ -12,7 +12,7 @@ namespace Units.Behaviours.Unit
     [Serializable]
     public class UnitStat : UnitBehaviour,IDamaged
     {
-        [SerializeField] private UnitStats originStats = null;
+        [SerializeField] protected UnitStats originStats = null;
         [SerializeField] protected UnitStats changeStats = null;
 		public UnitStats OriginStats => originStats;
 		public UnitStats NowStats {
@@ -122,8 +122,8 @@ namespace Units.Behaviours.Unit
 			if(Core.InGame.PlayerBase == ThisBase)
             {
 				ThisBase.GetBehaviour<PlayerBuff>().ChangeAnger(2);
+				ThisBase.GetBehaviour<PlayerPortion>().ResetPortion();
 				Core.Define.GetManager<EventManager>().TriggerEvent(EventFlag.AddPlayerHP, param);
-
 			}
 
 		}
