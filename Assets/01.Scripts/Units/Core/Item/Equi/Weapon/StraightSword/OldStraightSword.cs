@@ -20,9 +20,8 @@ public class OldStraightSword : BaseStraightSword
 	public override void ChangeKey()
 	{
 		base.ChangeKey();
-		_inputManager.ChangeInGameAction(InputTarget.Skill, InputStatus.Press, () => Skill(Vector3.zero));
 	}
-	protected override void Skill(Vector3 vec)
+	protected override void Skill()
 	{
 		if (_isCoolTime)
 			return;

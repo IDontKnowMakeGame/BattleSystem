@@ -44,9 +44,6 @@ namespace Units.Base.Player
             var block = Define.GetManager<MapManager>().GetBlock(Position);
             block.GetBehaviour<BlockRender>().SetOutlineColor(Color.white); 
             base.Update();
-            
-            if(Input.GetKeyDown(KeyCode.Space))
-                characterRender.DamageRender();
         }
     }
 }

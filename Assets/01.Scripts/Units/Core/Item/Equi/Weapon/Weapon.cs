@@ -66,6 +66,7 @@ namespace Unit.Core.Weapon
 			_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Press, DownAttack);
 			_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Press, LeftAttack);
 			_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Press, RightAttack);
+			_inputManager.AddInGameAction(InputTarget.Skill, InputStatus.Press, Skill);
 		}
 
 		protected void Timer()
@@ -83,7 +84,6 @@ namespace Unit.Core.Weapon
 
 		protected void GetWeaponStateData(string name)
 		{
-			//GameManagement.Instance.GetManager<DataManager>().GetWeaponStateData(name, GetWeaponStateData);
 			WeaponStateDataList weaponStateDataList = DataJson.LoadJsonFile<WeaponStateDataList>(Application.dataPath + "/SAVE/Weapon", "WeaponStatus");
 			foreach (WeaponStateData data in weaponStateDataList.weaponList)
 			{
@@ -128,7 +128,7 @@ namespace Unit.Core.Weapon
 			_thisBase.StartCoroutines(_weaponStats.Ats, () => Attack(Vector3.right));
 		}
 
-		protected virtual void Skill(Vector3 vec)
+		protected virtual void Skill()
 		{
 
 		}
@@ -139,6 +139,7 @@ namespace Unit.Core.Weapon
 			_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Press, DownAttack);
 			_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Press, LeftAttack);
 			_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Press, RightAttack);
+			_inputManager.RemoveInGameAction(InputTarget.Skill, InputStatus.Press, Skill);
 		}
 	}
 }

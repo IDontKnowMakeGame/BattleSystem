@@ -24,9 +24,8 @@ public class SliderUI : MonoBehaviour
         _slider.value = value.floatParam;
     }
 
-
     public virtual void OnDestroy()
-    {
+    { 
         Define.GetManager<EventManager>().StopListening(addflag, AddHP);
     }
 

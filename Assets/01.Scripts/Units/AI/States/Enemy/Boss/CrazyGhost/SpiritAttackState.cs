@@ -21,10 +21,16 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             var nextPos = ThisBase.Position - nextDir * 3;
             var dis = 3;
             var map = Define.GetManager<MapManager>();
-            while (map.GetBlock(nextPos) == null)
+            bool checkBlock = map.GetBlock(nextPos) == null;
+            if(checkBlock == false)
+                if (map.GetBlock(nextPos).canEnemyEnter == false)
+                    checkBlock = true;
+            while (checkBlock)
             {
                 dis--;
                 nextPos = ThisBase.Position - nextDir * dis;
+                if (dis <= 0)
+                    break;
             }
             move.Translate(-nextDir * dis, 1);
             yield return new WaitUntil(() => !move.IsMoving());

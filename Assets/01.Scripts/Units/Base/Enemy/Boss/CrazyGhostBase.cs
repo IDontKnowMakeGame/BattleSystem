@@ -11,8 +11,8 @@ using Input = UnityEngine.Input;
 
 public class CrazyGhostBase : EnemyBase
 {
-    [SerializeField]
-    private UnitEquiq _enemyWeapons;
+    [SerializeField] private UnitEquiq _enemyWeapons;
+    [SerializeField] private CharacterRender _enemyRender;
     protected override void Init()
     {
         InGame.BossBase = this;
@@ -22,6 +22,7 @@ public class CrazyGhostBase : EnemyBase
         var fsm = AddBehaviour<UnitFSM>();
         fsm.SetDefaultState<IdleState>();
         base.Init();
+        ChangeBehaviour(_enemyRender);
     }
 
     protected override void Update()

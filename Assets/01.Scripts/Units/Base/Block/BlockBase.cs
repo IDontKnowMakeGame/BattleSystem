@@ -13,6 +13,7 @@ public class BlockBase : Units.Base.Units
     private int z;
 
     public bool isWalkable = false;
+    public bool canEnemyEnter = true;
     private int g;
     private int h;
 

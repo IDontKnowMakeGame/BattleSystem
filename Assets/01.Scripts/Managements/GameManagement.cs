@@ -4,6 +4,7 @@ using Managements.Managers;
 using Managements.Managers.Base;
 using Unity.VisualScripting;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Managements
 {
@@ -15,18 +16,13 @@ namespace Managements
         {
             get
             {
-                if (instance != null)
-                    return instance;
-                instance = FindObjectOfType<GameManagement>();
-
-                if (instance != null)
-                    return instance;
-                var obj = new GameObject
+                if (instance == null)
+                    instance = FindObjectOfType<GameManagement>();
+                if (instance == null)
                 {
-                    name = nameof(GameManagement)
-                };
-
-                instance = obj.AddComponent<GameManagement>();
+                    var obj = new GameObject("GameManagement");
+                    instance = obj.AddComponent<GameManagement>();
+                }
                 return instance;
             }
         }
@@ -137,6 +133,12 @@ namespace Managements
         }
         #endregion
 
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void FirstStart()
+        {
+            instance = GameManagement.Instance;
+        }
+
         private void Init()
         {
             instance = this;
@@ -158,6 +160,7 @@ namespace Managements
 
         public void Start()
         {
+            DontDestroyOnLoad(this);
             foreach (var manager in _managers.Values)
             {
                 manager.Start();

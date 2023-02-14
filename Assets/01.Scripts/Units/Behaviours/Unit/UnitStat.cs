@@ -86,7 +86,7 @@ namespace Units.Behaviours.Unit
 
 		public virtual void Damaged(float damage, UnitBase giveUnit)
 		{
-
+			ThisBase.GetBehaviour<CharacterRender>().DamageRender();
 			float half = Half / 100;
 
 			changeStats.Hp -= damage - damage * half;

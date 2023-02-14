@@ -36,6 +36,7 @@ namespace Units.Base.Player
         private Transform sprite;
 
         private UnitAnimation unitAnimation;
+        private PlayerPortion playerPortion;
 
         private bool twoAnimation = true;
 
@@ -53,6 +54,7 @@ namespace Units.Base.Player
 
             sprite = ThisBase.GetComponentInChildren<MeshRenderer>().transform;
             unitAnimation = ThisBase.GetBehaviour<UnitAnimation>();
+            playerPortion = ThisBase.GetBehaviour<PlayerPortion>();
 
             SpawnSetting();
         }
@@ -85,10 +87,8 @@ namespace Units.Base.Player
 
 		public override void Translate(Vector3 dir, float spd = 1)
         {
-            if (isMoving || ThisBase.State.HasFlag(BaseState.StopMove) || unitAnimation.CurState() == 10)
+            if (isMoving || ThisBase.State.HasFlag(BaseState.StopMove) || unitAnimation.CurState() == 10 || playerPortion.UsePortion)
                 return;
-
-            Debug.Log("Move");
 
             if (playerDir.x != 0)
             {
