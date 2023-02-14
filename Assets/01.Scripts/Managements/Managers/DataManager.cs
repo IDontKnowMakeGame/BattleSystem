@@ -81,6 +81,19 @@ public class User
     public string thirdHelo = "";
 }
 
+[Serializable]
+public class WeaponClassLevel
+{
+    public string name;
+    public int level;
+    public int killedCount;
+}
+
+public class WeaponClassList
+{
+    public List<WeaponClassLevel> weaponclassList;
+}
+
 public class Inventory
 {
     public List<string> inventoryInWeaponList;
@@ -113,6 +126,7 @@ public class DataManager : Manager
     public static User UserData;
     public static SavePoint SavePointData;
     public static Inventory InventoryData;
+    public static WeaponClassList WeaponClassListData;
 
     private string URL;
     public override void Awake()
@@ -120,7 +134,13 @@ public class DataManager : Manager
         UserData = DataJson.LoadJsonFile<User>(Application.dataPath + "/SAVE/User", "UserData");
         SavePointData = DataJson.LoadJsonFile<SavePoint>(Application.dataPath + "/SAVE/User", "SavePointData");
         InventoryData = DataJson.LoadJsonFile<Inventory>(Application.dataPath + "/SAVE/User", "InvectoryData");
-       
+        WeaponClassListData = DataJson.LoadJsonFile<WeaponClassList>(Application.dataPath + "/SAVE/Weapon", "ClassLevelData");
+        
+        if(WeaponClassListData.weaponclassList.Count <= 0)
+        {
+            CreateWeaponClassListData();
+        }
+
     }
     #region UserData
     public void SaveToUserData()
@@ -203,7 +223,61 @@ public class DataManager : Manager
     #endregion
 
     #region WeaponStateData
-  
 
+
+    #endregion
+
+    #region WeaponClassData
+    public void CreateWeaponClassListData()
+    {
+        WeaponClassListData.weaponclassList.Add(CreateWeaponClassLevel("BasicSword"));
+        WeaponClassListData.weaponclassList.Add(CreateWeaponClassLevel("GreateSword"));
+        WeaponClassListData.weaponclassList.Add(CreateWeaponClassLevel("TwinSword"));
+        WeaponClassListData.weaponclassList.Add(CreateWeaponClassLevel("Spear"));
+        WeaponClassListData.weaponclassList.Add(CreateWeaponClassLevel("Bow"));
+        SaveWeaponClassListData();
+    }
+
+    public WeaponClassLevel CreateWeaponClassLevel(string name)
+    {
+        WeaponClassLevel weaponClass = new WeaponClassLevel();
+        weaponClass.name = name;
+        weaponClass.level = 0;
+        weaponClass.killedCount = 0;
+        return weaponClass;
+    }
+
+    public WeaponClassLevel LoadWeaponClassLevel(string name)
+    {
+        foreach(WeaponClassLevel data in WeaponClassListData.weaponclassList)
+        {
+            if(data.name == name)
+            {
+                return data;
+            }
+        }
+        return null;
+    }
+
+    public void SaveWeaponClassListData(WeaponClassLevel data)
+    {
+        for(int i = 0;i<WeaponClassListData.weaponclassList.Count;i++)
+        {
+            if(WeaponClassListData.weaponclassList[i].name == data.name)
+            {
+                WeaponClassListData.weaponclassList[i] = data;
+                SaveWeaponClassListData();
+                return;
+            }
+        }
+
+        Debug.LogError("Not Found WeaponClassName : There are no weapons with matching names.");
+    }
+
+    public void SaveWeaponClassListData()
+    {
+        string json = DataJson.ObjectToJson(WeaponClassListData);
+        DataJson.SaveJsonFile(Application.dataPath + "/SAVE/Weapon", "ClassLevelData", json);
+    }
     #endregion
 }
