@@ -9,11 +9,15 @@ public class EvilSpiritHalo : Halo
     public override void Init()
     {
         base.Init();
+        playerStat.OriginStats.Hp += 100;
         playerStat.NowStats.Hp += 100;
+        playerStat.ChangeHP();
     }
 
     public override void Exit()
     {
-        playerStat.NowStats.Hp -= 100;        
+        playerStat.OriginStats.Hp -= 100;        
+        playerStat.NowStats.Hp -= 100;
+        playerStat.ChangeHP();
     }
 }

@@ -25,7 +25,8 @@ public enum EventFlag
     DirtyHalo,
     SliderInit,
     SliderUp,
-    SliderFalse
+    SliderFalse,
+    HPWidth
 }
 public class EventManager : Manager
 {
