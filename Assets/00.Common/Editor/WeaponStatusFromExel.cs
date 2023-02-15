@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 using System.Linq;
 using System;
 
+#if UNITY_EDITOR
 public class WeaponStatusFromExel : EditorWindow
 {
     public List<WeaponStateData> weaponStateDataList = new List<WeaponStateData>();
@@ -83,3 +84,4 @@ public class WeaponStatusFromExel : EditorWindow
     }
     #endregion
 }
+#endif

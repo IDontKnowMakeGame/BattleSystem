@@ -28,11 +28,11 @@ public class DirtyHalo : Halo
     public override void OnDestroy()
     {
         var manager = Define.GetManager<EventManager>();
-        manager.StopListening(EventFlag.DirtyHalo, Using);
+        manager?.StopListening(EventFlag.DirtyHalo, Using);
     }
     public override void OnApplicationQuit()
     {
         var manager = Define.GetManager<EventManager>();
-        manager.StopListening(EventFlag.DirtyHalo, Using);   
+        manager?.StopListening(EventFlag.DirtyHalo, Using);   
     }
 }
