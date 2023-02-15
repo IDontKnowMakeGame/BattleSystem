@@ -11,8 +11,8 @@
         {
             "name": "oldGreatSword",
             "weaponClass": "GreatSword",
-            "damage": 100,
-            "attackSpeed": 3.5,
+            "damage": 140,
+            "attackSpeed": 3.0,
             "attackAfterDelay": 0.699999988079071,
             "weaponWeight": 7
         },

@@ -25,7 +25,8 @@ public enum EventFlag
     DirtyHalo,
     SliderInit,
     SliderUp,
-    SliderFalse
+    SliderFalse,
+    PullSlider
 }
 public class EventManager : Manager
 {
@@ -77,4 +78,5 @@ public struct EventParam
     public bool boolParam;
     public Action actionParam;
     public UnitBase unitParam;
+    public Color color;
 }

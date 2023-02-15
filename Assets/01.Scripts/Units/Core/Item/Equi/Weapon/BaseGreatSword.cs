@@ -14,7 +14,6 @@ public class BaseGreatSword : Weapon
 	public override void Start()
 	{
 		base.Start();
-		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderInit, new EventParam() { floatParam = _maxChargeTime});
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
 	}
 
@@ -46,6 +45,9 @@ public class BaseGreatSword : Weapon
 		_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Release, AttackUP);
 		_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Release, AttackUP);
 		_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Release, AttackUP);
+
+		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderInit, new EventParam() { floatParam = _maxChargeTime });
+		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
 	}
 	private void Move()
 	{
@@ -92,14 +94,7 @@ public class BaseGreatSword : Weapon
 	private void AttackUP()
 	{
 		_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
-		_chargeTime = 0;
-		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderUp, new EventParam() { floatParam = _chargeTime });
-		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
-	}
-
-	private void Charge()
-	{
-		if (_chargeTime >= _maxChargeTime)
+		if(_chargeTime >= _maxChargeTime)
 		{
 			_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 			_playerAttack.AttackColParent.AllDisableDir();
@@ -109,8 +104,18 @@ public class BaseGreatSword : Weapon
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
 			_playerAttack.AttackColParent.ChangeWeapon();
 			_playerAttack.AttackColParent.AllEnableDir();
-			_chargeTime = 0;
-			GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderUp, new EventParam() { floatParam = _chargeTime });
+		}
+		_chargeTime = 0;
+		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderUp, new EventParam() { floatParam = _chargeTime });
+		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
+	}
+
+	private void Charge()
+	{
+		if (_chargeTime >= _maxChargeTime)
+		{
+			GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.PullSlider, new EventParam() { color = Color.red });
+			return;
 		}
 		else
 		{

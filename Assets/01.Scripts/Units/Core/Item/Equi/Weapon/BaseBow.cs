@@ -4,6 +4,7 @@ using UnityEngine;
 using Managements.Managers;
 using Unit.Core.Weapon;
 using Core;
+using Managements;
 
 public class BaseBow : Weapon
 {
@@ -22,7 +23,7 @@ public class BaseBow : Weapon
 	{
 		base.Start();
 		_arrowName = this.GetType().Name + "Arrow";
-		Debug.Log(_arrowName);
+		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
 	}
 	public override void ChangeKey()
 	{
@@ -36,6 +37,9 @@ public class BaseBow : Weapon
 		_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Hold, Charge);
 		_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Hold, Charge);
 		_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Hold, Charge);
+
+		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderInit, new EventParam() { floatParam = _maxChargeTime });
+		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
 	}
 	public override void Update()
 	{
@@ -68,7 +72,7 @@ public class BaseBow : Weapon
 
 		if (_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Charge))
 			return;
-
+		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = true });
 		_thisBase.AddState(Units.Base.Unit.BaseState.Charge);
 		_thisBase.AddState(Units.Base.Unit.BaseState.StopMove);
 		_currentVector = vec;
@@ -85,10 +89,13 @@ public class BaseBow : Weapon
 			_thisBase.RemoveState(Units.Base.Unit.BaseState.StopMove);
 			Shooting(_currentVector);
 			_chargeTime = 0;
+			GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderUp, new EventParam() { floatParam = _chargeTime });
+			GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
 		}
 		else
 		{
 			_chargeTime += Time.deltaTime;
+			GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderUp, new EventParam() { floatParam = _chargeTime });
 		}
 	}
 
@@ -102,5 +109,14 @@ public class BaseBow : Weapon
 		arrow.ShootArrow();
 
 		hasArrow = false;
+	}
+
+	public override void Reset()
+	{
+		base.Reset();
+		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Hold, Charge);
+		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Hold, Charge);
+		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Hold, Charge);
+		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Hold, Charge);
 	}
 }
