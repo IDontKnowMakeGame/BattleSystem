@@ -51,7 +51,8 @@ namespace Units.Base.Player
 
         public override void OnDisable()
         {
-			Define.GetManager<EventManager>().StopListening(EventFlag.WeaponChange, ChangeWeapon);
+	        var manager = Define.GetManager<EventManager>();
+			manager?.StopListening(EventFlag.WeaponChange, ChangeWeapon);
 			base.OnDisable();
         }
 

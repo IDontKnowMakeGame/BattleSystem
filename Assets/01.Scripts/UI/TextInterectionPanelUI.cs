@@ -33,7 +33,8 @@ public class TextInterectionPanelUI : MonoBehaviour
 
     private void OnDisable()
     {
-        Managements.GameManagement.Instance.GetManager<EventManager>().StopListening(EventFlag.ShowInterection, ShowTextPanel);
-        Managements.GameManagement.Instance.GetManager<EventManager>().StopListening(EventFlag.HideInterection, HideTextPanel);
+        var manager = Core.Define.GetManager<EventManager>();
+        manager?.StopListening(EventFlag.ShowInterection, ShowTextPanel);
+        manager?.StopListening(EventFlag.HideInterection, HideTextPanel);
     }
 }

@@ -11,6 +11,8 @@ namespace Core
     {
         public static T GetManager<T>() where T : Manager, new()
         {
+            if(GameManagement.Instance == null)
+                return null;
             var manager = GameManagement.Instance.GetManager<T>();
             return manager;
         }
