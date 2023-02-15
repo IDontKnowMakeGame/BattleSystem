@@ -17,6 +17,8 @@ public class PlayerPortion : UnitBehaviour
 
     public bool UsePortion => hp;
 
+    GameObject starParticle;
+
     public override void Start()
     {
         ResetPortion();
@@ -25,9 +27,11 @@ public class PlayerPortion : UnitBehaviour
 
     public override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && !hp)
         {
             hp = true;
+            starParticle = Core.Define.GetManager<ResourceManagers>().Instantiate("Star_A");
+            starParticle.transform.position = ThisBase.transform.position;
             hpPortion--;
         }
         if(hp)
@@ -56,6 +60,7 @@ public class PlayerPortion : UnitBehaviour
 
     public void ResetPortion()
     {
+        Core.Define.GetManager<ResourceManagers>().Destroy(starParticle);
         hp = false;
         cnt = 0;
         timer = 0;
