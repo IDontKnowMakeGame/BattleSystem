@@ -32436,6 +32436,8 @@ MonoBehaviour:
   whiteHP: {fileID: 81813983}
   sliderSpeed: 0.1
   waitingTime: 0.5
+  widthMul: 1.5
+  hpRect: {fileID: 0}
 --- !u!1 &774151693
 GameObject:
   m_ObjectHideFlags: 0
@@ -72665,11 +72667,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e25ea695e05963c47a4dbeaf27316a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleList: []
-  uvCoordsList: []
-  row: 2
-  column: 2
-  quadIndex: 0
+  material: {fileID: 2100000, guid: e4fb484faaacac84891a5a58b532b351, type: 2}
+  textureDataList:
+  - Key: BossDamage
+    Texture: {fileID: 2800000, guid: 8529bd27efa7103408b8fe329259aa5e, type: 3}
+    Color: {r: 1, g: 0, b: 0, a: 0}
+    Row: 2
+    Column: 2
 --- !u!4 &2083358805
 Transform:
   m_ObjectHideFlags: 0

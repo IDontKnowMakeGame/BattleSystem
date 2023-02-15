@@ -126,7 +126,7 @@ namespace Units.Behaviours.Unit
 				particle.quadSize = particle.randomProperties.RandomQuadSize;
 				particle.skewed = true;
 				particle.uvIndex = Random.Range(0, 4);
-				InGame.MeshParticle.AddParticle("boss", particle);
+				InGame.MeshParticle.AddParticle("BossDamage", particle);
 
 				//GameObject ob = Core.Define.GetManager<ResourceManagers>().Instantiate("ChargingPop");
 				//ob.transform.position = ThisBase.transform.position;
