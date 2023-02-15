@@ -11,7 +11,7 @@ public class DirtyHalo : Halo
     public override void Init()
     {
         base.Init();
-        percent = 50;
+        percent = 5;
         Define.GetManager<EventManager>().StartListening(EventFlag.DirtyHalo, Using);
     }
 

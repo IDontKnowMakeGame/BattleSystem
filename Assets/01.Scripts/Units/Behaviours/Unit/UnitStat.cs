@@ -127,7 +127,11 @@ namespace Units.Behaviours.Unit
 				particle.skewed = true;
 				particle.uvIndex = Random.Range(0, 4);
 				InGame.MeshParticle.AddQuad(particle);
-            }
+
+				//GameObject ob = Core.Define.GetManager<ResourceManagers>().Instantiate("ChargingPop");
+				//ob.transform.position = ThisBase.transform.position;
+
+			}
 			if(Core.InGame.PlayerBase == ThisBase)
             {
 				ThisBase.GetBehaviour<PlayerBuff>().ChangeAnger(2);
