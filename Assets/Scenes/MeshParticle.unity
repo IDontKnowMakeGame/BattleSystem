@@ -422,7 +422,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1563259597}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 04cafb3dee8db5847baf8b25d833d824, type: 3}
+  m_Asset: {fileID: 0}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -497,17 +497,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e25ea695e05963c47a4dbeaf27316a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle:
-    quadIndex: 0
-    position: {x: 0, y: 0, z: 0}
-    rotation: 0
-    quadSize: {x: 1, y: 1, z: 0}
-    skewed: 0
-    uvIndex: 0
-  particleList: []
-  uvCoordsList: []
-  row: 11
-  column: 1
+  material: {fileID: 2100000, guid: e4fb484faaacac84891a5a58b532b351, type: 2}
+  textureDataList:
+  - Key: BossDamage
+    Texture: {fileID: 2800000, guid: 8529bd27efa7103408b8fe329259aa5e, type: 3}
+    Color: {r: 1, g: 0, b: 0, a: 0}
+    Row: 2
+    Column: 2
+  - Key: BossAttack
+    Texture: {fileID: 2800000, guid: e933f2810b9482d4a8f309ee98619d8e, type: 3}
+    Color: {r: 0, g: 0.30524302, b: 1, a: 0}
+    Row: 2
+    Column: 1
 --- !u!4 &1985195425
 Transform:
   m_ObjectHideFlags: 0

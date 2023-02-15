@@ -80,7 +80,7 @@ public class WeaponStatusFromExel : EditorWindow
         list.weaponList = weaponStateDataList;
 
         string json = DataJson.ObjectToJson(list);
-        DataJson.SaveJsonFile(Application.dataPath + "/SAVE/Weapon", "WeaponStatus",json);
+        DataJson.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/Weapon", "WeaponStatus",json);
     }
     #endregion
 }
