@@ -18,11 +18,6 @@ namespace Managements
             {
                 if (instance == null)
                     instance = FindObjectOfType<GameManagement>();
-                if (instance == null)
-                {
-                    var obj = new GameObject("GameManagement");
-                    instance = obj.AddComponent<GameManagement>();
-                }
                 return instance;
             }
         }
@@ -147,6 +142,7 @@ namespace Managements
             Instance.AddManager<ResourceManagers>();
             Instance.AddManager<PoolManager>();
             Instance.AddManager<EventManager>();
+            Instance.AddManager<MapManager>();
         }
 
         public void Awake()
