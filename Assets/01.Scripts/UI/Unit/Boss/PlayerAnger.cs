@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerAnger : SliderUI
 {
-    public override void Start()
+    public override void Awake()
     {
         addflag = EventFlag.AddAnger;
-        base.Start();
+        base.Awake();
     }
 }

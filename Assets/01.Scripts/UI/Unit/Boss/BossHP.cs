@@ -5,12 +5,15 @@ using Core;
 
 public class BossHP : SliderUI
 {
-    public override void Start()
+    public override void Awake()
     {
         addflag = EventFlag.AddBossHP;
-        base.Start();
         Define.GetManager<EventManager>().StartListening(EventFlag.ShowBossHP, ShowBossHP);
+        base.Awake();
+    }
 
+    private void Start()
+    {
         _slider.gameObject.SetActive(false);
     }
 

@@ -12,15 +12,19 @@ public class PlayerHP : SliderUI
     private float sliderSpeed;
     [SerializeField]
     private float waitingTime;
+    [SerializeField]
+    private float widthMul = 1.5f;
 
+    public RectTransform hpRect;
     private float hittime;
     private bool isDamage = false;
 
-
-    public override void Start()
+    public override void Awake()
     {
         addflag = EventFlag.AddPlayerHP;
-        base.Start();
+        Define.GetManager<EventManager>().StartListening(EventFlag.HPWidth, SetHpWidth);
+        base.Awake();
+        hpRect = _slider.GetComponent<RectTransform>();
     }
 
     private void Update()
@@ -34,6 +38,7 @@ public class PlayerHP : SliderUI
 
     public override void AddHP(EventParam value)
     {
+        Debug.Log("HPCheck");
         base.AddHP(value);
         isDamage = true;
     }
@@ -52,5 +57,22 @@ public class PlayerHP : SliderUI
                 whiteHP.localScale = whiteHP.localScale.SetX(_slider.value);
             }
         }
+    }
+
+    private void SetHpWidth(EventParam eventParam)
+    {
+        hpRect.sizeDelta = hpRect.sizeDelta.SetX(eventParam.floatParam * widthMul);
+    }
+
+    public override void OnApplicationQuit()
+    {
+        Define.GetManager<EventManager>()?.StopListening(EventFlag.HPWidth, SetHpWidth);
+        base.OnApplicationQuit();
+    }
+
+    public override void OnDestroy()
+    {
+        Define.GetManager<EventManager>()?.StopListening(EventFlag.HPWidth, SetHpWidth);
+        base.OnDestroy();
     }
 }

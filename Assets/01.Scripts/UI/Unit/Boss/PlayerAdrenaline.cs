@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerAdrenaline : SliderUI
 {
-    public override void Start()
+    public override void Awake()
     {
         addflag = EventFlag.AddAdrenaline;
-        base.Start();
+        base.Awake();
     }
 }

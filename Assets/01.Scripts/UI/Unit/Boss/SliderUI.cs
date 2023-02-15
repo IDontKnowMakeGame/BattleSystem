@@ -12,10 +12,6 @@ public class SliderUI : MonoBehaviour
     public virtual void Awake()
     {
         _slider = GetComponent<Slider>();
-    }
-
-    public virtual void Start()
-    {
         Define.GetManager<EventManager>().StartListening(addflag, AddHP);
     }
 
@@ -26,13 +22,11 @@ public class SliderUI : MonoBehaviour
 
     public virtual void OnDestroy()
     { 
-        var manager = Define.GetManager<EventManager>();
-        manager?.StopListening(addflag, AddHP);
+        Define.GetManager<EventManager>()?.StopListening(addflag, AddHP);
     }
 
     public virtual void OnApplicationQuit()
     {
-        var manager = Define.GetManager<EventManager>();
-        manager?.StopListening(addflag, AddHP);
+        Define.GetManager<EventManager>()?.StopListening(addflag, AddHP);
     }
 }
