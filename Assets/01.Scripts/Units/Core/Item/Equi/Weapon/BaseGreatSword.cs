@@ -2,6 +2,7 @@ using UnityEngine;
 using Unit.Core.Weapon;
 using Managements.Managers;
 using Managements;
+using Units.Base.Player;
 
 public class BaseGreatSword : Weapon
 {
@@ -80,6 +81,8 @@ public class BaseGreatSword : Weapon
 			return;
 
 		_thisBase.AddState(Units.Base.Unit.BaseState.Charge);
+		_thisBase.GetBehaviour<PlayerAttack>().SkillAnimation(vec);
+		
 		_currentVector = vec;
 	}
 
