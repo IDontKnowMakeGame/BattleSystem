@@ -47,6 +47,8 @@ namespace Units.Base.Player
 
         private Transform sprite;
 
+        private Vector3 curDir;
+
         public override void Start()
         {
             base.Start();
@@ -64,10 +66,10 @@ namespace Units.Base.Player
 
         private void SetAnimation()
         {
-            Define.GetManager<InputManager>().AddInGameAction(InputTarget.UpAttack, InputStatus.Press, () => ChangeAnimation(Vector3.forward));
-            Define.GetManager<InputManager>().AddInGameAction(InputTarget.DownAttack, InputStatus.Press, () => ChangeAnimation(Vector3.back));
-            Define.GetManager<InputManager>().AddInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => ChangeAnimation(Vector3.left));
-            Define.GetManager<InputManager>().AddInGameAction(InputTarget.RightAttack, InputStatus.Press, () => ChangeAnimation(Vector3.right));
+            Define.GetManager<InputManager>().AddInGameAction(InputTarget.UpAttack, InputStatus.Press, () => SetDir(Vector3.forward));
+            Define.GetManager<InputManager>().AddInGameAction(InputTarget.DownAttack, InputStatus.Press, () => SetDir(Vector3.back));
+            Define.GetManager<InputManager>().AddInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => SetDir(Vector3.left));
+            Define.GetManager<InputManager>().AddInGameAction(InputTarget.RightAttack, InputStatus.Press, () => SetDir(Vector3.right));
         }
 
         public override void Update()
@@ -98,6 +100,7 @@ namespace Units.Base.Player
             if (timer > 0 || unitAnimation.CurState() == 10 || playerPortion.UsePortion) return;
 
             ThisBase.AddState(BaseState.Attacking);
+            ChangeAnimation(curDir);
 
             List<EnemyBase> enemys = new List<EnemyBase>();
 
@@ -127,6 +130,11 @@ namespace Units.Base.Player
             }
 
             timer = attackDelay;
+        }
+
+        private void SetDir(Vector3 dir)
+        {
+            curDir = dir;
         }
 
         public void ChangeAnimation(Vector3 dir)
@@ -182,6 +190,30 @@ namespace Units.Base.Player
                     isAttack = false;
                     ThisBase.RemoveState(BaseState.Attacking);
                 }
+            }
+        }
+
+        public void SkillAnimation(Vector3 dir)
+        {
+            if (dir == Vector3.left)
+            {
+                unitAnimation.ChangeState(7);
+                sprite.localScale = new Vector3(-1, 1, 1);
+            }
+            else if (dir == Vector3.right)
+            {
+                unitAnimation.ChangeState(7);
+                sprite.localScale = new Vector3(1, 1, 1);
+            }
+            else if (dir == Vector3.forward)
+            {
+                unitAnimation.ChangeState(8);
+                sprite.localScale = new Vector3(1, 1, 1);
+            }
+            else if (dir == Vector3.back)
+            {
+                unitAnimation.ChangeState(9);
+                sprite.localScale = new Vector3(1, 1, 1);
             }
         }
 

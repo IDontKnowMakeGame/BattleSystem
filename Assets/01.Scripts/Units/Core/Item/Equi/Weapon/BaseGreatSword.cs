@@ -3,6 +3,7 @@ using Unit.Core.Weapon;
 using Managements.Managers;
 using Managements;
 using Core;
+using Units.Base.Player;
 
 public class BaseGreatSword : Weapon
 {
@@ -83,6 +84,8 @@ public class BaseGreatSword : Weapon
 
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = true });
 		_thisBase.AddState(Units.Base.Unit.BaseState.Charge);
+		_thisBase.GetBehaviour<PlayerAttack>().SkillAnimation(vec);
+		
 		_currentVector = vec;
 	}
 
