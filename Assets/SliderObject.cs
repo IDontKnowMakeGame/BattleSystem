@@ -19,6 +19,7 @@ public class SliderObject : MonoBehaviour
 	private Action _action;
 
 	private Vector3 firstSliderScale = new Vector3(1, 0, 1);
+	private Vector3 vec = new Vector3(1,0,1);
 	private void Start()
 	{
 		_sliders = this.gameObject.transform.AllChildrenObjList();
@@ -27,14 +28,12 @@ public class SliderObject : MonoBehaviour
 
 		GameManagement.Instance.GetManager<EventManager>().StartListening(EventFlag.SliderInit, SliderInit);
 		GameManagement.Instance.GetManager<EventManager>().StartListening(EventFlag.SliderUp, SliderUp);
-		GameManagement.Instance.GetManager<EventManager>().StartListening(EventFlag.SliderFalse, SliderActiveFalse);
+		GameManagement.Instance.GetManager<EventManager>().StartListening(EventFlag.SliderFalse, SliderActive);
 	}
 	public void SliderInit(EventParam eventParam)
 	{
 		_maxChargeValue = eventParam.floatParam;
-		_addValue = _maxYScalevalue / _maxChargeValue;
 		_slider.transform.localScale = firstSliderScale;
-		_action = eventParam.actionParam;
 		ActiveObjects(true);
 	}
 	public void SliderUp(EventParam eventParam)
@@ -46,11 +45,14 @@ public class SliderObject : MonoBehaviour
 		}
 		else
 		{
-			_chargeValue += _addValue;
+			_chargeValue = (eventParam.floatParam / _maxChargeValue) * 100f;
+			vec.y = (_maxYScalevalue * _chargeValue) / 100f;
+			Debug.Log(vec);
+			_slider.transform.localScale = vec;
 		}
 	}
 
-	public void SliderActiveFalse(EventParam eventParam) => ActiveObjects(false);
+	public void SliderActive(EventParam eventParam) => ActiveObjects(eventParam.boolParam);
 
 	private void ActiveObjects(bool isActive)
 	{
