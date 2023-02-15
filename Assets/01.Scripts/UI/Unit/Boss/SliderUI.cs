@@ -26,11 +26,13 @@ public class SliderUI : MonoBehaviour
 
     public virtual void OnDestroy()
     { 
-        Define.GetManager<EventManager>().StopListening(addflag, AddHP);
+        var manager = Define.GetManager<EventManager>();
+        manager?.StopListening(addflag, AddHP);
     }
 
     public virtual void OnApplicationQuit()
     {
-        Define.GetManager<EventManager>().StopListening(addflag, AddHP);
+        var manager = Define.GetManager<EventManager>();
+        manager?.StopListening(addflag, AddHP);
     }
 }

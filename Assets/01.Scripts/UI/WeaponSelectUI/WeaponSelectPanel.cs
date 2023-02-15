@@ -46,7 +46,8 @@ public class WeaponSelectPanel : MonoBehaviour
 
     private void OnDisable()
     {
-        Managements.GameManagement.Instance.GetManager<EventManager>().StopListening(EventFlag.WeaponPanelConnecting, InterectionConecting);
-        Managements.GameManagement.Instance.GetManager<EventManager>().StopListening(EventFlag.WeaponPanelDisConnecting, InterectionDisConecting);
+        var manager = Core.Define.GetManager<EventManager>();
+        manager?.StopListening(EventFlag.WeaponPanelConnecting, InterectionConecting);
+        manager?.StopListening(EventFlag.WeaponPanelDisConnecting, InterectionDisConecting);
     }
 }
