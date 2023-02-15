@@ -22,7 +22,10 @@ public enum EventFlag
     AddAnger,
     AddAdrenaline,
     PlayTimeLine,
-    DirtyHalo
+    DirtyHalo,
+    SliderInit,
+    SliderUp,
+    SliderFalse
 }
 public class EventManager : Manager
 {
@@ -72,5 +75,6 @@ public struct EventParam
     public float floatParam;
     public int intParam;
     public bool boolParam;
+    public Action actionParam;
     public UnitBase unitParam;
 }

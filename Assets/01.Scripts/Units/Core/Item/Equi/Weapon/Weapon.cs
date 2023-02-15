@@ -45,6 +45,7 @@ namespace Unit.Core.Weapon
 
 		protected bool _isEnemy = true;
 
+		protected SliderObject _sliderObject;
 		public override void Start()
 		{
 			//여기서 다 받아주고

@@ -1,6 +1,8 @@
 using UnityEngine;
 using Unit.Core.Weapon;
 using Managements.Managers;
+using Managements;
+
 public class BaseGreatSword : Weapon
 {
 	protected float _chargeTime;
@@ -10,6 +12,7 @@ public class BaseGreatSword : Weapon
 	public override void Start()
 	{
 		base.Start();
+		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderInit, new EventParam() { actionParam = AttackVec, floatParam = _maxChargeTime });
 	}
 
 	public override void Update()
@@ -17,11 +20,10 @@ public class BaseGreatSword : Weapon
 		base.Update();
 		//Charge();
 	}
-
+	private void AttackVec() => _playerAttack.Attack(_unitStat.NowStats.Atk);
 	public override void ChangeKey()
 	{
 		base.ChangeKey();
-		Debug.Log("greatSword");
 		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.W);
 		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.S);
 		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.A);
@@ -96,13 +98,14 @@ public class BaseGreatSword : Weapon
 			_playerAttack.AttackColParent.ChangeSizeZ(1);
 			_playerAttack.AttackColParent.ChangeSizeX(1);
 			_playerAttack.AttackColParent.EnableDir(_playerAttack.AttackColParent.DirReturn(_currentVector));
-			_playerAttack.Attack(_unitStat.NowStats.Atk);
+			//_playerAttack.Attack(_unitStat.NowStats.Atk);
 			_playerAttack.AttackColParent.ChangeWeapon();
 			_playerAttack.AttackColParent.AllEnableDir();
 			_chargeTime = 0;
 		}
 		else
 		{
+			GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderUp, new EventParam());
 			_chargeTime += Time.deltaTime;
 		}
 	}

@@ -12,7 +12,7 @@ public class BaseBow : Weapon
 
 	protected string _arrowName;
 
-	private Vector3 _currentVector;
+	protected Vector3 _currentVector;
 
 	private float projectileSpeed = 10;
 

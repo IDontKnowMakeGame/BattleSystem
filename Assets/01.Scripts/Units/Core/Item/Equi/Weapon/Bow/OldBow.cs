@@ -16,6 +16,6 @@ public class OldBow : BaseBow
 		if (!_thisBase.State.HasFlag(BaseState.Charge))
 			return;
 
-		_unitMove.MoveTo(_thisBase.Position+ Vector3.back);
+		_unitMove.MoveTo(_thisBase.Position + -_currentVector, _unitStat.NowStats.Agi);
 	}
 }
