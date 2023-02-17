@@ -72,6 +72,7 @@ public class BaseBow : Weapon
 
 		if (_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Charge))
 			return;
+
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = true });
 		_thisBase.AddState(Units.Base.Unit.BaseState.Charge);
 		_thisBase.AddState(Units.Base.Unit.BaseState.StopMove);
@@ -89,6 +90,7 @@ public class BaseBow : Weapon
 			_thisBase.RemoveState(Units.Base.Unit.BaseState.StopMove);
 			Shooting(_currentVector);
 			_chargeTime = 0;
+
 			GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderUp, new EventParam() { floatParam = _chargeTime });
 			GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
 		}

@@ -134,7 +134,7 @@ public class BaseArrow : MonoBehaviour
 	}
 	private void StickOrPull(Units.Base.Units units)
 	{
-		if (units != null && !_thisArrow.isStick)
+		if ((units is EnemyBase || units is BlockBase) && !_thisArrow.isStick)
 		{
 			_enemyBase = units as EnemyBase;
 			_enemyBase.GetBehaviour<UnitStat>()?.Damaged(_arrowStat.damage, InGame.PlayerBase);
