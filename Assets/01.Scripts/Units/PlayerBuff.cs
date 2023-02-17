@@ -43,8 +43,10 @@ namespace Units.Base.Player
             attackCount = 0;
             attackCheckTimer = attckCheckTime;
 
-            angerParticle.gameObject.SetActive(false);
-            adneralineParticle.gameObject.SetActive(false);
+            if(angerParticle != null)
+                angerParticle.gameObject.SetActive(false);
+            if(adneralineParticle != null)
+                adneralineParticle.gameObject.SetActive(false);
 
 
             base.Start();
