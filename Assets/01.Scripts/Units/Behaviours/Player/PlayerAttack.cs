@@ -33,7 +33,7 @@ namespace Units.Base.Player
         private float attackDelay;
 
 
-        private bool isInit = false;
+        public bool isInit = false;
 
         private float timer;
 
@@ -134,7 +134,10 @@ namespace Units.Base.Player
 
         private void SetDir(Vector3 dir)
         {
+            //if (timer > 0 || unitAnimation.CurState() == 10 || isAttack || playerPortion.UsePortion) //return;
+
             curDir = dir;
+            isInit = true;
         }
 
         public void ChangeAnimation(Vector3 dir)
