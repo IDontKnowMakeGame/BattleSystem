@@ -1,7 +1,7 @@
 {
     "maxHp": 100,
-    "currentWeapon": "oldSword",
-    "firstWeapon": "oldSword",
+    "currentWeapon": "oldGreatSword",
+    "firstWeapon": "oldGreatSword",
     "secondWeapon": "oldTwinSword",
     "firstHelo": "",
     "secondHelo": "",
