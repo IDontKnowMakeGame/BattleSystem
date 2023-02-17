@@ -16,15 +16,77 @@ public class GridObjects
 {
     public GameObject[] tiles;
     public GameObject wall;
-    public float offsetX;
-    public float offsetZ;
+    public float offsetX = 1;
+    public float offsetZ = 1;
     public float wallOffsetX = 0.5f;
     public float setWallY = -0.5f;
     public float wallOffsetZ = 0.5f;
 }
 
-public class MapGeneration : MonoBehaviour
+#if UNITY_EDITOR
+public class MapGeneration : EditorWindow
 {
+    private void OnEnable()
+    {
+        ScriptableObject target = this;
+        so = new SerializedObject(target);
+    }
+
+    #region Editor
+    public GameObject[] SetTiles;
+    SerializedObject so;
+
+    [MenuItem("Tools/MapGeneration")]
+    public static void ShowWindow()
+    {
+        GetWindow<MapGeneration>("MapGeneration");
+    }
+
+    private void OnGUI()
+    {
+        GUILayout.Label("MapGeneration", EditorStyles.boldLabel);
+
+        GUILayout.Label("URL Setting", EditorStyles.miniBoldLabel);
+        InputURL = EditorGUILayout.TextField("URL(Until \"range=\"):", InputURL);
+
+        GUILayout.Label("Tiles Setting", EditorStyles.miniBoldLabel);
+
+        GUILayout.Label("Tiles:");
+        so.Update();
+        SerializedProperty stringsProperty = so.FindProperty("SetTiles");
+        EditorGUILayout.PropertyField(stringsProperty, true);
+        so.ApplyModifiedProperties();
+
+        gridObjects.offsetX = EditorGUILayout.FloatField("Offset X:", gridObjects.offsetX);
+        gridObjects.offsetZ = EditorGUILayout.FloatField("Offset Z:", gridObjects.offsetZ);
+
+        GUILayout.Label("Wall Setting", EditorStyles.miniBoldLabel);
+        gridObjects.wall = EditorGUILayout.ObjectField("Wall Object", gridObjects.wall, typeof(GameObject), true) as GameObject;
+        gridObjects.wallOffsetX = EditorGUILayout.FloatField("Wall Offset X:", gridObjects.wallOffsetX);
+        gridObjects.setWallY = EditorGUILayout.FloatField("Wall Set Y:", gridObjects.setWallY);
+        gridObjects.wallOffsetZ = EditorGUILayout.FloatField("Wall Offset Z:", gridObjects.wallOffsetZ);
+
+
+        GUILayout.Label("Map Setting", EditorStyles.miniBoldLabel);
+
+        posMode = (Mode)EditorGUILayout.EnumPopup("CurrentMode:", posMode);
+        posX = EditorGUILayout.FloatField("Start X:", posX);
+        posZ = EditorGUILayout.FloatField("Start Z:", posZ);
+        rangeStart = EditorGUILayout.TextField("Excel Range Start:", rangeStart);
+        rangeEnd = EditorGUILayout.TextField("Excel Range End:", rangeEnd);
+        spawnWall = EditorGUILayout.Toggle("Spawn Wall", spawnWall);
+
+        if (GUILayout.Button("Generation"))
+        {
+            gridObjects.tiles = SetTiles;
+            SpawnMap();
+            GetData();
+        }
+    }
+
+    #endregion
+
+    #region Map Generation 
     [Header("GridObjects(Prefab)")]
     [SerializeField]
     private GridObjects gridObjects;
@@ -60,12 +122,18 @@ public class MapGeneration : MonoBehaviour
     private int count = 1;
 
     #region excel
+    private string InputURL = "https://docs.google.com/spreadsheets/d/14rbIKCHzWCK1VHf1qcgOi7S3TwRGIfXlDE-SGML7kxs/export?format=tsv&range=";
     private string URL;
 
-    IEnumerator DownloadItemSO()
+    private void GetData()
+    {
+        DownloadItemSO();
+    }
+
+    private async void DownloadItemSO()
     {
         UnityWebRequest www = UnityWebRequest.Get(URL);
-        yield return www.SendWebRequest();
+        await www.SendWebRequest();
         SetItemSO(www.downloadHandler.text);
     }
 
@@ -157,7 +225,7 @@ public class MapGeneration : MonoBehaviour
         Dictionary<Vector3, bool[]> checkWall = new Dictionary<Vector3, bool[]>();
         foreach (Vector3 checkTile in currentTile)
         {
-            for(int i = 0; i < dir.Length; i++)
+            for (int i = 0; i < dir.Length; i++)
             {
                 Vector3 checkPos = checkTile + dir[i];
                 if (!currentTile.Contains(checkPos) && (!checkWall.ContainsKey(checkPos) || !checkWall[checkPos][i]))
@@ -173,7 +241,7 @@ public class MapGeneration : MonoBehaviour
                         checkDir = checkWall[checkPos];
                         checkDir[i] = true;
                         checkWall[checkPos] = checkDir;
-                    }    
+                    }
 
 
                     Vector3 rotateVal = new Vector3();
@@ -207,18 +275,16 @@ public class MapGeneration : MonoBehaviour
     }
 
     #endregion
-
-
-
-    [ContextMenu("SpawnMap")]
     private void SpawnMap()
     {
         changeX = posX;
         changeZ = posZ;
         count = 1;
-        URL = "https://docs.google.com/spreadsheets/d/14rbIKCHzWCK1VHf1qcgOi7S3TwRGIfXlDE-SGML7kxs/export?format=tsv&range=" + $"{rangeStart}:{rangeEnd}";
+        URL = InputURL + $"{rangeStart}:{rangeEnd}";
         tiledParent = new GameObject("MapTiled");
         currentTile = new HashSet<Vector3>();
-        StartCoroutine(DownloadItemSO());
     }
+
+    #endregion
 }
+#endif
