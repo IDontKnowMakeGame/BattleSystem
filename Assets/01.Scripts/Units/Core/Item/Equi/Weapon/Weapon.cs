@@ -63,11 +63,8 @@ namespace Unit.Core.Weapon
 
 		public virtual void ChangeKey()
 		{
-			_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Press, UpAttack);
-			_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Press, DownAttack);
-			_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Press, LeftAttack);
-			_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Press, RightAttack);
-			_inputManager.AddInGameAction(InputTarget.Skill, InputStatus.Press, Skill);
+			InputManager.OnAttackPress += AttackCoroutine;
+			InputManager.OnSkillPress += Skill;
 		}
 
 		protected void Timer()
@@ -112,21 +109,9 @@ namespace Unit.Core.Weapon
 
 		}
 
-		protected virtual void UpAttack()
+		protected virtual void AttackCoroutine(Vector3 vec)
 		{
-			_thisBase.StartCoroutines(_weaponStats.Ats, () => Attack(Vector3.forward));
-		}
-		protected virtual void DownAttack()
-		{
-			_thisBase.StartCoroutines(_weaponStats.Ats, () => Attack(Vector3.back));
-		}
-		protected virtual void LeftAttack()
-		{
-			_thisBase.StartCoroutines(_weaponStats.Ats, () => Attack(Vector3.left));
-		}
-		protected virtual void RightAttack()
-		{
-			_thisBase.StartCoroutines(_weaponStats.Ats, () => Attack(Vector3.right));
+			_thisBase.StartCoroutines(_weaponStats.Ats, () => Attack(vec));
 		}
 
 		protected virtual void Skill()
@@ -136,11 +121,8 @@ namespace Unit.Core.Weapon
 
 		public virtual void Reset()
 		{
-			_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Press, UpAttack);
-			_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Press, DownAttack);
-			_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Press, LeftAttack);
-			_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Press, RightAttack);
-			_inputManager.RemoveInGameAction(InputTarget.Skill, InputStatus.Press, Skill);
+			InputManager.OnAttackPress -= AttackCoroutine;
+			InputManager.OnSkillPress -= Skill;
 		}
 	}
 }

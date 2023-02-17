@@ -15,7 +15,7 @@ public class OldSpear : BaseSpear
 	public override void ChangeKey()
 	{
 		base.ChangeKey();
-		_inputManager.RemoveInGameAction(InputTarget.Skill, InputStatus.Press, Skill);
+		InputManager.OnSkillPress -= Skill;
 		_playerAttack.onBehaviourEnd = CountUp;
 	}
 	protected override void Skill()
