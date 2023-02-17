@@ -33,6 +33,14 @@ namespace Managements.Managers
 		public static event Action<Vector3> OnMoveHold;
 		public static event Action<Vector3> OnMoveRelease;
 
+		public static event Action<Vector3> OnAttackPress;
+		public static event Action<Vector3> OnAttackHold;
+		public static event Action<Vector3> OnAttackRelease;
+
+		public static event Action OnSkillPress;
+		public static event Action OnSkillHold;
+		public static event Action OnSkillRelease;
+
 		private List<KeyboardInputData> _keyboardInputDatas = new()
 		{
 			new KeyboardInputData() { keyboardInput = KeyboardInput.MoveForward, keyCode = KeyCode.UpArrow },
@@ -61,21 +69,43 @@ namespace Managements.Managers
 		private void InputPress()
 		{
 			// Press
-			if (Input.GetKey(GetKeyCode(KeyboardInput.MoveForward)))
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.MoveForward)))
 			{
 				OnMovePress?.Invoke(Vector3.forward);
 			}
-			if (Input.GetKey(GetKeyCode(KeyboardInput.MoveBackward)))
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.MoveBackward)))
 			{
 				OnMovePress?.Invoke(Vector3.back);
 			}
-			if (Input.GetKey(GetKeyCode(KeyboardInput.MoveLeft)))
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.MoveLeft)))
 			{
 				OnMovePress?.Invoke(Vector3.left);
 			}
-			if (Input.GetKey(GetKeyCode(KeyboardInput.MoveRight)))
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.MoveRight)))
 			{
 				OnMovePress?.Invoke(Vector3.right);
+			}
+
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.AttackForward)))
+			{
+				OnAttackPress?.Invoke(Vector3.forward);
+			}
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.AttackBackward)))
+			{
+				OnAttackPress?.Invoke(Vector3.back);
+			}
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.AttackLeft)))
+			{
+				OnAttackPress?.Invoke(Vector3.left);
+			}
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.AttackRight)))
+			{
+				OnAttackPress?.Invoke(Vector3.right);
+			}
+
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.Skill)))
+			{
+				OnSkillPress?.Invoke();
 			}
 		}
 		
@@ -98,6 +128,28 @@ namespace Managements.Managers
 			{
 				OnMoveRelease?.Invoke(Vector3.right);
 			}
+
+			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.AttackForward)))
+			{
+				OnAttackRelease?.Invoke(Vector3.forward);
+			}
+			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.AttackBackward)))
+			{
+				OnAttackRelease?.Invoke(Vector3.back);
+			}
+			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.AttackLeft)))
+			{
+				OnAttackRelease?.Invoke(Vector3.left);
+			}
+			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.AttackRight)))
+			{
+				OnAttackRelease?.Invoke(Vector3.right);
+			}
+
+			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.Skill)))
+			{
+				OnSkillRelease?.Invoke();
+			}
 		}
 
 		private void InputHold()
@@ -116,11 +168,38 @@ namespace Managements.Managers
 			{
 				OnMoveHold?.Invoke(Vector3.left);
 			}
+
+			if (Input.GetKey(GetKeyCode(KeyboardInput.AttackForward)))
+			{
+				OnAttackHold?.Invoke(Vector3.forward);
+			}
+			if (Input.GetKey(GetKeyCode(KeyboardInput.AttackBackward)))
+			{
+				OnAttackHold?.Invoke(Vector3.back);
+			}
+			if (Input.GetKey(GetKeyCode(KeyboardInput.AttackLeft)))
+			{
+				OnAttackHold?.Invoke(Vector3.left);
+			}
+			if (Input.GetKey(GetKeyCode(KeyboardInput.AttackRight)))
+			{
+				OnAttackHold?.Invoke(Vector3.right);
+			}
+
+			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.Skill)))
+			{
+				OnSkillHold?.Invoke();
+			}
 		}
 		
 		private KeyCode GetKeyCode(KeyboardInput input)
 		{
 			return (from keyboardInputData in _keyboardInputDatas where keyboardInputData.keyboardInput == input select keyboardInputData.keyCode).FirstOrDefault();
+		}
+
+		private void SetKeyCode(KeyboardInput input, KeyCode keyCode)
+		{
+
 		}
 	}
 }

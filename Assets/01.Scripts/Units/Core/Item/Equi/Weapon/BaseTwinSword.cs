@@ -14,25 +14,11 @@ public class BaseTwinSword : Weapon
 		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.DownArrow);
 		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.LeftArrow);
 		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.RightArrow);
-
-
 	}
 
-	protected override void UpAttack()
+	protected override void AttackCoroutine(Vector3 vec)
 	{
-		_unitMove.onBehaviourEnd = base.UpAttack;
-	}
-	protected override void DownAttack()
-	{
-		_unitMove.onBehaviourEnd = base.DownAttack;
-	}
-	protected override void LeftAttack()
-	{
-		_unitMove.onBehaviourEnd = base.LeftAttack;
-	}
-	protected override void RightAttack()
-	{
-		_unitMove.onBehaviourEnd = base.RightAttack;
+		_unitMove.onBehaviourEnd = () => Attack(vec);
 	}
 	protected override void Attack(Vector3 vec)
 	{

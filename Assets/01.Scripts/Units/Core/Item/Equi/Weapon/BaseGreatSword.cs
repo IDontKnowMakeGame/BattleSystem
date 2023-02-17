@@ -31,25 +31,14 @@ public class BaseGreatSword : Weapon
 		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.A);
 		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.D);
 
-		_inputManager.AddInGameAction(InputTarget.UpMove, InputStatus.Press, Move);
-		_inputManager.AddInGameAction(InputTarget.DownMove, InputStatus.Press, Move);
-		_inputManager.AddInGameAction(InputTarget.LeftMove, InputStatus.Press, Move);
-		_inputManager.AddInGameAction(InputTarget.RightMove, InputStatus.Press, Move);
-
-		_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Hold, Charge);
-		_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Hold, Charge);
-		_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Hold, Charge);
-		_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Hold, Charge);
-
-		_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Release, AttackUP);
-		_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Release, AttackUP);
-		_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Release, AttackUP);
-		_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Release, AttackUP);
+		InputManager.OnMovePress += Move;
+		InputManager.OnAttackHold += Charge;
+		InputManager.OnAttackRelease += AttackUP;
 
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderInit, new EventParam() { floatParam = _maxChargeTime });
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
 	}
-	private void Move()
+	private void Move(Vector3 vec)
 	{
 		if (!_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Skill))
 		{
@@ -58,24 +47,9 @@ public class BaseGreatSword : Weapon
 		}
 	}
 
-	protected override void UpAttack()
+	protected override void AttackCoroutine(Vector3 vec)
 	{
-		Attack(Vector3.forward);
-	}
-
-	protected override void DownAttack()
-	{
-		Attack(Vector3.back);
-	}
-
-	protected override void LeftAttack()
-	{
-		Attack(Vector3.left);
-	}
-
-	protected override void RightAttack()
-	{
-		Attack(Vector3.right);
+		Attack(vec);
 	}
 
 	protected override void Attack(Vector3 vec)
@@ -91,7 +65,7 @@ public class BaseGreatSword : Weapon
 		_currentVector = vec;
 	}
 
-	private void AttackUP()
+	private void AttackUP(Vector3 vec)
 	{
 		_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 		if(_chargeTime >= _maxChargeTime)
@@ -110,7 +84,7 @@ public class BaseGreatSword : Weapon
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
 	}
 
-	private void Charge()
+	private void Charge(Vector3 vec)
 	{
 		if (_chargeTime >= _maxChargeTime)
 		{
@@ -131,19 +105,8 @@ public class BaseGreatSword : Weapon
 		_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 		_currentVector = Vector3.zero;
 
-		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Hold, Charge);
-		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Hold, Charge);
-		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Hold, Charge);
-		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Hold, Charge);
-
-		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Release, AttackUP);
-		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Release, AttackUP);
-		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Release, AttackUP);
-		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Release, AttackUP);
-
-		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Press, Move);
-		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Press, Move);
-		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Press, Move);
-		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Press, Move);
+		InputManager.OnMovePress -= Move;
+		InputManager.OnAttackHold -= Charge;
+		InputManager.OnAttackRelease -= AttackUP;
 	}
 }
