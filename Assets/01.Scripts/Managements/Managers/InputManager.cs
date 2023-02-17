@@ -53,10 +53,12 @@ namespace Managements.Managers
 
 		public override void Update()
 		{
-			InputMove();
+			InputPress();
+			InputHold();
+			InputRelease();
 		}
 
-		private void InputMove()
+		private void InputPress()
 		{
 			// Press
 			if (Input.GetKey(GetKeyCode(KeyboardInput.MoveForward)))
@@ -75,21 +77,10 @@ namespace Managements.Managers
 			{
 				OnMovePress?.Invoke(Vector3.right);
 			}
-			
-			// Hold
-			if (Input.GetKey(GetKeyCode(KeyboardInput.MoveForward)))
-			{
-				OnMoveHold?.Invoke(Vector3.forward);
-			}
-			if (Input.GetKey(GetKeyCode(KeyboardInput.MoveBackward)))
-			{
-				OnMoveHold?.Invoke(Vector3.back);
-			}
-			if (Input.GetKey(GetKeyCode(KeyboardInput.MoveLeft)))
-			{
-				OnMoveHold?.Invoke(Vector3.left);
-			}
-			
+		}
+		
+		private void InputRelease()
+		{
 			// Release
 			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.MoveForward)))
 			{
@@ -106,6 +97,24 @@ namespace Managements.Managers
 			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.MoveRight)))
 			{
 				OnMoveRelease?.Invoke(Vector3.right);
+			}
+		}
+
+		private void InputHold()
+		{
+			// Hold
+			if (Input.GetKey(GetKeyCode(KeyboardInput.MoveForward)))
+			{
+				OnMoveHold?.Invoke(Vector3.forward);
+			}
+			if (Input.GetKey(GetKeyCode(KeyboardInput.MoveBackward)))
+			{
+				OnMoveHold?.Invoke(Vector3.back);
+			}
+
+			if (Input.GetKey(GetKeyCode(KeyboardInput.MoveLeft)))
+			{
+				OnMoveHold?.Invoke(Vector3.left);
 			}
 		}
 		
