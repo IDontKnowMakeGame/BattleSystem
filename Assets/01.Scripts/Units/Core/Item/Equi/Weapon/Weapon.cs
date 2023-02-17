@@ -85,7 +85,7 @@ namespace Unit.Core.Weapon
 
 		protected void GetWeaponStateData(string name)
 		{
-			WeaponStateDataList weaponStateDataList = DataJson.LoadJsonFile<WeaponStateDataList>(Application.dataPath + "/SAVE/Weapon", "WeaponStatus");
+			WeaponStateDataList weaponStateDataList = DataJson.LoadJsonFile<WeaponStateDataList>(Application.streamingAssetsPath + "/SAVE/Weapon", "WeaponStatus");
 			foreach (WeaponStateData data in weaponStateDataList.weaponList)
 			{
 				if (data.name == name)

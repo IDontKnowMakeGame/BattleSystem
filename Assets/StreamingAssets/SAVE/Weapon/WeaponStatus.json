@@ -1,0 +1,76 @@
+{
+    "weaponList": [
+        {
+            "name": "oldSword",
+            "weaponClass": "BasicSword",
+            "damage": 32,
+            "attackSpeed": 0.30000001192092898,
+            "attackAfterDelay": 1.0,
+            "weaponWeight": 5
+        },
+        {
+            "name": "oldGreatSword",
+            "weaponClass": "GreatSword",
+            "damage": 140,
+            "attackSpeed": 3.0,
+            "attackAfterDelay": 0.699999988079071,
+            "weaponWeight": 7
+        },
+        {
+            "name": "oldTwinSword",
+            "weaponClass": "TwinSword",
+            "damage": 8,
+            "attackSpeed": 0.0,
+            "attackAfterDelay": 0.0,
+            "weaponWeight": 3
+        },
+        {
+            "name": "oldSpear",
+            "weaponClass": "Spear",
+            "damage": 30,
+            "attackSpeed": 0.699999988079071,
+            "attackAfterDelay": 0.699999988079071,
+            "weaponWeight": 4
+        },
+        {
+            "name": "oldBow",
+            "weaponClass": "Bow",
+            "damage": 90,
+            "attackSpeed": 1.2000000476837159,
+            "attackAfterDelay": 0.5,
+            "weaponWeight": 3
+        },
+        {
+            "name": "taintedSword",
+            "weaponClass": "BasicSword",
+            "damage": 35,
+            "attackSpeed": 0.30000001192092898,
+            "attackAfterDelay": 0.4000000059604645,
+            "weaponWeight": 4
+        },
+        {
+            "name": "brokenSword",
+            "weaponClass": "BasicSword",
+            "damage": 10,
+            "attackSpeed": 0.30000001192092898,
+            "attackAfterDelay": 0.20000000298023225,
+            "weaponWeight": 2
+        },
+        {
+            "name": "outwornBow",
+            "weaponClass": "Bow",
+            "damage": 42,
+            "attackSpeed": 1.2999999523162842,
+            "attackAfterDelay": 0.4000000059604645,
+            "weaponWeight": 3
+        },
+        {
+            "name": "rustySpear",
+            "weaponClass": "Spear",
+            "damage": 25,
+            "attackSpeed": 0.800000011920929,
+            "attackAfterDelay": 0.800000011920929,
+            "weaponWeight": 4
+        }
+    ]
+}

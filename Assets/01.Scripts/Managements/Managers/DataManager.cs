@@ -131,10 +131,10 @@ public class DataManager : Manager
     private string URL;
     public override void Awake()
     {
-        UserData = DataJson.LoadJsonFile<User>(Application.dataPath + "/SAVE/User", "UserData");
-        SavePointData = DataJson.LoadJsonFile<SavePoint>(Application.dataPath + "/SAVE/User", "SavePointData");
-        InventoryData = DataJson.LoadJsonFile<Inventory>(Application.dataPath + "/SAVE/User", "InvectoryData");
-        WeaponClassListData = DataJson.LoadJsonFile<WeaponClassList>(Application.dataPath + "/SAVE/Weapon", "ClassLevelData");
+        UserData = DataJson.LoadJsonFile<User>(Application.streamingAssetsPath + "/SAVE/User", "UserData");
+        SavePointData = DataJson.LoadJsonFile<SavePoint>(Application.streamingAssetsPath + "/SAVE/User", "SavePointData");
+        InventoryData = DataJson.LoadJsonFile<Inventory>(Application.streamingAssetsPath + "/SAVE/User", "InvectoryData");
+        WeaponClassListData = DataJson.LoadJsonFile<WeaponClassList>(Application.streamingAssetsPath + "/SAVE/Weapon", "ClassLevelData");
         
         if(WeaponClassListData.weaponclassList.Count <= 0)
         {
@@ -146,7 +146,7 @@ public class DataManager : Manager
     public void SaveToUserData()
     {
         string json = DataJson.ObjectToJson(UserData);
-        DataJson.SaveJsonFile(Application.dataPath + "/SAVE/User", "UserData", json);
+        DataJson.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/User", "UserData", json);
     }
     public void SwapCurrentWeaponData()
     {
@@ -196,7 +196,7 @@ public class DataManager : Manager
     public void SaveToSavePointData()
     {
         string json = DataJson.ObjectToJson(SavePointData);
-        DataJson.SaveJsonFile(Application.dataPath + "/SAVE/User", "SavePointData", json);
+        DataJson.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/User", "SavePointData", json);
     }
     public void ChangeCurrentFloor(Floor floor)
     {
@@ -277,7 +277,7 @@ public class DataManager : Manager
     public void SaveWeaponClassListData()
     {
         string json = DataJson.ObjectToJson(WeaponClassListData);
-        DataJson.SaveJsonFile(Application.dataPath + "/SAVE/Weapon", "ClassLevelData", json);
+        DataJson.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/Weapon", "ClassLevelData", json);
     }
     #endregion
 }

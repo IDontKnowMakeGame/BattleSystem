@@ -79,7 +79,7 @@ namespace Units.Base.Player
 
         public void EnqueueMove(Vector3 dir)
         {
-            if (moveDir.Count >= 1) return;
+            if (moveDir.Count > 1) return;
             ThisBase.AddState(BaseState.Moving);
             var speed = ThisBase.GetBehaviour<UnitStat>().NowStats.Agi;
             moveDir.Enqueue(new MoveNode(dir, speed));
