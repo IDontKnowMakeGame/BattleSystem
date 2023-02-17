@@ -192,14 +192,15 @@ namespace Managements.Managers
 			}
 		}
 		
-		private KeyCode GetKeyCode(KeyboardInput input)
+		public KeyCode GetKeyCode(KeyboardInput input)
 		{
 			return (from keyboardInputData in _keyboardInputDatas where keyboardInputData.keyboardInput == input select keyboardInputData.keyCode).FirstOrDefault();
 		}
-
-		private void SetKeyCode(KeyboardInput input, KeyCode keyCode)
+		
+		public void ChangeKeyCode(KeyboardInput input, KeyCode keyCode)
 		{
-
+			var keyboardInputData = _keyboardInputDatas.FirstOrDefault(x => x.keyboardInput == input);
+			keyboardInputData.keyCode = keyCode;
 		}
 	}
 }
