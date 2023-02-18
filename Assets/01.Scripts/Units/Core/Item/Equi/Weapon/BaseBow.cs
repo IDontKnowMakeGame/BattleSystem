@@ -33,10 +33,7 @@ public class BaseBow : Weapon
 		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.A);
 		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.D);
 
-		_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Hold, Charge);
-		_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Hold, Charge);
-		_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Hold, Charge);
-		_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Hold, Charge);
+		InputManager.OnAttackHold += Charge;
 
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderInit, new EventParam() { floatParam = _maxChargeTime });
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
@@ -46,24 +43,9 @@ public class BaseBow : Weapon
 		base.Update();
 	}
 
-	protected override void UpAttack()
+	protected override void AttackCoroutine(Vector3 vec)
 	{
-		Attack(Vector3.forward);
-	}
-
-	protected override void DownAttack()
-	{
-		Attack(Vector3.back);
-	}
-
-	protected override void LeftAttack()
-	{
-		Attack(Vector3.left);
-	}
-
-	protected override void RightAttack()
-	{
-		Attack(Vector3.right);
+		Attack(vec);
 	}
 	protected override void Attack(Vector3 vec)
 	{
@@ -72,13 +54,14 @@ public class BaseBow : Weapon
 
 		if (_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Charge))
 			return;
+
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = true });
 		_thisBase.AddState(Units.Base.Unit.BaseState.Charge);
 		_thisBase.AddState(Units.Base.Unit.BaseState.StopMove);
 		_currentVector = vec;
 	}
 
-	private void Charge()
+	private void Charge(Vector3 vec)
 	{
 		if (!_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Charge))
 			return;
@@ -89,6 +72,7 @@ public class BaseBow : Weapon
 			_thisBase.RemoveState(Units.Base.Unit.BaseState.StopMove);
 			Shooting(_currentVector);
 			_chargeTime = 0;
+
 			GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderUp, new EventParam() { floatParam = _chargeTime });
 			GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
 		}
@@ -105,7 +89,7 @@ public class BaseBow : Weapon
 		BaseArrow arrow = obj.GetComponent<BaseArrow>();
 
 		arrow.InitArrow(projectileSpeed, _weaponStats.Atk,
-			_thisBase.Position + vec,vec, _arrowName);
+			_thisBase.Position + vec, vec, _arrowName);
 		arrow.ShootArrow();
 
 		hasArrow = false;
@@ -114,9 +98,6 @@ public class BaseBow : Weapon
 	public override void Reset()
 	{
 		base.Reset();
-		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Hold, Charge);
-		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Hold, Charge);
-		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Hold, Charge);
-		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Hold, Charge);
+		InputManager.OnAttackHold -= Charge;
 	}
 }

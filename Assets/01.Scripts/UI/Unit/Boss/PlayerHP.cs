@@ -38,7 +38,6 @@ public class PlayerHP : SliderUI
 
     public override void AddHP(EventParam value)
     {
-        Debug.Log("HPCheck");
         base.AddHP(value);
         isDamage = true;
     }
@@ -49,7 +48,6 @@ public class PlayerHP : SliderUI
         {
             float whiteHPCheck = Mathf.Lerp(whiteHP.localEulerAngles.x, _slider.value, sliderSpeed * Time.deltaTime);
             whiteHP.localScale = whiteHP.localScale.SetX(whiteHPCheck);
-            Debug.Log(whiteHP.localScale);
             if (_slider.value >= whiteHPCheck - 0.01f)
             {
                 isDamage = false;
