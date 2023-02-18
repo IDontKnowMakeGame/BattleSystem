@@ -33,6 +33,9 @@ namespace Units.Base.Player
         [SerializeField]
         private Vector3 spawnPos;
 
+        [SerializeField]
+        private float smoothMoving;
+
         private Transform sprite;
 
         private UnitAnimation unitAnimation;
@@ -171,9 +174,12 @@ namespace Units.Base.Player
             _seq.Append(ThisBase.transform.DOMove(nextPos, spd).SetEase(Ease.OutCubic));
             _seq.InsertCallback(spd / 2, () =>
             {
+                ThisBase.Position = nextPos;
+            });
+            _seq.InsertCallback(spd / smoothMoving, () =>
+            {
                 ClearMove();
                 ThisBase.RemoveState(BaseState.Moving);
-                ThisBase.Position = nextPos;
             });
             _seq.AppendCallback(() =>
             {

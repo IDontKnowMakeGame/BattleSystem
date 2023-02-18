@@ -23563,6 +23563,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1206404373, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1423464762, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
       propertyPath: animationClip.Array.size
       value: 4
@@ -23643,6 +23647,10 @@ PrefabInstance:
       propertyPath: PlayerAttack.cameraZoom
       value: 
       objectReference: {fileID: 659410822}
+    - target: {fileID: 3562661168614408687, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: playerMove.smoothMoving
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3562661168614408687, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
       propertyPath: thisStat.changeStats.Hp
       value: 220
