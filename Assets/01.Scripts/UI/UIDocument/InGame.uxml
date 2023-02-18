@@ -17,7 +17,8 @@
     </ui:VisualElement>
     <ui:VisualElement style="flex-direction: column; width: 100%; height: 50%; justify-content: flex-start; background-color: rgb(0, 120, 140);" />
     <ui:VisualElement style="width: 100%; height: 30%; background-color: rgb(125, 125, 125); flex-direction: row; align-items: flex-end;">
-        <ui:VisualElement style="background-color: rgb(255, 255, 255); width: 150px; height: 250px; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" />
-        <ui:VisualElement style="background-color: rgba(255, 255, 255, 255); width: 119px; height: 200px; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" />
+        <ui:VisualElement style="background-color: rgb(255, 255, 255); width: 150px; height: 250px; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; cursor: initial; background-image: resource(&apos;oldSword&apos;);" />
+        <ui:VisualElement style="background-color: rgb(255, 255, 255); width: 119px; height: 200px; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" />
+        <ui:VisualElement style="width: 100px; height: 100px; background-color: rgba(245, 245, 245, 255); margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; align-items: stretch;" />
     </ui:VisualElement>
 </ui:UXML>
