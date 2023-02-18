@@ -95,7 +95,7 @@ namespace Units.Base.Player
             }
 
 
-            if (timer > 0 || unitAnimation.CurState() == 10 || playerPortion.UsePortion) return;
+            if (timer > 0 || unitAnimation.CurState() == 10 || playerPortion.UsePortion || IsAttack) return;
 
             ThisBase.AddState(BaseState.Attacking);
             ChangeAnimation(curDir);
@@ -132,10 +132,12 @@ namespace Units.Base.Player
 
         private void SetDir(Vector3 dir)
         {
-            //if (timer > 0 || unitAnimation.CurState() == 10 || isAttack || playerPortion.UsePortion) //return;
-
+            if (IsAttack) return;
             curDir = dir;
             isInit = true;
+
+            if (ThisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() != 1)
+                ThisBase.GetBehaviour<PlayerMove>().stop = true;
         }
 
         public void ChangeAnimation(Vector3 dir)
@@ -189,6 +191,7 @@ namespace Units.Base.Player
                 if (isAttack && unitAnimation.CurIndex() > unitAnimation.GetFPS() / 2)
                 {
                     isAttack = false;
+                    ThisBase.GetBehaviour<PlayerMove>().stop = false;
                     ThisBase.RemoveState(BaseState.Attacking);
                 }
             }
