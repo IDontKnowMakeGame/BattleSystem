@@ -1,12 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using System.IO;
 using System;
 using UnityEngine.Networking;
 
-public class ExcelToClassConverter : MonoBehaviour
+#if UNITY_EDITOR
+public class ExcelToClassConverter : EditorWindow
 {
+    #region Editor
+    [MenuItem("Tools/ExcelToClassConverter")]
+    public static void ShowWindow()
+    {
+        GetWindow<ExcelToClassConverter>("ExcelToClassConverter");
+    }
+
+    private void OnGUI()
+    {
+        GUILayout.Label("ExcelToClass", EditorStyles.boldLabel);
+
+        inputURL = EditorGUILayout.TextField("URL(Until \"Range=\"):", inputURL);
+        rangeStart = EditorGUILayout.TextField("Excel Range Start:", rangeStart);
+        rangeEnd = EditorGUILayout.TextField("Excel Range End:", rangeEnd);
+        fileName = EditorGUILayout.TextField("File Name:", fileName);
+
+        if(GUILayout.Button("Converter"))
+        {
+            MakeClass();
+        }
+    }
+    #endregion
+
+
+    #region ExcelToClass
+    private string inputURL = "https://docs.google.com/spreadsheets/d/1gya2C8tkrLr5HymQ4eccOAdZdZ1fhmYBe2AaSXMTee0/export?format=tsv&range=";
     private string URL;
 
     string pth = "Assets/01.Scripts/Data";
@@ -15,13 +43,11 @@ public class ExcelToClassConverter : MonoBehaviour
     public string rangeStart = "A1";
     public string rangeEnd = "B2";
     public string fileName = "WeaponData";
-    IEnumerator DownloadExcel()
+    private async void DownloadExcel()
     {
         UnityWebRequest www = UnityWebRequest.Get(URL);
-        yield return www.SendWebRequest();
+        await www.SendWebRequest();
         SetItemSO(www.downloadHandler.text);
-
-        
     }
 
     void SetItemSO(string tsv)
@@ -65,10 +91,11 @@ public class ExcelToClassConverter : MonoBehaviour
         sw.Close();
     }
 
-    [ContextMenu("MakeClass")]
     private void MakeClass()
     {
-        URL = "https://docs.google.com/spreadsheets/d/1gya2C8tkrLr5HymQ4eccOAdZdZ1fhmYBe2AaSXMTee0/export?format=tsv&range=" + $"{rangeStart}:{rangeEnd}";
-        StartCoroutine(DownloadExcel());
+        URL = inputURL + $"{rangeStart}:{rangeEnd}";
+        DownloadExcel();
     }
+    #endregion
 }
+#endif
