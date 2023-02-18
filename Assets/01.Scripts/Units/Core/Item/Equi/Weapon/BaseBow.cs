@@ -33,14 +33,13 @@ public class BaseBow : Weapon
 		InputManager.ChangeKeyCode(KeyboardInput.AttackLeft, KeyCode.A);
 		InputManager.ChangeKeyCode(KeyboardInput.AttackRight, KeyCode.D);
 
-		InputManager.OnAttackHold += Charge;
-
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderInit, new EventParam() { floatParam = _maxChargeTime });
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
 	}
 	public override void Update()
 	{
 		base.Update();
+		Charge(_currentVector);
 	}
 
 	protected override void AttackCoroutine(Vector3 vec)

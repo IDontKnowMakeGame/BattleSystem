@@ -48,7 +48,7 @@ namespace Units.Base.Player
         public override void Start()
         {
 
-            InputManager.OnAttackPress += EnqueueMove;
+            InputManager.OnMovePress += EnqueueMove;
 
             sprite = ThisBase.GetComponentInChildren<MeshRenderer>().transform;
             unitAnimation = ThisBase.GetBehaviour<UnitAnimation>();
