@@ -77,8 +77,7 @@ namespace Units.Base.Player
 
         public void EnqueueMove(Vector3 dir)
         {
-            if (moveDir.Count > 1) return;
-            ThisBase.AddState(BaseState.Moving);
+            if (moveDir.Count > 1 || ThisBase.State.HasFlag(BaseState.Moving)) return;
             var speed = ThisBase.GetBehaviour<UnitStat>().NowStats.Agi;
             moveDir.Enqueue(new MoveNode(dir, speed));
 		}
@@ -86,7 +85,10 @@ namespace Units.Base.Player
 		public override void Translate(Vector3 dir, float spd = 1)
         {
             if (isMoving || ThisBase.State.HasFlag(BaseState.StopMove) || unitAnimation.CurState() == 10 || playerPortion.UsePortion)
+            {
+                ThisBase.RemoveState(BaseState.Moving);
                 return;
+            }
 
             if (playerDir.x != 0)
             {
@@ -108,7 +110,10 @@ namespace Units.Base.Player
             var attack = ThisBase.GetBehaviour<PlayerAttack>();
             PlayerEqiq playerEqiq = ThisBase.GetBehaviour<PlayerEqiq>();
             if (attack.IsAttack && playerEqiq.WeaponAnimation() != 1)
+            {
+                ThisBase.RemoveState(BaseState.Moving);
                 return;
+            }
 
             var map = Define.GetManager<MapManager>();
 
@@ -122,6 +127,8 @@ namespace Units.Base.Player
                     unitAnimation.ChangeState(0);
                 else
                     MoveAnimation(nextPos - orignalPos);
+
+                ThisBase.RemoveState(BaseState.Moving);
                 return;
             }
 
@@ -131,6 +138,8 @@ namespace Units.Base.Player
                     unitAnimation.ChangeState(0);
                 else
                     MoveAnimation(nextPos - orignalPos);
+
+                ThisBase.RemoveState(BaseState.Moving);
                 return;
             }
             else
@@ -151,6 +160,7 @@ namespace Units.Base.Player
             if (distance < 0.1f)
             {
                 isMoving = false;
+                ThisBase.RemoveState(BaseState.Moving);
                 PlayerStop();
                 _seq.Kill();
                 return;
@@ -183,9 +193,10 @@ namespace Units.Base.Player
 
         public void PopMove()
         {
-            if (moveDir.Count > 0 && !isMoving)
+            if (moveDir.Count > 0 && !isMoving && !ThisBase.State.HasFlag(BaseState.Moving))
             {
                 MoveNode nextNode = moveDir.Dequeue();
+                ThisBase.AddState(BaseState.Moving);
                 Translate(nextNode.dir, nextNode.speed);
             }
         }
