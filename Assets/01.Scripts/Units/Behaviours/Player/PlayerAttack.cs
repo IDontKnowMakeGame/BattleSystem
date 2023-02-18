@@ -230,5 +230,12 @@ namespace Units.Base.Player
             attackDelay = delay;
             timer = 0;
         }
+
+        public override void OnDisable()
+        {
+            InputManager.OnChangePress -= SetAnimation;
+            InputManager.OnTestChangePress -= SetAnimation;
+            base.OnDisable();
+        }
     }
 }
