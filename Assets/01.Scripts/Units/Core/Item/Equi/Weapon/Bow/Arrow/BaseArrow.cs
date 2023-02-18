@@ -136,6 +136,7 @@ public class BaseArrow : MonoBehaviour
 	{
 		if ((units is EnemyBase || units is BlockBase) && !_thisArrow.isStick)
 		{
+			Debug.Log((units is EnemyBase || units is BlockBase));
 			_enemyBase = units as EnemyBase;
 			_enemyBase.GetBehaviour<UnitStat>()?.Damaged(_arrowStat.damage, InGame.PlayerBase);
 			_thisArrow.Stick(units, _arrowStat.dir);
