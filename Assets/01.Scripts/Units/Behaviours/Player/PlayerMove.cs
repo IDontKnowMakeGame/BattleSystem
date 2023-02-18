@@ -43,6 +43,8 @@ namespace Units.Base.Player
 
         private bool twoAnimation = true;
 
+        public bool stop = false;
+
         public override void Awake()
         {
             base.Awake();
@@ -80,14 +82,14 @@ namespace Units.Base.Player
 
         public void EnqueueMove(Vector3 dir)
         {
-            if (moveDir.Count > 1 || ThisBase.State.HasFlag(BaseState.Moving)) return;
+            if (moveDir.Count > 1 || ThisBase.State.HasFlag(BaseState.Moving) || stop) return;
             var speed = ThisBase.GetBehaviour<UnitStat>().NowStats.Agi;
             moveDir.Enqueue(new MoveNode(dir, speed));
 		}
 
 		public override void Translate(Vector3 dir, float spd = 1)
         {
-            if (isMoving || ThisBase.State.HasFlag(BaseState.StopMove) || unitAnimation.CurState() == 10 || playerPortion.UsePortion)
+            if (isMoving || ThisBase.State.HasFlag(BaseState.StopMove) || unitAnimation.CurState() == 10 || playerPortion.UsePortion || stop)
             {
                 ThisBase.RemoveState(BaseState.Moving);
                 return;
