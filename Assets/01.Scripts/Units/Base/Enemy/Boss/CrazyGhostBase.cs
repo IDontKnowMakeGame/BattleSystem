@@ -4,15 +4,17 @@ using Core;
 using Managements.Managers;
 using Units.AI.States.Enemy.Boss.CrazyGhost;
 using Units.Base.Enemy;
+using Units.Base.Enemy.Boss;
 using Units.Base.Player;
 using Units.Behaviours.Unit;
 using UnityEngine;
 using Input = UnityEngine.Input;
 
-public class CrazyGhostBase : EnemyBase
+public class CrazyGhostBase : BossBase
 {
     [SerializeField] private UnitEquiq _enemyWeapons;
     [SerializeField] private CharacterRender _enemyRender;
+    
     protected override void Init()
     {
         InGame.BossBase = this;

@@ -156,7 +156,6 @@ namespace Managements
 
         public void Start()
         {
-            DontDestroyOnLoad(this);
             foreach (var manager in _managers.Values)
             {
                 manager.Start();
