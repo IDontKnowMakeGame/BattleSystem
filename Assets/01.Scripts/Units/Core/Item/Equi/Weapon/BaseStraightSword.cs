@@ -10,10 +10,10 @@ public class BaseStraightSword : Weapon
 	public override void ChangeKey()
 	{
 		base.ChangeKey();
-		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.W);
-		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.S);
-		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.A);
-		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.D);
+		InputManager.ChangeKeyCode(KeyboardInput.AttackForward, KeyCode.W);
+		InputManager.ChangeKeyCode(KeyboardInput.AttackBackward, KeyCode.S);
+		InputManager.ChangeKeyCode(KeyboardInput.AttackLeft, KeyCode.A);
+		InputManager.ChangeKeyCode(KeyboardInput.AttackRight, KeyCode.D);
 	}
 
 	protected override void Attack(Vector3 vec)

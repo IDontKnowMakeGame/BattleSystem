@@ -60,16 +60,14 @@ namespace Units.Base.Player
             sprite = ThisBase.GetComponentInChildren<MeshRenderer>().transform;
 
             SetAnimation();
-            Define.GetManager<InputManager>().AddInGameAction(InputTarget.TestChangeWeapon, InputStatus.Press, SetAnimation);
-            Define.GetManager<InputManager>().AddInGameAction(InputTarget.ChangeWeapon, InputStatus.Press, SetAnimation);
+
+            InputManager.OnChangePress += SetAnimation;
+            InputManager.OnTestChangePress += SetAnimation;
         }
 
         private void SetAnimation()
         {
-            Define.GetManager<InputManager>().AddInGameAction(InputTarget.UpAttack, InputStatus.Press, () => SetDir(Vector3.forward));
-            Define.GetManager<InputManager>().AddInGameAction(InputTarget.DownAttack, InputStatus.Press, () => SetDir(Vector3.back));
-            Define.GetManager<InputManager>().AddInGameAction(InputTarget.LeftAttack, InputStatus.Press, () => SetDir(Vector3.left));
-            Define.GetManager<InputManager>().AddInGameAction(InputTarget.RightAttack, InputStatus.Press, () => SetDir(Vector3.right));
+            InputManager.OnAttackPress += SetDir;
         }
 
         public override void Update()

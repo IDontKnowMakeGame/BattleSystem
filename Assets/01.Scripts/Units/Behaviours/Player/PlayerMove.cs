@@ -47,10 +47,8 @@ namespace Units.Base.Player
 
         public override void Start()
         {
-            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.UpMove, InputStatus.Press, () => EnqueueMove(Vector3.forward));
-            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.DownMove, InputStatus.Press, () => EnqueueMove(Vector3.back));
-            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.LeftMove, InputStatus.Press, () => EnqueueMove(Vector3.left));
-            Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.RightMove, InputStatus.Press, () => EnqueueMove(Vector3.right));
+
+            InputManager.OnAttackPress += EnqueueMove;
 
             sprite = ThisBase.GetComponentInChildren<MeshRenderer>().transform;
             unitAnimation = ThisBase.GetBehaviour<UnitAnimation>();

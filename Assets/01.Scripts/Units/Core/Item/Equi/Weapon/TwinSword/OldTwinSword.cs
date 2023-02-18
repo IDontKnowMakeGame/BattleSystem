@@ -27,15 +27,13 @@ public class OldTwinSword : BaseTwinSword
 		_thisBase.AddState(BaseState.Skill);
 		_thisBase.AddState(BaseState.StopMove);
 
-		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.W);
-		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.S);
-		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.A);
-		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.D);
+		InputManager.ChangeKeyCode(KeyboardInput.AttackForward, KeyCode.W);
+		InputManager.ChangeKeyCode(KeyboardInput.AttackBackward, KeyCode.S);
+		InputManager.ChangeKeyCode(KeyboardInput.AttackLeft, KeyCode.A);
+		InputManager.ChangeKeyCode(KeyboardInput.AttackRight, KeyCode.D);
 
-		_inputManager.AddInGameAction(InputTarget.UpAttack, InputStatus.Press, AttackFoword);
-		_inputManager.AddInGameAction(InputTarget.DownAttack, InputStatus.Press, AttackBack);
-		_inputManager.AddInGameAction(InputTarget.LeftAttack, InputStatus.Press, AttackLeft);
-		_inputManager.AddInGameAction(InputTarget.RightAttack, InputStatus.Press, AttackRight);
+
+		InputManager.OnAttackPress += SixTimeAttak;
 	}
 
 	protected override void Attack(Vector3 vec)
@@ -53,26 +51,18 @@ public class OldTwinSword : BaseTwinSword
 		}
 	}
 
-	private void AttackFoword() => SixTimeAttak(Vector3.forward);
-	private void AttackBack() => SixTimeAttak(Vector3.back);
-	private void AttackLeft() => SixTimeAttak(Vector3.left);
-	private void AttackRight() => SixTimeAttak(Vector3.right);
-
 	private void waitReset()
 	{
 		_isCoolTime = true;
 		_thisBase.RemoveState(BaseState.Skill);
 		_thisBase.RemoveState(BaseState.StopMove);
 
-		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.UpArrow);
-		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.DownArrow);
-		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.LeftArrow);
-		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.RightArrow);
+		InputManager.ChangeKeyCode(KeyboardInput.AttackForward, KeyCode.UpArrow);
+		InputManager.ChangeKeyCode(KeyboardInput.AttackBackward, KeyCode.DownArrow);
+		InputManager.ChangeKeyCode(KeyboardInput.AttackLeft, KeyCode.LeftArrow);
+		InputManager.ChangeKeyCode(KeyboardInput.AttackRight, KeyCode.RightArrow);
 
-		_inputManager.RemoveInGameAction(InputTarget.UpAttack, InputStatus.Press, AttackFoword);
-		_inputManager.RemoveInGameAction(InputTarget.DownAttack, InputStatus.Press, AttackBack);
-		_inputManager.RemoveInGameAction(InputTarget.LeftAttack, InputStatus.Press, AttackLeft);
-		_inputManager.RemoveInGameAction(InputTarget.RightAttack, InputStatus.Press, AttackRight);
+		InputManager.OnAttackPress -= SixTimeAttak;
 	}
 
 	public override void Reset()

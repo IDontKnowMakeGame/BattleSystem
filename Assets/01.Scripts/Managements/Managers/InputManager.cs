@@ -17,7 +17,12 @@ namespace Managements.Managers
 		AttackBackward,
 		AttackLeft,
 		AttackRight,
-		Skill
+		Skill,
+		SubKey,
+		ChangeKey,
+		OffKey,
+		TestChangeKey,
+		Interaction
 	}
 	
 	[Serializable]
@@ -41,7 +46,13 @@ namespace Managements.Managers
 		public static event Action OnSkillHold;
 		public static event Action OnSkillRelease;
 
-		private List<KeyboardInputData> _keyboardInputDatas = new()
+		public static event Action OnSubPress;
+		public static event Action OnChangePress;
+		public static event Action OnOffPress;
+		public static event Action OnTestChangePress;
+		public static event Action OnInteractionPress;
+
+		private static List<KeyboardInputData> _keyboardInputDatas = new()
 		{
 			new KeyboardInputData() { keyboardInput = KeyboardInput.MoveForward, keyCode = KeyCode.UpArrow },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.MoveBackward, keyCode = KeyCode.DownArrow },
@@ -51,7 +62,12 @@ namespace Managements.Managers
 			new KeyboardInputData() { keyboardInput = KeyboardInput.AttackBackward, keyCode = KeyCode.S },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.AttackLeft, keyCode = KeyCode.A },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.AttackRight, keyCode = KeyCode.D },
-			new KeyboardInputData() { keyboardInput = KeyboardInput.Skill, keyCode = KeyCode.Space }
+			new KeyboardInputData() { keyboardInput = KeyboardInput.Skill, keyCode = KeyCode.Space },
+			new KeyboardInputData() { keyboardInput = KeyboardInput.SubKey, keyCode = KeyCode.V },
+			new KeyboardInputData() { keyboardInput = KeyboardInput.ChangeKey, keyCode = KeyCode.R },
+			new KeyboardInputData() { keyboardInput = KeyboardInput.OffKey, keyCode = KeyCode.C },
+			new KeyboardInputData() { keyboardInput = KeyboardInput.TestChangeKey, keyCode = KeyCode.T },
+			new KeyboardInputData() { keyboardInput = KeyboardInput.Interaction, keyCode = KeyCode.E }
 		};
 
 		public override void Awake()
@@ -106,6 +122,31 @@ namespace Managements.Managers
 			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.Skill)))
 			{
 				OnSkillPress?.Invoke();
+			}
+
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.SubKey)))
+			{
+				OnSubPress?.Invoke();
+			}
+
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.ChangeKey)))
+			{
+				OnChangePress?.Invoke();
+			}
+
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.OffKey)))
+			{
+				OnOffPress?.Invoke();
+			}
+
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.TestChangeKey)))
+			{
+				OnTestChangePress?.Invoke();
+			}
+
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.Interaction)))
+			{
+				OnInteractionPress?.Invoke();
 			}
 		}
 		
@@ -197,7 +238,7 @@ namespace Managements.Managers
 			return (from keyboardInputData in _keyboardInputDatas where keyboardInputData.keyboardInput == input select keyboardInputData.keyCode).FirstOrDefault();
 		}
 		
-		public void ChangeKeyCode(KeyboardInput input, KeyCode keyCode)
+		public static void ChangeKeyCode(KeyboardInput input, KeyCode keyCode)
 		{
 			var keyboardInputData = _keyboardInputDatas.FirstOrDefault(x => x.keyboardInput == input);
 			keyboardInputData.keyCode = keyCode;
