@@ -163,6 +163,8 @@ GameObject:
   - component: {fileID: 57911751932573269}
   - component: {fileID: 57911751932573271}
   - component: {fileID: 2242452035319382347}
+  - component: {fileID: 659410823}
+  - component: {fileID: 659410824}
   m_Layer: 0
   m_Name: PlayerMainCam
   m_TagString: Untagged
@@ -177,7 +179,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57911751932573266}
-  m_LocalRotation: {x: 0.1736482, y: 0, z: 0, w: 0.9848078}
+  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
   m_LocalPosition: {x: 0, y: 3.0521207, z: -5.6381555}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -188,7 +190,7 @@ Transform:
   - {fileID: 5665438505650194112}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
 --- !u!114 &57911751932573269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,9 +264,142 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64956864aef51994e8cc0650c4fecbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothTime: 0.2
-  minSize: 40
+  smoothTime: 0.05
+  minSize: 55
   maxSize: 60
+--- !u!114 &659410823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57911751932573266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcbce9ee100383449965a3fe3c9baf7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 0
+--- !u!114 &659410824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57911751932573266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 73348c41e7a45b14e935dab0e7e4c044, type: 2}
+    - {fileID: 11400000, guid: 93a009acd8544124d9ea40d5c14bfeb3, type: 2}
+    - {fileID: 11400000, guid: 0636a4c3c9e61484f908dfd4063b1431, type: 2}
+    - {fileID: 11400000, guid: 0be1d2a17f343d64e80315cab435c16f, type: 2}
+    - {fileID: 11400000, guid: 1523d339fcad12f4c94e7ab220533592, type: 2}
+    - {fileID: 11400000, guid: 255ef3e220ff8de4783fe3ff2c9db0ef, type: 2}
+    - {fileID: 11400000, guid: ca55414037e40ce40b5dc0cfed647717, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 659410823}
+          m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
+          m_MethodName: TimeSlow
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 659410823}
+          m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
+          m_MethodName: TimeSet
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 659410823}
+          m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
+          m_MethodName: ZoomIn
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 50
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 659410823}
+          m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
+          m_MethodName: ZoomOut
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 659410823}
+          m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
+          m_MethodName: DamagedShake
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 659410823}
+          m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
+          m_MethodName: BasicAttackShake
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 659410823}
+          m_TargetAssemblyTypeName: CameraManager, Assembly-CSharp
+          m_MethodName: GreateSwordAttackShake
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1985816113393986282
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,8 +498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e351b12cf9ac2418a6486f66e8e1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
-  shakeForce: 0
+  shakeForce: 1
 --- !u!1 &5978494146101035768
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +556,7 @@ MonoBehaviour:
     m_ImpulseDuration: 0.2
     m_ImpulseType: 3
     m_DissipationRate: 0.25
-    m_RawSignal: {fileID: 11400000, guid: ab019593b0ffd7a4abfd4f1afc8eea56, type: 2}
+    m_RawSignal: {fileID: 0}
     m_AmplitudeGain: 1
     m_FrequencyGain: 1
     m_RepeatMode: 0
@@ -463,8 +597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e351b12cf9ac2418a6486f66e8e1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
-  shakeForce: 0
+  shakeForce: 0.75
 --- !u!1 &9183814801741086336
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,5 +696,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e351b12cf9ac2418a6486f66e8e1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
-  shakeForce: 0
+  shakeForce: 0.75
