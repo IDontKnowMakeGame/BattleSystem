@@ -68,7 +68,7 @@ public class BaseGreatSword : Weapon
 	private void AttackUP(Vector3 vec)
 	{
 		_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
-		if(_chargeTime >= _maxChargeTime)
+		if (_chargeTime >= _maxChargeTime)
 		{
 			_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 			_playerAttack.AttackColParent.AllDisableDir();
@@ -79,6 +79,8 @@ public class BaseGreatSword : Weapon
 			_playerAttack.AttackColParent.ChangeWeapon();
 			_playerAttack.AttackColParent.AllEnableDir();
 		}
+		else
+			InGame.PlayerBase.GetBehaviour<PlayerMove>().stop = false;
 		_chargeTime = 0;
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderUp, new EventParam() { floatParam = _chargeTime });
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
