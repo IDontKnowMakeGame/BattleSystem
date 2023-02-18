@@ -773,5 +773,10 @@ public static class ExtensionMethods
             array[i] = temp;
         }
     }
+
+    public static bool IsNeighbor(this Vector3 center, Vector3 other)
+    {
+        return Vector3.Distance(center, other) == 1;
+    }
     #endregion
 }
