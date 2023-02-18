@@ -88,6 +88,10 @@ public class EquipWeaponUI : MonoBehaviour
         _firstWeaponImage.sprite = _secondWeaponImage.sprite;
         _secondWeaponImage.sprite = sprite;
 
+        string name = _firstWeapon;
+        _firstWeapon = _secondWeapon;
+        _secondWeapon = name;
+
         SaveWeaponData();
     }
 
