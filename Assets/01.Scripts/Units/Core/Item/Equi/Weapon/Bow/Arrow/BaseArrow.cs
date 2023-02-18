@@ -151,10 +151,10 @@ public class BaseArrow : MonoBehaviour
 
 	private void AddKey()
 	{
-		Define.GetManager<InputManager>().AddInGameAction(InputTarget.SubSkillKey, InputStatus.Press, Pull);
+		InputManager.OnSubPress += Pull;
 	}
 	private void DelKey()
 	{
-		Define.GetManager<InputManager>().RemoveInGameAction(InputTarget.SubSkillKey, InputStatus.Press, Pull);
+		InputManager.OnSubPress -= Pull;
 	}
 }

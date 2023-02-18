@@ -36,9 +36,9 @@ namespace Units.Base.Player
 			unitAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
 			unitAnimation.ChangeState(10);
 
-			Define.GetManager<InputManager>().AddInGameAction(InputTarget.TestChangeWeapon, InputStatus.Press, TestChangeWeapon);
-			Define.GetManager<InputManager>().AddInGameAction(InputTarget.ChangeWeapon, InputStatus.Press, ChangeWeapon);
-			Define.GetManager<InputManager>().ChangeInGameAction(InputTarget.WeaponOnOff, InputStatus.Press, WeaponOnOff);
+			InputManager.OnChangePress += ChangeWeapon;
+			InputManager.OnOffPress += WeaponOnOff;
+			InputManager.OnTestChangePress += TestChangeWeapon;
 
 			Define.GetManager<EventManager>().StartListening(EventFlag.WeaponChange, ChangeWeapon);
 

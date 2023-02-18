@@ -10,10 +10,10 @@ public class BaseTwinSword : Weapon
 	{
 		base.ChangeKey();
 		Debug.Log("ChangeTwinSword");
-		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.UpArrow);
-		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.DownArrow);
-		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.LeftArrow);
-		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.RightArrow);
+		InputManager.ChangeKeyCode(KeyboardInput.AttackForward, KeyCode.UpArrow);
+		InputManager.ChangeKeyCode(KeyboardInput.AttackBackward, KeyCode.DownArrow);
+		InputManager.ChangeKeyCode(KeyboardInput.AttackLeft, KeyCode.LeftArrow);
+		InputManager.ChangeKeyCode(KeyboardInput.AttackRight, KeyCode.RightArrow);
 	}
 
 	protected override void AttackCoroutine(Vector3 vec)

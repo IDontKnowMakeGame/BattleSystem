@@ -28,12 +28,10 @@ public class BaseBow : Weapon
 	public override void ChangeKey()
 	{
 		base.ChangeKey();
-		_inputManager.ChangeInGameKey(InputTarget.UpAttack, KeyCode.W);
-		_inputManager.ChangeInGameKey(InputTarget.DownAttack, KeyCode.S);
-		_inputManager.ChangeInGameKey(InputTarget.LeftAttack, KeyCode.A);
-		_inputManager.ChangeInGameKey(InputTarget.RightAttack, KeyCode.D);
-
-		InputManager.OnAttackHold += Charge;
+		InputManager.ChangeKeyCode(KeyboardInput.AttackForward, KeyCode.W);
+		InputManager.ChangeKeyCode(KeyboardInput.AttackBackward, KeyCode.S);
+		InputManager.ChangeKeyCode(KeyboardInput.AttackLeft, KeyCode.A);
+		InputManager.ChangeKeyCode(KeyboardInput.AttackRight, KeyCode.D);
 
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderInit, new EventParam() { floatParam = _maxChargeTime });
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
@@ -41,6 +39,7 @@ public class BaseBow : Weapon
 	public override void Update()
 	{
 		base.Update();
+		Charge(_currentVector);
 	}
 
 	protected override void AttackCoroutine(Vector3 vec)
