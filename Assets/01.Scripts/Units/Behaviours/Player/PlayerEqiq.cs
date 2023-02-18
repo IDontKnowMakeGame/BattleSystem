@@ -54,6 +54,7 @@ namespace Units.Base.Player
         {
 	        var manager = Define.GetManager<EventManager>();
 			manager?.StopListening(EventFlag.WeaponChange, ChangeWeapon);
+			CurrentWeapon?.Reset();
 			base.OnDisable();
         }
 

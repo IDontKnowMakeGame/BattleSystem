@@ -60,6 +60,7 @@ public class BaseGreatSword : Weapon
 
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = true });
 		_thisBase.AddState(Units.Base.Unit.BaseState.Charge);
+		Debug.Log(_thisBase.GetBehaviour<PlayerAttack>());
 		_thisBase.GetBehaviour<PlayerAttack>().SkillAnimation(vec);
 		
 		_currentVector = vec;
