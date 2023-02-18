@@ -26,7 +26,7 @@ namespace Managements.Managers
 	}
 	
 	[Serializable]
-	public struct KeyboardInputData
+	public class KeyboardInputData
 	{
 		public KeyboardInput keyboardInput;
 		public KeyCode keyCode;
@@ -240,8 +240,14 @@ namespace Managements.Managers
 		
 		public static void ChangeKeyCode(KeyboardInput input, KeyCode keyCode)
 		{
-			var keyboardInputData = _keyboardInputDatas.FirstOrDefault(x => x.keyboardInput == input);
-			keyboardInputData.keyCode = keyCode;
+			for (var i = 0; i < _keyboardInputDatas.Count; i++)
+			{
+				if (_keyboardInputDatas[i].keyboardInput == input)
+				{
+					_keyboardInputDatas[i].keyCode = keyCode;
+					return;
+				}
+			}
 		}
 	}
 }
