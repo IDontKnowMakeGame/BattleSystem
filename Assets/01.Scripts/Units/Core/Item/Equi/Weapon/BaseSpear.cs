@@ -28,7 +28,6 @@ public class BaseSpear : Weapon
 	public override void Update()
 	{
 		base.Update();
-		Debug.Log(_playerAttack.HasEnemy());
 		if (_isAttack && isOut && _playerAttack.HasEnemy() && !_thisBase.State.HasFlag(BaseState.Moving))
 		{
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
