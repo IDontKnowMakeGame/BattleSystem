@@ -11,7 +11,6 @@ namespace Units.Behaviours.Unit
 	{
 		[SerializeField]
 		protected string _currentWeapon;
-
 		[SerializeField]
 		protected string _secoundWeapon;
 

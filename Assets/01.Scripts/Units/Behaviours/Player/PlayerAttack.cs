@@ -95,7 +95,11 @@ namespace Units.Base.Player
             }
 
 
-            if (timer > 0 || unitAnimation.CurState() == 10 || playerPortion.UsePortion || IsAttack) return;
+            if (timer > 0 || unitAnimation.CurState() == 10 || playerPortion.UsePortion || IsAttack)
+            {
+                ThisBase.GetBehaviour<PlayerMove>().stop = false;
+                return;
+            }
 
             ThisBase.AddState(BaseState.Attacking);
             ChangeAnimation(curDir);

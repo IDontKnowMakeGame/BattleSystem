@@ -79,9 +79,13 @@ namespace Units.Base.Player
         {
             base.Die();
             DOTween.KillAll();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             ThisBase.GetBehaviour<PlayerMove>().SpawnSetting();
+            Respawn();
         }
 
+        public void Respawn()
+        {
+            SceneManager.LoadScene("Lobby");
+        }
     }
 }
