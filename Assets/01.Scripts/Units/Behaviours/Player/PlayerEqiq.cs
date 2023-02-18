@@ -72,6 +72,7 @@ namespace Units.Base.Player
 			_secoundWeapon = temp;
 
 			InGame.PlayerBase.GetBehaviour<PlayerMove>().ClearMove();
+			Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponSwap,new EventParam());
 
 			playerAttack.ChangeDelay(CurrentWeapon.WeaponStat.Afs);
 			unitAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
