@@ -171,6 +171,8 @@ namespace Units.Base.Player
             _seq.Append(ThisBase.transform.DOMove(nextPos, spd).SetEase(Ease.OutCubic));
             _seq.InsertCallback(spd / 2, () =>
             {
+                ClearMove();
+                ThisBase.RemoveState(BaseState.Moving);
                 ThisBase.Position = nextPos;
             });
             _seq.AppendCallback(() =>
@@ -181,7 +183,6 @@ namespace Units.Base.Player
                 ThisBase.Position = nextPos;
                 InGame.SetUnit(null, orignalPos);
                 onBehaviourEnd?.Invoke();
-                ThisBase.RemoveState(BaseState.Moving);
                 _seq.Kill();
             });
         }
