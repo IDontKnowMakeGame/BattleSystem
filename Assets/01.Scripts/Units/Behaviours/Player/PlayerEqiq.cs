@@ -80,25 +80,35 @@ namespace Units.Base.Player
 
 		public void ChangeWeapon(EventParam eventParam)
 		{
-			if(eventParam.stringParam == null)
+			if (eventParam.stringParam != null)
 			{
-				if(eventParam.intParam == 1)
+				if (eventParam.intParam == 1)
 				{
-					weapons[_currentWeapon].Reset();
+					Debug.Log("넣기 1번째" + eventParam.stringParam);
 					_currentWeapon = eventParam.stringParam;
 				}
 				else
+				{
+					Debug.Log("넣기 2번째" + eventParam.stringParam);
 					_secoundWeapon = eventParam.stringParam;
+				}
+
+				CurrentWeapon?.ChangeKey();
 			}
 			else
 			{
 				if (eventParam.intParam == 1)
+				{
+					CurrentWeapon?.Reset();
+					Debug.Log("없애기 1번째" + eventParam.stringParam);
 					_currentWeapon = eventParam.stringParam;
+				}
 				else
+				{
+					Debug.Log("없애기 2번째" + eventParam.stringParam);
 					_secoundWeapon = eventParam.stringParam;
-
-				CurrentWeapon?.ChangeKey();
-			}	
+				}
+			}
 		}
 
 		private void TestChangeWeapon()
