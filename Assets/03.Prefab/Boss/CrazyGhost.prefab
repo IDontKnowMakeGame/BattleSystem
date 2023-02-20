@@ -272,17 +272,30 @@ MonoBehaviour:
   state: 1
   thisStat:
     originStats:
-      Hp: 5000
+      Hp: 1600
       Atk: 0
-      Agi: 1
+      Agi: 0
     changeStats:
-      Hp: 5000
+      Hp: 1600
       Atk: 0
+      Agi: 0
+    addstat:
+      Hp: 0
+      Atk: 0
+      Agi: 0
+    multistat:
+      Hp: 1
+      Atk: 1
       Agi: 1
   _enemyWeapons:
     _currentWeapon: taintedSword
     _secoundWeapon: 
     isEnemy: 1
+  _enemyRender:
+    _renderer: {fileID: 3041935593643957799}
+    _blinkCnt: 1
+    _blinkTime: 0.1
+    _blinkDelay: 0.1
 --- !u!65 &3041935593448038438
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -375,6 +388,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 91d8e135475d15b45aedea11e84bb175, type: 2}
+  - {fileID: 2100000, guid: 7f7fa4cecedea4e4db92cf6cf07534d3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
