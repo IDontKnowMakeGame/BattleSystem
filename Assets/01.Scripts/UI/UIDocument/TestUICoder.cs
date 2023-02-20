@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
-using Managements.Managers.Base;
 
-public class UIManager : Manager
+public class TestUICoder : MonoBehaviour
 {
     private UIDocument _document;
 
@@ -13,19 +11,23 @@ public class UIManager : Manager
     private VisualElement _angerBar;
     private VisualElement _adranalineBar;
 
-    public override void Awake()
+    public  void Awake()
     {
-        Init();
-    }
-    private void Init()
-    {
-        _document
+        _document = GetComponent<UIDocument>();
 
         VisualElement root = _document.rootVisualElement;
-        _hpBar = root.Q<VisualElement>("hpBar");
+        _hpBar = root.Q<VisualElement>("HpBar");
         _angerBar = root.Q<VisualElement>("AngerBar");
         _adranalineBar = root.Q<VisualElement>("AdrenalineBar");
+
+
     }
+
+    public  void Start()
+    {
+        SetHpValue(25);
+    }
+
     public void SetHpValue(float value)
     {
         VisualElement fill = _hpBar.Q<VisualElement>("Fill");
@@ -35,16 +37,5 @@ public class UIManager : Manager
     {
         VisualElement fill = _hpBar.Q<VisualElement>("BackGround");
         fill.style.width = new Length(value, LengthUnit.Percent);
-    }
-
-    public void StartGame()
-    { 
-        SceneManager.LoadScene("BossBattle");
-    }
-
-    public void QuitGame()
-    {
-        Debug.Log("Quit Game");
-        Application.Quit();
     }
 }

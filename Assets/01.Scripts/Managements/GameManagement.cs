@@ -143,6 +143,7 @@ namespace Managements
             Instance.AddManager<PoolManager>();
             Instance.AddManager<EventManager>();
             Instance.AddManager<MapManager>();
+            Instance.AddManager<UIManager>();
         }
 
         public void Awake()
