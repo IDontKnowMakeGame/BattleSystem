@@ -19,7 +19,6 @@ public class UIManager : Manager
     }
     private void Init()
     {
-        _document
 
         VisualElement root = _document.rootVisualElement;
         _hpBar = root.Q<VisualElement>("hpBar");
