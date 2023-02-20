@@ -60,7 +60,6 @@ public class BaseGreatSword : Weapon
 
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = true });
 		_thisBase.AddState(Units.Base.Unit.BaseState.Charge);
-		Debug.Log(_thisBase.GetBehaviour<PlayerAttack>());
 		_thisBase.GetBehaviour<PlayerAttack>().SkillAnimation(vec);
 		
 		_currentVector = vec;
@@ -107,7 +106,7 @@ public class BaseGreatSword : Weapon
 		_chargeTime = 0;
 		_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 		_currentVector = Vector3.zero;
-
+		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
 		InputManager.OnMovePress -= Move;
 		InputManager.OnAttackHold -= Charge;
 		InputManager.OnAttackRelease -= AttackUP;
