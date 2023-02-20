@@ -289,5 +289,11 @@ namespace Units.Base.Player
                 }
             }
         }
+
+        public override void OnDisable()
+        {
+            InputManager.OnMovePress -= EnqueueMove;
+            base.OnDisable();
+        }
     }
 }

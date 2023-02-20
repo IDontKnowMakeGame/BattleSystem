@@ -15,10 +15,11 @@ namespace Units.Base.Player
 		private PlayerAttack playerAttack;
 		private AnimationClip animationClip;
 
+		private bool isEquiq = true;
 		public override void Awake()
 		{
 			base.Awake();
-			_currentWeapon = DataManager.UserData.currentWeapon;
+			_currentWeapon = DataManager.UserData.firstWeapon;
 			_secoundWeapon = DataManager.UserData.secondWeapon;
 		}
 
@@ -58,14 +59,22 @@ namespace Units.Base.Player
 
         private void WeaponOnOff()
 		{
-			CurrentWeapon.Reset();
+			if (isEquiq)
+				CurrentWeapon?.Reset();
+			else
+				CurrentWeapon?.ChangeKey();
+
+			isEquiq = !isEquiq;
 		}
 		private void ChangeWeapon()
 		{
+			if (_currentWeapon == null || _secoundWeapon == null)
+				return;
+
 			if (ThisBase.State.HasFlag(Unit.BaseState.Skill))
 				return;
 
-			weapons[_currentWeapon].Reset();
+			CurrentWeapon?.Reset();
 			weapons[_secoundWeapon].ChangeKey();
 			string temp = _currentWeapon;
 			_currentWeapon = _secoundWeapon;
