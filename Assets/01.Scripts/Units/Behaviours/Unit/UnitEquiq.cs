@@ -122,6 +122,8 @@ namespace Units.Behaviours.Unit
 				return 1;
 			else if (_currentWeapon == "oldGreatSword")
 				return 2;
+			else if (_currentWeapon == "oldSpear")
+				return 3;
 			else
 				return 0;
 		}

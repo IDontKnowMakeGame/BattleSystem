@@ -22,6 +22,7 @@ namespace Units.Base.Unit
     {
         [SerializeField] private BaseState state = BaseState.None;
         
+        public Vector3 SpawnPos { get; set; }
         public BaseState State
         {
             get => state;
@@ -37,8 +38,8 @@ namespace Units.Base.Unit
         protected override void Start()
         {
             base.Start();
+            SpawnSetting();
             InGame.SetUnit(this, Position);
-
         }
 
         public void AddState(BaseState state)
@@ -57,6 +58,13 @@ namespace Units.Base.Unit
             before?.Invoke();
             yield return new WaitForSeconds(time);
             after?.Invoke();
+        }
+        
+        
+        public void SpawnSetting()
+        {
+            Position = SpawnPos;
+            transform.position = SpawnPos;
         }
     }
 }

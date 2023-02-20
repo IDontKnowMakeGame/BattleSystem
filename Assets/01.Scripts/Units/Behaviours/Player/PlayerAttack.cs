@@ -140,7 +140,7 @@ namespace Units.Base.Player
             curDir = dir;
             isInit = true;
 
-            if (ThisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() != 1)
+            if (ThisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() != 1 && ThisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() != 3 && unitAnimation.CurState() != 10)
                 ThisBase.GetBehaviour<PlayerMove>().stop = true;
         }
 
@@ -229,6 +229,13 @@ namespace Units.Base.Player
         {
             attackDelay = delay;
             timer = 0;
+        }
+
+        public override void OnDisable()
+        {
+            InputManager.OnChangePress -= SetAnimation;
+            InputManager.OnTestChangePress -= SetAnimation;
+            base.OnDisable();
         }
     }
 }

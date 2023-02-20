@@ -31,9 +31,6 @@ namespace Units.Base.Player
         private Vector3 playerDir;
 
         [SerializeField]
-        private Vector3 spawnPos;
-
-        [SerializeField]
         private float smoothMoving;
 
         private Transform sprite;
@@ -52,32 +49,28 @@ namespace Units.Base.Player
 
         public override void Start()
         {
-
             InputManager.OnMovePress += EnqueueMove;
 
             sprite = ThisBase.GetComponentInChildren<MeshRenderer>().transform;
             unitAnimation = ThisBase.GetBehaviour<UnitAnimation>();
             playerPortion = ThisBase.GetBehaviour<PlayerPortion>();
 
-            SpawnSetting();
+            ResetMove();
         }
 
-        public override void Update()
-        {
-            ChangeDir();
-            PopMove();
-        }
-
-        public void SpawnSetting()
+        public void ResetMove()
         {
             // SpawnPostion Setting
             _seq.Kill();
             isMoving = false;
             onBehaviourEnd?.Invoke();
             ClearMove();
-
-            ThisBase.Position = spawnPos;
-            ThisBase.transform.position = spawnPos;
+        }
+        
+        public override void Update()
+        {
+            ChangeDir();
+            PopMove();
         }
 
         public void EnqueueMove(Vector3 dir)
@@ -288,6 +281,12 @@ namespace Units.Base.Player
                     unitAnimation.ChangeState(7);
                 }
             }
+        }
+
+        public override void OnDisable()
+        {
+            InputManager.OnMovePress -= EnqueueMove;
+            base.OnDisable();
         }
     }
 }

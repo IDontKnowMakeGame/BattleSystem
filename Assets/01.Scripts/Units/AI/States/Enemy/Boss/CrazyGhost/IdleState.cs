@@ -1,4 +1,5 @@
 ﻿using Core;
+using Managements.Managers;
 using Unit.Base.AI;
 using Unit.Enemy.AI.Conditions;
 using UnityEngine;
@@ -19,7 +20,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             timeCheck._logicCondition = true;
             var areaCheck = new AreaCheckCondition();
             areaCheck.SetUnits(InGame.PlayerBase, null);
-            areaCheck.SetArea(new Vector3(18, 0, -18),new Vector3(0,0,0));
+            areaCheck.SetArea(Define.GetManager<FloorManager>().CurrentFloor.BossArea[0], Define.GetManager<FloorManager>().CurrentFloor.BossArea[1]);
             areaCheck.SetResult(true);
             areaCheck._logicCondition = true;
             toChase.AddCondition(areaCheck);  
