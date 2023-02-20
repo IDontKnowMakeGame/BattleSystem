@@ -23,7 +23,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             var map = Define.GetManager<MapManager>();
             bool checkBlock = map.GetBlock(nextPos) == null;
             if(checkBlock == false)
-                if (map.GetBlock(nextPos).canEnemyEnter == false)
+                if (map.GetBlock(nextPos).canBossEnter == false)
                     checkBlock = true;
             while (checkBlock)
             {

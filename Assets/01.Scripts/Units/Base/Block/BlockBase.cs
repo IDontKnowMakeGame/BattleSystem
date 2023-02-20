@@ -14,6 +14,7 @@ public class BlockBase : Units.Base.Units
 
     public bool isWalkable = false;
     public bool canEnemyEnter = true;
+    public bool canBossEnter = false;
     private int g;
     private int h;
 

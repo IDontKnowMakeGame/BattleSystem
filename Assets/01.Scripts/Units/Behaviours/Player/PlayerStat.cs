@@ -79,7 +79,8 @@ namespace Units.Base.Player
         {
             base.Die();
             DOTween.KillAll();
-            ThisBase.GetBehaviour<PlayerMove>().SpawnSetting();
+            ThisBase.SpawnSetting();
+            ThisBase.GetBehaviour<PlayerMove>().ResetMove();
             Respawn();
         }
 

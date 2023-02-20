@@ -6,7 +6,7 @@ namespace Units.Base.Enemy.Boss
 {
     public class BossBase : EnemyBase
     {
-        [SerializeField] protected new BossStat thisStat;
+        [SerializeField] protected BossStat thisStat;
         public override UnitStat ThisStat => thisStat;
     }
 }

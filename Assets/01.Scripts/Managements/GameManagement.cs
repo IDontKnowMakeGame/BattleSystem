@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Managements.Managers;
 using Managements.Managers.Base;
+using Managements.Managers.Floor;
 using Unity.VisualScripting;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -143,6 +144,7 @@ namespace Managements
             Instance.AddManager<PoolManager>();
             Instance.AddManager<EventManager>();
             Instance.AddManager<MapManager>();
+            Instance.AddManager<FloorManager>();
         }
 
         public void Awake()
