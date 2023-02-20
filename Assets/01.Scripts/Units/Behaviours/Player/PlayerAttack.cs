@@ -140,7 +140,7 @@ namespace Units.Base.Player
             curDir = dir;
             isInit = true;
 
-            if (ThisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() != 1 || unitAnimation.CurState() != 10)
+            if (ThisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() != 1 && unitAnimation.CurState() != 10)
                 ThisBase.GetBehaviour<PlayerMove>().stop = true;
         }
 
