@@ -173,6 +173,7 @@ namespace Units.Base.Player
             }
             else
                 return;
+
             playerAnimation.CurWeaponAnimator.SetDir = dir;
             playerAnimation.CurWeaponAnimator.Attack = true;
             playerAnimation.SetAnmation();
@@ -223,6 +224,7 @@ namespace Units.Base.Player
             }
             else
                 return;
+
             playerAnimation.CurWeaponAnimator.SetDir = dir;
             playerAnimation.CurWeaponAnimator.Skill = true;
             playerAnimation.SetAnmation();

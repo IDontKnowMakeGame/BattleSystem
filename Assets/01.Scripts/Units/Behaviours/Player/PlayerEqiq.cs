@@ -34,6 +34,7 @@ namespace Units.Base.Player
 			playerAttack = ThisBase.GetBehaviour<PlayerAttack>();
 			animationClip = ThisBase.GetComponent<AnimationClip>();
 
+			playerAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
 			playerAnimation.CurWeaponAnimator = playerAnimation.WeaponAnimators[WeaponAnimation()];
 			playerAnimation.CurWeaponAnimator.ChangeWeapon = true;
 			playerAnimation.SetAnmation();
@@ -86,6 +87,7 @@ namespace Units.Base.Player
 
 			playerAttack.ChangeDelay(CurrentWeapon.WeaponStat.Afs);
 
+			playerAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
 			playerAnimation.CurWeaponAnimator = playerAnimation.WeaponAnimators[WeaponAnimation()];
 			playerAnimation.CurWeaponAnimator.ChangeWeapon = true;
 			playerAnimation.SetAnmation();

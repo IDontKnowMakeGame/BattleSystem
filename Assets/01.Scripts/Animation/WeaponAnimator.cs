@@ -31,7 +31,7 @@ public abstract class WeaponAnimator
     public bool Skill
     {
         get => skill;
-        set => Skill = value;
+        set => skill = value;
     }
     public bool ChangeWeapon
     {

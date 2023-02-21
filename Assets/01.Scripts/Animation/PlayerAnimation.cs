@@ -19,7 +19,7 @@ public class PlayerAnimation : UnitAnimation
         get => curWeaponAnimator;
         set
         {
-            CurWeaponAnimator = value;
+            curWeaponAnimator = value;
             curWeaponAnimator.Init();
         }
     }
@@ -33,8 +33,6 @@ public class PlayerAnimation : UnitAnimation
 
     public override void Update()
     {
-        if (IsFinished())
-            CurWeaponAnimator.ResetParameter();
         base.Update();
     }
 

@@ -16,23 +16,28 @@ public class OldTwinAnimator : WeaponAnimator
 {
     public override int AnimationCheck()
     {
-        LongRoot curRoot = LongRoot.Idle;
-        if (moving || attack || skill)
-            curRoot =  AttackCheck();
+        TwinRoot curRoot = TwinRoot.Idle;
+        if (weaponChange)
+        {
+            curRoot = TwinRoot.ChangeWeapon;
+        }
+        else if (moving || attack || skill)
+            curRoot = AttackCheck();
 
-        if (curRoot == LongRoot.None)
+        if (curRoot == TwinRoot.None)
             Debug.LogError("잘못된 방향을 지정하였습니다.");
 
-        return (int)curRoot;
+        ResetParameter();
+        return (int)curRoot - 1;
     }
-    private LongRoot AttackCheck()
+    private TwinRoot AttackCheck()
     {
         if (setDir == Vector3.left || setDir == Vector3.right)
-            return LongRoot.VerticalAttack;
+            return TwinRoot.VerticalAttack;
         else if (setDir == Vector3.forward)
-            return LongRoot.UpAttack;
-        else if (setDir == Vector3.forward)
-            return LongRoot.DownAttack;
-        return LongRoot.None;
+            return TwinRoot.UpAttack;
+        else if (setDir == Vector3.down)
+            return TwinRoot.DownAttack;
+        return TwinRoot.None;
     }
 }

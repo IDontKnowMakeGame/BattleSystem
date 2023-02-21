@@ -214,6 +214,7 @@ namespace Units.Base.Player
             {
                 playerAnimation.CurWeaponAnimator.ResetParameter();
                 playerAnimation.CurWeaponAnimator.AnimationCheck();
+                playerAnimation.SetAnmation();
             }
         }
 

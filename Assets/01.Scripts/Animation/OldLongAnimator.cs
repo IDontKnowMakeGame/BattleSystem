@@ -24,22 +24,29 @@ public class OldLongAnimator : WeaponAnimator
     public override int AnimationCheck()
     {
         LongRoot curRoot = LongRoot.Idle;
-        if(moving)
+        if(weaponChange)
         {
-            curRoot =  MovingCheck();
+            curRoot = LongRoot.ChangeWeapon;
+        }
+        else if(moving)
+        {
+            if (skill)
+            {
+                curRoot = SkillCheck();
+                Debug.Log("Skill 사용");
+            }
+            else
+                curRoot = MovingCheck();
         }
         else if(attack)
         {
             curRoot = AttackCheck();
         }
-        else if(skill)
-        {
-            curRoot = SkillCheck();
-        }
 
         if (curRoot == LongRoot.None)
             Debug.LogError("잘못된 방향을 지정하였습니다.");
 
+        ResetParameter();
         return (int)curRoot - 1;
     }
     private LongRoot MovingCheck()
@@ -48,7 +55,7 @@ public class OldLongAnimator : WeaponAnimator
             return LongRoot.VerticalMove;
         else if (setDir == Vector3.forward)
             return LongRoot.UpMove;
-        else if (setDir == Vector3.forward)
+        else if (setDir == Vector3.back)
             return LongRoot.DownMove;
         return LongRoot.None;
     }
@@ -58,7 +65,7 @@ public class OldLongAnimator : WeaponAnimator
             return LongRoot.VerticalAttack;
         else if (setDir == Vector3.forward)
             return LongRoot.UpAttack;
-        else if (setDir == Vector3.forward)
+        else if (setDir == Vector3.back)
             return LongRoot.DownAttack;
         return LongRoot.None;
     }
@@ -69,7 +76,7 @@ public class OldLongAnimator : WeaponAnimator
             return LongRoot.VerticalSkill;
         else if (setDir == Vector3.forward)
             return LongRoot.UpSkill;
-        else if (setDir == Vector3.forward)
+        else if (setDir == Vector3.back)
             return LongRoot.DownSkill;
         return LongRoot.None;
     }
