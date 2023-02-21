@@ -62,8 +62,8 @@ namespace Units.Base.Player
         public void ChangeAnger(float percent)
         {
             anger = Mathf.Clamp(anger + percent, 0, 10);
-            eventParam.floatParam = anger;
-            Define.GetManager<EventManager>().TriggerEvent(EventFlag.AddAnger, eventParam);
+            Core.Define.GetManager<UIManager>().SetAngerValue((int)anger*10);
+            //Define.GetManager<EventManager>().TriggerEvent(EventFlag.AddAnger, eventParam);
         }
 
         public void ChangeAdneraline(float percent)
@@ -71,8 +71,8 @@ namespace Units.Base.Player
             if (percent > 0)
                 attackCount++;
             adneraline = Mathf.Clamp(adneraline + percent, 0, 10);
-            eventParam.floatParam = adneraline;
-            Define.GetManager<EventManager>().TriggerEvent(EventFlag.AddAdrenaline, eventParam);
+            Core.Define.GetManager<UIManager>().SetAdranalineValue((int)adneraline * 10);
+
         }
 
         private void DecreaseAnger()
