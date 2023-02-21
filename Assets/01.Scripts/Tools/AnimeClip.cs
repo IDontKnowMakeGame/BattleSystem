@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Tools
 {
@@ -13,5 +15,6 @@ namespace Tools
         public bool isLoop;
         public float delay;
         public bool changeAble = true;
+        public List<UnityEvent> events;
     }
 }
