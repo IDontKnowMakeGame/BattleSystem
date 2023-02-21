@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Tools
 {
@@ -14,19 +15,6 @@ namespace Tools
         public bool isLoop;
         public float delay;
         public bool changeAble = true;
-        public List<Action> events;
-
-        public void SetEventOnFrame(int frame, Action action)
-        {
-            if(events == null)
-            {
-                events = new List<Action>(fps);
-            }
-            if(events.Count < fps)
-            {
-                events = new List<Action>(fps);
-            }
-            events[frame] = action;
-        }
+        public List<UnityEvent> events;
     }
 }
