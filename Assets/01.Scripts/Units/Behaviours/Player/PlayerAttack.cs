@@ -40,7 +40,7 @@ namespace Units.Base.Player
         public bool isAttack = false;
         public bool IsAttack => isAttack;
         
-        private UnitAnimation unitAnimation;
+        private PlayerAnimation playerAnimation;
         private PlayerPortion playerPortion;
 
         private PlayerBuff playerBuff;
@@ -54,7 +54,7 @@ namespace Units.Base.Player
             base.Start();
             attackColParent = GameObject.FindObjectOfType<AttackCollider>();
 
-            unitAnimation = ThisBase.GetBehaviour<UnitAnimation>();
+            playerAnimation = ThisBase.GetBehaviour<PlayerAnimation>();
             playerPortion = ThisBase.GetBehaviour<PlayerPortion>();
             playerBuff = ThisBase.GetBehaviour<PlayerBuff>();
             sprite = ThisBase.GetComponentInChildren<MeshRenderer>().transform;
@@ -95,7 +95,7 @@ namespace Units.Base.Player
             }
 
 
-            if (timer > 0 || unitAnimation.CurState() == 10 || playerPortion.UsePortion || IsAttack)
+            if (timer > 0 || playerAnimation.CurWeaponAnimator.ChangeWeapon || playerPortion.UsePortion || IsAttack)
             {
                 ThisBase.GetBehaviour<PlayerMove>().stop = false;
                 return;
@@ -140,7 +140,8 @@ namespace Units.Base.Player
             curDir = dir;
             isInit = true;
 
-            if (ThisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() != 1 && ThisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() != 3 && unitAnimation.CurState() != 10)
+            if (ThisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() != 1 && ThisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() != 3 && 
+                !playerAnimation.CurWeaponAnimator.ChangeWeapon)
                 ThisBase.GetBehaviour<PlayerMove>().stop = true;
         }
 
@@ -153,27 +154,29 @@ namespace Units.Base.Player
             }
 
 
-            if (timer > 0 || unitAnimation.CurState() == 10 || isAttack || playerPortion.UsePortion) return;
+            if (timer > 0 || playerAnimation.CurWeaponAnimator.ChangeWeapon || isAttack || playerPortion.UsePortion) return;
             if (dir == Vector3.left)
             {
-                unitAnimation.ChangeState(4);
                 sprite.localScale = new Vector3(-1, 1, 1);
             }
-            else if(dir == Vector3.right)
+            else if (dir == Vector3.right)
             {
-                unitAnimation.ChangeState(4);
                 sprite.localScale = new Vector3(1, 1, 1);
             }
-            else if(dir == Vector3.forward)
+            else if (dir == Vector3.forward)
             {
-                unitAnimation.ChangeState(5);
                 sprite.localScale = new Vector3(1, 1, 1);
             }
-            else if(dir == Vector3.back)
+            else if (dir == Vector3.back)
             {
-                unitAnimation.ChangeState(6);
                 sprite.localScale = new Vector3(1, 1, 1);
             }
+            else
+                return;
+
+            playerAnimation.CurWeaponAnimator.SetDir = dir;
+            playerAnimation.CurWeaponAnimator.Attack = true;
+            playerAnimation.SetAnmation();
             isAttack = true;    
         }
 
@@ -192,7 +195,7 @@ namespace Units.Base.Player
             }
             else
             {
-                if (isAttack && unitAnimation.CurIndex() > unitAnimation.GetFPS() / 2)
+                if (isAttack && playerAnimation.CurIndex() > playerAnimation.GetFPS() / 2)
                 {
                     isAttack = false;
                     ThisBase.GetBehaviour<PlayerMove>().stop = false;
@@ -205,24 +208,27 @@ namespace Units.Base.Player
         {
             if (dir == Vector3.left)
             {
-                unitAnimation.ChangeState(7);
                 sprite.localScale = new Vector3(-1, 1, 1);
             }
             else if (dir == Vector3.right)
             {
-                unitAnimation.ChangeState(7);
                 sprite.localScale = new Vector3(1, 1, 1);
             }
             else if (dir == Vector3.forward)
             {
-                unitAnimation.ChangeState(8);
                 sprite.localScale = new Vector3(1, 1, 1);
             }
             else if (dir == Vector3.back)
             {
-                unitAnimation.ChangeState(9);
                 sprite.localScale = new Vector3(1, 1, 1);
             }
+            else
+                return;
+
+            playerAnimation.CurWeaponAnimator.SetDir = dir;
+            playerAnimation.CurWeaponAnimator.Skill = true;
+            playerAnimation.SetAnmation();
+
         }
 
         public void ChangeDelay(float delay)
