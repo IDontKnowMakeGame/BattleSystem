@@ -56,7 +56,15 @@ namespace Units.Behaviours.Unit
                     isFinished = true;
                     return;
                 }
-                _clips[state].events[index]?.Invoke();
+
+                if (_clips[state].events != null)
+                {
+                    if(_clips[state].events.Count >= _clips[state].fps)
+                    {
+                        _clips[state].events[index]?.Invoke();
+                    }
+                }
+                
                 var offset = ((float)_clips[state].texture.width / _clips[state].fps) / _clips[state].texture.width;
                 baseMaterial.SetTexture("_BaseMap", _clips[state].texture);
                 baseMaterial.SetTextureOffset("_BaseMap", Vector2.right * (offset * index));
@@ -110,8 +118,7 @@ namespace Units.Behaviours.Unit
         {
             return state;
         }
-
-
+        
         public bool IsFinished()
         {
             return isFinished;
