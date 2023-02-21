@@ -45,12 +45,12 @@ public class UIManager : Manager
         _document.visualTreeAsset = Define.GetManager<ResourceManagers>().Load<VisualTreeAsset>("UIDoc/InGame");
         VisualElement root = _document.rootVisualElement;
 
-        _hpBar = root.Q<VisualElement>("hpBar");
+        _hpBar = root.Q<VisualElement>("HpBar");
         _angerBar = root.Q<VisualElement>("AngerBar");
         _adranalineBar = root.Q<VisualElement>("AdrenalineBar");
 
-        _firstWeaponIamge = root.Q<VisualElement>("AdrenalineBar");
-        _secondWeaponImage = root.Q<VisualElement>("AdrenalineBar");
+       // _firstWeaponIamge = root.Q<VisualElement>("AdrenalineBar");
+        //_secondWeaponImage = root.Q<VisualElement>("AdrenalineBar");
     }
 
     #region HpSlider

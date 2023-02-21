@@ -108,14 +108,14 @@ namespace Units.Behaviours.Unit
 
 		public void ChangeHP()
         {
-			EventParam param = new EventParam();
-			param.floatParam = changeStats.Hp / originStats.Hp;
+			//EventParam param = new EventParam();
+			//param.floatParam = changeStats.Hp / originStats.Hp;
 
-			EventParam param2 = new EventParam();
-			param2.floatParam = originStats.Hp;
+			//EventParam param2 = new EventParam();
+			//param2.floatParam = originStats.Hp;
 
-			Define.GetManager<EventManager>().TriggerEvent(EventFlag.AddPlayerHP, param);
-			Define.GetManager<EventManager>().TriggerEvent(EventFlag.HPWidth, param2);
+			//Define.GetManager<EventManager>().TriggerEvent(EventFlag.AddPlayerHP, param);
+			//Define.GetManager<EventManager>().TriggerEvent(EventFlag.HPWidth, param2);
 		}
 
 		public virtual void Die()
