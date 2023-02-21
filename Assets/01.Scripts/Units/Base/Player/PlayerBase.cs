@@ -13,7 +13,7 @@ namespace Units.Base.Player
         [SerializeField] private PlayerMove playerMove; 
         [SerializeField] private PlayerAttack PlayerAttack;
         [SerializeField] private PlayerEqiq PlayerEqiq;
-        [SerializeField] private UnitAnimation unitAnimation;
+        [SerializeField] private PlayerAnimation playerAnimation;
         [SerializeField] private PlayerBuff playerBuff;
         [SerializeField] private PlayerStat thisStat;      
         [SerializeField] private CharacterRender characterRender;
@@ -23,7 +23,7 @@ namespace Units.Base.Player
         {
             InGame.PlayerBase = this;
             AddBehaviour(thisStat);
-            AddBehaviour(unitAnimation);
+            AddBehaviour(playerAnimation);
             AddBehaviour(playerMove);
             AddBehaviour(PlayerAttack);
             AddBehaviour(playerBuff);
