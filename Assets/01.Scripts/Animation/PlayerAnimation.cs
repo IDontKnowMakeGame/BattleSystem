@@ -8,6 +8,7 @@ enum WeaponAnimation
     LongSword,
     TwinSowrd
 }
+[System.Serializable]
 public class PlayerAnimation : UnitAnimation
 {
     private List<WeaponAnimator> weaponAnimators = new List<WeaponAnimator>();
