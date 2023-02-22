@@ -1,0 +1,5 @@
+.choiceBox {
+    width: 1000px;
+    background-color: rgba(0, 0, 0, 255);
+    height: 200px;
+}
