@@ -94,7 +94,6 @@ namespace Units.Base.Player
                 isInit = true;
             }
 
-
             ThisBase.RemoveState(BaseState.Attacking);
             if (timer > 0 || playerAnimation.CurWeaponAnimator.ChangeWeapon || playerPortion.UsePortion || IsAttack)
             {

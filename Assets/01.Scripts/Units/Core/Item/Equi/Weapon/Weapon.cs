@@ -26,10 +26,21 @@ namespace Unit.Core.Weapon
         public UnitBase _thisBase;
 
         protected WeaponStats _weaponStats = null;
-        protected WeaponStats _changeWeaponStats = null;
+        protected WeaponStats _changeWeaponStats = new WeaponStats();
+        protected WeaponStats _WeaponStats = new WeaponStats();
 
 		protected AttackCollider _attackCollider = null;
-		public WeaponStats WeaponStat => _weaponStats;
+		public WeaponStats WeaponStat
+		{
+			get
+			{
+				_WeaponStats.Atk = _weaponStats.Atk + _changeWeaponStats.Atk;
+				_WeaponStats.Ats = _weaponStats.Ats + _changeWeaponStats.Ats;
+				_WeaponStats.Afs = _weaponStats.Afs + _changeWeaponStats.Afs;
+				_WeaponStats.Weight = _weaponStats.Weight + _changeWeaponStats.Weight;
+				return _WeaponStats;
+			}
+		}
 
 		//유닛 공격, 유닛 move
 		protected UnitAttack _unitAttack;
@@ -52,8 +63,6 @@ namespace Unit.Core.Weapon
 		protected SliderObject _sliderObject;
 
 		protected WeaponClassLevel _weaponClassLevel;
-
-		protected int beforeCount = 0;
 		public override void Start()
 		{
 			//여기서 다 받아주고

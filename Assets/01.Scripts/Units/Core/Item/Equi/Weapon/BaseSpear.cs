@@ -69,7 +69,7 @@ public class BaseSpear : Weapon
 
 	private IEnumerator DownLate(Vector3 vec)
 	{
-		yield return new WaitForSeconds(_weaponStats.Ats);
+		yield return new WaitForSeconds(WeaponStat.Ats);
 		_currentAttackPos = vec;
 		_playerAttack.AttackColParent.ChangeSizeZ(1);
 		_playerAttack.AttackColParent.ChangeSizeX(1);

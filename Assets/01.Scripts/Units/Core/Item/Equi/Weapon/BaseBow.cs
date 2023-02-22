@@ -88,7 +88,7 @@ public class BaseBow : Weapon
 		GameObject obj = Managements.GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("Arrow");
 		BaseArrow arrow = obj.GetComponent<BaseArrow>();
 
-		arrow.InitArrow(projectileSpeed, _weaponStats.Atk,
+		arrow.InitArrow(projectileSpeed, WeaponStat.Atk,
 			_thisBase.Position + vec, vec, _arrowName);
 		arrow.ShootArrow();
 

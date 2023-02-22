@@ -21,38 +21,32 @@ public class BaseGreatSword : Weapon
 	{
 		int level = CountToLevel(_weaponClassLevel.killedCount);
 
-		if (level == beforeCount)
-			return;
-
-		switch(level)
+		switch (level)
 		{
 			case 1:
-				_weaponStats.Atk += 10;
-				_weaponStats.Ats -= 0.01f;
+				_changeWeaponStats.Atk = 10;
+				_changeWeaponStats.Ats = -0.01f;
 				break;
 			case 2:
-				_weaponStats.Atk += 15;
-				_weaponStats.Ats -= 0.03f;
+				_changeWeaponStats.Atk = 15;
+				_changeWeaponStats.Ats = -0.03f;
 				break;
 			case 3:
-				_weaponStats.Atk += 20;
-				_weaponStats.Ats -= 0.05f;
+				_changeWeaponStats.Atk = 20;
+				_changeWeaponStats.Ats = -0.05f;
 				break;
 			case 4:
-				_weaponStats.Atk += 20;
-				_weaponStats.Ats -= 0.07f;
-				_weaponStats.Afs -= 0.01f;
+				_changeWeaponStats.Atk = 20;
+				_changeWeaponStats.Ats = -0.07f;
+				_changeWeaponStats.Afs = -0.01f;
 				break;
 			case 5:
-				_weaponStats.Atk += 20;
-				_weaponStats.Ats -= 0.07f;
-				_weaponStats.Afs -= 0.05f;
+				_changeWeaponStats.Atk = 20;
+				_changeWeaponStats.Ats = -0.07f;
+				_changeWeaponStats.Afs = -0.05f;
 				break;
 		};
-		beforeCount = level;
 	}
-
-
 	public override void Update()
 	{
 		base.Update();
@@ -97,7 +91,7 @@ public class BaseGreatSword : Weapon
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = true });
 		_thisBase.AddState(Units.Base.Unit.BaseState.Charge);
 		_thisBase.GetBehaviour<PlayerAttack>().SkillAnimation(vec);
-		
+
 		_currentVector = vec;
 	}
 
@@ -106,6 +100,7 @@ public class BaseGreatSword : Weapon
 		_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 		if (_chargeTime >= _maxChargeTime)
 		{
+			LevelSystem();
 			_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 			_playerAttack.AttackColParent.AllDisableDir();
 			_playerAttack.AttackColParent.ChangeSizeZ(1);
@@ -132,7 +127,7 @@ public class BaseGreatSword : Weapon
 		else
 		{
 			_chargeTime += Time.deltaTime;
-			GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderUp, new EventParam() { floatParam = _chargeTime});
+			GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderUp, new EventParam() { floatParam = _chargeTime });
 		}
 	}
 

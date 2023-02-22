@@ -24,5 +24,10 @@ namespace Unit.Core
         public float Ats = 0f;
         public float Afs = 0f;
         public int Weight = 0;
+
+  //      public static WeaponStats operator +(WeaponStats a, WeaponStats b)
+		//{
+  //          return new WeaponStats() { Atk = a.Atk + b.Atk, Afs = a.Afs + b.Afs, Ats = a.Ats + b.Ats, Weight = a.Weight + b.Weight };
+		//}
     }
 }
