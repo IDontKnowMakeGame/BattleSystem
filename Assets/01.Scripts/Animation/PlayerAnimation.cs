@@ -6,7 +6,8 @@ using Units.Behaviours.Unit;
 enum WeaponAnimation
 {
     LongSword,
-    TwinSowrd
+    TwinSword,
+    GreatSword
 }
 [System.Serializable]
 public class PlayerAnimation : UnitAnimation
@@ -28,6 +29,7 @@ public class PlayerAnimation : UnitAnimation
     {
         weaponAnimators.Add(new OldLongAnimator());
         weaponAnimators.Add(new OldTwinAnimator());
+        weaponAnimators.Add(new OldGreatAnimator());
         base.Awake();
     }
 

@@ -204,7 +204,7 @@ namespace Units.Base.Player
             }
         }
 
-        public void SkillAnimation(Vector3 dir)
+        public void ChargeAnimation(Vector3 dir)
         {
             if (dir == Vector3.left)
             {
@@ -226,7 +226,7 @@ namespace Units.Base.Player
                 return;
 
             playerAnimation.CurWeaponAnimator.SetDir = dir;
-            playerAnimation.CurWeaponAnimator.Skill = true;
+            playerAnimation.CurWeaponAnimator.Charge = true;
             playerAnimation.SetAnmation();
 
         }
