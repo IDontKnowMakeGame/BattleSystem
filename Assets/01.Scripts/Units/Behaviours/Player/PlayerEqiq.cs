@@ -56,6 +56,7 @@ namespace Units.Base.Player
         {
 	        var manager = Define.GetManager<EventManager>();
 			manager?.StopListening(EventFlag.WeaponChange, ChangeWeapon);
+			CurrentWeapon?.Reset();
 			base.OnDisable();
         }
 
@@ -73,7 +74,7 @@ namespace Units.Base.Player
 			if (_currentWeapon == null || _secoundWeapon == null)
 				return;
 
-			if (ThisBase.State.HasFlag(Unit.BaseState.Skill))
+			if (ThisBase.State.HasFlag(Unit.BaseState.Skill) || ThisBase.State.HasFlag(Unit.BaseState.StopMove))
 				return;
 
 			CurrentWeapon?.Reset();

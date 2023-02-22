@@ -13,6 +13,11 @@ public class BaseSpear : Weapon
 	protected bool isOut;
 
 	protected int count = 1;
+	public override void Start()
+	{
+		base.Start();
+		LoadClassLevel("Spear");
+	}
 	public override void ChangeKey()
 	{
 		base.ChangeKey();

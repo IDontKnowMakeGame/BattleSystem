@@ -95,14 +95,12 @@ namespace Units.Base.Player
             }
 
 
+            ThisBase.RemoveState(BaseState.Attacking);
             if (timer > 0 || playerAnimation.CurWeaponAnimator.ChangeWeapon || playerPortion.UsePortion || IsAttack)
             {
                 ThisBase.GetBehaviour<PlayerMove>().stop = false;
                 return;
             }
-
-            ThisBase.AddState(BaseState.Attacking);
-            ChangeAnimation(curDir);
 
             List<EnemyBase> enemys = new List<EnemyBase>();
 
@@ -130,7 +128,6 @@ namespace Units.Base.Player
                 obj.GetComponent<DamagePopUp>().DamageText(damage, enemy.transform.position);
                 onBehaviourEnd?.Invoke();
             }
-
             timer = attackDelay;
         }
 
@@ -204,7 +201,7 @@ namespace Units.Base.Player
             }
         }
 
-        public void SkillAnimation(Vector3 dir)
+        public void ChargeAnimation(Vector3 dir)
         {
             if (dir == Vector3.left)
             {
@@ -226,7 +223,7 @@ namespace Units.Base.Player
                 return;
 
             playerAnimation.CurWeaponAnimator.SetDir = dir;
-            playerAnimation.CurWeaponAnimator.Skill = true;
+            playerAnimation.CurWeaponAnimator.Charge = true;
             playerAnimation.SetAnmation();
 
         }

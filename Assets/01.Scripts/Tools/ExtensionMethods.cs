@@ -778,5 +778,15 @@ public static class ExtensionMethods
     {
         return Vector3.Distance(center, other) == 1;
     }
+
+    public static bool IsInArea(this Vector3 center, Vector3 start, Vector3 end)
+    {
+        if(center.x >= start.x && center.x <= end.x && center.z <= start.z && center.z >= end.z)
+        {
+            return true;
+        }
+
+        return false;
+    }
     #endregion
 }

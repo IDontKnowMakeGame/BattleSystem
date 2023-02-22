@@ -15,7 +15,43 @@ public class BaseGreatSword : Weapon
 	{
 		base.Start();
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
+		LoadClassLevel("GreateSword");
 	}
+	protected override void LevelSystem()
+	{
+		int level = CountToLevel(_weaponClassLevel.killedCount);
+
+		if (level == beforeCount)
+			return;
+
+		switch(level)
+		{
+			case 1:
+				_weaponStats.Atk += 10;
+				_weaponStats.Ats -= 0.01f;
+				break;
+			case 2:
+				_weaponStats.Atk += 15;
+				_weaponStats.Ats -= 0.03f;
+				break;
+			case 3:
+				_weaponStats.Atk += 20;
+				_weaponStats.Ats -= 0.05f;
+				break;
+			case 4:
+				_weaponStats.Atk += 20;
+				_weaponStats.Ats -= 0.07f;
+				_weaponStats.Afs -= 0.01f;
+				break;
+			case 5:
+				_weaponStats.Atk += 20;
+				_weaponStats.Ats -= 0.07f;
+				_weaponStats.Afs -= 0.05f;
+				break;
+		};
+		beforeCount = level;
+	}
+
 
 	public override void Update()
 	{
@@ -60,7 +96,7 @@ public class BaseGreatSword : Weapon
 
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = true });
 		_thisBase.AddState(Units.Base.Unit.BaseState.Charge);
-		_thisBase.GetBehaviour<PlayerAttack>().SkillAnimation(vec);
+		_thisBase.GetBehaviour<PlayerAttack>().ChargeAnimation(vec);
 		
 		_currentVector = vec;
 	}
@@ -80,7 +116,10 @@ public class BaseGreatSword : Weapon
 			_playerAttack.AttackColParent.AllEnableDir();
 		}
 		else
+		{
 			InGame.PlayerBase.GetBehaviour<PlayerMove>().stop = false;
+			_thisBase.GetBehaviour<PlayerAnimation>().SetAnmation();
+		}
 		_chargeTime = 0;
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderUp, new EventParam() { floatParam = _chargeTime });
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
@@ -106,7 +145,7 @@ public class BaseGreatSword : Weapon
 		_chargeTime = 0;
 		_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 		_currentVector = Vector3.zero;
-
+		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
 		InputManager.OnMovePress -= Move;
 		InputManager.OnAttackHold -= Charge;
 		InputManager.OnAttackRelease -= AttackUP;
