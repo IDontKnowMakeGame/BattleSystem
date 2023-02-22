@@ -103,17 +103,7 @@ namespace Units.Behaviours.Unit
 				haloParam.unitParam = giveUnit;
 				Core.Define.GetManager<EventManager>().TriggerEvent(EventFlag.DirtyHalo, haloParam);
 			}
-
-			EventParam param = new EventParam();
-			param.floatParam = changeStats.Hp / originStats.Hp;
-			
-			if(Core.InGame.PlayerBase == ThisBase)
-            {
-				ThisBase.GetBehaviour<PlayerBuff>().ChangeAnger(2);
-				ThisBase.GetBehaviour<PlayerPortion>().ResetPortion();
-				Core.Define.GetManager<EventManager>().TriggerEvent(EventFlag.AddPlayerHP, param);
-			}
-
+		
 		}
 
 		public void ChangeHP()

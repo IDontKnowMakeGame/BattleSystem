@@ -11,7 +11,7 @@ namespace Units.Base.Player
 	{
 		private int count;
 
-		private UnitAnimation unitAnimation;
+		private PlayerAnimation playerAnimation;
 		private PlayerAttack playerAttack;
 		private AnimationClip animationClip;
 
@@ -30,12 +30,14 @@ namespace Units.Base.Player
 		}
 		public override void Start()
 		{
-			unitAnimation = ThisBase.GetBehaviour<UnitAnimation>();
+			playerAnimation = ThisBase.GetBehaviour<PlayerAnimation>();
 			playerAttack = ThisBase.GetBehaviour<PlayerAttack>();
 			animationClip = ThisBase.GetComponent<AnimationClip>();
 
-			unitAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
-			unitAnimation.ChangeState(10);
+			playerAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
+			playerAnimation.CurWeaponAnimator = playerAnimation.WeaponAnimators[WeaponAnimation()];
+			playerAnimation.CurWeaponAnimator.ChangeWeapon = true;
+			playerAnimation.SetAnmation();
 
 			InputManager.OnChangePress += ChangeWeapon;
 			InputManager.OnOffPress += WeaponOnOff;
@@ -85,8 +87,11 @@ namespace Units.Base.Player
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponSwap,new EventParam());
 
 			playerAttack.ChangeDelay(CurrentWeapon.WeaponStat.Afs);
-			unitAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
-			unitAnimation.ChangeState(10);
+
+			playerAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
+			playerAnimation.CurWeaponAnimator = playerAnimation.WeaponAnimators[WeaponAnimation()];
+			playerAnimation.CurWeaponAnimator.ChangeWeapon = true;
+			playerAnimation.SetAnmation();
 		}
 
 		public void ChangeWeapon(EventParam eventParam)

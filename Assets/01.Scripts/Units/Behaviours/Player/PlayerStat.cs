@@ -26,6 +26,12 @@ namespace Units.Base.Player
         public override void Damaged(float damage, UnitBase giveUnit)
         {
             base.Damaged(damage, giveUnit);
+            
+            ThisBase.GetBehaviour<PlayerBuff>().ChangeAnger(1);
+            ThisBase.GetBehaviour<PlayerPortion>().ResetPortion();
+
+            float value = (changeStats.Hp / originStats.Hp) * 100f;
+            Core.Define.GetManager<UIManager>().SetHpValue((int)value);
 
             EventParam param = new EventParam();
             param.intParam = 0;
@@ -38,10 +44,9 @@ namespace Units.Base.Player
 
             changeStats.Hp += addVal;
 
-            EventParam param = new EventParam();
-            param.floatParam = changeStats.Hp / originStats.Hp;
+            float value = (changeStats.Hp / originStats.Hp) * 100;
 
-            Core.Define.GetManager<EventManager>().TriggerEvent(EventFlag.AddPlayerHP, param);
+            Core.Define.GetManager<UIManager>().SetHpValue((int)value);
         }
 
         protected override void ChangeStats()
