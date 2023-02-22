@@ -119,6 +119,10 @@ namespace Units.Behaviours.Unit
             return state;
         }
         
+        public AnimeClip GetClip()
+		{
+            return clips.clips[state];
+        }
         public bool IsFinished()
         {
             return isFinished;

@@ -6,6 +6,7 @@ using Managements;
 using Managements.Managers;
 using Units.Base.Player;
 using Core;
+using Tools;
 
 namespace Unit.Core.Weapon
 {
@@ -36,7 +37,7 @@ namespace Unit.Core.Weapon
 		protected UnitStat _unitStat;
 		protected UnitAnimation _unitAnimation;
 
-		//protected PlayerAnimation playerAnimation;
+		protected PlayerAnimation _playerAnimation;
 		protected PlayerAttack _playerAttack;
 
         protected float _currentTime;
@@ -62,6 +63,7 @@ namespace Unit.Core.Weapon
 			_unitAnimation = _thisBase.GetBehaviour<UnitAnimation>();
 
 			_playerAttack = _unitAttack as PlayerAttack;
+			_playerAnimation = _unitAnimation as PlayerAnimation;
 		}
 		public override void Update()
 		{
@@ -118,8 +120,15 @@ namespace Unit.Core.Weapon
 
 		protected virtual void AttackCoroutine(Vector3 vec)
 		{
-			
-			_thisBase.StartCoroutines(_weaponStats.Ats, () => Attack(vec));
+			if (_thisBase.State.HasFlag(BaseState.Attacking))
+				return;
+
+			_playerAnimation.CurWeaponAnimator.SetDir = vec;
+			_playerAnimation.CurWeaponAnimator.Attack = true;
+			_playerAnimation.SetAnmation();
+			AnimeClip animeClip = _playerAnimation.GetClip();
+			_playerAnimation.GetClip().SetEventOnFrame(5, () => Attack(vec));
+			_thisBase.AddState(BaseState.Attacking);
 		}
 
 		protected virtual void Skill()
