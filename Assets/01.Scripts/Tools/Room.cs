@@ -20,7 +20,7 @@ namespace _01.Scripts.Tools
             {
                 IsPlayerIn = true;
                 Define.GetManager<FloorManager>().CurrentFloor.CurrentCameraArea = this;
-                InGame.CameraMove.AreaIdx = Index;
+                InGame.CameraMove.CurrentArea = this;
                 return true;
             }
 
@@ -40,8 +40,7 @@ namespace _01.Scripts.Tools
                 {
                     area.IsPlayerIn = true;
                     Define.GetManager<FloorManager>().CurrentFloor.CurrentCameraArea = area;
-                    InGame.CameraMove.RoomIdx = RoomIdx;
-                    InGame.CameraMove.AreaIdx = area.Index;
+                    InGame.CameraMove.CurrentArea = area;
                     return;
                 }
             }
@@ -53,10 +52,7 @@ namespace _01.Scripts.Tools
             {
                 if (area.IsPlayerIn == true)
                     break;
-                if (area.CheckPlayerIn())
-                {
-                    InGame.CameraMove.RoomIdx = RoomIdx;
-                }
+                area.CheckPlayerIn();
             }
         }
 
