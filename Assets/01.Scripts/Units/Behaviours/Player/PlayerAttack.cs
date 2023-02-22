@@ -94,8 +94,9 @@ namespace Units.Base.Player
                 isInit = true;
             }
 
-
             ThisBase.RemoveState(BaseState.Attacking);
+            ThisBase.GetBehaviour<PlayerMove>().stop = false;
+
             if (timer > 0 || playerAnimation.CurWeaponAnimator.ChangeWeapon || playerPortion.UsePortion || IsAttack)
             {
                 ThisBase.GetBehaviour<PlayerMove>().stop = false;
@@ -171,9 +172,9 @@ namespace Units.Base.Player
             else
                 return;
 
-            playerAnimation.CurWeaponAnimator.SetDir = dir;
+/*            playerAnimation.CurWeaponAnimator.SetDir = dir;
             playerAnimation.CurWeaponAnimator.Attack = true;
-            playerAnimation.SetAnmation();
+            playerAnimation.SetAnmation();*/
             isAttack = true;    
         }
 
@@ -192,12 +193,12 @@ namespace Units.Base.Player
             }
             else
             {
-                if (isAttack && playerAnimation.CurIndex() > playerAnimation.GetFPS() / 2)
+/*                if (isAttack && playerAnimation.CurIndex() > playerAnimation.GetFPS() / 2)
                 {
                     isAttack = false;
                     ThisBase.GetBehaviour<PlayerMove>().stop = false;
                     ThisBase.RemoveState(BaseState.Attacking);
-                }
+                }*/
             }
         }
 
