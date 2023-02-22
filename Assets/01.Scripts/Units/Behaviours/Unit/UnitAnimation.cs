@@ -6,14 +6,10 @@ using Behaviour = Units.Behaviours.Base.Behaviour;
 namespace Units.Behaviours.Unit
 {
     [System.Serializable]
-    public class UnitAnimation : Behaviour
+    public class UnitAnimation : UnitBehaviour
     {
 
         public Clips clips;
-
-        [Header("WeaponClips[WeaponType 순서대로 넣기]")]
-        [SerializeField]
-        private List<Clips> weaponClips;
 
         private Clips basicClips;
         private int index = 0;
