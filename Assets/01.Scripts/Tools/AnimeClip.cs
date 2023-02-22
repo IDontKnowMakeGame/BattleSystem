@@ -14,18 +14,21 @@ namespace Tools
         public bool isLoop;
         public float delay;
         public bool changeAble = true;
-        public List<Action> events;
+        public List<Action> events = null;
 
         public void SetEventOnFrame(int frame, Action action)
         {
+            Debug.Log(action);
             if(events == null)
             {
-                events = new List<Action>(fps);
+                events = new List<Action>(new Action[fps]);
             }
             if(events.Count < fps)
             {
-                events = new List<Action>(fps);
+                events = new List<Action>(new Action[fps]);
             }
+            Debug.Log(events.Count);
+            Debug.Log(fps);
             events[frame] = action;
         }
     }
