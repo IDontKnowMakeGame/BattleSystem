@@ -25,6 +25,7 @@ namespace Unit.Core.Weapon
         public UnitBase _thisBase;
 
         protected WeaponStats _weaponStats = null;
+        protected WeaponStats _changeWeaponStats = null;
 
 		protected AttackCollider _attackCollider = null;
 		public WeaponStats WeaponStat => _weaponStats;
@@ -33,7 +34,9 @@ namespace Unit.Core.Weapon
 		protected UnitAttack _unitAttack;
 		protected UnitMove _unitMove;
 		protected UnitStat _unitStat;
+		protected UnitAnimation _unitAnimation;
 
+		//protected PlayerAnimation playerAnimation;
 		protected PlayerAttack _playerAttack;
 
         protected float _currentTime;
@@ -46,16 +49,20 @@ namespace Unit.Core.Weapon
 		protected bool _isEnemy = true;
 
 		protected SliderObject _sliderObject;
+
+		protected WeaponClassLevel _weaponClassLevel;
+
+		protected int beforeCount = 0;
 		public override void Start()
 		{
 			//여기서 다 받아주고
 			_unitAttack = _thisBase.GetBehaviour<UnitAttack>();
 			_unitMove = _thisBase.GetBehaviour<UnitMove>();
 			_unitStat = _thisBase.GetBehaviour<UnitStat>();
+			_unitAnimation = _thisBase.GetBehaviour<UnitAnimation>();
 
 			_playerAttack = _unitAttack as PlayerAttack;
 		}
-
 		public override void Update()
 		{
 			Timer();
@@ -106,11 +113,12 @@ namespace Unit.Core.Weapon
 
 		protected virtual void Attack(Vector3 vec)
 		{
-
+			
 		}
 
 		protected virtual void AttackCoroutine(Vector3 vec)
 		{
+			
 			_thisBase.StartCoroutines(_weaponStats.Ats, () => Attack(vec));
 		}
 
@@ -118,7 +126,23 @@ namespace Unit.Core.Weapon
 		{
 
 		}
+		public virtual void LoadClassLevel(string name)
+		{
+			_weaponClassLevel = Define.GetManager<DataManager>().LoadWeaponClassLevel(name);
+		}
+		protected int CountToLevel(int count) => count switch
+		{
+			<= 40 => 1,
+			<= 50 => 2,
+			<= 60 => 3,
+			<= 70 => 4,
+			<= 80 => 5,
+			_ => 1
+		};
+		protected virtual void LevelSystem()
+		{
 
+		}
 		public virtual void Reset()
 		{
 			InputManager.OnAttackPress -= AttackCoroutine;

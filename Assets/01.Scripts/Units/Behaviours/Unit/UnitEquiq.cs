@@ -96,9 +96,7 @@ namespace Units.Behaviours.Unit
 				value.Value?.OnApplicationQuit();
 			}
 		}
-
-
-        public virtual void InsertHelo(string name, int idx)
+		public virtual void InsertHelo(string name, int idx)
 		{
 			EraseHelo(idx);
 

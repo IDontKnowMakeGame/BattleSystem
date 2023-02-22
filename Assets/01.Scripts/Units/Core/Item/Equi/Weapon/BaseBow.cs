@@ -24,6 +24,7 @@ public class BaseBow : Weapon
 		base.Start();
 		_arrowName = this.GetType().Name + "Arrow";
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
+		LoadClassLevel("Bow");
 	}
 	public override void ChangeKey()
 	{

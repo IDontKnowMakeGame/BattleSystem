@@ -6,6 +6,12 @@ using Managements.Managers;
 using Units.Base.Player;
 public class BaseTwinSword : Weapon
 {
+	public override void Start()
+	{
+		base.Start();
+		LoadClassLevel("TwinSword");
+	}
+
 	public override void ChangeKey()
 	{
 		base.ChangeKey();

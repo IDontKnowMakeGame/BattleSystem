@@ -7,6 +7,11 @@ using Core;
 
 public class BaseStraightSword : Weapon
 {
+	public override void Start()
+	{
+		base.Start();
+		LoadClassLevel("BasicSword");
+	}
 	public override void ChangeKey()
 	{
 		base.ChangeKey();
@@ -16,6 +21,10 @@ public class BaseStraightSword : Weapon
 		InputManager.ChangeKeyCode(KeyboardInput.AttackRight, KeyCode.D);
 	}
 
+	protected override void AttackCoroutine(Vector3 vec)
+	{
+		base.AttackCoroutine(vec);
+	}
 	protected override void Attack(Vector3 vec)
 	{
 		_playerAttack.AttackColParent.AllDisableDir();
