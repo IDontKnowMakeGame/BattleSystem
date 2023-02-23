@@ -36,7 +36,7 @@ public class OldTwinAnimator : WeaponAnimator
             return TwinRoot.VerticalAttack;
         else if (setDir == Vector3.forward)
             return TwinRoot.UpAttack;
-        else if (setDir == Vector3.down)
+        else if (setDir == Vector3.back)
             return TwinRoot.DownAttack;
         return TwinRoot.None;
     }
