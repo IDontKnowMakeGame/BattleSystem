@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="ChoiceBox" class="choiceBox">
+        <ui:Label text="Label" display-tooltip-when-elided="true" style="font-size: 25px;" />
+    </ui:VisualElement>
+</ui:UXML>

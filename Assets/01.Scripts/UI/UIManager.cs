@@ -5,15 +5,23 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using Managements.Managers.Base;
 using Core;
+using System;
 
 public class UIManager : Manager
 {
     static GameObject ob;
     private UIDocument _document;
 
+    private enum MyUI
+    {
+        InGame,
+        Dialog,
+        Inventory,
+    }
+
+    private MyUI currentUI;
+
     #region InGame
-
-
     private VisualElement _hpBar;
     private VisualElement _angerBar;
     private VisualElement _adranalineBar;
@@ -25,6 +33,11 @@ public class UIManager : Manager
     private VisualElement _itemImage;
 
     private VisualElement _featherPanel;
+    #endregion
+
+    #region Dialog
+    private VisualElement _sentencePanel;
+
     #endregion
 
 
@@ -42,6 +55,9 @@ public class UIManager : Manager
     }
     public void InGameInit()
     {
+        if (currentUI == MyUI.InGame) return;
+
+        currentUI = MyUI.InGame;
         _document.visualTreeAsset = Define.GetManager<ResourceManagers>().Load<VisualTreeAsset>("UIDoc/InGame");
         VisualElement root = _document.rootVisualElement;
 
@@ -52,15 +68,29 @@ public class UIManager : Manager
        // _firstWeaponIamge = root.Q<VisualElement>("AdrenalineBar");
         //_secondWeaponImage = root.Q<VisualElement>("AdrenalineBar");
     }
+    public void DialogInit()
+    {
+        if (currentUI == MyUI.Dialog) return;
+
+        currentUI = MyUI.Dialog;
+        _document.visualTreeAsset = Define.GetManager<ResourceManagers>().Load<VisualTreeAsset>("UIDoc/Dialog");
+        VisualElement root = _document.rootVisualElement;
+
+        _sentencePanel = root.Q<VisualElement>("TextBox");
+    }
 
     #region HpSlider
     public void SetMaxHpValue(int value)
     {
+        InGameInit();
+
         VisualElement fill = _hpBar.Q<VisualElement>("BackGround");
         fill.style.width = new Length(value, LengthUnit.Percent);
     }
     public void SetHpValue(int value)
     {
+        InGameInit();
+
         VisualElement fill = _hpBar.Q<VisualElement>("Fill");
         fill.style.width = new Length(value, LengthUnit.Percent);
     }
@@ -69,6 +99,8 @@ public class UIManager : Manager
     #region AngerSlider
     public void SetAngerValue(float value)
     {
+        InGameInit();
+
         VisualElement fill = _angerBar.Q<VisualElement>("Fill");
         fill.style.width = new Length(value, LengthUnit.Percent);
     }
@@ -77,8 +109,22 @@ public class UIManager : Manager
     #region AdranalineSlider
     public void SetAdranalineValue(float value)
     {
+        InGameInit();
+
         VisualElement fill = _adranalineBar.Q<VisualElement>("Fill");
         fill.style.width = new Length(value, LengthUnit.Percent);
+    }
+    #endregion
+
+    #region Dialog
+    public void CreateDialog()
+    {
+
+    }
+
+    public void CreateChoiceBox(string text,Action action)
+    {
+
     }
     #endregion
 
