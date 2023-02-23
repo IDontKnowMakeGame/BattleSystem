@@ -1,4 +1,5 @@
 using UnityEngine;
+using Core;
 
 public abstract class WeaponAnimator
 {
@@ -8,7 +9,10 @@ public abstract class WeaponAnimator
     protected bool moving = false;
     protected bool attack = false;
     protected bool skill = false;
+    protected bool charge = false;
     protected bool weaponChange = false;
+    protected bool lastChange = false;
+    protected Transform playerSprite;
 
     public Vector3 SetDir
     {
@@ -39,17 +43,32 @@ public abstract class WeaponAnimator
         set => weaponChange = value;
     }
 
+    public bool Charge
+    {
+        get => charge;
+        set => charge = value;
+    }
+
+    public bool LastChange
+    {
+        get => lastChange;
+        set => lastChange = value;
+    }
+
     public void ResetParameter()
     {
         setDir = Vector3.zero;
         moving = false;
         attack = false;
         skill = false;
-        ChangeWeapon = false;
+        weaponChange = false;
+        charge = false;
     }
 
     public virtual void Init()
     {
+        lastChange = false;
+        playerSprite = InGame.PlayerBase.GetComponentInChildren<MeshRenderer>().transform;
         ResetParameter();
     }
 

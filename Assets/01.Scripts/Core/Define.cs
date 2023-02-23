@@ -22,6 +22,20 @@ namespace Core
 
     public static class InGame
     {
+        private static CameraMove _cameraMove = null;
+        public static CameraMove CameraMove
+        {
+            get
+            {
+                if (_cameraMove == null)
+                {
+                    _cameraMove = Object.FindObjectOfType<CameraMove>();
+                }
+
+                return _cameraMove;
+            }
+        }
+        
         private static PlayerBase _playerBase = null;
         private static EnemyBase _bossBase = null;
         public static PlayerBase PlayerBase

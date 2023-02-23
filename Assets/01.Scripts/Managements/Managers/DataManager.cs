@@ -280,4 +280,42 @@ public class DataManager : Manager
         DataJson.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/Weapon", "ClassLevelData", json);
     }
     #endregion
+
+    #region Inventory
+    public void SaveToInventoryData()
+    {
+        string json = DataJson.ObjectToJson(InventoryData);
+        DataJson.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/User", "InvectoryData",json);
+    }
+    public void AddWeaponToInventory(string name)
+    {
+        InventoryData.inventoryInWeaponList.Add(name);
+    }
+    public List<string> LoadWeaponData()
+    {
+        return InventoryData.inventoryInWeaponList;
+    }
+    public bool HaveWeapon(string name)
+    {
+        foreach(string weapon in InventoryData.inventoryInWeaponList)
+        {
+            if(weapon == name)
+            {
+                return true;
+            }
+        }
+        return false;
+        
+    }
+    public void AddHeloToInventory(string name)
+    {
+        InventoryData.inventoryInHeloList.Add(name);
+    }
+    public void AddUsableItemToInventory(string name)
+    {
+        InventoryData.inventoryInUsableItemList.Add(name);
+    }
+    
+    #endregion
+
 }

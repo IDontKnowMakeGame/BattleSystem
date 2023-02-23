@@ -82,7 +82,8 @@ namespace Units.Base.Player
 
 		public override void Translate(Vector3 dir, float spd = 1)
         {
-            if (isMoving || ThisBase.State.HasFlag(BaseState.StopMove) || playerAnimation.CurWeaponAnimator.ChangeWeapon || playerPortion.UsePortion || stop)
+            if (isMoving || ThisBase.State.HasFlag(BaseState.StopMove) || 
+                !playerAnimation.CurWeaponAnimator.LastChange || playerPortion.UsePortion || stop)
             {
                 ThisBase.RemoveState(BaseState.Moving);
                 return;
@@ -124,7 +125,7 @@ namespace Units.Base.Player
                 if (playerEqiq.WeaponAnimation() != 1)
                 {
                     playerAnimation.CurWeaponAnimator.ResetParameter();
-                    playerAnimation.CurWeaponAnimator.AnimationCheck();
+                    playerAnimation.SetAnmation();
                 }
                 else
                     MoveAnimation(nextPos - orignalPos);
@@ -138,7 +139,7 @@ namespace Units.Base.Player
                 if(playerEqiq.WeaponAnimation() != 1)
                 {
                     playerAnimation.CurWeaponAnimator.ResetParameter();
-                    playerAnimation.CurWeaponAnimator.AnimationCheck();
+                    playerAnimation.SetAnmation();
                 }
                 else
                     MoveAnimation(nextPos - orignalPos);
@@ -213,7 +214,6 @@ namespace Units.Base.Player
             if (moveDir.Count == 0 && !ThisBase.State.HasFlag(BaseState.Skill))
             {
                 playerAnimation.CurWeaponAnimator.ResetParameter();
-                playerAnimation.CurWeaponAnimator.AnimationCheck();
                 playerAnimation.SetAnmation();
             }
         }
@@ -241,29 +241,10 @@ namespace Units.Base.Player
             dir.y = 0;
             dir.Normalize();
 
-            if (sprite == null)
-                Debug.LogError("Sprite is null.");
+  /*          if (sprite == null)
+                Debug.LogError("Sprite is null.");*/
             if(playerAnimation == null)
                 Debug.LogError("PlayerAnimation is null.");
-
-            if (dir == Vector3.left)
-            {
-                sprite.localScale = new Vector3(-1, 1, 1);
-            }
-            else if (dir == Vector3.right)
-            {
-                sprite.localScale = new Vector3(1, 1, 1);
-            }
-            else if (dir == Vector3.forward)
-            {
-                sprite.localScale = new Vector3(1, 1, 1);
-            }
-            else if (dir == Vector3.back)
-            {
-                sprite.localScale = new Vector3(1, 1, 1);
-            }
-            else
-                return;
 
             playerAnimation.CurWeaponAnimator.SetDir = dir;
             playerAnimation.CurWeaponAnimator.Moving = true;

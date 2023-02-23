@@ -68,6 +68,8 @@ namespace Units.Base.Player
 
             changeStats.Agi = WeightToSpeed(Weight);
             changeStats.Atk = Atk;
+
+            Core.Define.GetManager<UIManager>().SetMaxHpValue((int)(OriginStats.Hp/10));
         }
 
         private void PlusStat()
