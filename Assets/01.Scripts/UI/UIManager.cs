@@ -17,9 +17,10 @@ public class UIManager : Manager
         InGame,
         Dialog,
         Inventory,
+        none
     }
 
-    private MyUI currentUI;
+    private MyUI currentUI = MyUI.none;
 
     #region InGame
     private VisualElement _hpBar;
@@ -37,7 +38,7 @@ public class UIManager : Manager
 
     #region Dialog
     private VisualElement _sentencePanel;
-
+    private VisualElement _choicePanel;
     #endregion
 
 
@@ -77,6 +78,7 @@ public class UIManager : Manager
         VisualElement root = _document.rootVisualElement;
 
         _sentencePanel = root.Q<VisualElement>("TextBox");
+        _choicePanel = root.Q<VisualElement>("ChoicePanel");
     }
 
     #region HpSlider
@@ -117,14 +119,29 @@ public class UIManager : Manager
     #endregion
 
     #region Dialog
-    public void CreateDialog()
+    public void CreateDialog(string text)
     {
+        DialogInit();
 
+        Label labeltext = _sentencePanel.Q<Label>("Label");
+        labeltext.text = text;
     }
 
     public void CreateChoiceBox(string text,Action action)
     {
+        DialogInit();
 
+        VisualTreeAsset temple = Define.GetManager<ResourceManagers>().Load<VisualTreeAsset>("UIDoc/ChoiceBox");
+        VisualElement choiceBox = temple.Instantiate();
+        Label label = choiceBox.Q<Label>("Text");
+        label.text = text;
+
+        choiceBox.RegisterCallback<ClickEvent>(e =>
+        {
+            action();
+        });
+
+        _choicePanel.Add(choiceBox);
     }
     #endregion
 

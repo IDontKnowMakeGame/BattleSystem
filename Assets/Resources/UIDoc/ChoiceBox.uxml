@@ -1,5 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UIDoc/Uss/Dialog.uss?fileID=7433441132597879392&amp;guid=cef467e47aad64146bb0b14940739d62&amp;type=3#Dialog" />
     <ui:VisualElement name="ChoiceBox" class="choiceBox">
-        <ui:Label text="Label" display-tooltip-when-elided="true" style="font-size: 25px;" />
+        <ui:Label text="Label" display-tooltip-when-elided="true" name="Text" style="font-size: 25px;" />
     </ui:VisualElement>
 </ui:UXML>

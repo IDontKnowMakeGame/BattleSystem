@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91dfa0acc41e3df43b45bf4851108e20, type: 3}
   m_Name: a
   m_EditorClassIdentifier: 
-  sentences: []
+  sentences:
+  - name: Intro
+    sentence: glglgllglg
+    choiceText:
+    - ang
+    - gimoGGi
