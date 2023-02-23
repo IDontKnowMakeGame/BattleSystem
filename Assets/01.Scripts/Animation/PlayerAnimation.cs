@@ -35,6 +35,10 @@ public class PlayerAnimation : UnitAnimation
 
     public override void Update()
     {
+        if(!curWeaponAnimator.LastChange && IsFinished())
+        {
+            curWeaponAnimator.LastChange = true;
+        }
         base.Update();
     }
 

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Core;
 
 enum GreatRoot
 {
@@ -47,34 +48,76 @@ public class OldGreatAnimator : WeaponAnimator
     }
     private GreatRoot MovingCheck()
     {
-        if (setDir == Vector3.left || setDir == Vector3.right)
+        if (setDir == Vector3.left)
+        {
+            playerSprite.localScale = new Vector3(-1, 1, 1);
             return GreatRoot.VerticalMove;
+        }
+        else if (setDir == Vector3.right)
+        {
+            playerSprite.localScale = new Vector3(1, 1, 1);
+            return GreatRoot.VerticalMove;
+        }
         else if (setDir == Vector3.forward)
+        {
+            playerSprite.localScale = new Vector3(1, 1, 1);
             return GreatRoot.UpMove;
+        }
         else if (setDir == Vector3.back)
+        {
+            playerSprite.localScale = new Vector3(1, 1, 1);
             return GreatRoot.DownMove;
+        }
         return GreatRoot.None;
     }
 
     private GreatRoot AttackCheck()
     {
-        if (setDir == Vector3.left || setDir == Vector3.right)
+        if (setDir == Vector3.left)
+        {
+            playerSprite.localScale = new Vector3(-1, 1, 1);
             return GreatRoot.VeticalAttack;
+        }
+        else if (setDir == Vector3.right)
+        {
+            playerSprite.localScale = new Vector3(1, 1, 1);
+            return GreatRoot.VeticalAttack;
+        }
         else if (setDir == Vector3.forward)
+        {
+            playerSprite.localScale = new Vector3(1, 1, 1);
             return GreatRoot.UpAttack;
+        }
         else if (setDir == Vector3.back)
+        {
+            playerSprite.localScale = new Vector3(1, 1, 1);
             return GreatRoot.DownAttack;
+        }
         return GreatRoot.None;
     }
 
     private GreatRoot ChargeCheck()
     {
-        if (setDir == Vector3.left || setDir == Vector3.right)
+        if (setDir == Vector3.left)
+        {
+            playerSprite.localScale = new Vector3(-1, 1, 1);
             return GreatRoot.VerticalCharge;
+        }
+        else if (setDir == Vector3.right)
+        {
+            playerSprite.localScale = new Vector3(1, 1, 1);
+            return GreatRoot.VerticalCharge;
+        }
         else if (setDir == Vector3.forward)
+        {
+            playerSprite.localScale = new Vector3(1, 1, 1);
             return GreatRoot.UpCharge;
+        }
         else if (setDir == Vector3.back)
+        {
+            playerSprite.localScale = new Vector3(1, 1, 1);
             return GreatRoot.DownCharge;
+        }
         return GreatRoot.None;
     }
 
