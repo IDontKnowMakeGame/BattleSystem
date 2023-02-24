@@ -25,6 +25,36 @@ public class BaseBow : Weapon
 		_arrowName = this.GetType().Name + "Arrow";
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
 		LoadClassLevel("Bow");
+		LevelSystem();
+	}
+	protected override void LevelSystem()
+	{
+		int level = CountToLevel(_weaponClassLevel.killedCount);
+
+		float basicValue = 10;
+		switch (level)
+		{
+			case 1:
+				_changeWeaponStats.Atk = 5;
+				projectileSpeed = basicValue + 0.5f;
+				break;
+			case 2:
+				_changeWeaponStats.Atk = 10;
+				projectileSpeed = basicValue + 0.7f;
+				break;
+			case 3:
+				_changeWeaponStats.Atk = 15;
+				projectileSpeed = basicValue + 1f;
+				break;
+			case 4:
+				_changeWeaponStats.Atk = 20;
+				projectileSpeed = basicValue + 1.2f;
+				break;
+			case 5:
+				_changeWeaponStats.Atk = 20;
+				projectileSpeed = basicValue + 2f;
+				break;
+		};
 	}
 	public override void ChangeKey()
 	{
@@ -42,7 +72,6 @@ public class BaseBow : Weapon
 		base.Update();
 		Charge(_currentVector);
 	}
-
 	protected override void AttackCoroutine(Vector3 vec)
 	{
 		Attack(vec);
@@ -59,8 +88,9 @@ public class BaseBow : Weapon
 		_thisBase.AddState(Units.Base.Unit.BaseState.Charge);
 		_thisBase.AddState(Units.Base.Unit.BaseState.StopMove);
 		_currentVector = vec;
-	}
 
+		LevelSystem();
+	}
 	private void Charge(Vector3 vec)
 	{
 		if (!_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Charge))
@@ -82,19 +112,17 @@ public class BaseBow : Weapon
 			GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderUp, new EventParam() { floatParam = _chargeTime });
 		}
 	}
-
 	private void Shooting(Vector3 vec)
 	{
 		GameObject obj = Managements.GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("Arrow");
 		BaseArrow arrow = obj.GetComponent<BaseArrow>();
 
-		arrow.InitArrow(projectileSpeed, WeaponStat.Atk,
+		arrow.InitArrow(projectileSpeed,WeaponStat.Atk,
 			_thisBase.Position + vec, vec, _arrowName);
 		arrow.ShootArrow();
 
 		hasArrow = false;
 	}
-
 	public override void Reset()
 	{
 		base.Reset();

@@ -11,7 +11,29 @@ public class BaseTwinSword : Weapon
 		base.Start();
 		LoadClassLevel("TwinSword");
 	}
+	protected override void LevelSystem()
+	{
+		int level = CountToLevel(_weaponClassLevel.killedCount);
 
+		switch (level)
+		{
+			case 1:
+				_changeWeaponStats.Atk = 5;
+				break;
+			case 2:
+				_changeWeaponStats.Atk = 10;
+				break;
+			case 3:
+				_changeWeaponStats.Atk = 10;
+				break;
+			case 4:
+				_changeWeaponStats.Atk = 15;
+				break;
+			case 5:
+				_changeWeaponStats.Atk = 20;
+				break;
+		};
+	}
 	public override void ChangeKey()
 	{
 		base.ChangeKey();

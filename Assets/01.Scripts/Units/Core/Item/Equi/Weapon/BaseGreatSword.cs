@@ -16,6 +16,7 @@ public class BaseGreatSword : Weapon
 		base.Start();
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
 		LoadClassLevel("GreateSword");
+		LevelSystem();
 	}
 	protected override void LevelSystem()
 	{
@@ -24,26 +25,25 @@ public class BaseGreatSword : Weapon
 		switch (level)
 		{
 			case 1:
-				_changeWeaponStats.Atk = 10;
-				_changeWeaponStats.Ats = -0.01f;
+				_unitStat.Half = 5;
+				_unitStat.onBehaviourEnd = () => _unitStat.Half = 0;
 				break;
 			case 2:
-				_changeWeaponStats.Atk = 15;
-				_changeWeaponStats.Ats = -0.03f;
+				_unitStat.Half = 10;
+				_unitStat.onBehaviourEnd = () => _unitStat.Half = 0;
 				break;
 			case 3:
-				_changeWeaponStats.Atk = 20;
-				_changeWeaponStats.Ats = -0.05f;
+				_unitStat.Half = 15;
+				_unitStat.onBehaviourEnd = () => _unitStat.Half = 0;
 				break;
 			case 4:
-				_changeWeaponStats.Atk = 20;
-				_changeWeaponStats.Ats = -0.07f;
-				_changeWeaponStats.Afs = -0.01f;
+				_unitStat.Half = 20;
+				_unitStat.onBehaviourEnd = () => _unitStat.Half = 0;
 				break;
 			case 5:
+				_unitStat.Half = 20;
+				_unitStat.onBehaviourEnd = () => _unitStat.Half = 0;
 				_changeWeaponStats.Atk = 20;
-				_changeWeaponStats.Ats = -0.07f;
-				_changeWeaponStats.Afs = -0.05f;
 				break;
 		};
 	}
@@ -52,7 +52,6 @@ public class BaseGreatSword : Weapon
 		base.Update();
 		//Charge();
 	}
-	private void AttackVec() => _playerAttack.Attack(_unitStat.NowStats.Atk);
 	public override void ChangeKey()
 	{
 		base.ChangeKey();
@@ -90,11 +89,12 @@ public class BaseGreatSword : Weapon
 
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = true });
 		_thisBase.AddState(Units.Base.Unit.BaseState.Charge);
-		_thisBase.GetBehaviour<PlayerAttack>().SkillAnimation(vec);
 
 		_thisBase.GetBehaviour<PlayerAttack>().ChargeAnimation(vec);
 		
 		_currentVector = vec;
+
+		LevelSystem();
 	}
 
 	private void AttackUP(Vector3 vec)
@@ -146,5 +146,8 @@ public class BaseGreatSword : Weapon
 		InputManager.OnMovePress -= Move;
 		InputManager.OnAttackHold -= Charge;
 		InputManager.OnAttackRelease -= AttackUP;
+
+		_unitStat.Half = 0;
+		_unitStat.onBehaviourEnd = null;
 	}
 }

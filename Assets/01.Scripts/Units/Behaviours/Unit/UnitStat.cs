@@ -103,7 +103,8 @@ namespace Units.Behaviours.Unit
 				haloParam.unitParam = giveUnit;
 				Core.Define.GetManager<EventManager>().TriggerEvent(EventFlag.DirtyHalo, haloParam);
 			}
-		
+
+			onBehaviourEnd?.Invoke();
 		}
 
 		public void ChangeHP()

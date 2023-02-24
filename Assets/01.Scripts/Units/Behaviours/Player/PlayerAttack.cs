@@ -88,6 +88,9 @@ namespace Units.Base.Player
         }
         public void Attack(float damage, bool near = false)
         {
+            if (ThisBase.State.HasFlag(BaseState.Moving))
+                return;
+
             if (!isInit)
             {
                 ChangeDelay(ThisBase.GetBehaviour<PlayerEqiq>().CurrentWeapon.WeaponStat.Afs);

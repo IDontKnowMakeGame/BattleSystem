@@ -33,7 +33,7 @@ public class OldGreatSword : BaseGreatSword
 	private IEnumerator HoldOn()
 	{
 		_thisBase.AddState(Units.Base.Unit.BaseState.Skill);
-		_unitStat.Half = 30;
+		_unitStat.Half += 30;
 		yield return new WaitForSeconds(godTime);
 		_unitStat.Half = 0;
 		_thisBase.RemoveState(Units.Base.Unit.BaseState.Skill);

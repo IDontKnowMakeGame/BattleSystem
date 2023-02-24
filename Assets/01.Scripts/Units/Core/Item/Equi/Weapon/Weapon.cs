@@ -131,6 +131,8 @@ namespace Unit.Core.Weapon
 		{
 			if (_thisBase.State.HasFlag(BaseState.Attacking))
 				return;
+			if (_thisBase.State.HasFlag(BaseState.Moving))
+				return;
 
 			_playerAnimation.CurWeaponAnimator.SetDir = vec;
 			_playerAnimation.CurWeaponAnimator.Attack = true;
