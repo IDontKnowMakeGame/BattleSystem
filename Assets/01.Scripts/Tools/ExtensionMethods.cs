@@ -788,5 +788,11 @@ public static class ExtensionMethods
 
         return false;
     }
+    
+    public static Vector3 Center(this Vector3 start , Vector3 end)
+    {
+        return new Vector3((start.x + end.x) / 2, (start.y + end.y) / 2, (start.z + end.z) / 2);
+    }
+    
     #endregion
 }

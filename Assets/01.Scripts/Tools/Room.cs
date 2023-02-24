@@ -16,6 +16,7 @@ namespace _01.Scripts.Tools
         public float Rotation = 0;
         public bool IsPlayerIn = false;
         public bool IsRoute = false;
+        public bool IsFollow = false;
         
         public bool CheckPlayerIn()
         {
