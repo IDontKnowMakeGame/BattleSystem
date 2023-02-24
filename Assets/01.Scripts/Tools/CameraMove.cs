@@ -16,10 +16,17 @@ public class CameraMove : MonoBehaviour
         set
         {
             _currentArea = value;
-            
-            
-            Define.MainCam.transform.DOMoveZ(_currentArea.EndPos.z - 3, 0.3f);
-            Define.MainCam.transform.DOMoveX((_currentArea.StartPos.x + _currentArea.EndPos.x) * 0.5f, 0.3f);
+            var ease = Ease.OutQuad;
+            var duration = 0.5f;
+            var offsetZ = 3;
+            if (_currentArea.IsRoute)
+            {
+                ease = Ease.Linear;
+                duration = 0.4f;
+                offsetZ = 5;
+            }
+            Define.MainCam.transform.DOMoveZ(_currentArea.EndPos.z - offsetZ, duration).SetEase(ease);
+            Define.MainCam.transform.DOMoveX((_currentArea.StartPos.x + _currentArea.EndPos.x) * 0.5f, duration).SetEase(ease);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Core;
 using Managements.Managers;
 using UnityEngine;
@@ -12,7 +13,9 @@ namespace _01.Scripts.Tools
         public int Index;
         public Vector3 StartPos;
         public Vector3 EndPos;
+        public float Rotation = 0;
         public bool IsPlayerIn = false;
+        public bool IsRoute = false;
         
         public bool CheckPlayerIn()
         {
@@ -23,6 +26,10 @@ namespace _01.Scripts.Tools
                 InGame.CameraMove.CurrentArea = this;
                 return true;
             }
+            else
+            {
+                IsPlayerIn = false;
+            }
 
             return false;
         }
@@ -31,6 +38,7 @@ namespace _01.Scripts.Tools
     {
         public int RoomIdx;
         public List<CameraArea> CameraAreas = new();
+        public List<CameraArea> RouteAreas = new();
 
         private void Awake()
         {
@@ -48,21 +56,21 @@ namespace _01.Scripts.Tools
 
         private void Update()
         {
-            foreach (var area in CameraAreas)
+            var areas = CameraAreas.Concat(RouteAreas);
+            foreach (var area in areas)
             {
-                if (area.IsPlayerIn == true)
-                    break;
                 area.CheckPlayerIn();
             }
         }
 
         private void OnDrawGizmos()
         {
-            foreach (var area in CameraAreas)
+            var areas = CameraAreas.Concat(RouteAreas);
+            foreach (var area in areas)
             {
-                Gizmos.color = Color.red;
+                Gizmos.color = area.IsRoute ? Color.magenta : Color.red;
                 Gizmos.DrawWireCube(area.StartPos, Vector3.one);
-                Gizmos.color = Color.blue;
+                Gizmos.color = area.IsRoute ? Color.cyan : Color.blue;
                 Gizmos.DrawWireCube(area.EndPos, Vector3.one);
                 if(InGame.PlayerBase.Position.IsInArea(area.StartPos, area.EndPos))
                 {
