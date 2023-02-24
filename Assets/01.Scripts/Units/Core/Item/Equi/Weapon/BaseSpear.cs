@@ -18,6 +18,53 @@ public class BaseSpear : Weapon
 		base.Start();
 		LoadClassLevel("Spear");
 	}
+
+	protected override void LevelSystem()
+	{
+		LoadClassLevel("Spear");
+		int level = CountToLevel(_weaponClassLevel.killedCount);
+
+		switch (level)
+		{
+			case 1:
+				_changeWeaponStats.Atk = 5;
+				_changeWeaponStats.Ats = -0.01f;
+				_changeWeaponStats.Afs = -0.01f;
+				_playerAttack.AttackColParent.ChangeSizeZ(1);
+				_playerAttack.AttackColParent.ChangeSizeX(1);
+				break;
+			case 2:
+				_changeWeaponStats.Atk = 10;
+				_changeWeaponStats.Ats = -0.03f;
+				_changeWeaponStats.Afs = -0.03f;
+				_playerAttack.AttackColParent.ChangeSizeZ(1);
+				_playerAttack.AttackColParent.ChangeSizeX(1);
+				break;
+			case 3:
+				_changeWeaponStats.Atk = 15;
+				_changeWeaponStats.Ats = -0.05f;
+				_changeWeaponStats.Afs = -0.05f;
+				_playerAttack.AttackColParent.ChangeSizeZ(1);
+				_playerAttack.AttackColParent.ChangeSizeX(1);
+				break;
+			case 4:
+				_changeWeaponStats.Atk = 20;
+				_changeWeaponStats.Ats = -0.07f;
+				_changeWeaponStats.Afs = -0.07f;
+				_playerAttack.AttackColParent.ChangeSizeZ(1);
+				_playerAttack.AttackColParent.ChangeSizeX(1);
+				break;
+			case 5:
+				_changeWeaponStats.Atk = 20;
+				_changeWeaponStats.Ats = -0.07f;
+				_changeWeaponStats.Afs = -0.07f;
+				int sizeZ = _currentAttackPos == Vector3.forward || _currentAttackPos == Vector3.back ? 2 : 1;
+				int sizeX = _currentAttackPos == Vector3.left || _currentAttackPos == Vector3.right ? 2 : 1;
+				_playerAttack.AttackColParent.ChangeSizeZ(sizeZ);
+				_playerAttack.AttackColParent.ChangeSizeX(sizeX);
+				break;
+		};
+	}
 	public override void ChangeKey()
 	{
 		base.ChangeKey();
@@ -47,9 +94,13 @@ public class BaseSpear : Weapon
 			RangeOn();
 	}
 
+	protected override void AttackCoroutine(Vector3 vec)
+	{
+		Attack(vec);
+	}
+
 	protected override void Attack(Vector3 vec)
 	{
-
 		base.Attack(vec);
 		if (!_isAttack)
 		{
@@ -61,6 +112,7 @@ public class BaseSpear : Weapon
 
 		if (_isAttack && _currentAttackPos == vec)
 		{
+			_thisBase.RemoveState(BaseState.Attacking);
 			_playerAttack.AttackColParent.AllDisableDir();
 			_isAttack = false;
 			count = 0;
@@ -71,8 +123,7 @@ public class BaseSpear : Weapon
 	{
 		yield return new WaitForSeconds(WeaponStat.Ats);
 		_currentAttackPos = vec;
-		_playerAttack.AttackColParent.ChangeSizeZ(1);
-		_playerAttack.AttackColParent.ChangeSizeX(1);
+		LevelSystem();
 		_playerAttack.AttackColParent.EnableDir(_playerAttack.AttackColParent.DirReturn(_currentAttackPos));
 		_playerAttack.Attack(_unitStat.NowStats.Atk);
 	}

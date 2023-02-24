@@ -1,29 +1,29 @@
 {
     "weaponclassList": [
-        {
-            "name": "BasicSword",
-            "level": 0,
-            "killedCount": 0
-        },
-        {
-            "name": "GreateSword",
-            "level": 0,
-            "killedCount": 0
-        },
-        {
-            "name": "TwinSword",
-            "level": 0,
-            "killedCount": 0
-        },
-        {
-            "name": "Spear",
-            "level": 0,
-            "killedCount": 0
-        },
-        {
-            "name": "Bow",
-            "level": 0,
-            "killedCount": 0
-        }
+      {
+        "name": "BasicSword",
+        "level": 0,
+        "killedCount": 80
+      },
+      {
+        "name": "GreateSword",
+        "level": 0,
+        "killedCount": 80
+      },
+      {
+        "name": "TwinSword",
+        "level": 0,
+        "killedCount": 80
+      },
+      {
+        "name": "Spear",
+        "level": 0,
+        "killedCount": 80
+      },
+      {
+        "name": "Bow",
+        "level": 0,
+        "killedCount": 80
+      }
     ]
 }
