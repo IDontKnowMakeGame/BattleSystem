@@ -17,6 +17,7 @@ namespace Units.Base.Unit
         Charge = 1 << 4,
         StopMove = 1<< 5,
         Dying = 1 << 6,
+        Knockback = 1 << 7,
     }
     public class UnitBase : Units
     {

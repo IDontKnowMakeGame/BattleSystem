@@ -129,10 +129,15 @@ namespace Unit.Core.Weapon
 
 		protected virtual void AttackCoroutine(Vector3 vec)
 		{
-			if (_thisBase.State.HasFlag(BaseState.Attacking))
+			if (_thisBase.State.HasFlag(BaseState.Attacking) ||
+				!_thisBase.GetBehaviour<PlayerAnimation>().CurWeaponAnimator.LastChange || _thisBase.State.HasFlag(BaseState.Moving))
 				return;
 			if (_thisBase.State.HasFlag(BaseState.Moving))
 				return;
+
+			if (_thisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() != 1 && _thisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() != 3 &&
+				_thisBase.GetBehaviour<PlayerAnimation>().CurWeaponAnimator.LastChange)
+				_thisBase.GetBehaviour<PlayerMove>().stop = true;
 
 			_playerAnimation.CurWeaponAnimator.SetDir = vec;
 			_playerAnimation.CurWeaponAnimator.Attack = true;
