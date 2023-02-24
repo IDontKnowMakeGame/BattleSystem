@@ -26,28 +26,5 @@ namespace Managements.Managers.Floor
         {
             Define.GetManager<FloorManager>().CurrentFloor = this;
         }
-
-        private void Update()
-        {
-            if (CurrentCameraArea.IsPlayerIn)
-            {
-                if (InGame.PlayerBase.Position.z > CurrentCameraArea.StartPos.z)
-                {
-                    CurrentCameraArea.IsPlayerIn = false;
-                }
-                else if (InGame.PlayerBase.Position.z < CurrentCameraArea.EndPos.z)
-                {
-                    CurrentCameraArea.IsPlayerIn = false;
-                }
-                else if (InGame.PlayerBase.Position.x > CurrentCameraArea.StartPos.x)
-                {
-                    CurrentCameraArea.IsPlayerIn = false;
-                }
-                else if (InGame.PlayerBase.Position.x < CurrentCameraArea.EndPos.x)
-                {
-                    CurrentCameraArea.IsPlayerIn = false;
-                }
-            }
-        }
     }
 }
