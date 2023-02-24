@@ -137,10 +137,6 @@ namespace Units.Base.Player
             if (IsAttack) return;
             curDir = dir;
             isInit = true;
-
-            if (ThisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() != 1 && ThisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() != 3 && 
-                playerAnimation.CurWeaponAnimator.LastChange)
-                ThisBase.GetBehaviour<PlayerMove>().stop = true;
         }
 
         public void ChangeAnimation(Vector3 dir)

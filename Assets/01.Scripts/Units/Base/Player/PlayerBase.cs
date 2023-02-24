@@ -10,7 +10,8 @@ namespace Units.Base.Player
 {
     public class PlayerBase : UnitBase
     {
-        [SerializeField] private PlayerMove playerMove; 
+        [SerializeField] private PlayerMove playerMove;
+        [SerializeField] private PlayerKnockback playerKnockback;
         [SerializeField] private PlayerAttack PlayerAttack;
         [SerializeField] private PlayerEqiq PlayerEqiq;
         [SerializeField] private PlayerAnimation playerAnimation;
@@ -25,6 +26,7 @@ namespace Units.Base.Player
             AddBehaviour(thisStat);
             AddBehaviour(playerAnimation);
             AddBehaviour(playerMove);
+            AddBehaviour(playerKnockback);
             AddBehaviour(PlayerAttack);
             AddBehaviour(playerBuff);
             AddBehaviour(PlayerEqiq);
