@@ -16,7 +16,9 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             common.SetResult(true);
             _commonConditions.Add(common);
             toAttack.AddCondition(common);
-            toAttack.SetTarget(new AttackState());
+            var attack = new AttackState();
+            attack.NextState = new ChaseState();
+            toAttack.SetTarget(attack);
             AddTransition(toAttack);
             
             var toBackAttack = new AITransition();

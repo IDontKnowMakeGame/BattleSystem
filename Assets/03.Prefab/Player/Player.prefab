@@ -54,18 +54,18 @@ MonoBehaviour:
   state: 1
   playerMove:
     distance: 1
-    spawnPos: {x: 9, y: 1, z: -22}
+    smoothMoving: 1
+    stop: 0
   PlayerAttack:
     cameraZoom: {fileID: 0}
+    isInit: 0
     isAttack: 0
   PlayerEqiq:
     _currentWeapon: 
     _secoundWeapon: 
     isEnemy: 0
-  unitAnimation:
+  playerAnimation:
     clips: {fileID: 11400000, guid: 03473dd626637364aa247afd26b964ef, type: 2}
-    weaponClips:
-    - {fileID: 11400000, guid: 42eff23c5e338724d83a20cca426c814, type: 2}
     renderer: {fileID: 3562661170690825864}
     state: 0
   playerBuff:

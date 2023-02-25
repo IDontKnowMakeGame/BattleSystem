@@ -14,4 +14,10 @@ public class BrokenSword : BaseStraightSword
 	{
 
 	}
+	
+	public override void Awake()
+	{
+		base.Awake();
+		GetWeaponStateData("brokenSword");
+	}
 }

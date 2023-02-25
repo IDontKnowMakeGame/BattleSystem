@@ -6,7 +6,5 @@ using UnityEngine;
 
 public class EnemyBase : UnitBase
 {
-    private UnitStat _thisStat;
-
-    public virtual UnitStat ThisStat { get => _thisStat; }
+    public virtual UnitStat ThisStat { get; set; }
 }

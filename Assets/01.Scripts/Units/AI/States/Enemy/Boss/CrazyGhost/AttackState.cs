@@ -4,6 +4,7 @@ using Core;
 using Managements.Managers;
 using Unit.Base.AI;
 using Unit.Enemy.AI.Conditions;
+using Units.Base.Unit;
 using Units.Behaviours.Unit;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
     {
         protected int angle = 0;
         protected CommonCondition attackCheck;
+        public AIState NextState;
         public override void Awake()
         {
             var toChase = new AITransition();
@@ -20,14 +22,14 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             attackCheck.SetResult(false);
             attackCheck.SetBool(true);
             toChase.AddCondition(attackCheck);
-            toChase.SetTarget(new ChaseState());
+            toChase.SetTarget(NextState);
             AddTransition(toChase);
         }
 
         protected override void OnEnter()
         {
             attackCheck.SetBool(true);
-            var dir = InGame.PlayerBase.Position - InGame.BossBase.Position;
+            var dir = InGame.PlayerBase.Position - ThisBase.Position;
             angle = (int)(Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg) - 90;
             ThisBase.StartCoroutine(AttackCoroutine());
         }
@@ -46,13 +48,13 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
         protected void AreaAttack(int range)
         {
             var map = Define.GetManager<MapManager>();
-            var damage = InGame.BossBase.GetBehaviour<UnitEquiq>().CurrentWeapon.WeaponStat.Atk;
+            var damage = ThisBase.GetBehaviour<UnitEquiq>().CurrentWeapon.WeaponStat.Atk;
             for (var i = -range; i <= range; i++)
             {
                 for (var j = -range; j <= range; j++)
                 {
                     var dir = Quaternion.Euler(0, -angle, 0) * new Vector3(i, 0, j);
-                    map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red, InGame.BossBase);
+                    map.Damage(ThisBase.Position + dir, damage, 0.5f, Color.red, ThisBase as UnitBase);
                 }
             }
         }
@@ -60,42 +62,42 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
         protected void ForwardAttack()
         {
             var map = Define.GetManager<MapManager>();
-            var damage = InGame.BossBase.GetBehaviour<UnitEquiq>().CurrentWeapon.WeaponStat.Atk;
+            var damage = ThisBase.GetBehaviour<UnitEquiq>().CurrentWeapon.WeaponStat.Atk;
             for (var i = -1; i <= 1; i++)
             {
                 var dir = Quaternion.Euler(0, -angle, 0) * new Vector3(i, 0, 1);
-                map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red, InGame.BossBase);
+                map.Damage(ThisBase.Position + dir, damage, 0.5f, Color.red, ThisBase as UnitBase);
             }
         }
 
         protected void SwingAttack()
         {
             var map = Define.GetManager<MapManager>();
-            var damage = InGame.BossBase.GetBehaviour<UnitEquiq>().CurrentWeapon.WeaponStat.Atk;
+            var damage = ThisBase.GetBehaviour<UnitEquiq>().CurrentWeapon.WeaponStat.Atk;
             Vector3 dir;
             for (var i = -1; i <= 1; i++)
             {
                 dir = Quaternion.Euler(0, -angle, 0) * new Vector3(i, 0, 1);
-                map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red, InGame.BossBase);
+                map.Damage(ThisBase.Position + dir, damage, 0.5f, Color.red, ThisBase as UnitBase);
             }
             dir = Quaternion.Euler(0, -angle, 0) * new Vector3(1, 0, 0);
-            map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red, InGame.BossBase);
+            map.Damage(ThisBase.Position + dir, damage, 0.5f, Color.red, ThisBase as UnitBase);
             
             dir = Quaternion.Euler(0, -angle, 0) * new Vector3(-1, 0, 0);
-            map.Damage(InGame.BossBase.Position + dir, damage, 0.5f, Color.red, InGame.BossBase);
+            map.Damage(ThisBase.Position + dir, damage, 0.5f, Color.red, ThisBase as UnitBase);
         }
         
         protected void BeamAttack()
         {
             var map = Define.GetManager<MapManager>();
-            var damage = InGame.BossBase.GetBehaviour<UnitEquiq>().CurrentWeapon.WeaponStat.Atk;
+            var damage = ThisBase.GetBehaviour<UnitEquiq>().CurrentWeapon.WeaponStat.Atk;
             var dir = Quaternion.Euler(0, -angle, 0) * new Vector3(0, 0, 1);
             var count = 0;
-            var lastBlock = map.GetBlock(InGame.BossBase.Position + dir);
+            var lastBlock = map.GetBlock(ThisBase.Position + dir);
             while (lastBlock != null)
             {
                 count++;
-                lastBlock = map.GetBlock(InGame.BossBase.Position + dir * count);    
+                lastBlock = map.GetBlock(ThisBase.Position + dir * count);    
             }
 
             for (var i = 0; i < count; i++)
@@ -105,7 +107,7 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
                     var dir2 = Quaternion.Euler(0, -angle, 0) * new Vector3(j, 0, -1);
                     dir2.x = Mathf.Round(dir2.x);
                     dir2.z = Mathf.Round(dir2.z);
-                    map.Damage((InGame.BossBase.Position + dir * i) + dir2, damage * 2, 0.5f, Color.red, InGame.BossBase);
+                    map.Damage((ThisBase.Position + dir * i) + dir2, damage * 2, 0.5f, Color.red, ThisBase as UnitBase);
                 }
             }
         }

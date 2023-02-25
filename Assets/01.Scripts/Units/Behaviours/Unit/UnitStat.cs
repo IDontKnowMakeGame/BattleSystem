@@ -121,7 +121,7 @@ namespace Units.Behaviours.Unit
 
 		public virtual void Die()
 		{
-
+			ThisBase.gameObject.SetActive(false);
 		}
 	}
 }
