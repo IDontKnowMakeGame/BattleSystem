@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Units.Behaviours.Unit;
 using Units.Base.Player;
+using Core;
 
 [System.Serializable]
-public class PlayerPortion : UnitBehaviour
+public class PlayerPortion : UsableItem
 {
-    [SerializeField]
-    private int hpPortion = 10;
+    private int cnt;
 
     private float timer = 0;
-    private int cnt = 0;
 
     private bool hp = false;
 
@@ -19,30 +18,15 @@ public class PlayerPortion : UnitBehaviour
 
     GameObject starParticle;
 
-    public override void Start()
+    private void Start()
     {
+        itemCnt = 10;
         ResetPortion();
-        base.Start();
-    }
-
-    public override void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F) && !hp)
-        {
-            hp = true;
-            starParticle = Core.Define.GetManager<ResourceManagers>().Instantiate("Star_A");
-            starParticle.transform.position = ThisBase.transform.position;
-            hpPortion--;
-        }
-        if(hp)
-            DecreaseHPortion();
-
-        base.Update();
     }
 
     public void DecreaseHPortion()
     {
-        if (cnt >= 100 || ThisBase.GetBehaviour<PlayerStat>().OriginStats.Hp <= ThisBase.GetBehaviour<PlayerStat>().NowStats.Hp)
+        if (cnt >= 100 || InGame.PlayerBase.GetBehaviour<PlayerStat>().OriginStats.Hp <= InGame.PlayerBase.GetBehaviour<PlayerStat>().NowStats.Hp)
         {
             ResetPortion();
             return;
@@ -53,7 +37,7 @@ public class PlayerPortion : UnitBehaviour
         if(timer >= 0.015f)
         {
             timer = 0;
-            ThisBase.GetBehaviour<PlayerStat>().AddHP(1);
+            InGame.PlayerBase.GetBehaviour<PlayerStat>().AddHP(1);
             cnt++;
         }
     }
@@ -65,5 +49,18 @@ public class PlayerPortion : UnitBehaviour
         cnt = 0;
         timer = 0;
         timer = 0;
+    }
+
+    protected override void Use()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1) && !hp)
+        {
+            hp = true;
+            starParticle = Core.Define.GetManager<ResourceManagers>().Instantiate("Star_A");
+            starParticle.transform.position = InGame.PlayerBase.Position;
+            itemCnt--;
+        }
+        if (hp)
+            DecreaseHPortion();
     }
 }
