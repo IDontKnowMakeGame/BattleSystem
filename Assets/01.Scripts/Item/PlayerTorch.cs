@@ -8,7 +8,7 @@ public class PlayerTorch : UsableItem
 {
     private Torch torch;
 
-    public void Start()
+    public override void Start()
     {
         torch = InGame.PlayerBase.GetComponentInChildren<Torch>();
         torch.ChangeTorchLight(false);

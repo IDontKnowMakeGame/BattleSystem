@@ -7,6 +7,11 @@ public abstract class UsableItem
     [SerializeField]
     protected int itemCnt;
 
+    public virtual void Start()
+    {
+
+    }
+
     public virtual void Update()
     {
         Use();

@@ -129,6 +129,9 @@ namespace Unit.Core.Weapon
 
 		protected virtual void AttackCoroutine(Vector3 vec)
 		{
+			if (_thisBase.GetBehaviour<PlayerItem>().PlayerShield.UseAble) return;
+
+
 			if (_thisBase.State.HasFlag(BaseState.Attacking) ||
 				!_thisBase.GetBehaviour<PlayerAnimation>().CurWeaponAnimator.LastChange || _thisBase.State.HasFlag(BaseState.Moving))
 				return;
