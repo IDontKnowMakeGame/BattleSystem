@@ -81,7 +81,7 @@ public class User
     public string secondHelo = "";
     public string thirdHelo = "";
 
-    public List<string> equipUseableItem;
+    public List<ItemInfo> equipUseableItem; //0~4
 }
 [Serializable]
 public class ItemInfo
@@ -89,6 +89,7 @@ public class ItemInfo
     public string name;
     public int count;
     public int maxCnt;
+    public int equipNumber = 0;
 }
 public class WeaponInfo
 {
@@ -210,6 +211,26 @@ public class DataManager : Manager
         UserData.maxHp = value < 0 ? 1 : value;
 
         SaveToUserData();
+    }
+    public void EquipUsableItem(string name,int equipnumber = 0)
+    {
+        ItemInfo data = LoadUsableItemToInventory(name);
+        if (data == null)
+            Debug.LogError($"Not  Have Item : {name}");
+
+        data.equipNumber = equipnumber;
+        UserData.equipUseableItem.Add(data);
+    }
+    public ItemInfo LoadUsableItem(string name)
+    {
+        foreach(ItemInfo info in UserData.equipUseableItem)
+        {
+            if(info.name == name)
+            {
+                return info;
+            }
+        }
+        return null;
     }
     #endregion
 
@@ -357,6 +378,15 @@ public class DataManager : Manager
     public void AddUsableItemToInventory(ItemInfo data)
     {
         InventoryData.inventoryInUsableItemList.Add(data);
+    }
+    public ItemInfo LoadUsableItemToInventory(string name)
+    {
+        foreach(ItemInfo info in InventoryData.inventoryInUsableItemList)
+        {
+            if (info.name == name)
+                return info;
+        }
+        return null;
     }
 
     #endregion
