@@ -71,6 +71,7 @@ public class SavePoint
 public class User
 {
     public int maxHp = 100;
+    public int feather = 0;
 
     public string currentWeapon = "oldSword";
     public string firstWeapon = "oldSword";
@@ -79,8 +80,36 @@ public class User
     public string firstHelo = "";
     public string secondHelo = "";
     public string thirdHelo = "";
+
+    public List<string> equipUseableItem;
+}
+[Serializable]
+public class ItemInfo
+{
+    public string name;
+    public int count;
+    public int maxCnt;
+}
+public class WeaponInfo
+{
+    public string name;
+    public int level;
+}
+public class Inventory
+{
+    public List<WeaponInfo> inventoryInWeaponList;
+    public List<string> inventoryInHeloList;
+    public List<ItemInfo> inventoryInUsableItemList;
 }
 
+public class MapInformation
+{
+
+}
+public class WeaponClassList
+{
+    public List<WeaponClassLevel> weaponclassList;
+}
 [Serializable]
 public class WeaponClassLevel
 {
@@ -89,22 +118,6 @@ public class WeaponClassLevel
     public int killedCount;
 }
 
-public class WeaponClassList
-{
-    public List<WeaponClassLevel> weaponclassList;
-}
-
-public class Inventory
-{
-    public List<string> inventoryInWeaponList;
-    public List<string> inventoryInHeloList;
-    public List<string> inventoryInUsableItemList;
-}
-
-public class MapInformation
-{
-
-}
 public class WeaponStateDataList
 {
     public List<WeaponStateData> weaponList;
@@ -147,6 +160,14 @@ public class DataManager : Manager
     {
         string json = DataJson.ObjectToJson(UserData);
         DataJson.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/User", "UserData", json);
+    }
+    public int GetFeather()
+    {
+        return UserData.feather;
+    }
+    public void AddFeahter(int value)
+    {
+        UserData.feather = Math.Clamp(UserData.feather + value, 0, int.MaxValue);
     }
     public void SwapCurrentWeaponData()
     {
@@ -287,35 +308,57 @@ public class DataManager : Manager
         string json = DataJson.ObjectToJson(InventoryData);
         DataJson.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/User", "InvectoryData",json);
     }
-    public void AddWeaponToInventory(string name)
+    public void AddWeaponToInventory(WeaponInfo name)
     {
         InventoryData.inventoryInWeaponList.Add(name);
     }
-    public List<string> LoadWeaponData()
+    public List<WeaponInfo> LoadWeaponData()
     {
         return InventoryData.inventoryInWeaponList;
     }
+    public WeaponInfo LoadWeaponData(string name)
+    {
+        foreach (WeaponInfo weapon in InventoryData.inventoryInWeaponList)
+        {
+            if (weapon.name == name)
+            {
+                return weapon;
+            }
+        }
+        return null;
+    }
+    public int LoadWeaponLevelData(string name)
+    {
+        foreach (WeaponInfo weapon in InventoryData.inventoryInWeaponList)
+        {
+            if (weapon.name == name)
+            {
+                return weapon.level;
+            }
+        }
+        return 1;
+    }
     public bool HaveWeapon(string name)
     {
-        foreach(string weapon in InventoryData.inventoryInWeaponList)
+        foreach(WeaponInfo weapon in InventoryData.inventoryInWeaponList)
         {
-            if(weapon == name)
+            if(weapon.name == name)
             {
                 return true;
             }
         }
         return false;
-        
     }
+
     public void AddHeloToInventory(string name)
     {
         InventoryData.inventoryInHeloList.Add(name);
     }
-    public void AddUsableItemToInventory(string name)
+    public void AddUsableItemToInventory(ItemInfo data)
     {
-        InventoryData.inventoryInUsableItemList.Add(name);
+        InventoryData.inventoryInUsableItemList.Add(data);
     }
-    
+
     #endregion
 
 }
