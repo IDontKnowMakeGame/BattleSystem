@@ -14,7 +14,6 @@ public class BaseTwinSword : Weapon
 	}
 	protected override void LevelSystem()
 	{
-		LoadClassLevel("TwinSword");
 		Debug.Log(_weaponClassLevel.killedCount);
 		int level = CountToLevel(_weaponClassLevel.killedCount);
 

@@ -5,12 +5,6 @@ using UnityEngine;
 
 public class OldBow : BaseBow
 {
-	public override void Awake()
-	{
-		base.Awake();
-		GetWeaponStateData("oldBow");
-	}
-
 	protected override void Skill()
 	{
 		if (!_thisBase.State.HasFlag(BaseState.Charge))

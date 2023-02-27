@@ -29,7 +29,6 @@ public class BaseBow : Weapon
 	}
 	protected override void LevelSystem()
 	{
-		LoadClassLevel("Bow");
 		int level = CountToLevel(_weaponClassLevel.killedCount);
 
 		float basicValue = 10;

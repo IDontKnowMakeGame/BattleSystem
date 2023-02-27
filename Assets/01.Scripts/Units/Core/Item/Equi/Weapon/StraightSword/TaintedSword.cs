@@ -8,7 +8,7 @@ public class TaintedSword : BaseStraightSword
 	public override void Awake()
 	{
 		base.Awake();
-		GetWeaponStateData("taintedSword");
+
 	}
 
 	public override void ChangeKey()

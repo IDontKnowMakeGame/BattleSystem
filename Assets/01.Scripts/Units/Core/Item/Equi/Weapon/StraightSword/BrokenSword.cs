@@ -6,12 +6,6 @@ using UnityEngine;
 public class BrokenSword : BaseStraightSword
 {
 	private int count = 0;
-
-	public override void Awake()
-	{
-		base.Awake();
-		GetWeaponStateData("brokenSword");
-	}
 	public override void ChangeKey()
 	{
 		base.ChangeKey();
@@ -42,11 +36,5 @@ public class BrokenSword : BaseStraightSword
 		base.Reset();
 		count = 0;
 		_playerAttack.onBehaviourEnd = null;
-	}
-	
-	public override void Awake()
-	{
-		base.Awake();
-		GetWeaponStateData("brokenSword");
 	}
 }

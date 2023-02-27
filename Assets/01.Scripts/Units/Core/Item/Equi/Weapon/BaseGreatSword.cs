@@ -11,6 +11,7 @@ public class BaseGreatSword : Weapon
 	protected float _maxChargeTime => WeaponStat.Ats;
 
 	private Vector3 _currentVector;
+
 	public override void Start()
 	{
 		base.Start();
@@ -20,7 +21,6 @@ public class BaseGreatSword : Weapon
 	}
 	protected override void LevelSystem()
 	{
-		LoadClassLevel("GreateSword");
 		int level = CountToLevel(_weaponClassLevel.killedCount);
 
 		switch (level)

@@ -8,7 +8,6 @@ public class OldGreatSword : BaseGreatSword
 	public override void Awake()
 	{
 		base.Awake();
-		GetWeaponStateData("oldGreatSword");
 		_maxTime = OldGreatSwordData.coolTime;
 		godTime = OldGreatSwordData.gt;
 	}

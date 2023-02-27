@@ -21,7 +21,6 @@ public class BaseSpear : Weapon
 
 	protected override void LevelSystem()
 	{
-		LoadClassLevel("Spear");
 		int level = CountToLevel(_weaponClassLevel.killedCount);
 
 		switch (level)
