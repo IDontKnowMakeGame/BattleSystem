@@ -34,7 +34,7 @@ public class CameraMove : MonoBehaviour
             camPos = Quaternion.Euler(0, _currentArea.Rotation, 0) * camPos;
             _cameraAnchor.DOMove(anchorPos, duration).SetEase(ease);
             Define.MainCam.transform.DOLocalMove(camPos, duration).SetEase(ease);
-            Define.MainCam.transform.DORotate(new Vector3(30, _currentArea.Rotation, 0), duration);
+            Define.MainCam.transform.DORotate(new Vector3(30, _currentArea.Rotation, 0), duration * 1.5f);
         }
     }
 
@@ -49,7 +49,7 @@ public class CameraMove : MonoBehaviour
         {
             Transform transform1;
             (transform1 = Define.MainCam.transform).rotation = Quaternion.Euler(30, _currentArea.Rotation, 0);
-            _cameraAnchor.position = InGame.PlayerBase.transform.position + Vector3.up * 4;
+            _cameraAnchor.position = InGame.PlayerBase.transform.position + Vector3.up * 3;
             var camPos = Vector3.back * 6;
             camPos = Quaternion.Euler(0, _currentArea.Rotation, 0) * camPos;
             Define.MainCam.transform.localPosition = camPos;

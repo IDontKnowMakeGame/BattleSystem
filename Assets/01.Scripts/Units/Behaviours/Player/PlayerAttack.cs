@@ -41,7 +41,6 @@ namespace Units.Base.Player
         public bool IsAttack => isAttack;
         
         private PlayerAnimation playerAnimation;
-        private PlayerPortion playerPortion;
 
         private PlayerBuff playerBuff;
 
@@ -55,7 +54,6 @@ namespace Units.Base.Player
             attackColParent = GameObject.FindObjectOfType<AttackCollider>();
 
             playerAnimation = ThisBase.GetBehaviour<PlayerAnimation>();
-            playerPortion = ThisBase.GetBehaviour<PlayerPortion>();
             playerBuff = ThisBase.GetBehaviour<PlayerBuff>();
             sprite = ThisBase.GetComponentInChildren<MeshRenderer>().transform;
 
@@ -88,6 +86,7 @@ namespace Units.Base.Player
         }
         public void Attack(float damage, bool near = false)
         {
+
             if (ThisBase.State.HasFlag(BaseState.Moving))
                 return;
 
@@ -100,7 +99,7 @@ namespace Units.Base.Player
             ThisBase.RemoveState(BaseState.Attacking);
             ThisBase.GetBehaviour<PlayerMove>().stop = false;
 
-            if (timer > 0 || !playerAnimation.CurWeaponAnimator.LastChange || playerPortion.UsePortion || IsAttack)
+            if (timer > 0 || !playerAnimation.CurWeaponAnimator.LastChange || ThisBase.GetBehaviour<PlayerItem>().PlayerPortion.UsePortion || IsAttack)
             {
                 ThisBase.GetBehaviour<PlayerMove>().stop = false;
                 return;
@@ -151,7 +150,8 @@ namespace Units.Base.Player
             }
 
 
-            if (timer > 0 || !playerAnimation.CurWeaponAnimator.LastChange || isAttack || playerPortion.UsePortion) return;
+            if (timer > 0 || !playerAnimation.CurWeaponAnimator.LastChange || isAttack || 
+                ThisBase.GetBehaviour<PlayerItem>().PlayerPortion.UsePortion) return;
             if (dir == Vector3.left)
             {
                 sprite.localScale = new Vector3(-1, 1, 1);

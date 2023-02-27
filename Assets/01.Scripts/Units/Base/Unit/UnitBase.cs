@@ -23,7 +23,7 @@ namespace Units.Base.Unit
     {
         [SerializeField] private BaseState state = BaseState.None;
         
-        public Vector3 SpawnPos { get; set; }
+        public virtual Vector3 SpawnPos { get; set; }
         public BaseState State
         {
             get => state;

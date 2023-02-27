@@ -43,4 +43,10 @@ public class BrokenSword : BaseStraightSword
 		count = 0;
 		_playerAttack.onBehaviourEnd = null;
 	}
+	
+	public override void Awake()
+	{
+		base.Awake();
+		GetWeaponStateData("brokenSword");
+	}
 }

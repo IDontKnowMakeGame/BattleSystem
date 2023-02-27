@@ -28,7 +28,7 @@ namespace Units.Base.Player
             base.Damaged(damage, giveUnit);
             
             ThisBase.GetBehaviour<PlayerBuff>().ChangeAnger(1);
-            ThisBase.GetBehaviour<PlayerPortion>().ResetPortion();
+            ThisBase.GetBehaviour<PlayerItem>().PlayerPortion.ResetPortion();
 
             float value = (changeStats.Hp / originStats.Hp) * 100f;
             Core.Define.GetManager<UIManager>().SetHpValue((int)value);

@@ -12,6 +12,7 @@ namespace Units.Behaviours.Unit
     [Serializable]
     public class UnitStat : UnitBehaviour,IDamaged
     {
+	    
         [SerializeField] protected UnitStats originStats = null;
         [SerializeField] protected UnitStats changeStats = null;
 		public UnitStats OriginStats => originStats;
@@ -121,7 +122,7 @@ namespace Units.Behaviours.Unit
 
 		public virtual void Die()
 		{
-
+			ThisBase.gameObject.SetActive(false);
 		}
 	}
 }
