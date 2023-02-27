@@ -81,7 +81,7 @@ public class User
     public string secondHelo = "";
     public string thirdHelo = "";
 
-    public List<ItemInfo> equipUseableItem; //0~4
+    public List<ItemInfo> equipUseableItem; //0~4 
 }
 [Serializable]
 public class ItemInfo
@@ -89,7 +89,7 @@ public class ItemInfo
     public string name;
     public int count;
     public int maxCnt;
-    public int equipNumber = 0;
+    public int equipNumber = 0; //1
 }
 public class WeaponInfo
 {
@@ -220,6 +220,20 @@ public class DataManager : Manager
 
         data.equipNumber = equipnumber;
         UserData.equipUseableItem.Add(data);
+
+        SaveToUserData();
+    }
+    public void UnmountItem(int number)
+    {
+        for(int i=0;i<UserData.equipUseableItem.Count;i++)
+        {
+            if (UserData.equipUseableItem[i].equipNumber == number)
+            {
+                UserData.equipUseableItem.Remove(UserData.equipUseableItem[i]);
+            }
+        }
+
+        SaveToUserData();
     }
     public ItemInfo LoadUsableItem(string name)
     {
@@ -332,6 +346,7 @@ public class DataManager : Manager
     public void AddWeaponToInventory(WeaponInfo name)
     {
         InventoryData.inventoryInWeaponList.Add(name);
+        SaveToInventoryData();
     }
     public List<WeaponInfo> LoadWeaponData()
     {
@@ -374,10 +389,12 @@ public class DataManager : Manager
     public void AddHeloToInventory(string name)
     {
         InventoryData.inventoryInHeloList.Add(name);
+        SaveToInventoryData();
     }
     public void AddUsableItemToInventory(ItemInfo data)
     {
         InventoryData.inventoryInUsableItemList.Add(data);
+        SaveToInventoryData();
     }
     public ItemInfo LoadUsableItemToInventory(string name)
     {
