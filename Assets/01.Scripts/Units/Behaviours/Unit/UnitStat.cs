@@ -1,5 +1,6 @@
 ﻿using System;
 using Core;
+using Managements.Managers;
 using Unit.Core;
 using UnityEngine;
 using Behaviour = Units.Behaviours.Base.Behaviour;
@@ -125,6 +126,7 @@ namespace Units.Behaviours.Unit
 
 		public virtual void Die()
 		{
+			Define.GetManager<MapManager>().GetBlock(ThisBase.Position).UnitOnBlock();
 			ThisBase.gameObject.SetActive(false);
 		}
 	}

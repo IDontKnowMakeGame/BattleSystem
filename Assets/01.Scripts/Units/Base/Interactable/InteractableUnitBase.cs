@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using System;
+using Core;
 using Managements.Managers;
 using Units.Base.Unit;
 using UnityEngine;
@@ -9,12 +10,13 @@ namespace Units.Base.Interactable
     {
         public virtual bool IsInteracted { get; set; }
         public virtual bool IsDetected { get; set; }
-        [field:SerializeField] public override Vector3 SpawnPos { get; set; }
+        public Func<Vector3, bool> DetectCondition = null;
 
         protected override void Awake()
         {
             base.Awake();
             InputManager.OnInteractionPress += Interact;
+            DetectCondition = vector3 => InGame.PlayerBase.Position.IsNeighbor(vector3);
         }
 
         protected override void Update()
@@ -27,16 +29,17 @@ namespace Units.Base.Interactable
         public virtual void Interact()
         {
             if(IsInteracted) return;
-            if (InGame.PlayerBase.Position.IsNeighbor(Position))
+            if (DetectCondition.Invoke(Position))
             {
                 // TODO: Interact
+                Debug.Log("Interact");
             }
         }
 
         protected virtual void OnDetect()
         {
             if(IsDetected) return;
-            if (InGame.PlayerBase.Position.IsNeighbor(Position) == false) return;
+            if (DetectCondition.Invoke(Position) == false) return;
             IsDetected = true;
             Debug.Log("Detect");
         }
@@ -44,7 +47,7 @@ namespace Units.Base.Interactable
         protected virtual void OnLostDetect()
         {
             if (IsDetected == false) return;
-            if (InGame.PlayerBase.Position.IsNeighbor(Position)) return;
+            if (DetectCondition.Invoke(Position)) return;
             IsDetected = false;
             Debug.Log("Lost Detect");
         }
