@@ -26,7 +26,9 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             common2.SetResult(true);
             _commonConditions.Add(common2);
             toBackAttack.AddCondition(common2);
-            toBackAttack.SetTarget(new BackAttackState());
+            attack = new BackAttackState();
+            attack.NextState = new ChaseState();
+            toBackAttack.SetTarget(attack);
             AddTransition(toBackAttack);
             
             var toTripleAttack = new AITransition();
@@ -34,7 +36,9 @@ namespace Units.AI.States.Enemy.Boss.CrazyGhost
             common3.SetResult(true);
             _commonConditions.Add(common3);
             toTripleAttack.AddCondition(common3);
-            toTripleAttack.SetTarget(new TripleAttackState());
+            attack = new TripleAttackState();
+            attack.NextState = new ChaseState();
+            toTripleAttack.SetTarget(attack);
             AddTransition(toTripleAttack);
         }
 
