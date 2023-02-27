@@ -7,6 +7,5 @@ namespace Units.Base.Enemy
     {
         [SerializeField] protected UnitStat thisStat;
         public override UnitStat ThisStat => thisStat;
-        [field:SerializeField] public override Vector3 SpawnPos { get; set; }
     }
 }
