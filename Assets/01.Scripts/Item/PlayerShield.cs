@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Managements.Managers;
 using Core;
+using Units.Base.Unit;
 
 [System.Serializable]
 public class PlayerShield : UsableItem
@@ -22,7 +23,11 @@ public class PlayerShield : UsableItem
         if(useAble)
         {
             shield = Core.Define.GetManager<ResourceManagers>().Instantiate("Shield");
-            shield.transform.position = (InGame.PlayerBase.Position + dir).SetY(1);
+            Shield shieldUnit = shield.GetComponent<Shield>();
+            Vector3 pos = (InGame.PlayerBase.Position + dir).SetY(1);
+            shieldUnit.SpawnPos = pos;
+            //shield.transform.position = pos;
+            InGame.SetUnit(shieldUnit, pos);
             useAble = false;
         }
     }
