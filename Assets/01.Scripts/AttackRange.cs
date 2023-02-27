@@ -32,7 +32,7 @@ public class AttackRange : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    {
+    {   
         if (other.CompareTag("Enemy") && !enemys.Contains(other.gameObject))
         {
             enemys.Add(other.gameObject);

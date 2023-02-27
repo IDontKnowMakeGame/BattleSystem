@@ -6,12 +6,6 @@ using Core;
 public class OldSpear : BaseSpear
 {
 	float beforeAtk;
-	public override void Awake()
-	{
-		base.Awake();
-		GetWeaponStateData("oldSpear");
-	}
-
 	public override void ChangeKey()
 	{
 		base.ChangeKey();

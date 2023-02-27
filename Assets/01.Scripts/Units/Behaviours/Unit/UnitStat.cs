@@ -12,6 +12,7 @@ namespace Units.Behaviours.Unit
     [Serializable]
     public class UnitStat : UnitBehaviour,IDamaged
     {
+	    
         [SerializeField] protected UnitStats originStats = null;
         [SerializeField] protected UnitStats changeStats = null;
 		public UnitStats OriginStats => originStats;
@@ -23,6 +24,8 @@ namespace Units.Behaviours.Unit
 			}
 		}
 		public float Half { get; set; } = 0;
+
+		public Action afterDieAction;
 
 		public UnitStats addstat = new UnitStats { Agi = 0, Atk = 0, Hp = 0 };
 		public UnitStats multistat = new UnitStats { Agi = 1, Atk = 1, Hp = 1 };
@@ -92,6 +95,7 @@ namespace Units.Behaviours.Unit
 			changeStats.Hp -= damage - damage * half;
 			if(changeStats.Hp <= 0)
 			{
+				afterDieAction?.Invoke();
 				Die();
 				return;
 			}
@@ -103,7 +107,8 @@ namespace Units.Behaviours.Unit
 				haloParam.unitParam = giveUnit;
 				Core.Define.GetManager<EventManager>().TriggerEvent(EventFlag.DirtyHalo, haloParam);
 			}
-		
+
+			onBehaviourEnd?.Invoke();
 		}
 
 		public void ChangeHP()
@@ -120,7 +125,7 @@ namespace Units.Behaviours.Unit
 
 		public virtual void Die()
 		{
-
+			ThisBase.gameObject.SetActive(false);
 		}
 	}
 }

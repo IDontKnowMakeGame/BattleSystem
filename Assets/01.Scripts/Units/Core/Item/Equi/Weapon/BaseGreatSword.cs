@@ -11,54 +11,48 @@ public class BaseGreatSword : Weapon
 	protected float _maxChargeTime => WeaponStat.Ats;
 
 	private Vector3 _currentVector;
+
 	public override void Start()
 	{
 		base.Start();
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
 		LoadClassLevel("GreateSword");
+		LevelSystem();
 	}
 	protected override void LevelSystem()
 	{
 		int level = CountToLevel(_weaponClassLevel.killedCount);
 
-		if (level == beforeCount)
-			return;
-
-		switch(level)
+		switch (level)
 		{
 			case 1:
-				_weaponStats.Atk += 10;
-				_weaponStats.Ats -= 0.01f;
+				_unitStat.Half = 5;
+				_unitStat.onBehaviourEnd = () => _unitStat.Half = 0;
 				break;
 			case 2:
-				_weaponStats.Atk += 15;
-				_weaponStats.Ats -= 0.03f;
+				_unitStat.Half = 10;
+				_unitStat.onBehaviourEnd = () => _unitStat.Half = 0;
 				break;
 			case 3:
-				_weaponStats.Atk += 20;
-				_weaponStats.Ats -= 0.05f;
+				_unitStat.Half = 15;
+				_unitStat.onBehaviourEnd = () => _unitStat.Half = 0;
 				break;
 			case 4:
-				_weaponStats.Atk += 20;
-				_weaponStats.Ats -= 0.07f;
-				_weaponStats.Afs -= 0.01f;
+				_unitStat.Half = 20;
+				_unitStat.onBehaviourEnd = () => _unitStat.Half = 0;
 				break;
 			case 5:
-				_weaponStats.Atk += 20;
-				_weaponStats.Ats -= 0.07f;
-				_weaponStats.Afs -= 0.05f;
+				_unitStat.Half = 20;
+				_unitStat.onBehaviourEnd = () => _unitStat.Half = 0;
+				_changeWeaponStats.Atk = 20;
 				break;
 		};
-		beforeCount = level;
 	}
-
-
 	public override void Update()
 	{
 		base.Update();
 		//Charge();
 	}
-	private void AttackVec() => _playerAttack.Attack(_unitStat.NowStats.Atk);
 	public override void ChangeKey()
 	{
 		base.ChangeKey();
@@ -96,9 +90,12 @@ public class BaseGreatSword : Weapon
 
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = true });
 		_thisBase.AddState(Units.Base.Unit.BaseState.Charge);
+
 		_thisBase.GetBehaviour<PlayerAttack>().ChargeAnimation(vec);
 		
 		_currentVector = vec;
+
+		LevelSystem();
 	}
 
 	private void AttackUP(Vector3 vec)
@@ -106,6 +103,7 @@ public class BaseGreatSword : Weapon
 		_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 		if (_chargeTime >= _maxChargeTime)
 		{
+			LevelSystem();
 			_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 			_playerAttack.AttackColParent.AllDisableDir();
 			_playerAttack.AttackColParent.ChangeSizeZ(1);
@@ -135,7 +133,7 @@ public class BaseGreatSword : Weapon
 		else
 		{
 			_chargeTime += Time.deltaTime;
-			GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderUp, new EventParam() { floatParam = _chargeTime});
+			GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderUp, new EventParam() { floatParam = _chargeTime });
 		}
 	}
 
@@ -149,5 +147,8 @@ public class BaseGreatSword : Weapon
 		InputManager.OnMovePress -= Move;
 		InputManager.OnAttackHold -= Charge;
 		InputManager.OnAttackRelease -= AttackUP;
+
+		_unitStat.Half = 0;
+		_unitStat.onBehaviourEnd = null;
 	}
 }

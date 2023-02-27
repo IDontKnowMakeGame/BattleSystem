@@ -26,10 +26,22 @@ namespace Unit.Core.Weapon
         public UnitBase _thisBase;
 
         protected WeaponStats _weaponStats = null;
-        protected WeaponStats _changeWeaponStats = null;
+        protected WeaponStats _changeWeaponStats = new WeaponStats();
+
+        private WeaponStats _WeaponStats = new WeaponStats();
 
 		protected AttackCollider _attackCollider = null;
-		public WeaponStats WeaponStat => _weaponStats;
+		public WeaponStats WeaponStat
+		{
+			get
+			{
+				_WeaponStats.Atk = _weaponStats.Atk + _changeWeaponStats.Atk;
+				_WeaponStats.Ats = _weaponStats.Ats + _changeWeaponStats.Ats;
+				_WeaponStats.Afs = _weaponStats.Afs + _changeWeaponStats.Afs;
+				_WeaponStats.Weight = _weaponStats.Weight + _changeWeaponStats.Weight;
+				return _WeaponStats;
+			}
+		}
 
 		//유닛 공격, 유닛 move
 		protected UnitAttack _unitAttack;
@@ -52,11 +64,8 @@ namespace Unit.Core.Weapon
 		protected SliderObject _sliderObject;
 
 		protected WeaponClassLevel _weaponClassLevel;
-
-		protected int beforeCount = 0;
 		public override void Start()
 		{
-			//여기서 다 받아주고
 			_unitAttack = _thisBase.GetBehaviour<UnitAttack>();
 			_unitMove = _thisBase.GetBehaviour<UnitMove>();
 			_unitStat = _thisBase.GetBehaviour<UnitStat>();
@@ -64,16 +73,19 @@ namespace Unit.Core.Weapon
 
 			_playerAttack = _unitAttack as PlayerAttack;
 			_playerAnimation = _unitAnimation as PlayerAnimation;
+
+			GetWeaponStateData(this.GetType().Name);
 		}
 		public override void Update()
 		{
 			Timer();
 		}
-
 		public virtual void ChangeKey()
 		{
 			InputManager.OnAttackPress += AttackCoroutine;
 			InputManager.OnSkillPress += Skill;
+
+			_unitStat.afterDieAction = KillEnemy;
 		}
 
 		protected void Timer()
@@ -88,7 +100,6 @@ namespace Unit.Core.Weapon
 				_currentTime = 0;
 			}
 		}
-
 		protected void GetWeaponStateData(string name)
 		{
 			WeaponStateDataList weaponStateDataList = DataJson.LoadJsonFile<WeaponStateDataList>(Application.streamingAssetsPath + "/SAVE/Weapon", "WeaponStatus");
@@ -120,8 +131,18 @@ namespace Unit.Core.Weapon
 
 		protected virtual void AttackCoroutine(Vector3 vec)
 		{
-			if (_thisBase.State.HasFlag(BaseState.Attacking))
+			if (_thisBase.GetBehaviour<PlayerItem>().PlayerShield.UseAble) return;
+
+
+			if (_thisBase.State.HasFlag(BaseState.Attacking) ||
+				!_thisBase.GetBehaviour<PlayerAnimation>().CurWeaponAnimator.LastChange || _thisBase.State.HasFlag(BaseState.Moving))
 				return;
+			if (_thisBase.State.HasFlag(BaseState.Moving))
+				return;
+
+			if (_thisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() != 1 && _thisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() != 3 &&
+				_thisBase.GetBehaviour<PlayerAnimation>().CurWeaponAnimator.LastChange)
+				_thisBase.GetBehaviour<PlayerMove>().stop = true;
 
 			_playerAnimation.CurWeaponAnimator.SetDir = vec;
 			_playerAnimation.CurWeaponAnimator.Attack = true;
@@ -135,9 +156,14 @@ namespace Unit.Core.Weapon
 		{
 
 		}
+
 		public virtual void LoadClassLevel(string name)
 		{
 			_weaponClassLevel = Define.GetManager<DataManager>().LoadWeaponClassLevel(name);
+		}
+		public virtual void SaveClassLevel()
+		{
+			Define.GetManager<DataManager>().SaveWeaponClassListData(_weaponClassLevel);
 		}
 		protected int CountToLevel(int count) => count switch
 		{
@@ -151,6 +177,54 @@ namespace Unit.Core.Weapon
 		protected virtual void LevelSystem()
 		{
 
+		}
+		protected virtual void WeaponLevel()
+		{
+			//switch()
+			//{
+			//	case 1:
+			//		_weaponStats.Atk += 20;
+			//		break;
+			//	case 2:
+			//		_weaponStats.Atk += 45;
+			//		break;
+			//	case 3:
+			//		_weaponStats.Atk += 75;
+			//		break;
+			//	case 4:
+			//		_weaponStats.Atk += 110;
+			//		break;
+			//	case 5:
+			//		_weaponStats.Atk += 150;
+			//		break;
+			//	case 6:
+			//		_weaponStats.Atk += 195;
+			//		break;
+			//	case 7:
+			//		_weaponStats.Atk += 245;
+			//		break;
+			//	case 8:
+			//		_weaponStats.Atk += 300;
+			//		break;
+			//	case 9:
+			//		_weaponStats.Atk += 360;
+			//		break;
+			//	case 10:
+			//		_weaponStats.Atk += 425;
+			//		break;
+			//	case 11:
+			//		_weaponStats.Atk += 495;
+			//		break;
+			//	case 12:
+			//		_weaponStats.Atk += 570;
+			//		break;
+			//}
+		}
+		private void KillEnemy()
+		{
+			_weaponClassLevel.killedCount++;
+			LevelSystem();
+			SaveClassLevel();
 		}
 		public virtual void Reset()
 		{

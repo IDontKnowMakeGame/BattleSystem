@@ -8,7 +8,7 @@ public class TaintedSword : BaseStraightSword
 	public override void Awake()
 	{
 		base.Awake();
-		GetWeaponStateData("taintedSword");
+
 	}
 
 	public override void ChangeKey()
@@ -30,8 +30,8 @@ public class TaintedSword : BaseStraightSword
 	{
 		_thisBase.AddState(Units.Base.Unit.BaseState.Skill);
 		_thisBase.AddState(Units.Base.Unit.BaseState.StopMove);
-		float atk = _weaponStats.Atk;
-		_weaponStats.Atk = atk * 1.5f;
+		float atk = WeaponStat.Atk;
+		WeaponStat.Atk = atk * 1.5f;
 		Debug.Log(">");
 		Define.GetManager<MapManager>().Damage(_thisBase.Position + Vector3.forward, _unitStat.NowStats.Atk, 0.5f, () => RealmEnd(atk));
 		Define.GetManager<MapManager>().Damage(_thisBase.Position + Vector3.forward + Vector3.left, _unitStat.NowStats.Atk, 0.5f, () => RealmEnd(atk));

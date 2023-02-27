@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UsableItem : MonoBehaviour
+public abstract class UsableItem
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    protected int itemCnt;
+
+    public virtual void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
-        
+        Use();
     }
+
+    protected abstract void Use();
 }

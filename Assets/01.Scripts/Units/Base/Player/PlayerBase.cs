@@ -10,14 +10,15 @@ namespace Units.Base.Player
 {
     public class PlayerBase : UnitBase
     {
-        [SerializeField] private PlayerMove playerMove; 
+        [SerializeField] private PlayerMove playerMove;
+        [SerializeField] private PlayerKnockback playerKnockback;
         [SerializeField] private PlayerAttack PlayerAttack;
         [SerializeField] private PlayerEqiq PlayerEqiq;
         [SerializeField] private PlayerAnimation playerAnimation;
         [SerializeField] private PlayerBuff playerBuff;
-        [SerializeField] private PlayerStat thisStat;      
+        [SerializeField] private PlayerStat thisStat;
+        [SerializeField] private PlayerItem playerItem;
         [SerializeField] private CharacterRender characterRender;
-        [SerializeField] private PlayerPortion playerPortion;
 
         protected override void Init()
         {
@@ -25,10 +26,11 @@ namespace Units.Base.Player
             AddBehaviour(thisStat);
             AddBehaviour(playerAnimation);
             AddBehaviour(playerMove);
+            AddBehaviour(playerKnockback);
             AddBehaviour(PlayerAttack);
             AddBehaviour(playerBuff);
             AddBehaviour(PlayerEqiq);
-            AddBehaviour(playerPortion);
+            AddBehaviour(playerItem);
             base.Init();
             ChangeBehaviour(characterRender);
         }

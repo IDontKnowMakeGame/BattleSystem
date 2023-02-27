@@ -4,9 +4,4 @@ using UnityEngine;
 
 public class RustySpear : BaseSpear
 {
-	public override void Awake()
-	{
-		base.Awake();
-		GetWeaponStateData("rustySpear");
-	}
 }

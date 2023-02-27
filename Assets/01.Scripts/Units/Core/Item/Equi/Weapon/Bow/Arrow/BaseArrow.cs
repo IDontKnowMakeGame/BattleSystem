@@ -108,7 +108,6 @@ public class BaseArrow : MonoBehaviour
 		this.transform.DOMove(goalPos, time).OnComplete(
 			() =>
 			{
-				Debug.Log(_thisArrow);
 				_thisArrow.Stick(GameManagement.Instance.GetManager<MapManager>().GetBlock(this.transform.position), _arrowStat.dir);
 				AddKey();
 				_thisArrow.isStick = true;
@@ -117,7 +116,6 @@ public class BaseArrow : MonoBehaviour
 	}
 	private void Pull()
 	{
-		Debug.Log(_thisArrow.isStick);
 		if (isPull && _thisArrow.isStick &&  _playerBase.GetBehaviour<UnitEquiq>().CurrentWeapon is BaseBow)
 		{
 			Debug.Log(">");
@@ -136,7 +134,6 @@ public class BaseArrow : MonoBehaviour
 	{
 		if ((units is EnemyBase || units is BlockBase) && !_thisArrow.isStick)
 		{
-			Debug.Log((units is EnemyBase || units is BlockBase));
 			_enemyBase = units as EnemyBase;
 			_enemyBase.GetBehaviour<UnitStat>()?.Damaged(_arrowStat.damage, InGame.PlayerBase);
 			_thisArrow.Stick(units, _arrowStat.dir);
