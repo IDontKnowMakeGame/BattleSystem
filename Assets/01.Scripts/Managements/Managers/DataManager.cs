@@ -332,6 +332,7 @@ public class DataManager : Manager
             if(WeaponLevelListData.weaponInfoDatas[i].name == name)
             {
                 WeaponLevelListData.weaponInfoDatas[i].level = changeLevel;
+                SaveWeaponLevelListData();
                 return;
             }
         }
