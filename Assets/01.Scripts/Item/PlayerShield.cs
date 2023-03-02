@@ -13,8 +13,12 @@ public class PlayerShield : UsableItem
 
     private GameObject shield;
 
+    ItemInfo itemInfo;
+
     public override void Start()
     {
+        itemInfo = DataManager.UserData.equipUseableItem[2];
+
         InputManager.OnAttackPress += CheckShield;
     }
 
