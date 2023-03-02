@@ -18,9 +18,12 @@ public class PlayerPortion : UsableItem
 
     GameObject starParticle;
 
+    ItemInfo itemInfo;
+
     public override void Start()
     {
         itemCnt = 10;
+        itemInfo = DataManager.UserData.equipUseableItem[0];
         ResetPortion();
     }
 
