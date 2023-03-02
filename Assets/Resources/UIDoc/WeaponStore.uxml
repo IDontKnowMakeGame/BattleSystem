@@ -1,8 +1,68 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UIDoc/Uss/WeaponStore.uss?fileID=7433441132597879392&amp;guid=588eca18f73f2104da431caa6ea3a24c&amp;type=3#WeaponStore" />
     <ui:VisualElement name="All" style="width: 100%; height: 100%; padding-left: 40px; padding-right: 40px; padding-top: 40px; padding-bottom: 40px;">
-        <ui:VisualElement style="width: 100%; height: 100%; background-color: rgba(173, 173, 173, 255); flex-direction: row;">
-            <ui:VisualElement style="width: 50%; height: 100%;" />
-            <ui:VisualElement style="width: 50%; height: 100%;" />
+        <ui:VisualElement name="Store" style="width: 100%; height: 100%; background-color: rgb(173, 173, 173); flex-direction: column;">
+            <ui:VisualElement name="WeaponPanel" style="width: 100%; height: 80%; align-items: center; justify-content: center; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; flex-direction: row;">
+                <ui:VisualElement name="VisualPanel" style="width: 40%; height: 100%; background-color: rgb(156, 156, 156);">
+                    <ui:VisualElement name="UpWindow" style="width: 100%; height: 80%; align-items: center; justify-content: center;">
+                        <ui:VisualElement name="WeaponImage" style="width: 250px; height: 350px; background-color: rgb(87, 87, 87);" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="DownWindow" style="width: 100%; height: 20%; justify-content: center; align-items: center;">
+                        <ui:Label text="Label" display-tooltip-when-elided="true" name="WeaponName" style="font-size: 30px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="ExPnael" style="width: 60%; height: 100%; background-color: rgb(142, 142, 142); flex-direction: row;">
+                    <ui:VisualElement name="LeftWindow" style="width: 30%; height: 100%;">
+                        <ui:VisualElement style="width: 100%; height: 65%; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; justify-content: center; align-items: center;">
+                            <ui:VisualElement name="AtkTextBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px; align-items: center; justify-content: center;">
+                                <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="AtsTextBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
+                                <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="AfsTextBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
+                                <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="WeightTextBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
+                                <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement style="width: 100%; height: 35%; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; justify-content: center; align-items: center;">
+                            <ui:VisualElement name="NeedMoneyTextBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
+                                <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="NeedItemTextBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
+                                <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="RightWindow" style="width: 70%; height: 100%;">
+                        <ui:VisualElement style="width: 100%; height: 65%; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; justify-content: center; align-items: center;">
+                            <ui:VisualElement name="AtkBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px; align-items: center; justify-content: center;">
+                                <ui:Label text="Label" display-tooltip-when-elided="true" name="AtkBoxLabel" class="InfoBoxText" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="AtsBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
+                                <ui:Label text="Label" display-tooltip-when-elided="true" name="AtsBoxLabel" class="InfoBoxText" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="AfsBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
+                                <ui:Label text="Label" display-tooltip-when-elided="true" name="AfsBoxLabel" class="InfoBoxText" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="WeightBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
+                                <ui:Label text="Label" display-tooltip-when-elided="true" name="WeightBoxLabel" class="InfoBoxText" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement style="width: 100%; height: 35%; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; justify-content: center; align-items: center;">
+                            <ui:VisualElement name="NeedMoneyBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
+                                <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="NeedItemBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
+                                <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:ScrollView mode="Horizontal" horizontal-scroller-visibility="Hidden" name="WeaponScroll" style="width: 100%; height: 20%; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; flex-direction: row; flex-wrap: wrap;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

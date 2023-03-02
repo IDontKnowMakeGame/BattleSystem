@@ -157,6 +157,7 @@ public class DataManager : Manager
     public static SavePoint SavePointData;
     public static Inventory InventoryData;
     public static WeaponClassLevelList WeaponClassListData;
+    public static WeaponStateDataList WeaponStateDataListData;
     public static WeaponLevelList WeaponLevelListData;
 
     private string URL;
@@ -167,7 +168,7 @@ public class DataManager : Manager
         SavePointData = DataJson.LoadJsonFile<SavePoint>(Application.streamingAssetsPath + "/SAVE/User", "SavePointData");
         WeaponClassListData = DataJson.LoadJsonFile<WeaponClassLevelList>(Application.streamingAssetsPath + "/SAVE/Weapon", "ClassLevelData");
         WeaponLevelListData = DataJson.LoadJsonFile<WeaponLevelList>(Application.streamingAssetsPath + "/SAVE/Weapon", "WeaponLevelData");
-
+        WeaponStateDataListData = DataJson.LoadJsonFile<WeaponStateDataList>(Application.streamingAssetsPath + "/SAVE/Weapon", "WeaponStatus");
 
         if (WeaponClassListData.weaponclassList.Count <= 0)
         {
@@ -303,8 +304,18 @@ public class DataManager : Manager
     #endregion
 
     #region WeaponStateData
+    public WeaponStateData LoadWeaponStateData(string name)
+    {
+        foreach(WeaponStateData data in WeaponStateDataListData.weaponList)
+        {
+            if(data.name == name)
+            {
+                return data;
+            }
+        }
 
-
+        return null;
+    }
     #endregion
 
     #region WeaponLevel
