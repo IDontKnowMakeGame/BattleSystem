@@ -11,24 +11,22 @@ namespace Units.Base.Trap
         [SerializeField] private int Damage = 30;
         [SerializeField] private float SpikeTime = 0.5f;
         [SerializeField] private float SpikeDelay = 0.2f;
-        protected override void OnDetect()
+
+        public override void Interact(GameObject obj)
         {
-            if (IsDetected) return;
-            if (DetectCondition.Invoke(Position) == false) return;
-            IsDetected = true;
+            if (obj != gameObject) return;
+            if (IsDetected == true) return;
             StartCoroutine(SpikeCoroutine());
+        }
+
+        protected override void Update()
+        {
             
         }
 
-        protected override void OnLostDetect()
-        {
-            if(IsDetected == false) return;
-            if (DetectCondition.Invoke(Position)) return;
-            IsDetected = false;
-        }
-        
         private IEnumerator SpikeCoroutine()
         {
+            IsDetected = true;
             yield return new WaitForSeconds(SpikeDelay);
             plateTransform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             Define.GetManager<MapManager>().GetBlock(Position).GetUnit()?.GetBehaviour<UnitStat>().Damaged(Damage, this);
