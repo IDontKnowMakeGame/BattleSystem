@@ -91,6 +91,8 @@ public class ItemInfo
     public int maxCnt;
     public int equipNumber = 0; //1
 }
+
+[Serializable]
 public class WeaponInfo
 {
     public string name;
@@ -145,9 +147,9 @@ public class DataManager : Manager
     private string URL;
     public override void Awake()
     {
+        InventoryData = DataJson.LoadJsonFile<Inventory>(Application.streamingAssetsPath + "/SAVE/User", "InvectoryData");
         UserData = DataJson.LoadJsonFile<User>(Application.streamingAssetsPath + "/SAVE/User", "UserData");
         SavePointData = DataJson.LoadJsonFile<SavePoint>(Application.streamingAssetsPath + "/SAVE/User", "SavePointData");
-        InventoryData = DataJson.LoadJsonFile<Inventory>(Application.streamingAssetsPath + "/SAVE/User", "InvectoryData");
         WeaponClassListData = DataJson.LoadJsonFile<WeaponClassList>(Application.streamingAssetsPath + "/SAVE/Weapon", "ClassLevelData");
         
         if(WeaponClassListData.weaponclassList.Count <= 0)
