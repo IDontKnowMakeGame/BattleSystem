@@ -14,8 +14,8 @@ namespace Units.Behaviours.Unit
     public class UnitStat : UnitBehaviour,IDamaged
     {
 	    
-        [SerializeField] protected UnitStats originStats = null;
-        [SerializeField] protected UnitStats changeStats = null;
+        [SerializeField] protected UnitStats originStats = new UnitStats();
+        [SerializeField] protected UnitStats changeStats = new UnitStats();
 		public UnitStats OriginStats => originStats;
 		public UnitStats NowStats {
 			get

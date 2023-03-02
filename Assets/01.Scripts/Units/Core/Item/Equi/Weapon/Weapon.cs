@@ -35,6 +35,8 @@ namespace Unit.Core.Weapon
 		{
 			get
 			{
+				Debug.Log(_weaponStats);
+				Debug.Log(this.GetType().Name);
 				_WeaponStats.Atk = _weaponStats.Atk + _changeWeaponStats.Atk;
 				_WeaponStats.Ats = _weaponStats.Ats + _changeWeaponStats.Ats;
 				_WeaponStats.Afs = _weaponStats.Afs + _changeWeaponStats.Afs;
@@ -64,6 +66,11 @@ namespace Unit.Core.Weapon
 		protected SliderObject _sliderObject;
 
 		protected WeaponClassLevel _weaponClassLevel;
+		public override void Awake()
+		{
+			base.Awake();
+			GetWeaponStateData(this.GetType().Name);
+		}
 		public override void Start()
 		{
 			_unitAttack = _thisBase.GetBehaviour<UnitAttack>();
@@ -73,8 +80,6 @@ namespace Unit.Core.Weapon
 
 			_playerAttack = _unitAttack as PlayerAttack;
 			_playerAnimation = _unitAnimation as PlayerAnimation;
-
-			GetWeaponStateData(this.GetType().Name);
 		}
 		public override void Update()
 		{
@@ -107,6 +112,7 @@ namespace Unit.Core.Weapon
 			{
 				if (data.name == name)
 				{
+					Debug.Log(name);
 					_weaponStats = WeaponSerializable(data);
 					break;
 				}
@@ -114,6 +120,7 @@ namespace Unit.Core.Weapon
 		}
 		public WeaponStats WeaponSerializable(WeaponStateData data)
 		{
+			Debug.Log(data.attackAfterDelay);
 			WeaponStats state = new WeaponStats();
 
 			state.Afs = data.attackAfterDelay;

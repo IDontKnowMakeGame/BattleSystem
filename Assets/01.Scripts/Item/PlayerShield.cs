@@ -17,7 +17,7 @@ public class PlayerShield : UsableItem
 
     public override void Start()
     {
-        itemInfo = DataManager.UserData.equipUseableItem[2];
+        //itemInfo = DataManager.UserData.equipUseableItem[2];
 
         InputManager.OnAttackPress += CheckShield;
     }

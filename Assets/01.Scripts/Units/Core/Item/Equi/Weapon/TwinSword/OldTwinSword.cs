@@ -10,7 +10,6 @@ public class OldTwinSword : BaseTwinSword
 	public override void Awake()
 	{
 		base.Awake();
-		GetWeaponStateData("oldTwinSword");
 		_maxTime = OldTwinSwordData.coolTime;
 		_freezeTime = OldTwinSwordData.freeze;
 	}

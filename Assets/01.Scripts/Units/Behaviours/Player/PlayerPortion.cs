@@ -23,7 +23,7 @@ public class PlayerPortion : UsableItem
     public override void Start()
     {
         itemCnt = 10;
-        itemInfo = DataManager.UserData.equipUseableItem[0];
+        //itemInfo = DataManager.UserData.equipUseableItem[0];
         ResetPortion();
     }
 
