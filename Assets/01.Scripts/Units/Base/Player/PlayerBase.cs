@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using System;
+using Core;
 using Managements.Managers;
 using Unit.Block;
 using Units.Base.Unit;
@@ -19,6 +20,7 @@ namespace Units.Base.Player
         [SerializeField] private PlayerStat thisStat;
         [SerializeField] private PlayerItem playerItem;
         [SerializeField] private CharacterRender characterRender;
+        [SerializeField] private UnitCollider unitCollider;
 
         protected override void Init()
         {
@@ -31,6 +33,7 @@ namespace Units.Base.Player
             AddBehaviour(playerBuff);
             AddBehaviour(PlayerEqiq);
             AddBehaviour(playerItem);
+            AddBehaviour(unitCollider);
             base.Init();
             ChangeBehaviour(characterRender);
         }

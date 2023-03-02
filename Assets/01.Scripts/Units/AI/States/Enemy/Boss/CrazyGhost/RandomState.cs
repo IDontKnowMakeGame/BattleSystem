@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Unit.Base.AI;
 using Unit.Enemy.AI.Conditions;
+using Units.AI.States.Enemy.Attack;
 using UnityEngine;
 
 namespace Units.AI.States.Enemy.Boss.CrazyGhost
