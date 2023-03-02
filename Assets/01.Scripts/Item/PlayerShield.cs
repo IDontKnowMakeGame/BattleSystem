@@ -36,11 +36,8 @@ public class PlayerShield : UsableItem
         }
     }
 
-    protected override void Use()
+    public override void Use()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            useAble = !useAble;
-        }
+        useAble = !useAble;
     }
 }

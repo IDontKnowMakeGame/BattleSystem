@@ -16,11 +16,8 @@ public class PlayerTorch : UsableItem
         torch.ChangeTorchLight(false);
     }
 
-    protected override void Use()
+    public override void Use()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            torch.ChangeTorchLight(!torch.TorchLight.enabled);
-        }
+        torch.ChangeTorchLight(!torch.TorchLight.enabled);
     }
 }

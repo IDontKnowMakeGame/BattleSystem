@@ -7,6 +7,10 @@ public abstract class UsableItem
     [SerializeField]
     protected int itemCnt;
 
+    // To Do DataManager 형태로 바꿀 것
+    protected int ID;
+    protected KeyCode key;
+
     public virtual void Start()
     {
 
@@ -14,8 +18,8 @@ public abstract class UsableItem
 
     public virtual void Update()
     {
-        Use();
+
     }
 
-    protected abstract void Use();
+    public abstract void Use();
 }

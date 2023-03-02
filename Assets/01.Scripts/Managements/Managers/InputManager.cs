@@ -22,7 +22,12 @@ namespace Managements.Managers
 		ChangeKey,
 		OffKey,
 		TestChangeKey,
-		Interaction
+		Interaction,
+		Slot01,
+		Slot02,
+		Slot03,
+		Slot04,
+		Slot05,
 	}
 	
 	[Serializable]
@@ -52,6 +57,9 @@ namespace Managements.Managers
 		public static event Action OnTestChangePress;
 		public static event Action OnInteractionPress;
 
+		public static event Action<int> OnItemPress;
+
+
 		private static List<KeyboardInputData> _keyboardInputDatas = new()
 		{
 			new KeyboardInputData() { keyboardInput = KeyboardInput.MoveForward, keyCode = KeyCode.UpArrow },
@@ -67,7 +75,13 @@ namespace Managements.Managers
 			new KeyboardInputData() { keyboardInput = KeyboardInput.ChangeKey, keyCode = KeyCode.R },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.OffKey, keyCode = KeyCode.Q },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.TestChangeKey, keyCode = KeyCode.T },
-			new KeyboardInputData() { keyboardInput = KeyboardInput.Interaction, keyCode = KeyCode.E }
+			new KeyboardInputData() { keyboardInput = KeyboardInput.Interaction, keyCode = KeyCode.E },
+
+			new KeyboardInputData() {  keyboardInput = KeyboardInput.Slot01, keyCode = KeyCode.Alpha1},
+			new KeyboardInputData() {  keyboardInput = KeyboardInput.Slot02, keyCode = KeyCode.Alpha2},
+			new KeyboardInputData() {  keyboardInput = KeyboardInput.Slot03, keyCode = KeyCode.Alpha3},
+			new KeyboardInputData() {  keyboardInput = KeyboardInput.Slot04, keyCode = KeyCode.Alpha4},
+			new KeyboardInputData() {  keyboardInput = KeyboardInput.Slot05, keyCode = KeyCode.Alpha5},
 		};
 
 		public override void Awake()
@@ -147,6 +161,31 @@ namespace Managements.Managers
 			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.Interaction)))
 			{
 				OnInteractionPress?.Invoke();
+			}
+
+			if(Input.GetKeyDown(GetKeyCode(KeyboardInput.Slot01)))
+            {
+				OnItemPress?.Invoke(1);
+            }
+
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.Slot02)))
+			{
+				OnItemPress?.Invoke(2);
+			}
+
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.Slot03)))
+			{
+				OnItemPress?.Invoke(3);
+			}
+
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.Slot04)))
+			{
+				OnItemPress?.Invoke(4);
+			}
+
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.Slot05)))
+			{
+				OnItemPress?.Invoke(5);
 			}
 		}
 		

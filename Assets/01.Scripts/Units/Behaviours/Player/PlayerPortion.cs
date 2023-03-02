@@ -27,6 +27,12 @@ public class PlayerPortion : UsableItem
         ResetPortion();
     }
 
+    public override void Update()
+    {
+        if (hp)
+            DecreaseHPortion();
+    }
+
     public void DecreaseHPortion()
     {
         if (cnt >= 100 || InGame.PlayerBase.GetBehaviour<PlayerStat>().OriginStats.Hp <= InGame.PlayerBase.GetBehaviour<PlayerStat>().NowStats.Hp)
@@ -54,16 +60,14 @@ public class PlayerPortion : UsableItem
         timer = 0;
     }
 
-    protected override void Use()
+    public override void Use()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && !hp)
+        if (!hp)
         {
             hp = true;
             starParticle = Core.Define.GetManager<ResourceManagers>().Instantiate("Star_A");
             starParticle.transform.position = InGame.PlayerBase.Position;
             itemCnt--;
         }
-        if (hp)
-            DecreaseHPortion();
     }
 }
