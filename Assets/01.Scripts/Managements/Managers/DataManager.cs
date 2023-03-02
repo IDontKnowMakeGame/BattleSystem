@@ -336,6 +336,13 @@ public class DataManager : Manager
                 return;
             }
         }
+
+        WeaponInfo data = new WeaponInfo();
+        data.name = name;
+        data.level = changeLevel;
+
+        WeaponLevelListData.weaponInfoDatas.Add(data);
+        SaveWeaponLevelListData();
     }
 
     #endregion

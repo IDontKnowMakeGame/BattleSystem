@@ -13,7 +13,7 @@ public class DummyBase : EnemyBase
     protected override void Init()
     {
         AddBehaviour(_thisStat);
-        AddBehaviour(_thisRender);
         base.Init();
+        ChangeBehaviour(_thisRender);
     }
 }
