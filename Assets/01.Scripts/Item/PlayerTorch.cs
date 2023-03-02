@@ -11,7 +11,7 @@ public class PlayerTorch : UsableItem
 
     public override void Start()
     {
-        itemInfo = DataManager.UserData.equipUseableItem[1];
+        //itemInfo = DataManager.UserData.equipUseableItem[1];
         torch = InGame.PlayerBase.GetComponentInChildren<Torch>();
         torch.ChangeTorchLight(false);
     }
