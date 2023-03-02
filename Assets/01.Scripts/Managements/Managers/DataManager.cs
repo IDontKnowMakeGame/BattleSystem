@@ -73,34 +73,38 @@ public class User
     public int maxHp = 100;
     public int feather = 0;
 
-    public string currentWeapon = "oldSword";
-    public string firstWeapon = "oldSword";
-    public string secondWeapon = "oldTwinSword";
+    public string currentWeapon = "OldSword";
+    public string firstWeapon = "OldSword";
+    public string secondWeapon = "OldTwinSword";
 
     public string firstHelo = "";
     public string secondHelo = "";
     public string thirdHelo = "";
 
     public List<ItemInfo> equipUseableItem; //0~4 
+
+    public List<Contract> contractsInfo;
+}
+[Serializable]
+public class Contract
+{
+    public int id;
+    public int deHP;
+    public int addAtk;
 }
 [Serializable]
 public class ItemInfo
 {
-    public string name;
-    public int count;
+    public int id;
+    public int currentCnt;
     public int maxCnt;
     public int equipNumber = 0; //1
 }
 
-[Serializable]
-public class WeaponInfo
-{
-    public string name;
-    public int level;
-}
+
 public class Inventory
 {
-    public List<WeaponInfo> inventoryInWeaponList;
+    public List<string> inventoryInWeaponList;
     public List<string> inventoryInHeloList;
     public List<ItemInfo> inventoryInUsableItemList;
 }
@@ -109,7 +113,17 @@ public class MapInformation
 {
 
 }
-public class WeaponClassList
+public class WeaponLevelList
+{
+    public List<WeaponInfo> weaponInfoDatas;
+}
+[Serializable]
+public class WeaponInfo
+{
+    public string name;
+    public int level;
+}
+public class WeaponClassLevelList
 {
     public List<WeaponClassLevel> weaponclassList;
 }
@@ -142,7 +156,8 @@ public class DataManager : Manager
     public static User UserData;
     public static SavePoint SavePointData;
     public static Inventory InventoryData;
-    public static WeaponClassList WeaponClassListData;
+    public static WeaponClassLevelList WeaponClassListData;
+    public static WeaponLevelList WeaponLevelListData;
 
     private string URL;
     public override void Awake()
@@ -150,9 +165,11 @@ public class DataManager : Manager
         InventoryData = DataJson.LoadJsonFile<Inventory>(Application.streamingAssetsPath + "/SAVE/User", "InvectoryData");
         UserData = DataJson.LoadJsonFile<User>(Application.streamingAssetsPath + "/SAVE/User", "UserData");
         SavePointData = DataJson.LoadJsonFile<SavePoint>(Application.streamingAssetsPath + "/SAVE/User", "SavePointData");
-        WeaponClassListData = DataJson.LoadJsonFile<WeaponClassList>(Application.streamingAssetsPath + "/SAVE/Weapon", "ClassLevelData");
-        
-        if(WeaponClassListData.weaponclassList.Count <= 0)
+        WeaponClassListData = DataJson.LoadJsonFile<WeaponClassLevelList>(Application.streamingAssetsPath + "/SAVE/Weapon", "ClassLevelData");
+        WeaponLevelListData = DataJson.LoadJsonFile<WeaponLevelList>(Application.streamingAssetsPath + "/SAVE/Weapon", "WeaponLevelData");
+
+
+        if (WeaponClassListData.weaponclassList.Count <= 0)
         {
             CreateWeaponClassListData();
         }
@@ -171,10 +188,14 @@ public class DataManager : Manager
     public void AddFeahter(int value)
     {
         UserData.feather = Math.Clamp(UserData.feather + value, 0, int.MaxValue);
+
+        SaveToUserData();
     }
     public void SwapCurrentWeaponData()
     {
         UserData.currentWeapon = "";
+
+        SaveToUserData();
     }
     public void SwapCurrentWeaponData(string name)
     {
@@ -185,7 +206,8 @@ public class DataManager : Manager
         }
 
         UserData.currentWeapon = name;
-        
+
+        SaveToUserData();
     }
     public void ChangeUserWeaponData(string name,bool isFirstWeapon = true)
     {
@@ -210,15 +232,15 @@ public class DataManager : Manager
     }
     public void ChangeUserMaxHp(int value)
     {
-        UserData.maxHp = value < 0 ? 1 : value;
+        UserData.maxHp = Math.Clamp(value, 100, 1200);
 
         SaveToUserData();
     }
-    public void EquipUsableItem(string name,int equipnumber = 0)
+    public void EquipUsableItem(int id,int equipnumber)
     {
-        ItemInfo data = LoadUsableItemToInventory(name);
+        ItemInfo data = LoadUsableItemFromInventory(id);
         if (data == null)
-            Debug.LogError($"Not  Have Item : {name}");
+            Debug.LogError($"Not  Have Item : {id}");
 
         data.equipNumber = equipnumber;
         UserData.equipUseableItem.Add(data);
@@ -237,11 +259,11 @@ public class DataManager : Manager
 
         SaveToUserData();
     }
-    public ItemInfo LoadUsableItem(string name)
+    public ItemInfo LoadUsableItem(int id)
     {
         foreach(ItemInfo info in UserData.equipUseableItem)
         {
-            if(info.name == name)
+            if(info.id == id)
             {
                 return info;
             }
@@ -282,6 +304,39 @@ public class DataManager : Manager
 
     #region WeaponStateData
 
+
+    #endregion
+
+    #region WeaponLevel
+    public void SaveWeaponLevelListData()
+    {
+        string json = DataJson.ObjectToJson(WeaponLevelListData);
+        DataJson.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/Weapon", "WeaponLevelData", json);
+    }
+
+    public int LoadWeaponLevelData(string name)
+    {
+        foreach(WeaponInfo info in WeaponLevelListData.weaponInfoDatas)
+        {
+            if (info.name == name)
+                return info.level;
+        }
+
+        return 0;
+    }
+
+    public void SaveWeaponLevelData(string name,int changeLevel)
+    {
+        for(int i = 0;i<WeaponLevelListData.weaponInfoDatas.Count;i++)
+        {
+            if(WeaponLevelListData.weaponInfoDatas[i].name == name)
+            {
+                WeaponLevelListData.weaponInfoDatas[i].level = changeLevel;
+                SaveWeaponLevelListData();
+                return;
+            }
+        }
+    }
 
     #endregion
 
@@ -345,42 +400,20 @@ public class DataManager : Manager
         string json = DataJson.ObjectToJson(InventoryData);
         DataJson.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/User", "InvectoryData",json);
     }
-    public void AddWeaponToInventory(WeaponInfo name)
+    public void AddWeaponToInventory(string name)
     {
         InventoryData.inventoryInWeaponList.Add(name);
         SaveToInventoryData();
     }
-    public List<WeaponInfo> LoadWeaponData()
+    public List<string> LoadWeaponData()
     {
         return InventoryData.inventoryInWeaponList;
     }
-    public WeaponInfo LoadWeaponData(string name)
-    {
-        foreach (WeaponInfo weapon in InventoryData.inventoryInWeaponList)
-        {
-            if (weapon.name == name)
-            {
-                return weapon;
-            }
-        }
-        return null;
-    }
-    public int LoadWeaponLevelData(string name)
-    {
-        foreach (WeaponInfo weapon in InventoryData.inventoryInWeaponList)
-        {
-            if (weapon.name == name)
-            {
-                return weapon.level;
-            }
-        }
-        return 1;
-    }
     public bool HaveWeapon(string name)
     {
-        foreach(WeaponInfo weapon in InventoryData.inventoryInWeaponList)
+        foreach(string weapon in InventoryData.inventoryInWeaponList)
         {
-            if(weapon.name == name)
+            if(weapon == name)
             {
                 return true;
             }
@@ -398,11 +431,11 @@ public class DataManager : Manager
         InventoryData.inventoryInUsableItemList.Add(data);
         SaveToInventoryData();
     }
-    public ItemInfo LoadUsableItemToInventory(string name)
+    public ItemInfo LoadUsableItemFromInventory(int id)
     {
         foreach(ItemInfo info in InventoryData.inventoryInUsableItemList)
         {
-            if (info.name == name)
+            if (info.id == id)
                 return info;
         }
         return null;
