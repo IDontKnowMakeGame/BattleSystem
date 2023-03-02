@@ -42,6 +42,7 @@ namespace Units.Behaviours.Unit
 			weapons.Add("oldBow", new OldBow() { _thisBase = this.ThisBase });
 			weapons.Add("taintedSword", new TaintedSword() { _thisBase = this.ThisBase });
 			weapons.Add("brokenSword", new BrokenSword() { _thisBase = this.ThisBase });
+			weapons.Add("OutwornBow", new OutwornBow() { _thisBase = this.ThisBase });
 
 			halos.Add("DirtyHalo", new DirtyHalo());
 			halos.Add("EvilSpiritHalo", new EvilSpiritHalo());

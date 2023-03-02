@@ -2,6 +2,7 @@
 using Core;
 using Unit.Base.AI;
 using Unit.Enemy.AI.Conditions;
+using Units.AI.States.Enemy.Attack;
 using Units.AI.States.Enemy.Boss.CrazyGhost;
 using Units.Base.Enemy;
 using Units.Base.Unit;
