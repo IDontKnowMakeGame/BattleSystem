@@ -11,11 +11,11 @@ public class BaseStraightSword : Weapon
 	{
 		base.Start();
 		LoadClassLevel("BasicSword");
+		LevelSystem();
 	}
 	protected override void LevelSystem()
 	{
 		int level = CountToLevel(_weaponClassLevel.killedCount);
-
 		switch (level)
 		{
 			case 1:
@@ -40,6 +40,8 @@ public class BaseStraightSword : Weapon
 				_changeBuffStats.Ats = -0.07f;
 				_changeBuffStats.Afs = -0.05f;
 				break;
+			default:
+				break;
 		};
 	}
 	public override void ChangeKey()
@@ -57,7 +59,6 @@ public class BaseStraightSword : Weapon
 	}
 	protected override void Attack(Vector3 vec)
 	{
-		LevelSystem();
 		_playerAttack.AttackColParent.AllDisableDir();
 		_playerAttack.AttackColParent.ChangeSizeZ(1);
 		_playerAttack.AttackColParent.ChangeSizeX(1);

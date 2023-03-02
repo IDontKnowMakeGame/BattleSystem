@@ -19,8 +19,8 @@ namespace Units.Base.Player
 		public override void Awake()
 		{
 			base.Awake();
-			_currentWeapon = DataManager.UserData.firstWeapon;
-			_secoundWeapon = DataManager.UserData.secondWeapon;
+			//_currentWeapon = DataManager.UserData.firstWeapon;
+			//_secoundWeapon = DataManager.UserData.secondWeapon;
 		}
 
 		public override void Update()
@@ -78,7 +78,7 @@ namespace Units.Base.Player
 				return;
 
 			CurrentWeapon?.Reset();
-			weapons[_secoundWeapon].ChangeKey();
+			SecoundWeapon?.ChangeKey();
 			string temp = _currentWeapon;
 			_currentWeapon = _secoundWeapon;
 			_secoundWeapon = temp;
@@ -86,7 +86,7 @@ namespace Units.Base.Player
 			InGame.PlayerBase.GetBehaviour<PlayerMove>().ClearMove();
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponSwap,new EventParam());
 
-			playerAttack.ChangeDelay(CurrentWeapon.WeaponStat.Afs);
+			playerAttack.ChangeDelay(CurrentWeapon != null ? CurrentWeapon.WeaponStat.Afs : 0);
 
 			playerAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
 			playerAnimation.CurWeaponAnimator = playerAnimation.WeaponAnimators[WeaponAnimation()];

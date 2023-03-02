@@ -82,8 +82,6 @@ namespace Unit.Core.Weapon
 
 			_changeStats = _weaponStats;
 			WeaponLevel();
-
-			
 		}
 		public override void Update()
 		{
@@ -189,7 +187,7 @@ namespace Unit.Core.Weapon
 		}
 		protected virtual void WeaponLevel()
 		{
-			switch (0)
+			switch (Define.GetManager<DataManager>().LoadWeaponLevelData(this.GetType().Name))
 			{
 				case 1:
 					_changeStats.Atk = _weaponStats.Atk +  20;

@@ -26,6 +26,17 @@ namespace Units.Behaviours.Unit
 			}
 		}
 
+		public Weapon SecoundWeapon
+		{
+			get
+			{
+				if (_secoundWeapon != null && _secoundWeapon != "")
+					return weapons[_secoundWeapon];
+				else
+					return null;
+			}
+		}
+
 		public Dictionary<string, Weapon> weapons = new Dictionary<string, Weapon>();
 		protected Dictionary<string, Halo> halos = new Dictionary<string, Halo>();
 
@@ -96,6 +107,12 @@ namespace Units.Behaviours.Unit
 			{
 				value.Value?.OnApplicationQuit();
 			}
+		}
+		public virtual void InsertWeapon(string name, Weapon type) 
+		{
+			weapons.Add(name, type);
+			weapons[name].Awake();
+			weapons[name].Start();
 		}
 		public virtual void InsertHelo(string name, int idx)
 		{
