@@ -96,7 +96,7 @@ namespace Units.Behaviours.Unit
 			changeStats.Hp -= damage - damage * half;
 			if(changeStats.Hp <= 0)
 			{
-				afterDieAction?.Invoke();
+				giveUnit.GetBehaviour<UnitEquiq>().KillCount();
 				Die();
 				return;
 			}

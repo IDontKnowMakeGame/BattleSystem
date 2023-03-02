@@ -35,23 +35,23 @@ public class BaseBow : Weapon
 		switch (level)
 		{
 			case 1:
-				_changeWeaponStats.Atk = 5;
+				_changeBuffStats.Atk = 5;
 				projectileSpeed = basicValue + 0.5f;
 				break;
 			case 2:
-				_changeWeaponStats.Atk = 10;
+				_changeBuffStats.Atk = 10;
 				projectileSpeed = basicValue + 0.7f;
 				break;
 			case 3:
-				_changeWeaponStats.Atk = 15;
+				_changeBuffStats.Atk = 15;
 				projectileSpeed = basicValue + 1f;
 				break;
 			case 4:
-				_changeWeaponStats.Atk = 20;
+				_changeBuffStats.Atk = 20;
 				projectileSpeed = basicValue + 1.2f;
 				break;
 			case 5:
-				_changeWeaponStats.Atk = 20;
+				_changeBuffStats.Atk = 20;
 				projectileSpeed = basicValue + 2f;
 				break;
 		};

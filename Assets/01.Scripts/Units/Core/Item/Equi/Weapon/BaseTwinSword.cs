@@ -20,7 +20,7 @@ public class BaseTwinSword : Weapon
 		switch (level)
 		{
 			case 1:
-				_changeWeaponStats.Atk = 5;
+				_changeBuffStats.Atk = 5;
 				if (_currentVec == Vector3.forward || _currentVec == Vector3.back)
 				{
 					_playerAttack.AttackColParent.ChangeSizeZ(DirType.Left, 1);
@@ -37,7 +37,7 @@ public class BaseTwinSword : Weapon
 				}
 				break;
 			case 2:
-				_changeWeaponStats.Atk = 10;
+				_changeBuffStats.Atk = 10;
 				if (_currentVec == Vector3.forward || _currentVec == Vector3.back)
 				{
 					_playerAttack.AttackColParent.ChangeSizeZ(DirType.Left, 1);
@@ -54,7 +54,7 @@ public class BaseTwinSword : Weapon
 				}
 				break;
 			case 3:
-				_changeWeaponStats.Atk = 10;
+				_changeBuffStats.Atk = 10;
 				if (_currentVec == Vector3.forward || _currentVec == Vector3.back)
 				{
 					_playerAttack.AttackColParent.ChangeSizeZ(DirType.Left, 2);
@@ -71,7 +71,7 @@ public class BaseTwinSword : Weapon
 				}
 				break;
 			case 4:
-				_changeWeaponStats.Atk = 15;
+				_changeBuffStats.Atk = 15;
 				if (_currentVec == Vector3.forward || _currentVec == Vector3.back)
 				{
 					_playerAttack.AttackColParent.ChangeSizeZ(DirType.Left, 2);
@@ -88,7 +88,7 @@ public class BaseTwinSword : Weapon
 				}
 				break;
 			case 5:
-				_changeWeaponStats.Atk = 20;
+				_changeBuffStats.Atk = 20;
 				if (_currentVec == Vector3.forward || _currentVec == Vector3.back)
 				{
 					_playerAttack.AttackColParent.ChangeSizeZ(DirType.Left, 2);

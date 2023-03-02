@@ -126,5 +126,10 @@ namespace Units.Behaviours.Unit
 			else
 				return 0;
 		}
+
+		public void KillCount()
+		{
+			CurrentWeapon.KillEnemy();
+		}
 	}
 }

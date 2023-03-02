@@ -19,26 +19,26 @@ public class BaseStraightSword : Weapon
 		switch (level)
 		{
 			case 1:
-				_changeWeaponStats.Atk = 10;
-				_changeWeaponStats.Ats = -0.01f;
+				_changeBuffStats.Atk = 10;
+				_changeBuffStats.Ats = -0.01f;
 				break;
 			case 2:
-				_changeWeaponStats.Atk = 15;
-				_changeWeaponStats.Ats = -0.03f;
+				_changeBuffStats.Atk = 15;
+				_changeBuffStats.Ats = -0.03f;
 				break;
 			case 3:
-				_changeWeaponStats.Atk = 20;
-				_changeWeaponStats.Ats = -0.05f;
+				_changeBuffStats.Atk = 20;
+				_changeBuffStats.Ats = -0.05f;
 				break;
 			case 4:
-				_changeWeaponStats.Atk = 20;
-				_changeWeaponStats.Ats = -0.07f;
-				_changeWeaponStats.Afs = -0.01f;
+				_changeBuffStats.Atk = 20;
+				_changeBuffStats.Ats = -0.07f;
+				_changeBuffStats.Afs = -0.01f;
 				break;
 			case 5:
-				_changeWeaponStats.Atk = 20;
-				_changeWeaponStats.Ats = -0.07f;
-				_changeWeaponStats.Afs = -0.05f;
+				_changeBuffStats.Atk = 20;
+				_changeBuffStats.Ats = -0.07f;
+				_changeBuffStats.Afs = -0.05f;
 				break;
 		};
 	}
