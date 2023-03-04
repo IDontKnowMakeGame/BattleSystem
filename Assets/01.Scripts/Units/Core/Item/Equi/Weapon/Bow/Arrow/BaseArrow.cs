@@ -8,6 +8,8 @@ using Core;
 using Managements.Managers;
 using Managements;
 using System;
+using Units.Base.Unit;
+
 public enum ArrowType
 {
 	OldArrow
@@ -30,10 +32,10 @@ public class ArrowStat
 }
 public class BaseArrow : MonoBehaviour
 {
-	private string arrowType;
-
 	public Arrow ThisArrow => _thisArrow;
+	public bool isPull = false;
 
+	private ArrowType arrowType;
 	private Arrow _thisArrow
 	{
 		get
@@ -46,30 +48,23 @@ public class BaseArrow : MonoBehaviour
 		}
 	}
 
-	private Dictionary<string, Arrow> _arrows = new Dictionary<string, Arrow>();
-
+	private Dictionary<ArrowType, Arrow> _arrows = new Dictionary<ArrowType, Arrow>();
 	private ArrowStat _arrowStat;
-
-	public bool isPull = false;
-
 	private Vector3 goalPos;
 
-	private EnemyBase _enemyBase;
-	private PlayerBase _playerBase;
+	private Units.Base.Units _unit;
+	private UnitBase _thisUnit;
 	private void Awake()
 	{
-		_arrows.Add("OldBowArrow", new OldArrow());
-		foreach (var a in _arrows)
-		{
-			a.Value.Start();
-			a.Value.thisObject = this.gameObject;
-		}
+		_arrows.Add(ArrowType.OldArrow, new OldArrow());
+
+		_thisArrow.Start();
+		_thisArrow.thisObject = this.gameObject;
 	}
 	private void OnTriggerEnter(Collider other)
 	{
 		var units = other.GetComponent<Units.Base.Units>();
-		if (units as EnemyBase || units as PlayerBase)
-			StickOrPull(units);
+		StickOrPull(units);
 	}
 
 	private void OnTriggerExit(Collider other)
@@ -82,10 +77,11 @@ public class BaseArrow : MonoBehaviour
 	}
 	public void ShootArrow() => Shoot();
 
-	public void InitArrow(float speed, float damage, Vector3 pos, Vector3 dir, string name)
+	public void InitArrow(float speed, float damage, Vector3 pos, Vector3 dir, ArrowType name, UnitBase unit)
 	{
 		arrowType = name;
 		_arrowStat = new ArrowStat(dir, pos, speed, damage);
+		_thisUnit = unit;
 	}
 	private void Shoot()
 	{
@@ -116,15 +112,15 @@ public class BaseArrow : MonoBehaviour
 	}
 	private void Pull()
 	{
-		if (isPull && _thisArrow.isStick &&  _playerBase.GetBehaviour<UnitEquiq>().CurrentWeapon is BaseBow)
+		if (isPull && _thisArrow.isStick &&  InGame.PlayerBase.GetBehaviour<UnitEquiq>().CurrentWeapon is BaseBow)
 		{
-			Debug.Log(">");
 			isPull = false;
-			_thisArrow.PullOut(_playerBase);
-			if (_enemyBase is EnemyBase)
+			_thisArrow.PullOut(InGame.PlayerBase);
+
+			if (_thisArrow.StickObject is UnitBase)
 			{
-				_enemyBase.GetBehaviour<UnitStat>().Damaged(_arrowStat.damage / 2, InGame.PlayerBase);
-				_enemyBase = null;
+				UnitBase unit = _thisArrow.StickObject as UnitBase;
+				unit.GetBehaviour<UnitStat>().Damaged(_arrowStat.damage / 2, InGame.PlayerBase);
 			}
 
 			DelKey();
@@ -132,10 +128,16 @@ public class BaseArrow : MonoBehaviour
 	}
 	private void StickOrPull(Units.Base.Units units)
 	{
-		if ((units is EnemyBase || units is BlockBase) && !_thisArrow.isStick)
+		Debug.Log(_thisUnit);
+		Debug.Log(units);
+		Debug.Log(_thisArrow);
+		if (!units)
+			return;
+
+		if (!_thisArrow.isStick && _thisUnit.GetHashCode() != units.GetHashCode())
 		{
-			_enemyBase = units as EnemyBase;
-			_enemyBase.GetBehaviour<UnitStat>()?.Damaged(_arrowStat.damage, InGame.PlayerBase);
+			UnitBase baseUnit = units as UnitBase;
+			baseUnit.GetBehaviour<UnitStat>()?.Damaged(_arrowStat.damage, _thisUnit);
 			_thisArrow.Stick(units, _arrowStat.dir);
 			AddKey();
 			this.gameObject.transform.DOKill();
@@ -143,7 +145,6 @@ public class BaseArrow : MonoBehaviour
 		else if (units as PlayerBase && _thisArrow.isStick)
 		{
 			isPull = true;
-			_playerBase = units as PlayerBase;
 		}
 	}
 

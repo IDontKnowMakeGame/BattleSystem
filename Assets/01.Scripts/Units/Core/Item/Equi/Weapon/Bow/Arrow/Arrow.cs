@@ -5,13 +5,17 @@ using Units.Base.Player;
 using Units.Base;
 using Units.Behaviours.Unit;
 using UnityEngine;
-
+using Units.Base.Unit;
 
 public class Arrow
 {
 	public GameObject thisObject;
 
 	public bool isStick;
+
+	public Units.Base.Units StickObject => _stickObject;
+
+	private Units.Base.Units _stickObject;
 	public virtual void Start()
 	{
 
@@ -19,6 +23,7 @@ public class Arrow
 	public virtual void Stick(Units.Base.Units unitBase, Vector3 vec)
 	{
 		StickDir(unitBase, vec);
+		_stickObject = unitBase;
 		isStick = true;
 	}
 
@@ -36,7 +41,7 @@ public class Arrow
 			thisObject.transform.rotation = Quaternion.Euler(30, 0, 0);
 
 		thisObject.transform.parent = unitBase.transform;
-		thisObject.transform.localPosition = unitBase is EnemyBase ? Vector3.zero : Vector3.up;
+		thisObject.transform.localPosition = unitBase is UnitBase ? Vector3.zero : Vector3.up;
 		if (unitBase is BlockBase)
 			return;
 		thisObject.transform.localPosition -= vec;
