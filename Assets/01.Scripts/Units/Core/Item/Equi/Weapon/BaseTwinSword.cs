@@ -16,12 +16,14 @@ public class BaseTwinSword : Weapon
 	{
 		int level = CountToLevel(_weaponClassLevel.killedCount);
 
+		Debug.Log(level);
 		switch (level)
 		{
 			case 1:
 				_changeBuffStats.Atk = 5;
 				if (_currentVec == Vector3.forward || _currentVec == Vector3.back)
 				{
+					Debug.Log("앞이용");
 					_playerAttack.AttackColParent.ChangeSizeZ(DirType.Left, 1);
 					_playerAttack.AttackColParent.ChangeSizeZ(DirType.Right, 1);
 					_playerAttack.AttackColParent.ChangeSizeX(1);
@@ -29,6 +31,7 @@ public class BaseTwinSword : Weapon
 				}
 				else
 				{
+					Debug.Log("옆이용");
 					_playerAttack.AttackColParent.ChangeSizeX(DirType.Up, 1);
 					_playerAttack.AttackColParent.ChangeSizeX(DirType.Down, 1);
 					_playerAttack.AttackColParent.ChangeSizeZ(1);
@@ -130,6 +133,9 @@ public class BaseTwinSword : Weapon
 	}
 	protected override void Attack(Vector3 vec)
 	{
+		if (_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Moving))
+			return;
+
 		_currentVec = vec;
 		_playerAttack.AttackColParent.AllDisableDir();
 		LevelSystem();

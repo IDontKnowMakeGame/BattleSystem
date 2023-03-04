@@ -18,7 +18,6 @@ namespace Tools
 
         public void SetEventOnFrame(int frame, Action action)
         {
-            Debug.Log(action);
             if(events == null)
             {
                 events = new List<Action>(new Action[fps]);
@@ -27,8 +26,6 @@ namespace Tools
             {
                 events = new List<Action>(new Action[fps]);
             }
-            Debug.Log(events.Count);
-            Debug.Log(fps);
             events[frame] = action;
         }
     }

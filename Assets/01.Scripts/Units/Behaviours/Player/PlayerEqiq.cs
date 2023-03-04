@@ -19,8 +19,26 @@ namespace Units.Base.Player
 		public override void Awake()
 		{
 			base.Awake();
-			//_currentWeapon = DataManager.UserData.firstWeapon;
-			//_secoundWeapon = DataManager.UserData.secondWeapon;
+			string first = DataManager.UserData.firstWeapon;
+			string secound = DataManager.UserData.secondWeapon;
+			bool isfirstFind = false;
+
+
+			foreach(var a in weapons)
+			{
+				if(a.Key.ToString() == first || a.Key.ToString() == secound)
+				{
+					if (a.Key.ToString() == first)
+						_currentWeapon = a.Key;
+					else
+						_secoundWeapon = a.Key;
+
+					CurrentWeapon?.ChangeKey();
+					if (isfirstFind)
+						break;
+					isfirstFind = true;
+				}
+			}
 		}
 
 		public override void Update()
@@ -71,7 +89,7 @@ namespace Units.Base.Player
 		}
 		private void ChangeWeapon()
 		{
-			if (_currentWeapon == null || _secoundWeapon == null)
+			if (_currentWeapon == WeaponEnum.Empty || _secoundWeapon == WeaponEnum.Empty)
 				return;
 
 			if (ThisBase.State.HasFlag(Unit.BaseState.Skill) || ThisBase.State.HasFlag(Unit.BaseState.StopMove))
@@ -79,7 +97,7 @@ namespace Units.Base.Player
 
 			CurrentWeapon?.Reset();
 			SecoundWeapon?.ChangeKey();
-			string temp = _currentWeapon;
+			WeaponEnum temp = _currentWeapon;
 			_currentWeapon = _secoundWeapon;
 			_secoundWeapon = temp;
 
@@ -96,35 +114,33 @@ namespace Units.Base.Player
 
 		public void ChangeWeapon(EventParam eventParam)
 		{
-			if (eventParam.stringParam != null)
-			{
-				if (eventParam.intParam == 1)
-				{
-					Debug.Log("넣기 1번째" + eventParam.stringParam);
-					_currentWeapon = eventParam.stringParam;
-				}
-				else
-				{
-					Debug.Log("넣기 2번째" + eventParam.stringParam);
-					_secoundWeapon = eventParam.stringParam;
-				}
+			//if (eventParam.stringParam != null)
+			//{
+			//	if (eventParam.intParam == 1)
+			//	{
+			//		Debug.Log("넣기 1번째" + eventParam.stringParam);
+			//		_currentWeapon = eventParam.stringParam;
+			//	}
+			//	else
+			//	{
+			//		Debug.Log("넣기 2번째" + eventParam.stringParam);
+			//		_secoundWeapon = eventParam.stringParam;
+			//	}
 
-				CurrentWeapon?.ChangeKey();
-			}
-			else
-			{
-				if (eventParam.intParam == 1)
-				{
-					CurrentWeapon?.Reset();
-					Debug.Log("없애기 1번째" + eventParam.stringParam);
-					_currentWeapon = eventParam.stringParam;
-				}
-				else
-				{
-					Debug.Log("없애기 2번째" + eventParam.stringParam);
-					_secoundWeapon = eventParam.stringParam;
-				}
-			}
+			//	CurrentWeapon?.ChangeKey();
+			//}
+			//else
+			//{
+			//	if (eventParam.intParam == 1)
+			//	{
+			//		CurrentWeapon?.Reset();
+			//		_currentWeapon = eventParam.stringParam;
+			//	}
+			//	else
+			//	{
+			//		_secoundWeapon = eventParam.stringParam;
+			//	}
+			//}
 		}
 
 		private void TestChangeWeapon()

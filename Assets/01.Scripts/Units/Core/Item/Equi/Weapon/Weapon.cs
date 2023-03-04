@@ -10,16 +10,6 @@ using Tools;
 
 namespace Unit.Core.Weapon
 {
-	public enum WeaponType
-	{
-		OldStraightSword,
-		OldGreatSword,
-		OldTwinSword,
-		OldSpear,
-		TaintedSword,
-		End
-	}
-
     [Serializable]
     public class Weapon:EquipmentItem
     {
@@ -179,7 +169,7 @@ namespace Unit.Core.Weapon
 			<= 60 => 3,
 			<= 70 => 4,
 			<= 80 => 5,
-			_ => 0
+			_ => 1
 		};
 		protected virtual void LevelSystem()
 		{

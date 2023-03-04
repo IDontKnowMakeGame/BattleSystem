@@ -1,9 +1,12 @@
 {
     "maxHp": 100,
-    "currentWeapon": "oldSword",
-    "firstWeapon": "oldSword",
-    "secondWeapon": "oldTwinSword",
+    "feather": 0,
+    "currentWeapon": "OldStraightSword",
+    "firstWeapon": "OldStraightSword",
+    "secondWeapon": "OldTwinSword",
     "firstHelo": "",
     "secondHelo": "",
-    "thirdHelo": ""
+    "thirdHelo": "",
+    "equipUseableItem": [],
+    "contractsInfo": []
 }

@@ -6,21 +6,49 @@ using Unit.Core;
 
 namespace Units.Behaviours.Unit
 {
+	public enum WeaponEnum
+	{
+		Empty,
+		OldStraightSword,
+		OldTwinSword,
+		OldGreatSword,
+		OldSpear,
+		OldBow,
+		TaintedSword,
+		End
+	}
 	[Serializable]
 	public class UnitEquiq : UnitBehaviour
 	{
 		[SerializeField]
-		protected string _currentWeapon;
+		protected WeaponEnum _currentWeapon;
 		[SerializeField]
-		protected string _secoundWeapon;
+		protected WeaponEnum _secoundWeapon;
 
 		public bool isEnemy;
 		public Weapon CurrentWeapon
 		{
 			get
 			{
-				if (_currentWeapon != null && _currentWeapon != "")
-					return weapons[_currentWeapon];
+				if (WeaponEnum.Empty != _currentWeapon)
+				{
+					Weapon weapon;
+					if (weapons.TryGetValue(_currentWeapon, out weapon))
+						return weapons[_currentWeapon];
+					else
+					{
+						if(isEnemy)
+						{
+							Type type = Type.GetType(_currentWeapon.ToString());
+							Weapon weaponClass = Activator.CreateInstance(type) as Weapon;
+							weaponClass._thisBase = ThisBase;
+							InsertWeapon(_currentWeapon, weaponClass);
+							weapon = weapons[_currentWeapon];
+						}
+
+						return weapon;
+					}
+				}
 				else
 					return null;
 			}
@@ -30,14 +58,14 @@ namespace Units.Behaviours.Unit
 		{
 			get
 			{
-				if (_secoundWeapon != null && _secoundWeapon != "")
+				if (_secoundWeapon != WeaponEnum.Empty)
 					return weapons[_secoundWeapon];
 				else
 					return null;
 			}
 		}
 
-		public Dictionary<string, Weapon> weapons = new Dictionary<string, Weapon>();
+		public Dictionary<WeaponEnum, Weapon> weapons = new Dictionary<WeaponEnum, Weapon>();
 		protected Dictionary<string, Halo> halos = new Dictionary<string, Halo>();
 
 		private int _haloCount = 2;
@@ -46,13 +74,8 @@ namespace Units.Behaviours.Unit
 		protected Halo[] usingHalos = new Halo[3];
 		public override void Awake()
 		{
-			weapons.Add("oldSword", new OldStraightSword() { _thisBase = this.ThisBase });
-			weapons.Add("oldGreatSword", new OldGreatSword() { _thisBase = this.ThisBase });
-			weapons.Add("oldTwinSword", new OldTwinSword() { _thisBase = this.ThisBase });
-			weapons.Add("oldSpear", new OldSpear() { _thisBase = this.ThisBase });
-			weapons.Add("oldBow", new OldBow() { _thisBase = this.ThisBase });
-			weapons.Add("taintedSword", new TaintedSword() { _thisBase = this.ThisBase });
-			weapons.Add("brokenSword", new BrokenSword() { _thisBase = this.ThisBase });
+			weapons.Add(WeaponEnum.OldStraightSword, new OldStraightSword() { _thisBase = this.ThisBase });
+			weapons.Add(WeaponEnum.OldTwinSword, new OldTwinSword() { _thisBase = this.ThisBase });
 
 			halos.Add("DirtyHalo", new DirtyHalo());
 			halos.Add("EvilSpiritHalo", new EvilSpiritHalo());
@@ -86,29 +109,29 @@ namespace Units.Behaviours.Unit
 		{
 			CurrentWeapon?.Update();
 
-			for(int i = 0; i < _haloCount; i++)
+			for (int i = 0; i < _haloCount; i++)
 			{
 				if (usingHalos[i] != null)
 					usingHalos[i].Update();
 			}
 		}
 
-        public override void OnDestroy()
-        {
+		public override void OnDestroy()
+		{
 			foreach (var value in halos)
 			{
 				value.Value?.OnDestroy();
 			}
 		}
 
-        public override void OnApplicationQuit()
-        {
+		public override void OnApplicationQuit()
+		{
 			foreach (var value in halos)
 			{
 				value.Value?.OnApplicationQuit();
 			}
 		}
-		public virtual void InsertWeapon(string name, Weapon type) 
+		public virtual void InsertWeapon(WeaponEnum name, Weapon type)
 		{
 			weapons.Add(name, type);
 			weapons[name].Awake();
@@ -132,13 +155,13 @@ namespace Units.Behaviours.Unit
 
 		public int WeaponAnimation()
 		{
-			if (_currentWeapon == "oldSword")
+			if (_currentWeapon == WeaponEnum.OldStraightSword)
 				return 0;
-			else if (_currentWeapon == "oldTwinSword")
+			else if (_currentWeapon == WeaponEnum.OldTwinSword)
 				return 1;
-			else if (_currentWeapon == "oldGreatSword")
+			else if (_currentWeapon == WeaponEnum.OldGreatSword)
 				return 2;
-			else if (_currentWeapon == "oldSpear")
+			else if (_currentWeapon == WeaponEnum.OldSpear)
 				return 3;
 			else
 				return 0;
