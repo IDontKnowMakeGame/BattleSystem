@@ -12,14 +12,14 @@ namespace Units.Base.Interactable
         public virtual bool IsDetected { get; set; }
         public Func<Vector3, bool> DetectCondition = null;
 
-        protected override void Awake()
-        {
-            base.Awake();
-            InputManager.OnInteractionPress += Interact;
-            DetectCondition = vector3 => InGame.PlayerBase.Position.IsNeighbor(vector3);
-        }
+		protected override void Awake()
+		{
+			base.Awake();
+			InputManager.OnInteractionPress += Interact;
+			DetectCondition = vector3 => InGame.PlayerBase.Position.IsNeighbor(vector3);
+		}
 
-        protected override void Update()
+		protected override void Update()
         {
             OnDetect();
             OnLostDetect();

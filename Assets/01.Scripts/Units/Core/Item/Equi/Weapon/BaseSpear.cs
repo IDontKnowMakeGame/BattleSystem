@@ -26,37 +26,37 @@ public class BaseSpear : Weapon
 		switch (level)
 		{
 			case 1:
-				_changeWeaponStats.Atk = 5;
-				_changeWeaponStats.Ats = -0.01f;
-				_changeWeaponStats.Afs = -0.01f;
+				_changeBuffStats.Atk = 5;
+				_changeBuffStats.Ats = -0.01f;
+				_changeBuffStats.Afs = -0.01f;
 				_playerAttack.AttackColParent.ChangeSizeZ(1);
 				_playerAttack.AttackColParent.ChangeSizeX(1);
 				break;
 			case 2:
-				_changeWeaponStats.Atk = 10;
-				_changeWeaponStats.Ats = -0.03f;
-				_changeWeaponStats.Afs = -0.03f;
+				_changeBuffStats.Atk = 10;
+				_changeBuffStats.Ats = -0.03f;
+				_changeBuffStats.Afs = -0.03f;
 				_playerAttack.AttackColParent.ChangeSizeZ(1);
 				_playerAttack.AttackColParent.ChangeSizeX(1);
 				break;
 			case 3:
-				_changeWeaponStats.Atk = 15;
-				_changeWeaponStats.Ats = -0.05f;
-				_changeWeaponStats.Afs = -0.05f;
+				_changeBuffStats.Atk = 15;
+				_changeBuffStats.Ats = -0.05f;
+				_changeBuffStats.Afs = -0.05f;
 				_playerAttack.AttackColParent.ChangeSizeZ(1);
 				_playerAttack.AttackColParent.ChangeSizeX(1);
 				break;
 			case 4:
-				_changeWeaponStats.Atk = 20;
-				_changeWeaponStats.Ats = -0.07f;
-				_changeWeaponStats.Afs = -0.07f;
+				_changeBuffStats.Atk = 20;
+				_changeBuffStats.Ats = -0.07f;
+				_changeBuffStats.Afs = -0.07f;
 				_playerAttack.AttackColParent.ChangeSizeZ(1);
 				_playerAttack.AttackColParent.ChangeSizeX(1);
 				break;
 			case 5:
-				_changeWeaponStats.Atk = 20;
-				_changeWeaponStats.Ats = -0.07f;
-				_changeWeaponStats.Afs = -0.07f;
+				_changeBuffStats.Atk = 20;
+				_changeBuffStats.Ats = -0.07f;
+				_changeBuffStats.Afs = -0.07f;
 				int sizeZ = _currentAttackPos == Vector3.forward || _currentAttackPos == Vector3.back ? 2 : 1;
 				int sizeX = _currentAttackPos == Vector3.left || _currentAttackPos == Vector3.right ? 2 : 1;
 				_playerAttack.AttackColParent.ChangeSizeZ(sizeZ);

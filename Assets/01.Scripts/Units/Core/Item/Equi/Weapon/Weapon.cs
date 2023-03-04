@@ -10,23 +10,14 @@ using Tools;
 
 namespace Unit.Core.Weapon
 {
-	public enum WeaponType
-	{
-		OldStraightSword,
-		OldGreatSword,
-		OldTwinSword,
-		OldSpear,
-		TaintedSword,
-		End
-	}
-
     [Serializable]
     public class Weapon:EquipmentItem
     {
         public UnitBase _thisBase;
 
         protected WeaponStats _weaponStats = null;
-        protected WeaponStats _changeWeaponStats = new WeaponStats();
+        protected WeaponStats _changeStats = new WeaponStats();
+        protected WeaponStats _changeBuffStats = new WeaponStats();
 
         private WeaponStats _WeaponStats = new WeaponStats();
 
@@ -35,12 +26,10 @@ namespace Unit.Core.Weapon
 		{
 			get
 			{
-				Debug.Log(_weaponStats);
-				Debug.Log(this.GetType().Name);
-				_WeaponStats.Atk = _weaponStats.Atk + _changeWeaponStats.Atk;
-				_WeaponStats.Ats = _weaponStats.Ats + _changeWeaponStats.Ats;
-				_WeaponStats.Afs = _weaponStats.Afs + _changeWeaponStats.Afs;
-				_WeaponStats.Weight = _weaponStats.Weight + _changeWeaponStats.Weight;
+				_WeaponStats.Atk = _changeStats.Atk + _changeBuffStats.Atk;
+				_WeaponStats.Ats = _changeStats.Ats + _changeBuffStats.Ats;
+				_WeaponStats.Afs = _changeStats.Afs + _changeBuffStats.Afs;
+				_WeaponStats.Weight = _changeStats.Weight + _changeBuffStats.Weight;
 				return _WeaponStats;
 			}
 		}
@@ -80,6 +69,9 @@ namespace Unit.Core.Weapon
 
 			_playerAttack = _unitAttack as PlayerAttack;
 			_playerAnimation = _unitAnimation as PlayerAnimation;
+
+			_changeStats = _weaponStats;
+			WeaponLevel();
 		}
 		public override void Update()
 		{
@@ -89,8 +81,6 @@ namespace Unit.Core.Weapon
 		{
 			InputManager.OnAttackPress += AttackCoroutine;
 			InputManager.OnSkillPress += Skill;
-
-			_unitStat.afterDieAction = KillEnemy;
 		}
 
 		protected void Timer()
@@ -187,47 +177,49 @@ namespace Unit.Core.Weapon
 		}
 		protected virtual void WeaponLevel()
 		{
-			//switch()
-			//{
-			//	case 1:
-			//		_weaponStats.Atk += 20;
-			//		break;
-			//	case 2:
-			//		_weaponStats.Atk += 45;
-			//		break;
-			//	case 3:
-			//		_weaponStats.Atk += 75;
-			//		break;
-			//	case 4:
-			//		_weaponStats.Atk += 110;
-			//		break;
-			//	case 5:
-			//		_weaponStats.Atk += 150;
-			//		break;
-			//	case 6:
-			//		_weaponStats.Atk += 195;
-			//		break;
-			//	case 7:
-			//		_weaponStats.Atk += 245;
-			//		break;
-			//	case 8:
-			//		_weaponStats.Atk += 300;
-			//		break;
-			//	case 9:
-			//		_weaponStats.Atk += 360;
-			//		break;
-			//	case 10:
-			//		_weaponStats.Atk += 425;
-			//		break;
-			//	case 11:
-			//		_weaponStats.Atk += 495;
-			//		break;
-			//	case 12:
-			//		_weaponStats.Atk += 570;
-			//		break;
-			//}
+			switch (Define.GetManager<DataManager>().LoadWeaponLevelData(this.GetType().Name))
+			{
+				case 1:
+					_changeStats.Atk = _weaponStats.Atk +  20;
+					break;
+				case 2:
+					_changeStats.Atk = _weaponStats.Atk + 45;
+					break;
+				case 3:
+					_changeStats.Atk = _weaponStats.Atk + 75;
+					break;
+				case 4:
+					_changeStats.Atk = _weaponStats.Atk + 110;
+					break;
+				case 5:
+					_changeStats.Atk = _weaponStats.Atk + 150;
+					break;
+				case 6:
+					_changeStats.Atk = _weaponStats.Atk + 195;
+					break;
+				case 7:
+					_changeStats.Atk = _weaponStats.Atk + 245;
+					break;
+				case 8:
+					_changeStats.Atk = _weaponStats.Atk + 300;
+					break;
+				case 9:
+					_changeStats.Atk = _weaponStats.Atk + 360;
+					break;
+				case 10:
+					_changeStats.Atk = _weaponStats.Atk + 425;
+					break;
+				case 11:
+					_changeStats.Atk = _weaponStats.Atk + 495;
+					break;
+				case 12:
+					_changeStats.Atk = _weaponStats.Atk + 570;
+					break;
+				default:
+					break;
+			}
 		}
-		private void KillEnemy()
+		public void KillEnemy()
 		{
 			_weaponClassLevel.killedCount++;
 			LevelSystem();

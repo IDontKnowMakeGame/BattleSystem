@@ -18721,6 +18721,15 @@ MonoBehaviour:
   <BossArea>k__BackingField:
   - {x: 0, y: 0, z: 0}
   - {x: 18, y: 0, z: -18}
+  <CurrentCameraArea>k__BackingField:
+    Index: 0
+    StartPos: {x: 0, y: 0, z: 0}
+    EndPos: {x: 0, y: 0, z: 0}
+    Rotation: 0
+    IsPlayerIn: 0
+    IsRoute: 0
+    IsFollow: 0
+  Rooms: []
 --- !u!4 &479133271
 Transform:
   m_ObjectHideFlags: 0
@@ -43236,6 +43245,79 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088526454}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1088834541
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3555345244280757845, guid: 7ab60740ff9fd064d9701f6574e56c46, type: 3}
+      propertyPath: m_Name
+      value: Dummy Unit
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555345244280757846, guid: 7ab60740ff9fd064d9701f6574e56c46, type: 3}
+      propertyPath: position.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555345244280757846, guid: 7ab60740ff9fd064d9701f6574e56c46, type: 3}
+      propertyPath: position.z
+      value: -22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555345244280757846, guid: 7ab60740ff9fd064d9701f6574e56c46, type: 3}
+      propertyPath: <SpawnPos>k__BackingField.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555345244280757846, guid: 7ab60740ff9fd064d9701f6574e56c46, type: 3}
+      propertyPath: <SpawnPos>k__BackingField.z
+      value: -22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555345244280757847, guid: 7ab60740ff9fd064d9701f6574e56c46, type: 3}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555345244280757847, guid: 7ab60740ff9fd064d9701f6574e56c46, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555345244280757847, guid: 7ab60740ff9fd064d9701f6574e56c46, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555345244280757847, guid: 7ab60740ff9fd064d9701f6574e56c46, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555345244280757847, guid: 7ab60740ff9fd064d9701f6574e56c46, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555345244280757847, guid: 7ab60740ff9fd064d9701f6574e56c46, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555345244280757847, guid: 7ab60740ff9fd064d9701f6574e56c46, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555345244280757847, guid: 7ab60740ff9fd064d9701f6574e56c46, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555345244280757847, guid: 7ab60740ff9fd064d9701f6574e56c46, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555345244280757847, guid: 7ab60740ff9fd064d9701f6574e56c46, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555345244280757847, guid: 7ab60740ff9fd064d9701f6574e56c46, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7ab60740ff9fd064d9701f6574e56c46, type: 3}
 --- !u!1 &1090170963
 GameObject:
   m_ObjectHideFlags: 0
@@ -64140,6 +64222,10 @@ PrefabInstance:
     - target: {fileID: 3041935593448038436, guid: 3310a305a449e094f97d81087b882af4, type: 3}
       propertyPath: _enemyRender._blinkDelay
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041935593448038436, guid: 3310a305a449e094f97d81087b882af4, type: 3}
+      propertyPath: _enemyWeapons._currentWeapon
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3041935593448038437, guid: 3310a305a449e094f97d81087b882af4, type: 3}
       propertyPath: m_RootOrder

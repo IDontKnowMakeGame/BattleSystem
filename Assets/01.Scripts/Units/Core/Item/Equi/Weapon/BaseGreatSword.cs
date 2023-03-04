@@ -44,7 +44,7 @@ public class BaseGreatSword : Weapon
 			case 5:
 				_unitStat.Half = 20;
 				_unitStat.onBehaviourEnd = () => _unitStat.Half = 0;
-				_changeWeaponStats.Atk = 20;
+				_changeBuffStats.Atk = 20;
 				break;
 		};
 	}
