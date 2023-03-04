@@ -17,10 +17,11 @@ public class UIManager : Manager
         InGame,
         Dialog,
         Inventory,
-        none
+        WeaponStore,
+        None
     }
 
-    private MyUI currentUI = MyUI.none;
+    private static MyUI currentUI = MyUI.None;
 
     #region InGame
     private VisualElement _hpBar;
@@ -41,6 +42,20 @@ public class UIManager : Manager
     private VisualElement _choicePanel;
     #endregion
 
+    #region WeaponStore
+    private VisualElement _weaponImage;
+    private Label _weaponName;
+
+    private Label _atkText;
+    private Label _atsText;
+    private Label _afsText;
+    private Label _weightText;
+
+    private Label _needMoneyText;
+    private Label _needItemText;
+
+    private ScrollView _weaponScroll;
+    #endregion
 
     public override void Awake()
     {
@@ -79,6 +94,27 @@ public class UIManager : Manager
 
         _sentencePanel = root.Q<VisualElement>("TextBox");
         _choicePanel = root.Q<VisualElement>("ChoicePanel");
+    }
+
+    public void WeaponStoreInit()
+    {
+        if (currentUI == MyUI.WeaponStore) return;
+
+        currentUI = MyUI.WeaponStore;
+        _document.visualTreeAsset = Define.GetManager<ResourceManagers>().Load<VisualTreeAsset>("UIDoc/WeaponStore");
+        VisualElement root = _document.rootVisualElement;
+
+        _weaponScroll = root.Q<ScrollView>("WeaponScroll");
+        _weaponName = root.Q<Label>("WeaponName");
+
+        VisualElement rightWindow = root.Q<VisualElement>("RightWindow");
+        _atkText = rightWindow.Q<Label>("AtkBoxLabel");
+        _atsText = rightWindow.Q<Label>("AtsBoxLabel");
+        _afsText = rightWindow.Q<Label>("AfsBoxLabel");
+        _weightText = rightWindow.Q<Label>("WeightBoxLabel");
+
+        _needMoneyText = rightWindow.Q<Label>("NeedMoneyBox/Label");
+        _needItemText = rightWindow.Q<Label>("NeedItemBox/Label");
     }
 
     #region HpSlider
@@ -142,6 +178,38 @@ public class UIManager : Manager
         });
 
         _choicePanel.Add(choiceBox);
+    }
+    #endregion
+
+    #region WeaponStore
+    public void ShowWeaponStore()
+    {
+        WeaponStoreInit();
+
+        List<string> dataList = Define.GetManager<DataManager>().LoadWeaponData();
+        VisualTreeAsset temple = Define.GetManager<ResourceManagers>().Load<VisualTreeAsset>("UIDoc/WeaponCardTemp");
+        foreach (string name in dataList)
+        {
+            VisualElement box = temple.Instantiate();
+            box.RegisterCallback<ClickEvent>(e => {
+                SelectWeaponBtn(name);
+            });
+            _weaponScroll.Add(box);
+        }
+    }
+
+    public void SelectWeaponBtn(string name)
+    {
+        _weaponName.text = name;
+
+        WeaponStateData data = Define.GetManager<DataManager>().LoadWeaponStateData(name);
+        Debug.Log(data.damage);
+        _atkText.text = string.Format("{0}", data.damage);
+        _atsText.text = string.Format("{0}", data.attackSpeed);
+        _afsText.text = string.Format("{0}", data.attackAfterDelay);
+        _weightText.text = string.Format("{0}", data.weaponWeight);
+
+
     }
     #endregion
 

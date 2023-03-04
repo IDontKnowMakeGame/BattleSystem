@@ -1,0 +1,8 @@
+.InfoBox {
+    align-items: center;
+    justify-content: center;
+}
+
+.InfoBoxText {
+    font-size: 30px;
+}

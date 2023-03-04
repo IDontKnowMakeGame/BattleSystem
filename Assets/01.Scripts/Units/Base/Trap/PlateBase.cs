@@ -1,44 +1,69 @@
-﻿using Core;
+﻿using System;
+using Core;
 using Managements.Managers;
 using Units.Base.Interactable;
+using Units.Base.Unit;
+using Units.Behaviours.Unit;
 using UnityEngine;
 
 namespace Units.Base.Trap
 {
-    public class PlateBase : InteractableUnitBase
+    public class PlateBase : UnitBase
     {
         [SerializeField] protected Transform plateTransform;
+        protected bool IsDetected = false;
+
         protected override void Awake()
         {
             base.Awake();
-            DetectCondition = vector3 => InGame.PlayerBase.Position == vector3;
         }
 
         protected override void Start()
         {
             base.Start();
-            Define.GetManager<MapManager>().GetBlock(Position).UnitOnBlock();
+            UnitCollider.OnPlateTriggered += Interact;
+            InGame.SetUnit(null, Position);
         }
 
-        public override void Interact()
+        public virtual void Interact(GameObject obj)
         {
-            return;
-        }
-        
-        protected override void OnDetect()
-        {
-            if(IsDetected) return;
-            if (DetectCondition.Invoke(Position) == false) return;
+            if (obj != gameObject) return;
             IsDetected = true;
-            plateTransform.localScale = new Vector3(0.8f, 0.05f, 0.8f);
         }
-        
-        protected override void OnLostDetect()
+
+        protected override void Update()
         {
-            if (IsDetected == false) return;
-            if (DetectCondition.Invoke(Position)) return;
+            ChangeScale();
             IsDetected = false;
-            plateTransform.localScale = new Vector3(0.8f, 0.15f, 0.8f);
+            base.Update();
+        }
+
+        private void ChangeScale()
+        {
+            if (IsDetected)
+                plateTransform.localScale = new Vector3(1, 0.05f, 1);
+            else
+            {
+                plateTransform.localScale = new Vector3(1, 0.15f, 1);
+            }
+        }
+
+        protected override void OnDisable()
+        {
+            UnitCollider.OnPlateTriggered -= Interact;
+            base.OnDisable();
+        }
+
+        protected override void OnDestroy()
+        {
+            UnitCollider.OnPlateTriggered -= Interact;
+            base.OnDestroy();
+        }
+
+        protected override void OnApplicationQuit()
+        {
+            UnitCollider.OnPlateTriggered -= Interact;
+            base.OnApplicationQuit();
         }
     }
 }
