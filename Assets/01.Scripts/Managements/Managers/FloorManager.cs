@@ -13,9 +13,9 @@ namespace Managements.Managers
         
         public override void Start()
         {
-            //InGame.PlayerBase.SpawnPos = CurrentFloor.PlayerSpawnPos;
-            //if(InGame.BossBase != null)
-            //    InGame.BossBase.SpawnPos = CurrentFloor.BossSpawnPos;
+            InGame.PlayerBase.SpawnPos = CurrentFloor.PlayerSpawnPos;
+            if (InGame.BossBase != null)
+                InGame.BossBase.SpawnPos = CurrentFloor.BossSpawnPos;
         }
 
         public override void Update()
