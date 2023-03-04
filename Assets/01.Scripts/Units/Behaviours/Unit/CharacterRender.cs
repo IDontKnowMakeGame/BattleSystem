@@ -15,7 +15,8 @@ namespace Units.Behaviours.Unit
 
         public override void Awake()
         {
-            damageMat = _renderer.materials[1];
+            if(_renderer.materials.Length > 1)
+                damageMat = _renderer.materials[1];
         }
 
         public void DamageRender()
@@ -25,6 +26,7 @@ namespace Units.Behaviours.Unit
         
         private IEnumerator DamageRenderCoroutine()
         {
+            if(damageMat == null) yield break;
             for (var i = 0; i < _blinkCnt; i++)
             {
                 damageMat.SetFloat(_whiteOn, 1);
