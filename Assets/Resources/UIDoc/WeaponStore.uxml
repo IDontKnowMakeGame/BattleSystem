@@ -11,54 +11,59 @@
                         <ui:Label text="Label" display-tooltip-when-elided="true" name="WeaponName" style="font-size: 30px;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="ExPnael" style="width: 60%; height: 100%; background-color: rgb(142, 142, 142); flex-direction: row;">
-                    <ui:VisualElement name="LeftWindow" style="width: 30%; height: 100%;">
-                        <ui:VisualElement style="width: 100%; height: 65%; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; justify-content: center; align-items: center;">
-                            <ui:VisualElement name="AtkTextBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px; align-items: center; justify-content: center;">
-                                <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
+                <ui:VisualElement name="ExPnael" style="width: 60%; height: 100%; background-color: rgb(142, 142, 142); flex-direction: column;">
+                    <ui:VisualElement name="ExStatePanel" style="width: 100%; flex-direction: row; height: 80%;">
+                        <ui:VisualElement name="LeftWindow" style="width: 30%; height: 100%;">
+                            <ui:VisualElement style="width: 100%; height: 65%; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; justify-content: center; align-items: center;">
+                                <ui:VisualElement name="AtkTextBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px; align-items: center; justify-content: center;">
+                                    <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="AtsTextBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
+                                    <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="AfsTextBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
+                                    <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="WeightTextBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
+                                    <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
+                                </ui:VisualElement>
                             </ui:VisualElement>
-                            <ui:VisualElement name="AtsTextBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
-                                <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
-                            </ui:VisualElement>
-                            <ui:VisualElement name="AfsTextBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
-                                <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
-                            </ui:VisualElement>
-                            <ui:VisualElement name="WeightTextBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
-                                <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
+                            <ui:VisualElement style="width: 100%; height: 35%; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; justify-content: center; align-items: center;">
+                                <ui:VisualElement name="NeedMoneyTextBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
+                                    <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="NeedItemTextBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
+                                    <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
+                                </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:VisualElement>
-                        <ui:VisualElement style="width: 100%; height: 35%; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; justify-content: center; align-items: center;">
-                            <ui:VisualElement name="NeedMoneyTextBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
-                                <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
+                        <ui:VisualElement name="RightWindow" style="width: 70%; height: 100%;">
+                            <ui:VisualElement style="width: 100%; height: 65%; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; justify-content: center; align-items: center;">
+                                <ui:VisualElement name="AtkBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px; align-items: center; justify-content: center;">
+                                    <ui:Label text="Label" display-tooltip-when-elided="true" name="AtkBoxLabel" class="InfoBoxText" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="AtsBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
+                                    <ui:Label text="Label" display-tooltip-when-elided="true" name="AtsBoxLabel" class="InfoBoxText" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="AfsBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
+                                    <ui:Label text="Label" display-tooltip-when-elided="true" name="AfsBoxLabel" class="InfoBoxText" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="WeightBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
+                                    <ui:Label text="Label" display-tooltip-when-elided="true" name="WeightBoxLabel" class="InfoBoxText" />
+                                </ui:VisualElement>
                             </ui:VisualElement>
-                            <ui:VisualElement name="NeedItemTextBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
-                                <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
+                            <ui:VisualElement style="width: 100%; height: 35%; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; justify-content: center; align-items: center;">
+                                <ui:VisualElement name="NeedMoneyBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
+                                    <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="NeedItemBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
+                                    <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
+                                </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:VisualElement>
                     </ui:VisualElement>
-                    <ui:VisualElement name="RightWindow" style="width: 70%; height: 100%;">
-                        <ui:VisualElement style="width: 100%; height: 65%; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; justify-content: center; align-items: center;">
-                            <ui:VisualElement name="AtkBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px; align-items: center; justify-content: center;">
-                                <ui:Label text="Label" display-tooltip-when-elided="true" name="AtkBoxLabel" class="InfoBoxText" />
-                            </ui:VisualElement>
-                            <ui:VisualElement name="AtsBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
-                                <ui:Label text="Label" display-tooltip-when-elided="true" name="AtsBoxLabel" class="InfoBoxText" />
-                            </ui:VisualElement>
-                            <ui:VisualElement name="AfsBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
-                                <ui:Label text="Label" display-tooltip-when-elided="true" name="AfsBoxLabel" class="InfoBoxText" />
-                            </ui:VisualElement>
-                            <ui:VisualElement name="WeightBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
-                                <ui:Label text="Label" display-tooltip-when-elided="true" name="WeightBoxLabel" class="InfoBoxText" />
-                            </ui:VisualElement>
-                        </ui:VisualElement>
-                        <ui:VisualElement style="width: 100%; height: 35%; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; justify-content: center; align-items: center;">
-                            <ui:VisualElement name="NeedMoneyBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
-                                <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
-                            </ui:VisualElement>
-                            <ui:VisualElement name="NeedItemBox" class="InfoBox" style="width: 100%; height: 100px; background-color: rgb(65, 65, 65); margin-top: 10px; margin-bottom: 10px;">
-                                <ui:Label text="Label" display-tooltip-when-elided="true" class="InfoBoxText" />
-                            </ui:VisualElement>
-                        </ui:VisualElement>
+                    <ui:VisualElement name="BtnPanel" style="width: 100%; height: 20%; align-items: center; justify-content: center;">
+                        <ui:VisualElement name="Btn" style="background-color: rgba(91, 91, 91, 255); width: 117px; height: 59px;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
