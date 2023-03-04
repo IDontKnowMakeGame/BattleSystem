@@ -18,6 +18,7 @@ public class UIManager : Manager
         Dialog,
         Inventory,
         WeaponStore,
+        ItemStore,
         None
     }
 
@@ -43,6 +44,7 @@ public class UIManager : Manager
     #endregion
 
     #region WeaponStore
+    private VisualTreeAsset _weaponCardTemp;
     private VisualElement _weaponImage;
     private Label _weaponName;
 
@@ -55,6 +57,28 @@ public class UIManager : Manager
     private Label _needItemText;
 
     private ScrollView _weaponScroll;
+    #endregion
+
+    #region ItemStore
+    private int _currentHaveMoney;
+    private int _currentSelectItemCode = 0;
+    private int _itemPurchaseMoney;
+    private int _itempurchaseCnt;
+
+    private ItemStoreTableSO _currentItemTable;
+
+    private VisualTreeAsset _itemCardTemp;
+
+    private VisualElement _itemSave;
+
+    private Label _currenHavetMoneyText;
+    private Label _beforeMoneyText;
+
+    private VisualElement _minusBtn;
+    private VisualElement _addBtn;
+    private Label _cntText;
+
+    private VisualElement _purchaseBtn;
     #endregion
 
     public override void Awake()
@@ -95,7 +119,6 @@ public class UIManager : Manager
         _sentencePanel = root.Q<VisualElement>("TextBox");
         _choicePanel = root.Q<VisualElement>("ChoicePanel");
     }
-
     public void WeaponStoreInit()
     {
         if (currentUI == MyUI.WeaponStore) return;
@@ -104,10 +127,13 @@ public class UIManager : Manager
         _document.visualTreeAsset = Define.GetManager<ResourceManagers>().Load<VisualTreeAsset>("UIDoc/WeaponStore");
         VisualElement root = _document.rootVisualElement;
 
+        _weaponCardTemp = Define.GetManager<ResourceManagers>().Load<VisualTreeAsset>("UIDoc/WeaponCardTemp");
+
         _weaponScroll = root.Q<ScrollView>("WeaponScroll");
         _weaponName = root.Q<Label>("WeaponName");
 
         VisualElement rightWindow = root.Q<VisualElement>("RightWindow");
+
         _atkText = rightWindow.Q<Label>("AtkBoxLabel");
         _atsText = rightWindow.Q<Label>("AtsBoxLabel");
         _afsText = rightWindow.Q<Label>("AfsBoxLabel");
@@ -115,6 +141,39 @@ public class UIManager : Manager
 
         _needMoneyText = rightWindow.Q<Label>("NeedMoneyBox/Label");
         _needItemText = rightWindow.Q<Label>("NeedItemBox/Label");
+    }
+    public void ItemStoreInit()
+    {
+        if (currentUI == MyUI.ItemStore) return;
+
+        currentUI = MyUI.ItemStore;
+        _document.visualTreeAsset = Define.GetManager<ResourceManagers>().Load<VisualTreeAsset>("UIDoc/ItemStore");
+        VisualElement root = _document.rootVisualElement;
+
+        _itemCardTemp = Define.GetManager<ResourceManagers>().Load<VisualTreeAsset>("UIDoc/ItemCardTemp");
+
+        _itemSave = root.Q<VisualElement>("ItemCardSavePanel");
+
+        _currenHavetMoneyText = root.Q<Label>("CurrentMoneyText");
+        _beforeMoneyText = root.Q<Label>("BeforeMoneyText");
+
+        _minusBtn = root.Q<VisualElement>("MinusBtn");
+        _minusBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            MinusItemBtn();
+        });
+        _addBtn = root.Q<VisualElement>("AddBtn");
+        _addBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            AddItemBtn();
+        });
+        _cntText = root.Q<Label>("CntText");
+
+        _purchaseBtn = root.Q<VisualElement>("PurchaseBtn");
+        _purchaseBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            PurchaseBtn();
+        });
     }
 
     #region HpSlider
@@ -187,10 +246,10 @@ public class UIManager : Manager
         WeaponStoreInit();
 
         List<string> dataList = Define.GetManager<DataManager>().LoadWeaponData();
-        VisualTreeAsset temple = Define.GetManager<ResourceManagers>().Load<VisualTreeAsset>("UIDoc/WeaponCardTemp");
+        
         foreach (string name in dataList)
         {
-            VisualElement box = temple.Instantiate();
+            VisualElement box = _weaponCardTemp.Instantiate();
             box.RegisterCallback<ClickEvent>(e => {
                 SelectWeaponBtn(name);
             });
@@ -210,6 +269,92 @@ public class UIManager : Manager
         _weightText.text = string.Format("{0}", data.weaponWeight);
 
 
+    }
+    #endregion
+
+    #region ItemStore
+    public void ShowItemStore(ItemStoreTableSO table)
+    {
+        ItemStoreInit();
+
+        _currentItemTable = table;
+
+        foreach(ItemPrice data in _currentItemTable.table)
+        {
+            VisualElement card = _itemCardTemp.Instantiate();
+            card.RegisterCallback<ClickEvent>(e =>
+            {
+                ChangeItemCard(data);
+            });
+            _itemSave.Add(card);
+        }
+        
+        _currentHaveMoney = Define.GetManager<DataManager>().GetFeather();
+        _itemPurchaseMoney = 0;
+        _itempurchaseCnt = 0;
+
+        UpdateUI();
+    }
+    public void AddItemBtn()
+    {
+        if(_currentSelectItemCode == 0)
+        {
+            return;
+        }
+
+        _itempurchaseCnt++;
+
+        UpdateUI();
+    }
+    public void MinusItemBtn()
+    {
+        if (_currentSelectItemCode == 0 && _itempurchaseCnt == 0)
+        {
+            return;
+        }
+
+        _itempurchaseCnt--;
+
+        UpdateUI();
+    }
+    public void PurchaseBtn()
+    {
+        int value = _currentHaveMoney - (_itemPurchaseMoney * _itempurchaseCnt);
+        if (value < 0)
+        {
+            return;
+        }
+
+        _currentHaveMoney = value;
+        Define.GetManager<DataManager>().SetFeahter(_currentHaveMoney);
+        ItemInfo info = Define.GetManager<DataManager>().LoadUsableItemFromInventory(_currentSelectItemCode);
+        if(info == null)
+        {
+            info = new ItemInfo();
+            info.id = _currentSelectItemCode;
+            info.maxCnt = 0;
+        }    
+        info.currentCnt += _itempurchaseCnt;
+
+        Define.GetManager<DataManager>().AddUsableItemToInventory(info);
+
+        UpdateUI();
+    }
+    public void ChangeItemCard(ItemPrice data)
+    {
+        _currentSelectItemCode = data.itemID;
+        _itemPurchaseMoney = data.price;
+
+        _itempurchaseCnt = 1;
+
+        UpdateUI();
+    }
+
+    public void UpdateUI()
+    {
+        _cntText.text = string.Format("{0}", _itempurchaseCnt);
+        _currenHavetMoneyText.text = string.Format("{0}", _currentHaveMoney);
+        _beforeMoneyText.text = string.Format("{0}", Math.Clamp(_currentHaveMoney - (_itemPurchaseMoney * _itempurchaseCnt), 0, int.MaxValue));
     }
     #endregion
 

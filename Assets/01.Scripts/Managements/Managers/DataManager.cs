@@ -186,6 +186,12 @@ public class DataManager : Manager
     {
         return UserData.feather;
     }
+    public void SetFeahter(int value)
+    {
+        UserData.feather = Math.Clamp( value, 0, int.MaxValue);
+
+        SaveToUserData();
+    }
     public void AddFeahter(int value)
     {
         UserData.feather = Math.Clamp(UserData.feather + value, 0, int.MaxValue);
@@ -446,7 +452,13 @@ public class DataManager : Manager
     }
     public void AddUsableItemToInventory(ItemInfo data)
     {
-        InventoryData.inventoryInUsableItemList.Add(data);
+        ItemInfo info = LoadUsableItemFromInventory(data.id);
+
+        if (info == null)
+            InventoryData.inventoryInUsableItemList.Add(data);
+        else
+            ChangeItemInfo(data);
+
         SaveToInventoryData();
     }
     public ItemInfo LoadUsableItemFromInventory(int id)
@@ -457,6 +469,19 @@ public class DataManager : Manager
                 return info;
         }
         return null;
+    }
+    public void ChangeItemInfo(ItemInfo data)
+    {
+        for(int i = 0;i< InventoryData.inventoryInUsableItemList.Count;i++)
+        {
+            if(InventoryData.inventoryInUsableItemList[i].id == data.id)
+            {
+                InventoryData.inventoryInUsableItemList[i] = data;
+                return;
+            }
+        }
+
+        AddUsableItemToInventory(data);
     }
 
     #endregion
