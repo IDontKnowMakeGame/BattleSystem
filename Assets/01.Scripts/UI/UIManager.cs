@@ -158,10 +158,22 @@ public class UIManager : Manager
         _beforeMoneyText = root.Q<Label>("BeforeMoneyText");
 
         _minusBtn = root.Q<VisualElement>("MinusBtn");
+        _minusBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            MinusItemBtn();
+        });
         _addBtn = root.Q<VisualElement>("AddBtn");
+        _addBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            AddItemBtn();
+        });
         _cntText = root.Q<Label>("CntText");
 
         _purchaseBtn = root.Q<VisualElement>("PurchaseBtn");
+        _purchaseBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            PurchaseBtn();
+        });
     }
 
     #region HpSlider
@@ -287,8 +299,46 @@ public class UIManager : Manager
     {
         if(_currentSelectItemCode == 0)
         {
-
+            return;
         }
+
+        _itempurchaseCnt++;
+
+        UpdateUI();
+    }
+    public void MinusItemBtn()
+    {
+        if (_currentSelectItemCode == 0 && _itempurchaseCnt == 0)
+        {
+            return;
+        }
+
+        _itempurchaseCnt--;
+
+        UpdateUI();
+    }
+    public void PurchaseBtn()
+    {
+        int value = _currentHaveMoney - (_itemPurchaseMoney * _itempurchaseCnt);
+        if (value < 0)
+        {
+            return;
+        }
+
+        _currentHaveMoney = value;
+        Define.GetManager<DataManager>().SetFeahter(_currentHaveMoney);
+        ItemInfo info = Define.GetManager<DataManager>().LoadUsableItemFromInventory(_currentSelectItemCode);
+        if(info == null)
+        {
+            info = new ItemInfo();
+            info.id = _currentSelectItemCode;
+            info.maxCnt = 0;
+        }    
+        info.currentCnt += _itempurchaseCnt;
+
+        Define.GetManager<DataManager>().AddUsableItemToInventory(info);
+
+        UpdateUI();
     }
     public void ChangeItemCard(ItemPrice data)
     {

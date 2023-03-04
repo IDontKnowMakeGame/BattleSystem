@@ -6,6 +6,8 @@ using UnityEngine.UIElements;
 
 public class TestUICoder : MonoBehaviour
 {
+    [SerializeField]
+    private ItemStoreTableSO so;
     private void Awake()
     {
         
@@ -15,13 +17,14 @@ public class TestUICoder : MonoBehaviour
     {
         //Define.GetManager<DataManager>().AddWeaponToInventory("OldStraightSword");
         //Define.GetManager<DataManager>().AddWeaponToInventory("OldGreatSword");
+        //Define.GetManager<DataManager>().AddFeahter(10000);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            Define.GetManager<UIManager>().ShowWeaponStore();
+            Define.GetManager<UIManager>().ShowItemStore(so);
         }
     }
 }
