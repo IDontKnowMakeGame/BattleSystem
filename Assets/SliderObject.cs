@@ -43,7 +43,6 @@ public class SliderObject : MonoBehaviour
 	}
 	private void SliderInit(EventParam eventParam)
 	{
-		Debug.Log(_maxChargeValue);
 		_maxChargeValue = eventParam.floatParam;
 		_slider.transform.localScale = firstSliderScale;
 		ActiveObjects(true);
@@ -56,7 +55,6 @@ public class SliderObject : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log(_maxChargeValue);
 			_chargeValue = (eventParam.floatParam / _maxChargeValue) * 100f;
 			vec.y = (_maxYScalevalue * _chargeValue) / 100f;
 			_slider.transform.localScale = vec;

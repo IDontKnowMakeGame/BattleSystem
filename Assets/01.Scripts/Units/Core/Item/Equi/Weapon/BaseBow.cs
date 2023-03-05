@@ -11,18 +11,19 @@ public class BaseBow : Weapon
 	protected float _chargeTime;
 	protected float _maxChargeTime => WeaponStat.Ats;
 
-	protected string _arrowName;
+	[SerializeField]
+	protected ArrowType _arrowName;
 
 	protected Vector3 _currentVector;
 
 	private float projectileSpeed = 10;
+	private Units.Base.Units _unit = null;
 
 	public bool hasArrow = true;
 
 	public override void Start()
 	{
 		base.Start();
-		_arrowName = this.GetType().Name + "Arrow";
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
 		LoadClassLevel("Bow");
 		LevelSystem();
@@ -112,13 +113,14 @@ public class BaseBow : Weapon
 			GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderUp, new EventParam() { floatParam = _chargeTime });
 		}
 	}
+	public void Shoot(Vector3 vec) => Shooting(vec);
 	private void Shooting(Vector3 vec)
 	{
 		GameObject obj = Managements.GameManagement.Instance.GetManager<ResourceManagers>().Instantiate("Arrow");
 		BaseArrow arrow = obj.GetComponent<BaseArrow>();
 
 		arrow.InitArrow(projectileSpeed,WeaponStat.Atk,
-			_thisBase.Position + vec, vec, _arrowName);
+			_thisBase.Position + vec, vec, _arrowName, _thisBase);
 		arrow.ShootArrow();
 
 		hasArrow = false;
@@ -126,6 +128,5 @@ public class BaseBow : Weapon
 	public override void Reset()
 	{
 		base.Reset();
-		InputManager.OnAttackHold -= Charge;
 	}
 }

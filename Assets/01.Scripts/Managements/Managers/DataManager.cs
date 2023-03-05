@@ -73,9 +73,9 @@ public class User
     public int maxHp = 100;
     public int feather = 0;
 
-    public string currentWeapon = "OldStraightSword";
-    public string firstWeapon = "OldStraightSword";
-    public string secondWeapon = "OldTwinSword";
+    public string currentWeapon;
+    public string firstWeapon;
+    public string secondWeapon;
 
     public string firstHelo = "";
     public string secondHelo = "";
