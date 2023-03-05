@@ -4,5 +4,12 @@
         "OldGreatSword"
     ],
     "inventoryInHeloList": [],
-    "inventoryInUsableItemList": []
+    "inventoryInUsableItemList": [
+        {
+            "id": 1,
+            "currentCnt": 21,
+            "maxCnt": 0,
+            "equipNumber": 0
+        }
+    ]
 }
