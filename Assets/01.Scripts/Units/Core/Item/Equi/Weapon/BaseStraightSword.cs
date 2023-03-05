@@ -52,11 +52,6 @@ public class BaseStraightSword : Weapon
 		InputManager.ChangeKeyCode(KeyboardInput.AttackLeft, KeyCode.A);
 		InputManager.ChangeKeyCode(KeyboardInput.AttackRight, KeyCode.D);
 	}
-
-	protected override void AttackCoroutine(Vector3 vec)
-	{
-		base.AttackCoroutine(vec);
-	}
 	protected override void Attack(Vector3 vec)
 	{
 		_playerAttack.AttackColParent.AllDisableDir();
@@ -66,10 +61,5 @@ public class BaseStraightSword : Weapon
 		_playerAttack.Attack(_unitStat.NowStats.Atk);
 		_playerAttack.AttackColParent.AllEnableDir();
 		_playerAttack.AttackColParent.ChangeWeapon();
-	}
-
-	public override void Reset()
-	{
-		base.Reset();
 	}
 }

@@ -16,6 +16,7 @@ namespace Units.Base.Player
 		private AnimationClip animationClip;
 
 		private bool isEquiq = true;
+
 		public override void Awake()
 		{
 			base.Awake();
@@ -40,7 +41,6 @@ namespace Units.Base.Player
 				}
 			}
 		}
-
 		public override void Update()
 		{
 			base.Update();
@@ -69,7 +69,6 @@ namespace Units.Base.Player
 			ThisBase.GetBehaviour<PlayerEqiq>().InsertHelo("EvilSpiritHalo", 1);
 
 		}
-
         public override void OnDisable()
         {
 	        var manager = Define.GetManager<EventManager>();
@@ -77,6 +76,7 @@ namespace Units.Base.Player
 			CurrentWeapon?.Reset();
 			base.OnDisable();
         }
+
 
         private void WeaponOnOff()
 		{
@@ -95,8 +95,11 @@ namespace Units.Base.Player
 			if (ThisBase.State.HasFlag(Unit.BaseState.Skill) || ThisBase.State.HasFlag(Unit.BaseState.StopMove))
 				return;
 
+			Debug.Log(CurrentWeapon);
+			Debug.Log(SecoundWeapon);
 			CurrentWeapon?.Reset();
 			SecoundWeapon?.ChangeKey();
+
 			WeaponEnum temp = _currentWeapon;
 			_currentWeapon = _secoundWeapon;
 			_secoundWeapon = temp;
@@ -111,7 +114,6 @@ namespace Units.Base.Player
 			playerAnimation.CurWeaponAnimator.ChangeWeapon = true;
 			playerAnimation.SetAnmation();
 		}
-
 		public void ChangeWeapon(EventParam eventParam)
 		{
 			//if (eventParam.stringParam != null)
@@ -142,7 +144,6 @@ namespace Units.Base.Player
 			//	}
 			//}
 		}
-
 		private void TestChangeWeapon()
 		{
 			count++;
@@ -158,6 +159,37 @@ namespace Units.Base.Player
 					CurrentWeapon.ChangeKey();
 					return;
 				}
+			}
+		}
+		public void SetWeapon(WeaponEnum weaponEnum)
+		{
+			//없는 상황일 때 넣기
+			if (_currentWeapon == WeaponEnum.Empty)
+			{
+				CurrentWeapon.ChangeKey();
+				_currentWeapon = weaponEnum;
+				return;
+			}
+			else if (_secoundWeapon == WeaponEnum.Empty)
+			{
+				_secoundWeapon = weaponEnum;
+				return;
+			}
+
+			//여기서 있을 경우 바꾸는거 발동
+
+		}
+
+		public void UnSetWeapon(int index)
+		{
+			if(index == 1)
+			{
+				CurrentWeapon.Reset();
+				_currentWeapon = WeaponEnum.Empty;
+			}
+			else if(index == 2)
+			{
+				_secoundWeapon = WeaponEnum.Empty;
 			}
 		}
 	}

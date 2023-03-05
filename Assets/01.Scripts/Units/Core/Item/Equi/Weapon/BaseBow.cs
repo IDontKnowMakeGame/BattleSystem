@@ -5,6 +5,9 @@ using Managements.Managers;
 using Unit.Core.Weapon;
 using Core;
 using Managements;
+using Units.Base.Unit;
+using Units.Base.Player;
+using Tools;
 
 public class BaseBow : Weapon
 {
@@ -73,10 +76,7 @@ public class BaseBow : Weapon
 		base.Update();
 		Charge(_currentVector);
 	}
-	protected override void AttackCoroutine(Vector3 vec)
-	{
-		Attack(vec);
-	}
+
 	protected override void Attack(Vector3 vec)
 	{
 		if (!hasArrow)
@@ -124,9 +124,5 @@ public class BaseBow : Weapon
 		arrow.ShootArrow();
 
 		hasArrow = false;
-	}
-	public override void Reset()
-	{
-		base.Reset();
 	}
 }

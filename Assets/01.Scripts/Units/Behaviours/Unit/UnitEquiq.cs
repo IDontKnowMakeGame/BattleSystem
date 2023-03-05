@@ -34,26 +34,27 @@ namespace Units.Behaviours.Unit
 				{
 					Weapon weapon;
 					if (weapons.TryGetValue(_currentWeapon, out weapon))
-						return weapons[_currentWeapon];
-					else
 					{
-						if(isEnemy)
-						{
-							Type type = Type.GetType(_currentWeapon.ToString());
-							Weapon weaponClass = Activator.CreateInstance(type) as Weapon;
-							weaponClass._thisBase = ThisBase;
-							InsertWeapon(_currentWeapon, weaponClass);
-							weapon = weapons[_currentWeapon];
-						}
-
-						return weapon;
-					}
+						return weapons[_currentWeapon];
 				}
+				else
+				{
+					if (isEnemy)
+					{
+						Type type = Type.GetType(_currentWeapon.ToString());
+						Weapon weaponClass = Activator.CreateInstance(type) as Weapon;
+						weaponClass._thisBase = ThisBase;
+						InsertWeapon(_currentWeapon, weaponClass);
+						weapon = weapons[_currentWeapon];
+					}
+
+					return weapon;
+				}
+			}
 				else
 					return null;
 			}
 		}
-
 		public Weapon SecoundWeapon
 		{
 			get
@@ -77,6 +78,7 @@ namespace Units.Behaviours.Unit
 			weapons.Add(WeaponEnum.OldStraightSword, new OldStraightSword() { _thisBase = this.ThisBase });
 			weapons.Add(WeaponEnum.OldTwinSword, new OldTwinSword() { _thisBase = this.ThisBase });
 			weapons.Add(WeaponEnum.OldBow, new OldBow() { _thisBase = this.ThisBase });
+			weapons.Add(WeaponEnum.TaintedSword, new TaintedSword() { _thisBase = this.ThisBase });
 
 			halos.Add("DirtyHalo", new DirtyHalo());
 			halos.Add("EvilSpiritHalo", new EvilSpiritHalo());
