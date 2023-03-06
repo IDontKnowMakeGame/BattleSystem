@@ -24,7 +24,7 @@ public class TestUICoder : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            Define.GetManager<UIManager>().ShowItemStore(so);
+            Define.GetManager<UIManager>().ShowInventory();
         }
     }
 }

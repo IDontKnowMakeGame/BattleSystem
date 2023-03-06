@@ -24,6 +24,8 @@ public class UIManager : Manager
 
     private static MyUI currentUI = MyUI.None;
 
+    private VisualElement _exitBtn;
+
     #region InGame
     private bool _onOtherPanel = false;
     private VisualElement _hpBar;
@@ -84,6 +86,26 @@ public class UIManager : Manager
     private VisualElement _purchaseBtn;
     #endregion
 
+    #region Inventory
+    private VisualTreeAsset _itemInfoCardTemp;
+
+    private VisualElement _heloPanel;
+    private VisualElement _weaponPanel;
+    private VisualElement _itemPanel;
+
+    private VisualElement _weaponBtn;
+    private VisualElement _useableItemBtn;
+    private VisualElement _questItemBtn;
+    private VisualElement _heloBtn;
+
+    private VisualElement _scrolls;
+
+    private VisualElement _weaponListScroll;
+    private VisualElement _heloListScroll;
+    private VisualElement _useableListScroll;
+    private VisualElement _questItemListScroll;
+    #endregion
+
     public override void Awake()
     {
         if(ob == null)
@@ -139,6 +161,12 @@ public class UIManager : Manager
         _weaponScroll = root.Q<ScrollView>("WeaponScroll");
         _weaponName = root.Q<Label>("WeaponName");
 
+        _exitBtn = root.Q<VisualElement>("ExitBtn");
+        _exitBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            InGameInit();
+        });
+
         _weaponUpgradeBtn = root.Q<VisualElement>("Btn");
         _weaponUpgradeBtn.RegisterCallback<ClickEvent>(e =>
         {
@@ -168,6 +196,12 @@ public class UIManager : Manager
 
         _itemSave = root.Q<VisualElement>("ItemCardSavePanel");
 
+        _exitBtn = root.Q<VisualElement>("ExitBtn");
+        _exitBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            InGameInit();
+        });
+
         _currenHavetMoneyText = root.Q<Label>("CurrentMoneyText");
         _beforeMoneyText = root.Q<Label>("BeforeMoneyText");
 
@@ -188,6 +222,55 @@ public class UIManager : Manager
         {
             PurchaseBtn();
         });
+    }
+    public void InventoryInit()
+    {
+        if (currentUI == MyUI.Inventory) return;
+
+        _onOtherPanel = false;
+        currentUI = MyUI.Inventory;
+        _document.visualTreeAsset = Define.GetManager<ResourceManagers>().Load<VisualTreeAsset>("UIDoc/Inventory");
+        VisualElement root = _document.rootVisualElement;
+
+        _exitBtn = root.Q<VisualElement>("ExitBtn");
+        _exitBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            InGameInit();
+        });
+
+        _itemInfoCardTemp = Define.GetManager<ResourceManagers>().Load<VisualTreeAsset>("UIDoc/ItemInfoCardTemp");
+
+        _heloPanel = root.Q<VisualElement>("HeloPanel");
+        _weaponPanel = root.Q<VisualElement>("WeaponPanel");
+        _itemPanel = root.Q<VisualElement>("ItemPanel");
+
+        _weaponBtn = root.Q<VisualElement>("WeaponBtn");
+        _weaponBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            ChangeShowInventoryPanel(0);
+        });
+        _heloBtn = root.Q<VisualElement>("HeloBtn");
+        _heloBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            ChangeShowInventoryPanel(1);
+        });
+        _useableItemBtn = root.Q<VisualElement>("UseableItemBtn");
+        _useableItemBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            ChangeShowInventoryPanel(2);
+        });
+        _questItemBtn = root.Q<VisualElement>("QuestItemBtn");
+        _questItemBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            ChangeShowInventoryPanel(3);
+        });
+
+        _scrolls = root.Q<VisualElement>("Scrolls");
+
+        _weaponListScroll = _scrolls.Q<VisualElement>("WeaponList");
+        _heloListScroll = _scrolls.Q<VisualElement>("HeloList");
+        _useableListScroll = _scrolls.Q<VisualElement>("UseableItemList");
+        _questItemListScroll = _scrolls.Q<VisualElement>("QuestItemList");
     }
 
     #region HpSlider
@@ -294,6 +377,7 @@ public class UIManager : Manager
     public void WeaponUpGradeBtn()
     {
         Define.GetManager<DataManager>().SaveUpGradeWeaponLevelData(_selectWeaponName);
+        //Define.GetManager<EventManager>().TriggerEvent(EventFlag.weapon)
     }
     #endregion
 
@@ -382,6 +466,33 @@ public class UIManager : Manager
         _cntText.text = string.Format("{0}", _itempurchaseCnt);
         _currenHavetMoneyText.text = string.Format("{0}", _currentHaveMoney);
         _beforeMoneyText.text = string.Format("{0}", Math.Clamp(_currentHaveMoney - (_itemPurchaseMoney * _itempurchaseCnt), 0, int.MaxValue));
+    }
+    #endregion
+
+    #region Inventory
+    public void ShowInventory()
+    {
+        InventoryInit();
+
+        CreateCardList<string>(_weaponListScroll, Define.GetManager<DataManager>().LoadWeaponData());
+        //CreateCardList<string>(_heloListScroll, Define.GetManager<DataManager>().L());
+        CreateCardList<ItemInfo>(_useableListScroll, Define.GetManager<DataManager>().LoadUsableItemFromInventory());
+        //CreateCardList<string>(_questItemListScroll, Define.GetManager<DataManager>().LoadWeaponData());
+    }
+
+    public void CreateCardList<T>(VisualElement parent,List<T> list)
+    {
+        foreach(T data in list)
+        {
+            Debug.Log("Create Card");
+            VisualElement card = _itemInfoCardTemp.Instantiate();
+            parent.Add(card);
+        }    
+    }
+
+    public void ChangeShowInventoryPanel(int pageNum)
+    {
+        _scrolls.style.translate = new StyleTranslate(new Translate(new Length(-25 * pageNum, LengthUnit.Percent), new Length(0, LengthUnit.Pixel)));
     }
     #endregion
 

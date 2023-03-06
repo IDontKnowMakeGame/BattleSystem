@@ -481,6 +481,10 @@ public class DataManager : Manager
 
         SaveToInventoryData();
     }
+    public List<ItemInfo> LoadUsableItemFromInventory()
+    {
+        return InventoryData.inventoryInUsableItemList;
+    }
     public ItemInfo LoadUsableItemFromInventory(int id)
     {
         foreach(ItemInfo info in InventoryData.inventoryInUsableItemList)
