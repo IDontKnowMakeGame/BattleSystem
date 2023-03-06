@@ -21,6 +21,7 @@ public class AttackCollider : MonoBehaviour
     private Vector3[] changeCenterSize = new Vector3[4];
     private Vector3[] changeSize = new Vector3[4];
 
+
     private void Start()
     {
         // Attack 콜라이더 넣기(U-D-L-R)
@@ -180,12 +181,10 @@ public class AttackCollider : MonoBehaviour
     {
         for(int i = 0; i < attackCol.Length; i++)
         {
-            Debug.Log(attackCol[i]);
             if (i == (int)dirType)
-            {
-                attackCol[i].enabled = true;
-                break;
-            }
+                continue;
+            attackCol[i].enabled = false;
+            attackRanges[i].EnemysClear();
         }
     }
 
