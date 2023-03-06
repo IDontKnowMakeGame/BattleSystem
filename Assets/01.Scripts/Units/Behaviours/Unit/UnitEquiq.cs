@@ -79,6 +79,7 @@ namespace Units.Behaviours.Unit
 			weapons.Add(WeaponEnum.OldTwinSword, new OldTwinSword() { _thisBase = this.ThisBase });
 			weapons.Add(WeaponEnum.OldBow, new OldBow() { _thisBase = this.ThisBase });
 			weapons.Add(WeaponEnum.TaintedSword, new TaintedSword() { _thisBase = this.ThisBase });
+			weapons.Add(WeaponEnum.OldGreatSword, new OldGreatSword() { _thisBase = this.ThisBase });
 
 			halos.Add("DirtyHalo", new DirtyHalo());
 			halos.Add("EvilSpiritHalo", new EvilSpiritHalo());

@@ -3,7 +3,7 @@
         {
             "name": "BasicSword",
             "level": 0,
-            "killedCount": 22
+            "killedCount": 23
         },
         {
             "name": "GreateSword",
@@ -23,7 +23,7 @@
         {
             "name": "Bow",
             "level": 0,
-            "killedCount": 7
+            "killedCount": 8
         }
     ]
 }
