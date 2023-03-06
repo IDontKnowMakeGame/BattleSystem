@@ -14,6 +14,7 @@ public class CrazyGhostBase : BossBase
 {
     [SerializeField] private UnitEquiq _enemyWeapons;
     [SerializeField] private CharacterRender _enemyRender;
+    [SerializeField] private UnitAnimation _unitAnimation;
     
     protected override void Init()
     {
@@ -21,6 +22,7 @@ public class CrazyGhostBase : BossBase
         AddBehaviour(_enemyWeapons);
         AddBehaviour<EnemyMove>();
         AddBehaviour(thisStat);
+        AddBehaviour(_unitAnimation);
         var fsm = AddBehaviour<UnitFSM>();
         fsm.SetDefaultState<IdleState>();
         base.Init();
