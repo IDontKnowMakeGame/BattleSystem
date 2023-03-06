@@ -32,7 +32,7 @@ public class ExcelToEnumConverter : EditorWindow
     #endregion
 
     #region ExcelToEnum
-    private string inputURL = "https://docs.google.com/spreadsheets/d/1gya2C8tkrLr5HymQ4eccOAdZdZ1fhmYBe2AaSXMTee0/export?gid=830885422&format=tsv&range=";
+    private string inputURL = "https://docs.google.com/spreadsheets/d/1y6kR8URl2pG-sAijzFArfcsj1SRQXP1CvNo_k19Vbjs/export?format=tsv&range=";
     private string URL;
 
     string pth = "Assets/01.Scripts/Data";
@@ -71,14 +71,7 @@ public class ExcelToEnumConverter : EditorWindow
         {
             string[] column = row[i].Split('\t');
 
-            if (string.IsNullOrWhiteSpace(column[1]))
-            {
-                temp += column[0] + ",";
-            }
-            else
-                temp += string.Format(ConverterFormat.enumValue, column[0], column[1]);
-
-            temp += Environment.NewLine + '\t';
+            temp += column[0] + "," + Environment.NewLine + '\t';
         }
 
 
@@ -90,7 +83,7 @@ public class ExcelToEnumConverter : EditorWindow
     }
     private void MakeClass()
     {
-        URL = inputURL + $"A1:B{enumCount}";
+        URL = inputURL + $"A2:A{enumCount}";
         Debug.Log(URL);
         DownloadExcel();
     }

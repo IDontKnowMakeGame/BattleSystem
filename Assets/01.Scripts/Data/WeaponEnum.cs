@@ -1,8 +1,14 @@
 enum Weapons
 {
-    empty,
-    Hello,
-	World = 10,
-	Orgin,
-	end
+    Empty,
+    OldStraightSword,
+	OldGreatSword,
+	OldTwinSword,
+	OldSpear,
+	OldBow,
+	TaintedSword,
+	BrokenSword,
+	OutwornBow,
+	RustySpear,
+	End
 }
