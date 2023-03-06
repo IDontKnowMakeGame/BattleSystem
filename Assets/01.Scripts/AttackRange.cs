@@ -27,7 +27,7 @@ public class AttackRange : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.N))
+        if(Input.GetKeyDown(KeyCode.Z))
             Debug.Log($"적이 {enemys.Count}남아있습니다.");
     }
 
@@ -35,6 +35,7 @@ public class AttackRange : MonoBehaviour
     {   
         if (other.CompareTag("Enemy") && !enemys.Contains(other.gameObject))
         {
+            Debug.Log(transform.name +  "적이 들어옴");
             enemys.Add(other.gameObject);
         }
     }
@@ -43,6 +44,7 @@ public class AttackRange : MonoBehaviour
     {
         if (enemys.Contains(other.gameObject))
         {
+            Debug.Log(transform.name + "적이 나감");
             enemys.Remove(other.gameObject);
         }
     }

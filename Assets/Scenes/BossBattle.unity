@@ -23752,6 +23752,54 @@ PrefabInstance:
       propertyPath: animationClip.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: 3a099b72c7955e7408bdbd4b46e96421, type: 2}
+    - target: {fileID: 1286421333534525942, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421333534525942, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421333534525942, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421333801478739, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421333801478739, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421333801478739, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421334355429419, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421334355429419, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421334355429419, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421334854869892, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421334854869892, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421334854869892, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.z
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3562661168614408593, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
       propertyPath: m_Name
       value: Player

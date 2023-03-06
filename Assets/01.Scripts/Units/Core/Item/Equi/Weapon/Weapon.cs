@@ -81,7 +81,7 @@ namespace Unit.Core.Weapon
 		{
 			InputManager.OnAttackPress += AttackCoroutine;
 			InputManager.OnSkillPress += Skill;
-			_playerAttack.AttackColParent.AllDisableDir();
+			//_playerAttack.AttackColParent.AllDisableDir();
 		}
 
 		protected void Timer()
