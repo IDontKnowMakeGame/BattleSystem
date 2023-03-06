@@ -177,7 +177,7 @@ public class AttackCollider : MonoBehaviour
     }
 
     // 하나의 방향만 켜야 할 때
-    public void EnableDir(DirType dirType)
+    public void CheckDir(DirType dirType)
     {
         for(int i = 0; i < attackCol.Length; i++)
         {
