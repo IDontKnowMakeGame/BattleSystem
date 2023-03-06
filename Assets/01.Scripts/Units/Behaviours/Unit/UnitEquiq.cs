@@ -15,6 +15,7 @@ namespace Units.Behaviours.Unit
 		OldSpear,
 		OldBow,
 		TaintedSword,
+		OutwornBow,
 		End
 	}
 	[Serializable]

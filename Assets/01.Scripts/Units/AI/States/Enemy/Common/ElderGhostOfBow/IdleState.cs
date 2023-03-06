@@ -11,6 +11,10 @@ namespace Units.Base.Player.AI.States.Enemy.Common.ElderGhostOfBow
         public override void Awake()
         {
             var toAttack = new AITransition();
+            var timeCheck = new TimeCheckCondition();
+            timeCheck.SetResult(true);
+            timeCheck.SetTime(3);
+            toAttack.AddCondition(timeCheck);
             var lineCheck = new LineDetectCondition();
             lineCheck.SetResult(true);
             lineCheck.SetUnits(InGame.PlayerBase, ThisBase as UnitBase);
