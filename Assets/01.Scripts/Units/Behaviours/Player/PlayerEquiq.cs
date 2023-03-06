@@ -24,8 +24,20 @@ namespace Units.Base.Player
 			string secound = DataManager.UserData.secondWeapon;
 			bool isfirstFind = false;
 
+			var st = Define.GetManager<DataManager>().LoadWeaponData();
+			foreach (var a in st)
+			{
+				for (int i = 0; i < (int)Weapons.End; i++)
+				{
+					if (a == ((Weapons)i).ToString())
+					{
 
-			foreach(var a in weapons)
+					}
+				}
+
+			}
+
+			foreach (var a in weapons)
 			{
 				if(a.Key.ToString() == first || a.Key.ToString() == secound)
 				{
