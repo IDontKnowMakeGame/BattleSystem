@@ -1,6 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UIDoc/Uss/Inventory.uss?fileID=7433441132597879392&amp;guid=f9411568e7722bd42a9e966efcaecb96&amp;type=3#Inventory" />
     <ui:VisualElement name="BackGround" style="width: 100%; height: 100%; background-color: rgb(29, 29, 29); flex-direction: row;">
-        <ui:VisualElement style="width: 50%; height: 100%; justify-content: center; align-items: center;">
+        <ui:VisualElement style="width: 100%; height: 100%; justify-content: center; align-items: center; flex-direction: row;">
             <ui:VisualElement style="width: 500px; height: 700px; background-color: rgb(168, 168, 168); align-items: center; justify-content: flex-start;">
                 <ui:VisualElement style="width: 100%; height: 15%; align-items: center; justify-content: center; flex-direction: row;">
                     <ui:VisualElement style="background-color: rgb(96, 96, 96); width: 100px; height: 100px;" />
@@ -28,11 +29,23 @@
                     <ui:VisualElement style="background-color: rgb(96, 96, 96); width: 100px; height: 100px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement style="width: 50%; height: 100%;">
-            <ui:VisualElement style="background-color: rgb(142, 142, 142); width: 100%; height: 120px;" />
-            <ui:VisualElement style="height: 900px; width: 100%; background-color: rgb(63, 63, 63);">
-                <ui:ScrollView style="width: 100%; height: 100%;" />
+            <ui:VisualElement style="width: 769px; height: 700px;">
+                <ui:VisualElement style="background-color: rgb(142, 142, 142); width: 100%; height: 120px; flex-direction: row; justify-content: flex-start;">
+                    <ui:VisualElement class="InventoryBtnBox" />
+                    <ui:VisualElement class="InventoryBtnBox" />
+                    <ui:VisualElement class="InventoryBtnBox" />
+                </ui:VisualElement>
+                <ui:VisualElement style="height: 900px; width: 100%; background-color: rgb(63, 63, 63); overflow: hidden;">
+                    <ui:ScrollView name="ItemScroll" style="width: 100%; height: 100%; translate: 0 0; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+                        <ui:VisualElement name="ItemList" style="width: 100%; height: 0; flex-wrap: wrap; flex-direction: row;">
+                            <ui:VisualElement class="ItemCard" />
+                            <ui:VisualElement class="ItemCard" />
+                            <ui:VisualElement class="ItemCard" />
+                            <ui:VisualElement class="ItemCard" />
+                            <ui:VisualElement class="ItemCard" />
+                        </ui:VisualElement>
+                    </ui:ScrollView>
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

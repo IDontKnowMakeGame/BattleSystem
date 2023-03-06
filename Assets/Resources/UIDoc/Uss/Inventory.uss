@@ -1,0 +1,15 @@
+.InventoryBtnBox {
+    background-color: rgba(106, 101, 101, 255);
+    width: 100px;
+    margin-left: 10px;
+}
+
+.ItemCard {
+    width: 176px;
+    background-color: rgba(217, 217, 217, 255);
+    height: 250px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

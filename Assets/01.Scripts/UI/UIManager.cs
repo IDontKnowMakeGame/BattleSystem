@@ -44,6 +44,7 @@ public class UIManager : Manager
     #endregion
 
     #region WeaponStore
+    private string _selectWeaponName;
     private VisualTreeAsset _weaponCardTemp;
     private VisualElement _weaponImage;
     private Label _weaponName;
@@ -57,6 +58,7 @@ public class UIManager : Manager
     private Label _needItemText;
 
     private ScrollView _weaponScroll;
+    private VisualElement _weaponUpgradeBtn;
     #endregion
 
     #region ItemStore
@@ -131,6 +133,12 @@ public class UIManager : Manager
 
         _weaponScroll = root.Q<ScrollView>("WeaponScroll");
         _weaponName = root.Q<Label>("WeaponName");
+
+        _weaponUpgradeBtn = root.Q<VisualElement>("Btn");
+        _weaponUpgradeBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            WeaponUpGradeBtn();
+        });
 
         VisualElement rightWindow = root.Q<VisualElement>("RightWindow");
 
@@ -259,7 +267,8 @@ public class UIManager : Manager
 
     public void SelectWeaponBtn(string name)
     {
-        _weaponName.text = name;
+        _selectWeaponName = name;
+        _weaponName.text = _selectWeaponName;
 
         WeaponStateData data = Define.GetManager<DataManager>().LoadWeaponStateData(name);
         Debug.Log(data.damage);
@@ -267,8 +276,11 @@ public class UIManager : Manager
         _atsText.text = string.Format("{0}", data.attackSpeed);
         _afsText.text = string.Format("{0}", data.attackAfterDelay);
         _weightText.text = string.Format("{0}", data.weaponWeight);
+    }
 
-
+    public void WeaponUpGradeBtn()
+    {
+        Define.GetManager<DataManager>().SaveUpGradeWeaponLevelData(_selectWeaponName);
     }
     #endregion
 
