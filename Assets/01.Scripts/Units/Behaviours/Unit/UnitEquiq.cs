@@ -66,12 +66,6 @@ namespace Units.Behaviours.Unit
 		protected Halo[] usingHalos = new Halo[3];
 		public override void Awake()
 		{
-			//weapons.Add(typeof(OldStraightSword).Name, new OldStraightSword() { _thisBase = this.ThisBase });
-			//weapons.Add(typeof(OldTwinSword).Name, new OldTwinSword() { _thisBase = this.ThisBase });
-			//weapons.Add(typeof(OldBow).Name, new OldBow() { _thisBase = this.ThisBase });
-			//weapons.Add(typeof(TaintedSword).Name, new TaintedSword() { _thisBase = this.ThisBase });
-			//weapons.Add(typeof(OldGreatSword).Name, new OldGreatSword() { _thisBase = this.ThisBase });
-
 			halos.Add("DirtyHalo", new DirtyHalo());
 			halos.Add("EvilSpiritHalo", new EvilSpiritHalo());
 

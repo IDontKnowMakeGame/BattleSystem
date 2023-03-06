@@ -26,10 +26,6 @@ namespace Unit.Core.Weapon
 		{
 			get
 			{
-				Debug.Log(_thisBase);
-				Debug.Log(_WeaponStats);
-				Debug.Log(_changeStats);
-				Debug.Log(_changeBuffStats);
 				_WeaponStats.Atk = _changeStats.Atk + _changeBuffStats.Atk;
 				_WeaponStats.Ats = _changeStats.Ats + _changeBuffStats.Ats;
 				_WeaponStats.Afs = _changeStats.Afs + _changeBuffStats.Afs;
@@ -74,9 +70,7 @@ namespace Unit.Core.Weapon
 			_playerAttack = _unitAttack as PlayerAttack;
 			_playerAnimation = _unitAnimation as PlayerAnimation;
 
-			Debug.Log(this.GetType());
 			_changeStats = _weaponStats;
-			Debug.Log(_changeStats);
 			WeaponLevel();
 		}
 		public override void Update()

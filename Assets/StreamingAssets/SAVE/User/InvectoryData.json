@@ -1,5 +1,8 @@
 {
-    "inventoryInWeaponList": ["OldStraightSword","OldGreatSword"],
+    "inventoryInWeaponList": [
+        "OldStraightSword",
+        "OldTwinSword"
+    ],
     "inventoryInHeloList": [],
     "inventoryInUsableItemList": []
 }

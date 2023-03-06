@@ -19,10 +19,6 @@ namespace Units.Base.Player
 
 		public override void Awake()
 		{
-			base.Awake();
-			_currentWeapon = DataManager.UserData.firstWeapon;
-			_secoundWeapon = DataManager.UserData.secondWeapon;
-
 			var st = Define.GetManager<DataManager>().LoadWeaponData();
 			foreach (var a in st)
 			{
@@ -31,6 +27,10 @@ namespace Units.Base.Player
 				weaponClass._thisBase = ThisBase;
 				weapons.Add(a, weaponClass);
 			}
+			base.Awake();
+			_currentWeapon = DataManager.UserData.firstWeapon;
+			_secoundWeapon = DataManager.UserData.secondWeapon;
+
 		}
 		public override void Start()
 		{
@@ -47,7 +47,6 @@ namespace Units.Base.Player
 			InputManager.OnOffPress += WeaponOnOff;
 			InputManager.OnTestChangePress += TestChangeWeapon;
 
-			Define.GetManager<EventManager>().StartListening(EventFlag.WeaponChange, ChangeWeapon);
 			Define.GetManager<EventManager>().StartListening(EventFlag.WeaponUpgrade, WeaponUpgrade);
 
 			base.Start();
@@ -64,7 +63,6 @@ namespace Units.Base.Player
 		public override void OnDisable()
 		{
 			var manager = Define.GetManager<EventManager>();
-			manager?.StopListening(EventFlag.WeaponChange, ChangeWeapon);
 			CurrentWeapon?.Reset();
 			base.OnDisable();
 		}
@@ -104,36 +102,6 @@ namespace Units.Base.Player
 			playerAnimation.CurWeaponAnimator.ChangeWeapon = true;
 			playerAnimation.SetAnmation();
 		}
-		public void ChangeWeapon(EventParam eventParam)
-		{
-			//if (eventParam.stringParam != null)
-			//{
-			//	if (eventParam.intParam == 1)
-			//	{
-			//		Debug.Log("넣기 1번째" + eventParam.stringParam);
-			//		_currentWeapon = eventParam.stringParam;
-			//	}
-			//	else
-			//	{
-			//		Debug.Log("넣기 2번째" + eventParam.stringParam);
-			//		_secoundWeapon = eventParam.stringParam;
-			//	}
-
-			//	CurrentWeapon?.ChangeKey();
-			//}
-			//else
-			//{
-			//	if (eventParam.intParam == 1)
-			//	{
-			//		CurrentWeapon?.Reset();
-			//		_currentWeapon = eventParam.stringParam;
-			//	}
-			//	else
-			//	{
-			//		_secoundWeapon = eventParam.stringParam;
-			//	}
-			//}
-		}
 		private void TestChangeWeapon()
 		{
 			count++;
@@ -151,23 +119,27 @@ namespace Units.Base.Player
 				}
 			}
 		}
-		public void SetWeapon(string weaponEnum)
+		public void SetWeapon(EventParam eventParam)
 		{
 			//없는 상황일 때 넣기
 			if (_currentWeapon == "")
 			{
+				_currentWeapon = DataManager.UserData.firstWeapon;
 				CurrentWeapon.ChangeKey();
-				_currentWeapon = weaponEnum;
 				return;
 			}
 			else if (_secoundWeapon == "")
 			{
-				_secoundWeapon = weaponEnum;
+				_secoundWeapon = DataManager.UserData.secondWeapon;
 				return;
 			}
 
 			//여기서 있을 경우 바꾸는거 발동
+			CurrentWeapon.Reset();
+			_currentWeapon = DataManager.UserData.firstWeapon;
+			CurrentWeapon.ChangeKey();
 
+			_currentWeapon = DataManager.UserData.secondWeapon;
 		}
 
 		public void WeaponUpgrade(EventParam eventParam)
@@ -175,17 +147,15 @@ namespace Units.Base.Player
 			CurrentWeapon.LevelSystem();
 		}
 
-		public void UnSetWeapon(int index)
+		public void UnSetWeapon(EventParam eventParam)
 		{
-			if (index == 1)
+			if (DataManager.UserData.firstWeapon == "")
 			{
 				CurrentWeapon.Reset();
-				_currentWeapon = "";
 			}
-			else if (index == 2)
-			{
-				_secoundWeapon = "";
-			}
+
+			_currentWeapon = DataManager.UserData.firstWeapon;
+			_secoundWeapon = DataManager.UserData.secondWeapon;
 		}
 	}
 }
