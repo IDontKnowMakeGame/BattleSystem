@@ -12,7 +12,7 @@ using UnityEngine;
 public class WeaponBase : InteractableUnitBase
 {
 	[SerializeField]
-	private WeaponEnum _weaponEnum;
+	private Weapons _weaponEnum;
 	public override void Interact()
 	{
 		if (IsInteracted) return;

@@ -1,4 +1,4 @@
-enum Weapons
+public enum Weapons
 {
     Empty,
     OldStraightSword,

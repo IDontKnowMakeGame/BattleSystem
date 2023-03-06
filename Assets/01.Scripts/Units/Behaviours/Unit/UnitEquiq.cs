@@ -6,32 +6,20 @@ using Unit.Core;
 
 namespace Units.Behaviours.Unit
 {
-	public enum WeaponEnum
-	{
-		Empty,
-		OldStraightSword,
-		OldTwinSword,
-		OldGreatSword,
-		OldSpear,
-		OldBow,
-		TaintedSword,
-		OutwornBow,
-		End
-	}
 	[Serializable]
 	public class UnitEquiq : UnitBehaviour
 	{
 		[SerializeField]
-		protected WeaponEnum _currentWeapon;
+		protected Weapons _currentWeapon;
 		[SerializeField]
-		protected WeaponEnum _secoundWeapon;
+		protected Weapons _secoundWeapon;
 
 		public bool isEnemy;
 		public Weapon CurrentWeapon
 		{
 			get
 			{
-				if (WeaponEnum.Empty != _currentWeapon)
+				if (Weapons.Empty != _currentWeapon)
 				{
 					Weapon weapon;
 					if (weapons.TryGetValue(_currentWeapon, out weapon))
@@ -60,14 +48,14 @@ namespace Units.Behaviours.Unit
 		{
 			get
 			{
-				if (_secoundWeapon != WeaponEnum.Empty)
+				if (_secoundWeapon != Weapons.Empty)
 					return weapons[_secoundWeapon];
 				else
 					return null;
 			}
 		}
 
-		public Dictionary<WeaponEnum, Weapon> weapons = new Dictionary<WeaponEnum, Weapon>();
+		public Dictionary<Weapons, Weapon> weapons = new Dictionary<Weapons, Weapon>();
 		protected Dictionary<string, Halo> halos = new Dictionary<string, Halo>();
 
 		private int _haloCount = 2;
@@ -76,11 +64,11 @@ namespace Units.Behaviours.Unit
 		protected Halo[] usingHalos = new Halo[3];
 		public override void Awake()
 		{
-			weapons.Add(WeaponEnum.OldStraightSword, new OldStraightSword() { _thisBase = this.ThisBase });
-			weapons.Add(WeaponEnum.OldTwinSword, new OldTwinSword() { _thisBase = this.ThisBase });
-			weapons.Add(WeaponEnum.OldBow, new OldBow() { _thisBase = this.ThisBase });
-			weapons.Add(WeaponEnum.TaintedSword, new TaintedSword() { _thisBase = this.ThisBase });
-			weapons.Add(WeaponEnum.OldGreatSword, new OldGreatSword() { _thisBase = this.ThisBase });
+			weapons.Add(Weapons.OldStraightSword, new OldStraightSword() { _thisBase = this.ThisBase });
+			weapons.Add(Weapons.OldTwinSword, new OldTwinSword() { _thisBase = this.ThisBase });
+			weapons.Add(Weapons.OldBow, new OldBow() { _thisBase = this.ThisBase });
+			weapons.Add(Weapons.TaintedSword, new TaintedSword() { _thisBase = this.ThisBase });
+			weapons.Add(Weapons.OldGreatSword, new OldGreatSword() { _thisBase = this.ThisBase });
 
 			halos.Add("DirtyHalo", new DirtyHalo());
 			halos.Add("EvilSpiritHalo", new EvilSpiritHalo());
@@ -136,7 +124,7 @@ namespace Units.Behaviours.Unit
 				value.Value?.OnApplicationQuit();
 			}
 		}
-		public virtual void InsertWeapon(WeaponEnum name, Weapon type)
+		public virtual void InsertWeapon(Weapons name, Weapon type)
 		{
 			weapons.Add(name, type);
 			weapons[name].Awake();
@@ -160,13 +148,13 @@ namespace Units.Behaviours.Unit
 
 		public int WeaponAnimation()
 		{
-			if (_currentWeapon == WeaponEnum.OldStraightSword)
+			if (_currentWeapon == Weapons.OldStraightSword)
 				return 0;
-			else if (_currentWeapon == WeaponEnum.OldTwinSword)
+			else if (_currentWeapon == Weapons.OldTwinSword)
 				return 1;
-			else if (_currentWeapon == WeaponEnum.OldGreatSword)
+			else if (_currentWeapon == Weapons.OldGreatSword)
 				return 2;
-			else if (_currentWeapon == WeaponEnum.OldSpear)
+			else if (_currentWeapon == Weapons.OldSpear)
 				return 3;
 			else
 				return 0;

@@ -103,7 +103,6 @@ namespace Unit.Core.Weapon
 			{
 				if (data.name == name)
 				{
-					Debug.Log(name);
 					_weaponStats = WeaponSerializable(data);
 					break;
 				}

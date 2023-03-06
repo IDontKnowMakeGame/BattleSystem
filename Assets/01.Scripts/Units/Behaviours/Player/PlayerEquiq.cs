@@ -89,7 +89,7 @@ namespace Units.Base.Player
 		}
 		private void ChangeWeapon()
 		{
-			if (_currentWeapon == WeaponEnum.Empty || _secoundWeapon == WeaponEnum.Empty)
+			if (_currentWeapon == Weapons.Empty || _secoundWeapon == Weapons.Empty)
 				return;
 
 			if (ThisBase.State.HasFlag(Unit.BaseState.Skill) || ThisBase.State.HasFlag(Unit.BaseState.StopMove))
@@ -98,7 +98,7 @@ namespace Units.Base.Player
 			CurrentWeapon?.Reset();
 			SecoundWeapon?.ChangeKey();
 
-			WeaponEnum temp = _currentWeapon;
+			Weapons temp = _currentWeapon;
 			_currentWeapon = _secoundWeapon;
 			_secoundWeapon = temp;
 
@@ -159,16 +159,16 @@ namespace Units.Base.Player
 				}
 			}
 		}
-		public void SetWeapon(WeaponEnum weaponEnum)
+		public void SetWeapon(Weapons weaponEnum)
 		{
 			//없는 상황일 때 넣기
-			if (_currentWeapon == WeaponEnum.Empty)
+			if (_currentWeapon == Weapons.Empty)
 			{
 				CurrentWeapon.ChangeKey();
 				_currentWeapon = weaponEnum;
 				return;
 			}
-			else if (_secoundWeapon == WeaponEnum.Empty)
+			else if (_secoundWeapon == Weapons.Empty)
 			{
 				_secoundWeapon = weaponEnum;
 				return;
@@ -188,11 +188,11 @@ namespace Units.Base.Player
 			if(index == 1)
 			{
 				CurrentWeapon.Reset();
-				_currentWeapon = WeaponEnum.Empty;
+				_currentWeapon = Weapons.Empty;
 			}
 			else if(index == 2)
 			{
-				_secoundWeapon = WeaponEnum.Empty;
+				_secoundWeapon = Weapons.Empty;
 			}
 		}
 	}
