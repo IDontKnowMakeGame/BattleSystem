@@ -106,7 +106,7 @@ namespace Units.Base.Player
         public override void MoveTo(Vector3 pos, float spd = 1)
         {
             var attack = ThisBase.GetBehaviour<PlayerAttack>();
-            PlayerEqiq playerEqiq = ThisBase.GetBehaviour<PlayerEqiq>();
+            PlayerEquiq playerEqiq = ThisBase.GetBehaviour<PlayerEquiq>();
             if (attack.IsAttack && playerEqiq.WeaponAnimation() != 1)
             {
                 ThisBase.RemoveState(BaseState.Moving);

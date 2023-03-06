@@ -128,9 +128,6 @@ public class BaseArrow : MonoBehaviour
 	}
 	private void StickOrPull(Units.Base.Units units)
 	{
-		Debug.Log(_thisUnit);
-		Debug.Log(units);
-		Debug.Log(_thisArrow);
 		if (!units)
 			return;
 

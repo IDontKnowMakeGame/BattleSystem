@@ -14,7 +14,7 @@ namespace Units.Base.Player
         [SerializeField] private PlayerMove playerMove;
         [SerializeField] private PlayerKnockback playerKnockback;
         [SerializeField] private PlayerAttack PlayerAttack;
-        [SerializeField] private PlayerEqiq PlayerEqiq;
+        [SerializeField] private PlayerEquiq PlayerEqiq;
         [SerializeField] private PlayerAnimation playerAnimation;
         [SerializeField] private PlayerBuff playerBuff;
         [SerializeField] private PlayerStat thisStat;
