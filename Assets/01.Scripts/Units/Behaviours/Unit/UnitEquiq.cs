@@ -14,7 +14,7 @@ namespace Units.Behaviours.Unit
 		[SerializeField]
 		protected Weapons _secoundWeapon;
 
-		public bool isEnemy;
+		public bool isEnemy = true;
 		public Weapon CurrentWeapon
 		{
 			get

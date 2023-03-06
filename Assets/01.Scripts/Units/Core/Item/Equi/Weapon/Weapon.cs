@@ -143,7 +143,6 @@ namespace Unit.Core.Weapon
 			_playerAnimation.CurWeaponAnimator.Attack = true;
 			_playerAnimation.SetAnmation();
 			AnimeClip animeClip = _playerAnimation.GetClip();
-			_playerAnimation.GetClip().SetEventOnFrame(0, () => Attack(vec));
 			_thisBase.AddState(BaseState.Attacking);
 		}
 

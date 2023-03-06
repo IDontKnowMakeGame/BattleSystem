@@ -26,10 +26,13 @@ namespace Units.AI.States.Enemy.Attack
             Debug.Log(1);
             Debug.Log(_dir);
             UnitEquiq equiq = ThisBase.GetBehaviour<UnitEquiq>();
+            Debug.Log(equiq);
+            Debug.Log(equiq.CurrentWeapon);
+            Debug.Log(equiq.SecoundWeapon);
             if (equiq.CurrentWeapon is BaseBow)
                 (equiq.CurrentWeapon as BaseBow).Shoot(_dir);
             else if(equiq.SecoundWeapon is BaseBow)
-                (equiq.CurrentWeapon as BaseBow).Shoot(_dir);
+                (equiq.SecoundWeapon as BaseBow).Shoot(_dir);
         }
     }
 }

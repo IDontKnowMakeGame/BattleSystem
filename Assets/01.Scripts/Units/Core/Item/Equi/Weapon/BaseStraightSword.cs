@@ -52,6 +52,11 @@ public class BaseStraightSword : Weapon
 		InputManager.ChangeKeyCode(KeyboardInput.AttackLeft, KeyCode.A);
 		InputManager.ChangeKeyCode(KeyboardInput.AttackRight, KeyCode.D);
 	}
+	protected override void AttackCoroutine(Vector3 vec)
+	{
+		base.AttackCoroutine(vec);
+		_playerAnimation.GetClip().SetEventOnFrame(0, () => Attack(vec));
+	}
 	protected override void Attack(Vector3 vec)
 	{
 		_playerAttack.AttackColParent.ChangeSizeZ(1);

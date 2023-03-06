@@ -8,10 +8,11 @@ namespace Units.Base.Player.AI.States.Enemy.Common.ElderGhostOfBow
 {
     public class IdleState : AIState
     {
+        TimeCheckCondition timeCheck;
         public override void Awake()
         {
             var toAttack = new AITransition();
-            var timeCheck = new TimeCheckCondition();
+            timeCheck = new TimeCheckCondition();
             timeCheck.SetResult(true);
             timeCheck.SetTime(3);
             toAttack.AddCondition(timeCheck);
@@ -27,5 +28,11 @@ namespace Units.Base.Player.AI.States.Enemy.Common.ElderGhostOfBow
             toAttack.SetTarget(attack);
             AddTransition(toAttack);
         }
+
+        protected override void OnExit()
+		{
+            timeCheck.ResetTime();
+		}
+        
     }
 }
