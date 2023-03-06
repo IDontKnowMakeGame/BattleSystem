@@ -20,36 +20,16 @@ namespace Units.Base.Player
 		public override void Awake()
 		{
 			base.Awake();
-			string first = DataManager.UserData.firstWeapon;
-			string secound = DataManager.UserData.secondWeapon;
-			bool isfirstFind = false;
+			_currentWeapon = DataManager.UserData.firstWeapon;
+			_secoundWeapon = DataManager.UserData.secondWeapon;
 
 			var st = Define.GetManager<DataManager>().LoadWeaponData();
 			foreach (var a in st)
 			{
-				for (int i = 0; i < (int)Weapons.End; i++)
-				{
-					if (a == ((Weapons)i).ToString())
-					{
-
-					}
-				}
-
-			}
-
-			foreach (var a in weapons)
-			{
-				if(a.Key.ToString() == first || a.Key.ToString() == secound)
-				{
-					if (a.Key.ToString() == first)
-						_currentWeapon = a.Key;
-					else
-						_secoundWeapon = a.Key;
-
-					if (isfirstFind)
-						break;
-					isfirstFind = true;
-				}
+				Type type = Type.GetType(a);
+				Weapon weaponClass = Activator.CreateInstance(type) as Weapon;
+				weaponClass._thisBase = ThisBase;
+				weapons.Add(a, weaponClass);
 			}
 		}
 		public override void Start()
@@ -81,16 +61,16 @@ namespace Units.Base.Player
 			base.Update();
 			CurrentWeapon?.Update();
 		}
-        public override void OnDisable()
-        {
-	        var manager = Define.GetManager<EventManager>();
+		public override void OnDisable()
+		{
+			var manager = Define.GetManager<EventManager>();
 			manager?.StopListening(EventFlag.WeaponChange, ChangeWeapon);
 			CurrentWeapon?.Reset();
 			base.OnDisable();
-        }
+		}
 
 
-        private void WeaponOnOff()
+		private void WeaponOnOff()
 		{
 			if (isEquiq)
 				CurrentWeapon?.Reset();
@@ -101,7 +81,7 @@ namespace Units.Base.Player
 		}
 		private void ChangeWeapon()
 		{
-			if (_currentWeapon == Weapons.Empty || _secoundWeapon == Weapons.Empty)
+			if (CurrentWeapon == null || SecoundWeapon == null)
 				return;
 
 			if (ThisBase.State.HasFlag(Unit.BaseState.Skill) || ThisBase.State.HasFlag(Unit.BaseState.StopMove))
@@ -110,12 +90,12 @@ namespace Units.Base.Player
 			CurrentWeapon?.Reset();
 			SecoundWeapon?.ChangeKey();
 
-			Weapons temp = _currentWeapon;
+			string temp = _currentWeapon;
 			_currentWeapon = _secoundWeapon;
 			_secoundWeapon = temp;
 
 			InGame.PlayerBase.GetBehaviour<PlayerMove>().ClearMove();
-			Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponSwap,new EventParam());
+			Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponSwap, new EventParam());
 
 			playerAttack.ChangeDelay(CurrentWeapon != null ? CurrentWeapon.WeaponStat.Afs : 0);
 
@@ -159,10 +139,10 @@ namespace Units.Base.Player
 			count++;
 			count = count % 7;
 			int dicCount = 0;
-			foreach(var a in weapons)
+			foreach (var a in weapons)
 			{
 				dicCount++;
-				if(dicCount == count)
+				if (dicCount == count)
 				{
 					CurrentWeapon.Reset();
 					_currentWeapon = a.Key;
@@ -171,16 +151,16 @@ namespace Units.Base.Player
 				}
 			}
 		}
-		public void SetWeapon(Weapons weaponEnum)
+		public void SetWeapon(string weaponEnum)
 		{
 			//없는 상황일 때 넣기
-			if (_currentWeapon == Weapons.Empty)
+			if (_currentWeapon == "")
 			{
 				CurrentWeapon.ChangeKey();
 				_currentWeapon = weaponEnum;
 				return;
 			}
-			else if (_secoundWeapon == Weapons.Empty)
+			else if (_secoundWeapon == "")
 			{
 				_secoundWeapon = weaponEnum;
 				return;
@@ -197,14 +177,14 @@ namespace Units.Base.Player
 
 		public void UnSetWeapon(int index)
 		{
-			if(index == 1)
+			if (index == 1)
 			{
 				CurrentWeapon.Reset();
-				_currentWeapon = Weapons.Empty;
+				_currentWeapon = "";
 			}
-			else if(index == 2)
+			else if (index == 2)
 			{
-				_secoundWeapon = Weapons.Empty;
+				_secoundWeapon = "";
 			}
 		}
 	}

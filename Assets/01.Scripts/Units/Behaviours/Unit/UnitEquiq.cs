@@ -10,18 +10,18 @@ namespace Units.Behaviours.Unit
 	public class UnitEquiq : UnitBehaviour
 	{
 		[SerializeField]
-		protected Weapons _currentWeapon;
+		protected string _currentWeapon;
 		[SerializeField]
-		protected Weapons _secoundWeapon;
+		protected string _secoundWeapon;
 
 		public bool isEnemy = true;
 		public Weapon CurrentWeapon
 		{
 			get
 			{
-				if (Weapons.Empty != _currentWeapon)
+				if ("" != _currentWeapon && null != _currentWeapon)
 				{
-					Weapon weapon;
+					Weapon weapon = null;
 					if (weapons.TryGetValue(_currentWeapon, out weapon))
 					{
 						return weapons[_currentWeapon];
@@ -30,7 +30,9 @@ namespace Units.Behaviours.Unit
 				{
 					if (isEnemy)
 					{
-						Type type = Type.GetType(_currentWeapon.ToString());
+						Type type = Type.GetType(_currentWeapon);
+							if (type == null)
+								return weapon;
 						Weapon weaponClass = Activator.CreateInstance(type) as Weapon;
 						weaponClass._thisBase = ThisBase;
 						InsertWeapon(_currentWeapon, weaponClass);
@@ -48,14 +50,14 @@ namespace Units.Behaviours.Unit
 		{
 			get
 			{
-				if (_secoundWeapon != Weapons.Empty)
+				if ("" != _currentWeapon && null != _currentWeapon)
 					return weapons[_secoundWeapon];
 				else
 					return null;
 			}
 		}
 
-		public Dictionary<Weapons, Weapon> weapons = new Dictionary<Weapons, Weapon>();
+		public Dictionary<string, Weapon> weapons = new Dictionary<string, Weapon>();
 		protected Dictionary<string, Halo> halos = new Dictionary<string, Halo>();
 
 		private int _haloCount = 2;
@@ -64,11 +66,11 @@ namespace Units.Behaviours.Unit
 		protected Halo[] usingHalos = new Halo[3];
 		public override void Awake()
 		{
-			weapons.Add(Weapons.OldStraightSword, new OldStraightSword() { _thisBase = this.ThisBase });
-			weapons.Add(Weapons.OldTwinSword, new OldTwinSword() { _thisBase = this.ThisBase });
-			weapons.Add(Weapons.OldBow, new OldBow() { _thisBase = this.ThisBase });
-			weapons.Add(Weapons.TaintedSword, new TaintedSword() { _thisBase = this.ThisBase });
-			weapons.Add(Weapons.OldGreatSword, new OldGreatSword() { _thisBase = this.ThisBase });
+			//weapons.Add(typeof(OldStraightSword).Name, new OldStraightSword() { _thisBase = this.ThisBase });
+			//weapons.Add(typeof(OldTwinSword).Name, new OldTwinSword() { _thisBase = this.ThisBase });
+			//weapons.Add(typeof(OldBow).Name, new OldBow() { _thisBase = this.ThisBase });
+			//weapons.Add(typeof(TaintedSword).Name, new TaintedSword() { _thisBase = this.ThisBase });
+			//weapons.Add(typeof(OldGreatSword).Name, new OldGreatSword() { _thisBase = this.ThisBase });
 
 			halos.Add("DirtyHalo", new DirtyHalo());
 			halos.Add("EvilSpiritHalo", new EvilSpiritHalo());
@@ -124,7 +126,7 @@ namespace Units.Behaviours.Unit
 				value.Value?.OnApplicationQuit();
 			}
 		}
-		public virtual void InsertWeapon(Weapons name, Weapon type)
+		public virtual void InsertWeapon(string name, Weapon type)
 		{
 			weapons.Add(name, type);
 			weapons[name].Awake();
@@ -148,13 +150,13 @@ namespace Units.Behaviours.Unit
 
 		public int WeaponAnimation()
 		{
-			if (_currentWeapon == Weapons.OldStraightSword)
+			if (_currentWeapon == "OldStraightSword")
 				return 0;
-			else if (_currentWeapon == Weapons.OldTwinSword)
+			else if (_currentWeapon == "OldTwinSword")
 				return 1;
-			else if (_currentWeapon == Weapons.OldGreatSword)
+			else if (_currentWeapon == "OldGreatSword")
 				return 2;
-			else if (_currentWeapon == Weapons.OldSpear)
+			else if (_currentWeapon == "OldSpear")
 				return 3;
 			else
 				return 0;

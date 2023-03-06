@@ -64281,7 +64281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3041935593448038436, guid: 3310a305a449e094f97d81087b882af4, type: 3}
       propertyPath: _enemyWeapons._currentWeapon
-      value: 6
+      value: TaintedSword
       objectReference: {fileID: 0}
     - target: {fileID: 3041935593448038437, guid: 3310a305a449e094f97d81087b882af4, type: 3}
       propertyPath: m_RootOrder
