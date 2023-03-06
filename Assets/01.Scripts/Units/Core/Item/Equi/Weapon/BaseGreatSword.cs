@@ -108,7 +108,10 @@ public class BaseGreatSword : Weapon
 			_playerAttack.AttackColParent.ChangeSizeZ(1);
 			_playerAttack.AttackColParent.ChangeSizeX(1);
 			_playerAttack.AttackColParent.CheckDir(_playerAttack.AttackColParent.DirReturn(_currentVector));
+			_playerAnimation.CurWeaponAnimator.SetDir = vec;
+			_playerAnimation.CurWeaponAnimator.Attack = true;
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
+			_playerAnimation.SetAnmation();
 			_playerAttack.AttackColParent.AllEnableDir();
 		}
 		else
