@@ -97,12 +97,14 @@ public class UIManager : Manager
 
     private EquipType boxType = EquipType.None;
     private int _selectNum;
+    private VisualElement _selectVisual;
     
 
     private VisualTreeAsset _itemInfoCardTemp;
 
     private VisualElement _heloPanel;
-    private VisualElement _weaponPanel;
+    private VisualElement _firstWeaponPanel;
+    private VisualElement _secondWeaponPanel;
     private VisualElement _itemPanel;
 
     private VisualElement _weaponBtn;
@@ -253,7 +255,8 @@ public class UIManager : Manager
         _itemInfoCardTemp = Define.GetManager<ResourceManagers>().Load<VisualTreeAsset>("UIDoc/ItemInfoCardTemp");
 
         _heloPanel = root.Q<VisualElement>("HeloPanel");
-        _weaponPanel = root.Q<VisualElement>("WeaponPanel");
+        _firstWeaponPanel = root.Q<VisualElement>("FirstWeaponPanel");
+        _secondWeaponPanel = root.Q<VisualElement>("SecondWeaponPanel");
         _itemPanel = root.Q<VisualElement>("ItemPanel");
 
         _weaponBtn = root.Q<VisualElement>("WeaponBtn");
@@ -490,36 +493,61 @@ public class UIManager : Manager
         //CreateCardList<string>(_heloListScroll, Define.GetManager<DataManager>().L());
         CreateCardList<ItemInfo>(_useableListScroll, Define.GetManager<DataManager>().LoadUsableItemFromInventory());
         //CreateCardList<string>(_questItemListScroll, Define.GetManager<DataManager>().LoadWeaponData());
+
+        VisualElement box = _firstWeaponPanel.Q<VisualElement>("1");
+        box.RegisterCallback<ClickEvent>(e => {
+            SelectEquipWeaponBoxBtn(int.Parse(box.name), box);
+        });
+
+        VisualElement box2 = _secondWeaponPanel.Q<VisualElement>("2");
+        box2.RegisterCallback<ClickEvent>(e => {
+            SelectEquipWeaponBoxBtn(int.Parse(box.name), box2);
+        });
+
     }
 
-    public void SelectEquipWeaponBoxBtn(int num)
+    public void SelectEquipWeaponBoxBtn(int num, VisualElement box)
     {
         ChangeShowInventoryPanel(0);
+        _selectVisual = box;
         _selectNum = num;
         boxType = EquipType.Weapon;
+
+        box.style.backgroundColor = new StyleColor(Color.blue);
     }
-    public void SelectEquipHeloBoxBtn(int num)
-    {
-        ChangeShowInventoryPanel(1);
-        _selectNum = num;
-        boxType = EquipType.Helo;
-    }
-    public void SelectEquipUseableItemBoxBtn(int num)
-    {
-        ChangeShowInventoryPanel(2);
-        _selectNum = num;
-        boxType = EquipType.UseableItem;
-    }
+    //public void SelectEquipHeloBoxBtn(int num, VisualElement box)
+    //{
+    //    ChangeShowInventoryPanel(1);
+    //    _selectVisual = box;
+    //    _selectNum = num;
+    //    boxType = EquipType.Helo;
+    //}
+    //public void SelectEquipUseableItemBoxBtn(int num, VisualElement box)
+    //{
+    //    ChangeShowInventoryPanel(2);
+    //    _selectVisual = box;
+    //    _selectNum = num;
+    //    boxType = EquipType.UseableItem;
+    //}
 
     public void CreateCardList<T>(VisualElement parent,List<T> list)
     {
         foreach(T data in list)
         {
             Debug.Log("Create Card");
-            VisualElement card = _itemInfoCardTemp.Instantiate();
+            VisualElement card = _itemInfoCardTemp.Instantiate().Q<VisualElement>("ItemInfoCardTemp");
+            card.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManagers>().Load<Sprite>(data as string));
             card.RegisterCallback<ClickEvent>(e =>
             {
-                string name = parent.GetType().GetField("name").GetValue(parent) as string;
+                Debug.Log("WeaponCardClick");
+                if(_selectVisual != null && boxType == EquipType.Weapon)
+                {
+                    Debug.Log($"{_selectVisual} : Quipt");
+                    _selectVisual.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManagers>().Load<Sprite>(data as string));
+                    _selectVisual = null;
+                    boxType = EquipType.None;
+                }
+                
             });
             parent.Add(card);
         }    

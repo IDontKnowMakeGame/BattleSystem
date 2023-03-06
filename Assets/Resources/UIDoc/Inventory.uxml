@@ -13,7 +13,7 @@
                 </ui:VisualElement>
                 <ui:VisualElement name="CharacterPanel" style="width: 60%; height: 100%;" />
                 <ui:VisualElement name="SecondWeaponPanel" style="height: 100%; width: 20%; justify-content: center;">
-                    <ui:VisualElement name="1" class="InventoryItemBox" style="background-color: rgb(96, 96, 96); width: 100px; height: 100px;" />
+                    <ui:VisualElement name="2" class="InventoryItemBox" style="background-color: rgb(96, 96, 96); width: 100px; height: 100px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="ItemPanel" style="height: 30%; flex-direction: row; flex-wrap: wrap; align-items: flex-start; justify-content: flex-start; width: 100%; overflow: visible;">
