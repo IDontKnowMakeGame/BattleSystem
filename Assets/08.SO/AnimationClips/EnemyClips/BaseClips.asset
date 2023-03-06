@@ -12,4 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca2b332a7b5e5447adcd7343094485c, type: 3}
   m_Name: BaseClips
   m_EditorClassIdentifier: 
-  clips: []
+  clips:
+  - name: Idle
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 2c77d1b2be1628c408b24cb0e8e204b8, type: 3}
+    fps: 17
+    isLoop: 1
+    delay: 0.1
+    changeAble: 1
