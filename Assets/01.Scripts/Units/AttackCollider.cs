@@ -180,6 +180,7 @@ public class AttackCollider : MonoBehaviour
     {
         for(int i = 0; i < attackCol.Length; i++)
         {
+            Debug.Log(attackCol[i]);
             if (i == (int)dirType)
             {
                 attackCol[i].enabled = true;

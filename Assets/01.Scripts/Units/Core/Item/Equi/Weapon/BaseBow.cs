@@ -77,6 +77,10 @@ public class BaseBow : Weapon
 		Charge(_currentVector);
 	}
 
+	protected override void AttackCoroutine(Vector3 vec)
+	{
+		Attack(vec);
+	}
 	protected override void Attack(Vector3 vec)
 	{
 		if (!hasArrow)

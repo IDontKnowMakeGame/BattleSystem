@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Units.Base.Player
 {
 	[Serializable]
-	public class PlayerEqiq : UnitEquiq
+	public class PlayerEquiq : UnitEquiq
 	{
 		private int count;
 
@@ -34,17 +34,11 @@ namespace Units.Base.Player
 					else
 						_secoundWeapon = a.Key;
 
-					CurrentWeapon?.ChangeKey();
 					if (isfirstFind)
 						break;
 					isfirstFind = true;
 				}
 			}
-		}
-		public override void Update()
-		{
-			base.Update();
-			CurrentWeapon?.Update();
 		}
 		public override void Start()
 		{
@@ -65,9 +59,14 @@ namespace Units.Base.Player
 
 			base.Start();
 
-			ThisBase.GetBehaviour<PlayerEqiq>().InsertHelo("DirtyHalo", 0);
-			ThisBase.GetBehaviour<PlayerEqiq>().InsertHelo("EvilSpiritHalo", 1);
+			ThisBase.GetBehaviour<PlayerEquiq>().InsertHelo("DirtyHalo", 0);
+			ThisBase.GetBehaviour<PlayerEquiq>().InsertHelo("EvilSpiritHalo", 1);
 
+		}
+		public override void Update()
+		{
+			base.Update();
+			CurrentWeapon?.Update();
 		}
         public override void OnDisable()
         {
@@ -95,8 +94,6 @@ namespace Units.Base.Player
 			if (ThisBase.State.HasFlag(Unit.BaseState.Skill) || ThisBase.State.HasFlag(Unit.BaseState.StopMove))
 				return;
 
-			Debug.Log(CurrentWeapon);
-			Debug.Log(SecoundWeapon);
 			CurrentWeapon?.Reset();
 			SecoundWeapon?.ChangeKey();
 

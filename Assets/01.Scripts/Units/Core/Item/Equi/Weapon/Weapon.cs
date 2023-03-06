@@ -81,6 +81,7 @@ namespace Unit.Core.Weapon
 		{
 			InputManager.OnAttackPress += AttackCoroutine;
 			InputManager.OnSkillPress += Skill;
+			_playerAttack.AttackColParent.AllDisableDir();
 		}
 
 		protected void Timer()
@@ -135,7 +136,7 @@ namespace Unit.Core.Weapon
 			if (_thisBase.State.HasFlag(BaseState.Moving))
 				return;
 
-			if (_thisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() != 1 && _thisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() != 3 &&
+			if (_thisBase.GetBehaviour<PlayerEquiq>().WeaponAnimation() != 1 && _thisBase.GetBehaviour<PlayerEquiq>().WeaponAnimation() != 3 &&
 				_thisBase.GetBehaviour<PlayerAnimation>().CurWeaponAnimator.LastChange)
 				_thisBase.GetBehaviour<PlayerMove>().stop = true;
 

@@ -92,7 +92,7 @@ namespace Units.Base.Player
 
             if (!isInit)
             {
-                ChangeDelay(ThisBase.GetBehaviour<PlayerEqiq>().CurrentWeapon.WeaponStat.Afs);
+                ChangeDelay(ThisBase.GetBehaviour<PlayerEquiq>().CurrentWeapon.WeaponStat.Afs);
                 isInit = true;
             }
 
@@ -145,7 +145,7 @@ namespace Units.Base.Player
         {
             if(!isInit)
             {
-                ChangeDelay(ThisBase.GetBehaviour<PlayerEqiq>().CurrentWeapon.WeaponStat.Afs);
+                ChangeDelay(ThisBase.GetBehaviour<PlayerEquiq>().CurrentWeapon.WeaponStat.Afs);
                 isInit = true;
             }
 
@@ -182,7 +182,7 @@ namespace Units.Base.Player
             if(timer > 0)
                 timer -= Time.deltaTime;
 
-            if (ThisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() == 1)
+            if (ThisBase.GetBehaviour<PlayerEquiq>().WeaponAnimation() == 1)
             {
                 if (isAttack)
                 {
