@@ -12,7 +12,7 @@ public class BaseTwinSword : Weapon
 		base.Start();
 		LoadClassLevel("TwinSword");
 	}
-	protected override void LevelSystem()
+	public override void LevelSystem()
 	{
 		int level = CountToLevel(_weaponClassLevel.killedCount);
 

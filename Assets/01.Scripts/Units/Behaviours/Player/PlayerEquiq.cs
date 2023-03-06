@@ -56,6 +56,7 @@ namespace Units.Base.Player
 			InputManager.OnTestChangePress += TestChangeWeapon;
 
 			Define.GetManager<EventManager>().StartListening(EventFlag.WeaponChange, ChangeWeapon);
+			Define.GetManager<EventManager>().StartListening(EventFlag.WeaponUpgrade, WeaponUpgrade);
 
 			base.Start();
 
@@ -175,6 +176,11 @@ namespace Units.Base.Player
 
 			//여기서 있을 경우 바꾸는거 발동
 
+		}
+
+		public void WeaponUpgrade(EventParam eventParam)
+		{
+			CurrentWeapon.LevelSystem();
 		}
 
 		public void UnSetWeapon(int index)

@@ -19,7 +19,7 @@ public class BaseSpear : Weapon
 		LoadClassLevel("Spear");
 	}
 
-	protected override void LevelSystem()
+	public override void LevelSystem()
 	{
 		int level = CountToLevel(_weaponClassLevel.killedCount);
 

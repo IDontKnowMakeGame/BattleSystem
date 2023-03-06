@@ -19,7 +19,7 @@ public class BaseGreatSword : Weapon
 		LoadClassLevel("GreateSword");
 		LevelSystem();
 	}
-	protected override void LevelSystem()
+	public override void LevelSystem()
 	{
 		int level = CountToLevel(_weaponClassLevel.killedCount);
 

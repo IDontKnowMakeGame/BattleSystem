@@ -81,7 +81,7 @@ namespace Unit.Core.Weapon
 		{
 			InputManager.OnAttackPress += AttackCoroutine;
 			InputManager.OnSkillPress += Skill;
-			_playerAttack.AttackColParent.AllDisableDir();
+			LevelSystem();
 		}
 
 		protected void Timer()
@@ -170,7 +170,7 @@ namespace Unit.Core.Weapon
 			<= 80 => 5,
 			_ => 1
 		};
-		protected virtual void LevelSystem()
+		public virtual void LevelSystem()
 		{
 
 		}

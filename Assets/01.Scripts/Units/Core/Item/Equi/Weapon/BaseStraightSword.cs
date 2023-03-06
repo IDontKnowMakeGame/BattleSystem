@@ -13,7 +13,7 @@ public class BaseStraightSword : Weapon
 		LoadClassLevel("BasicSword");
 		LevelSystem();
 	}
-	protected override void LevelSystem()
+	public override void LevelSystem()
 	{
 		int level = CountToLevel(_weaponClassLevel.killedCount);
 		switch (level)
