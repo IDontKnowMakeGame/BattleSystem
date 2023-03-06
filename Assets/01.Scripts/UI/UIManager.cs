@@ -25,6 +25,7 @@ public class UIManager : Manager
     private static MyUI currentUI = MyUI.None;
 
     #region InGame
+    private bool _onOtherPanel = false;
     private VisualElement _hpBar;
     private VisualElement _angerBar;
     private VisualElement _adranalineBar;
@@ -99,6 +100,8 @@ public class UIManager : Manager
     {
         if (currentUI == MyUI.InGame) return;
 
+
+        _onOtherPanel = false;
         currentUI = MyUI.InGame;
         _document.visualTreeAsset = Define.GetManager<ResourceManagers>().Load<VisualTreeAsset>("UIDoc/InGame");
         VisualElement root = _document.rootVisualElement;
@@ -124,6 +127,8 @@ public class UIManager : Manager
     public void WeaponStoreInit()
     {
         if (currentUI == MyUI.WeaponStore) return;
+
+        _onOtherPanel = false;
 
         currentUI = MyUI.WeaponStore;
         _document.visualTreeAsset = Define.GetManager<ResourceManagers>().Load<VisualTreeAsset>("UIDoc/WeaponStore");
@@ -154,6 +159,7 @@ public class UIManager : Manager
     {
         if (currentUI == MyUI.ItemStore) return;
 
+        _onOtherPanel = false;
         currentUI = MyUI.ItemStore;
         _document.visualTreeAsset = Define.GetManager<ResourceManagers>().Load<VisualTreeAsset>("UIDoc/ItemStore");
         VisualElement root = _document.rootVisualElement;
@@ -187,6 +193,8 @@ public class UIManager : Manager
     #region HpSlider
     public void SetMaxHpValue(int value)
     {
+        
+        if (_onOtherPanel) return;
         InGameInit();
 
         VisualElement fill = _hpBar.Q<VisualElement>("BackGround");
@@ -194,6 +202,7 @@ public class UIManager : Manager
     }
     public void SetHpValue(int value)
     {
+        if (_onOtherPanel) return;
         InGameInit();
 
         VisualElement fill = _hpBar.Q<VisualElement>("Fill");
@@ -204,6 +213,7 @@ public class UIManager : Manager
     #region AngerSlider
     public void SetAngerValue(float value)
     {
+        if (_onOtherPanel) return;
         InGameInit();
 
         VisualElement fill = _angerBar.Q<VisualElement>("Fill");
@@ -214,6 +224,7 @@ public class UIManager : Manager
     #region AdranalineSlider
     public void SetAdranalineValue(float value)
     {
+        if (_onOtherPanel) return;
         InGameInit();
 
         VisualElement fill = _adranalineBar.Q<VisualElement>("Fill");
@@ -252,6 +263,8 @@ public class UIManager : Manager
     public void ShowWeaponStore()
     {
         WeaponStoreInit();
+        if (_onOtherPanel) return;
+        _onOtherPanel = true;
 
         List<string> dataList = Define.GetManager<DataManager>().LoadWeaponData();
         
@@ -288,6 +301,8 @@ public class UIManager : Manager
     public void ShowItemStore(ItemStoreTableSO table)
     {
         ItemStoreInit();
+        if (_onOtherPanel) return;
+        _onOtherPanel = true;
 
         _currentItemTable = table;
 
