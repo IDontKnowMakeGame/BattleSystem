@@ -87,6 +87,18 @@ public class UIManager : Manager
     #endregion
 
     #region Inventory
+    private enum EquipType
+    {
+        None,
+        Helo,
+        Weapon,
+        UseableItem
+    }
+
+    private EquipType boxType = EquipType.None;
+    private int _selectNum;
+    
+
     private VisualTreeAsset _itemInfoCardTemp;
 
     private VisualElement _heloPanel;
@@ -480,12 +492,35 @@ public class UIManager : Manager
         //CreateCardList<string>(_questItemListScroll, Define.GetManager<DataManager>().LoadWeaponData());
     }
 
+    public void SelectEquipWeaponBoxBtn(int num)
+    {
+        ChangeShowInventoryPanel(0);
+        _selectNum = num;
+        boxType = EquipType.Weapon;
+    }
+    public void SelectEquipHeloBoxBtn(int num)
+    {
+        ChangeShowInventoryPanel(1);
+        _selectNum = num;
+        boxType = EquipType.Helo;
+    }
+    public void SelectEquipUseableItemBoxBtn(int num)
+    {
+        ChangeShowInventoryPanel(2);
+        _selectNum = num;
+        boxType = EquipType.UseableItem;
+    }
+
     public void CreateCardList<T>(VisualElement parent,List<T> list)
     {
         foreach(T data in list)
         {
             Debug.Log("Create Card");
             VisualElement card = _itemInfoCardTemp.Instantiate();
+            card.RegisterCallback<ClickEvent>(e =>
+            {
+                string name = parent.GetType().GetField("name").GetValue(parent) as string;
+            });
             parent.Add(card);
         }    
     }

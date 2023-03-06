@@ -47,6 +47,7 @@ public class WeaponStatusFromExel : EditorWindow
     }
     private void SetWeaponStateData(string tsv)
     {
+        weaponStateDataList.Clear();
         string[] row = tsv.Split('\n');
 
         int weaponCount = row.Length;
