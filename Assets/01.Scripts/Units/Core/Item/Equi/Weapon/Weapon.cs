@@ -139,11 +139,14 @@ namespace Unit.Core.Weapon
 				_thisBase.GetBehaviour<PlayerAnimation>().CurWeaponAnimator.LastChange)
 				_thisBase.GetBehaviour<PlayerMove>().stop = true;
 
-			_playerAnimation.CurWeaponAnimator.SetDir = vec;
-			_playerAnimation.CurWeaponAnimator.Attack = true;
-			_playerAnimation.SetAnmation();
-			AnimeClip animeClip = _playerAnimation.GetClip();
-			_thisBase.AddState(BaseState.Attacking);
+			if (_playerAttack.CanAttack)
+			{
+				_playerAnimation.CurWeaponAnimator.SetDir = vec;
+				_playerAnimation.CurWeaponAnimator.Attack = true;
+				_playerAnimation.SetAnmation();
+				AnimeClip animeClip = _playerAnimation.GetClip();
+				_thisBase.AddState(BaseState.Attacking);
+			}
 		}
 
 		protected virtual void Skill()
