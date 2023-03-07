@@ -362,6 +362,26 @@ public class DataManager : Manager
         SaveWeaponLevelListData();
     }
 
+    public void SaveUpGradeWeaponLevelData(string name)
+    {
+        for (int i = 0; i < WeaponLevelListData.weaponInfoDatas.Count; i++)
+        {
+            if (WeaponLevelListData.weaponInfoDatas[i].name == name)
+            {
+                WeaponLevelListData.weaponInfoDatas[i].level++;
+                SaveWeaponLevelListData();
+                return;
+            }
+        }
+
+        WeaponInfo data = new WeaponInfo();
+        data.name = name;
+        data.level = 1;
+
+        WeaponLevelListData.weaponInfoDatas.Add(data);
+        SaveWeaponLevelListData();
+    }
+
     #endregion
 
     #region WeaponClassData
@@ -426,6 +446,8 @@ public class DataManager : Manager
     }
     public void AddWeaponToInventory(string name)
     {
+        if (HaveWeapon(name)) return;
+
         InventoryData.inventoryInWeaponList.Add(name);
         SaveToInventoryData();
     }
@@ -460,6 +482,10 @@ public class DataManager : Manager
             ChangeItemInfo(data);
 
         SaveToInventoryData();
+    }
+    public List<ItemInfo> LoadUsableItemFromInventory()
+    {
+        return InventoryData.inventoryInUsableItemList;
     }
     public ItemInfo LoadUsableItemFromInventory(int id)
     {

@@ -1,3 +1,4 @@
+using Core;
 using System.Collections;
 using System.Collections.Generic;
 using Units.Base.Interactable;
@@ -11,6 +12,7 @@ public class FallenAngel : InteractableUnitBase
         if (DetectCondition.Invoke(Position))
         {
             // TODO: Interact
+            Define.GetManager<UIManager>().ShowWeaponStore();
             Debug.Log("Interact");
         }
     }

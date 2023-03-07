@@ -1,0 +1,23 @@
+.InventoryBtnBox {
+    background-color: rgb(106, 101, 101);
+    width: 100px;
+    margin-left: 10px;
+}
+
+.InventoryItemBox {
+    width: 100px;
+    height: 100px;
+}
+
+.InventoryScroll {
+    width: 100%;
+    height: 100%;
+}
+
+.ListPanel {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 100%;
+    height: 100px;
+}
