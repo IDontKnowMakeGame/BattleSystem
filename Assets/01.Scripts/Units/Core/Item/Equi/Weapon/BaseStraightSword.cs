@@ -4,6 +4,8 @@ using UnityEngine;
 using Unit.Core.Weapon;
 using Managements.Managers;
 using Core;
+using Units.Base.Player;
+using Units.Base.Unit;
 
 public class BaseStraightSword : Weapon
 {
@@ -55,13 +57,15 @@ public class BaseStraightSword : Weapon
 	protected override void AttackCoroutine(Vector3 vec)
 	{
 		base.AttackCoroutine(vec);
-		_playerAnimation.GetClip().SetEventOnFrame(5, () => Attack(vec));
+		if(_thisBase.State.HasFlag(BaseState.Attacking))
+			_playerAnimation.GetClip().SetEventOnFrame(5, () => Attack(vec));
 	}
 	protected override void Attack(Vector3 vec)
 	{
 		_playerAttack.AttackColParent.ChangeSizeZ(1);
 		_playerAttack.AttackColParent.ChangeSizeX(1);
 		_playerAttack.AttackColParent.CheckDir(_playerAttack.AttackColParent.DirReturn(vec));
+		Debug.Log("^^이건 무슨 버그요..");
 		_playerAttack.Attack(_unitStat.NowStats.Atk);
 		_playerAttack.AttackColParent.AllEnableDir();
 		//_playerAttack.AttackColParent.ChangeWeapon();

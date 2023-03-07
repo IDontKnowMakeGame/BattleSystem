@@ -12,7 +12,7 @@ namespace Units.Behaviours.Unit
         public Clips clips;
 
         private Clips basicClips;
-        private int index = 0;
+        public int index = 0;
 
         private float time = 0f;
         private bool isFinished = false;
@@ -123,6 +123,12 @@ namespace Units.Behaviours.Unit
 		{
             return clips.clips[state];
         }
+
+        public AnimeClip GetClip(int state)
+        {
+            return clips.clips[state];
+        }
+
         public bool IsFinished()
         {
             return isFinished;
