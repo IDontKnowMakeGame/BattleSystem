@@ -56,6 +56,7 @@ namespace Units.Base.Player
 			ThisBase.GetBehaviour<PlayerEquiq>().InsertHelo("DirtyHalo", 0);
 			ThisBase.GetBehaviour<PlayerEquiq>().InsertHelo("EvilSpiritHalo", 1);
 
+			ChangeWeapon();
 		}
 		public override void Update()
 		{
