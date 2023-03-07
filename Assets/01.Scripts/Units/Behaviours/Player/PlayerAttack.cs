@@ -37,8 +37,13 @@ namespace Units.Base.Player
 
         private float timer;
 
-        public bool isAttack = false;
+        private bool isAttack = false;
         public bool IsAttack => isAttack;
+
+        private bool canAttack = false;
+
+        public bool CanAttack => canAttack;
+
         
         private PlayerAnimation playerAnimation;
 
@@ -86,7 +91,6 @@ namespace Units.Base.Player
         }
         public void Attack(float damage, bool near = false)
         {
-
             if (ThisBase.State.HasFlag(BaseState.Moving))
                 return;
 
@@ -99,7 +103,7 @@ namespace Units.Base.Player
             ThisBase.RemoveState(BaseState.Attacking);
             ThisBase.GetBehaviour<PlayerMove>().stop = false;
 
-            if (timer > 0 || !playerAnimation.CurWeaponAnimator.LastChange || ThisBase.GetBehaviour<PlayerItem>().PlayerPortion.UsePortion || IsAttack)
+            if (!canAttack || !playerAnimation.CurWeaponAnimator.LastChange || ThisBase.GetBehaviour<PlayerItem>().PlayerPortion.UsePortion || IsAttack)
             {
                 ThisBase.GetBehaviour<PlayerMove>().stop = false;
                 return;
@@ -132,6 +136,7 @@ namespace Units.Base.Player
                 onBehaviourEnd?.Invoke();
             }
             timer = attackDelay;
+            canAttack = false;
         }
 
         private void SetDir(Vector3 dir)
@@ -174,13 +179,20 @@ namespace Units.Base.Player
 /*            playerAnimation.CurWeaponAnimator.SetDir = dir;
             playerAnimation.CurWeaponAnimator.Attack = true;
             playerAnimation.SetAnmation();*/
-            isAttack = true;    
+            isAttack = true;
         }
 
         public void Timer()
         {
-            if(timer > 0)
+            if (!canAttack)
+            {
                 timer -= Time.deltaTime;
+            }
+
+            if(timer <= 0)
+            {
+                canAttack = true;
+            }
 
             if (ThisBase.GetBehaviour<PlayerEquiq>().WeaponAnimation() == 1)
             {

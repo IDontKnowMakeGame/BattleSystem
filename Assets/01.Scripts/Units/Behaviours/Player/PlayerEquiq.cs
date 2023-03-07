@@ -100,6 +100,8 @@ namespace Units.Base.Player
 
 			playerAttack.ChangeDelay(CurrentWeapon != null ? CurrentWeapon.WeaponStat.Afs : 0);
 
+			ThisBase.GetBehaviour<PlayerMove>().stop = false;
+
 			playerAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
 			playerAnimation.CurWeaponAnimator = playerAnimation.WeaponAnimators[WeaponAnimation()];
 			playerAnimation.CurWeaponAnimator.ChangeWeapon = true;

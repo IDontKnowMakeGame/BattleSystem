@@ -146,8 +146,10 @@ public class UIManager : Manager
         _angerBar = root.Q<VisualElement>("AngerBar");
         _adranalineBar = root.Q<VisualElement>("AdrenalineBar");
 
-       // _firstWeaponIamge = root.Q<VisualElement>("AdrenalineBar");
-        //_secondWeaponImage = root.Q<VisualElement>("AdrenalineBar");
+        _firstWeaponIamge = root.Q<VisualElement>("FirstWeapon");
+        _firstWeaponIamge.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManagers>().Load<Sprite>(DataManager.UserData.firstWeapon));
+        _secondWeaponImage = root.Q<VisualElement>("SecondWeapon");
+        _secondWeaponImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManagers>().Load<Sprite>(DataManager.UserData.secondWeapon));
     }
     public void DialogInit()
     {
