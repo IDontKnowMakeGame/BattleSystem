@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Managements.Managers;
-using Managements.Managers.Base;
-using Managements.Managers.Floor;
-using Unity.VisualScripting;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Managements
 {
@@ -129,23 +125,10 @@ namespace Managements
         }
         #endregion
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        static void FirstStart()
-        {
-            instance = GameManagement.Instance;
-        }
-
         private void Init()
         {
             instance = this;
             Instance.AddManager<InputManager>();
-            Instance.AddManager<DataManager>();
-            Instance.AddManager<ResourceManagers>();
-            Instance.AddManager<PoolManager>();
-            Instance.AddManager<EventManager>();
-            Instance.AddManager<MapManager>();
-            Instance.AddManager<UIManager>();
-            Instance.AddManager<FloorManager>();
         }
 
         public void Awake()

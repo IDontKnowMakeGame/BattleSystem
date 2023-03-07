@@ -1,22 +1,36 @@
 ﻿using Core;
 using UnityEngine;
-using Behaviour = Units.Behaviours.Base.Behaviour;
+using Behaviour = Units.Behaviours.Default.Behaviour;
 
 namespace Units.Behaviours.Unit
 {
     public class UnitRender : Behaviour
     {
-        public override void FixedUpdate()
+        protected Transform anchorTrm = null;
+        protected Renderer modelRdr = null;
+        
+        public override void Awake()
+        {
+            anchorTrm = ThisBase.transform.Find("Anchor");
+            modelRdr = anchorTrm.Find("Model").GetComponent<Renderer>();
+        }
+
+        public override void LateUpdate()
         {
             Render();
         }
 
         protected virtual void Render()
         {
-            Vector3 playerRotate = ThisBase.transform.rotation.eulerAngles;
-            playerRotate.y = Define.MainCam.transform.rotation.eulerAngles.y;
+              Billboard();
+        }
 
-            ThisBase.transform.rotation = Quaternion.Euler(playerRotate);
+        protected virtual void Billboard()
+        {
+            var camPos = Define.MainCamera.transform.position;
+            var lookAt = anchorTrm.position - camPos;
+            anchorTrm.LookAt(lookAt);
+            anchorTrm.rotation = Quaternion.Euler(30, anchorTrm.rotation.eulerAngles.y, anchorTrm.rotation.eulerAngles.z);
         }
     }
 }
