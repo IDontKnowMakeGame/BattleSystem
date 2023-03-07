@@ -142,7 +142,7 @@ namespace Units.Base.Player
 			_currentWeapon = DataManager.UserData.firstWeapon;
 			CurrentWeapon.ChangeKey();
 
-			_currentWeapon = DataManager.UserData.secondWeapon;
+			_secoundWeapon = DataManager.UserData.secondWeapon;
 		}
 
 		public void UnSetWeapon(EventParam eventParam)

@@ -1,9 +1,9 @@
 {
     "maxHp": 100,
     "feather": 0,
-    "currentWeapon": "OldBow",
-    "firstWeapon": "OldBow",
-    "secondWeapon": "OldStraightSword",
+    "currentWeapon": "OldTwinSword",
+    "firstWeapon": "OldTwinSword",
+    "secondWeapon": "OldGreatSword",
     "firstHelo": "",
     "secondHelo": "",
     "thirdHelo": "",
