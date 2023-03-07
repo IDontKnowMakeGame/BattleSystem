@@ -43325,6 +43325,10 @@ PrefabInstance:
       value: -22
       objectReference: {fileID: 0}
     - target: {fileID: 3555345244280757846, guid: 7ab60740ff9fd064d9701f6574e56c46, type: 3}
+      propertyPath: _thisStat.originStats.Hp
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555345244280757846, guid: 7ab60740ff9fd064d9701f6574e56c46, type: 3}
       propertyPath: <SpawnPos>k__BackingField.x
       value: 10
       objectReference: {fileID: 0}
