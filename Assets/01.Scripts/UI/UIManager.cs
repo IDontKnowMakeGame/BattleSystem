@@ -488,6 +488,7 @@ public class UIManager : Manager
     public void ShowInventory()
     {
         InventoryInit();
+        _onOtherPanel = true;
 
         CreateCardList<string>(_weaponListScroll, Define.GetManager<DataManager>().LoadWeaponData());
         //CreateCardList<string>(_heloListScroll, Define.GetManager<DataManager>().L());
@@ -495,13 +496,17 @@ public class UIManager : Manager
         //CreateCardList<string>(_questItemListScroll, Define.GetManager<DataManager>().LoadWeaponData());
 
         VisualElement box = _firstWeaponPanel.Q<VisualElement>("1");
+        string firstWeaponName = DataManager.UserData.firstWeapon;
+        box.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManagers>().Load<Sprite>(firstWeaponName));
         box.RegisterCallback<ClickEvent>(e => {
             SelectEquipWeaponBoxBtn(int.Parse(box.name), box);
         });
 
         VisualElement box2 = _secondWeaponPanel.Q<VisualElement>("2");
+        string secondWeaponName = DataManager.UserData.secondWeapon;
+        box2.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManagers>().Load<Sprite>(secondWeaponName));
         box2.RegisterCallback<ClickEvent>(e => {
-            SelectEquipWeaponBoxBtn(int.Parse(box.name), box2);
+            SelectEquipWeaponBoxBtn(int.Parse(box2.name), box2);
         });
 
     }
@@ -517,7 +522,10 @@ public class UIManager : Manager
         boxType = EquipType.Weapon;
 
         _selectVisual.style.backgroundColor = new StyleColor(Color.blue);
+
+        
     }
+
     //public void SelectEquipHeloBoxBtn(int num, VisualElement box)
     //{
     //    ChangeShowInventoryPanel(1);
@@ -552,7 +560,7 @@ public class UIManager : Manager
                     _selectVisual = null;
                     boxType = EquipType.None;
 
-                    //Define.GetManager<EventManager>().TriggerEvent(EventFlag)
+                    Define.GetManager<EventManager>().TriggerEvent(EventFlag.SetWeapon, new EventParam());
                 }
                 
             });

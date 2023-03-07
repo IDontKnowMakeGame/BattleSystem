@@ -446,6 +446,8 @@ public class DataManager : Manager
     }
     public void AddWeaponToInventory(string name)
     {
+        if (HaveWeapon(name)) return;
+
         InventoryData.inventoryInWeaponList.Add(name);
         SaveToInventoryData();
     }
