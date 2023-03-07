@@ -5,6 +5,7 @@ using Unit.Core.Weapon;
 using Managements.Managers;
 using Core;
 using Units.Base.Player;
+using Units.Base.Unit;
 
 public class BaseStraightSword : Weapon
 {
@@ -56,7 +57,8 @@ public class BaseStraightSword : Weapon
 	protected override void AttackCoroutine(Vector3 vec)
 	{
 		base.AttackCoroutine(vec);
-		_playerAnimation.GetClip().SetEventOnFrame(5, () => Attack(vec));
+		if(_thisBase.State.HasFlag(BaseState.Attacking))
+			_playerAnimation.GetClip().SetEventOnFrame(5, () => Attack(vec));
 	}
 	protected override void Attack(Vector3 vec)
 	{

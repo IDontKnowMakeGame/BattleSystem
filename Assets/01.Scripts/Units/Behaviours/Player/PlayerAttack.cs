@@ -92,7 +92,10 @@ namespace Units.Base.Player
         public void Attack(float damage, bool near = false)
         {
             if (ThisBase.State.HasFlag(BaseState.Moving))
+            {
+                ThisBase.GetBehaviour<PlayerMove>().stop = false;
                 return;
+            }
 
             if (!isInit)
             {

@@ -147,6 +147,8 @@ namespace Unit.Core.Weapon
 				AnimeClip animeClip = _playerAnimation.GetClip();
 				_thisBase.AddState(BaseState.Attacking);
 			}
+			else
+				_thisBase.GetBehaviour<PlayerMove>().stop = false;
 		}
 
 		protected virtual void Skill()

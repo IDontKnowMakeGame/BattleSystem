@@ -123,6 +123,12 @@ namespace Units.Behaviours.Unit
 		{
             return clips.clips[state];
         }
+
+        public AnimeClip GetClip(int state)
+        {
+            return clips.clips[state];
+        }
+
         public bool IsFinished()
         {
             return isFinished;
