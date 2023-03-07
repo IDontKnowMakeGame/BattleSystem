@@ -8,16 +8,16 @@ using Unit.Core;
 public class EquipmentItem : Item
 {
     protected InputManager _inputManager;
-    public virtual void Awake()
+    public override void Awake()
 	{
         _inputManager  = Define.GetManager<InputManager>();
     }
-    public virtual void Start()
+    public override void Start()
     {
         
     }
 
-    public virtual void Update()
+    public override void Update()
     {
         
     }

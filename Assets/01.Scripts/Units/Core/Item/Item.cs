@@ -4,5 +4,17 @@ using UnityEngine;
 
 public class Item
 {
+    public virtual void Awake()
+    {
 
+    }
+    public virtual void Start()
+    {
+
+    }
+
+    public virtual void Update()
+    {
+
+    }
 }

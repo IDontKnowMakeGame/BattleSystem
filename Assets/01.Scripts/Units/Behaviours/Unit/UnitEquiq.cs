@@ -9,12 +9,23 @@ namespace Units.Behaviours.Unit
 	[Serializable]
 	public class UnitEquiq : UnitBehaviour
 	{
+		//All Info of Item
+		public static Dictionary<int, Item> items = new Dictionary<int, Item>()
+		{
+			{0, new OldStraightSword()},
+			{1, new OldTwinSword()}
+		};
+		#region Weapon
+		//Now CurrentWeapon & SecoundWeapon
 		[SerializeField]
-		protected string _currentWeapon;
+		protected int _currentWeapon;
 		[SerializeField]
-		protected string _secoundWeapon;
+		protected int _secoundWeapon;
 
+		//Select Enemy or Player
 		public bool isEnemy = true;
+
+		//Null or CurrentWeapon Return, if this UnitEquiq isEnemy true & Null Create current Weapon return currentWeapon
 		public Weapon CurrentWeapon
 		{
 			get
@@ -56,43 +67,42 @@ namespace Units.Behaviours.Unit
 					return null;
 			}
 		}
+		#endregion
 
-		public Dictionary<string, Weapon> weapons = new Dictionary<string, Weapon>();
+		#region Halo
 		protected Dictionary<string, Halo> halos = new Dictionary<string, Halo>();
-
 		private int _haloCount = 2;
-
 		public Halo[] UseHalo => usingHalos;
 		protected Halo[] usingHalos = new Halo[3];
+		#endregion
 		public override void Awake()
 		{
-			halos.Add("DirtyHalo", new DirtyHalo());
-			halos.Add("EvilSpiritHalo", new EvilSpiritHalo());
+			//weapons. 
+
+			//halos.Add("DirtyHalo", new DirtyHalo());
+			//halos.Add("EvilSpiritHalo", new EvilSpiritHalo());
 
 
-			foreach (var value in weapons)
+			foreach (var value in items)
 			{
 				value.Value?.Awake();
 			}
-			foreach (var value in halos)
-			{
-				value.Value?.Awake();
-			}
+			//foreach (var value in halos)
+			//{
+			//	value.Value?.Awake();
+			//}
 		}
 
 		public override void Start()
 		{
-			foreach (var value in weapons)
+			foreach (var value in items)
 			{
 				value.Value?.Start();
 			}
-			foreach (var value in halos)
-			{
-				value.Value?.Start();
-			}
-
-			if (!isEnemy)
-				CurrentWeapon?.ChangeKey();
+			//foreach (var value in halos)
+			//{
+			//	value.Value?.Start();
+			//}
 		}
 		public override void Update()
 		{

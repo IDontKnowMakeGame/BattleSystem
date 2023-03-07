@@ -14,8 +14,9 @@ namespace Unit.Core.Weapon
     public class Weapon:EquipmentItem
     {
         public UnitBase _thisBase;
+		public AttackCollider _attackColider;
 
-        protected WeaponStats _weaponStats = null;
+		protected WeaponStats _weaponStats = null;
         protected WeaponStats _changeStats = new WeaponStats();
         protected WeaponStats _changeBuffStats = new WeaponStats();
 

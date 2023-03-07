@@ -19,17 +19,10 @@ namespace Units.Base.Player
 
 		public override void Awake()
 		{
-			var st = Define.GetManager<DataManager>().LoadWeaponData();
-			foreach (var a in st)
-			{
-				Type type = Type.GetType(a);
-				Weapon weaponClass = Activator.CreateInstance(type) as Weapon;
-				weaponClass._thisBase = ThisBase;
-				weapons.Add(a, weaponClass);
-			}
 			base.Awake();
-			_currentWeapon = DataManager.UserData.firstWeapon;
-			_secoundWeapon = DataManager.UserData.secondWeapon;
+			//여기서 웨폰 인덱스를 받아 준다.
+			//_currentWeapon = DataManager.UserData.firstWeapon;
+			//_secoundWeapon = DataManager.UserData.secondWeapon;
 
 		}
 		public override void Start()
@@ -52,6 +45,8 @@ namespace Units.Base.Player
 			Define.GetManager<EventManager>().StartListening(EventFlag.UnsetWeapon, UnSetWeapon);
 
 			base.Start();
+
+			CurrentWeapon?.ChangeKey();
 
 			ThisBase.GetBehaviour<PlayerEquiq>().InsertHelo("DirtyHalo", 0);
 			ThisBase.GetBehaviour<PlayerEquiq>().InsertHelo("EvilSpiritHalo", 1);
@@ -143,6 +138,14 @@ namespace Units.Base.Player
 			CurrentWeapon.Reset();
 			_currentWeapon = DataManager.UserData.firstWeapon;
 			CurrentWeapon.ChangeKey();
+
+			InGame.PlayerBase.GetBehaviour<PlayerMove>().ClearMove();
+			Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponSwap, new EventParam());
+
+			playerAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
+			playerAnimation.CurWeaponAnimator = playerAnimation.WeaponAnimators[WeaponAnimation()];
+			playerAnimation.CurWeaponAnimator.ChangeWeapon = true;
+			playerAnimation.SetAnmation();
 
 			_secoundWeapon = DataManager.UserData.secondWeapon;
 		}
