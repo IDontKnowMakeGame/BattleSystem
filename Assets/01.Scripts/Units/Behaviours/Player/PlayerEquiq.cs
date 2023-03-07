@@ -48,6 +48,8 @@ namespace Units.Base.Player
 			InputManager.OnTestChangePress += TestChangeWeapon;
 
 			Define.GetManager<EventManager>().StartListening(EventFlag.WeaponUpgrade, WeaponUpgrade);
+			Define.GetManager<EventManager>().StartListening(EventFlag.SetWeapon, SetWeapon);
+			Define.GetManager<EventManager>().StartListening(EventFlag.UnsetWeapon, UnSetWeapon);
 
 			base.Start();
 
@@ -142,11 +144,6 @@ namespace Units.Base.Player
 			_currentWeapon = DataManager.UserData.secondWeapon;
 		}
 
-		public void WeaponUpgrade(EventParam eventParam)
-		{
-			CurrentWeapon.LevelSystem();
-		}
-
 		public void UnSetWeapon(EventParam eventParam)
 		{
 			if (DataManager.UserData.firstWeapon == "")
@@ -157,5 +154,10 @@ namespace Units.Base.Player
 			_currentWeapon = DataManager.UserData.firstWeapon;
 			_secoundWeapon = DataManager.UserData.secondWeapon;
 		}
+		public void WeaponUpgrade(EventParam eventParam)
+		{
+			CurrentWeapon.LevelSystem();
+		}
+
 	}
 }
