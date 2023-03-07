@@ -11,7 +11,6 @@ public abstract class Halo : EquipmentItem
 
     public virtual void Init() 
     {
-        Debug.Log("¿¨");
         playerStat = InGame.PlayerBase.GetBehaviour<PlayerStat>();
     }
     protected virtual void Using(EventParam eventParam) { }

@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca2b332a7b5e5447adcd7343094485c, type: 3}
+  m_Name: OldTwinClips
+  m_EditorClassIdentifier: 
+  clips:
+  - name: Idle
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: ce212b6c281606c49a5d0e208308fed8, type: 3}
+    fps: 12
+    isLoop: 1
+    delay: 0.1
+    changeAble: 1
+  - name: VerticalMove
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: e4aa4a43bea5628498b9a12955578086, type: 3}
+    fps: 7
+    isLoop: 0
+    delay: 0.06
+    changeAble: 0
+  - name: UpMove
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 4e45a5cbf0609cb4ca42c9a5ea706e41, type: 3}
+    fps: 7
+    isLoop: 0
+    delay: 0.07
+    changeAble: 0
+  - name: DownMove
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 7c36fcd18f083a24b9f3dcb3e9c689ba, type: 3}
+    fps: 7
+    isLoop: 0
+    delay: 0.07
+    changeAble: 0
+  - name: ChangeWeapon
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: f091ccb5453d876418ef46d25b5e6835, type: 3}
+    fps: 12
+    isLoop: 0
+    delay: 0.1
+    changeAble: 0

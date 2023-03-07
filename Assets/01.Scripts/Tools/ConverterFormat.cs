@@ -11,10 +11,7 @@ public class ConverterFormat
     public static string enumFormat =
         @"enum {0}
 {{
-    empty,
-    {1}end
+    Empty,
+    {1}End
 }}";
-    public static string enumValue =
-        @"{0} = {1},";
-
 }

@@ -19,7 +19,7 @@ public class BaseGreatSword : Weapon
 		LoadClassLevel("GreateSword");
 		LevelSystem();
 	}
-	protected override void LevelSystem()
+	public override void LevelSystem()
 	{
 		int level = CountToLevel(_weaponClassLevel.killedCount);
 
@@ -105,12 +105,13 @@ public class BaseGreatSword : Weapon
 		{
 			LevelSystem();
 			_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
-			_playerAttack.AttackColParent.AllDisableDir();
 			_playerAttack.AttackColParent.ChangeSizeZ(1);
 			_playerAttack.AttackColParent.ChangeSizeX(1);
-			_playerAttack.AttackColParent.EnableDir(_playerAttack.AttackColParent.DirReturn(_currentVector));
+			_playerAttack.AttackColParent.CheckDir(_playerAttack.AttackColParent.DirReturn(_currentVector));
+			_playerAnimation.CurWeaponAnimator.SetDir = vec;
+			_playerAnimation.CurWeaponAnimator.Attack = true;
 			_playerAttack.Attack(_unitStat.NowStats.Atk);
-			_playerAttack.AttackColParent.ChangeWeapon();
+			_playerAnimation.SetAnmation();
 			_playerAttack.AttackColParent.AllEnableDir();
 		}
 		else
@@ -143,7 +144,7 @@ public class BaseGreatSword : Weapon
 		_chargeTime = 0;
 		_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 		_currentVector = Vector3.zero;
-		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
+		//GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
 		InputManager.OnMovePress -= Move;
 		InputManager.OnAttackHold -= Charge;
 		InputManager.OnAttackRelease -= AttackUP;

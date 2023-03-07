@@ -19,7 +19,7 @@ public class BaseSpear : Weapon
 		LoadClassLevel("Spear");
 	}
 
-	protected override void LevelSystem()
+	public override void LevelSystem()
 	{
 		int level = CountToLevel(_weaponClassLevel.killedCount);
 
@@ -123,7 +123,7 @@ public class BaseSpear : Weapon
 		yield return new WaitForSeconds(WeaponStat.Ats);
 		_currentAttackPos = vec;
 		LevelSystem();
-		_playerAttack.AttackColParent.EnableDir(_playerAttack.AttackColParent.DirReturn(_currentAttackPos));
+		_playerAttack.AttackColParent.CheckDir(_playerAttack.AttackColParent.DirReturn(_currentAttackPos));
 		_playerAttack.Attack(_unitStat.NowStats.Atk);
 	}
 

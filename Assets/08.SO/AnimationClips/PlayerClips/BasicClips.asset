@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca2b332a7b5e5447adcd7343094485c, type: 3}
+  m_Name: BasicClips
+  m_EditorClassIdentifier: 
+  clips:
+  - name: Idle
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 454b491ac77e29a439534c7821c1c060, type: 3}
+    fps: 11
+    isLoop: 1
+    delay: 0.1
+    changeAble: 1
+  - name: VerticalMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: b3cd96158d77cce47a433dad60c07a55, type: 3}
+    fps: 9
+    isLoop: 1
+    delay: 0.1
+    changeAble: 1
+  - name: DownMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: d9b7cdbcbf0d4c1498729af469374ea1, type: 3}
+    fps: 9
+    isLoop: 1
+    delay: 0.1
+    changeAble: 1
+  - name: UpMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: c581898df752ab841a279786335b3a4b, type: 3}
+    fps: 9
+    isLoop: 1
+    delay: 0.1
+    changeAble: 1

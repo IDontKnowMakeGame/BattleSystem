@@ -81,7 +81,7 @@ namespace Unit.Core.Weapon
 		{
 			InputManager.OnAttackPress += AttackCoroutine;
 			InputManager.OnSkillPress += Skill;
-			_playerAttack.AttackColParent.AllDisableDir();
+			LevelSystem();
 		}
 
 		protected void Timer()
@@ -103,7 +103,6 @@ namespace Unit.Core.Weapon
 			{
 				if (data.name == name)
 				{
-					Debug.Log(name);
 					_weaponStats = WeaponSerializable(data);
 					break;
 				}
@@ -144,7 +143,6 @@ namespace Unit.Core.Weapon
 			_playerAnimation.CurWeaponAnimator.Attack = true;
 			_playerAnimation.SetAnmation();
 			AnimeClip animeClip = _playerAnimation.GetClip();
-			_playerAnimation.GetClip().SetEventOnFrame(0, () => Attack(vec));
 			_thisBase.AddState(BaseState.Attacking);
 		}
 
@@ -170,7 +168,7 @@ namespace Unit.Core.Weapon
 			<= 80 => 5,
 			_ => 1
 		};
-		protected virtual void LevelSystem()
+		public virtual void LevelSystem()
 		{
 
 		}

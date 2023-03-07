@@ -23752,6 +23752,54 @@ PrefabInstance:
       propertyPath: animationClip.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: 3a099b72c7955e7408bdbd4b46e96421, type: 2}
+    - target: {fileID: 1286421333534525942, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421333534525942, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421333534525942, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421333801478739, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421333801478739, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421333801478739, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421334355429419, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421334355429419, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421334355429419, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421334854869892, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421334854869892, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1286421334854869892, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
+      propertyPath: m_Size.z
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3562661168614408593, guid: 4dbd6c186bf83cf4995e09b10ca15ad0, type: 3}
       propertyPath: m_Name
       value: Player
@@ -64200,6 +64248,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3041935593448038436, guid: 3310a305a449e094f97d81087b882af4, type: 3}
+      propertyPath: _unitAnimation.clips
+      value: 
+      objectReference: {fileID: 11400000, guid: 93b8a0e5825a80c4ca7cb29b1c60140d, type: 2}
+    - target: {fileID: 3041935593448038436, guid: 3310a305a449e094f97d81087b882af4, type: 3}
       propertyPath: _enemyRender._blinkCnt
       value: 1
       objectReference: {fileID: 0}
@@ -64211,6 +64263,10 @@ PrefabInstance:
       propertyPath: _enemyRender._blinkTime
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 3041935593448038436, guid: 3310a305a449e094f97d81087b882af4, type: 3}
+      propertyPath: _unitAnimation.renderer
+      value: 
+      objectReference: {fileID: 1955609737}
     - target: {fileID: 3041935593448038436, guid: 3310a305a449e094f97d81087b882af4, type: 3}
       propertyPath: thisStat.changeStats.Hp
       value: 1600
@@ -64225,7 +64281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3041935593448038436, guid: 3310a305a449e094f97d81087b882af4, type: 3}
       propertyPath: _enemyWeapons._currentWeapon
-      value: 6
+      value: TaintedSword
       objectReference: {fileID: 0}
     - target: {fileID: 3041935593448038437, guid: 3310a305a449e094f97d81087b882af4, type: 3}
       propertyPath: m_RootOrder

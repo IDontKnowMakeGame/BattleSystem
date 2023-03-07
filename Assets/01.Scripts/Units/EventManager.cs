@@ -27,7 +27,10 @@ public enum EventFlag
     SliderUp,
     SliderFalse,
     HPWidth,
-    PullSlider
+    PullSlider,
+    WeaponUpgrade,
+    SetWeapon,
+    UnsetWeapon
 }
 public class EventManager : Manager
 {

@@ -13,7 +13,7 @@ public class BaseStraightSword : Weapon
 		LoadClassLevel("BasicSword");
 		LevelSystem();
 	}
-	protected override void LevelSystem()
+	public override void LevelSystem()
 	{
 		int level = CountToLevel(_weaponClassLevel.killedCount);
 		switch (level)
@@ -52,14 +52,18 @@ public class BaseStraightSword : Weapon
 		InputManager.ChangeKeyCode(KeyboardInput.AttackLeft, KeyCode.A);
 		InputManager.ChangeKeyCode(KeyboardInput.AttackRight, KeyCode.D);
 	}
+	protected override void AttackCoroutine(Vector3 vec)
+	{
+		base.AttackCoroutine(vec);
+		_playerAnimation.GetClip().SetEventOnFrame(5, () => Attack(vec));
+	}
 	protected override void Attack(Vector3 vec)
 	{
-		_playerAttack.AttackColParent.AllDisableDir();
 		_playerAttack.AttackColParent.ChangeSizeZ(1);
 		_playerAttack.AttackColParent.ChangeSizeX(1);
-		_playerAttack.AttackColParent.EnableDir(_playerAttack.AttackColParent.DirReturn(vec));
+		_playerAttack.AttackColParent.CheckDir(_playerAttack.AttackColParent.DirReturn(vec));
 		_playerAttack.Attack(_unitStat.NowStats.Atk);
-		_playerAttack.AttackColParent.ChangeWeapon();
-		//_playerAttack.AttackColParent.AllEnableDir();
+		_playerAttack.AttackColParent.AllEnableDir();
+		//_playerAttack.AttackColParent.ChangeWeapon();
 	}
 }

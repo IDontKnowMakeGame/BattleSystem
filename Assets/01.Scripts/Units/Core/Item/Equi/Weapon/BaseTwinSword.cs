@@ -12,7 +12,7 @@ public class BaseTwinSword : Weapon
 		base.Start();
 		LoadClassLevel("TwinSword");
 	}
-	protected override void LevelSystem()
+	public override void LevelSystem()
 	{
 		int level = CountToLevel(_weaponClassLevel.killedCount);
 
@@ -98,7 +98,7 @@ public class BaseTwinSword : Weapon
 					_playerAttack.AttackColParent.ChangeSizeX(1);
 					_playerAttack.AttackColParent.EnableDir(DirType.Left, DirType.Right);
 					DirType type = _currentVec == Vector3.forward ? DirType.Up : DirType.Down;
-					_playerAttack.AttackColParent.EnableDir(type);
+					_playerAttack.AttackColParent.CheckDir(type);
 					float offset = _currentVec == Vector3.forward ? 0.5f : -0.5f;
 					_playerAttack.AttackColParent.ChangeOffsetZ(DirType.Left, offset);
 					_playerAttack.AttackColParent.ChangeOffsetZ(DirType.Right, offset);
@@ -110,7 +110,7 @@ public class BaseTwinSword : Weapon
 					_playerAttack.AttackColParent.ChangeSizeZ(1);
 					_playerAttack.AttackColParent.EnableDir(DirType.Up, DirType.Down);
 					DirType type = _currentVec == Vector3.left ? DirType.Left : DirType.Right;
-					_playerAttack.AttackColParent.EnableDir(type);
+					_playerAttack.AttackColParent.CheckDir(type);
 					float offset = _currentVec == Vector3.right ? 0.5f : -0.5f;
 					_playerAttack.AttackColParent.ChangeOffsetX(DirType.Up, offset);
 					_playerAttack.AttackColParent.ChangeOffsetX(DirType.Down, offset);
