@@ -19,7 +19,7 @@ namespace Units.Base.Player
 
 		public override void Awake()
 		{
-			var st = Define.GetManager<DataManager>().LoadWeaponData();
+			var st = Define.GetManager<DataManager>().LoadWeaponDataFromInventory();
 			foreach (var a in st)
 			{
 				Type type = Type.GetType(a);

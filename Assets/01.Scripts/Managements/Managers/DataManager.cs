@@ -431,22 +431,27 @@ public class DataManager : Manager
         DataJson.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/User", "InvectoryData",json);
     }
 
-    public void AddItemInInventory(ItemInfo item)
+    public void AddItemInInventory(ItemID id,int count = 0)
     {
-        if((int)item.id < 101)
+        ItemInfo item = new ItemInfo();
+        item.id = id;
+        item.currentCnt = count;
+        item.name = id.GetType().Name;
+
+        if((int)id < 101)
         { //Weapon
-            if (HaveWeapon(item.id)) return;
+            if (HaveWeapon(id)) return;
             InventoryData.inventoryInWeaponList.Add(item);
 
-        }else if ((int)item.id < 201)
+        }else if ((int)id < 201)
         { //Helo
-            if (HaveHelo(item.id)) return;
+            if (HaveHelo(id)) return;
             InventoryData.inventoryInHeloList.Add(item);
         }
-        else if ((int)item.id < 301)
+        else if ((int)id < 301)
         { //UseableItem
 
-            ItemInfo info = LoadUsableItemFromInventory(item.id);
+            ItemInfo info = LoadUsableItemFromInventory(id);
             if(info == null)
             {
                 info = item;

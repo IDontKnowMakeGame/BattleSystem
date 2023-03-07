@@ -66,7 +66,7 @@ public class UIManager : Manager
 
     #region ItemStore
     private int _currentHaveMoney;
-    private int _currentSelectItemCode = 0;
+    private ItemID _currentSelectItemCode = ItemID.None;
     private int _itemPurchaseMoney;
     private int _itempurchaseCnt;
 
@@ -366,13 +366,13 @@ public class UIManager : Manager
         if (_onOtherPanel) return;
         _onOtherPanel = true;
 
-        List<string> dataList = Define.GetManager<DataManager>().LoadWeaponData();
+        List<ItemInfo> dataList = Define.GetManager<DataManager>().LoadWeaponDataFromInventory();
         
-        foreach (string name in dataList)
+        foreach (ItemInfo info in dataList)
         {
             VisualElement box = _weaponCardTemp.Instantiate();
             box.RegisterCallback<ClickEvent>(e => {
-                SelectWeaponBtn(name);
+                SelectWeaponBtn(info.name);
             });
             _weaponScroll.Add(box);
         }
@@ -425,7 +425,7 @@ public class UIManager : Manager
     }
     public void AddItemBtn()
     {
-        if(_currentSelectItemCode == 0)
+        if(_currentSelectItemCode == ItemID.None)
         {
             return;
         }
@@ -436,7 +436,7 @@ public class UIManager : Manager
     }
     public void MinusItemBtn()
     {
-        if (_currentSelectItemCode == 0 && _itempurchaseCnt == 0)
+        if (_currentSelectItemCode == ItemID.None && _itempurchaseCnt == 0)
         {
             return;
         }
@@ -456,15 +456,16 @@ public class UIManager : Manager
         _currentHaveMoney = value;
         Define.GetManager<DataManager>().SetFeahter(_currentHaveMoney);
         ItemInfo info = Define.GetManager<DataManager>().LoadUsableItemFromInventory(_currentSelectItemCode);
+
         if(info == null)
         {
             info = new ItemInfo();
             info.id = _currentSelectItemCode;
-            info.maxCnt = 0;
+            info.maxCnt = 10;
         }    
         info.currentCnt += _itempurchaseCnt;
 
-        Define.GetManager<DataManager>().AddUsableItemToInventory(info);
+        Define.GetManager<DataManager>().AddItemInInventory(info.id,info.currentCnt);
 
         UpdateUI();
     }
@@ -492,7 +493,7 @@ public class UIManager : Manager
         InventoryInit();
         _onOtherPanel = true;
 
-        CreateCardList<string>(_weaponListScroll, Define.GetManager<DataManager>().LoadWeaponData());
+        CreateCardList<ItemInfo>(_weaponListScroll, Define.GetManager<DataManager>().LoadWeaponDataFromInventory());
         //CreateCardList<string>(_heloListScroll, Define.GetManager<DataManager>().L());
         CreateCardList<ItemInfo>(_useableListScroll, Define.GetManager<DataManager>().LoadUsableItemFromInventory());
         //CreateCardList<string>(_questItemListScroll, Define.GetManager<DataManager>().LoadWeaponData());

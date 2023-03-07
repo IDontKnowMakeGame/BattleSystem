@@ -15,11 +15,7 @@ public class TestUICoder : MonoBehaviour
 
     private void Start()
     {
-        Define.GetManager<DataManager>().AddWeaponToInventory("OldStraightSword");
-        Define.GetManager<DataManager>().AddWeaponToInventory("OldGreatSword");
-        Define.GetManager<DataManager>().AddWeaponToInventory("OldTwinSword");
-        Define.GetManager<DataManager>().AddWeaponToInventory("OldSpear");
-        Define.GetManager<DataManager>().AddWeaponToInventory("OldBow");
+        Define.GetManager<DataManager>().AddItemInInventory(ItemID.OldStraightSword);
         //Define.GetManager<DataManager>().AddFeahter(10000);
     }
 

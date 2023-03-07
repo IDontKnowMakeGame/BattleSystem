@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class ItemPrice
 {
-    public int itemID;
+    public ItemID itemID;
     public int price;
 }
 
