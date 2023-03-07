@@ -229,7 +229,7 @@ public class DataManager : Manager
 
         SaveToUserData();
     }
-    public void EquipUsableItem(int id,int equipnumber)
+    public void EquipUsableItem(ItemID id,int equipnumber)
     {
         ItemInfo data = LoadUsableItemFromInventory(id);
         if (data == null)
@@ -252,7 +252,7 @@ public class DataManager : Manager
 
         SaveToUserData();
     }
-    public ItemInfo LoadUsableItem(int id)
+    public ItemInfo LoadUsableItem(ItemID id)
     {
         foreach(ItemInfo info in UserData.equipUseableItem)
         {
@@ -433,24 +433,114 @@ public class DataManager : Manager
 
     public void AddItemInInventory(ItemInfo item)
     {
+        if((int)item.id < 101)
+        { //Weapon
+            if (HaveWeapon(item.id)) return;
+            InventoryData.inventoryInWeaponList.Add(item);
 
+        }else if ((int)item.id < 201)
+        { //Helo
+            if (HaveHelo(item.id)) return;
+            InventoryData.inventoryInHeloList.Add(item);
+        }
+        else if ((int)item.id < 301)
+        { //UseableItem
+
+            ItemInfo info = LoadUsableItemFromInventory(item.id);
+            if(info == null)
+            {
+                info = item;
+                InventoryData.inventoryInUsableItemList.Add(item);
+            }else
+            {
+                AddItemCount(item);
+            }
+        }
+        else if ((int)item.id < 401)
+        { //QuestItem
+            if (HaveQuestItem(item.id)) return;
+            InventoryData.inventoryInQuestItemList.Add(item);
+        }
+
+        SaveToInventoryData();
     }    
-    public bool HaveWeapon(int name)
+    public ItemInfo LoadItemFromInventory(ItemID id)
     {
-        foreach(string weapon in InventoryData.inventoryInWeaponList)
+        if ((int)id < 101)
+        { //Weapon
+            return LoadWeaponDataFromInventory(id);
+        }
+        else if ((int)id < 201)
+        { //Helo
+            return LoadHeloDataFromInventory(id);
+        }
+        else if ((int)id < 301)
+        { //UseableItem
+            return LoadUsableItemFromInventory(id);
+        }
+        else if ((int)id < 401)
+        { //QuestItem
+            return LoadQuestFromInventory(id);
+        }
+
+        return null;
+    }
+
+    public List<ItemInfo> LoadWeaponDataFromInventory()
+    {
+        return InventoryData.inventoryInWeaponList;
+    }
+    public ItemInfo LoadWeaponDataFromInventory(ItemID id)
+    {
+        foreach(ItemInfo info in InventoryData.inventoryInWeaponList)
         {
-            if(weapon == name)
+            if (info.id == id)
+                return info;
+        }
+        return null;
+    }
+    public bool HaveWeapon(ItemID id)
+    {
+        foreach(ItemInfo weapon in InventoryData.inventoryInWeaponList)
+        {
+            if(weapon.id == id)
             {
                 return true;
             }
         }
         return false;
     }
+
+    public List<ItemInfo> LoadHeloDataFromInventory()
+    {
+        return InventoryData.inventoryInHeloList;
+    }
+    public ItemInfo LoadHeloDataFromInventory(ItemID id)
+    {
+        foreach (ItemInfo info in InventoryData.inventoryInHeloList)
+        {
+            if (info.id == id)
+                return info;
+        }
+        return null;
+    }
+    public bool HaveHelo(ItemID id)
+    {
+        foreach (ItemInfo helo in InventoryData.inventoryInHeloList)
+        {
+            if (helo.id == id)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<ItemInfo> LoadUsableItemFromInventory()
     {
         return InventoryData.inventoryInUsableItemList;
     }
-    public ItemInfo LoadUsableItemFromInventory(int id)
+    public ItemInfo LoadUsableItemFromInventory(ItemID id)
     {
         foreach(ItemInfo info in InventoryData.inventoryInUsableItemList)
         {
@@ -466,9 +556,50 @@ public class DataManager : Manager
             if(InventoryData.inventoryInUsableItemList[i].id == data.id)
             {
                 InventoryData.inventoryInUsableItemList[i] = data;
+
+                SaveToInventoryData();
                 return;
             }
         }
+    }
+    public void AddItemCount(ItemInfo data)
+    {
+        for (int i = 0; i < InventoryData.inventoryInUsableItemList.Count; i++)
+        {
+            if (InventoryData.inventoryInUsableItemList[i].id == data.id)
+            {
+                ItemInfo info = InventoryData.inventoryInUsableItemList[i];
+                InventoryData.inventoryInUsableItemList[i].currentCnt = Math.Clamp((info.currentCnt + data.currentCnt), 0, info.maxCnt);
+
+                SaveToInventoryData();
+                return;
+            }
+        }
+    }
+
+    public List<ItemInfo> LoadQuestFromInventory()
+    {
+        return InventoryData.inventoryInQuestItemList;
+    }
+    public ItemInfo LoadQuestFromInventory(ItemID id)
+    {
+        foreach (ItemInfo info in InventoryData.inventoryInQuestItemList)
+        {
+            if (info.id == id)
+                return info;
+        }
+        return null;
+    }
+    public bool HaveQuestItem(ItemID id)
+    {
+        foreach (ItemInfo item in InventoryData.inventoryInQuestItemList)
+        {
+            if (item.id == id)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     #endregion
