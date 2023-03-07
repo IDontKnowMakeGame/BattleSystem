@@ -56,8 +56,7 @@ public class BaseStraightSword : Weapon
 	protected override void AttackCoroutine(Vector3 vec)
 	{
 		base.AttackCoroutine(vec);
-		if(_thisBase.GetBehaviour<PlayerAttack>().CanAttack)
-			_playerAnimation.GetClip().SetEventOnFrame(5, () => Attack(vec));
+		_playerAnimation.GetClip().SetEventOnFrame(5, () => Attack(vec));
 	}
 	protected override void Attack(Vector3 vec)
 	{
