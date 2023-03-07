@@ -508,12 +508,15 @@ public class UIManager : Manager
 
     public void SelectEquipWeaponBoxBtn(int num, VisualElement box)
     {
+        if(_selectVisual != null)
+            _selectVisual.style.backgroundColor = new StyleColor(Color.white);
+
         ChangeShowInventoryPanel(0);
         _selectVisual = box;
         _selectNum = num;
         boxType = EquipType.Weapon;
 
-        box.style.backgroundColor = new StyleColor(Color.blue);
+        _selectVisual.style.backgroundColor = new StyleColor(Color.blue);
     }
     //public void SelectEquipHeloBoxBtn(int num, VisualElement box)
     //{
@@ -544,8 +547,12 @@ public class UIManager : Manager
                 {
                     Debug.Log($"{_selectVisual} : Quipt");
                     _selectVisual.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManagers>().Load<Sprite>(data as string));
+                    Define.GetManager<DataManager>().ChangeUserWeaponData(data as string, _selectNum == 1);
+
                     _selectVisual = null;
                     boxType = EquipType.None;
+
+                    //Define.GetManager<EventManager>().TriggerEvent(EventFlag)
                 }
                 
             });
