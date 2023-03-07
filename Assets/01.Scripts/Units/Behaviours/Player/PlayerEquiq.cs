@@ -20,7 +20,7 @@ namespace Units.Base.Player
 		public override void Awake()
 		{
 			base.Awake();
-			//¿©±â¼­ ¿þÆù ÀÎµ¦½º¸¦ ¹Þ¾Æ ÁØ´Ù.
+			//ï¿½ï¿½ï¿½â¼­ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾ï¿½ ï¿½Ø´ï¿½.
 			//_currentWeapon = DataManager.UserData.firstWeapon;
 			//_secoundWeapon = DataManager.UserData.secondWeapon;
 
@@ -120,25 +120,25 @@ namespace Units.Base.Player
 		}
 		public void SetWeapon(EventParam eventParam)
 		{
-			//¾ø´Â »óÈ²ÀÏ ¶§ ³Ö±â
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È²ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö±ï¿½
 			if (_currentWeapon == ItemID.None)
 			{
-				//TODO : ³Ö¾îÁÖ±â
+				//TODO : ï¿½Ö¾ï¿½ï¿½Ö±ï¿½
 				//_currentWeapon = DataManager.UserData.firstWeapon;
 				CurrentWeapon.ChangeKey();
 				return;
 			}
 			else if (_secoundWeapon == ItemID.None)
 			{
-				//TODO : ³Ö¾îÁÖ±â
+				//TODO : ï¿½Ö¾ï¿½ï¿½Ö±ï¿½
 				//_secoundWeapon = DataManager.UserData.secondWeapon;
 				return;
 			}
 
-			//¿©±â¼­ ÀÖÀ» °æ¿ì ¹Ù²Ù´Â°Å ¹ßµ¿
+			//ï¿½ï¿½ï¿½â¼­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ù²Ù´Â°ï¿½ ï¿½ßµï¿½
 			CurrentWeapon.Reset();
 
-			//TODO : ³Ö¾îÁÖ±â
+			//TODO : ï¿½Ö¾ï¿½ï¿½Ö±ï¿½
 			//_currentWeapon = DataManager.UserData.firstWeapon;
 			CurrentWeapon.ChangeKey();
 
@@ -150,7 +150,7 @@ namespace Units.Base.Player
 			playerAnimation.CurWeaponAnimator.ChangeWeapon = true;
 			playerAnimation.SetAnmation();
 
-			//TODO : ³Ö¾îÁÖ±â
+			//TODO : ï¿½Ö¾ï¿½ï¿½Ö±ï¿½
 			//_secoundWeapon = DataManager.UserData.secondWeapon;
 		}
 
@@ -161,7 +161,7 @@ namespace Units.Base.Player
 				CurrentWeapon.Reset();
 			}
 
-			//TODO : ³Ö¾îÁÖ±â
+			//TODO : ï¿½Ö¾ï¿½ï¿½Ö±ï¿½
 			//_currentWeapon = DataManager.UserData.firstWeapon;
 			//_secoundWeapon = DataManager.UserData.secondWeapon;
 		}
