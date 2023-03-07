@@ -5,12 +5,7 @@ using Units.Behaviours.Unit;
 using System;
 using Managements.Managers;
 
-enum ItemID
-{
-    Torch = 001,
-    Shield = 002,
-    HP =  101
-}
+
 
 [System.Serializable]
 public class PlayerItem : UnitBehaviour
@@ -56,7 +51,7 @@ public class PlayerItem : UnitBehaviour
         // ID ¼¼ÆÃ
         idItems.Add((int)ItemID.Torch, playerTorch);
         idItems.Add((int)ItemID.Shield, playerShield);
-        idItems.Add((int)ItemID.HP, playerPortion);
+        idItems.Add((int)ItemID.HPPotion, playerPortion);
 
         keyItems.Add(2, playerTorch);
         keyItems.Add(1, playerShield);

@@ -73,7 +73,6 @@ public class User
     public int maxHp = 100;
     public int feather = 0;
 
-    public string currentWeapon;
     public string firstWeapon;
     public string secondWeapon;
 
@@ -81,21 +80,21 @@ public class User
     public string secondHelo = "";
     public string thirdHelo = "";
 
-    public List<ItemInfo> equipUseableItem; //0~4 
-
+    public List<ItemInfo> equipUseableItem; //0~4 x
     public List<Contract> contractsInfo;
 }
 [Serializable]
 public class Contract
 {
-    public int id;
+    public string name;
     public int deHP;
     public int addAtk;
 }
 [Serializable]
 public class ItemInfo
 {
-    public int id;
+    public ItemID id;
+    public string name;
     public int currentCnt;
     public int maxCnt;
     public int equipNumber = 0; //1
@@ -104,9 +103,10 @@ public class ItemInfo
 
 public class Inventory
 {
-    public List<string> inventoryInWeaponList;
-    public List<string> inventoryInHeloList;
+    public List<ItemInfo> inventoryInWeaponList;
+    public List<ItemInfo> inventoryInHeloList;
     public List<ItemInfo> inventoryInUsableItemList;
+    public List<ItemInfo> inventoryInQuestItemList;
 }
 
 public class MapInformation
@@ -198,13 +198,8 @@ public class DataManager : Manager
 
         SaveToUserData();
     }
-    public void SwapCurrentWeaponData()
-    {
-        UserData.currentWeapon = "";
 
-        SaveToUserData();
-    }
-    public void SwapCurrentWeaponData(string name)
+    public void SwapWeaponData(string name)
     {
         if(UserData.firstWeapon != name && UserData.secondWeapon != name)
         {
@@ -212,7 +207,6 @@ public class DataManager : Manager
             return;
         }
 
-        UserData.currentWeapon = name;
 
         SaveToUserData();
     }
@@ -220,18 +214,10 @@ public class DataManager : Manager
     {
         if(isFirstWeapon)
         {
-            if(UserData.currentWeapon == UserData.firstWeapon)
-            {
-                UserData.currentWeapon = name;
-            }
             UserData.firstWeapon = name;
         }
         else
         {
-            if (UserData.currentWeapon == UserData.secondWeapon)
-            {
-                UserData.currentWeapon = name;
-            }
             UserData.secondWeapon = name;
         }
 
@@ -444,18 +430,12 @@ public class DataManager : Manager
         string json = DataJson.ObjectToJson(InventoryData);
         DataJson.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/User", "InvectoryData",json);
     }
-    public void AddWeaponToInventory(string name)
-    {
-        if (HaveWeapon(name)) return;
 
-        InventoryData.inventoryInWeaponList.Add(name);
-        SaveToInventoryData();
-    }
-    public List<string> LoadWeaponData()
+    public void AddItemInInventory(ItemInfo item)
     {
-        return InventoryData.inventoryInWeaponList;
-    }
-    public bool HaveWeapon(string name)
+        if(item.id < 100)
+    }    
+    public bool HaveWeapon(int name)
     {
         foreach(string weapon in InventoryData.inventoryInWeaponList)
         {
@@ -465,23 +445,6 @@ public class DataManager : Manager
             }
         }
         return false;
-    }
-
-    public void AddHeloToInventory(string name)
-    {
-        InventoryData.inventoryInHeloList.Add(name);
-        SaveToInventoryData();
-    }
-    public void AddUsableItemToInventory(ItemInfo data)
-    {
-        ItemInfo info = LoadUsableItemFromInventory(data.id);
-
-        if (info == null)
-            InventoryData.inventoryInUsableItemList.Add(data);
-        else
-            ChangeItemInfo(data);
-
-        SaveToInventoryData();
     }
     public List<ItemInfo> LoadUsableItemFromInventory()
     {
@@ -506,8 +469,6 @@ public class DataManager : Manager
                 return;
             }
         }
-
-        AddUsableItemToInventory(data);
     }
 
     #endregion
