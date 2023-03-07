@@ -24,96 +24,96 @@ public class BaseTwinSword : Weapon
 				if (_currentVec == Vector3.forward || _currentVec == Vector3.back)
 				{
 					Debug.Log("앞이용");
-					_playerAttack.AttackColParent.ChangeSizeZ(DirType.Left, 1);
-					_playerAttack.AttackColParent.ChangeSizeZ(DirType.Right, 1);
-					_playerAttack.AttackColParent.ChangeSizeX(1);
-					_playerAttack.AttackColParent.EnableDir(DirType.Left, DirType.Right);
+					_attackCollider.ChangeSizeZ(DirType.Left, 1);
+					_attackCollider.ChangeSizeZ(DirType.Right, 1);
+					_attackCollider.ChangeSizeX(1);
+					_attackCollider.EnableDir(DirType.Left, DirType.Right);
 				}
 				else
 				{
 					Debug.Log("옆이용");
-					_playerAttack.AttackColParent.ChangeSizeX(DirType.Up, 1);
-					_playerAttack.AttackColParent.ChangeSizeX(DirType.Down, 1);
-					_playerAttack.AttackColParent.ChangeSizeZ(1);
-					_playerAttack.AttackColParent.EnableDir(DirType.Up, DirType.Down);
+					_attackCollider.ChangeSizeX(DirType.Up, 1);
+					_attackCollider.ChangeSizeX(DirType.Down, 1);
+					_attackCollider.ChangeSizeZ(1);
+					_attackCollider.EnableDir(DirType.Up, DirType.Down);
 				}
 				break;
 			case 2:
 				_changeBuffStats.Atk = 10;
 				if (_currentVec == Vector3.forward || _currentVec == Vector3.back)
 				{
-					_playerAttack.AttackColParent.ChangeSizeZ(DirType.Left, 1);
-					_playerAttack.AttackColParent.ChangeSizeZ(DirType.Right, 1);
-					_playerAttack.AttackColParent.ChangeSizeX(1);
-					_playerAttack.AttackColParent.EnableDir(DirType.Left, DirType.Right);
+					_attackCollider.ChangeSizeZ(DirType.Left, 1);
+					_attackCollider.ChangeSizeZ(DirType.Right, 1);
+					_attackCollider.ChangeSizeX(1);
+					_attackCollider.EnableDir(DirType.Left, DirType.Right);
 				}
 				else
 				{
-					_playerAttack.AttackColParent.ChangeSizeX(DirType.Up, 1);
-					_playerAttack.AttackColParent.ChangeSizeX(DirType.Down, 1);
-					_playerAttack.AttackColParent.ChangeSizeZ(1);
-					_playerAttack.AttackColParent.EnableDir(DirType.Up, DirType.Down);
+					_attackCollider.ChangeSizeX(DirType.Up, 1);
+					_attackCollider.ChangeSizeX(DirType.Down, 1);
+					_attackCollider.ChangeSizeZ(1);
+					_attackCollider.EnableDir(DirType.Up, DirType.Down);
 				}
 				break;
 			case 3:
 				_changeBuffStats.Atk = 10;
 				if (_currentVec == Vector3.forward || _currentVec == Vector3.back)
 				{
-					_playerAttack.AttackColParent.ChangeSizeZ(DirType.Left, 2);
-					_playerAttack.AttackColParent.ChangeSizeZ(DirType.Right, 2);
-					_playerAttack.AttackColParent.ChangeSizeX(1);
-					_playerAttack.AttackColParent.EnableDir(DirType.Left, DirType.Right);
+					_attackCollider.ChangeSizeZ(DirType.Left, 2);
+					_attackCollider.ChangeSizeZ(DirType.Right, 2);
+					_attackCollider.ChangeSizeX(1);
+					_attackCollider.EnableDir(DirType.Left, DirType.Right);
 				}
 				else
 				{
-					_playerAttack.AttackColParent.ChangeSizeX(DirType.Up, 2);
-					_playerAttack.AttackColParent.ChangeSizeX(DirType.Down, 2);
-					_playerAttack.AttackColParent.ChangeSizeZ(1);
-					_playerAttack.AttackColParent.EnableDir(DirType.Up, DirType.Down);
+					_attackCollider.ChangeSizeX(DirType.Up, 2);
+					_attackCollider.ChangeSizeX(DirType.Down, 2);
+					_attackCollider.ChangeSizeZ(1);
+					_attackCollider.EnableDir(DirType.Up, DirType.Down);
 				}
 				break;
 			case 4:
 				_changeBuffStats.Atk = 15;
 				if (_currentVec == Vector3.forward || _currentVec == Vector3.back)
 				{
-					_playerAttack.AttackColParent.ChangeSizeZ(DirType.Left, 2);
-					_playerAttack.AttackColParent.ChangeSizeZ(DirType.Right, 2);
-					_playerAttack.AttackColParent.ChangeSizeX(1);
-					_playerAttack.AttackColParent.EnableDir(DirType.Left, DirType.Right);
+					_attackCollider.ChangeSizeZ(DirType.Left, 2);
+					_attackCollider.ChangeSizeZ(DirType.Right, 2);
+					_attackCollider.ChangeSizeX(1);
+					_attackCollider.EnableDir(DirType.Left, DirType.Right);
 				}
 				else
 				{
-					_playerAttack.AttackColParent.ChangeSizeX(DirType.Up, 2);
-					_playerAttack.AttackColParent.ChangeSizeX(DirType.Down, 2);
-					_playerAttack.AttackColParent.ChangeSizeZ(1);
-					_playerAttack.AttackColParent.EnableDir(DirType.Up, DirType.Down);
+					_attackCollider.ChangeSizeX(DirType.Up, 2);
+					_attackCollider.ChangeSizeX(DirType.Down, 2);
+					_attackCollider.ChangeSizeZ(1);
+					_attackCollider.EnableDir(DirType.Up, DirType.Down);
 				}
 				break;
 			case 5:
 				_changeBuffStats.Atk = 20;
 				if (_currentVec == Vector3.forward || _currentVec == Vector3.back)
 				{
-					_playerAttack.AttackColParent.ChangeSizeZ(DirType.Left, 2);
-					_playerAttack.AttackColParent.ChangeSizeZ(DirType.Right, 2);
-					_playerAttack.AttackColParent.ChangeSizeX(1);
-					_playerAttack.AttackColParent.EnableDir(DirType.Left, DirType.Right);
+					_attackCollider.ChangeSizeZ(DirType.Left, 2);
+					_attackCollider.ChangeSizeZ(DirType.Right, 2);
+					_attackCollider.ChangeSizeX(1);
+					_attackCollider.EnableDir(DirType.Left, DirType.Right);
 					DirType type = _currentVec == Vector3.forward ? DirType.Up : DirType.Down;
-					_playerAttack.AttackColParent.CheckDir(type);
+					_attackCollider.CheckDir(type);
 					float offset = _currentVec == Vector3.forward ? 0.5f : -0.5f;
-					_playerAttack.AttackColParent.ChangeOffsetZ(DirType.Left, offset);
-					_playerAttack.AttackColParent.ChangeOffsetZ(DirType.Right, offset);
+					_attackCollider.ChangeOffsetZ(DirType.Left, offset);
+					_attackCollider.ChangeOffsetZ(DirType.Right, offset);
 				}
 				else
 				{
-					_playerAttack.AttackColParent.ChangeSizeX(DirType.Up, 2);
-					_playerAttack.AttackColParent.ChangeSizeX(DirType.Down, 2);
-					_playerAttack.AttackColParent.ChangeSizeZ(1);
-					_playerAttack.AttackColParent.EnableDir(DirType.Up, DirType.Down);
+					_attackCollider.ChangeSizeX(DirType.Up, 2);
+					_attackCollider.ChangeSizeX(DirType.Down, 2);
+					_attackCollider.ChangeSizeZ(1);
+					_attackCollider.EnableDir(DirType.Up, DirType.Down);
 					DirType type = _currentVec == Vector3.left ? DirType.Left : DirType.Right;
-					_playerAttack.AttackColParent.CheckDir(type);
+					_attackCollider.CheckDir(type);
 					float offset = _currentVec == Vector3.right ? 0.5f : -0.5f;
-					_playerAttack.AttackColParent.ChangeOffsetX(DirType.Up, offset);
-					_playerAttack.AttackColParent.ChangeOffsetX(DirType.Down, offset);
+					_attackCollider.ChangeOffsetX(DirType.Up, offset);
+					_attackCollider.ChangeOffsetX(DirType.Down, offset);
 				}
 				break;
 		};
@@ -137,11 +137,11 @@ public class BaseTwinSword : Weapon
 			return;
 
 		_currentVec = vec;
-		_playerAttack.AttackColParent.AllDisableDir();
+		_attackCollider.AllDisableDir();
 		LevelSystem();
-		_playerAttack.Attack(_unitStat.NowStats.Atk);
-		_playerAttack.AttackColParent.ChangeWeapon();
-		_playerAttack.AttackColParent.AllEnableDir();
+		Attack();
+		_attackCollider.ChangeWeapon();
+		_attackCollider.AllEnableDir();
 	}
 
 	public override void Reset()

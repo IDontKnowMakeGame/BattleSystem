@@ -105,14 +105,14 @@ public class BaseGreatSword : Weapon
 		{
 			LevelSystem();
 			_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
-			_playerAttack.AttackColParent.ChangeSizeZ(1);
-			_playerAttack.AttackColParent.ChangeSizeX(1);
-			_playerAttack.AttackColParent.CheckDir(_playerAttack.AttackColParent.DirReturn(_currentVector));
+			_attackCollider.ChangeSizeZ(1);
+			_attackCollider.ChangeSizeX(1);
+			_attackCollider.CheckDir(_attackCollider.DirReturn(_currentVector));
 			_playerAnimation.CurWeaponAnimator.SetDir = vec;
 			_playerAnimation.CurWeaponAnimator.Attack = true;
-			_playerAttack.Attack(_unitStat.NowStats.Atk);
+			Attack();
 			_playerAnimation.SetAnmation();
-			_playerAttack.AttackColParent.AllEnableDir();
+			_attackCollider.AllEnableDir();
 		}
 		else
 		{

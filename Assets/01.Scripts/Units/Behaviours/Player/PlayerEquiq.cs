@@ -10,7 +10,7 @@ namespace Units.Base.Player
 	public class PlayerEquiq : UnitEquiq
 	{
 		private int count;
-
+		
 		private PlayerAnimation playerAnimation;
 		private PlayerAttack playerAttack;
 		private AnimationClip animationClip;
@@ -48,15 +48,14 @@ namespace Units.Base.Player
 
 			CurrentWeapon?.ChangeKey();
 
-			ThisBase.GetBehaviour<PlayerEquiq>().InsertHelo("DirtyHalo", 0);
-			ThisBase.GetBehaviour<PlayerEquiq>().InsertHelo("EvilSpiritHalo", 1);
+			//InsertHelo("DirtyHalo", 0);
+			//InsertHelo("EvilSpiritHalo", 1);
 
 			ChangeWeapon();
 		}
 		public override void Update()
 		{
 			base.Update();
-			CurrentWeapon?.Update();
 		}
 		public override void OnDisable()
 		{
@@ -86,7 +85,7 @@ namespace Units.Base.Player
 			CurrentWeapon?.Reset();
 			SecoundWeapon?.ChangeKey();
 
-			string temp = _currentWeapon;
+			ItemID temp = _currentWeapon;
 			_currentWeapon = _secoundWeapon;
 			_secoundWeapon = temp;
 
@@ -105,9 +104,9 @@ namespace Units.Base.Player
 		private void TestChangeWeapon()
 		{
 			count++;
-			count = count % 7;
+			count = count % 100;
 			int dicCount = 0;
-			foreach (var a in weapons)
+			foreach (var a in items)
 			{
 				dicCount++;
 				if (dicCount == count)
@@ -122,21 +121,25 @@ namespace Units.Base.Player
 		public void SetWeapon(EventParam eventParam)
 		{
 			//없는 상황일 때 넣기
-			if (_currentWeapon == "")
+			if (_currentWeapon == ItemID.None)
 			{
-				_currentWeapon = DataManager.UserData.firstWeapon;
+				//TODO : 넣어주기
+				//_currentWeapon = DataManager.UserData.firstWeapon;
 				CurrentWeapon.ChangeKey();
 				return;
 			}
-			else if (_secoundWeapon == "")
+			else if (_secoundWeapon == ItemID.None)
 			{
-				_secoundWeapon = DataManager.UserData.secondWeapon;
+				//TODO : 넣어주기
+				//_secoundWeapon = DataManager.UserData.secondWeapon;
 				return;
 			}
 
 			//여기서 있을 경우 바꾸는거 발동
 			CurrentWeapon.Reset();
-			_currentWeapon = DataManager.UserData.firstWeapon;
+
+			//TODO : 넣어주기
+			//_currentWeapon = DataManager.UserData.firstWeapon;
 			CurrentWeapon.ChangeKey();
 
 			InGame.PlayerBase.GetBehaviour<PlayerMove>().ClearMove();
@@ -147,7 +150,8 @@ namespace Units.Base.Player
 			playerAnimation.CurWeaponAnimator.ChangeWeapon = true;
 			playerAnimation.SetAnmation();
 
-			_secoundWeapon = DataManager.UserData.secondWeapon;
+			//TODO : 넣어주기
+			//_secoundWeapon = DataManager.UserData.secondWeapon;
 		}
 
 		public void UnSetWeapon(EventParam eventParam)
@@ -157,8 +161,9 @@ namespace Units.Base.Player
 				CurrentWeapon.Reset();
 			}
 
-			_currentWeapon = DataManager.UserData.firstWeapon;
-			_secoundWeapon = DataManager.UserData.secondWeapon;
+			//TODO : 넣어주기
+			//_currentWeapon = DataManager.UserData.firstWeapon;
+			//_secoundWeapon = DataManager.UserData.secondWeapon;
 		}
 		public void WeaponUpgrade(EventParam eventParam)
 		{

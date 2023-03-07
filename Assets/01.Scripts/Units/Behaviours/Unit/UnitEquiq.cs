@@ -10,17 +10,17 @@ namespace Units.Behaviours.Unit
 	public class UnitEquiq : UnitBehaviour
 	{
 		//All Info of Item
-		public static Dictionary<int, Item> items = new Dictionary<int, Item>()
+		public static Dictionary<ItemID, Item> items = new Dictionary<ItemID, Item>()
 		{
-			{0, new OldStraightSword()},
-			{1, new OldTwinSword()}
+			{ItemID.OldStraightSword, new OldStraightSword()},
+			{ItemID.OldTwinSword, new OldTwinSword()}
 		};
 		#region Weapon
 		//Now CurrentWeapon & SecoundWeapon
 		[SerializeField]
-		protected int _currentWeapon;
+		protected ItemID _currentWeapon;
 		[SerializeField]
-		protected int _secoundWeapon;
+		protected ItemID _secoundWeapon;
 
 		//Select Enemy or Player
 		public bool isEnemy = true;
@@ -30,29 +30,14 @@ namespace Units.Behaviours.Unit
 		{
 			get
 			{
-				if ("" != _currentWeapon && null != _currentWeapon)
+				if (_currentWeapon != ItemID.None)
 				{
+					Item item;
 					Weapon weapon = null;
-					if (weapons.TryGetValue(_currentWeapon, out weapon))
-					{
-						return weapons[_currentWeapon];
-				}
-				else
-				{
-					if (isEnemy)
-					{
-						Type type = Type.GetType(_currentWeapon);
-							if (type == null)
-								return weapon;
-						Weapon weaponClass = Activator.CreateInstance(type) as Weapon;
-						weaponClass._thisBase = ThisBase;
-						InsertWeapon(_currentWeapon, weaponClass);
-						weapon = weapons[_currentWeapon];
-					}
-
+					items.TryGetValue(_currentWeapon, out item);
+					weapon = item as Weapon;
 					return weapon;
 				}
-			}
 				else
 					return null;
 			}
@@ -61,8 +46,14 @@ namespace Units.Behaviours.Unit
 		{
 			get
 			{
-				if ("" != _currentWeapon && null != _currentWeapon)
-					return weapons[_secoundWeapon];
+				if (_secoundWeapon != ItemID.None)
+				{
+					Item item;
+					Weapon weapon = null;
+					items.TryGetValue(_secoundWeapon, out item);
+					weapon = item as Weapon;
+					return weapon;
+				}
 				else
 					return null;
 			}
@@ -130,37 +121,31 @@ namespace Units.Behaviours.Unit
 				value.Value?.OnApplicationQuit();
 			}
 		}
-		public virtual void InsertWeapon(string name, Weapon type)
-		{
-			weapons.Add(name, type);
-			weapons[name].Awake();
-			weapons[name].Start();
-		}
-		public virtual void InsertHelo(string name, int idx)
-		{
-			EraseHelo(idx);
+		//public virtual void InsertHelo(ItemID name, int idx)
+		//{
+		//	EraseHelo(idx);
 
-			usingHalos[idx] = halos[name];
-			usingHalos[idx].Init();
-		}
+		//	usingHalos[idx] = halos[name];
+		//	usingHalos[idx].Init();
+		//}
 
-		public virtual void EraseHelo(int idx)
-		{
-			if (usingHalos[idx] != null)
-				usingHalos[idx].Exit();
+		//public virtual void EraseHelo(int idx)
+		//{
+		//	if (usingHalos[idx] != null)
+		//		usingHalos[idx].Exit();
 
-			usingHalos[idx] = null;
-		}
+		//	usingHalos[idx] = null;
+		//}
 
 		public int WeaponAnimation()
 		{
-			if (_currentWeapon == "OldStraightSword")
+			if (_currentWeapon == ItemID.OldGreatSword)
 				return 0;
-			else if (_currentWeapon == "OldTwinSword")
+			else if (_currentWeapon == ItemID.OldTwinSword)
 				return 1;
-			else if (_currentWeapon == "OldGreatSword")
+			else if (_currentWeapon == ItemID.OldGreatSword)
 				return 2;
-			else if (_currentWeapon == "OldSpear")
+			else if (_currentWeapon == ItemID.OldSpear)
 				return 3;
 			else
 				return 0;

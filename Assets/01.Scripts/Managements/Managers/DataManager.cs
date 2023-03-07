@@ -433,7 +433,7 @@ public class DataManager : Manager
 
     public void AddItemInInventory(ItemInfo item)
     {
-        if(item.id < 100)
+
     }    
     public bool HaveWeapon(int name)
     {

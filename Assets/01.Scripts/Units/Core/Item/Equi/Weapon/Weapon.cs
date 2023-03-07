@@ -2,27 +2,24 @@
 using UnityEngine;
 using Units.Behaviours.Unit;
 using Units.Base.Unit;
-using Managements;
 using Managements.Managers;
 using Units.Base.Player;
 using Core;
 using Tools;
+using System.Collections.Generic;
 
 namespace Unit.Core.Weapon
 {
-    [Serializable]
-    public class Weapon:EquipmentItem
-    {
-        public UnitBase _thisBase;
-		public AttackCollider _attackColider;
+	[Serializable]
+	public class Weapon : EquipmentItem
+	{
+		public UnitBase _thisBase;
 
+		#region weapon Stat변경하는 것들
 		protected WeaponStats _weaponStats = null;
-        protected WeaponStats _changeStats = new WeaponStats();
-        protected WeaponStats _changeBuffStats = new WeaponStats();
-
-        private WeaponStats _WeaponStats = new WeaponStats();
-
-		protected AttackCollider _attackCollider = null;
+		protected WeaponStats _changeStats = new WeaponStats();
+		protected WeaponStats _changeBuffStats = new WeaponStats();
+		private WeaponStats _WeaponStats = new WeaponStats();
 		public WeaponStats WeaponStat
 		{
 			get
@@ -34,28 +31,33 @@ namespace Unit.Core.Weapon
 				return _WeaponStats;
 			}
 		}
-
+		#endregion
 		//유닛 공격, 유닛 move
-		protected UnitAttack _unitAttack;
+		#region 유닛 공격이나 move등등
+		protected AttackCollider _attackCollider = null;
 		protected UnitMove _unitMove;
 		protected UnitStat _unitStat;
 		protected UnitAnimation _unitAnimation;
 
 		protected PlayerAnimation _playerAnimation;
-		protected PlayerAttack _playerAttack;
+		#endregion
 
-        protected float _currentTime;
-        protected float _maxTime;
+		#region 타이머
+		protected float _currentTime;
+		protected float _maxTime;
 
-        protected bool _isCoolTime = false;
+		protected bool _isCoolTime = false;
+		#endregion
 
-        public bool isSkill = false;
+		public bool isSkill = false;
 
 		protected bool _isEnemy = true;
 
 		protected SliderObject _sliderObject;
 
 		protected WeaponClassLevel _weaponClassLevel;
+
+		private bool attackInit = false;
 		public override void Awake()
 		{
 			base.Awake();
@@ -63,12 +65,11 @@ namespace Unit.Core.Weapon
 		}
 		public override void Start()
 		{
-			_unitAttack = _thisBase.GetBehaviour<UnitAttack>();
+			_attackCollider = _thisBase.GetComponentInChildren<AttackCollider>();
 			_unitMove = _thisBase.GetBehaviour<UnitMove>();
 			_unitStat = _thisBase.GetBehaviour<UnitStat>();
 			_unitAnimation = _thisBase.GetBehaviour<UnitAnimation>();
 
-			_playerAttack = _unitAttack as PlayerAttack;
 			_playerAnimation = _unitAnimation as PlayerAnimation;
 
 			_changeStats = _weaponStats;
@@ -77,12 +78,6 @@ namespace Unit.Core.Weapon
 		public override void Update()
 		{
 			Timer();
-		}
-		public virtual void ChangeKey()
-		{
-			InputManager.OnAttackPress += AttackCoroutine;
-			InputManager.OnSkillPress += Skill;
-			LevelSystem();
 		}
 
 		protected void Timer()
@@ -97,35 +92,12 @@ namespace Unit.Core.Weapon
 				_currentTime = 0;
 			}
 		}
-		protected void GetWeaponStateData(string name)
-		{
-			WeaponStateDataList weaponStateDataList = DataJson.LoadJsonFile<WeaponStateDataList>(Application.streamingAssetsPath + "/SAVE/Weapon", "WeaponStatus");
-			foreach (WeaponStateData data in weaponStateDataList.weaponList)
-			{
-				if (data.name == name)
-				{
-					_weaponStats = WeaponSerializable(data);
-					break;
-				}
-			}
-		}
-		public WeaponStats WeaponSerializable(WeaponStateData data)
-		{
-			WeaponStats state = new WeaponStats();
 
-			state.Afs = data.attackAfterDelay;
-			state.Atk = data.damage;
-			state.Ats = data.attackSpeed;
-			state.Weight = data.weaponWeight;
-
-			return state;
-		}
 
 		protected virtual void Attack(Vector3 vec)
 		{
-			
-		}
 
+		}
 		protected virtual void AttackCoroutine(Vector3 vec)
 		{
 			if (_thisBase.GetBehaviour<PlayerItem>().PlayerShield.UseAble) return;
@@ -133,14 +105,15 @@ namespace Unit.Core.Weapon
 			if (_thisBase.State.HasFlag(BaseState.Attacking) ||
 				!_thisBase.GetBehaviour<PlayerAnimation>().CurWeaponAnimator.LastChange || _thisBase.State.HasFlag(BaseState.Moving))
 				return;
+			
 			if (_thisBase.State.HasFlag(BaseState.Moving))
 				return;
 
 			if (_thisBase.GetBehaviour<PlayerEquiq>().WeaponAnimation() != 1 && _thisBase.GetBehaviour<PlayerEquiq>().WeaponAnimation() != 3 &&
 				_thisBase.GetBehaviour<PlayerAnimation>().CurWeaponAnimator.LastChange)
 				_thisBase.GetBehaviour<PlayerMove>().stop = true;
-
-			if (_playerAttack.CanAttack)
+			
+			if (!_thisBase.State.HasFlag(BaseState.Attacking))
 			{
 				_playerAnimation.CurWeaponAnimator.SetDir = vec;
 				_playerAnimation.CurWeaponAnimator.Attack = true;
@@ -151,12 +124,52 @@ namespace Unit.Core.Weapon
 			else
 				_thisBase.GetBehaviour<PlayerMove>().stop = false;
 		}
+		protected virtual void Attack()
+		{
+			if(_thisBase.State.HasFlag(BaseState.Attacking) && !attackInit)
+			{
+				_thisBase.StartCoroutines(WeaponStat.Afs, () => attackInit = true,
+					() => { 
+						_thisBase.RemoveState(BaseState.Attacking); 
+						attackInit = false;
+					});
+			}
 
+			List<EnemyBase> enemys = new List<EnemyBase>();
+			enemys = _attackCollider.AllCurrentDirEnemy();
+
+			if(enemys.Count > 0)
+			{
+				//playerBuff.ChangeAdneraline(1);
+				EventParam param = new EventParam();
+				param.intParam = 1;
+				Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, param);
+			}
+
+			foreach(EnemyBase enemy in enemys)
+			{
+				enemy.ThisStat.Damaged(WeaponStat.Atk, _thisBase);
+				GameObject obj = Define.GetManager<ResourceManagers>().Instantiate("Damage");
+				obj.GetComponent<DamagePopUp>().DamageText(WeaponStat.Atk, enemy.transform.position);
+			}
+		}
 		protected virtual void Skill()
 		{
 
 		}
+		public virtual void ChangeKey()
+		{
+			InputManager.OnAttackPress += AttackCoroutine;
+			InputManager.OnSkillPress += Skill;
+			LevelSystem();
+		}
+		public virtual void Reset()
+		{
+			InputManager.OnAttackPress -= AttackCoroutine;
+			InputManager.OnSkillPress -= Skill;
+		}
 
+		#region LevelSystem + ClassLevelSystem
 		public virtual void LoadClassLevel(string name)
 		{
 			_weaponClassLevel = Define.GetManager<DataManager>().LoadWeaponClassLevel(name);
@@ -183,7 +196,7 @@ namespace Unit.Core.Weapon
 			switch (Define.GetManager<DataManager>().LoadWeaponLevelData(this.GetType().Name))
 			{
 				case 1:
-					_changeStats.Atk = _weaponStats.Atk +  20;
+					_changeStats.Atk = _weaponStats.Atk + 20;
 					break;
 				case 2:
 					_changeStats.Atk = _weaponStats.Atk + 45;
@@ -228,10 +241,32 @@ namespace Unit.Core.Weapon
 			LevelSystem();
 			SaveClassLevel();
 		}
-		public virtual void Reset()
+		#endregion
+
+		#region Data
+		protected void GetWeaponStateData(string name)
 		{
-			InputManager.OnAttackPress -= AttackCoroutine;
-			InputManager.OnSkillPress -= Skill;
+			WeaponStateDataList weaponStateDataList = DataJson.LoadJsonFile<WeaponStateDataList>(Application.streamingAssetsPath + "/SAVE/Weapon", "WeaponStatus");
+			foreach (WeaponStateData data in weaponStateDataList.weaponList)
+			{
+				if (data.name == name)
+				{
+					_weaponStats = WeaponSerializable(data);
+					break;
+				}
+			}
 		}
+		public WeaponStats WeaponSerializable(WeaponStateData data)
+		{
+			WeaponStats state = new WeaponStats();
+
+			state.Afs = data.attackAfterDelay;
+			state.Atk = data.damage;
+			state.Ats = data.attackSpeed;
+			state.Weight = data.weaponWeight;
+
+			return state;
+		}
+		#endregion
 	}
 }

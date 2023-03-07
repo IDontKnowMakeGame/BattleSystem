@@ -29,29 +29,29 @@ public class BaseSpear : Weapon
 				_changeBuffStats.Atk = 5;
 				_changeBuffStats.Ats = -0.01f;
 				_changeBuffStats.Afs = -0.01f;
-				_playerAttack.AttackColParent.ChangeSizeZ(1);
-				_playerAttack.AttackColParent.ChangeSizeX(1);
+				_attackCollider.ChangeSizeZ(1);
+				_attackCollider.ChangeSizeX(1);
 				break;
 			case 2:
 				_changeBuffStats.Atk = 10;
 				_changeBuffStats.Ats = -0.03f;
 				_changeBuffStats.Afs = -0.03f;
-				_playerAttack.AttackColParent.ChangeSizeZ(1);
-				_playerAttack.AttackColParent.ChangeSizeX(1);
+				_attackCollider.ChangeSizeZ(1);
+				_attackCollider.ChangeSizeX(1);
 				break;
 			case 3:
 				_changeBuffStats.Atk = 15;
 				_changeBuffStats.Ats = -0.05f;
 				_changeBuffStats.Afs = -0.05f;
-				_playerAttack.AttackColParent.ChangeSizeZ(1);
-				_playerAttack.AttackColParent.ChangeSizeX(1);
+				_attackCollider.ChangeSizeZ(1);
+				_attackCollider.ChangeSizeX(1);
 				break;
 			case 4:
 				_changeBuffStats.Atk = 20;
 				_changeBuffStats.Ats = -0.07f;
 				_changeBuffStats.Afs = -0.07f;
-				_playerAttack.AttackColParent.ChangeSizeZ(1);
-				_playerAttack.AttackColParent.ChangeSizeX(1);
+				_attackCollider.ChangeSizeZ(1);
+				_attackCollider.ChangeSizeX(1);
 				break;
 			case 5:
 				_changeBuffStats.Atk = 20;
@@ -59,10 +59,15 @@ public class BaseSpear : Weapon
 				_changeBuffStats.Afs = -0.07f;
 				int sizeZ = _currentAttackPos == Vector3.forward || _currentAttackPos == Vector3.back ? 2 : 1;
 				int sizeX = _currentAttackPos == Vector3.left || _currentAttackPos == Vector3.right ? 2 : 1;
-				_playerAttack.AttackColParent.ChangeSizeZ(sizeZ);
-				_playerAttack.AttackColParent.ChangeSizeX(sizeX);
+				_attackCollider.ChangeSizeZ(sizeZ);
+				_attackCollider.ChangeSizeX(sizeX);
 				break;
 		};
+	}
+	protected override void Attack()
+	{
+		base.Attack();
+		IsOut();
 	}
 	public override void ChangeKey()
 	{
@@ -72,19 +77,17 @@ public class BaseSpear : Weapon
 		InputManager.ChangeKeyCode(KeyboardInput.AttackBackward, KeyCode.S);
 		InputManager.ChangeKeyCode(KeyboardInput.AttackLeft, KeyCode.A);
 		InputManager.ChangeKeyCode(KeyboardInput.AttackRight, KeyCode.D);
-
-		_playerAttack.onBehaviourEnd = IsOut;
 	}
 	private void IsOut() => isOut = false;
 	public override void Update()
 	{
 		base.Update();
-		if (_isAttack && isOut && _playerAttack.HasEnemy() && !_thisBase.State.HasFlag(BaseState.Moving))
+		if (_isAttack && isOut && /*_playerAttack.HasEnemy() &&*/ !_thisBase.State.HasFlag(BaseState.Moving))
 		{
-			_playerAttack.Attack(_unitStat.NowStats.Atk);
-			_playerAttack.AttackColParent.ChangeWeapon();
+			Attack();
+			_attackCollider.ChangeWeapon();
 		}
-		else if (_isAttack && ! _playerAttack.HasEnemy())
+		else if (_isAttack /*&& ! _playerAttack.HasEnemy()*/)
 		{
 			isOut = true;
 		}
@@ -103,7 +106,7 @@ public class BaseSpear : Weapon
 		base.Attack(vec);
 		if (!_isAttack)
 		{
-			_playerAttack.AttackColParent.AllDisableDir();
+			_attackCollider.AllDisableDir();
 			_currentAttackPos = Vector3.zero;
 			_isAttack = true;
 			_thisBase.StartCoroutine(DownLate(vec));
@@ -112,7 +115,7 @@ public class BaseSpear : Weapon
 		if (_isAttack && _currentAttackPos == vec)
 		{
 			_thisBase.RemoveState(BaseState.Attacking);
-			_playerAttack.AttackColParent.AllDisableDir();
+			_attackCollider.AllDisableDir();
 			_isAttack = false;
 			count = 0;
 		}
@@ -123,8 +126,8 @@ public class BaseSpear : Weapon
 		yield return new WaitForSeconds(WeaponStat.Ats);
 		_currentAttackPos = vec;
 		LevelSystem();
-		_playerAttack.AttackColParent.CheckDir(_playerAttack.AttackColParent.DirReturn(_currentAttackPos));
-		_playerAttack.Attack(_unitStat.NowStats.Atk);
+		_attackCollider.CheckDir(_attackCollider.DirReturn(_currentAttackPos));
+		Attack();
 	}
 
 	private void RangeOn()
@@ -137,7 +140,6 @@ public class BaseSpear : Weapon
 		isOut = false;
 		_currentAttackPos = Vector3.zero;
 		_isAttack = false;
-		_playerAttack.AttackColParent.AllDisableDir();
-		_playerAttack.onBehaviourEnd = null;
+		_attackCollider.AllDisableDir();
 	}
 }
