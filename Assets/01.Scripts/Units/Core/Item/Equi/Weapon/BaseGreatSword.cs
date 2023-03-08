@@ -70,9 +70,9 @@ public class BaseGreatSword : Weapon
 	}
 	private void Move(Vector3 vec)
 	{
-		if (!_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Skill))
+		if (!thisBase.State.HasFlag(Units.Base.Unit.BaseState.Skill))
 		{
-			_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
+			thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 			_chargeTime = 0;
 		}
 	}
@@ -85,13 +85,13 @@ public class BaseGreatSword : Weapon
 	protected override void Attack(Vector3 vec)
 	{
 		base.Attack(vec);
-		if (_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Charge))
+		if (thisBase.State.HasFlag(Units.Base.Unit.BaseState.Charge))
 			return;
 
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = true });
-		_thisBase.AddState(Units.Base.Unit.BaseState.Charge);
+		thisBase.AddState(Units.Base.Unit.BaseState.Charge);
 
-		_thisBase.GetBehaviour<PlayerAttack>().ChargeAnimation(vec);
+		thisBase.GetBehaviour<PlayerAttack>().ChargeAnimation(vec);
 		
 		_currentVector = vec;
 
@@ -100,11 +100,11 @@ public class BaseGreatSword : Weapon
 
 	private void AttackUP(Vector3 vec)
 	{
-		_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
+		thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 		if (_chargeTime >= _maxChargeTime)
 		{
 			LevelSystem();
-			_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
+			thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 			_attackCollider.ChangeSizeZ(1);
 			_attackCollider.ChangeSizeX(1);
 			_attackCollider.CheckDir(_attackCollider.DirReturn(_currentVector));
@@ -117,7 +117,7 @@ public class BaseGreatSword : Weapon
 		else
 		{
 			InGame.PlayerBase.GetBehaviour<PlayerMove>().stop = false;
-			_thisBase.GetBehaviour<PlayerAnimation>().SetAnmation();
+			thisBase.GetBehaviour<PlayerAnimation>().SetAnmation();
 		}
 		_chargeTime = 0;
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderUp, new EventParam() { floatParam = _chargeTime });
@@ -142,7 +142,7 @@ public class BaseGreatSword : Weapon
 	{
 		base.Reset();
 		_chargeTime = 0;
-		_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
+		thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
 		_currentVector = Vector3.zero;
 		//GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = false });
 		InputManager.OnMovePress -= Move;

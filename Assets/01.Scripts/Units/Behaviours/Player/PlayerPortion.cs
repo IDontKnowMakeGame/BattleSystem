@@ -6,7 +6,7 @@ using Units.Base.Player;
 using Core;
 
 [System.Serializable]
-public class PlayerPortion : UsableItem
+public class HPPotion : UsableItem
 {
     private int cnt;
 

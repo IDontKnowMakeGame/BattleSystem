@@ -13,8 +13,6 @@ namespace Unit.Core.Weapon
 	[Serializable]
 	public class Weapon : EquipmentItem
 	{
-		public UnitBase _thisBase;
-
 		#region weapon Stat변경하는 것들
 		protected WeaponStats _weaponStats = null;
 		protected WeaponStats _changeStats = new WeaponStats();
@@ -58,6 +56,8 @@ namespace Unit.Core.Weapon
 		protected WeaponClassLevel _weaponClassLevel;
 
 		private bool attackInit = false;
+
+		protected Action attackEndAction = null;
 		public override void Awake()
 		{
 			base.Awake();
@@ -65,10 +65,12 @@ namespace Unit.Core.Weapon
 		}
 		public override void Start()
 		{
-			_attackCollider = _thisBase.GetComponentInChildren<AttackCollider>();
-			_unitMove = _thisBase.GetBehaviour<UnitMove>();
-			_unitStat = _thisBase.GetBehaviour<UnitStat>();
-			_unitAnimation = _thisBase.GetBehaviour<UnitAnimation>();
+			if (!_isEnemy)
+				_attackCollider = thisBase.GetComponentInChildren<AttackCollider>();
+
+			_unitMove = thisBase.GetBehaviour<UnitMove>();
+			_unitStat = thisBase.GetBehaviour<UnitStat>();
+			_unitAnimation = thisBase.GetBehaviour<UnitAnimation>();
 
 			_playerAnimation = _unitAnimation as PlayerAnimation;
 
@@ -100,45 +102,49 @@ namespace Unit.Core.Weapon
 		}
 		protected virtual void AttackCoroutine(Vector3 vec)
 		{
-			if (_thisBase.GetBehaviour<PlayerItem>().PlayerShield.UseAble) return;
+			if (thisBase.GetBehaviour<PlayerItem>().PlayerShield.UseAble) return;
 
-			if (_thisBase.State.HasFlag(BaseState.Attacking) ||
-				!_thisBase.GetBehaviour<PlayerAnimation>().CurWeaponAnimator.LastChange || _thisBase.State.HasFlag(BaseState.Moving))
-				return;
-			
-			if (_thisBase.State.HasFlag(BaseState.Moving))
+			if (thisBase.State.HasFlag(BaseState.Attacking) ||
+				!thisBase.GetBehaviour<PlayerAnimation>().CurWeaponAnimator.LastChange || thisBase.State.HasFlag(BaseState.Moving))
 				return;
 
-			if (_thisBase.GetBehaviour<PlayerEquiq>().WeaponAnimation() != 1 && _thisBase.GetBehaviour<PlayerEquiq>().WeaponAnimation() != 3 &&
-				_thisBase.GetBehaviour<PlayerAnimation>().CurWeaponAnimator.LastChange)
-				_thisBase.GetBehaviour<PlayerMove>().stop = true;
-			
-			if (!_thisBase.State.HasFlag(BaseState.Attacking))
+			if (thisBase.State.HasFlag(BaseState.Moving))
+				return;
+
+			if (thisBase.GetBehaviour<PlayerEquiq>().WeaponAnimation() != 1 && thisBase.GetBehaviour<PlayerEquiq>().WeaponAnimation() != 3 &&
+				thisBase.GetBehaviour<PlayerAnimation>().CurWeaponAnimator.LastChange)
+				thisBase.GetBehaviour<PlayerMove>().stop = true;
+
+			if (!thisBase.State.HasFlag(BaseState.Attacking))
 			{
 				_playerAnimation.CurWeaponAnimator.SetDir = vec;
 				_playerAnimation.CurWeaponAnimator.Attack = true;
 				_playerAnimation.SetAnmation();
 				AnimeClip animeClip = _playerAnimation.GetClip();
-				_thisBase.AddState(BaseState.Attacking);
+				thisBase.AddState(BaseState.Attacking);
 			}
 			else
-				_thisBase.GetBehaviour<PlayerMove>().stop = false;
+				thisBase.GetBehaviour<PlayerMove>().stop = false;
 		}
 		protected virtual void Attack()
 		{
-			if(_thisBase.State.HasFlag(BaseState.Attacking) && !attackInit)
-			{
-				_thisBase.StartCoroutines(WeaponStat.Afs, () => attackInit = true,
-					() => { 
-						_thisBase.RemoveState(BaseState.Attacking); 
-						attackInit = false;
-					});
-			}
+			if (!thisBase.State.HasFlag(BaseState.Attacking))
+				return;
+			if (attackInit)
+				return;
+
+			thisBase.StartCoroutines(WeaponStat.Afs, () => attackInit = true,
+				() =>
+				{
+					thisBase.RemoveState(BaseState.Attacking);
+					attackInit = false;
+				});
+
 
 			List<EnemyBase> enemys = new List<EnemyBase>();
 			enemys = _attackCollider.AllCurrentDirEnemy();
 
-			if(enemys.Count > 0)
+			if (enemys.Count > 0)
 			{
 				//playerBuff.ChangeAdneraline(1);
 				EventParam param = new EventParam();
@@ -146,11 +152,12 @@ namespace Unit.Core.Weapon
 				Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, param);
 			}
 
-			foreach(EnemyBase enemy in enemys)
+			foreach (EnemyBase enemy in enemys)
 			{
-				enemy.ThisStat.Damaged(WeaponStat.Atk, _thisBase);
+				enemy.ThisStat.Damaged(WeaponStat.Atk, thisBase);
 				GameObject obj = Define.GetManager<ResourceManagers>().Instantiate("Damage");
 				obj.GetComponent<DamagePopUp>().DamageText(WeaponStat.Atk, enemy.transform.position);
+				attackEndAction?.Invoke();
 			}
 		}
 		protected virtual void Skill()

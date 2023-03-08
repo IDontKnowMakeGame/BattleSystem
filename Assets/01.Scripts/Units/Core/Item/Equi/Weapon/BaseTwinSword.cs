@@ -133,7 +133,7 @@ public class BaseTwinSword : Weapon
 	}
 	protected override void Attack(Vector3 vec)
 	{
-		if (_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Moving))
+		if (thisBase.State.HasFlag(Units.Base.Unit.BaseState.Moving))
 			return;
 
 		_currentVec = vec;

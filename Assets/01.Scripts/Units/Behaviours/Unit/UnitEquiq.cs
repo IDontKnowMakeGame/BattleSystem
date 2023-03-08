@@ -7,14 +7,9 @@ using Unit.Core;
 namespace Units.Behaviours.Unit
 {
 	[Serializable]
-	public class UnitEquiq : UnitBehaviour
+	public class UnitEquiq : UnitItem
 	{
 		//All Info of Item
-		public static Dictionary<ItemID, Item> items = new Dictionary<ItemID, Item>()
-		{
-			{ItemID.OldStraightSword, new OldStraightSword()},
-			{ItemID.OldTwinSword, new OldTwinSword()}
-		};
 		#region Weapon
 		//Now CurrentWeapon & SecoundWeapon
 		[SerializeField]
@@ -68,8 +63,7 @@ namespace Units.Behaviours.Unit
 		#endregion
 		public override void Awake()
 		{
-			//weapons. 
-
+			base.Awake();
 			//halos.Add("DirtyHalo", new DirtyHalo());
 			//halos.Add("EvilSpiritHalo", new EvilSpiritHalo());
 

@@ -20,11 +20,11 @@ public class OldTwinSword : BaseTwinSword
 	}
 	protected override void Skill()
 	{
-		if (_thisBase.State.HasFlag(BaseState.Skill))
+		if (thisBase.State.HasFlag(BaseState.Skill))
 			return;
 
-		_thisBase.AddState(BaseState.Skill);
-		_thisBase.AddState(BaseState.StopMove);
+		thisBase.AddState(BaseState.Skill);
+		thisBase.AddState(BaseState.StopMove);
 
 		InputManager.ChangeKeyCode(KeyboardInput.AttackForward, KeyCode.W);
 		InputManager.ChangeKeyCode(KeyboardInput.AttackBackward, KeyCode.S);
@@ -37,7 +37,7 @@ public class OldTwinSword : BaseTwinSword
 
 	protected override void Attack(Vector3 vec)
 	{
-		if (_thisBase.State.HasFlag(BaseState.Skill))
+		if (thisBase.State.HasFlag(BaseState.Skill))
 			return;
 		base.Attack(vec);
 	}
@@ -46,15 +46,15 @@ public class OldTwinSword : BaseTwinSword
 	{
 		for (int i = 0; i < 6; i++)
 		{
-			Define.GetManager<MapManager>().Damage(_thisBase.Position+dir,_unitStat.NowStats.Atk, _freezeTime, waitReset, InGame.PlayerBase);
+			Define.GetManager<MapManager>().Damage(thisBase.Position+dir,_unitStat.NowStats.Atk, _freezeTime, waitReset, InGame.PlayerBase);
 		}
 	}
 
 	private void waitReset()
 	{
 		_isCoolTime = true;
-		_thisBase.RemoveState(BaseState.Skill);
-		_thisBase.RemoveState(BaseState.StopMove);
+		thisBase.RemoveState(BaseState.Skill);
+		thisBase.RemoveState(BaseState.StopMove);
 
 		InputManager.ChangeKeyCode(KeyboardInput.AttackForward, KeyCode.UpArrow);
 		InputManager.ChangeKeyCode(KeyboardInput.AttackBackward, KeyCode.DownArrow);

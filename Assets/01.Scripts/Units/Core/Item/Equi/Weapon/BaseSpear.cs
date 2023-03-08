@@ -82,7 +82,7 @@ public class BaseSpear : Weapon
 	public override void Update()
 	{
 		base.Update();
-		if (_isAttack && isOut && /*_playerAttack.HasEnemy() &&*/ !_thisBase.State.HasFlag(BaseState.Moving))
+		if (_isAttack && isOut && /*_playerAttack.HasEnemy() &&*/ !thisBase.State.HasFlag(BaseState.Moving))
 		{
 			Attack();
 			_attackCollider.ChangeWeapon();
@@ -109,12 +109,12 @@ public class BaseSpear : Weapon
 			_attackCollider.AllDisableDir();
 			_currentAttackPos = Vector3.zero;
 			_isAttack = true;
-			_thisBase.StartCoroutine(DownLate(vec));
+			thisBase.StartCoroutine(DownLate(vec));
 		}
 
 		if (_isAttack && _currentAttackPos == vec)
 		{
-			_thisBase.RemoveState(BaseState.Attacking);
+			thisBase.RemoveState(BaseState.Attacking);
 			_attackCollider.AllDisableDir();
 			_isAttack = false;
 			count = 0;
@@ -132,7 +132,7 @@ public class BaseSpear : Weapon
 
 	private void RangeOn()
 	{
-		GameManagement.Instance.GetManager<MapManager>().RangeOn(_thisBase.Position + _currentAttackPos, Color.green);
+		GameManagement.Instance.GetManager<MapManager>().RangeOn(thisBase.Position + _currentAttackPos, Color.green);
 	}
 	public override void Reset()
 	{
