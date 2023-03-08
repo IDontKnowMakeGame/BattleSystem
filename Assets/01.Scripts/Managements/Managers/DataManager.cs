@@ -436,6 +436,7 @@ public class DataManager : Manager
         ItemInfo item = new ItemInfo();
         item.id = id;
         item.currentCnt = count;
+        item.maxCnt = 10;
         item.name = id.GetType().Name;
 
         if((int)id < 101)
@@ -454,7 +455,6 @@ public class DataManager : Manager
             ItemInfo info = LoadUsableItemFromInventory(id);
             if(info == null)
             {
-                info = item;
                 InventoryData.inventoryInUsableItemList.Add(item);
             }else
             {

@@ -493,10 +493,10 @@ public class UIManager : Manager
         InventoryInit();
         _onOtherPanel = true;
 
-        CreateCardList<ItemInfo>(_weaponListScroll, Define.GetManager<DataManager>().LoadWeaponDataFromInventory());
-        //CreateCardList<string>(_heloListScroll, Define.GetManager<DataManager>().L());
-        CreateCardList<ItemInfo>(_useableListScroll, Define.GetManager<DataManager>().LoadUsableItemFromInventory());
-        //CreateCardList<string>(_questItemListScroll, Define.GetManager<DataManager>().LoadWeaponData());
+        CreateCardList(_weaponListScroll, Define.GetManager<DataManager>().LoadWeaponDataFromInventory());
+        CreateCardList(_heloListScroll, Define.GetManager<DataManager>().LoadHeloDataFromInventory());
+        CreateCardList(_useableListScroll, Define.GetManager<DataManager>().LoadUsableItemFromInventory());
+        CreateCardList(_questItemListScroll, Define.GetManager<DataManager>().LoadQuestFromInventory());
 
         VisualElement box = _firstWeaponPanel.Q<VisualElement>("1");
         string firstWeaponName = DataManager.UserData.firstWeapon;
@@ -529,43 +529,40 @@ public class UIManager : Manager
         
     }
 
-    //public void SelectEquipHeloBoxBtn(int num, VisualElement box)
-    //{
-    //    ChangeShowInventoryPanel(1);
-    //    _selectVisual = box;
-    //    _selectNum = num;
-    //    boxType = EquipType.Helo;
-    //}
-    //public void SelectEquipUseableItemBoxBtn(int num, VisualElement box)
-    //{
-    //    ChangeShowInventoryPanel(2);
-    //    _selectVisual = box;
-    //    _selectNum = num;
-    //    boxType = EquipType.UseableItem;
-    //}
-
-    public void CreateCardList<T>(VisualElement parent,List<T> list)
+    public void SelectEquipHeloBoxBtn(int num, VisualElement box)
     {
-        foreach(T data in list)
+        ChangeShowInventoryPanel(1);
+        _selectVisual = box;
+        _selectNum = num;
+        boxType = EquipType.Helo;
+    }
+    public void SelectEquipUseableItemBoxBtn(int num, VisualElement box)
+    {
+        ChangeShowInventoryPanel(2);
+        _selectVisual = box;
+        _selectNum = num;
+        boxType = EquipType.UseableItem;
+    }
+
+    public void CreateCardList(VisualElement parent,List<ItemInfo> list)
+    {
+        foreach(ItemInfo data in list)
         {
             Debug.Log("Create Card");
             VisualElement card = _itemInfoCardTemp.Instantiate().Q<VisualElement>("ItemInfoCardTemp");
-            card.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManagers>().Load<Sprite>(data as string));
+            card.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManagers>().Load<Sprite>(data.name));
+
             card.RegisterCallback<ClickEvent>(e =>
             {
-                Debug.Log("WeaponCardClick");
                 if(_selectVisual != null && boxType == EquipType.Weapon)
                 {
-                    Debug.Log($"{_selectVisual} : Quipt");
-                    _selectVisual.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManagers>().Load<Sprite>(data as string));
-                    Define.GetManager<DataManager>().ChangeUserWeaponData(data as string, _selectNum == 1);
+                    _selectVisual.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManagers>().Load<Sprite>(data.name));
+                    Define.GetManager<DataManager>().ChangeUserWeaponData(data.name, _selectNum == 1);
 
                     _selectVisual = null;
                     boxType = EquipType.None;
-
                     Define.GetManager<EventManager>().TriggerEvent(EventFlag.SetWeapon, new EventParam());
                 }
-                
             });
             parent.Add(card);
         }    
