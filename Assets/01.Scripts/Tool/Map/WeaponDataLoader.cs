@@ -15,7 +15,7 @@ namespace Tool.Weapon
             GetWindow<WeaponDataLoader>("WeaponDataLoader");
         }
 
-        private async void OnGUI()
+        private void OnGUI()
         {
             GUILayout.Label("WeaponDataLoader", EditorStyles.boldLabel);
 

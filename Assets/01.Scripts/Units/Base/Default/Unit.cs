@@ -10,6 +10,7 @@ namespace Units.Base.Default
     public class Unit : MonoBehaviour
     {
         [SerializeField] protected Vector3 _position;
+        [field: SerializeField] public Vector3 SpawnPos { get; set; }
         public Vector3 Position
         {
             get => _position;
@@ -91,7 +92,8 @@ namespace Units.Base.Default
 
         protected virtual void Init()
         {
-            InGame.Units.Add(Uuid, this);
+            Spawn();
+            InGame.AddUnit(Uuid, this);
         }
 
         protected virtual void Awake()
@@ -173,6 +175,12 @@ namespace Units.Base.Default
             {
                 behaviour.OnApplicationQuit();
             }
+        }
+
+        public void Spawn()
+        {
+            transform.position = SpawnPos;
+            Position = SpawnPos;
         }
     }
 }

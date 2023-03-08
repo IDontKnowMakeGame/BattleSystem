@@ -25,7 +25,11 @@ namespace Core
     public static class InGame
     {
         private static Dictionary<int, Unit> _units = new();
-        public static Dictionary<int, Unit> Units => _units;
+
+        public static void AddUnit(int uuid, Unit unit)
+        {
+            _units.Add(uuid, unit);
+        }
         
         public static Unit GetUnit(int uuid)
         {
