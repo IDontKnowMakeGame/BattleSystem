@@ -12,6 +12,7 @@ public class ItemManager : Manager
 	public Dictionary<ItemID, Weapon> weapons = new Dictionary<ItemID, Weapon>();
 	public Dictionary<ItemID, Halo> halos = new Dictionary<ItemID, Halo>();
 	public Dictionary<ItemID, UseAbleItem> useAbleItems = new Dictionary<ItemID, UseAbleItem>();
+
 	public override void Awake()
 	{
 		foreach (ItemID itemID in Enum.GetValues(typeof(ItemID)))
