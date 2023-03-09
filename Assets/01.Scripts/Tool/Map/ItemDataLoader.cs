@@ -7,17 +7,17 @@ using UnityEngine;
 namespace Tool.Weapon
 {
 #if UNITY_EDITOR
-    public class WeaponDataLoader : EditorWindow
+    public class ItemDataLoader : EditorWindow
     {
-        [MenuItem("Tools/WeaponDataLoader")]
+        [MenuItem("Tools/ItemDataLoader")]
         public static void ShowWindow()
         {
-            GetWindow<WeaponDataLoader>("WeaponDataLoader");
+            GetWindow<ItemDataLoader>("ItemDataLoader");
         }
 
         private void OnGUI()
         {
-            GUILayout.Label("WeaponDataLoader", EditorStyles.boldLabel);
+            GUILayout.Label("ItemDataLoader", EditorStyles.boldLabel);
 
             GUILayout.Label("URL Setting", EditorStyles.miniBoldLabel);
             ExcelDataReader.ID = EditorGUILayout.TextField("ID", ExcelDataReader.ID);
@@ -26,13 +26,13 @@ namespace Tool.Weapon
             if (GUILayout.Button("Generation"))
             {
                 ExcelDataReader.EndIdx = ExcelDataReader.StartIdx;
-                JsonManager.ReadSheetToJson<WeaponLists>(ExcelDataReader.ID);
+                JsonManager.ReadSheetToJson<ItemTable>(ExcelDataReader.ID);
             }
         }
 
         private void SaveData(string data)
         {
-            JsonManager.ReadSheetToJson<WeaponLists>(data);
+            JsonManager.ReadSheetToJson<ItemTable>(data);
         }
     }
 #endif

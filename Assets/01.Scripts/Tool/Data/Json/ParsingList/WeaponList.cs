@@ -3,8 +3,8 @@
 namespace Tool.Data.Json.ParsingList
 {
     [System.Serializable]
-    public class WeaponLists
+    public class ItemTable
     {
-        public List<WeaponData> WeaponList = new List<WeaponData>();
+        public List<ItemInfo> ItemList = new ();
     }
 }

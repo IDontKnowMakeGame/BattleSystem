@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : Item
+public class Weapon : Item
 {
 	public virtual void Skill()
 	{
@@ -27,7 +27,7 @@ public abstract class Weapon : Item
 
 	protected void WeaponLevelSystem()
 	{
-		switch (Define.GetManager<DataManager>().LoadWeaponLevelData(ID))
+		switch (Define.GetManager<DataManager>().LoadWeaponLevelData(itemInfo.ID))
 		{
 			case 1:
 				itemInfo.Atk += 20;
