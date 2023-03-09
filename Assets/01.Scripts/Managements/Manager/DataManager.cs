@@ -27,6 +27,7 @@ public class DataManager : Managements.Managers.Manager
         }
 
     }
+
     #region UserData
     public void SaveToUserData()
     {
@@ -50,26 +51,27 @@ public class DataManager : Managements.Managers.Manager
         SaveToUserData();
     }
 
-    public void SwapWeaponData(string name)
+    public void SwapWeaponData()
     {
-        if (UserData.firstWeapon != name && UserData.secondWeapon != name)
-        {
-            Debug.LogError($"User Haven't Weapon : {name}");
+        if (UserData.firstWeapon == ItemID.None || UserData.secondWeapon == ItemID.None)
             return;
-        }
 
+        ItemID tempID = UserData.firstWeapon;
+        UserData.firstWeapon = UserData.secondWeapon;
+        UserData.secondWeapon = tempID;
 
         SaveToUserData();
     }
-    public void ChangeUserWeaponData(string name, bool isFirstWeapon = true)
+
+    public void ChangeUserWeaponData(ItemID id, bool isFirstWeapon = true)
     {
         if (isFirstWeapon)
         {
-            UserData.firstWeapon = name;
+            UserData.firstWeapon = id;
         }
         else
         {
-            UserData.secondWeapon = name;
+            UserData.secondWeapon = id;
         }
 
         SaveToUserData();
@@ -120,7 +122,6 @@ public class DataManager : Managements.Managers.Manager
     
     #endregion
 
-
     #region WeaponLevel
     public void SaveWeaponLevelListData()
     {
@@ -128,22 +129,22 @@ public class DataManager : Managements.Managers.Manager
         JsonManager.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/Weapon", "WeaponLevelData", json);
     }
 
-    public int LoadWeaponLevelData(string name)
+    public int LoadWeaponLevelData(ItemID id)
     {
         foreach (WeaponLevel info in WeaponLevelListData.weaponInfoDatas)
         {
-            if (info.name == name)
+            if (info.id == id)
                 return info.level;
         }
 
         return 0;
     }
 
-    public void SaveWeaponLevelData(string name, int changeLevel)
+    public void SaveWeaponLevelData(ItemID id, int changeLevel)
     {
         for (int i = 0; i < WeaponLevelListData.weaponInfoDatas.Count; i++)
         {
-            if (WeaponLevelListData.weaponInfoDatas[i].name == name)
+            if (WeaponLevelListData.weaponInfoDatas[i].id == id)
             {
                 WeaponLevelListData.weaponInfoDatas[i].level = changeLevel;
                 SaveWeaponLevelListData();
@@ -152,18 +153,18 @@ public class DataManager : Managements.Managers.Manager
         }
 
         WeaponLevel data = new WeaponLevel();
-        data.name = name;
+        data.id = id;
         data.level = changeLevel;
 
         WeaponLevelListData.weaponInfoDatas.Add(data);
         SaveWeaponLevelListData();
     }
 
-    public void SaveUpGradeWeaponLevelData(string name)
+    public void SaveUpGradeWeaponLevelData(ItemID id)
     {
         for (int i = 0; i < WeaponLevelListData.weaponInfoDatas.Count; i++)
         {
-            if (WeaponLevelListData.weaponInfoDatas[i].name == name)
+            if (WeaponLevelListData.weaponInfoDatas[i].id == id)
             {
                 WeaponLevelListData.weaponInfoDatas[i].level++;
                 SaveWeaponLevelListData();
@@ -172,7 +173,7 @@ public class DataManager : Managements.Managers.Manager
         }
 
         WeaponLevel data = new WeaponLevel();
-        data.name = name;
+        data.id = id;
         data.level = 1;
 
         WeaponLevelListData.weaponInfoDatas.Add(data);
@@ -182,6 +183,11 @@ public class DataManager : Managements.Managers.Manager
     #endregion
 
     #region WeaponClassData
+    public void SaveWeaponClassListData()
+    {
+        string json = JsonManager.ObjectToJson(WeaponClassLevelListData);
+        JsonManager.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/Weapon", "ClassLevelData", json);
+    }
     public void CreateWeaponClassListData()
     {
         WeaponClassLevelListData.weaponclassList.Add(CreateWeaponClassLevel("BasicSword"));
@@ -213,13 +219,13 @@ public class DataManager : Managements.Managers.Manager
         return null;
     }
 
-    public void SaveWeaponClassListData(WeaponClassLevel data)
+    public void SaveWeaponClassListData(string name,int upgradeLevel = 1)
     {
         for (int i = 0; i < WeaponClassLevelListData.weaponclassList.Count; i++)
         {
-            if (WeaponClassLevelListData.weaponclassList[i].name == data.name)
+            if (WeaponClassLevelListData.weaponclassList[i].name == name)
             {
-                WeaponClassLevelListData.weaponclassList[i] = data;
+                WeaponClassLevelListData.weaponclassList[i].level += upgradeLevel;
                 SaveWeaponClassListData();
                 return;
             }
@@ -228,11 +234,7 @@ public class DataManager : Managements.Managers.Manager
         Debug.LogError("Not Found WeaponClassName : There are no weapons with matching names.");
     }
 
-    public void SaveWeaponClassListData()
-    {
-        string json = JsonManager.ObjectToJson(WeaponClassLevelListData);
-        JsonManager.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/Weapon", "ClassLevelData", json);
-    }
+
     #endregion
 
     #region Inventory
