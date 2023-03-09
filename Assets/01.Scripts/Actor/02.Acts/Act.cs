@@ -7,7 +7,7 @@ namespace Actor.Acts
     [RequireComponent(typeof(ActorController))]
     public class Act : MonoBehaviour
     {
-        private ActorController _actorController;
+        protected ActorController _actorController;
 
         protected virtual void Awake()
         {

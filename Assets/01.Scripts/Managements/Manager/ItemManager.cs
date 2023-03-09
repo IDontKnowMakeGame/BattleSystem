@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Tool.Data.Json;
+using Tool.Data.Json.ParsingList;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -44,11 +45,11 @@ public class ItemManager : Manager
 		}
 	}
 
-	private T CreateEnumToClass<T>(ItemID id) where T : Item
+	private T CreateEnumToClass<T>(ItemID id) where T : Item, new()
 	{
-		Type type = Type.GetType(id.ToString());
-		T instance = Activator.CreateInstance(type) as T;
-		instance.itemInfo = JsonManager.LoadJsonFile<ItemInfo>(Application.dataPath + "/Save", type.ToString());
+		Type type = typeof(T);
+		T instance = new();
+		instance.itemInfo = JsonManager.LoadJsonFile<ItemInfo>(Application.dataPath + "/Save/Json", typeof(ItemTable).ToString());
 		return instance;
 	}
 }

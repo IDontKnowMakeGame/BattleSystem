@@ -6,7 +6,7 @@ namespace Actor.Bases
 {
     public class PlayerController : ActorController
     {
-        protected override void Awake()
+        protected void Start()
         {
             OnMove += GetAct<ActorMove>().Translate;
             base.Awake();

@@ -12,19 +12,14 @@ public class ItemInfo
 	public float Ats;
 	public float Weight;
 
-	public float WeightToSpeed() => Weight switch
-	{
-		1 => 0.2f,
-		2 => 0.25f,
-		3 => 0.3f,
-		4 => 0.35f,
-		5 => 0.45f,
-		6 => 0.5f,
-		7 => 0.7f,
-		8 => 0.8f,
-		9 => 0.9f,
-		_ => 1f
-	};
+	public float WeightToSpeed
+    {
+    	get
+    	{
+    		var speed = (Mathf.Pow(Weight, 2) + 20) * 0.01f;
+    		return speed;
+    	}
+    }
 }
 public abstract class Item
 {
