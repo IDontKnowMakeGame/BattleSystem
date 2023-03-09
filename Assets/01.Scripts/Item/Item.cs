@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemStat
+public class ItemInfo
 {
+	public ItemID ID;
+	public string ItemName;
 	public float Hp;
 	public float Atk;
 	public float Afs;
@@ -26,8 +28,7 @@ public class ItemStat
 }
 public abstract class Item
 {
-	public ItemID ID;
-	public ItemStat itemStat;
+	public ItemInfo itemInfo;
 	public virtual void UseItem()
 	{
 

@@ -30,40 +30,40 @@ public abstract class Weapon : Item
 		switch (Define.GetManager<DataManager>().LoadWeaponLevelData(ID))
 		{
 			case 1:
-				itemStat.Atk += 20;
+				itemInfo.Atk += 20;
 				break;
 			case 2:
-				itemStat.Atk += 45;
+				itemInfo.Atk += 45;
 				break;
 			case 3:
-				itemStat.Atk += 75;
+				itemInfo.Atk += 75;
 				break;
 			case 4:
-				itemStat.Atk += 110;
+				itemInfo.Atk += 110;
 				break;
 			case 5:
-				itemStat.Atk += 150;
+				itemInfo.Atk += 150;
 				break;
 			case 6:
-				itemStat.Atk += 195;
+				itemInfo.Atk += 195;
 				break;
 			case 7:
-				itemStat.Atk += 245;
+				itemInfo.Atk += 245;
 				break;
 			case 8:
-				itemStat.Atk += 300;
+				itemInfo.Atk += 300;
 				break;
 			case 9:
-				itemStat.Atk += 360;
+				itemInfo.Atk += 360;
 				break;
 			case 10:
-				itemStat.Atk += 425;
+				itemInfo.Atk += 425;
 				break;
 			case 11:
-				itemStat.Atk += 495;
+				itemInfo.Atk += 495;
 				break;
 			case 12:
-				itemStat.Atk += 570;
+				itemInfo.Atk += 570;
 				break;
 			default:
 				break;

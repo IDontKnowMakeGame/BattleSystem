@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Inventory
 {
-    public List<ItemInfo> inventoryInWeaponList;
-    public List<ItemInfo> inventoryInHeloList;
-    public List<ItemInfo> inventoryInUsableItemList;
-    public List<ItemInfo> inventoryInQuestItemList;
+    public List<ItemData> inventoryInWeaponList;
+    public List<ItemData> inventoryInHeloList;
+    public List<ItemData> inventoryInUsableItemList;
+    public List<ItemData> inventoryInQuestItemList;
 }

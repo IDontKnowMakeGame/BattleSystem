@@ -47,8 +47,7 @@ public class ItemManager : Manager
 	{
 		Type type = Type.GetType(id.ToString());
 		T instance = Activator.CreateInstance(type) as T;
-		instance.itemStat = JsonManager.LoadJsonFile<ItemStat>(Application.dataPath + "/Save", type.ToString());
-		instance.ID = id;
+		instance.itemInfo = JsonManager.LoadJsonFile<ItemInfo>(Application.dataPath + "/Save", type.ToString());
 		return instance;
 	}
 }

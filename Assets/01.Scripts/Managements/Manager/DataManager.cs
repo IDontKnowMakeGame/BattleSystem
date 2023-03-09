@@ -84,7 +84,7 @@ public class DataManager : Managements.Managers.Manager
     }
     public void EquipUsableItem(ItemID id, int equipnumber)
     {
-        ItemInfo data = LoadUsableItemFromInventory(id);
+        ItemData data = LoadUsableItemFromInventory(id);
         if (data == null)
             Debug.LogError($"Not  Have Item : {id}");
 
@@ -105,9 +105,9 @@ public class DataManager : Managements.Managers.Manager
 
         SaveToUserData();
     }
-    public ItemInfo LoadUsableItem(ItemID id)
+    public ItemData LoadUsableItem(ItemID id)
     {
-        foreach (ItemInfo info in UserData.equipUseableItem)
+        foreach (ItemData info in UserData.equipUseableItem)
         {
             if (info.id == id)
             {
@@ -244,7 +244,7 @@ public class DataManager : Managements.Managers.Manager
         JsonManager.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/User", "InvectoryData", json);
     }
 
-    public void AddItemInInventory(ItemInfo item)
+    public void AddItemInInventory(ItemData item)
     {
         if ((int)item.id < 100)
         { //Weapon
@@ -260,7 +260,7 @@ public class DataManager : Managements.Managers.Manager
         else if ((int)item.id < 300)
         { //UseableItem
 
-            ItemInfo info = LoadUsableItemFromInventory(item.id);
+            ItemData info = LoadUsableItemFromInventory(item.id);
             if (info == null)
             {
                 info = item;
@@ -279,7 +279,7 @@ public class DataManager : Managements.Managers.Manager
 
         SaveToInventoryData();
     }
-    public ItemInfo LoadItemFromInventory(ItemID id)
+    public ItemData LoadItemFromInventory(ItemID id)
     {
         if ((int)id < 100)
         { //Weapon
@@ -301,13 +301,13 @@ public class DataManager : Managements.Managers.Manager
         return null;
     }
 
-    public List<ItemInfo> LoadWeaponDataFromInventory()
+    public List<ItemData> LoadWeaponDataFromInventory()
     {
         return InventoryData.inventoryInWeaponList;
     }
-    public ItemInfo LoadWeaponDataFromInventory(ItemID id)
+    public ItemData LoadWeaponDataFromInventory(ItemID id)
     {
-        foreach (ItemInfo info in InventoryData.inventoryInWeaponList)
+        foreach (ItemData info in InventoryData.inventoryInWeaponList)
         {
             if (info.id == id)
                 return info;
@@ -316,7 +316,7 @@ public class DataManager : Managements.Managers.Manager
     }
     public bool HaveWeapon(ItemID id)
     {
-        foreach (ItemInfo weapon in InventoryData.inventoryInWeaponList)
+        foreach (ItemData weapon in InventoryData.inventoryInWeaponList)
         {
             if (weapon.id == id)
             {
@@ -326,13 +326,13 @@ public class DataManager : Managements.Managers.Manager
         return false;
     }
 
-    public List<ItemInfo> LoadHeloDataFromInventory()
+    public List<ItemData> LoadHeloDataFromInventory()
     {
         return InventoryData.inventoryInHeloList;
     }
-    public ItemInfo LoadHeloDataFromInventory(ItemID id)
+    public ItemData LoadHeloDataFromInventory(ItemID id)
     {
-        foreach (ItemInfo info in InventoryData.inventoryInHeloList)
+        foreach (ItemData info in InventoryData.inventoryInHeloList)
         {
             if (info.id == id)
                 return info;
@@ -341,7 +341,7 @@ public class DataManager : Managements.Managers.Manager
     }
     public bool HaveHelo(ItemID id)
     {
-        foreach (ItemInfo helo in InventoryData.inventoryInHeloList)
+        foreach (ItemData helo in InventoryData.inventoryInHeloList)
         {
             if (helo.id == id)
             {
@@ -351,20 +351,20 @@ public class DataManager : Managements.Managers.Manager
         return false;
     }
 
-    public List<ItemInfo> LoadUsableItemFromInventory()
+    public List<ItemData> LoadUsableItemFromInventory()
     {
         return InventoryData.inventoryInUsableItemList;
     }
-    public ItemInfo LoadUsableItemFromInventory(ItemID id)
+    public ItemData LoadUsableItemFromInventory(ItemID id)
     {
-        foreach (ItemInfo info in InventoryData.inventoryInUsableItemList)
+        foreach (ItemData info in InventoryData.inventoryInUsableItemList)
         {
             if (info.id == id)
                 return info;
         }
         return null;
     }
-    public void ChangeItemInfo(ItemInfo data)
+    public void ChangeItemInfo(ItemData data)
     {
         for (int i = 0; i < InventoryData.inventoryInUsableItemList.Count; i++)
         {
@@ -377,13 +377,13 @@ public class DataManager : Managements.Managers.Manager
             }
         }
     }
-    public void AddItemCount(ItemInfo data)
+    public void AddItemCount(ItemData data)
     {
         for (int i = 0; i < InventoryData.inventoryInUsableItemList.Count; i++)
         {
             if (InventoryData.inventoryInUsableItemList[i].id == data.id)
             {
-                ItemInfo info = InventoryData.inventoryInUsableItemList[i];
+                ItemData info = InventoryData.inventoryInUsableItemList[i];
                 InventoryData.inventoryInUsableItemList[i].currentCnt = Math.Clamp((info.currentCnt + data.currentCnt), 0, info.maxCnt);
 
                 SaveToInventoryData();
@@ -392,13 +392,13 @@ public class DataManager : Managements.Managers.Manager
         }
     }
 
-    public List<ItemInfo> LoadQuestFromInventory()
+    public List<ItemData> LoadQuestFromInventory()
     {
         return InventoryData.inventoryInQuestItemList;
     }
-    public ItemInfo LoadQuestFromInventory(ItemID id)
+    public ItemData LoadQuestFromInventory(ItemID id)
     {
-        foreach (ItemInfo info in InventoryData.inventoryInQuestItemList)
+        foreach (ItemData info in InventoryData.inventoryInQuestItemList)
         {
             if (info.id == id)
                 return info;
@@ -407,7 +407,7 @@ public class DataManager : Managements.Managers.Manager
     }
     public bool HaveQuestItem(ItemID id)
     {
-        foreach (ItemInfo item in InventoryData.inventoryInQuestItemList)
+        foreach (ItemData item in InventoryData.inventoryInQuestItemList)
         {
             if (item.id == id)
             {

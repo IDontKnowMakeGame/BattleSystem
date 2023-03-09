@@ -14,5 +14,5 @@ public class User
     public ItemID secondHelo = ItemID.None;
     public ItemID thirdHelo = ItemID.None;
 
-    public List<ItemInfo> equipUseableItem; //0~4 x
+    public List<ItemData> equipUseableItem; //0~4 x
 }

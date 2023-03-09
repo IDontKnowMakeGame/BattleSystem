@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemInfo
+public class ItemData
 {
     public ItemID id;
     public string name;
