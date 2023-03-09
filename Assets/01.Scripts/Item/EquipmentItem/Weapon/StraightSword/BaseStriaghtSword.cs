@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseStriaghtSword : MonoBehaviour
+public class BaseStriaghtSword : Weapon
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public override void UseItem()
+	{
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	}
 }
