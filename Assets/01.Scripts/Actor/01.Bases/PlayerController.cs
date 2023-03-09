@@ -9,6 +9,7 @@ namespace Actor.Bases
         protected void Start()
         {
             OnMove += GetAct<ActorMove>().Translate;
+            OnChange += GetAct<ActorChange>().Change;
             base.Awake();
         }
     }
