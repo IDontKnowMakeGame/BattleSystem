@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class ItemManager : Manager
 {
-	//Dictionary<>
+	public Dictionary<ItemID, Weapon> weapons = new Dictionary<ItemID, Weapon>();
+	//public Dictionary<ItemID, >
 	public override void Start()
 	{
 
