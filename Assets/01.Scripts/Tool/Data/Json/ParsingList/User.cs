@@ -7,12 +7,12 @@ public class User
     public int maxHp = 100;
     public int feather = 0;
 
-    public string firstWeapon;
-    public string secondWeapon;
+    public ItemID firstWeapon = ItemID.None;
+    public ItemID secondWeapon = ItemID.None;
 
-    public string firstHelo = "";
-    public string secondHelo = "";
-    public string thirdHelo = "";
+    public ItemID firstHelo = ItemID.None;
+    public ItemID secondHelo = ItemID.None;
+    public ItemID thirdHelo = ItemID.None;
 
     public List<ItemInfo> equipUseableItem; //0~4 x
 }

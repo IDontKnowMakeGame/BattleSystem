@@ -5,6 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class WeaponLevel
 {
-    public string name;
+    public ItemID id;
     public int level;
 }
