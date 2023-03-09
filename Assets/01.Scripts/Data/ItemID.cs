@@ -16,10 +16,11 @@ public enum ItemID
     OutwornBow = 8,
     RustySpear = 9,
     //100~199 Helo
-
+    HeloOfGhost = 100,
+    HeloOfPollution = 101,
     //200~299 UseableItem
-    Torch = 201,
-    Shield = 202,
-    HPPotion = 203
+    Torch = 200,
+    Shield = 201,
+    HPPotion = 202
     //300~299 QuestItem
 }
