@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Managements;
+using Managements.Managers;
+using UnityEngine;
 
 namespace Core
 {
@@ -17,6 +19,12 @@ namespace Core
 
                 return _mainCamera;
             }
+        }
+
+
+        public static T GetManager<T>() where T : Manager
+        {
+            return GameManagement.Instance.GetManager<T>();
         }
     }
 

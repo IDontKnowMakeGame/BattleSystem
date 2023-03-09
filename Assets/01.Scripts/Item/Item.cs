@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemStat
 {
 	public float Hp;
-	public float Damage;
+	public float Atk;
 	public float Afs;
 	public float Ats;
 	public float Weight;
@@ -26,6 +26,7 @@ public class ItemStat
 }
 public abstract class Item
 {
+	public ItemID ID;
 	public ItemStat itemStat;
 	public virtual void UseItem()
 	{

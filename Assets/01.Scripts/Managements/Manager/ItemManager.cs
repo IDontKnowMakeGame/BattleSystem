@@ -1,7 +1,10 @@
+using Core;
 using Managements.Managers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Tool.Data.Json;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemManager : Manager
@@ -9,9 +12,9 @@ public class ItemManager : Manager
 	public Dictionary<ItemID, Weapon> weapons = new Dictionary<ItemID, Weapon>();
 	public Dictionary<ItemID, Halo> halos = new Dictionary<ItemID, Halo>();
 	public Dictionary<ItemID, UseAbleItem> useAbleItems = new Dictionary<ItemID, UseAbleItem>();
-	public override void Start()
+	public override void Awake()
 	{
-		foreach(ItemID itemID in Enum.GetValues(typeof(ItemID)))
+		foreach (ItemID itemID in Enum.GetValues(typeof(ItemID)))
 		{
 			if(itemID == ItemID.None)
 				continue;
@@ -40,10 +43,12 @@ public class ItemManager : Manager
 		}
 	}
 
-	private T CreateEnumToClass<T>(ItemID id) where T : class
+	private T CreateEnumToClass<T>(ItemID id) where T : Item
 	{
 		Type type = Type.GetType(id.ToString());
 		T instance = Activator.CreateInstance(type) as T;
+		instance.itemStat = JsonManager.LoadJsonFile<ItemStat>(Application.dataPath + "/Save", type.ToString());
+		instance.ID = id;
 		return instance;
 	}
 }
