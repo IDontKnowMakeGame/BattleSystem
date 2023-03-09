@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Units.Base.Default;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Core
 {
@@ -24,16 +22,5 @@ namespace Core
 
     public static class InGame
     {
-        private static Dictionary<int, Unit> _units = new();
-
-        public static void AddUnit(int uuid, Unit unit)
-        {
-            _units.Add(uuid, unit);
-        }
-        
-        public static Unit GetUnit(int uuid)
-        {
-            return _units[uuid];
-        }
     }
 }
