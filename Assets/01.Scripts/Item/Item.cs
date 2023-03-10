@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class ItemInfo
 {
-	public ItemID ID;
-	public string ItemName;
+	public string Name;
+	public ItemID Id;
 	public float Hp;
 	public float Atk;
-	public float Afs;
 	public float Ats;
+	public float Afs;
 	public float Weight;
 
 	public float WeightToSpeed

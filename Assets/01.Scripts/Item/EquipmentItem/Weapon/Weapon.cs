@@ -27,7 +27,7 @@ public class Weapon : Item
 
 	protected void WeaponLevelSystem()
 	{
-		switch (Define.GetManager<DataManager>().LoadWeaponLevelData(itemInfo.ID))
+		switch (Define.GetManager<DataManager>().LoadWeaponLevelData(itemInfo.Id))
 		{
 			case 1:
 				itemInfo.Atk += 20;

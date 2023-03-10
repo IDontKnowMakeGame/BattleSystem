@@ -30,12 +30,15 @@ namespace Actor.Bases
         {
             Define.GetManager<ItemManager>().weapons.TryGetValue(WeaponId, out var weapon);
 
-            OnChange?.Invoke(weapon);
+			Debug.Log(weapon);
+			OnChange?.Invoke(weapon);
 
 			InputManager.OnChangePress += () => OnChange?.Invoke(weapon);
 			InputManager.OnMovePress += (pos) => { OnChange?.Invoke(weapon); };
 			InputManager.OnMovePress += (pos) => { OnMove?.Invoke(pos, weapon);};
             InputManager.OnMovePress += (pos) => { OnAttack?.Invoke(pos, weapon);};
+
+            Debug.Log(weapon.itemInfo.Afs);
         }
 
         public T GetAct<T>() where T : Act

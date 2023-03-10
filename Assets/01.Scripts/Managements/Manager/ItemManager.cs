@@ -49,7 +49,17 @@ public class ItemManager : Manager
 	{
 		Type type = typeof(T);
 		T instance = new();
-		instance.itemInfo = JsonManager.LoadJsonFile<ItemInfo>(Application.dataPath + "/Save/Json", typeof(ItemTable).ToString());
-		return instance;
+		var table = JsonManager.LoadJsonFile<ItemTable>(Application.dataPath + "/Save/Json", typeof(ItemTable).ToString());
+		Debug.Log(table.ItemList.Count);
+		foreach(var item in table.ItemList)
+		{
+			if(item.Id == id)
+			{
+				instance.itemInfo = item;
+				return instance;
+			}
+
+		}
+		return null;
 	}
 }
