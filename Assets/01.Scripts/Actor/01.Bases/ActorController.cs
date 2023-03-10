@@ -30,7 +30,7 @@ namespace Actor.Bases
         {
             Define.GetManager<ItemManager>().weapons.TryGetValue(WeaponId, out var weapon);
 
-			Debug.Log(weapon);
+			Debug.Log(weapon.itemInfo.Ats);
 			OnChange?.Invoke(weapon);
 
 			InputManager.OnChangePress += () => OnChange?.Invoke(weapon);

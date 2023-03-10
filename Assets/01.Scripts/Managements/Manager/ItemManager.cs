@@ -10,6 +10,7 @@ using UnityEngine;
 
 public class ItemManager : Manager
 {
+	public Dictionary<ItemID, Item> items = new Dictionary<ItemID, Item>();
 	public Dictionary<ItemID, Weapon> weapons = new Dictionary<ItemID, Weapon>();
 	public Dictionary<ItemID, Halo> halos = new Dictionary<ItemID, Halo>();
 	public Dictionary<ItemID, UseAbleItem> useAbleItems = new Dictionary<ItemID, UseAbleItem>();
@@ -49,13 +50,13 @@ public class ItemManager : Manager
 	{
 		Type type = typeof(T);
 		T instance = new();
-		var table = JsonManager.LoadJsonFile<ItemTable>(Application.dataPath + "/Save/Json", typeof(ItemTable).ToString());
-		Debug.Log(table.ItemList.Count);
+		var table = JsonManager.LoadJsonFile<ItemTable>(Application.dataPath + "/Save/Json/" + typeof(ItemTable), typeof(ItemTable).ToString());
 		foreach(var item in table.ItemList)
 		{
 			if(item.Id == id)
 			{
 				instance.itemInfo = item;
+				items.Add(id, instance);
 				return instance;
 			}
 
