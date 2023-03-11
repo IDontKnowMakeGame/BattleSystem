@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Weapon : Item
 {
+	protected WeaponClassLevel _weaponClassLevel;
 	public virtual void Skill()
 	{
 
