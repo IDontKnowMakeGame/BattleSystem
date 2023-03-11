@@ -1,6 +1,7 @@
 ﻿using Managements;
 using Managements.Managers;
 using UnityEngine;
+using Actor.Bases;
 
 namespace Core
 {
@@ -30,5 +31,18 @@ namespace Core
 
     public static class InGame
     {
+        private static PlayerController _player;
+        public static PlayerController Player
+        {
+            get
+            {
+                if(_player == null)
+                {
+                    _player = Object.FindObjectOfType<PlayerController>();
+                }
+
+                return _player;
+            }
+        }
     }
 }

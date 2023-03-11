@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Weapon : Item
 {
+	private AttackInfo attackInfo;
+	public AttackInfo AttackInfo => attackInfo;
+
 	public virtual void Skill()
 	{
 
