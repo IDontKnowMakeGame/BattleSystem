@@ -7,7 +7,7 @@ using UnityEngine;
 public class DataManager : Managements.Managers.Manager
 {
     public static User UserData;
-    //public static SavePoint SavePointData;
+    public static SavePointData SavePointData;
     public static Inventory InventoryData;
     public static WeaponClassLevelList WeaponClassLevelListData;
     public static WeaponLevelList WeaponLevelListData;
@@ -15,9 +15,9 @@ public class DataManager : Managements.Managers.Manager
     private string URL;
     public override void Awake()
     {
-        InventoryData = JsonManager.LoadJsonFile<Inventory>(Application.streamingAssetsPath + "/SAVE/User", "InvectoryData");
+        InventoryData = JsonManager.LoadJsonFile<Inventory>(Application.streamingAssetsPath + "/SAVE/User", "InventoryData");
         UserData = JsonManager.LoadJsonFile<User>(Application.streamingAssetsPath + "/SAVE/User", "UserData");
-        //SavePointData = JsonManager.LoadJsonFile<SavePoint>(Application.streamingAssetsPath + "/SAVE/User", "SavePointData");
+        SavePointData = JsonManager.LoadJsonFile<SavePointData>(Application.streamingAssetsPath + "/SAVE/User", "SavePointData");
         WeaponClassLevelListData = JsonManager.LoadJsonFile<WeaponClassLevelList>(Application.streamingAssetsPath + "/SAVE/Weapon", "ClassLevelData");
         WeaponLevelListData = JsonManager.LoadJsonFile<WeaponLevelList>(Application.streamingAssetsPath + "/SAVE/Weapon", "WeaponLevelData");
 
@@ -241,7 +241,7 @@ public class DataManager : Managements.Managers.Manager
     public void SaveToInventoryData()
     {
         string json = JsonManager.ObjectToJson(InventoryData);
-        JsonManager.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/User", "InvectoryData", json);
+        JsonManager.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/User", "InventoryData", json);
     }
 
     public void AddItemInInventory(ItemData item)
