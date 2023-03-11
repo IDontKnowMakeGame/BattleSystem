@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class ActorChange : Act
 {
-	public void Change()
+	public virtual void Change()
 	{
 		Define.GetManager<ItemManager>().weapons[_actorController.WeaponId].UseItem();
 	}

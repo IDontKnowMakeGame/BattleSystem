@@ -6,6 +6,8 @@ using UnityEngine;
 public class Weapon : Item
 {
 	protected WeaponClassLevel _weaponClassLevel;
+
+	protected AttackInfo _attackInfo = new AttackInfo();
 	public virtual void Skill()
 	{
 

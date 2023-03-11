@@ -43,9 +43,8 @@ public class BaseGreatSword : Weapon
 		ClassLevelSystem();
 		WeaponLevelSystem();
 
-		//_attackCollider.ChangeSizeZ(1);
-		//_attackCollider.ChangeSizeX(1);
-		//_attackCollider.AllEnableDir();
+		_attackInfo.SizeX = 1;
+		_attackInfo.SizeZ = 1;
 
 		InputManager.ChangeKeyCode(KeyboardInput.AttackForward, KeyCode.W);
 		InputManager.ChangeKeyCode(KeyboardInput.AttackBackward, KeyCode.S);
