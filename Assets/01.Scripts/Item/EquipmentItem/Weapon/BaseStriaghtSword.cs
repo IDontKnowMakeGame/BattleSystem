@@ -12,6 +12,7 @@ public class BaseStriaghtSword : Weapon
 	{
 		_weaponClassLevel = Define.GetManager<DataManager>().LoadWeaponClassLevel(this.GetType().ToString());
 		int level = CountToLevel(_weaponClassLevel.killedCount);
+		Debug.Log(level);
 		switch (level)
 		{
 			case 1:
@@ -44,7 +45,8 @@ public class BaseStriaghtSword : Weapon
 	{
 		ClassLevelSystem();
 		WeaponLevelSystem();
-
+		
+		Debug.Log("?");
 		//_attackCollider.ChangeSizeZ(1);
 		//_attackCollider.ChangeSizeX(1);
 		//_attackCollider.CheckDir(_attackCollider.DirReturn(vec));

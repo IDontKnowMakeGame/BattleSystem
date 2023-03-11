@@ -22,7 +22,7 @@ public class ItemInfo
     	}
     }
 }
-public abstract class Item
+public class Item
 {
 	public ItemInfo itemInfo;
 	public virtual void UseItem()

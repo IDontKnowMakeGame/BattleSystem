@@ -24,21 +24,18 @@ namespace Actor.Bases
         }
         public event Action<Vector3, Weapon> OnMove;
         public event Action<Vector3, Weapon> OnAttack;
-        public event Action<Weapon> OnChange;
+        public event Action OnChange;
 
-        protected virtual void Awake()
+
+        private Weapon _weapon;
+        public Weapon weapon => _weapon;
+        protected virtual void Start()
         {
-            Define.GetManager<ItemManager>().weapons.TryGetValue(WeaponId, out var weapon);
+            Define.GetManager<ItemManager>().weapons.TryGetValue(WeaponId, out _weapon);
 
-			Debug.Log(weapon.itemInfo.Ats);
-			OnChange?.Invoke(weapon);
-
-			InputManager.OnChangePress += () => OnChange?.Invoke(weapon);
-			InputManager.OnMovePress += (pos) => { OnChange?.Invoke(weapon); };
+			InputManager.OnChangePress += () => { OnChange?.Invoke(); };
 			InputManager.OnMovePress += (pos) => { OnMove?.Invoke(pos, weapon);};
             InputManager.OnMovePress += (pos) => { OnAttack?.Invoke(pos, weapon);};
-
-            Debug.Log(weapon.itemInfo.Afs);
         }
 
         public T GetAct<T>() where T : Act
