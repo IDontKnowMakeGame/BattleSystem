@@ -10,6 +10,8 @@ public class Weapon : Item
 
 	protected AttackInfo _attackInfo = new AttackInfo();
 
+	public AttackInfo AttackInfo => _attackInfo;
+	
 	protected ActorController _acotrController = null;
 
 	public void Init(ActorController actContorller)

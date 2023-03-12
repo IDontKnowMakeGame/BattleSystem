@@ -48,14 +48,14 @@ public class AttackRange : MonoBehaviour
         return currentEnemys;
     }
 
-    /*
+    
     public MinDistanceObj NearEnemy()
     {
         float minDistnace = float.MaxValue;
         GameObject temp = null;
         foreach (GameObject obj in enemys)
         {
-            float distance = obj.transform.position.DistanceFlat(InGame.PlayerBase.transform.position);
+            float distance = obj.transform.position.DistanceFlat(InGame.Player.transform.position);
             if (distance < minDistnace)
             {
                 minDistnace = distance;
@@ -64,7 +64,7 @@ public class AttackRange : MonoBehaviour
         }
         return new MinDistanceObj(temp, minDistnace);
     }
-    */
+    
 
     public void EnemysClear()
     {

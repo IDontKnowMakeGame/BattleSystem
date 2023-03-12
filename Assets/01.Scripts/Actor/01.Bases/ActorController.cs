@@ -23,7 +23,7 @@ namespace Actor.Bases
             }
         }
         public event Action<Vector3, Weapon> OnMove;
-        public event Action<Vector3, Weapon> OnAttack;
+        public event Action<Vector3, AttackInfo> OnAttack;
         public event Action OnChange;
 
         public Weapon weapon;
@@ -34,7 +34,7 @@ namespace Actor.Bases
 
 			InputManager.OnChangePress += () => { OnChange?.Invoke(); };
 			InputManager.OnMovePress += (pos) => { OnMove?.Invoke(pos, weapon);};
-            InputManager.OnMovePress += (pos) => { OnAttack?.Invoke(pos, weapon);};
+            InputManager.OnAttackPress += (pos) => { OnAttack?.Invoke(pos, weapon.AttackInfo);};
         }
 
         public T GetAct<T>() where T : Act

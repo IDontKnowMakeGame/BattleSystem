@@ -84,6 +84,26 @@ public class AttackCollider : MonoBehaviour
         }
     }
 
+    public EnemyController CurrntDirNearEnemy()
+    {
+        float minDistnace = float.MaxValue;
+        EnemyController temp = null;
+        for (int i = 0; i < 4; i++)
+        {
+            DirType type = (DirType)(1 << i);
+            if (attackCol[type].enabled)
+            {
+                if (attackRanges[type].NearEnemy().distance < minDistnace)
+                {
+                    temp = attackRanges[type].NearEnemy().obj.GetComponent<EnemyController>(); 
+                    minDistnace = attackRanges[type].NearEnemy().distance;
+                }
+            }
+        }
+
+        return temp;
+    }
+
     #region Private Method.
     private void SetAttackSize(DirType direction)
     {
