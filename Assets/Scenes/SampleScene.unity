@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d80f872607941bc921796d23a1d33bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponId: 1
+  WeaponId: 2
   _position: {x: 0, y: 0, z: 0}
 --- !u!4 &776800377
 Transform:

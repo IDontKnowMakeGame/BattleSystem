@@ -26,6 +26,7 @@ namespace Actor.Acts
             else
             {
                 speed = weapon.itemInfo.WeightToSpeed;
+                Debug.Log(speed);
             }
 
             StartCoroutine(PositionUpdateCoroutine());

@@ -8,7 +8,7 @@ public class BaseTwinSword : Weapon
 {
 	protected override void ClassLevelSystem()
 	{
-		_weaponClassLevel = Define.GetManager<DataManager>().LoadWeaponClassLevel("Twin");
+		_weaponClassLevel = Define.GetManager<DataManager>().LoadWeaponClassLevel("TwinSword");
 		int level = CountToLevel(_weaponClassLevel.killedCount);
 		switch (level)
 		{
