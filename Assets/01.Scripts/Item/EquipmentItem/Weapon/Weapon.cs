@@ -8,6 +8,8 @@ public class Weapon : Item
 	protected WeaponClassLevel _weaponClassLevel;
 
 	protected AttackInfo _attackInfo = new AttackInfo();
+
+	public AttackInfo AttackInfo => _attackInfo;
 	public virtual void Skill()
 	{
 
