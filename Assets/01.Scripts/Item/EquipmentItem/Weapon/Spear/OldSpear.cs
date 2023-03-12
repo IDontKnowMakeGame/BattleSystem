@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class OldSpear : BaseSpear
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Skill()
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

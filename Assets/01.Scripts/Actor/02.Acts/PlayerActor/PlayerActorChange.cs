@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerChange : ActorChange
+public class PlayerActorChange : ActorChange
 {
 	public override void Change()
 	{

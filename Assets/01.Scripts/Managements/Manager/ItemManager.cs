@@ -59,7 +59,6 @@ public class ItemManager : Manager
 				items.Add(id, instance);
 				return instance;
 			}
-
 		}
 		return null;
 	}

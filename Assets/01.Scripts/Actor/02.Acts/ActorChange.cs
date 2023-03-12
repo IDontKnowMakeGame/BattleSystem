@@ -9,6 +9,7 @@ public class ActorChange : Act
 {
 	public virtual void Change()
 	{
-		Define.GetManager<ItemManager>().weapons[_actorController.WeaponId].UseItem();
+		_actorController.weapon = Define.GetManager<ItemManager>().weapons[_actorController.WeaponId];
+		_actorController.weapon.UseItem();
 	}
 }

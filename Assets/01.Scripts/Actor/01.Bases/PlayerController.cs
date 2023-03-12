@@ -11,7 +11,7 @@ namespace Actor.Bases
         protected override void Start()
         {
             OnMove += GetAct<ActorMove>().Translate;
-            OnChange += GetAct<PlayerChange>().Change;
+            OnChange += GetAct<PlayerActorChange>().Change;
             base.Start();
 		}
     }

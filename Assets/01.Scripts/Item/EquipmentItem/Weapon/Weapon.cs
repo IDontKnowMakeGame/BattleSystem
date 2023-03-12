@@ -1,3 +1,4 @@
+using Actor.Bases;
 using Core;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +9,13 @@ public class Weapon : Item
 	protected WeaponClassLevel _weaponClassLevel;
 
 	protected AttackInfo _attackInfo = new AttackInfo();
+
+	protected ActorController _acotrController = null;
+
+	public void Init(ActorController actContorller)
+	{
+		_acotrController = actContorller;
+	}
 	public virtual void Skill()
 	{
 

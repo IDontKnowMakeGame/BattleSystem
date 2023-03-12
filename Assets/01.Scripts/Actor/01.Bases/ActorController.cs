@@ -26,12 +26,11 @@ namespace Actor.Bases
         public event Action<Vector3, Weapon> OnAttack;
         public event Action OnChange;
 
-
-        private Weapon _weapon;
-        public Weapon weapon => _weapon;
+        public Weapon weapon;
         protected virtual void Start()
         {
-            Define.GetManager<ItemManager>().weapons.TryGetValue(WeaponId, out _weapon);
+            Define.GetManager<ItemManager>().weapons.TryGetValue(WeaponId, out weapon);
+			weapon.Init(this);
 
 			InputManager.OnChangePress += () => { OnChange?.Invoke(); };
 			InputManager.OnMovePress += (pos) => { OnMove?.Invoke(pos, weapon);};
