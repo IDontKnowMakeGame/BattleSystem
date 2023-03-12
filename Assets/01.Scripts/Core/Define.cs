@@ -44,5 +44,11 @@ namespace Core
                 return _player;
             }
         }
+
+        public static void SetActor(Vector3 pos, ActorController actor)
+        {
+            var block = Define.GetManager<MapManager>().GetBlock(pos);
+            block.SetActorOnBlock(actor);
+        }
     }
 }
