@@ -48,8 +48,8 @@ public class ItemManager : Manager
 
 	private T CreateEnumToClass<T>(ItemID id) where T : Item, new()
 	{
-		Type type = typeof(T);
-		T instance = new();
+		Type name = Type.GetType(id.ToString());
+		T instance = Activator.CreateInstance(name) as T;
 		ItemTable table = JsonManager.LoadJsonFile<ItemTable>(Application.dataPath + "/Save/Json/" + typeof(ItemTable), typeof(ItemTable).ToString());
 		foreach (var item in table.ItemList)
 		{

@@ -130,6 +130,7 @@ namespace Managements
             instance = this;
             Instance.AddManager<InputManager>();
             Instance.AddManager<ItemManager>();
+            Instance.AddManager<DataManager>();
         }
 
         public void Awake()

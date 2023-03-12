@@ -7,12 +7,10 @@ using UnityEngine;
 
 public class BaseStriaghtSword : Weapon
 {
-	WeaponClassLevel _weaponClassLevel;
 	protected override void ClassLevelSystem()
 	{
-		_weaponClassLevel = Define.GetManager<DataManager>().LoadWeaponClassLevel(this.GetType().ToString());
+		_weaponClassLevel = Define.GetManager<DataManager>().LoadWeaponClassLevel("BasicSword");
 		int level = CountToLevel(_weaponClassLevel.killedCount);
-		Debug.Log(level);
 		switch (level)
 		{
 			case 1:
@@ -45,12 +43,9 @@ public class BaseStriaghtSword : Weapon
 	{
 		ClassLevelSystem();
 		WeaponLevelSystem();
-		
-		Debug.Log("?");
-		//_attackCollider.ChangeSizeZ(1);
-		//_attackCollider.ChangeSizeX(1);
-		//_attackCollider.CheckDir(_attackCollider.DirReturn(vec));
-		//_attackCollider.AllEnableDir();
+
+		_attackInfo.SizeX = 1;
+		_attackInfo.SizeZ = 1;
 
 		InputManager.ChangeKeyCode(KeyboardInput.AttackForward, KeyCode.W);
 		InputManager.ChangeKeyCode(KeyboardInput.AttackBackward, KeyCode.S);
