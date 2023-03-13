@@ -473,6 +473,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fbe1ed0c15dc94a97ec15ed148aff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstWeapon: 1
+  secoundWeapon: 3
 --- !u!1 &841047003
 GameObject:
   m_ObjectHideFlags: 0

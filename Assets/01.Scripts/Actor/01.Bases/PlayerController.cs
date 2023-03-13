@@ -7,13 +7,13 @@ namespace Actor.Bases
     {
         protected override void Start()
         {
-            base.Start();
             OnMove += GetAct<ActorMove>().Translate;
             OnChange += GetAct<PlayerActorChange>().Change;
 
 			InputManager.OnChangePress += () => { OnChange?.Invoke(); };
 			InputManager.OnMovePress += (pos) => { OnMove?.Invoke(pos, weapon); };
 			InputManager.OnAttackPress += (pos) => { OnAttack?.Invoke(pos, weapon.AttackInfo); };
+            base.Start();
 		}
     }
 }

@@ -33,15 +33,8 @@ namespace Actor.Bases
         protected virtual void Start()
         {
             Spawn();
-            
             Define.GetManager<ItemManager>().weapons.TryGetValue(WeaponId, out weapon);
-            Debug.Log(gameObject.name);
-            Debug.Log(weapon);
 			weapon.Init(this);
-
-			//InputManager.OnChangePress += () => { OnChange?.Invoke(); };
-			//InputManager.OnMovePress += (pos) => { OnMove?.Invoke(pos, weapon); };
-			//InputManager.OnAttackPress += (pos) => { OnAttack?.Invoke(pos, weapon.AttackInfo); };
 		}
 
         private void Spawn()
