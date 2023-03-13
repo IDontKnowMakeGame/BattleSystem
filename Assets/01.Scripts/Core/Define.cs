@@ -47,8 +47,12 @@ namespace Core
 
         public static void SetActor(Vector3 pos, ActorController actor)
         {
-            var block = Define.GetManager<MapManager>().GetBlock(pos);
-            block.SetActorOnBlock(actor);
+            pos.y = 0;
+            var map = Define.GetManager<MapManager>();
+            var curBlock = map.GetBlock(actor);
+            var nextblock = map.GetBlock(pos);
+            curBlock.SetActorOnBlock(null);
+            nextblock.SetActorOnBlock(actor);
         }
     }
 }

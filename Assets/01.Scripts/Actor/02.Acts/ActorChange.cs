@@ -12,9 +12,10 @@ public class ActorChange : Act
 	public virtual void Change()
 	{
 		Weapon weapon = Define.GetManager<ItemManager>().weapons[ItemID.OldTwinSword];
-		weapon.Init(_actorController);
+		var controller = _controller as ActorController;
+		weapon.Init(controller);
 		weapon.UseItem();
-		_actorController.WeaponId = weapon.itemInfo.Id;
-		_actorController.weapon = weapon;
+		controller.WeaponId = weapon.itemInfo.Id;
+		controller.weapon = weapon;
 	}
 }
