@@ -5,7 +5,6 @@ namespace Actor.Bases
 {
     public class PlayerController : ActorController
     {
-        
         protected override void Start()
         {
             base.Start();

@@ -128,6 +128,7 @@ namespace Managements
         private void Init()
         {
             instance = this;
+            Instance.AddManager<MapManager>();
             Instance.AddManager<InputManager>();
             Instance.AddManager<ItemManager>();
             Instance.AddManager<DataManager>();

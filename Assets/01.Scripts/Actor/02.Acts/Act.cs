@@ -1,10 +1,11 @@
 ﻿using System;
 using Actor.Bases;
+using ControllerBase;
 using UnityEngine;
 
 namespace Actor.Acts
 {
-    [RequireComponent(typeof(ActorController))]
+    [RequireComponent(typeof(Controller))]
     public class Act : MonoBehaviour
     {
         protected ActorController _actorController;

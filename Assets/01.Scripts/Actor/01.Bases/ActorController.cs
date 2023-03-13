@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ControllerBase;
 using Actor.Acts;
 using Core;
 using Managements.Managers;
@@ -8,19 +9,18 @@ using UnityEngine;
 
 namespace Actor.Bases
 {
-    public class ActorController : MonoBehaviour
+    public class ActorController : Controller
     {
         public ItemID WeaponId = 0;
-        public Dictionary<Type, Act> ActList = new ();
-        [SerializeField] private Vector3 _position;
+        [SerializeField] private Vector3 _spawnPosition;
 
-        public Vector3 Position
+        public Vector3 SpawnPosition
         {
-            get => _position;
+            get => _spawnPosition;
             set
             {
-                value.y = 0;
-                _position = value;
+                value.y = 1;
+                _spawnPosition = value;
             }
         }
 
@@ -29,9 +29,14 @@ namespace Actor.Bases
         public Action OnChange = null;
 
         public Weapon weapon;
+        
         protected virtual void Start()
         {
+            Spawn();
+            
             Define.GetManager<ItemManager>().weapons.TryGetValue(WeaponId, out weapon);
+            Debug.Log(gameObject.name);
+            Debug.Log(weapon);
 			weapon.Init(this);
 
 			//InputManager.OnChangePress += () => { OnChange?.Invoke(); };
@@ -39,10 +44,12 @@ namespace Actor.Bases
 			//InputManager.OnAttackPress += (pos) => { OnAttack?.Invoke(pos, weapon.AttackInfo); };
 		}
 
-        public T GetAct<T>() where T : Act
+        private void Spawn()
         {
-            ActList.TryGetValue(typeof(T), out var act);
-            return act as T;
+            var thisTransform = transform;
+            thisTransform.position = SpawnPosition;
+            Position = thisTransform.position;
+            InGame.SetActor(Position, this);
         }
     }
 }

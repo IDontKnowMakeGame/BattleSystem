@@ -1,28 +1,31 @@
-﻿using Actor.Bases;
+﻿using System;
+using Actor.Bases;
+using ControllerBase;
+using Core;
+using Managements.Managers;
 using UnityEngine;
 
 namespace Block.Base
 {
-    public class BlockController : MonoBehaviour
+    public class BlockController : Controller
     {
-        [SerializeField] private Vector3 _position;
-        public Vector3 Position
-        {
-            get => _position;
-            set
-            {
-                value.y = 0;
-                _position = value;
-            }
-        }
 
         [SerializeField] private ActorController _actorOnBlock;
-        
+
+        private void Awake()
+        {
+            Position = transform.position;
+            Define.GetManager<MapManager>().BlockDictionary.Add(Position, this);
+        }
+
         public void SetActorOnBlock(ActorController actor)
         {
             _actorOnBlock = actor;
         }
         
-        
+        public ActorController GetActorOnBlock()
+        {
+            return _actorOnBlock;
+        }
     }
 }
