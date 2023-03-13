@@ -36,6 +36,7 @@ public class PlayerActorAttack : ActorAttack
 	public void GreatSword(Vector3 vec, ItemInfo weapon)
 	{
 
+		//È¦µå, Å° ³ùÀ»¶§
 	}
 	public void TwinSword(Vector3 vec, ItemInfo weapon)
 	{
@@ -49,4 +50,6 @@ public class PlayerActorAttack : ActorAttack
 	{
 
 	}
+
+	
 }

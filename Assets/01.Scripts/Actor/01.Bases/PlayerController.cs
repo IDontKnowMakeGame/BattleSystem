@@ -8,17 +8,16 @@ namespace Actor.Bases
     {
 		public Action OnSkill = null;
 		protected override void Start()
-        {
+		{
 			base.Start();
-            OnMove += GetAct<ActorMove>().Translate;
-            OnChange += GetAct<PlayerActorChange>().Change;
+			OnMove += GetAct<ActorMove>().Translate;
+			OnChange += GetAct<PlayerActorChange>().Change;
 			OnSkill = weapon.Skill;
 
 			InputManager.OnChangePress += () => { OnChange?.Invoke(); };
 			InputManager.OnMovePress += (pos) => { OnMove?.Invoke(pos, weapon); };
 			InputManager.OnAttackPress += (pos) => { OnAttack?.Invoke(pos, weapon.AttackInfo); };
 			InputManager.OnSkillPress += OnSkill;
-
 		}
-    }
+     }
 }
