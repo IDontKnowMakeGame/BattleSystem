@@ -12,11 +12,17 @@ public class Weapon : Item
 
 	public AttackInfo AttackInfo => _attackInfo;
 	
-	protected ActorController _acotrController = null;
+	protected ActorController _actController = null;
 
-	public void Init(ActorController actContorller)
+	public virtual void Init(ActorController actContorller)
 	{
-		_acotrController = actContorller;
+		_actController = actContorller;
+	}
+
+	public override void UseItem()
+	{
+		if (_actController is PlayerController)
+			(_actController as PlayerController).OnSkill += Skill;
 	}
 	public virtual void Skill()
 	{

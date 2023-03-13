@@ -27,6 +27,13 @@ public class ItemManager : Manager
 		}
 	}
 
+	public Weapon GetWeapon(ItemID id)
+	{
+		Weapon weapon = null;
+		weapons.TryGetValue(id, out weapon);
+		return weapon;
+	}
+
 
 	private void InsertDic(int id, ItemID itemId)
 	{

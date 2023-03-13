@@ -12,6 +12,7 @@ namespace Actor.Bases
     public class ActorController : Controller
     {
         public ItemID WeaponId = 0;
+
         [SerializeField] private Vector3 _spawnPosition;
 
         public Vector3 SpawnPosition
@@ -33,7 +34,8 @@ namespace Actor.Bases
         protected virtual void Start()
         {
             Spawn();
-            Define.GetManager<ItemManager>().weapons.TryGetValue(WeaponId, out weapon);
+            
+            weapon = Define.GetManager<ItemManager>().GetWeapon(WeaponId);
 			weapon.Init(this);
 		}
 
