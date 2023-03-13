@@ -10,9 +10,9 @@ public class User
     public ItemID firstWeapon = ItemID.None;
     public ItemID secondWeapon = ItemID.None;
 
-    public ItemID firstHelo = ItemID.None;
-    public ItemID secondHelo = ItemID.None;
-    public ItemID thirdHelo = ItemID.None;
+    public ItemID firstHalo = ItemID.None;
+    public ItemID secondHalo = ItemID.None;
+    public ItemID thirdHalo = ItemID.None;
 
     public List<ItemData> equipUseableItem; //0~4 x
 }
