@@ -9,10 +9,21 @@ using UnityEngine;
 
 namespace Actor.Bases
 {
+    [Flags]
+    public enum State
+    {
+        None = 0,
+        Move = 1 << 0,
+        Attack = 1 << 1,
+        Change = 1 << 2,
+        Dead = 1 << 3,
+    }
     public class ActorController : Controller
     {
         public ItemID WeaponId = 0;
         [SerializeField] private Vector3 _spawnPosition;
+        [SerializeField] private State _currentState;
+        private ActorStat _actorStat;
 
         public Vector3 SpawnPosition
         {
@@ -33,11 +44,12 @@ namespace Actor.Bases
         protected virtual void Start()
         {
             Spawn();
-            
+            _actorStat = GetAct<ActorStat>();
             Define.GetManager<ItemManager>().weapons.TryGetValue(WeaponId, out weapon);
             Debug.Log(gameObject.name);
             Debug.Log(weapon);
 			weapon.Init(this);
+            _actorStat.weaponInfo = weapon.itemInfo;
 
 			//InputManager.OnChangePress += () => { OnChange?.Invoke(); };
 			//InputManager.OnMovePress += (pos) => { OnMove?.Invoke(pos, weapon); };
@@ -50,6 +62,24 @@ namespace Actor.Bases
             thisTransform.position = SpawnPosition;
             Position = thisTransform.position;
             InGame.SetActor(Position, this);
+        }
+        
+        
+
+
+        public void AddState(State state)
+        {
+            _currentState |= state;
+        }
+        
+        public void RemoveState(State state)
+        {
+            _currentState &= ~state;
+        }
+        
+        public bool HasState(State state)
+        {
+            return (_currentState & state) == state;
         }
     }
 }
