@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using Actor.Bases;
+using Core;
 using DG.Tweening;
 using UnityEngine;
 
@@ -17,6 +19,7 @@ namespace Actor.Acts
             if(_isMoving) return;
             Sequence seq = DOTween.Sequence();
             var nextPos = pos;
+            nextPos.y = 1;
             var curPos = _controller.Position;
             float speed = 0f;
             if(weapon == null)
@@ -55,7 +58,8 @@ namespace Actor.Acts
                 {
                     pos.z = Mathf.Round(pos.z);
                 }
-
+                
+                InGame.SetActor(pos, _controller as ActorController);
                 _controller.Position = pos;
             }
         }

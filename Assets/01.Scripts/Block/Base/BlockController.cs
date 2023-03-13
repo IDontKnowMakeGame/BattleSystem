@@ -27,5 +27,10 @@ namespace Block.Base
         {
             return _actorOnBlock;
         }
+        
+        public bool IsActorOnBlock()
+        {
+            return _actorOnBlock != null;
+        }
     }
 }
