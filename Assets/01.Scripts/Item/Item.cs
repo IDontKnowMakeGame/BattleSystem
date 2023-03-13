@@ -21,6 +21,16 @@ public class ItemInfo
     		return speed;
     	}
     }
+	
+	public static ItemInfo operator+(ItemInfo origin, ItemInfo other)
+	{
+		origin.Hp += other.Hp;
+		origin.Atk += other.Atk;
+		origin.Ats -= other.Ats;
+		origin.Afs -= other.Afs;
+		origin.Weight += other.Weight;
+		return origin;
+	}
 }
 public abstract class Item
 {
