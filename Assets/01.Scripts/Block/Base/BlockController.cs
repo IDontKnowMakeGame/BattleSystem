@@ -9,6 +9,71 @@ namespace Block.Base
 {
     public class BlockController : Controller
     {
+        #region Astar
+        private GameObject tileOBJ;
+        private int x;
+        private int z;
+
+        public bool isWalkable = false;
+        public bool canEnemyEnter = true;
+        public bool canBossEnter = false;
+        private int g;
+        private int h;
+
+        private BlockController parent;
+
+
+        public GameObject TileOBJ { get => tileOBJ; }
+        public int X { get => x; }
+        public int Z { get => z; }
+        public int G
+        {
+            get
+            {
+                return g;
+            }
+            set
+            {
+                g = value;
+            }
+        }
+        public int H
+        {
+            get
+            {
+                return h;
+            }
+            set
+            {
+                h = value;
+            }
+        }
+        public BlockController Parent
+        {
+            get
+            {
+                return parent;
+            }
+            set
+            {
+                parent = value;
+            }
+        }
+
+        public bool ChangeTile
+        {
+            set
+            {
+                isWalkable = value;
+            }
+        }
+
+        public int fCost
+        {
+            get { return g + h; }
+        }
+        #endregion
+
 
         [SerializeField] private ActorController _actorOnBlock;
 
