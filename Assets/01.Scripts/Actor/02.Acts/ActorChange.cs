@@ -4,6 +4,7 @@ using Core;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using Actor.Bases;
 using UnityEngine;
 
 public class ActorChange : Act

@@ -9,7 +9,7 @@ namespace Actor.Acts
         private bool _isMoving = false;
         public void Translate(Vector3 dir, Weapon weapon = null)
         {
-            MoveTo(_actorController.Position + dir, weapon);
+            MoveTo(_controller.Position + dir, weapon);
         }
 
         public void MoveTo(Vector3 pos, Weapon weapon = null)
@@ -17,7 +17,7 @@ namespace Actor.Acts
             if(_isMoving) return;
             Sequence seq = DOTween.Sequence();
             var nextPos = pos;
-            var curPos = _actorController.Position;
+            var curPos = _controller.Position;
             float speed = 0f;
             if(weapon == null)
             {
@@ -34,7 +34,7 @@ namespace Actor.Acts
             seq.AppendCallback(() =>
             {
                 _isMoving = false;
-                _actorController.Position = nextPos;
+                _controller.Position = nextPos;
                 seq.Kill();
             });
         }
@@ -56,7 +56,7 @@ namespace Actor.Acts
                     pos.z = Mathf.Round(pos.z);
                 }
 
-                _actorController.Position = pos;
+                _controller.Position = pos;
             }
         }
     }
