@@ -1,5 +1,6 @@
 using Actor.Acts;
 using Actor.Bases;
+using Data;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,6 +23,11 @@ public class PlayerActorAttack : ActorAttack
 	}
 	public void SetAttack(Vector3 vec, Weapon weapon)
 	{
+		if (_playerController.HasState(State.Attack))
+			return;
+
+		_playerController.AddState(State.Attack);
+
 		if (currentWeapon is BaseStraightSword)
 			StraightSword(vec, weapon);
 		else if (currentWeapon is BaseGreatSword)
@@ -37,8 +43,7 @@ public class PlayerActorAttack : ActorAttack
 	public void StraightSword(Vector3 vec, Weapon weapon)
 	{
 		//if(_) TODO 어택 중인지 확인
-		Debug.Log(weapon.AttackInfo);
-		StartCoutineAction(null, () => Attack(vec, weapon.AttackInfo), weapon.itemInfo.Atk);
+		StartCoutineAction(null, () => { Attack(vec, weapon.AttackInfo); _playerController.RemoveState(State.Attack); }, weapon.itemInfo.Atk);
 	}
 	public void GreatSword(Vector3 vec, Weapon weapon)
 	{

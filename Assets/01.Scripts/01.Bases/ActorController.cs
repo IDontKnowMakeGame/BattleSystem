@@ -47,14 +47,8 @@ namespace Actor.Bases
             Spawn();
             _actorStat = GetAct<ActorStat>();
             Define.GetManager<ItemManager>().weapons.TryGetValue(WeaponId, out weapon);
-            Debug.Log(gameObject.name);
-            Debug.Log(weapon);
 			weapon.Init(this);
             _actorStat.weaponInfo = weapon.itemInfo;
-
-			//InputManager.OnChangePress += () => { OnChange?.Invoke(); };
-			//InputManager.OnMovePress += (pos) => { OnMove?.Invoke(pos, weapon); };
-			//InputManager.OnAttackPress += (pos) => { OnAttack?.Invoke(pos, weapon.AttackInfo); };
 		}
 
         private void Spawn()
