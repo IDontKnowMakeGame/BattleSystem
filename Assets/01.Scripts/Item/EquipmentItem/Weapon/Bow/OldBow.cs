@@ -17,9 +17,8 @@ public class OldBow : BaseBow
 		_actController.OnMove(-_currentVec, _actController.weapon);
 	}
 
-	private void Vec(Vector3 vec, AttackInfo info)
+	private void Vec(Vector3 vec, Weapon info)
 	{
 		_currentVec = vec;
-		Debug.Log(_currentVec);
 	}
 }

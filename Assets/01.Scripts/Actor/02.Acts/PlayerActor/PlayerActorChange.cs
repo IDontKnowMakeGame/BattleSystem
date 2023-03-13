@@ -9,6 +9,7 @@ public class PlayerActorChange : ActorChange
 	public override void Change()
 	{
 		base.Change();
+
 		if (playerController == null)
 			playerController = _actController as PlayerController;
 

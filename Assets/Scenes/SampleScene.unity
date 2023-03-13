@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 776800376}
   - component: {fileID: 776800378}
   - component: {fileID: 776800379}
+  - component: {fileID: 776800380}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -302,7 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _position: {x: 0, y: 0, z: 0}
-  WeaponId: 1
+  WeaponId: 5
   _spawnPosition: {x: 0, y: 1, z: 0}
 --- !u!4 &776800377
 Transform:
@@ -342,6 +343,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72fbe1ed0c15dc94a97ec15ed148aff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secoundWeapon: 1
+--- !u!114 &776800380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776800375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f17b56c2c73022468dbcf52c1afa84d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &963194225

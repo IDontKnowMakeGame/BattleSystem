@@ -19,19 +19,23 @@ public class Weapon : Item
 		_actController = actContorller;
 	}
 
-	public override void UseItem()
-	{
-		if (_actController is PlayerController)
-			(_actController as PlayerController).OnSkill += Skill;
-	}
 	public virtual void Skill()
 	{
 
 	}
 
+	public virtual void Reset()
+	{
+
+	}
 	protected virtual void ClassLevelSystem()
 	{
 
+	}
+	public override void UseItem()
+	{
+		if (_actController is PlayerController)
+			(_actController as PlayerController).OnSkill += Skill;
 	}
 
 	protected int CountToLevel(int count) => count switch

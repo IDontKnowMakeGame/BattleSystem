@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class ActorChange : Act
 {
-	[SerializeField]
 	private ItemID firstWeapon => _actController.WeaponId;
 	[SerializeField]
 	private ItemID secoundWeapon;
@@ -20,11 +19,16 @@ public class ActorChange : Act
 			_actController = _controller as ActorController;
 
 		Weapon weapon = Define.GetManager<ItemManager>().GetWeapon(secoundWeapon);
+
+		if (weapon == null)
+			return;
+
+		secoundWeapon = firstWeapon;
+
 		weapon.Init(_actController);
 		weapon.UseItem();
 
-		secoundWeapon = firstWeapon;
-		_actController.WeaponId = weapon.itemInfo.Id;
 		_actController.weapon = weapon;
+		_actController.WeaponId = weapon.itemInfo.Id;
 	}
 }

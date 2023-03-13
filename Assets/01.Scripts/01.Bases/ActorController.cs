@@ -26,7 +26,7 @@ namespace Actor.Bases
         }
 
         public Action<Vector3, Weapon> OnMove = null;
-        public Action<Vector3, AttackInfo> OnAttack = null;
+        public Action<Vector3, Weapon> OnAttack = null;
         public Action OnChange = null;
 
         public Weapon weapon;

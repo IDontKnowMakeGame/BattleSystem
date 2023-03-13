@@ -16,7 +16,7 @@ namespace Actor.Bases
 
 			InputManager.OnChangePress += () => { OnChange?.Invoke(); };
 			InputManager.OnMovePress += (pos) => { OnMove?.Invoke(pos, weapon); };
-			InputManager.OnAttackPress += (pos) => { OnAttack?.Invoke(pos, weapon.AttackInfo); };
+			InputManager.OnAttackPress += (pos) => { OnAttack?.Invoke(pos, weapon); };
 			InputManager.OnSkillPress += OnSkill;
 		}
      }

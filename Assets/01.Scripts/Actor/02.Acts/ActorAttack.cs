@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace Actor.Acts
 {
     public class ActorAttack : Act
@@ -23,8 +24,10 @@ namespace Actor.Acts
 
             foreach (EnemyController enemy in enemys)
             {
-                Debug.Log(enemy.name);
+                Debug.Log(enemy.name); 
             }
+
+            Debug.Log("АјАн");
         }
     }
 }
