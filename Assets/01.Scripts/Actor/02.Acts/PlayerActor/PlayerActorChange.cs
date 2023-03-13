@@ -7,5 +7,6 @@ public class PlayerActorChange : ActorChange
 	public override void Change()
 	{
 		base.Change();
+		Debug.Log("?");
 	}
 }

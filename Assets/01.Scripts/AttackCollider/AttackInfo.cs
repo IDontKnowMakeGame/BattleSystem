@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class AttackInfo : MonoBehaviour
+public class AttackInfo
 {
     public AttackInfo()
     {

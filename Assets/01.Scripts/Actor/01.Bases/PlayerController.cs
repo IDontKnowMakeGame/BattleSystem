@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using Actor.Acts;
+﻿using Actor.Acts;
 using Managements.Managers;
-using UnityEngine;
 
 namespace Actor.Bases
 {
@@ -9,9 +7,13 @@ namespace Actor.Bases
     {
         protected override void Start()
         {
+            base.Start();
             OnMove += GetAct<ActorMove>().Translate;
             OnChange += GetAct<PlayerActorChange>().Change;
-            base.Start();
-        }
+
+			InputManager.OnChangePress += () => { OnChange?.Invoke(); };
+			InputManager.OnMovePress += (pos) => { OnMove?.Invoke(pos, weapon); };
+			InputManager.OnAttackPress += (pos) => { OnAttack?.Invoke(pos, weapon.AttackInfo); };
+		}
     }
 }

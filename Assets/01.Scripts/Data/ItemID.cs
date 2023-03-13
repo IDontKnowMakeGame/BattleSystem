@@ -8,9 +8,9 @@ public enum ItemID
     //1~99 Weapon
     OldStraightSword = 1,
     OldGreatSword = 2,
-    //OldTwinSword = 3,
-    //OldSpear = 4,
-    //OldBow = 5,
+    OldTwinSword = 3,
+    OldSpear = 4,
+    OldBow = 5,
     //TaintedSword = 6,
     //BrokenSword = 7,
     //OutwornBow = 8,

@@ -1,4 +1,5 @@
 using Actor.Acts;
+using Actor.Bases;
 using Core;
 using DG.Tweening;
 using System.Collections;
@@ -10,8 +11,10 @@ public class ActorChange : Act
 {
 	public virtual void Change()
 	{
-		var actorCon = _controller as ActorController;
-		actorCon.weapon = Define.GetManager<ItemManager>().weapons[actorCon.WeaponId];
-		actorCon.weapon.UseItem();
+		Weapon weapon = Define.GetManager<ItemManager>().weapons[ItemID.OldTwinSword];
+		weapon.Init(_actorController);
+		weapon.UseItem();
+		_actorController.WeaponId = weapon.itemInfo.Id;
+		_actorController.weapon = weapon;
 	}
 }
