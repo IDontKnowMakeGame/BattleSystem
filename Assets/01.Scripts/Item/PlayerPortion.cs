@@ -1,3 +1,6 @@
-﻿internal class PlayerPortion : Item
+﻿
+
+public class PlayerPortion : Item
 {
+
 }

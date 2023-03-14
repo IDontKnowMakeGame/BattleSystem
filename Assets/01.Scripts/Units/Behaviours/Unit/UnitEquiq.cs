@@ -27,10 +27,8 @@ namespace Units.Behaviours.Unit
 			{
 				if (_currentWeapon != ItemID.None)
 				{
-					Item item;
 					Weapon weapon = null;
-					items.TryGetValue(_currentWeapon, out item);
-					weapon = item as Weapon;
+					weapons.TryGetValue(_currentWeapon, out weapon);
 					return weapon;
 				}
 				else
@@ -43,10 +41,8 @@ namespace Units.Behaviours.Unit
 			{
 				if (_secoundWeapon != ItemID.None)
 				{
-					Item item;
 					Weapon weapon = null;
-					items.TryGetValue(_secoundWeapon, out item);
-					weapon = item as Weapon;
+					weapons.TryGetValue(_secoundWeapon, out weapon);
 					return weapon;
 				}
 				else
@@ -64,30 +60,21 @@ namespace Units.Behaviours.Unit
 		public override void Awake()
 		{
 			base.Awake();
-			//halos.Add("DirtyHalo", new DirtyHalo());
-			//halos.Add("EvilSpiritHalo", new EvilSpiritHalo());
-
-
-			foreach (var value in items)
+			foreach (var value in weapons)
 			{
 				value.Value?.Awake();
 			}
-			//foreach (var value in halos)
-			//{
-			//	value.Value?.Awake();
-			//}
+			foreach (var value in halos)
+			{
+				value.Value?.Awake();
+			}
 		}
-
 		public override void Start()
 		{
 			foreach (var value in items)
 			{
 				value.Value?.Start();
 			}
-			//foreach (var value in halos)
-			//{
-			//	value.Value?.Start();
-			//}
 		}
 		public override void Update()
 		{
@@ -99,7 +86,6 @@ namespace Units.Behaviours.Unit
 					usingHalos[i].Update();
 			}
 		}
-
 		public override void OnDestroy()
 		{
 			foreach (var value in halos)
@@ -107,7 +93,6 @@ namespace Units.Behaviours.Unit
 				value.Value?.OnDestroy();
 			}
 		}
-
 		public override void OnApplicationQuit()
 		{
 			foreach (var value in halos)
@@ -115,22 +100,6 @@ namespace Units.Behaviours.Unit
 				value.Value?.OnApplicationQuit();
 			}
 		}
-		//public virtual void InsertHelo(ItemID name, int idx)
-		//{
-		//	EraseHelo(idx);
-
-		//	usingHalos[idx] = halos[name];
-		//	usingHalos[idx].Init();
-		//}
-
-		//public virtual void EraseHelo(int idx)
-		//{
-		//	if (usingHalos[idx] != null)
-		//		usingHalos[idx].Exit();
-
-		//	usingHalos[idx] = null;
-		//}
-
 		public int WeaponAnimation()
 		{
 			if (_currentWeapon == ItemID.OldGreatSword)
@@ -144,7 +113,7 @@ namespace Units.Behaviours.Unit
 			else
 				return 0;
 		}
-
+		    
 		public void KillCount()
 		{
 			CurrentWeapon.KillEnemy();

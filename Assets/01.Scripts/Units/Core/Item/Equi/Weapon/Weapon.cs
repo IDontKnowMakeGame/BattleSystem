@@ -33,11 +33,9 @@ namespace Unit.Core.Weapon
 		//유닛 공격, 유닛 move
 		#region 유닛 공격이나 move등등
 		protected AttackCollider _attackCollider = null;
+		protected PlayerAnimation _playerAnimation;
 		protected UnitMove _unitMove;
 		protected UnitStat _unitStat;
-		protected UnitAnimation _unitAnimation;
-
-		protected PlayerAnimation _playerAnimation;
 		#endregion
 
 		#region 타이머
@@ -65,14 +63,12 @@ namespace Unit.Core.Weapon
 		}
 		public override void Start()
 		{
-			if (!_isEnemy)
-				_attackCollider = thisBase.GetComponentInChildren<AttackCollider>();
+			_attackCollider = thisBase?.GetComponentInChildren<AttackCollider>();
 
-			_unitMove = thisBase.GetBehaviour<UnitMove>();
-			_unitStat = thisBase.GetBehaviour<UnitStat>();
-			_unitAnimation = thisBase.GetBehaviour<UnitAnimation>();
+			_unitMove = thisBase?.GetBehaviour<UnitMove>();
+			_unitStat = thisBase?.GetBehaviour<UnitStat>();
 
-			_playerAnimation = _unitAnimation as PlayerAnimation;
+			_playerAnimation = thisBase?.GetBehaviour<PlayerAnimation>();
 
 			_changeStats = _weaponStats;
 			WeaponLevel();
