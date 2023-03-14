@@ -691,6 +691,7 @@ GameObject:
   - component: {fileID: 1466198092}
   - component: {fileID: 1466198091}
   - component: {fileID: 1466198090}
+  - component: {fileID: 1466198094}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -737,6 +738,7 @@ MonoBehaviour:
   _position: {x: 0, y: 0, z: 0}
   WeaponId: 1
   _spawnPosition: {x: 0, y: 1, z: 0}
+  _currentState: 0
 --- !u!4 &1466198093
 Transform:
   m_ObjectHideFlags: 0
@@ -754,6 +756,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1466198094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466198089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a90f5b867f2ca4cb21359b83fd29d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curClip:
+    name: 
+    nextIdx: -1
+    texture: {fileID: 0}
+    fps: 0
+    isLoop: 0
+    delay: 0
+  renderer: {fileID: 897716560}
+  texture: {fileID: 0}
+  index: 0
+  isFinished: 0
+  weaponAnimations:
+  - {fileID: 11400000, guid: 536ccfa5cc82e3a4b8e2e782290018a5, type: 2}
+  curWeaponClips: {fileID: 0}
+  curID: 100
 --- !u!1001 &1746758012
 PrefabInstance:
   m_ObjectHideFlags: 0
