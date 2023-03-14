@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseSpear : Weapon
+public class Spear : Weapon
 {
 	protected override void ClassLevelSystem()
 	{

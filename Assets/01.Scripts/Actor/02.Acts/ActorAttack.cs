@@ -16,6 +16,7 @@ namespace Actor.Acts
 
         public void Attack(Vector3 pos, AttackInfo info)
         {
+            Debug.Log(attackCol);
             attackCol.SetAttackCol(info);
 
             List<EnemyController> enemys = new List<EnemyController>();

@@ -2,38 +2,37 @@ using Core;
 using Managements.Managers;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class BaseStraightSword : Weapon
+public abstract class Bow : Weapon
 {
 	protected override void ClassLevelSystem()
 	{
-		_weaponClassLevel = Define.GetManager<DataManager>().LoadWeaponClassLevel("BasicSword");
+		_weaponClassLevel = Define.GetManager<DataManager>().LoadWeaponClassLevel("Bow");
 		int level = CountToLevel(_weaponClassLevel.killedCount);
 		switch (level)
 		{
 			case 1:
-				itemInfo.Atk = 10;
-				itemInfo.Ats = -0.01f;
+				itemInfo.Atk += 5;
+				itemInfo.Ats += 0.5f;
 				break;
 			case 2:
-				itemInfo.Atk = 15;
-				itemInfo.Ats = -0.03f;
+				itemInfo.Atk += 10;
+				itemInfo.Ats += 0.7f;
 				break;
 			case 3:
-				itemInfo.Atk = 20;
-				itemInfo.Ats = -0.05f;
+				itemInfo.Atk += 15;
+				itemInfo.Ats += -0.05f;
 				break;
 			case 4:
-				itemInfo.Atk = 20;
-				itemInfo.Ats = -0.07f;
-				itemInfo.Afs = -0.01f;
+				itemInfo.Atk += 20;
+				itemInfo.Ats += -0.07f;
+				itemInfo.Afs += -0.01f;
 				break;
 			case 5:
-				itemInfo.Atk = 20;
-				itemInfo.Ats = -0.07f;
-				itemInfo.Afs = -0.05f;
+				itemInfo.Atk += 20;
+				itemInfo.Ats += -0.07f;
+				itemInfo.Afs += -0.05f;
 				break;
 			default:
 				break;
@@ -43,9 +42,6 @@ public class BaseStraightSword : Weapon
 	{
 		ClassLevelSystem();
 		WeaponLevelSystem();
-
-		_attackInfo.SizeX = 1;
-		_attackInfo.SizeZ = 1;
 
 		InputManager.ChangeKeyCode(KeyboardInput.AttackForward, KeyCode.W);
 		InputManager.ChangeKeyCode(KeyboardInput.AttackBackward, KeyCode.S);

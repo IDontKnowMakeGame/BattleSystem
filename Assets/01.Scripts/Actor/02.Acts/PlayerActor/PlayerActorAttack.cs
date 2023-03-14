@@ -8,8 +8,8 @@ using UnityEngine;
 
 public class PlayerActorAttack : ActorAttack
 {
+	//private List
 	private PlayerController _playerController;
-
 	private Weapon currentWeapon => _playerController.weapon;
 	protected override void Awake()
 	{
@@ -32,11 +32,11 @@ public class PlayerActorAttack : ActorAttack
 			StraightSword(vec, weapon);
 		else if (currentWeapon is BaseGreatSword)
 			GreatSword(vec, weapon);
-		else if (currentWeapon is BaseTwinSword)
+		else if (currentWeapon is TwinSword)
 			TwinSword(vec, weapon);
-		else if (currentWeapon is BaseSpear)
+		else if (currentWeapon is Spear)
 			Spear(vec, weapon);
-		else if (currentWeapon is BaseBow)
+		else if (currentWeapon is Bow)
 			Bow(vec, weapon);
 	}
 
