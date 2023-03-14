@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Tools
 {
     [Serializable]
-    public class AnimeClip
+    public class ClipBase
     {
         public string name;
         public int nextIdx = -1;
@@ -13,7 +13,6 @@ namespace Tools
         public int fps;
         public bool isLoop;
         public float delay;
-        public bool changeAble = true;
         public List<Action> events = null;
 
         public void SetEventOnFrame(int frame, Action action)

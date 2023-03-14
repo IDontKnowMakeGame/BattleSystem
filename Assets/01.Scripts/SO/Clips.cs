@@ -6,5 +6,5 @@ using Tools;
 [CreateAssetMenu(fileName = "clips Data", menuName = "Scriptable Object/clips Data")]
 public class Clips : ScriptableObject
 {
-    public List<AnimeClip> clips;
+    public List<ClipBase> clips;
 }

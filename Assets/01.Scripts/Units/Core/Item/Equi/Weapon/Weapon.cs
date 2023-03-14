@@ -120,7 +120,7 @@ namespace Unit.Core.Weapon
 				_playerAnimation.CurWeaponAnimator.SetDir = vec;
 				_playerAnimation.CurWeaponAnimator.Attack = true;
 				_playerAnimation.SetAnmation();
-				AnimeClip animeClip = _playerAnimation.GetClip();
+				ClipBase animeClip = _playerAnimation.GetClip();
 				thisBase.AddState(BaseState.Attacking);
 			}
 			else

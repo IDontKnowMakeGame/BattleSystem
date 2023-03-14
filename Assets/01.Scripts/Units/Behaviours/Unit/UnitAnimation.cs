@@ -34,7 +34,7 @@ namespace Units.Behaviours.Unit
 
         public override void Update()
         {
-            List<AnimeClip> _clips = clips.clips;
+            List<ClipBase> _clips = clips.clips;
             if (isFinished && !_clips[state].isLoop)
             {
                 if(_clips[state].nextIdx != -1)
@@ -84,7 +84,7 @@ namespace Units.Behaviours.Unit
 
         public void ChangeState(int value)
         {
-            List<AnimeClip> _clips = clips.clips;
+            List<ClipBase> _clips = clips.clips;
             if (_clips[state].changeAble || isFinished)
             {
                 isFinished = false;
@@ -105,7 +105,7 @@ namespace Units.Behaviours.Unit
 
         public int GetFPS()
         {
-            List<AnimeClip> _clips = clips.clips;
+            List<ClipBase> _clips = clips.clips;
             return _clips[state].fps;
         }
 
@@ -119,12 +119,12 @@ namespace Units.Behaviours.Unit
             return state;
         }
         
-        public AnimeClip GetClip()
+        public ClipBase GetClip()
 		{
             return clips.clips[state];
         }
 
-        public AnimeClip GetClip(int state)
+        public ClipBase GetClip(int state)
         {
             return clips.clips[state];
         }
