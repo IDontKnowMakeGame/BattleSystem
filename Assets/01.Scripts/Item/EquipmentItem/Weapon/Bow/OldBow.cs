@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OldBow : BaseBow
+public class OldBow : Bow
 {
 	private Vector3 _currentVec = Vector3.zero;
 

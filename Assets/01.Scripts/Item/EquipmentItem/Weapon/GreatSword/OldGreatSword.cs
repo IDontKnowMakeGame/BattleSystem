@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class OldGreatSword : BaseGreatSword
+public class OldGreatSword : GreatSword
 {
 	public override void Skill()
 	{

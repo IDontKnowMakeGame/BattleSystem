@@ -46,7 +46,8 @@ namespace Actor.Bases
         {
             Spawn();
             _actorStat = GetAct<ActorStat>();
-            Define.GetManager<ItemManager>().weapons.TryGetValue(WeaponId, out weapon);
+            Define.GetManager<ItemManager>().weapons
+                 .TryGetValue(WeaponId, out weapon);
 			weapon.Init(this);
             _actorStat.weaponInfo = weapon.itemInfo;
 		}

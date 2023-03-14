@@ -4,11 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseGreatSword : Weapon
+public abstract class StriaghtSword : Weapon
 {
 	protected override void ClassLevelSystem()
 	{
-		_weaponClassLevel = Define.GetManager<DataManager>().LoadWeaponClassLevel("GreatSword");
+		_weaponClassLevel = Define.GetManager<DataManager>().LoadWeaponClassLevel("BasicSword");
 		int level = CountToLevel(_weaponClassLevel.killedCount);
 		switch (level)
 		{
