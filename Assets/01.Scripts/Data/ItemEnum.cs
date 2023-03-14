@@ -15,9 +15,9 @@ public enum ItemID
     //101~200 Helo
 
     //201~300 UseableItem
-    PlayerTorch = 201,
-	PlayerShield = 202,
-	HPPotion = 203
+ //   PlayerTorch = 201,
+	//PlayerShield = 202,
+	//HPPotion = 203
     //301~400 QuestItem
 }
 

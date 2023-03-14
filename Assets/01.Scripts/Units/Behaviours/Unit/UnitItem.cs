@@ -11,6 +11,8 @@ public class UnitItem : UnitBehaviour
 	{
 		foreach (ItemID itemName in Enum.GetValues(typeof(ItemID)))
 		{
+			if (itemName == ItemID.None)
+				return;
 			Type name = Type.GetType(itemName.ToString());
 			Item item = Activator.CreateInstance(name) as Item;
 			item.thisBase = ThisBase;
