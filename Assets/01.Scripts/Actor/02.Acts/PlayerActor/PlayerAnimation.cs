@@ -30,7 +30,7 @@ public class PlayerAnimation : ActorAnimation
         ChangeWeaponClips(curID);
         Play("Idle");
     }
-
+                     
     // id를 통해 무기 애니메이터를 바꿈
     public void ChangeWeaponClips(int id)
     {
@@ -39,7 +39,7 @@ public class PlayerAnimation : ActorAnimation
     }
 
     // name을 key로 받아 name을 통해 clip을 찾을 수 있게 함
-    public void SetweaponClipDic()
+    public void SetweaponClipDic()                       
     {
         weaponClipDic.Clear();
 

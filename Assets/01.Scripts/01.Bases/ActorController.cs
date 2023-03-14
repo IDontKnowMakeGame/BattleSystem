@@ -59,9 +59,6 @@ namespace Actor.Bases
             Position = thisTransform.position;
             InGame.SetActor(Position, this);
         }
-        
-        
-
 
         public void AddState(State state)
         {
