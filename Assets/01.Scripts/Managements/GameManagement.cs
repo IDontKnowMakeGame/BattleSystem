@@ -131,6 +131,8 @@ namespace Managements
             Instance.AddManager<MapManager>();
             Instance.AddManager<InputManager>();
             Instance.AddManager<ItemManager>();
+            Instance.AddManager<PoolManager>();
+            Instance.AddManager<ResourceManager>();
             Instance.AddManager<DataManager>();
         }
 
