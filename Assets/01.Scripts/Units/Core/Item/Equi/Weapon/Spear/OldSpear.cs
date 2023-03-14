@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Managements.Managers;
 using Core;
+using UnityEngine.Rendering.Universal;
+
 public class OldSpear : BaseSpear
 {
 	float beforeAtk;
@@ -10,16 +12,14 @@ public class OldSpear : BaseSpear
 	{
 		base.ChangeKey();
 		InputManager.OnSkillPress -= Skill;
-		_playerAttack.onBehaviourEnd = CountUp;
+		attackEndAction = CountUp;
 	}
 	protected override void Skill()
 	{
 		count++;
 		
-		Debug.Log("??????");
 		if (count == 3)
 		{
-			Debug.Log("??????");
 			beforeAtk = _weaponStats.Atk;
 			_weaponStats.Atk *= 2;
 		}
@@ -31,4 +31,10 @@ public class OldSpear : BaseSpear
 	}
 
 	private void CountUp() => Skill();
+
+	public override void Reset()
+	{
+		base.Reset();
+		attackEndAction = null;
+	}
 }

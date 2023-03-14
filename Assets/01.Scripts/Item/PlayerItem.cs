@@ -11,13 +11,13 @@ using Managements.Managers;
 public class PlayerItem : UnitBehaviour
 {
     [SerializeField]
-    private PlayerPortion playerPortion;
+    private HPPotion playerPortion;
     [SerializeField]
     private PlayerTorch playerTorch;
     [SerializeField]
     private PlayerShield playerShield;
 
-    public PlayerPortion PlayerPortion => playerPortion;
+    public HPPotion PlayerPortion => playerPortion;
     public PlayerTorch PlayerTorch => playerTorch;
     public PlayerShield PlayerShield => playerShield;
 
@@ -31,7 +31,7 @@ public class PlayerItem : UnitBehaviour
         keyItems = new Dictionary<int, UsableItem>();
         idItems = new Dictionary<int, UsableItem>();
 
-        playerPortion = new PlayerPortion();
+        playerPortion = new HPPotion();
         playerTorch = new PlayerTorch();
         playerShield = new PlayerShield();
 
@@ -49,13 +49,13 @@ public class PlayerItem : UnitBehaviour
         InputManager.OnItemPress += UseItem;
 
         // ID ¼¼ÆÃ
-        idItems.Add((int)ItemID.Torch, playerTorch);
-        idItems.Add((int)ItemID.Shield, playerShield);
-        idItems.Add((int)ItemID.HPPotion, playerPortion);
-
-        keyItems.Add(2, playerTorch);
-        keyItems.Add(1, playerShield);
-        keyItems.Add(3, playerPortion);
+        //idItems.Add((int)ItemID.Torch, playerTorch);
+        //idItems.Add((int)ItemID.Shield, playerShield);
+        //idItems.Add((int)ItemID.HPPotion, playerPortion);
+        //
+        //keyItems.Add(2, playerTorch);
+        //keyItems.Add(1, playerShield);
+        //keyItems.Add(3, playerPortion);
     }
 
     public override void Update()

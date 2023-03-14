@@ -10,7 +10,7 @@ namespace Units.Base.Player
 	public class PlayerEquiq : UnitEquiq
 	{
 		private int count;
-
+		
 		private PlayerAnimation playerAnimation;
 		private PlayerAttack playerAttack;
 		private AnimationClip animationClip;
@@ -19,17 +19,10 @@ namespace Units.Base.Player
 
 		public override void Awake()
 		{
-			var st = Define.GetManager<DataManager>().LoadWeaponDataFromInventory();
-			foreach (var a in st)
-			{
-				Type type = Type.GetType(a);
-				Weapon weaponClass = Activator.CreateInstance(type) as Weapon;
-				weaponClass._thisBase = ThisBase;
-				weapons.Add(a, weaponClass);
-			}
 			base.Awake();
-			_currentWeapon = DataManager.UserData.firstWeapon;
-			_secoundWeapon = DataManager.UserData.secondWeapon;
+			//ï¿½ï¿½ï¿½â¼­ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾ï¿½ ï¿½Ø´ï¿½.
+			//_currentWeapon = DataManager.UserData.firstWeapon;
+			//_secoundWeapon = DataManager.UserData.secondWeapon;
 
 		}
 		public override void Start()
@@ -53,15 +46,16 @@ namespace Units.Base.Player
 
 			base.Start();
 
-			ThisBase.GetBehaviour<PlayerEquiq>().InsertHelo("DirtyHalo", 0);
-			ThisBase.GetBehaviour<PlayerEquiq>().InsertHelo("EvilSpiritHalo", 1);
+			CurrentWeapon?.ChangeKey();
+
+			//InsertHelo("DirtyHalo", 0);
+			//InsertHelo("EvilSpiritHalo", 1);
 
 			ChangeWeapon();
 		}
 		public override void Update()
 		{
 			base.Update();
-			CurrentWeapon?.Update();
 		}
 		public override void OnDisable()
 		{
@@ -91,7 +85,7 @@ namespace Units.Base.Player
 			CurrentWeapon?.Reset();
 			SecoundWeapon?.ChangeKey();
 
-			string temp = _currentWeapon;
+			ItemID temp = _currentWeapon;
 			_currentWeapon = _secoundWeapon;
 			_secoundWeapon = temp;
 
@@ -110,9 +104,9 @@ namespace Units.Base.Player
 		private void TestChangeWeapon()
 		{
 			count++;
-			count = count % 7;
+			count = count % 100;
 			int dicCount = 0;
-			foreach (var a in weapons)
+			foreach (var a in items)
 			{
 				dicCount++;
 				if (dicCount == count)
@@ -126,25 +120,38 @@ namespace Units.Base.Player
 		}
 		public void SetWeapon(EventParam eventParam)
 		{
-			//¾ø´Â »óÈ²ÀÏ ¶§ ³Ö±â
-			if (_currentWeapon == "")
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È²ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö±ï¿½
+			if (_currentWeapon == ItemID.None)
 			{
-				_currentWeapon = DataManager.UserData.firstWeapon;
+				//TODO : ï¿½Ö¾ï¿½ï¿½Ö±ï¿½
+				//_currentWeapon = DataManager.UserData.firstWeapon;
 				CurrentWeapon.ChangeKey();
 				return;
 			}
-			else if (_secoundWeapon == "")
+			else if (_secoundWeapon == ItemID.None)
 			{
-				_secoundWeapon = DataManager.UserData.secondWeapon;
+				//TODO : ï¿½Ö¾ï¿½ï¿½Ö±ï¿½
+				//_secoundWeapon = DataManager.UserData.secondWeapon;
 				return;
 			}
 
-			//¿©±â¼­ ÀÖÀ» °æ¿ì ¹Ù²Ù´Â°Å ¹ßµ¿
+			//ï¿½ï¿½ï¿½â¼­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ù²Ù´Â°ï¿½ ï¿½ßµï¿½
 			CurrentWeapon.Reset();
-			_currentWeapon = DataManager.UserData.firstWeapon;
+
+			//TODO : ï¿½Ö¾ï¿½ï¿½Ö±ï¿½
+			//_currentWeapon = DataManager.UserData.firstWeapon;
 			CurrentWeapon.ChangeKey();
 
-			_secoundWeapon = DataManager.UserData.secondWeapon;
+			InGame.PlayerBase.GetBehaviour<PlayerMove>().ClearMove();
+			Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponSwap, new EventParam());
+
+			playerAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
+			playerAnimation.CurWeaponAnimator = playerAnimation.WeaponAnimators[WeaponAnimation()];
+			playerAnimation.CurWeaponAnimator.ChangeWeapon = true;
+			playerAnimation.SetAnmation();
+
+			//TODO : ï¿½Ö¾ï¿½ï¿½Ö±ï¿½
+			//_secoundWeapon = DataManager.UserData.secondWeapon;
 		}
 
 		public void UnSetWeapon(EventParam eventParam)
@@ -154,8 +161,9 @@ namespace Units.Base.Player
 				CurrentWeapon.Reset();
 			}
 
-			_currentWeapon = DataManager.UserData.firstWeapon;
-			_secoundWeapon = DataManager.UserData.secondWeapon;
+			//TODO : ï¿½Ö¾ï¿½ï¿½Ö±ï¿½
+			//_currentWeapon = DataManager.UserData.firstWeapon;
+			//_secoundWeapon = DataManager.UserData.secondWeapon;
 		}
 		public void WeaponUpgrade(EventParam eventParam)
 		{

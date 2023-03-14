@@ -7,41 +7,32 @@ using Unit.Core;
 namespace Units.Behaviours.Unit
 {
 	[Serializable]
-	public class UnitEquiq : UnitBehaviour
+	public class UnitEquiq : UnitItem
 	{
+		//All Info of Item
+		#region Weapon
+		//Now CurrentWeapon & SecoundWeapon
 		[SerializeField]
-		protected string _currentWeapon;
+		protected ItemID _currentWeapon;
 		[SerializeField]
-		protected string _secoundWeapon;
+		protected ItemID _secoundWeapon;
 
+		//Select Enemy or Player
 		public bool isEnemy = true;
+
+		//Null or CurrentWeapon Return, if this UnitEquiq isEnemy true & Null Create current Weapon return currentWeapon
 		public Weapon CurrentWeapon
 		{
 			get
 			{
-				if ("" != _currentWeapon && null != _currentWeapon)
+				if (_currentWeapon != ItemID.None)
 				{
+					Item item;
 					Weapon weapon = null;
-					if (weapons.TryGetValue(_currentWeapon, out weapon))
-					{
-						return weapons[_currentWeapon];
-				}
-				else
-				{
-					if (isEnemy)
-					{
-						Type type = Type.GetType(_currentWeapon);
-							if (type == null)
-								return weapon;
-						Weapon weaponClass = Activator.CreateInstance(type) as Weapon;
-						weaponClass._thisBase = ThisBase;
-						InsertWeapon(_currentWeapon, weaponClass);
-						weapon = weapons[_currentWeapon];
-					}
-
+					items.TryGetValue(_currentWeapon, out item);
+					weapon = item as Weapon;
 					return weapon;
 				}
-			}
 				else
 					return null;
 			}
@@ -50,49 +41,53 @@ namespace Units.Behaviours.Unit
 		{
 			get
 			{
-				if ("" != _currentWeapon && null != _currentWeapon)
-					return weapons[_secoundWeapon];
+				if (_secoundWeapon != ItemID.None)
+				{
+					Item item;
+					Weapon weapon = null;
+					items.TryGetValue(_secoundWeapon, out item);
+					weapon = item as Weapon;
+					return weapon;
+				}
 				else
 					return null;
 			}
 		}
+		#endregion
 
-		public Dictionary<string, Weapon> weapons = new Dictionary<string, Weapon>();
+		#region Halo
 		protected Dictionary<string, Halo> halos = new Dictionary<string, Halo>();
-
 		private int _haloCount = 2;
-
 		public Halo[] UseHalo => usingHalos;
 		protected Halo[] usingHalos = new Halo[3];
+		#endregion
 		public override void Awake()
 		{
-			halos.Add("DirtyHalo", new DirtyHalo());
-			halos.Add("EvilSpiritHalo", new EvilSpiritHalo());
+			base.Awake();
+			//halos.Add("DirtyHalo", new DirtyHalo());
+			//halos.Add("EvilSpiritHalo", new EvilSpiritHalo());
 
 
-			foreach (var value in weapons)
+			foreach (var value in items)
 			{
 				value.Value?.Awake();
 			}
-			foreach (var value in halos)
-			{
-				value.Value?.Awake();
-			}
+			//foreach (var value in halos)
+			//{
+			//	value.Value?.Awake();
+			//}
 		}
 
 		public override void Start()
 		{
-			foreach (var value in weapons)
+			foreach (var value in items)
 			{
 				value.Value?.Start();
 			}
-			foreach (var value in halos)
-			{
-				value.Value?.Start();
-			}
-
-			if (!isEnemy)
-				CurrentWeapon?.ChangeKey();
+			//foreach (var value in halos)
+			//{
+			//	value.Value?.Start();
+			//}
 		}
 		public override void Update()
 		{
@@ -120,37 +115,31 @@ namespace Units.Behaviours.Unit
 				value.Value?.OnApplicationQuit();
 			}
 		}
-		public virtual void InsertWeapon(string name, Weapon type)
-		{
-			weapons.Add(name, type);
-			weapons[name].Awake();
-			weapons[name].Start();
-		}
-		public virtual void InsertHelo(string name, int idx)
-		{
-			EraseHelo(idx);
+		//public virtual void InsertHelo(ItemID name, int idx)
+		//{
+		//	EraseHelo(idx);
 
-			usingHalos[idx] = halos[name];
-			usingHalos[idx].Init();
-		}
+		//	usingHalos[idx] = halos[name];
+		//	usingHalos[idx].Init();
+		//}
 
-		public virtual void EraseHelo(int idx)
-		{
-			if (usingHalos[idx] != null)
-				usingHalos[idx].Exit();
+		//public virtual void EraseHelo(int idx)
+		//{
+		//	if (usingHalos[idx] != null)
+		//		usingHalos[idx].Exit();
 
-			usingHalos[idx] = null;
-		}
+		//	usingHalos[idx] = null;
+		//}
 
 		public int WeaponAnimation()
 		{
-			if (_currentWeapon == "OldStraightSword")
+			if (_currentWeapon == ItemID.OldGreatSword)
 				return 0;
-			else if (_currentWeapon == "OldTwinSword")
+			else if (_currentWeapon == ItemID.OldTwinSword)
 				return 1;
-			else if (_currentWeapon == "OldGreatSword")
+			else if (_currentWeapon == ItemID.OldGreatSword)
 				return 2;
-			else if (_currentWeapon == "OldSpear")
+			else if (_currentWeapon == ItemID.OldSpear)
 				return 3;
 			else
 				return 0;

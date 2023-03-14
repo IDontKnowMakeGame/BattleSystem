@@ -23,19 +23,19 @@ public class OldGreatSword : BaseGreatSword
 
 	protected override void Skill()
 	{
-		if (_isCoolTime || _thisBase.State.HasFlag(Units.Base.Unit.BaseState.Skill))
+		if (_isCoolTime || thisBase.State.HasFlag(Units.Base.Unit.BaseState.Skill))
 			return;
 
-		_thisBase.StartCoroutine(HoldOn());
+		thisBase.StartCoroutine(HoldOn());
 	}
 
 	private IEnumerator HoldOn()
 	{
-		_thisBase.AddState(Units.Base.Unit.BaseState.Skill);
+		thisBase.AddState(Units.Base.Unit.BaseState.Skill);
 		_unitStat.Half += 30;
 		yield return new WaitForSeconds(godTime);
 		_unitStat.Half = 0;
-		_thisBase.RemoveState(Units.Base.Unit.BaseState.Skill);
+		thisBase.RemoveState(Units.Base.Unit.BaseState.Skill);
 		_isCoolTime = true;
 	}
 }

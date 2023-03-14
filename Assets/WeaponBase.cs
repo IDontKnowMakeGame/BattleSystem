@@ -11,19 +11,5 @@ using UnityEngine;
 
 public class WeaponBase : InteractableUnitBase
 {
-	[SerializeField]
-	private string _weaponEnum;
-	public override void Interact()
-	{
-		if (IsInteracted) return;
-		if (DetectCondition.Invoke(Position))
-		{
-			IsInteracted = true;
-			Type type = Type.GetType(_weaponEnum.ToString());
-			Weapon weapon = Activator.CreateInstance(type) as Weapon;
-			weapon._thisBase = InGame.PlayerBase;
-			InGame.PlayerBase.GetBehaviour<UnitEquiq>().InsertWeapon(_weaponEnum, weapon);
-			this.gameObject.SetActive(false);
-		}
-	}
+
 }

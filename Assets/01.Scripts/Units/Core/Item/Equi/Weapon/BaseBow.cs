@@ -86,25 +86,25 @@ public class BaseBow : Weapon
 		if (!hasArrow)
 			return;
 
-		if (_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Charge))
+		if (thisBase.State.HasFlag(Units.Base.Unit.BaseState.Charge))
 			return;
 
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderFalse, new EventParam() { boolParam = true });
-		_thisBase.AddState(Units.Base.Unit.BaseState.Charge);
-		_thisBase.AddState(Units.Base.Unit.BaseState.StopMove);
+		thisBase.AddState(Units.Base.Unit.BaseState.Charge);
+		thisBase.AddState(Units.Base.Unit.BaseState.StopMove);
 		_currentVector = vec;
 
 		LevelSystem();
 	}
 	private void Charge(Vector3 vec)
 	{
-		if (!_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Charge))
+		if (!thisBase.State.HasFlag(Units.Base.Unit.BaseState.Charge))
 			return;
 
 		if (_chargeTime >= _maxChargeTime)
 		{
-			_thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
-			_thisBase.RemoveState(Units.Base.Unit.BaseState.StopMove);
+			thisBase.RemoveState(Units.Base.Unit.BaseState.Charge);
+			thisBase.RemoveState(Units.Base.Unit.BaseState.StopMove);
 			Shooting(_currentVector);
 			_chargeTime = 0;
 
@@ -124,7 +124,7 @@ public class BaseBow : Weapon
 		BaseArrow arrow = obj.GetComponent<BaseArrow>();
 
 		arrow.InitArrow(projectileSpeed,WeaponStat.Atk,
-			_thisBase.Position + vec, vec, _arrowName, _thisBase);
+			thisBase.Position + vec, vec, _arrowName, thisBase);
 		arrow.ShootArrow();
 
 		hasArrow = false;

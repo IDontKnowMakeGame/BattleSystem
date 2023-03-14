@@ -7,9 +7,9 @@ public class OldBow : BaseBow
 {
 	protected override void Skill()
 	{
-		if (!_thisBase.State.HasFlag(BaseState.Charge))
+		if (!thisBase.State.HasFlag(BaseState.Charge))
 			return;
 
-		_unitMove.MoveTo(_thisBase.Position + -_currentVector, _unitStat.NowStats.Agi);
+		_unitMove.MoveTo(thisBase.Position + -_currentVector, _unitStat.NowStats.Agi);
 	}
 }

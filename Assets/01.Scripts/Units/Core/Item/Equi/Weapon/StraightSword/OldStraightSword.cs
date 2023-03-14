@@ -25,11 +25,11 @@ public class OldStraightSword : BaseStraightSword
 		if (_isCoolTime)
 			return;
 
-		if (_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Skill))
+		if (thisBase.State.HasFlag(Units.Base.Unit.BaseState.Skill))
 			return;
 
 
-		if (_thisBase.State.HasFlag(Units.Base.Unit.BaseState.Moving))
+		if (thisBase.State.HasFlag(Units.Base.Unit.BaseState.Moving))
 			return;
 
 		RollSkill();
@@ -37,10 +37,10 @@ public class OldStraightSword : BaseStraightSword
 
 	private void RollSkill()
 	{
-		_thisBase.AddState(BaseState.Skill);
+		thisBase.AddState(BaseState.Skill);
 
 		_unitMove.distance = 2;
-		_thisBase.GetBehaviour<PlayerAnimation>().CurWeaponAnimator.Skill = true;
+		thisBase.GetBehaviour<PlayerAnimation>().CurWeaponAnimator.Skill = true;
 		_unitMove.onBehaviourEnd = RollSkillEnd;
 	}
 
@@ -48,6 +48,6 @@ public class OldStraightSword : BaseStraightSword
 	{
 		_unitMove.distance = 1;
 		_isCoolTime = true;
-		_thisBase.RemoveState(BaseState.Skill);
+		thisBase.RemoveState(BaseState.Skill);
 	}
 }

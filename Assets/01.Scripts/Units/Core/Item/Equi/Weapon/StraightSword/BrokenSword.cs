@@ -10,7 +10,7 @@ public class BrokenSword : BaseStraightSword
 	{
 		base.ChangeKey();
 		InputManager.OnSkillPress -= Skill;
-		_playerAttack.onBehaviourEnd = CountUp;
+		attackEndAction = CountUp;
 	}
 
 	private void CountUp()
@@ -28,13 +28,13 @@ public class BrokenSword : BaseStraightSword
 	}
 	protected override void Skill()
 	{
-		_weaponStats.Atk = 900000;
+		_weaponStats.Atk = 9999999;
 	}
 
 	public override void Reset()
 	{
 		base.Reset();
 		count = 0;
-		_playerAttack.onBehaviourEnd = null;
+		attackEndAction = null;
 	}
 }
