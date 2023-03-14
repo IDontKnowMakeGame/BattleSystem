@@ -4,18 +4,31 @@ using Core;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
-using Actor.Bases;
 using UnityEngine;
 
 public class ActorChange : Act
 {
+	private ItemID firstWeapon => _actController.WeaponId;
+	[SerializeField]
+	private ItemID secoundWeapon;
+
+	protected ActorController _actController = null;
 	public virtual void Change()
 	{
-		Weapon weapon = Define.GetManager<ItemManager>().weapons[ItemID.OldTwinSword];
-		var controller = _controller as ActorController;
-		weapon.Init(controller);
+		if (_actController == null)
+			_actController = _controller as ActorController;
+
+		Weapon weapon = Define.GetManager<ItemManager>().GetWeapon(secoundWeapon);
+
+		if (weapon == null)
+			return;
+
+		secoundWeapon = firstWeapon;
+
+		weapon.Init(_actController);
 		weapon.UseItem();
-		controller.WeaponId = weapon.itemInfo.Id;
-		controller.weapon = weapon;
+
+		_actController.weapon = weapon;
+		_actController.WeaponId = weapon.itemInfo.Id;
 	}
 }

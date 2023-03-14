@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BaseStriaghtSword : Weapon
+public class BaseStraightSword : Weapon
 {
 	protected override void ClassLevelSystem()
 	{

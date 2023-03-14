@@ -12,20 +12,30 @@ public class Weapon : Item
 
 	public AttackInfo AttackInfo => _attackInfo;
 	
-	protected ActorController _acotrController = null;
+	protected ActorController _actController = null;
 
-	public void Init(ActorController actContorller)
+	public virtual void Init(ActorController actContorller)
 	{
-		_acotrController = actContorller;
+		_actController = actContorller;
 	}
+
 	public virtual void Skill()
 	{
 
 	}
 
+	public virtual void Reset()
+	{
+
+	}
 	protected virtual void ClassLevelSystem()
 	{
 
+	}
+	public override void UseItem()
+	{
+		if (_actController is PlayerController)
+			(_actController as PlayerController).OnSkill += Skill;
 	}
 
 	protected int CountToLevel(int count) => count switch

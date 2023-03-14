@@ -18,5 +18,26 @@ namespace Managements.Managers
         {
             return BlockDictionary[actor.Position];
         }
+
+        public List<BlockController> GetNeighbors(BlockController tile)
+        {
+            List<BlockController> neighbors = new List<BlockController>();
+            int[,] temp = { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } };
+
+            for (int i = 0; i < 4; i++)
+            {
+                int checkX = tile.X + temp[i, 0];
+                int checkZ = tile.Z + temp[i, 1];
+
+                Vector3 checkPos = new Vector3(checkX, 0, checkZ);
+
+                if (BlockDictionary.ContainsKey(checkPos))
+                {
+                    neighbors.Add(BlockDictionary[checkPos]);
+                }
+            }
+
+            return neighbors;
+        }
     }
 }

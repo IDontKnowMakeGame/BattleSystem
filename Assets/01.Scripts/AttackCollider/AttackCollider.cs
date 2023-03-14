@@ -55,6 +55,7 @@ public class AttackCollider : MonoBehaviour
 
     public void SetAttackCol(AttackInfo attackInfo)
     {
+        Debug.Log(attackInfo);
         for(int i = 0; i < 4; i++)
         {
             int check = 1 << i;

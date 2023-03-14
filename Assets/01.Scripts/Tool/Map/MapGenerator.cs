@@ -216,7 +216,6 @@ namespace Tool.Map
                 var position = new Vector3(spawnX, 0, spawnZ);
                 currentTile.Add(position);
                 var blockObject = Instantiate(gridObjects.tiles[idx], position, Quaternion.identity, tiledParent.transform);
-                blockObject.AddComponent<BlockController>();
                 blockObject.name = $"Tile #{count++}";
             }
         }
