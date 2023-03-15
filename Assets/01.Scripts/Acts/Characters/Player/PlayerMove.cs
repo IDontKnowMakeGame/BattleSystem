@@ -1,7 +1,7 @@
 ﻿using Acts.Characters;
 using Managements.Managers;
 
-namespace Acts.Player
+namespace Acts.Characters.Player
 {
     public class PlayerMove : CharacterMove
     {
