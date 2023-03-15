@@ -2,6 +2,10 @@
 {
     public class CrazyGhostActor : EnemyActor
     {
-        
+        protected override void Init()
+        {
+            base.Init();
+            
+        }
     }
 }
