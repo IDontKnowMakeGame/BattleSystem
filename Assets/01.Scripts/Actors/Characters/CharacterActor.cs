@@ -9,6 +9,7 @@ namespace Actors.Characters
         protected override void Init()
         {
             AddAct<CharacterMove>();
+            AddAct<CharacterRender>();
         }
 
         protected override void Awake()

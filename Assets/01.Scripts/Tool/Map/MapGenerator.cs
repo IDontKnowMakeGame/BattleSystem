@@ -37,7 +37,7 @@ namespace Tool.Map
         {
             ScriptableObject target = this;
             so = new SerializedObject(target);
-            GUIUtility.ExitGUI();
+            //GUIUtility.ExitGUI();
         }
 
 
