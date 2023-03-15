@@ -1,15 +1,17 @@
 ﻿using Actors.Bases;
 using Acts.Characters;
 using Core;
+using UnityEngine;
 
 namespace Actors.Characters
 {
     public class CharacterActor : Actor
     {
+        [SerializeField] private CharacterRender _characterRender;
         protected override void Init()
         {
-            AddAct<CharacterMove>();
-            AddAct<CharacterRender>();
+            base.Init();
+            AddAct(_characterRender);
         }
 
         protected override void Awake()

@@ -16,10 +16,9 @@ namespace Acts.Characters
         public override void Awake()
         {
             _thisTransform = ThisActor.transform;
-            InputManager.OnMovePress += Translate;
         }
-        
-        private void Translate(Vector3 direction)
+
+        protected void Translate(Vector3 direction)
         {
             var nextPos = ThisActor.Position + direction;
             Move(nextPos);
