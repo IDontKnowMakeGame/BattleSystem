@@ -17,5 +17,26 @@ namespace Managements.Managers
         {
             return _mapDict[pos];
         }
+
+        public List<Block> GetNeighbors(Block tile)
+        {
+            List<Block> neighbors = new List<Block>();
+            int[,] temp = { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } };
+
+            for (int i = 0; i < 4; i++)
+            {
+                int checkX = tile.X + temp[i, 0];
+                int checkZ = tile.Z + temp[i, 1];
+
+                Vector3 checkPos = new Vector3(checkX, 0, checkZ);
+
+                if (_mapDict.ContainsKey(checkPos))
+                {
+                    neighbors.Add(_mapDict[checkPos]);
+                }
+            }
+
+            return neighbors;
+        }
     }
 }
