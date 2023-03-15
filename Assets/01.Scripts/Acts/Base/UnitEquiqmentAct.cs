@@ -1,6 +1,7 @@
 using Actors.Bases;
 using System.Collections;
 using System.Collections.Generic;
+using Acts.Base;
 using UnityEngine;
 
 public class UnitEquiqmentAct : Act
@@ -59,11 +60,11 @@ public class UnitEquiqmentAct : Act
 	}
 
 	/// <summary>
-	/// ºñ¾îÁ®ÀÖÀ»¶§´Â Equiqment¸¦ ¾È ºñ¾îÀÖÀ» ¶§´Â »¬°Å¿Í ¹Ù²Ü°Å¸¦ ÇØÁØ´Ù.
+	/// ë¹„ì–´ì ¸ìˆì„ë•ŒëŠ” Equiqmentë¥¼ ì•ˆ ë¹„ì–´ìˆì„ ë•ŒëŠ” ëº„ê±°ì™€ ë°”ê¿€ê±°ë¥¼ í•´ì¤€ë‹¤.
 	/// </summary>
 	protected void EquiqmentItem()
 	{
-		//TODO ¿©±â¼­ EventParamÀ» ¹Ş¾ÆÁÖ´Âµ¥ ±×¶§ ¿©±â¼­ º¯°æÇØÁÙ ¹«±âÀÇ ÀÎµ¦½º¿Í ¹«±â Á¾·ù¸¦ ³Ö¾îÁØ´Ù.
+		//TODO ì—¬ê¸°ì„œ EventParamì„ ë°›ì•„ì£¼ëŠ”ë° ê·¸ë•Œ ì—¬ê¸°ì„œ ë³€ê²½í•´ì¤„ ë¬´ê¸°ì˜ ì¸ë±ìŠ¤ì™€ ë¬´ê¸° ì¢…ë¥˜ë¥¼ ë„£ì–´ì¤€ë‹¤.
 		if(firstWeapon == ItemId.None /*&& evnetParam.intparam == 1*/)
 		{
 
