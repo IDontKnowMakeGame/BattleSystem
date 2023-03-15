@@ -9,7 +9,6 @@ public class EquiqmentItem : Item
 
 	}
 
-	//TODO 이벤트 파람 박을 것
 	public virtual void Equiqment()
 	{
 
