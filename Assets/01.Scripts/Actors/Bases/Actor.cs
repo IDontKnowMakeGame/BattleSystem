@@ -10,8 +10,7 @@ namespace Actors.Bases
         public int UUID => GetInstanceID();
         private Dictionary<Type, Act> _behaviours = new();
         [SerializeField] private Vector3 position = Vector3.zero;
-
-        public Vector3 Position
+		public Vector3 Position
         {
             get => position;
             set

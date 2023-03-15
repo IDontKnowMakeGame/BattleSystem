@@ -8,7 +8,9 @@ namespace Actors.Characters
     public class CharacterActor : Actor
     {
         [SerializeField] private CharacterRender _characterRender;
-        protected override void Init()
+
+		public Weapon Weapon = null;
+		protected override void Init()
         {
             base.Init();
             AddAct(_characterRender);

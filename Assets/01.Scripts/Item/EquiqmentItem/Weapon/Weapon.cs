@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : EquiqmentItem
 {
-    
+
     public Weapon(ItemInfo info) : base(info)
     {
 

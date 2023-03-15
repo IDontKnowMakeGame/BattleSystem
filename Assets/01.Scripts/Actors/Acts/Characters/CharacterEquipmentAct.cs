@@ -1,3 +1,5 @@
+using Actors.Characters;
+using Actors.Characters.Player;
 using Acts.Base;
 using System.Collections;
 using System.Collections.Generic;
@@ -47,6 +49,20 @@ public class CharacterEquipmentAct : Act
 	protected ItemId firstWeapon;
 	protected ItemId secondWeapon;
 
+	private CharacterActor _characterController;
+
+	public override void Awake()
+	{
+		base.Awake();
+		_characterController = ThisActor as CharacterActor;
+	}
+
+	public override void Start()
+	{
+		base.Start();
+		_characterController.Weapon = CurrentWeapon;
+	}
+
 	/// <summary>
 	/// Weapon을 바꿀 때 쓰는 함수이다.
 	/// </summary>
@@ -58,6 +74,8 @@ public class CharacterEquipmentAct : Act
 		ItemId weapon = firstWeapon;
 		firstWeapon = secondWeapon;
 		secondWeapon = weapon;
+
+		_characterController.Weapon = CurrentWeapon;
 	}
 
 	/// <summary>
