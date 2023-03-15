@@ -3,7 +3,7 @@ using Core;
 
 public abstract class WeaponAnimator
 {
-    protected Clips curClips; 
+    protected WeaponClips curClips; 
 
     protected Vector3 setDir;
     protected bool moving = false;

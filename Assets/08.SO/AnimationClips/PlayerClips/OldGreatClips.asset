@@ -19,74 +19,63 @@ MonoBehaviour:
     fps: 11
     isLoop: 1
     delay: 0.1
-    changeAble: 1
-  - name: VerticalMove
+  - name: c
     nextIdx: 0
     texture: {fileID: 2800000, guid: ef2dba387da08594bb62cbc48f076af8, type: 3}
     fps: 7
     isLoop: 1
     delay: 0.1
-    changeAble: 1
-  - name: UpMove
+  - name: UpperMove
     nextIdx: 0
     texture: {fileID: 2800000, guid: 6d82640836841a641800c4777ecd648a, type: 3}
     fps: 7
     isLoop: 1
     delay: 0.1
-    changeAble: 1
-  - name: DownMove
+  - name: LowerMove
     nextIdx: 0
     texture: {fileID: 2800000, guid: b59e412d7d1c3764987e1bdc5d2a0c9e, type: 3}
     fps: 7
     isLoop: 1
     delay: 0.1
-    changeAble: 1
   - name: VerticalCharge
     nextIdx: -1
     texture: {fileID: 2800000, guid: fc07e40c37864514a88ece1b827267cb, type: 3}
     fps: 11
     isLoop: 0
     delay: 0.06
-    changeAble: 1
-  - name: UpCharge
+  - name: UpperCharge
     nextIdx: -1
     texture: {fileID: 2800000, guid: 73bb36fdf79e31341977b15d1226af9d, type: 3}
     fps: 12
     isLoop: 0
     delay: 0.06
-    changeAble: 1
-  - name: DownCharge
+  - name: LowerCharge
     nextIdx: -1
     texture: {fileID: 2800000, guid: ade4274b745efe8409015aa5ba603efd, type: 3}
     fps: 12
     isLoop: 0
     delay: 0.06
-    changeAble: 1
   - name: VerticalAttack
     nextIdx: 0
     texture: {fileID: 2800000, guid: d8c5383fa8ece9043ba9b37c9d45dc97, type: 3}
     fps: 7
     isLoop: 0
     delay: 0.07
-    changeAble: 1
-  - name: UpAttack
+  - name: UpperAttack
     nextIdx: 0
     texture: {fileID: 2800000, guid: e1561b3ca0a4c6a42999cb3c1e72cefa, type: 3}
     fps: 7
     isLoop: 0
     delay: 0.1
-    changeAble: 1
-  - name: DownAttack
+  - name: LowerAttack
     nextIdx: 0
     texture: {fileID: 2800000, guid: 17cdf913b4dce6c47bd7e51bb4a535ba, type: 3}
     fps: 7
     isLoop: 0
     delay: 0.1
-    changeAble: 1
-  - name: ChangeWeapon
+  - name: Equip
     nextIdx: 0
     texture: {fileID: 2800000, guid: fcbe33133d28d0643b5235ae5b9d49f4, type: 3}
     fps: 11
     isLoop: 0
     delay: 0.1
-    changeAble: 0

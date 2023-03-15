@@ -2,48 +2,76 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Units.Behaviours.Unit;
+using Tools;
 
-enum WeaponAnimation
-{
-    LongSword,
-    TwinSword,
-    GreatSword
-}
 [System.Serializable]
 public class PlayerAnimation : UnitAnimation
 {
-    private List<WeaponAnimator> weaponAnimators = new List<WeaponAnimator>();
-    public List<WeaponAnimator> WeaponAnimators => weaponAnimators;
-    private WeaponAnimator curWeaponAnimator;
-    public WeaponAnimator CurWeaponAnimator
-    {
-        get => curWeaponAnimator;
-        set
-        {
-            curWeaponAnimator = value;
-            curWeaponAnimator.Init();
-        }
-    }
+    [SerializeField]
+    private List<WeaponClips> weaponAnimations;
+
+    private Dictionary<int, WeaponClips> weaponAnimationDic = new Dictionary<int, WeaponClips>();
+    private Dictionary<string, ClipBase> weaponClipDic = new Dictionary<string, ClipBase>();
+
+    // 현재 어떤 무기 애니메이션인지?, 애니메이션
+    public WeaponClips curWeaponClips;
+
+
+    // TO DO 나중에 ID 불려오는 방식으로 저장
+    [SerializeField]
+    private int curID = 100;
 
     public override void Awake()
     {
-        weaponAnimators.Add(new OldLongAnimator());
-        weaponAnimators.Add(new OldTwinAnimator());
-        weaponAnimators.Add(new OldGreatAnimator());
         base.Awake();
-    }
 
-    public override void Update()
-    {
-        if(!curWeaponAnimator.LastChange && IsFinished())
+        // 무기 애니메이션들을 Dictionary를 통해 관리(ID를 통하여 불려올 수 있음)
+        foreach (WeaponClips weaponClips in weaponAnimations)
         {
-            curWeaponAnimator.LastChange = true;
+            weaponAnimationDic.Add(weaponClips.WeaponID, weaponClips);
         }
-        base.Update();
+
+        ChangeWeaponClips(curID);
     }
 
-    public void SetAnmation()
+    // id를 통해 무기 애니메이터를 바꿈
+    public void ChangeWeaponClips(int id)
     {
-        ChangeState(curWeaponAnimator.AnimationCheck());
+        curWeaponClips = weaponAnimationDic[id];
+        SetweaponClipDic();
+    }
+
+    // name을 key로 받아 name을 통해 clip을 찾을 수 있게 함
+    public void SetweaponClipDic()
+    {
+        weaponClipDic.Clear();
+
+        foreach (ClipBase clip in curWeaponClips.Clips)
+        {
+            weaponClipDic.Add(clip.name, clip);
+        }
+    }
+
+    // 이름으로 애니메이션 재생
+    public override void Play(string name)
+    {
+        if(currentCoroutine != null)
+            ThisBase.StopCoroutine(currentCoroutine);
+        curClip = weaponClipDic[name];
+        currentCoroutine = ThisBase.StartCoroutine(AnimationPlay());
+    }
+
+    // 인덱스로 애니메이션 재생
+    public override void Play(int idx)
+    {
+        if (currentCoroutine != null)
+            ThisBase.StopCoroutine(currentCoroutine);
+        curClip = curWeaponClips.Clips[idx];
+        currentCoroutine = ThisBase.StartCoroutine(AnimationPlay());
+    }
+
+    public ClipBase CurrentClip()
+    {
+        return curClip;
     }
 }

@@ -58,7 +58,7 @@ public class BaseStraightSword : Weapon
 	{
 		base.AttackCoroutine(vec);
 		if(thisBase.State.HasFlag(BaseState.Attacking))
-			_playerAnimation.GetClip().SetEventOnFrame(5, () => Attack(vec));
+			_playerAnimation.CurrentClip().SetEventOnFrame(5, () => Attack(vec));
 	}
 	protected override void Attack(Vector3 vec)
 	{

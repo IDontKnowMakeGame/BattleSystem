@@ -80,8 +80,7 @@ namespace Units.Base.Player
 
 		public override void Translate(Vector3 dir, float spd = 1)
         {
-            if (isMoving || ThisBase.State.HasFlag(BaseState.StopMove) || 
-                !playerAnimation.CurWeaponAnimator.LastChange || 
+            if (isMoving || ThisBase.State.HasFlag(BaseState.StopMove) ||
                 ThisBase.GetBehaviour<PlayerItem>().PlayerPortion.UsePortion || stop)
             {
                 ThisBase.RemoveState(BaseState.Moving);
@@ -123,8 +122,7 @@ namespace Units.Base.Player
             {
                 if (playerEqiq.WeaponAnimation() != 1)
                 {
-                    playerAnimation.CurWeaponAnimator.ResetParameter();
-                    playerAnimation.SetAnmation();
+                    playerAnimation.Play("Idle");
                 }
                 else
                     MoveAnimation(nextPos - orignalPos);
@@ -137,8 +135,7 @@ namespace Units.Base.Player
             {
                 if(playerEqiq.WeaponAnimation() != 1)
                 {
-                    playerAnimation.CurWeaponAnimator.ResetParameter();
-                    playerAnimation.SetAnmation();
+                    playerAnimation.Play("Idle");
                 }
                 else
                     MoveAnimation(nextPos - orignalPos);
@@ -212,8 +209,7 @@ namespace Units.Base.Player
         {
             if (moveDir.Count == 0 && !ThisBase.State.HasFlag(BaseState.Skill))
             {
-                playerAnimation.CurWeaponAnimator.ResetParameter();
-                playerAnimation.SetAnmation();
+                playerAnimation.Play("Idle");
             }
         }
 
@@ -240,23 +236,27 @@ namespace Units.Base.Player
             dir.y = 0;
             dir.Normalize();
 
-  /*          if (sprite == null)
-                Debug.LogError("Sprite is null.");*/
-            if(playerAnimation == null)
+            if (playerAnimation == null)
                 Debug.LogError("PlayerAnimation is null.");
 
-            playerAnimation.CurWeaponAnimator.SetDir = dir;
-            playerAnimation.CurWeaponAnimator.Moving = true;
-            playerAnimation.SetAnmation();
-
-            /*            if (ThisBase.GetBehaviour<PlayerEqiq>().WeaponAnimation() == 1)
-                        {
-                            twoAnimation = !twoAnimation;
-                            if (twoAnimation)
-                            {
-                                unitAnimation.ChangeState(7);
-                            }
-                        }*/
+            if(dir == Vector3.forward)
+            {
+                playerAnimation.Play("UpperMove");
+            }
+            else if(dir == Vector3.back)
+            {
+                playerAnimation.Play("LowerMove");
+            }
+            else if(dir == Vector3.left)
+            {
+                sprite.localScale = new Vector3(-1, 1, 1);
+                playerAnimation.Play("VerticalMove");
+            }
+            else if (dir == Vector3.right)
+            {
+                sprite.localScale = new Vector3(1, 1, 1);
+                playerAnimation.Play("VerticalMove");
+            }
         }
 
         public override void OnDisable()

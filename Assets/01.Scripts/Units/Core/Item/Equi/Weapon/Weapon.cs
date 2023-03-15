@@ -38,6 +38,7 @@ namespace Unit.Core.Weapon
 		protected UnitAnimation _unitAnimation;
 
 		protected PlayerAnimation _playerAnimation;
+		protected PlayerAttack _playerAttack;
 		#endregion
 
 		#region 타이머
@@ -69,6 +70,7 @@ namespace Unit.Core.Weapon
 				_attackCollider = thisBase.GetComponentInChildren<AttackCollider>();
 
 			_unitMove = thisBase.GetBehaviour<UnitMove>();
+			_playerAttack = thisBase.GetBehaviour<PlayerAttack>();
 			_unitStat = thisBase.GetBehaviour<UnitStat>();
 			_unitAnimation = thisBase.GetBehaviour<UnitAnimation>();
 
@@ -105,22 +107,18 @@ namespace Unit.Core.Weapon
 			if (thisBase.GetBehaviour<PlayerItem>().PlayerShield.UseAble) return;
 
 			if (thisBase.State.HasFlag(BaseState.Attacking) ||
-				!thisBase.GetBehaviour<PlayerAnimation>().CurWeaponAnimator.LastChange || thisBase.State.HasFlag(BaseState.Moving))
+				thisBase.State.HasFlag(BaseState.Moving))
 				return;
 
 			if (thisBase.State.HasFlag(BaseState.Moving))
 				return;
 
-			if (thisBase.GetBehaviour<PlayerEquiq>().WeaponAnimation() != 1 && thisBase.GetBehaviour<PlayerEquiq>().WeaponAnimation() != 3 &&
-				thisBase.GetBehaviour<PlayerAnimation>().CurWeaponAnimator.LastChange)
+			if (thisBase.GetBehaviour<PlayerEquiq>().WeaponAnimation() != 1 && thisBase.GetBehaviour<PlayerEquiq>().WeaponAnimation() != 3)
 				thisBase.GetBehaviour<PlayerMove>().stop = true;
 
 			if (!thisBase.State.HasFlag(BaseState.Attacking))
 			{
-				_playerAnimation.CurWeaponAnimator.SetDir = vec;
-				_playerAnimation.CurWeaponAnimator.Attack = true;
-				_playerAnimation.SetAnmation();
-				ClipBase animeClip = _playerAnimation.GetClip();
+				_playerAttack.AttackAnimation(vec);
 				thisBase.AddState(BaseState.Attacking);
 			}
 			else

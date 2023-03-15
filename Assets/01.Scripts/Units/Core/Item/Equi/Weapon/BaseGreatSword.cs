@@ -108,16 +108,14 @@ public class BaseGreatSword : Weapon
 			_attackCollider.ChangeSizeZ(1);
 			_attackCollider.ChangeSizeX(1);
 			_attackCollider.CheckDir(_attackCollider.DirReturn(_currentVector));
-			_playerAnimation.CurWeaponAnimator.SetDir = vec;
-			_playerAnimation.CurWeaponAnimator.Attack = true;
 			Attack();
-			_playerAnimation.SetAnmation();
+			_playerAttack.AttackAnimation(vec);
 			_attackCollider.AllEnableDir();
 		}
 		else
 		{
 			InGame.PlayerBase.GetBehaviour<PlayerMove>().stop = false;
-			thisBase.GetBehaviour<PlayerAnimation>().SetAnmation();
+			_playerAnimation.Play("Idle");
 		}
 		_chargeTime = 0;
 		GameManagement.Instance.GetManager<EventManager>().TriggerEvent(EventFlag.SliderUp, new EventParam() { floatParam = _chargeTime });

@@ -13,7 +13,6 @@ namespace Units.Base.Player
 		
 		private PlayerAnimation playerAnimation;
 		private PlayerAttack playerAttack;
-		private AnimationClip animationClip;
 
 		private bool isEquiq = true;
 
@@ -29,12 +28,8 @@ namespace Units.Base.Player
 		{
 			playerAnimation = ThisBase.GetBehaviour<PlayerAnimation>();
 			playerAttack = ThisBase.GetBehaviour<PlayerAttack>();
-			animationClip = ThisBase.GetComponent<AnimationClip>();
 
-			playerAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
-			playerAnimation.CurWeaponAnimator = playerAnimation.WeaponAnimators[WeaponAnimation()];
-			playerAnimation.CurWeaponAnimator.ChangeWeapon = true;
-			playerAnimation.SetAnmation();
+			playerAnimation.Play("Equip");
 
 			InputManager.OnChangePress += ChangeWeapon;
 			InputManager.OnOffPress += WeaponOnOff;
@@ -96,10 +91,7 @@ namespace Units.Base.Player
 
 			ThisBase.GetBehaviour<PlayerMove>().stop = false;
 
-			playerAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
-			playerAnimation.CurWeaponAnimator = playerAnimation.WeaponAnimators[WeaponAnimation()];
-			playerAnimation.CurWeaponAnimator.ChangeWeapon = true;
-			playerAnimation.SetAnmation();
+			playerAnimation.Play("Equip");
 		}
 		private void TestChangeWeapon()
 		{
@@ -145,10 +137,7 @@ namespace Units.Base.Player
 			InGame.PlayerBase.GetBehaviour<PlayerMove>().ClearMove();
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponSwap, new EventParam());
 
-			playerAnimation.ChangeClips(animationClip.GetClip(WeaponAnimation()));
-			playerAnimation.CurWeaponAnimator = playerAnimation.WeaponAnimators[WeaponAnimation()];
-			playerAnimation.CurWeaponAnimator.ChangeWeapon = true;
-			playerAnimation.SetAnmation();
+			playerAnimation.Play("Equip");
 
 			//TODO : �־��ֱ�
 			//_secoundWeapon = DataManager.UserData.secondWeapon;

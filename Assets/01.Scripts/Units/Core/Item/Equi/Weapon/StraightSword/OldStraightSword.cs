@@ -40,7 +40,6 @@ public class OldStraightSword : BaseStraightSword
 		thisBase.AddState(BaseState.Skill);
 
 		_unitMove.distance = 2;
-		thisBase.GetBehaviour<PlayerAnimation>().CurWeaponAnimator.Skill = true;
 		_unitMove.onBehaviourEnd = RollSkillEnd;
 	}
 

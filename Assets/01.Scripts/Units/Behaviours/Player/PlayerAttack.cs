@@ -106,7 +106,7 @@ namespace Units.Base.Player
             ThisBase.RemoveState(BaseState.Attacking);
             ThisBase.GetBehaviour<PlayerMove>().stop = false;
 
-            if (!canAttack || !playerAnimation.CurWeaponAnimator.LastChange || ThisBase.GetBehaviour<PlayerItem>().PlayerPortion.UsePortion || IsAttack)
+            if (!canAttack || ThisBase.GetBehaviour<PlayerItem>().PlayerPortion.UsePortion || IsAttack)
             {
                 ThisBase.GetBehaviour<PlayerMove>().stop = false;
                 return;
@@ -149,40 +149,28 @@ namespace Units.Base.Player
             isInit = true;
         }
 
-        public void ChangeAnimation(Vector3 dir)
+        public void AttackAnimation(Vector3 dir)
         {
-            if(!isInit)
-            {
-                ChangeDelay(ThisBase.GetBehaviour<PlayerEquiq>().CurrentWeapon.WeaponStat.Afs);
-                isInit = true;
-            }
-
-
-            if (timer > 0 || !playerAnimation.CurWeaponAnimator.LastChange || isAttack || 
-                ThisBase.GetBehaviour<PlayerItem>().PlayerPortion.UsePortion) return;
             if (dir == Vector3.left)
             {
                 sprite.localScale = new Vector3(-1, 1, 1);
+                playerAnimation.Play("VerticalAttack");
             }
             else if (dir == Vector3.right)
             {
                 sprite.localScale = new Vector3(1, 1, 1);
+                playerAnimation.Play("VerticalAttack");
             }
             else if (dir == Vector3.forward)
             {
                 sprite.localScale = new Vector3(1, 1, 1);
+                playerAnimation.Play("UpperAttack");
             }
             else if (dir == Vector3.back)
             {
                 sprite.localScale = new Vector3(1, 1, 1);
+                playerAnimation.Play("LowerAttack");
             }
-            else
-                return;
-
-/*            playerAnimation.CurWeaponAnimator.SetDir = dir;
-            playerAnimation.CurWeaponAnimator.Attack = true;
-            playerAnimation.SetAnmation();*/
-            isAttack = true;
         }
 
         public void Timer()
@@ -218,9 +206,7 @@ namespace Units.Base.Player
 
         public void ChargeAnimation(Vector3 dir)
         {
-            playerAnimation.CurWeaponAnimator.SetDir = dir;
-            playerAnimation.CurWeaponAnimator.Charge = true;
-            playerAnimation.SetAnmation();
+            playerAnimation.Play("Charge");
         }
 
         public void ChangeDelay(float delay)
