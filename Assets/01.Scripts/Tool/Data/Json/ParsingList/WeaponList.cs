@@ -6,6 +6,6 @@ namespace Tool.Data.Json.ParsingList
     [System.Serializable]
     public class ItemTable
     {
-        public List<ItemInfo> ItemList = new ();
+        public List<global::Data.ItemInfo> ItemList = new ();
     }
 }
