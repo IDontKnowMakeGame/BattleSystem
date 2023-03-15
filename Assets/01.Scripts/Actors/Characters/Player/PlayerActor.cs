@@ -1,4 +1,4 @@
-﻿using Acts.Player;
+﻿using Acts.Characters.Player;
 
 namespace Actors.Characters.Player
 {
