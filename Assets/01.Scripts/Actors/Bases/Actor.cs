@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
+using Acts.Base;
 
 namespace Actors.Bases
 {
     public class Actor : MonoBehaviour
     {
+        public int UUID => GetInstanceID();
         private Dictionary<Type, Act> _behaviours = new();
         [SerializeField] private Vector3 position = Vector3.zero;
 
@@ -104,23 +106,7 @@ namespace Actors.Bases
 
         #region Control_Acts
 
-        public T AddAct<T>() where T : Act, new()
-        {
-            var thisType = GetBaseType<T>();
-
-            if (_behaviours.ContainsKey(thisType))
-            {
-                Debug.LogError($"{thisType} is already in this Unit.");
-                return null;
-            }
-
-            var thisAct = new T();
-            thisAct.ThisBase = this;
-            _behaviours.Add(thisType, thisAct);
-            return thisAct;
-        }
-
-        public void AddAct<T>(T instance) where T : Act
+        public void AddAct<T>(T instance = null) where T : Act, new()
         {
             var thisType = GetBaseType<T>();
 
@@ -131,7 +117,9 @@ namespace Actors.Bases
             }
 
             var thisAct = instance;
-            thisAct.ThisBase = this;
+            if(thisAct == null)
+                thisAct = new T();
+            thisAct.ThisActor = this;
             _behaviours.Add(thisType, thisAct);
         }
 
@@ -142,7 +130,7 @@ namespace Actors.Bases
             if (_behaviours.ContainsKey(thisType))
             {
                 _behaviours[thisType] = instance;
-                _behaviours[thisType].ThisBase = this;
+                _behaviours[thisType].ThisActor = this;
             }
             else
             {
@@ -186,7 +174,7 @@ namespace Actors.Bases
             if (_behaviours.ContainsKey(thisType))
             {
                 _behaviours[thisType] = instance;
-                _behaviours[thisType].ThisBase = this;
+                _behaviours[thisType].ThisActor = this;
             }
             else
             {
@@ -201,7 +189,7 @@ namespace Actors.Bases
             if (_behaviours.ContainsKey(thisType))
             {
                 var thisAct = new T();
-                thisAct.ThisBase = this;
+                thisAct.ThisActor = this;
                 _behaviours[thisType] = thisAct;
             }
             else
