@@ -1,22 +1,14 @@
-﻿using Actors.Bases;
-
-namespace Actors.Bases
+﻿namespace Managements.Managers
 {
-    public class Act
+    public class Manager
     {
-        public bool IsEnabled { get; set; } = true;
-        public Actor ThisBase { get; set; }
+        public GameManagement Instance { get; set; }
         public virtual void Awake()
         {
             
         }
 
         public virtual void Start()
-        {
-
-        }
-
-        public virtual void Init()
         {
 
         }
@@ -49,11 +41,6 @@ namespace Actors.Bases
         public virtual void OnDestroy()
         {
             
-        }
-
-        public virtual void OnApplicationQuit()
-        {
-
         }
     }
 }
