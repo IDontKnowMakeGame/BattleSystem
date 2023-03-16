@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core;
 using UnityEngine;
 
 namespace Managements.Managers
@@ -36,7 +37,7 @@ namespace Managements.Managers
 	}
 
 
-	public class InputManager : Manager
+	public class InputManager<T> : Manager where T : Weapon
 	{
 		public static event Action<Vector3> OnMovePress;
 		public static event Action<Vector3> OnMoveHold;
@@ -89,14 +90,19 @@ namespace Managements.Managers
 		}
 
 		public override void Update()
-		{
-			InputPress();
-			InputHold();
-			InputRelease();
+		{ 
+			var currentWp = InGame.Player.GetAct<CharacterEquipmentAct>().CurrentWeapon;
+			if (currentWp is T)
+			{
+				InputPress();
+				InputHold();
+				InputRelease();
+			}
 		}
 
 		private void InputPress()
 		{
+			
 			// Press
 			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.MoveForward)))
 			{

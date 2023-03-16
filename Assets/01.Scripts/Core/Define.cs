@@ -23,14 +23,14 @@ namespace Core
     {
         private static Dictionary<int, Actor> Actors = new();
 
-        private static GameObject player = null;
+        private static PlayerActor player = null;
 
-        public static GameObject Player
+        public static PlayerActor Player
         {
             get
             {
                 if (player == null)
-                    player = GameObject.FindObjectOfType<PlayerActor>().gameObject;
+                    player = GameObject.FindObjectOfType<PlayerActor>();
 
                 return player;
             }

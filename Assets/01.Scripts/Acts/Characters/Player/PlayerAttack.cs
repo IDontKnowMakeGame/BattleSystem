@@ -14,8 +14,7 @@ namespace Acts.Characters.Player
 
         public override void Awake()
         {
-            InputManager.OnAttackPress += ReadyAttackAnimation;
-
+            InputManager<GreatSword>.OnAttackPress += ReadyAttackAnimation;
             base.Awake();
         }
 
