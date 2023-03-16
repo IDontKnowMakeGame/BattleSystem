@@ -18,8 +18,8 @@ public class CharacterEquipmentAct : Act
 			_useWeapon.TryGetValue(firstWeapon, out weapon);
 			if(weapon == null)
 			{
-				weapon = ItemManager.manager.weapons[firstWeapon];
 				_useWeapon.Add(firstWeapon, ItemManager.manager.weapons[firstWeapon]);
+				weapon = _useWeapon[firstWeapon]; 
 			}
 
 			return weapon;
@@ -36,8 +36,8 @@ public class CharacterEquipmentAct : Act
 			_useWeapon.TryGetValue(secondWeapon, out weapon);
 			if (weapon == null)
 			{
-				weapon = ItemManager.manager.weapons[secondWeapon];
 				_useWeapon.Add(secondWeapon, ItemManager.manager.weapons[secondWeapon]);
+				weapon = _useWeapon[secondWeapon];
 			}
 
 			return weapon;
@@ -61,6 +61,8 @@ public class CharacterEquipmentAct : Act
 	{
 		base.Start();
 		_characterController.Weapon = CurrentWeapon;
+		CurrentWeapon.info.Atk = 1000;
+		Debug.Log(CurrentWeapon.info.Atk);
 	}
 
 	/// <summary>

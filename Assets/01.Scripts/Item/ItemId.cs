@@ -6,5 +6,4 @@ public enum ItemId
 {
 	None = 0,
 	OldStraightSword,
-
 }

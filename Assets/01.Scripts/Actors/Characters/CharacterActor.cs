@@ -14,6 +14,7 @@ namespace Actors.Characters
         {
             base.Init();
             AddAct(_characterRender);
+            AddAct<CharacterEquipmentAct>();
         }
 
         protected override void Awake()
