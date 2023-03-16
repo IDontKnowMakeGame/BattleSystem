@@ -10,7 +10,9 @@ namespace Actors.Bases
         public int UUID => GetInstanceID();
         private Dictionary<Type, Act> _behaviours = new();
         [SerializeField] private Vector3 position = Vector3.zero;
-		public Vector3 Position
+        protected Transform spriteTransform;
+
+        public Vector3 Position
         {
             get => position;
             set
@@ -20,12 +22,15 @@ namespace Actors.Bases
             }
         }
 
+        public Transform SpriteTransform => spriteTransform;
+
         #region Unit_LifeCycle
 
         protected virtual void Init()
         {
             //Add or Init Acts
             Position = transform.position;
+            spriteTransform = this.GetComponentInChildren<MeshRenderer>().transform;
         }
 
         protected virtual void Awake()

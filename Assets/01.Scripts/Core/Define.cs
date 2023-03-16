@@ -4,6 +4,7 @@ using Blocks;
 using Managements;
 using Managements.Managers;
 using UnityEngine;
+using Actors.Characters.Player;
 
 namespace Core
 {
@@ -21,6 +22,19 @@ namespace Core
     public static class InGame
     {
         private static Dictionary<int, Actor> Actors = new();
+
+        private static GameObject player = null;
+
+        public static GameObject Player
+        {
+            get
+            {
+                if (player == null)
+                    player = GameObject.FindObjectOfType<PlayerActor>().gameObject;
+
+                return player;
+            }
+        }
         
         public static void AddActor(Actor actor)
         {
