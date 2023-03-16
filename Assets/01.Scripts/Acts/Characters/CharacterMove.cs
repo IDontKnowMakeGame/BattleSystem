@@ -11,7 +11,7 @@ namespace Acts.Characters
     public class CharacterMove : Act
     {
         private Transform _thisTransform;
-        private bool _isMoving = false;
+        protected bool _isMoving = false;
         
         public override void Awake()
         {
@@ -32,12 +32,15 @@ namespace Acts.Characters
             var nextPos = position;
             nextPos.y = 1;
 
+            MoveAnimation(position - currentPos);
+
             ThisActor.StartCoroutine(PositionUpdateCoroutine());
             seq.Append(_thisTransform.DOMove(nextPos, 0.5f).SetEase(Ease.Linear));
             seq.AppendCallback(() =>
             {
                 ThisActor.Position = nextPos;
                 _isMoving = false;
+                MoveStop();
                 seq.Kill();
             });
         }
@@ -62,6 +65,16 @@ namespace Acts.Characters
                 InGame.SetActorOnBlock(ThisActor, pos);
                 ThisActor.Position = pos;
             }
+        }
+
+        protected virtual void MoveAnimation(Vector3 dir)
+        {
+
+        }
+
+        protected virtual void MoveStop()
+        {
+
         }
     }
 }
