@@ -83,4 +83,18 @@ public class AttackInfo
         AddDir(DirType.Up);
         AddDir(DirType.Down);
     }
+
+	public DirType DirTypes(Vector3 vec)
+	{
+		if (vec == Vector3.forward)
+			return DirType.Up;
+		else if (vec == Vector3.back)
+			return DirType.Down;
+		else if (vec == Vector3.left)
+			return DirType.Left;
+		else if (vec == Vector3.right)
+			return DirType.Right;
+		else
+			return DirType.Down;
+	}
 }

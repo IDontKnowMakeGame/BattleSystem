@@ -40,7 +40,11 @@ public class GreatSword : Weapon
 		timer += Time.deltaTime;
 	}
 	public virtual void AttackRealease(Vector3 vec)
-	{
+	{	
+		_attackInfo.SizeX = 1;	
+		_attackInfo.SizeZ = 1;
+		_attackInfo.AddDir(_attackInfo.DirTypes(_currrentVector));
+
 		timer = 0;
 		_currrentVector = Vector3.zero;
 		//TODO 여기서 HOLD라는 스테이트를 제거 시켜준다.
