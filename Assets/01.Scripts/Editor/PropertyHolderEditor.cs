@@ -37,11 +37,11 @@ using UnityEngine;
              rect.y += 2; // 위쪽 패딩
              EditorGUI.PropertyField(
                  new Rect(rect.x, rect.y, EditorGUIUtility.currentViewWidth - 50, EditorGUIUtility.singleLineHeight),
-                 target, new GUIContent("Target"));
+                 target, new GUIContent("From"));
              rect.y += EditorGUIUtility.singleLineHeight + 2; // 라인 간격
              EditorGUI.PropertyField(
                  new Rect(rect.x, rect.y, EditorGUIUtility.currentViewWidth - 50, EditorGUIUtility.singleLineHeight),
-                 goal, new GUIContent("Goal"));
+                 goal, new GUIContent("To"));
              rect.y += EditorGUIUtility.singleLineHeight + 2; // 라인 간격
              SerializedProperty element = reorderableList.serializedProperty.GetArrayElementAtIndex(index);
              rect.y += 2; // 위쪽 패딩
