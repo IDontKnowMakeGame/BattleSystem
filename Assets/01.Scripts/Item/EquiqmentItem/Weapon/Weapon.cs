@@ -12,6 +12,8 @@ public class Weapon : EquiqmentItem
 			return info + _weaponClassLevelInfo + _weaponLevelInfo;
 		}
 	}
+
+	//public AttackInfo _attackInfo;
 	protected ItemInfo _weaponClassLevelInfo;
 	protected ItemInfo _weaponLevelInfo;
 

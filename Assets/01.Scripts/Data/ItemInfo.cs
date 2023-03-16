@@ -14,15 +14,12 @@ namespace Data
         public float Atk;
         public float Ats;
         public float Afs;
-        public float Weight;
+        public int Weight;
 
-        public float WeightToSpeed
+        public static float WeightToSpeed(int weight)
         {
-            get
-            {
-                var speed = (Mathf.Pow(Weight, 2) + 20) * 0.01f;
-                return speed;
-            }
+           var speed = (Mathf.Pow(weight, 2) + 20) * 0.01f;
+           return speed;
         }
 	
         public static ItemInfo operator+(ItemInfo origin, ItemInfo other)
@@ -34,15 +31,5 @@ namespace Data
             origin.Weight += other.Weight;
             return origin;
         }
-
-		public static bool operator ==(ItemInfo origin, ItemInfo other)
-		{
-			return origin.Hp == other.Hp && origin.Atk == other.Atk && origin.Ats == other.Ats && origin.Afs == other.Afs && origin.Weight == other.Weight;
-		}
-
-		public static bool operator !=(ItemInfo origin, ItemInfo other)
-		{
-			return origin.Hp != other.Hp || origin.Atk != other.Atk || origin.Ats != other.Ats || origin.Afs != other.Afs || origin.Weight != other.Weight;
-		}
 	}
 }

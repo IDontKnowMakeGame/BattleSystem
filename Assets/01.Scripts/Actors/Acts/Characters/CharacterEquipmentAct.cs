@@ -8,6 +8,11 @@ using UnityEngine;
 [System.Serializable]
 public class CharacterEquipmentAct : Act
 {
+	#region Weapon
+	[SerializeField]
+	protected ItemID _firstWeapon;
+	[SerializeField]
+	protected ItemID _secondWeapon;
 	public Weapon CurrentWeapon
 	{
 		get
@@ -44,30 +49,41 @@ public class CharacterEquipmentAct : Act
 			return weapon;
 		}
 	}
-
 	protected Dictionary<ItemID, Weapon> _useWeapon = new Dictionary<ItemID, Weapon>();
-	protected Dictionary<ItemID, Halo> _useHalo = new Dictionary<ItemID, Halo>();
+	#endregion
 
-
-	[SerializeField]
-	protected ItemID _firstWeapon;
-	[SerializeField]
-	protected ItemID _secondWeapon;
+	#region Halo
 	[SerializeField]
 	protected List<ItemID> _halos = new List<ItemID>();
+	public ItemInfo HaloInfo
+	{
+		get
+		{
+			foreach(var info in _halos)
+			{
+				_halo += _useHalo[info].info;
+			}
+			return _halo;
+		}
+	}
+	private ItemInfo _halo;
+	protected Dictionary<ItemID, Halo> _useHalo = new Dictionary<ItemID, Halo>();
+	#endregion
 
-	private CharacterActor _characterController;
+	//ETC
+	//private CharacterActor _characterController;
+	//private CharacterStatAct _characterStat;
 
 	public override void Awake()
 	{
 		base.Awake();
-		_characterController = ThisActor as CharacterActor;
+		//_characterController = ThisActor as CharacterActor;
+		//_characterStat = _characterController.GetAct<CharacterStatAct>();
 	}
 
 	public override void Start()
 	{
 		base.Start();
-		//_characterController.WeaponStat = CurrentWeapon.WeaponInfo;
 	}
 
 	/// <summary>
@@ -82,7 +98,7 @@ public class CharacterEquipmentAct : Act
 		_firstWeapon = _secondWeapon;
 		_secondWeapon = weapon;
 
-		//_characterController.WeaponStat = CurrentWeapon.WeaponInfo;
+
 	}
 
 	/// <summary>
