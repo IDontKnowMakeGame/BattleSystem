@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class EquiqmentItem : Item
 {
-	public EquiqmentItem(ItemInfo info) : base(info)
-	{
-
-	}
 
 	public virtual void Equiqment()
 	{

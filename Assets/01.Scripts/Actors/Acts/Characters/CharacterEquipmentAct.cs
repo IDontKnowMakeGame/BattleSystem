@@ -1,25 +1,26 @@
 using Actors.Characters;
-using Actors.Characters.Player;
 using Acts.Base;
-using System.Collections;
+using Core;
+using Data;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class CharacterEquipmentAct : Act
 {
 	public Weapon CurrentWeapon
 	{
 		get
 		{
-			if (firstWeapon == ItemId.None)
+			if (_firstWeapon == ItemID.None)
 				return null;
 
 			Weapon weapon;
-			_useWeapon.TryGetValue(firstWeapon, out weapon);
+			_useWeapon.TryGetValue(_firstWeapon, out weapon);
 			if(weapon == null)
 			{
-				_useWeapon.Add(firstWeapon, ItemManager.manager.weapons[firstWeapon]);
-				weapon = _useWeapon[firstWeapon]; 
+				_useWeapon.Add(_firstWeapon, Define.GetManager<ItemManager>().weapons[_firstWeapon]);
+				weapon = _useWeapon[_firstWeapon];
 			}
 
 			return weapon;
@@ -29,25 +30,31 @@ public class CharacterEquipmentAct : Act
 	{
 		get
 		{
-			if (secondWeapon == ItemId.None)
+			if (_secondWeapon == ItemID.None)
 				return null;
 
 			Weapon weapon;
-			_useWeapon.TryGetValue(secondWeapon, out weapon);
+			_useWeapon.TryGetValue(_secondWeapon, out weapon);
 			if (weapon == null)
 			{
-				_useWeapon.Add(secondWeapon, ItemManager.manager.weapons[secondWeapon]);
-				weapon = _useWeapon[secondWeapon];
+				_useWeapon.Add(_secondWeapon, Define.GetManager<ItemManager>().weapons[_secondWeapon]);
+				weapon = _useWeapon[_secondWeapon];
 			}
 
 			return weapon;
 		}
 	}
 
-	protected Dictionary<ItemId,Weapon> _useWeapon = new Dictionary<ItemId,Weapon>();
+	protected Dictionary<ItemID, Weapon> _useWeapon = new Dictionary<ItemID, Weapon>();
+	protected Dictionary<ItemID, Halo> _useHalo = new Dictionary<ItemID, Halo>();
 
-	protected ItemId firstWeapon;
-	protected ItemId secondWeapon;
+
+	[SerializeField]
+	protected ItemID _firstWeapon;
+	[SerializeField]
+	protected ItemID _secondWeapon;
+	[SerializeField]
+	protected List<ItemID> _halos = new List<ItemID>();
 
 	private CharacterActor _characterController;
 
@@ -60,9 +67,7 @@ public class CharacterEquipmentAct : Act
 	public override void Start()
 	{
 		base.Start();
-		_characterController.Weapon = CurrentWeapon;
-		CurrentWeapon.info.Atk = 1000;
-		Debug.Log(CurrentWeapon.info.Atk);
+		//_characterController.WeaponStat = CurrentWeapon.WeaponInfo;
 	}
 
 	/// <summary>
@@ -73,26 +78,26 @@ public class CharacterEquipmentAct : Act
 		CurrentWeapon?.UnEquipment();
 		SecoundWeapon?.Equiqment();
 
-		ItemId weapon = firstWeapon;
-		firstWeapon = secondWeapon;
-		secondWeapon = weapon;
+		ItemID weapon = _firstWeapon;
+		_firstWeapon = _secondWeapon;
+		_secondWeapon = weapon;
 
-		_characterController.Weapon = CurrentWeapon;
+		//_characterController.WeaponStat = CurrentWeapon.WeaponInfo;
 	}
 
 	/// <summary>
 	/// 비어져있을때는 Equiqment를 안 비어있을 때는 뺄거와 바꿀거를 해준다.
 	/// </summary>
-	protected void EquiqmentItem()
+	protected void EquipmentWeapon()
 	{
 		//TODO 여기서 EventParam을 받아주는데 그때 여기서 변경해줄 무기의 인덱스와 무기 종류를 넣어준다.
-		if(firstWeapon == ItemId.None /*&& evnetParam.intparam == 1*/)
+		if(_firstWeapon == ItemID.None /*&& evnetParam.intparam == 1*/)
 		{
 			//firstWeapon = Datamanger.Instnace.firstWeapon;
 			CurrentWeapon.Equiqment();
 		}
 
-		if(secondWeapon == ItemId.None /*&& evnetParam.intparam == 2*/)
+		if(_secondWeapon == ItemID.None /*&& evnetParam.intparam == 2*/)
 		{
 			//secoundWeapon = Datamanger.Instnace.firstWeapon;
 		}
@@ -101,5 +106,11 @@ public class CharacterEquipmentAct : Act
 		//firstWeapon = DataManager.Instance.firstWeaopn;
 		//secondWeapon = DataManager.Instance.secoundWeaopn;
 		CurrentWeapon.Equiqment();
+	}
+
+	protected void EquipmentHalo()
+	{
+		//TODO 여기서 헤일로를 더해준다.
+		//_halos.add
 	}
 }
