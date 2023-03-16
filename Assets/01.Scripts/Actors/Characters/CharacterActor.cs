@@ -1,6 +1,7 @@
 ﻿using Actors.Bases;
 using Acts.Characters;
 using Core;
+using Data;
 using UnityEngine;
 
 namespace Actors.Characters
@@ -8,10 +9,15 @@ namespace Actors.Characters
     public class CharacterActor : Actor
     {
         [SerializeField] private CharacterRender _characterRender;
-        protected override void Init()
+        [SerializeField] private CharacterEquipmentAct _characterEquipment;
+        [SerializeField] private CharacterStatAct _characterStat;
+
+		protected override void Init()
         {
             base.Init();
             AddAct(_characterRender);
+            AddAct(_characterEquipment);
+            AddAct(_characterStat);
         }
 
         protected override void Awake()
@@ -24,6 +30,7 @@ namespace Actors.Characters
         {
             InGame.SetActorOnBlock(this, Position);
             base.Start();
+
         }
     }
 }

@@ -3,7 +3,10 @@
 namespace Data
 {
     [System.Serializable]
-    public class ItemInfo
+	/// <summary>
+	/// 아이템의 기본적인 정보를 가지고 있는 클래스
+	/// </summary>
+	public class ItemInfo
     {
         public string Name;
         public ItemID Id;
@@ -11,15 +14,12 @@ namespace Data
         public float Atk;
         public float Ats;
         public float Afs;
-        public float Weight;
+        public int Weight;
 
-        public float WeightToSpeed
+        public static float WeightToSpeed(int weight)
         {
-            get
-            {
-                var speed = (Mathf.Pow(Weight, 2) + 20) * 0.01f;
-                return speed;
-            }
+           var speed = (Mathf.Pow(weight, 2) + 20) * 0.01f;
+           return speed;
         }
 	
         public static ItemInfo operator+(ItemInfo origin, ItemInfo other)
@@ -31,5 +31,5 @@ namespace Data
             origin.Weight += other.Weight;
             return origin;
         }
-    }
+	}
 }
