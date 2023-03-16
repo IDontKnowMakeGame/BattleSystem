@@ -1,3 +1,4 @@
+using Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class ItemInfo
 {
-	public ItemId ItemId;
+	public ItemID ItemId;
 	public float Hp;
 	public float Atk;
 	public float Ats;
