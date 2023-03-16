@@ -13,7 +13,7 @@ public class Item
 	/// <summary>
 	/// Start보다 빠르다던가 awake보다 빠르다거나
 	/// </summary>
-	protected virtual void Init()
+	public virtual void Init()
 	{
 
 	}

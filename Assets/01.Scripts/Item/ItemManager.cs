@@ -39,13 +39,19 @@ public class ItemManager : Manager
 		switch (id)
 		{
 			case 0:
-				weapons.Add(itemId, CreateEnumToClass<Weapon>(itemId));
+				Weapon weapon = CreateEnumToClass<Weapon>(itemId);
+				weapon.Init();
+				weapons.Add(itemId, weapon);
 				break;
 			case 1:
-				halos.Add(itemId, CreateEnumToClass<Halo>(itemId));
+				Halo halo = CreateEnumToClass<Halo>(itemId);
+				halo.Init();
+				halos.Add(itemId, halo);
 				break;
 			case 2:
-				useAbleItems.Add(itemId, CreateEnumToClass<UseAbleItem>(itemId));
+				UseAbleItem useable = CreateEnumToClass<UseAbleItem>(itemId);
+				useable.Init();
+				useAbleItems.Add(itemId, useable);
 				break;
 			default:
 				break;
