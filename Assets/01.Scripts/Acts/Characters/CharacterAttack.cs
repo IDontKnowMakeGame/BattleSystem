@@ -10,7 +10,7 @@ namespace Acts.Characters
         /// <summary>
         /// event를 이용하여 때리는 타이밍에 데미지를 들어가게 하는 함수
         /// </summary>
-        public virtual void AttackCheck(float damage)
+        public virtual void AttackCheck(AttackInfo attackInfo)
         {
 
         }
