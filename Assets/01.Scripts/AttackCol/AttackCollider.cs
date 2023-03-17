@@ -29,6 +29,8 @@ public class AttackCollider : MonoBehaviour
 
     const int none = -987654321;
 
+    private AttackInfo currentInfo = null;
+
     private void Start()
     {
         // Attack 콜라이더 넣기(U-D-L-R)
@@ -53,59 +55,68 @@ public class AttackCollider : MonoBehaviour
     }
 
 
-    public void SetAttackCol(AttackInfo attackInfo)
+    public void SetAttackCol(ref AttackInfo attackInfo)
     {
+        currentInfo = attackInfo;
+
         for (int i = 0; i < 4; i++)
         {
             int check = 1 << i;
 
             DirType curDir = (DirType)check;
-            if (attackInfo.WantDir.HasFlag(curDir))
-            {
-                ChangeSizeX(curDir, attackInfo.SizeX);
-                ChangeSizeZ(curDir, attackInfo.SizeZ);
-                ChangeOffsetX(curDir, attackInfo.OffsetX);
-                ChangeOffsetZ(curDir, attackInfo.OffsetZ);
-            }
-            else
-            {
-                DeleteDir(curDir);
-            }
+            ChangeSizeX(curDir, currentInfo.SizeX);
+            ChangeSizeZ(curDir, currentInfo.SizeZ);
+            ChangeOffsetX(curDir, currentInfo.OffsetX);
+            ChangeOffsetZ(curDir, currentInfo.OffsetZ);
         }
     }
 
     public void AllReset()
     {
-        for (int i = (int)DirType.Up; i <= (int)DirType.Right; i++)
+        for (int i = 0; i < 4; i++)
         {
-            DirType curType = (DirType)i;
+            DirType curType = (DirType)(1 << i);
             attackCol[curType].enabled = true;
-            attackRanges[(DirType)i].EnemysClear();
+            //attackRanges[curType].EnemysClear();
+        }
+    }
+
+    public void AllDisable()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            DirType curType = (DirType)(1 << i);
+            attackCol[curType].enabled = false;
+            attackRanges[curType].EnemysClear();
         }
     }
 
     // TO DO
-    /*
-    public EnemyController CurrntDirNearEnemy()
+    public SampleControoler CurrntDirNearEnemy()
     {
         float minDistnace = float.MaxValue;
-        EnemyController temp = null;
+        SampleControoler temp = null;
+
+        if(currentInfo == null)
+        {
+            Debug.LogError("CurrentInfo Is Null.");
+        }
+
         for (int i = 0; i < 4; i++)
         {
             DirType type = (DirType)(1 << i);
-            if (attackCol[type].enabled)
+            if (currentInfo.WantDir.HasFlag(type))
             {
                 if (attackRanges[type].NearEnemy().distance < minDistnace)
                 {
-                    temp = attackRanges[type].NearEnemy().obj.GetComponent<EnemyController>();
+                    temp = attackRanges[type].NearEnemy().obj.GetComponent<SampleControoler>();
                     minDistnace = attackRanges[type].NearEnemy().distance;
                 }
             }
         }
-
         return temp;
     }
-    */
+
     #region Private Method.
     private void SetAttackSize(DirType direction)
     {
@@ -156,164 +167,5 @@ public class AttackCollider : MonoBehaviour
         attackCol[dirType].enabled = false;
         attackRanges[dirType].EnemysClear();
     }
-
     #endregion
-
-    /*
-    public BoxCollider GetAttackCol(int direction)
-    {
-        if (direction <= -1 && direction >= (int)DirType.Size)
-        {
-            Debug.LogError("Type의 범위가 넘어갔습니다.");
-            return new BoxCollider();
-        }
-        return attackCol[(int)direction];
-    }
-
-        public void ChangeSizeX(int space)
-    {
-        for (int i = 0; i < (int)DirType.Size; i++)
-        {
-            changeCenterSize[i].x = oriCenterSize[i].x + ((oriCenterSize[i].x * 0.5f) * (space - 1));
-            changeSize[i].x = oriSize[i].x * space;
-
-            SetAttackSize(i);
-        }
-    }
-
-    public void ChangeOffsetX(int space)
-    {
-        for (int i = 0; i < (int)DirType.Size; i++)
-        {
-            changeCenterSize[i].x = space;
-
-            SetAttackSize(i);
-        }
-    }
-
-        public void ChangeSizeZ(int space)
-    {
-        for (int i = 0; i < (int)DirType.Size; i++)
-        {
-            changeCenterSize[i].z = oriCenterSize[i].z + (oriCenterSize[i].z > 0 ? 1 : -1) * 0.5f * (space - 1);
-            changeSize[i].z = oriSize[i].z * space;
-
-            SetAttackSize(i);
-        }
-    }
-
-    public void ChangeOffsetZ(int space)
-    {
-        for (int i = 0; i < (int)DirType.Size; i++)
-        {
-            changeCenterSize[i].z = space;
-
-            SetAttackSize(i);
-        }
-    }
-
-    private void SetAttackSize(int direction)
-    {
-        attackCol[direction].center = changeCenterSize[direction];
-        attackCol[direction].size = changeSize[direction];
-    }
-
-    // 두 개의 방향만 켜야할(ex)왼쪽 오른쪽만)
-    public void EnableDir(DirType dirType, DirType dirType2)
-    {
-        int count = 0;
-        for (int i = 0; i < attackCol.Length; i++)
-        {
-            if (i == (int)dirType || i == (int)dirType2)
-            {
-                attackCol[i].enabled = true;
-                count++;
-
-                if (count == 2) break;
-            }
-        }
-    }
-
-    // 모든 방향을 다 켜야할때
-    public void AllEnableDir()
-    {
-        for (int i = 0; i < attackCol.Length; i++)
-        {
-            attackCol[i].enabled = true;
-        }
-    }
-
-    // 모든 방향을 다 꺼야할때
-    public void AllDisableDir()
-    {
-        for (int i = 0; i < attackCol.Length; i++)
-        {
-            attackCol[i].enabled = false;
-        }
-    }
-
-    public void ChangeWeapon()
-    {
-        for (int i = 0; i < attackCol.Length; i++)
-        {
-            attackRanges[i].EnemysClear();
-        }
-    }
-
-    public List<EnemyController> AllCurrentDirEnemy()
-    {
-        HashSet<EnemyController> currentEnemys = new HashSet<EnemyController>();
-
-        for (int i = 0; i < (int)DirType.Size; i++)
-        {
-            if (attackCol[i].enabled)
-            {
-                List<GameObject> checkEnemy = attackRanges[i].AllEnemy();
-                foreach (GameObject enemy in checkEnemy)
-                {
-                    EnemyController enemyBase = enemy.GetComponent<EnemyController>();
-                    if (!currentEnemys.Contains(enemyBase))
-                    {
-                        currentEnemys.Add(enemyBase);
-                    }
-                }
-            }
-        }
-
-        return currentEnemys.ToList();
-    }
-
-    
-    public EnemyBase CurrntDirNearEnemy()
-    {
-        float minDistnace = float.MaxValue;
-        EnemyBase temp = null;
-        for (int i = 0; i < (int)DirType.Size; i++)
-        {
-            if (attackCol[i].enabled)
-            {
-                if (attackRanges[i].NearEnemy().distance < minDistnace)
-                {
-                    temp = attackRanges[i].NearEnemy().obj.GetComponent<EnemyBase>();
-                    minDistnace = attackRanges[i].NearEnemy().distance;
-                }
-            }
-        }
-
-        return temp;
-    }
-    
-    public DirType DirReturn(Vector3 vec)
-    {
-        if (vec == Vector3.forward)
-            return DirType.Up;
-        if (vec == Vector3.back)
-            return DirType.Down;
-        if (vec == Vector3.left)
-            return DirType.Left;
-        if (vec == Vector3.right)
-            return DirType.Right;
-        return DirType.Up;
-    }
-    */
 }
