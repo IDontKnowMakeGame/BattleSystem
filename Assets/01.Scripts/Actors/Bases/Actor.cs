@@ -110,14 +110,14 @@ namespace Actors.Bases
 
         #region Control_Acts
 
-        public void AddAct<T>(T instance = null) where T : Act, new()
+        public T AddAct<T>(T instance = null) where T : Act, new()
         {
             var thisType = GetBaseType<T>();
 
             if (_behaviours.ContainsKey(thisType))
             {
                 Debug.LogError($"{thisType} is already in this Unit.");
-                return;
+                return _behaviours[thisType] as T;
             }
 
             var thisAct = instance;
@@ -125,6 +125,7 @@ namespace Actors.Bases
                 thisAct = new T();
             thisAct.ThisActor = this;
             _behaviours.Add(thisType, thisAct);
+            return thisAct;
         }
 
         public void UpdateAct<T>(T instance) where T : Act
