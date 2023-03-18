@@ -313,9 +313,17 @@ MonoBehaviour:
     _defaultTexture: {fileID: 2800000, guid: b8dcdc1f31fdb4c459bc678fcee5f96b, type: 3}
     _frame: 11
   _characterEquipment:
-    _firstWeapon: 0
-    _secondWeapon: 0
+    _firstWeapon: 2
+    _secondWeapon: 2
     _halos: 
+  _characterStat:
+    _basicStat:
+      hp: 0
+      atk: 0
+      ats: 0
+      afs: 0
+      speed: 0
+  _characterState: 0
   _plyerAnimation:
     curClip:
       name: 
@@ -331,6 +339,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ed2cea15ff594c5409d6a694979bac24, type: 2}
     curWeaponClips: {fileID: 0}
     curID: 100
+  _playerUseAbleItem:
+    torch: {fileID: 8936445794325064292, guid: 9e16a2a76c84aa24dbc416c2da9f76a6, type: 3}
+    shield: {fileID: 3332758395579155589, guid: 2947a38e68b4ab940b4ffaf3099cec9a, type: 3}
 --- !u!1 &959488258716677487
 GameObject:
   m_ObjectHideFlags: 0
