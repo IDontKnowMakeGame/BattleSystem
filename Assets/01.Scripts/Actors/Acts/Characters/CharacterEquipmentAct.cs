@@ -71,13 +71,13 @@ public class CharacterEquipmentAct : Act
 	#endregion
 
 	//ETC
-	//private CharacterActor _characterController;
+	private CharacterActor _characterController;
 	//private CharacterStatAct _characterStat;
 
 	public override void Awake()
 	{
 		base.Awake();
-		//_characterController = ThisActor as CharacterActor;
+		_characterController = ThisActor as CharacterActor;
 		//_characterStat = _characterController.GetAct<CharacterStatAct>();
 	}
 
@@ -91,8 +91,8 @@ public class CharacterEquipmentAct : Act
 	/// </summary>
 	public void Change()
 	{
-		CurrentWeapon?.UnEquipment();
-		SecoundWeapon?.Equiqment();
+		CurrentWeapon?.UnEquipment(_characterController);
+		SecoundWeapon?.Equiqment(_characterController);
 
 		ItemID weapon = _firstWeapon;
 		_firstWeapon = _secondWeapon;
@@ -110,7 +110,7 @@ public class CharacterEquipmentAct : Act
 		if(_firstWeapon == ItemID.None /*&& evnetParam.intparam == 1*/)
 		{
 			//firstWeapon = Datamanger.Instnace.firstWeapon;
-			CurrentWeapon.Equiqment();
+			CurrentWeapon.Equiqment(_characterController);
 		}
 
 		if(_secondWeapon == ItemID.None /*&& evnetParam.intparam == 2*/)
@@ -118,10 +118,10 @@ public class CharacterEquipmentAct : Act
 			//secoundWeapon = Datamanger.Instnace.firstWeapon;
 		}
 
-		CurrentWeapon.UnEquipment();
+		CurrentWeapon.UnEquipment(_characterController);
 		//firstWeapon = DataManager.Instance.firstWeaopn;
 		//secondWeapon = DataManager.Instance.secoundWeaopn;
-		CurrentWeapon.Equiqment();
+		CurrentWeapon.Equiqment(_characterController);
 	}
 
 	protected void EquipmentHalo()

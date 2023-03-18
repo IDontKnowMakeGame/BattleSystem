@@ -19,6 +19,8 @@ public class AttackInfo
     private int offsetX;
     private int offsetZ;
     private DirType wantDir;
+    private int reachFrame;
+
     const int none = -987654321;
 
     public int SizeX
@@ -40,6 +42,12 @@ public class AttackInfo
     {
         get => offsetZ;
         set => offsetZ = value;
+    }
+
+    public int ReachFrame
+    {
+        get => reachFrame;
+        set => reachFrame = value;
     }
 
     public int None
