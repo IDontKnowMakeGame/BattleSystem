@@ -232,7 +232,7 @@ public class DataManager : Manager
     }
     public void CreateWeaponClassListData()
     {
-        WeaponClassLevelListData_.weaponClassLevelDataList.Add(CreateWeaponClassLevel("BasicSword"));
+        WeaponClassLevelListData_.weaponClassLevelDataList.Add(CreateWeaponClassLevel("StraightSword"));
         WeaponClassLevelListData_.weaponClassLevelDataList.Add(CreateWeaponClassLevel("GreateSword"));
         WeaponClassLevelListData_.weaponClassLevelDataList.Add(CreateWeaponClassLevel("TwinSword"));
         WeaponClassLevelListData_.weaponClassLevelDataList.Add(CreateWeaponClassLevel("Spear"));

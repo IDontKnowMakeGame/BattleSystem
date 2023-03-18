@@ -1,0 +1,29 @@
+{
+    "weaponClassLevelDataList": [
+        {
+            "name": "StraightSword",
+            "level": 0,
+            "killedCount": 0
+        },
+        {
+            "name": "GreateSword",
+            "level": 0,
+            "killedCount": 0
+        },
+        {
+            "name": "TwinSword",
+            "level": 0,
+            "killedCount": 0
+        },
+        {
+            "name": "Spear",
+            "level": 0,
+            "killedCount": 0
+        },
+        {
+            "name": "Bow",
+            "level": 0,
+            "killedCount": 0
+        }
+    ]
+}

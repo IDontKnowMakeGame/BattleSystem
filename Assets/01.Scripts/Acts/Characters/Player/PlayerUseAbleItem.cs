@@ -29,8 +29,8 @@ namespace Acts.Characters.Player
         {
             base.Start();
 
-            useAbleItems.Add(ItemID.Torch, new TorchItem(this));
-            useAbleItems.Add(ItemID.Shield, new ShieldItem(this));
+            //useAbleItems.Add(ItemID.Torch, new TorchItem(this));
+            //useAbleItems.Add(ItemID.Shield, new ShieldItem(this));
         }
 
         public override void Update()
