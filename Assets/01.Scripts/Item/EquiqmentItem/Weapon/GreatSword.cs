@@ -1,3 +1,4 @@
+using Core;
 using Managements.Managers;
 using UnityEngine;
 
@@ -13,7 +14,32 @@ public class GreatSword : Weapon
 	}
 	public override void LoadWeaponClassLevel()
 	{
-
+		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("GreatSword");
+		switch (KillToLevel(level.killedCount))
+		{
+			case 1:
+				//_weaponClassLevelInfo.Atk = 10;
+				//_weaponClassLevelInfo.Ats -= 0.01f;
+				break;
+			case 2:
+				//_weaponClassLevelInfo.Atk = 15;
+				//_weaponClassLevelInfo.Ats -= 0.03f;
+				break;
+			case 3:
+				//_weaponClassLevelInfo.Atk = 20;
+				//_weaponClassLevelInfo.Ats -= 0.05f;
+				break;
+			case 4:
+				//_weaponClassLevelInfo.Atk = 20;
+				//_weaponClassLevelInfo.Ats -= 0.07f;
+				//_weaponClassLevelInfo.Afs -= 0.01f;
+				break;
+			case 5:
+				//_weaponClassLevelInfo.Atk = 20;
+				//_weaponClassLevelInfo.Ats -= 0.07f;
+				//_weaponClassLevelInfo.Afs -= 0.05f;
+				break;
+		}
 	}
 
 	public override void LoadWeaponLevel()
