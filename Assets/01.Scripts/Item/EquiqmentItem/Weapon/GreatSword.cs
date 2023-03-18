@@ -52,6 +52,5 @@ public class GreatSword : Weapon
 	public override void Equiqment(CharacterActor actor)
 	{
 		base.Equiqment(actor);
-		
 	}
 }

@@ -12,6 +12,7 @@ namespace Actors.Characters
         [SerializeField] private CharacterEquipmentAct _characterEquipment;
         [SerializeField] private CharacterStatAct _characterStat;
 
+        public Weapon currentWeapon;
 		protected override void Init()
         {
             base.Init();

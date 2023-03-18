@@ -20,6 +20,7 @@ namespace Acts.Characters
 
         protected void Translate(Vector3 direction)
         {
+            Debug.Log("?");
             var nextPos = ThisActor.Position + direction;
             Move(nextPos);
         }
