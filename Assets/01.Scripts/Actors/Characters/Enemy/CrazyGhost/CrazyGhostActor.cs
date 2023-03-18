@@ -1,4 +1,5 @@
-﻿using Acts.Characters.Enemy;
+﻿using Acts.Characters;
+using Acts.Characters.Enemy;
 using AI;
 using AI.Conditions;
 using AI.States;
@@ -13,7 +14,8 @@ namespace Actors.Characters.Enemy.CrazyGhost
             base.Init(); 
             var idle = _enemyAi.AddState<IdleState>();
             var chase = _enemyAi.AddState<ChaseState>();
-            
+            var move = AddAct<CharacterMove>();
+
             chase.SetTarget<IdleState>();
             idle.SetTarget<ChaseState>();
             

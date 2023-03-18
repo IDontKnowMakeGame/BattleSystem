@@ -52,7 +52,8 @@ namespace Tool.Map
             GUILayout.Label("MapGeneration", EditorStyles.boldLabel);
 
             GUILayout.Label("URL Setting", EditorStyles.miniBoldLabel);
-            ExcelDataReader.ID = EditorGUILayout.TextField("ID", ExcelDataReader.ID);
+            //ExcelDataReader.ID = EditorGUILayout.TextField("ID", ExcelDataReader.ID);
+            ExcelDataReader.ID = "14rbIKCHzWCK1VHf1qcgOi7S3TwRGIfXlDE-SGML7kxs";
             ExcelDataReader.StartIdx = EditorGUILayout.TextField("StartIdx", ExcelDataReader.StartIdx);
             ExcelDataReader.EndIdx = EditorGUILayout.TextField("EndIdx", ExcelDataReader.EndIdx);
 

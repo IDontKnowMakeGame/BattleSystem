@@ -68,6 +68,11 @@ namespace Acts.Characters
             }
         }
 
+        public Vector3 GetRoute()
+        {
+            return Vector3.zero;
+        }
+
         protected virtual void MoveAnimation(Vector3 dir)
         {
 

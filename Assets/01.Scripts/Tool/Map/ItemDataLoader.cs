@@ -20,7 +20,8 @@ namespace Tool.Weapon
             GUILayout.Label("ItemDataLoader", EditorStyles.boldLabel);
 
             GUILayout.Label("URL Setting", EditorStyles.miniBoldLabel);
-            ExcelDataReader.ID = EditorGUILayout.TextField("ID", ExcelDataReader.ID);
+            //ExcelDataReader.ID = EditorGUILayout.TextField("ID", ExcelDataReader.ID);
+            ExcelDataReader.ID = "1y6kR8URl2pG-sAijzFArfcsj1SRQXP1CvNo_k19Vbjs";
             ExcelDataReader.StartIdx = EditorGUILayout.TextField("Json Cell", ExcelDataReader.StartIdx);
 
             if (GUILayout.Button("Generation"))
