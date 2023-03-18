@@ -115,6 +115,7 @@ namespace Managements
             Instance.AddManager<InputManager<TwinSword>>();
             Instance.AddManager<InputManager<Spear>>();
             Instance.AddManager<InputManager<Bow>>();
+            Instance.AddManager<InputManager<Weapon>>();
             Instance.AddManager<ItemManager>();
         }
 
