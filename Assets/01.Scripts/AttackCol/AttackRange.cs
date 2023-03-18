@@ -25,6 +25,7 @@ public class AttackRange : MonoBehaviour
         enemys = new HashSet<GameObject>();
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy") && !enemys.Contains(other.gameObject))
@@ -49,14 +50,12 @@ public class AttackRange : MonoBehaviour
     }
 
     // TO DO
-    /*
     public MinDistanceObj NearEnemy()
     {
         float minDistnace = float.MaxValue;
         GameObject temp = null;
         foreach (GameObject obj in enemys)
         {
-
             float distance = obj.transform.position.DistanceFlat(InGame.Player.transform.position);
             if (distance < minDistnace)
             {
@@ -66,7 +65,6 @@ public class AttackRange : MonoBehaviour
         }
         return new MinDistanceObj(temp, minDistnace);
     }
-    */
     
     public void EnemysClear()
     {
