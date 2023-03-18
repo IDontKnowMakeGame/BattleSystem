@@ -1,12 +1,12 @@
 {
     "weaponClassLevelDataList": [
         {
-            "name": "BasicSword",
+            "name": "StraightSword",
             "level": 0,
             "killedCount": 0
         },
         {
-            "name": "GreateSword",
+            "name": "GreatSword",
             "level": 0,
             "killedCount": 0
         },
