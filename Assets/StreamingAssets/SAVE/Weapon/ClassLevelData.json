@@ -1,7 +1,7 @@
 {
     "weaponClassLevelDataList": [
         {
-            "name": "StraightSword",
+            "name": "BasicSword",
             "level": 0,
             "killedCount": 0
         },

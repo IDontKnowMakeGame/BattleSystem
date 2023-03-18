@@ -110,6 +110,9 @@ namespace Managements
         {
             instance = this;
             Instance.AddManager<MapManager>();
+            Instance.AddManager<DataManager>();
+            Instance.AddManager<PoolManager>();
+            instance.AddManager<ResourceManager>();
             Instance.AddManager<InputManager<GreatSword>>();
             Instance.AddManager<InputManager<StraightSword>>();
             Instance.AddManager<InputManager<TwinSword>>();
