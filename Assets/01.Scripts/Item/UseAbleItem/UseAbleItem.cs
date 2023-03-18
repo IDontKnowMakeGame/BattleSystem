@@ -8,7 +8,7 @@ public class UseAbleItem : Item
 	/// <summary>
 	/// 기본적으로 아이템을 사용할 때 쓰는 함수
 	/// </summary>
-	protected virtual void UseItem()
+	public virtual void UseItem()
 	{
 
 	}

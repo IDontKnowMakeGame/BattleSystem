@@ -7,6 +7,7 @@ namespace Actors.Characters.Player
     {
         [SerializeField] private PlayerAnimation _plyerAnimation;
         [SerializeField] private PlayerAttack _playerAttack;
+        [SerializeField] private PlayerUseAbleItem _playerUseAbleItem;
 
         private bool isPlaying = false;
         public bool IsPlaying
@@ -21,6 +22,7 @@ namespace Actors.Characters.Player
             AddAct<PlayerMove>();
             AddAct(_playerAttack);
             AddAct(_plyerAnimation);
+            AddAct(_playerUseAbleItem);
         }
     }
 }
