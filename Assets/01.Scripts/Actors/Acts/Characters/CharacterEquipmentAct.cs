@@ -20,15 +20,15 @@ public class CharacterEquipmentAct : Act
 			if (_firstWeapon == ItemID.None)
 				return null;
 
-			Weapon weapon;
-			_useWeapon.TryGetValue(_firstWeapon, out weapon);
-			if(weapon == null)
+
+			_useWeapon.TryGetValue(_firstWeapon, out _characterController.currentWeapon);
+			if(_characterController.currentWeapon == null)
 			{
 				_useWeapon.Add(_firstWeapon, Define.GetManager<ItemManager>().weapons[_firstWeapon]);
-				weapon = _useWeapon[_firstWeapon];
+				_characterController.currentWeapon = _useWeapon[_firstWeapon];
 			}
 
-			return weapon;
+			return _characterController.currentWeapon;
 		}
 	}
 	public Weapon SecoundWeapon
@@ -72,18 +72,11 @@ public class CharacterEquipmentAct : Act
 
 	//ETC
 	private CharacterActor _characterController;
-	//private CharacterStatAct _characterStat;
-
-	public override void Awake()
-	{
-		base.Awake();
-		_characterController = ThisActor as CharacterActor;
-		//_characterStat = _characterController.GetAct<CharacterStatAct>();
-	}
 
 	public override void Start()
 	{
-		base.Start();
+		_characterController = ThisActor as CharacterActor;
+		EquipmentWeapon();
 	}
 
 	/// <summary>
