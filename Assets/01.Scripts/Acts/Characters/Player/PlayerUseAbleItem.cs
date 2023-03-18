@@ -18,10 +18,10 @@ namespace Acts.Characters.Player
         public GameObject Torch => torch;
         public GameObject Shield => shield;
 
-        private TorchItem torchItem;
-        private ShieldItem shieldItem;
+        private Torch torchItem;
+        private Shield shieldItem;
 
-        private Dictionary<ItemID, UseAbleItem> useAbleItems;
+        //private Dictionary<ItemID, UseAbleItem> useAbleItems;
 
 
 
@@ -29,8 +29,8 @@ namespace Acts.Characters.Player
         {
             base.Start();
 
-            //useAbleItems.Add(ItemID.Torch, new TorchItem(this));
-            //useAbleItems.Add(ItemID.Shield, new ShieldItem(this));
+            //useAbleItems.Add(ItemID.Torch, new Torch(this));
+            //useAbleItems.Add(ItemID.Shield, new Shield(this));
         }
 
         public override void Update()

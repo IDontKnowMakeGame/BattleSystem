@@ -4,11 +4,11 @@ using UnityEngine;
 using Acts.Characters.Player;
 using Core;
 
-public class TorchItem : UseAbleItem
+public class Torch : UseAbleItem
 {
     PlayerUseAbleItem playerUseAbleItem = null;
 
-    public TorchItem(PlayerUseAbleItem _playerUseAbleItem)
+    public Torch(PlayerUseAbleItem _playerUseAbleItem)
     {
         playerUseAbleItem = _playerUseAbleItem;
     }

@@ -5,13 +5,13 @@ using Acts.Characters.Player;
 using Core;
 using Managements.Managers;
 
-public class ShieldItem : UseAbleItem
+public class Shield : UseAbleItem
 {
     PlayerUseAbleItem playerUseAbleItem = null;
 
     private bool use = false;
 
-    public ShieldItem(PlayerUseAbleItem _playerUseAbleItem)
+    public Shield(PlayerUseAbleItem _playerUseAbleItem)
     {
         playerUseAbleItem = _playerUseAbleItem;
     }
