@@ -1,2 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="UI_InGame" src="project://database/Assets/Resources/UIDoc/UI_InGame.uxml?fileID=9197481963319205126&amp;guid=196e4cbdbbd90214c96d11acff9e6746&amp;type=3#UI_InGame" />
+    <ui:Instance template="UI_InGame" name="UI_InGame" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%;" />
 </ui:UXML>

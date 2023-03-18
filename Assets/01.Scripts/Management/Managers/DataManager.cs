@@ -275,6 +275,21 @@ public class DataManager : Manager
 
         Debug.LogError("Not Found WeaponClassName : There are no weapons with matching names.");
     }
+    public void AddWeaponClassKillData(string className,int addKillcount = 1, int addlevel = 0)
+    {
+        for (int i = 0; i < WeaponClassLevelListData_.weaponClassLevelDataList.Count; i++)
+        {
+            if (WeaponClassLevelListData_.weaponClassLevelDataList[i].name == className)
+            {
+                WeaponClassLevelListData_.weaponClassLevelDataList[i].killedCount += addKillcount;
+                WeaponClassLevelListData_.weaponClassLevelDataList[i].level += addlevel;
+                SaveWeaponClassListData();
+                return;
+            }
+        }
+
+        Debug.LogError("Not Found WeaponClassName : There are no weapons with matching names.");
+    }
     #endregion
 
     #region Inventory
