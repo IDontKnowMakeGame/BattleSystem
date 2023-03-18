@@ -10,7 +10,8 @@ namespace Data
     {
         public string Name;
         public ItemID Id;
-        public float Hp;
+		public string Class;
+		public float Hp;
         public float Atk;
         public float Ats;
         public float Afs;
