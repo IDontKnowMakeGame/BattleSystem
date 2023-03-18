@@ -23,10 +23,11 @@
             <ui:VisualElement name="area_weapon" style="flex-basis: 30%; height: 100%; flex-direction: row; align-items: flex-end;">
                 <ui:VisualElement name="weaponbox_first" style="flex-basis: 25%; background-color: rgb(106, 106, 106); height: 100%;" />
                 <ui:VisualElement name="weaponbox_second" style="flex-basis: 20%; background-color: rgb(115, 115, 115); height: 70%;" />
+                <ui:VisualElement name="itembox" style="flex-basis: 20%; height: 92px; background-color: rgba(84, 84, 84, 255);" />
             </ui:VisualElement>
-            <ui:VisualElement name="box_feather" style="background-color: rgb(0, 0, 0); width: 400px; height: 40px; justify-content: flex-start; align-items: flex-start; flex-direction: row;">
-                <ui:VisualElement style="height: 100%; width: 43px;" />
-                <ui:Label text="Label" display-tooltip-when-elided="true" />
+            <ui:VisualElement name="box_feather" style="background-color: rgb(0, 0, 0); width: 400px; height: 40px; justify-content: flex-start; align-items: center; flex-direction: row;">
+                <ui:VisualElement style="height: 100%; width: 43px; background-image: url(&apos;project://database/Packages/com.unity.2d.animation/Editor/Assets/SkinningModule/Icons/Selected/Bone_Influence@2x.png?fileID=21300000&amp;guid=0779ad3feec52124e97114bcbb12ef13&amp;type=3#Bone_Influence@2x&apos;);" />
+                <ui:Label text="9999999999" display-tooltip-when-elided="true" style="margin-left: 10px; font-size: 20px;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

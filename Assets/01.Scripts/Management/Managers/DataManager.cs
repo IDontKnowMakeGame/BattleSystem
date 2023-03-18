@@ -29,6 +29,7 @@ public class DataManager : Manager
             CreateWeaponClassListData();
         }
 
+        Debug.Log("Load Json Complate");
     }
     #region UserData
     public void SaveToUserData()
