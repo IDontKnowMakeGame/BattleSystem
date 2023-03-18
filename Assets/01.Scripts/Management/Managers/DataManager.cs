@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Tool.Data.Json;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DataManager : Manager
@@ -79,37 +80,89 @@ public class DataManager : Manager
     }
     public void EquipUsableItem(ItemID id, int equipnumber)
     {
-        SaveItemData data = LoadUsableItemFromInventory(id);
-        if (data == null)
+        if (HaveUseableItem(id))
+        {
             Debug.LogError($"Not  Have Item : {id}");
-
-        data.equipNumber = equipnumber;
-        UserData_.equipUseableItem.Add(data);
+            return;
+        }
+        
+        switch(equipnumber)
+        {
+            case 1:
+                UserData_.equipUseableItem.first = id;
+                break;
+            case 2:
+                UserData_.equipUseableItem.second = id;
+                break;
+            case 3:
+                UserData_.equipUseableItem.third = id;
+                break;
+            case 4:
+                UserData_.equipUseableItem.fourth = id;
+                break;
+            case 5:
+                UserData_.equipUseableItem.fifth = id;
+                break;
+            case 6:
+                UserData_.equipUseableItem.sixth = id;
+                break;
+            case 7:
+                UserData_.equipUseableItem.seventh = id;
+                break;
+            case 8:
+                UserData_.equipUseableItem.eighth = id;
+                break;
+            case 9:
+                UserData_.equipUseableItem.ninth = id;
+                break;
+            default:
+                Debug.LogError($"Over Input Equip Number : {equipnumber} -> 1 ~ 9 ");
+                break;
+        }
 
         SaveToUserData();
     }
     public void UnmountItem(int number)
     {
-        for (int i = 0; i < UserData_.equipUseableItem.Count; i++)
+        switch (number)
         {
-            if (UserData_.equipUseableItem[i].equipNumber == number)
-            {
-                UserData_.equipUseableItem.Remove(UserData_.equipUseableItem[i]);
-            }
+            case 1:
+                UserData_.equipUseableItem.first = ItemID.None;
+                break;
+            case 2:
+                UserData_.equipUseableItem.second = ItemID.None;
+                break;
+            case 3:
+                UserData_.equipUseableItem.third = ItemID.None;
+                break;
+            case 4:
+                UserData_.equipUseableItem.fourth = ItemID.None;
+                break;
+            case 5:
+                UserData_.equipUseableItem.fifth = ItemID.None;
+                break;
+            case 6:
+                UserData_.equipUseableItem.sixth = ItemID.None;
+                break;
+            case 7:
+                UserData_.equipUseableItem.seventh = ItemID.None;
+                break;
+            case 8:
+                UserData_.equipUseableItem.eighth = ItemID.None;
+                break;
+            case 9:
+                UserData_.equipUseableItem.ninth = ItemID.None;
+                break;
+            default:
+                Debug.LogError($"Over Input Equip Number : {number} -> 1 ~ 9 ");
+                break;
         }
 
         SaveToUserData();
     }
-    public SaveItemData LoadUsableItem(ItemID id)
+    public EquipUesableItemSetting LoadUsableItem()
     {
-        foreach (SaveItemData info in UserData_.equipUseableItem)
-        {
-            if (info.id == id)
-            {
-                return info;
-            }
-        }
-        return null;
+        return UserData_.equipUseableItem;
     }
     #endregion
 
@@ -130,7 +183,6 @@ public class DataManager : Manager
         SaveToSavePointData();
     }
     #endregion
-
 
     #region WeaponLevel
     public void SaveWeaponLevelListData()
@@ -387,6 +439,17 @@ public class DataManager : Manager
                 return;
             }
         }
+    }
+    public bool HaveUseableItem(ItemID id)
+    {
+        foreach (SaveItemData item in InventoryData_.inventoryInUsableItemList)
+        {
+            if (item.id == id)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     //QuestItemInventory=============================================================================
