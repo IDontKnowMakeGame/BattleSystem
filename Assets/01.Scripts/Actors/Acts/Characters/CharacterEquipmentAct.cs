@@ -22,12 +22,12 @@ public class CharacterEquipmentAct : Act
 
 
 			_useWeapon.TryGetValue(_firstWeapon, out _characterController.currentWeapon);
-			if(_characterController.currentWeapon == null)
+			if (_characterController.currentWeapon == null)
 			{
 				_useWeapon.Add(_firstWeapon, Define.GetManager<ItemManager>().weapons[_firstWeapon]);
 				_characterController.currentWeapon = _useWeapon[_firstWeapon];
 			}
-
+			
 			return _characterController.currentWeapon;
 		}
 	}
@@ -59,7 +59,7 @@ public class CharacterEquipmentAct : Act
 	{
 		get
 		{
-			foreach(var info in _halos)
+			foreach (var info in _halos)
 			{
 				_halo += _useHalo[info].info;
 			}
@@ -100,13 +100,13 @@ public class CharacterEquipmentAct : Act
 	protected void EquipmentWeapon()
 	{
 		//TODO 여기서 EventParam을 받아주는데 그때 여기서 변경해줄 무기의 인덱스와 무기 종류를 넣어준다.
-		if(_firstWeapon == ItemID.None /*&& evnetParam.intparam == 1*/)
+		if (_firstWeapon == ItemID.None /*&& evnetParam.intparam == 1*/)
 		{
 			//firstWeapon = Datamanger.Instnace.firstWeapon;
 			CurrentWeapon.Equiqment(_characterController);
 		}
 
-		if(_secondWeapon == ItemID.None /*&& evnetParam.intparam == 2*/)
+		if (_secondWeapon == ItemID.None /*&& evnetParam.intparam == 2*/)
 		{
 			//secoundWeapon = Datamanger.Instnace.firstWeapon;
 		}

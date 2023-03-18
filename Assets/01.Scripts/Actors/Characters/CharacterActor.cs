@@ -31,7 +31,6 @@ namespace Actors.Characters
         {
             InGame.SetActorOnBlock(this, Position);
             base.Start();
-
         }
     }
 }

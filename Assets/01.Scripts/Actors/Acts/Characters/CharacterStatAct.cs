@@ -1,6 +1,8 @@
 using Actors.Bases;
 using Actors.Characters;
+using Actors.Characters.Player;
 using Acts.Base;
+using Core;
 using Data;
 using System;
 using UnityEngine;
@@ -62,7 +64,16 @@ public class CharacterStatAct : Act, IDmageAble
 
 	public void Damage(float damage, Actor actor)
 	{
-
+		ChangeStat.hp -= damage;
+		if(ChangeStat.hp <= 0)
+		{
+			if(actor is PlayerActor)
+			{
+				PlayerActor player = actor as PlayerActor;
+				//player.currentWeapon.info.Name;
+			}
+			Die();
+		}
 	}
 
 	public void Die()
