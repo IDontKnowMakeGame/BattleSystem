@@ -16,5 +16,5 @@ public class User
     public ItemID secondHalo = ItemID.None;
     public ItemID thirdHalo = ItemID.None;
 
-    public List<SaveItemData> equipUseableItem; //0~4 x
+    public EquipUesableItemSetting equipUseableItem;
 }
