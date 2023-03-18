@@ -92,7 +92,7 @@ namespace Managements.Managers
 		public override void Update()
 		{ 
 			var currentWp = InGame.Player.GetAct<CharacterEquipmentAct>().CurrentWeapon;
-			if (currentWp is T)
+			if (currentWp is T || typeof(T) == typeof(Weapon))
 			{
 				InputPress();
 				InputHold();

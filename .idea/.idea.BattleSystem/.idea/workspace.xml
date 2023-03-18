@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Base/ActorAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Base/ActorAnimation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Player/PlayerAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Player/PlayerAttack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Player/PlayerMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Player/PlayerMove.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Core/Define.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Core/Define.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Editor/PropertyHolderEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Editor/PropertyHolderEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Management/GameManagement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Management/GameManagement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Management/Managers/InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Management/Managers/InputManager.cs" afterDir="false" />
-    </list>
+    <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,10 +11,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/11d97693183d4a6bb35c29ae7882c66b81b600/1f/49bdfe4d/ReorderableList.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/AI/AiConditionHolder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/Editor/PropertyHolderEditor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/newaeuaoueaua.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@12.1.8/Editor/Data/Graphs/SerializableTexture.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
