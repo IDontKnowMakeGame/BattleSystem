@@ -29,7 +29,7 @@ public class AttackCollider : MonoBehaviour
 
     const int none = -987654321;
 
-    private AttackInfo currentInfo = null;
+    AttackInfo currentInfo;
 
     private void Start()
     {
@@ -55,7 +55,7 @@ public class AttackCollider : MonoBehaviour
     }
 
 
-    public void SetAttackCol(ref AttackInfo attackInfo)
+    public void SetAttackCol(AttackInfo attackInfo)
     {
         currentInfo = attackInfo;
 

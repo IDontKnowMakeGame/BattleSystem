@@ -15,7 +15,7 @@ namespace Acts.Characters
 
         }
 
-        public virtual void ReadyAttackAnimation(Vector3 dir)
+        public virtual void ReadyAttackAnimation(AttackInfo attackInfo)
         {
 
         }
