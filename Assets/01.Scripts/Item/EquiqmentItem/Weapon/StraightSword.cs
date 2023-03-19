@@ -48,6 +48,7 @@ public class StraightSword : Weapon
 	{
 		_attackInfo.SizeX = 1;
 		_attackInfo.SizeZ = 1;
+		_attackInfo.ResetDir();
 		_attackInfo.AddDir(_attackInfo.DirTypes(vec));
 		_playerActor.AddState(CharacterState.Attack);
 		_eventParam.attackParam = _attackInfo;

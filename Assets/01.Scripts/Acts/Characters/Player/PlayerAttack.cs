@@ -133,7 +133,7 @@ namespace Acts.Characters.Player
 
         public override void OnDisable()
         {
-			Define.GetManager<EventManager>().StopListening(EventFlag.Attack, Attack);
+			Define.GetManager<EventManager>()?.StopListening(EventFlag.Attack, Attack);
 		}
     }
 }

@@ -51,14 +51,16 @@ public class TwinSword : Weapon
 		if(vec == Vector3.forward || vec == Vector3.back)
 		{
 			_attackInfo.SizeX = range;
+			_attackInfo.ResetDir();
 			_attackInfo.AddDir(DirType.Left);
 			_attackInfo.AddDir(DirType.Right);
 		}
 		else if(vec == Vector3.left || vec == Vector3.right)
 		{
 			_attackInfo.SizeZ = range;
-			_attackInfo.AddDir(DirType.Left);
-			_attackInfo.AddDir(DirType.Right);
+			_attackInfo.ResetDir();
+			_attackInfo.AddDir(DirType.Up);
+			_attackInfo.AddDir(DirType.Down);
 		}
 
 		_eventParam.attackParam = _attackInfo;
