@@ -4,6 +4,7 @@ using UnityEngine;
 using Managements.Managers;
 using Core;
 using Actors.Characters.Player;
+using Actors.Characters;
 
 namespace Acts.Characters.Player
 {
@@ -66,8 +67,8 @@ namespace Acts.Characters.Player
 
         public override void ReadyAttackAnimation(AttackInfo attackInfo)
         {
-            if (_playerActor.HasAnyState()) return;
-            _playerActor.AddState(Actors.Characters.CharacterState.Attack);
+            if (_playerActor.HasState(CharacterState.Everything & ~CharacterState.Hold)) return;
+            _playerActor.AddState(CharacterState.Attack);
 
             if (attackInfo.PressInput == Vector3.left)
             {

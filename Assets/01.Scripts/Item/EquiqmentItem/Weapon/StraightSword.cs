@@ -51,7 +51,6 @@ public class StraightSword : Weapon
 		_attackInfo.PressInput = vec;
 		_attackInfo.ResetDir();
 		_attackInfo.AddDir(_attackInfo.DirTypes(vec));
-		_playerActor.AddState(CharacterState.Attack);
 		_eventParam.attackParam = _attackInfo;
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
 	}
