@@ -3,6 +3,7 @@ using Acts.Characters.Enemy;
 using AI;
 using AI.Conditions;
 using AI.States;
+using Core;
 using UnityEngine;
 
 namespace Actors.Characters.Enemy.CrazyGhost
@@ -16,6 +17,10 @@ namespace Actors.Characters.Enemy.CrazyGhost
             var chase = _enemyAi.AddState<ChaseState>();
             var move = AddAct<CharacterMove>();
 
+            chase.OnStay += () =>
+            {
+                move.Chase(InGame.Player);
+            };
             chase.SetTarget<IdleState>();
             idle.SetTarget<ChaseState>();
             

@@ -1,10 +1,12 @@
 ﻿using System.Collections;
-using System.Runtime.InteropServices.WindowsRuntime;
+using System.Collections.Generic;
+using Actors.Bases;
 using Acts.Base;
 using Core;
 using DG.Tweening;
 using Managements.Managers;
 using UnityEngine;
+using UnityEngine.Animations;
 
 namespace Acts.Characters
 {
@@ -68,11 +70,24 @@ namespace Acts.Characters
             }
         }
 
-        public Vector3 GetRoute()
+        public void Chase(Actor target)
         {
-            return Vector3.zero;
+            if(_isMoving) return;
+            ThisActor.StartCoroutine(AstarCoroutine(target.Position));
         }
 
+        private IEnumerator AstarCoroutine(Vector3 end)
+        {
+            var astar = new Astar();
+            astar.SetPath(ThisActor.Position, end);
+            ThisActor.StartCoroutine(astar.FindPath());
+            yield return new WaitUntil(astar.IsFinished);
+            Debug.Log(1);
+            var nextBlock = astar.GetNextPath();
+            if (nextBlock == null) yield break;
+            var nextPos = nextBlock.Position;
+            Translate(nextPos);
+        }
         protected virtual void MoveAnimation(Vector3 dir)
         {
 

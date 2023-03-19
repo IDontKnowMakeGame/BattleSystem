@@ -41,7 +41,7 @@ namespace Acts.Characters.Enemy
             }
             else
             {
-                CurrentState?.OnUpdate?.Invoke();
+                CurrentState?.OnStay?.Invoke();
             }
                 
         }
