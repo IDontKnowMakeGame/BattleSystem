@@ -29,9 +29,10 @@ public class Shield : UseAbleItem
 
     private void SpawnShield(Vector3 dir)
     {
-        // To Do Pooling.
         Vector3 spawnPos = (InGame.Player.transform.position + dir).SetY(1);
-        Object.Instantiate(playerUseAbleItem.Shield, spawnPos, Quaternion.identity);
+
+        GameObject shield = Define.GetManager<ResourceManager>().Instantiate("Shield");
+        shield.transform.position = spawnPos;
 
         use = false;
         InputManager<GreatSword>.OnAttackPress -= SpawnShield;

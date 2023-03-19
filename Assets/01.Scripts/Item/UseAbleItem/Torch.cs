@@ -16,6 +16,7 @@ public class Torch : UseAbleItem
     public override void UseItem()
     {
         // To Do Pooling.
-        Object.Instantiate(playerUseAbleItem.Torch, InGame.Player.transform.position, Quaternion.identity);
+        GameObject torch = Define.GetManager<ResourceManager>().Instantiate("Torch");
+        torch.transform.position = InGame.Player.transform.position;
     }
 }
