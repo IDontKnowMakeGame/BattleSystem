@@ -84,6 +84,7 @@ namespace Acts.Characters
             yield return new WaitUntil(astar.IsFinished);
             Debug.Log(1);
             var nextBlock = astar.GetNextPath();
+            Debug.Log(nextBlock.name);
             if (nextBlock == null) yield break;
             var nextPos = nextBlock.Position;
             Translate(nextPos);

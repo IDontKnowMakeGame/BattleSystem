@@ -9,6 +9,7 @@ using Blocks;
 public class Astar
 {
     private Stack<Block> route = new Stack<Block>();
+    [SerializeField]
     private Block start, end;
     public bool isFinding = false;
 
