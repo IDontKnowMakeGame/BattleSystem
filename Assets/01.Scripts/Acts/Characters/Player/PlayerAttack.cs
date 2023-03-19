@@ -66,9 +66,8 @@ namespace Acts.Characters.Player
 
         public override void ReadyAttackAnimation(AttackInfo attackInfo)
         {
-            if (_playerActor.IsPlaying) return;
-
-            _playerActor.IsPlaying = true;
+            if (_playerActor.HasAnyState()) return;
+            _playerActor.AddState(Actors.Characters.CharacterState.Attack);
 
             if (attackInfo.PressInput == Vector3.left)
             {
@@ -92,7 +91,7 @@ namespace Acts.Characters.Player
             AttackCheck(attackInfo);
 
             // 마지막 프레임에 종료 넣기
-            _playerAnimation.curClip.SetEventOnFrame(_playerAnimation.curClip.fps - 1 , () => _playerActor.IsPlaying = false);
+            _playerAnimation.curClip.SetEventOnFrame(_playerAnimation.curClip.fps - 1 , () => _playerActor.RemoveState(Actors.Characters.CharacterState.Attack));
         }
 
         private void Attack(EventParam eventParam)

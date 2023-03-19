@@ -18,6 +18,7 @@ namespace Actors.Characters
         Hold = 1 << 3,
         StopMove = 1 << 4,
         Stun = 1 << 5,
+        Everything = ~None,
     }
     public class CharacterActor : Actor
     {
@@ -59,5 +60,10 @@ namespace Actors.Characters
         {
             return (_characterState & state) == state;
         }
+
+        public bool HasAnyState()
+        {
+            return (_characterState & CharacterState.Everything) != CharacterState.None;
+        }    
     }
 }
