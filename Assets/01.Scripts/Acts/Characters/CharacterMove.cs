@@ -82,12 +82,10 @@ namespace Acts.Characters
             astar.SetPath(ThisActor.Position, end);
             ThisActor.StartCoroutine(astar.FindPath());
             yield return new WaitUntil(astar.IsFinished);
-            Debug.Log(1);
             var nextBlock = astar.GetNextPath();
-            Debug.Log(nextBlock.name);
             if (nextBlock == null) yield break;
             var nextPos = nextBlock.Position;
-            Translate(nextPos);
+            Move(nextPos);
         }
         protected virtual void MoveAnimation(Vector3 dir)
         {
