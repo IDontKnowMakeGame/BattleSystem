@@ -9,14 +9,6 @@ namespace Acts.Characters.Player
     [System.Serializable]
     public class PlayerUseAbleItem : Act
     {
-        [Header("Torch")]
-        [SerializeField]
-        private GameObject torch;
-        [Header("Shield")]
-        [SerializeField]
-        private GameObject shield;
-        public GameObject Torch => torch;
-        public GameObject Shield => shield;
 
         private Torch torchItem;
         private Shield shieldItem;
@@ -28,6 +20,9 @@ namespace Acts.Characters.Player
         public override void Start()
         {
             base.Start();
+
+            torchItem = new Torch(this);
+            shieldItem = new Shield(this);
 
             //useAbleItems.Add(ItemID.Torch, new Torch(this));
             //useAbleItems.Add(ItemID.Shield, new Shield(this));
