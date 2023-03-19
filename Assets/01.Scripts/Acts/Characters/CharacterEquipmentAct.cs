@@ -80,7 +80,7 @@ public class CharacterEquipmentAct : Act
 	}
 
 	/// <summary>
-	/// WeaponÀ» ¹Ù²Ü ¶§ ¾²´Â ÇÔ¼öÀÌ´Ù.
+	/// Weaponì„ ë°”ê¿€ ë•Œ ì“°ëŠ” í•¨ìˆ˜ì´ë‹¤.
 	/// </summary>
 	public virtual void Change()
 	{
@@ -95,11 +95,11 @@ public class CharacterEquipmentAct : Act
 	}
 
 	/// <summary>
-	/// ºñ¾îÁ®ÀÖÀ»¶§´Â Equiqment¸¦ ¾È ºñ¾îÀÖÀ» ¶§´Â »¬°Å¿Í ¹Ù²Ü°Å¸¦ ÇØÁØ´Ù.
+	/// ë¹„ì–´ì ¸ìˆì„ë•ŒëŠ” Equiqmentë¥¼ ì•ˆ ë¹„ì–´ìˆì„ ë•ŒëŠ” ëº„ê±°ì™€ ë°”ê¿€ê±°ë¥¼ í•´ì¤€ë‹¤.
 	/// </summary>
 	protected virtual void EquipmentWeapon()
 	{
-		//TODO ¿©±â¼­ EventParamÀ» ¹Ş¾ÆÁÖ´Âµ¥ ±×¶§ ¿©±â¼­ º¯°æÇØÁÙ ¹«±âÀÇ ÀÎµ¦½º¿Í ¹«±â Á¾·ù¸¦ ³Ö¾îÁØ´Ù.
+		//TODO ì—¬ê¸°ì„œ EventParamì„ ë°›ì•„ì£¼ëŠ”ë° ê·¸ë•Œ ì—¬ê¸°ì„œ ë³€ê²½í•´ì¤„ ë¬´ê¸°ì˜ ì¸ë±ìŠ¤ì™€ ë¬´ê¸° ì¢…ë¥˜ë¥¼ ë„£ì–´ì¤€ë‹¤.
 		if (_firstWeapon == ItemID.None /*&& evnetParam.intparam == 1*/)
 		{
 			//firstWeapon = Datamanger.Instnace.firstWeapon;
@@ -119,7 +119,7 @@ public class CharacterEquipmentAct : Act
 
 	protected virtual void EquipmentHalo()
 	{
-		//TODO ¿©±â¼­ ÇìÀÏ·Î¸¦ ´õÇØÁØ´Ù.
+		//TODO ì—¬ê¸°ì„œ í—¤ì¼ë¡œë¥¼ ë”í•´ì¤€ë‹¤.
 		//_halos.add
 	}
 }

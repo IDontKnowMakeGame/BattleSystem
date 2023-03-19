@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Actors.Bases;
+using Actors.Characters;
 using Acts.Base;
 using Core;
 using DG.Tweening;
@@ -38,7 +39,9 @@ namespace Acts.Characters
             MoveAnimation(position - currentPos);
 
             ThisActor.StartCoroutine(PositionUpdateCoroutine());
-            seq.Append(_thisTransform.DOMove(nextPos, 0.3f).SetEase(Ease.Linear));
+            var character = ThisActor as CharacterActor;
+            var speed = character.currentWeapon.WeaponInfo.Speed;
+            seq.Append(_thisTransform.DOMove(nextPos, speed).SetEase(Ease.Linear));
             seq.AppendCallback(() =>
             {
                 ThisActor.Position = nextPos;

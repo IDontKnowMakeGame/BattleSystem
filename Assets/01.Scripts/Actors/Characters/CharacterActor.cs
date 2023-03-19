@@ -58,7 +58,7 @@ namespace Actors.Characters
         
         public bool HasState(CharacterState state)
         {
-            return (_characterState & state) == state;
+            return (_characterState & state) != CharacterState.None;
         }
 
         public bool HasAnyState()
