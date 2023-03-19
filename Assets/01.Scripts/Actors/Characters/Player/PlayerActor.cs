@@ -9,13 +9,6 @@ namespace Actors.Characters.Player
         [SerializeField] private PlayerAttack _playerAttack;
         [SerializeField] private PlayerUseAbleItem _playerUseAbleItem;
 
-        private bool isPlaying = false;
-        public bool IsPlaying
-        {
-            get => isPlaying;
-            set => isPlaying = value;
-        }
-
         protected override void Init()
         {
             base.Init();
