@@ -24,13 +24,13 @@ namespace Acts.Characters.Player
 
         public override void Awake()
         {
-            InputManager<GreatSword>.OnAttackPress += ReadyAttackAnimation;
             base.Awake();
         }
 
         public override void Start()
         {
             base.Start();
+            Define.GetManager<EventManager>().StartListening(EventFlag.Attack, Attack);
             _playerAnimation = ThisActor.GetAct<PlayerAnimation>();
             _playerActor = InGame.Player.GetComponent<PlayerActor>();
 
@@ -74,7 +74,10 @@ namespace Acts.Characters.Player
                 enemys.Add(attackCol.CurrntDirNearEnemy());
 
             if(enemys.Count > 0)
+            {
+                Debug.Log("³Ñ¾î");
                 _playerAnimation.curClip.SetEventOnFrame(attackInfo.ReachFrame, Attack);
+            }
 
             attackCol.AllReset();
         }
@@ -85,7 +88,6 @@ namespace Acts.Characters.Player
             {
                 Debug.Log(enemy.name);
             }
-
         }
 
         public override void ReadyAttackAnimation(Vector3 dir)
@@ -123,5 +125,15 @@ namespace Acts.Characters.Player
 
             _playerAnimation.curClip.SetEventOnFrame(_playerAnimation.curClip.fps - 1 , () => _playerActor.IsPlaying = false);
         }
+
+        private void Attack(EventParam eventParam)
+        {
+            AttackCheck(eventParam.attackParam);
+		}
+
+        public override void OnDisable()
+        {
+			Define.GetManager<EventManager>().StopListening(EventFlag.Attack, Attack);
+		}
     }
 }

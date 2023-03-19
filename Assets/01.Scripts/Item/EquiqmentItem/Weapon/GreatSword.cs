@@ -78,6 +78,9 @@ public class GreatSword : Weapon
 			_attackInfo.SizeX = 1;
 			_attackInfo.SizeZ = 1;
 			_attackInfo.AddDir(_attackInfo.DirTypes(_currrentVector));
+
+			_eventParam.attackParam = _attackInfo;
+			Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
 		}
 
 		timer = 0;

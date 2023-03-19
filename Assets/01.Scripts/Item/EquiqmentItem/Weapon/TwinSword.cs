@@ -60,5 +60,8 @@ public class TwinSword : Weapon
 			_attackInfo.AddDir(DirType.Left);
 			_attackInfo.AddDir(DirType.Right);
 		}
+
+		_eventParam.attackParam = _attackInfo;
+		Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
 	}
 }

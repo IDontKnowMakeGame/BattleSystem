@@ -1,15 +1,25 @@
 using Actors.Characters;
+using Blocks;
 using Core;
 using Managements.Managers;
+using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class Spear : Weapon
 {
 	private bool _isAttack;
+	private bool _isEnterEnemy;
+	private MapManager _mapManager;
+	private Vector3 _currentVec = Vector3.zero;
+
+	private Block _attackBlock => _mapManager.GetBlock(_characterActor.Position + _currentVec);
 	public override void Init()
 	{
 		InputManager<StraightSword>.OnAttackPress += Attack;
+
+		_mapManager = Define.GetManager<MapManager>();
 	}
 
 	public override void LoadWeaponClassLevel()
@@ -52,6 +62,18 @@ public class Spear : Weapon
 
 	}
 
+	public override void Update()
+	{
+		if (_playerActor.HasState(CharacterState.Attack) && _attackBlock.IsActorOnBlock && _isEnterEnemy)
+		{
+			_eventParam.attackParam = _attackInfo;
+			Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
+			_isEnterEnemy = false;
+		}
+		else if (!_attackBlock.IsActorOnBlock && !_isEnterEnemy)
+			_isEnterEnemy = true;
+	}
+
 	public virtual void Attack(Vector3 vec)
 	{
 		if(!_isAttack && !_playerActor.HasState(CharacterState.Attack))
@@ -69,6 +91,7 @@ public class Spear : Weapon
 	public virtual IEnumerator AttackCorutine(Vector3 vec)
 	{
 		_attackInfo.AddDir(_attackInfo.DirTypes(vec));
+		_currentVec = vec;
 		yield return new WaitForSeconds(info.Ats);
 		_playerActor.AddState(CharacterState.Attack);
 	}
@@ -76,6 +99,7 @@ public class Spear : Weapon
 	public virtual IEnumerator AttackUpCorutine(Vector3 vec)
 	{
 		_attackInfo.RemoveDir(_attackInfo.DirTypes(vec));
+		_currentVec = Vector3.zero;
 		yield return new WaitForSeconds(info.Afs);
 		_playerActor.RemoveState(CharacterState.Attack);
 	}

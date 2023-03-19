@@ -27,11 +27,12 @@ public class Weapon : EquiqmentItem
 	protected PlayerActor _playerActor = null;
 
 	public AttackInfo AttackInfo => _attackInfo;
-	protected AttackInfo _attackInfo;
+	protected AttackInfo _attackInfo = new AttackInfo();
 
 	protected ItemInfo _weaponClassLevelInfo;
 	protected ItemInfo _weaponLevelInfo;
 
+	protected EventParam _eventParam = new EventParam();
 	public override void Equiqment(CharacterActor actor)
 	{
 		_characterActor = actor;
