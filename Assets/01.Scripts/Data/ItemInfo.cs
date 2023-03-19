@@ -22,6 +22,8 @@ namespace Data
            var speed = (Mathf.Pow(weight, 2) + 20) * 0.01f;
            return speed;
         }
+        
+        public float Speed => WeightToSpeed(Weight);
 	
         public static ItemInfo operator+(ItemInfo origin, ItemInfo other)
         {
