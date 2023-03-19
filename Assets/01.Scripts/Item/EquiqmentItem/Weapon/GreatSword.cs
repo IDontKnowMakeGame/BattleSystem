@@ -78,6 +78,7 @@ public class GreatSword : Weapon
 			_attackInfo.SizeX = 1;
 			_attackInfo.SizeZ = 1;
 			_attackInfo.ResetDir();
+			_attackInfo.PressInput = vec;
 			_attackInfo.AddDir(_attackInfo.DirTypes(_currrentVector));
 
 			_eventParam.attackParam = _attackInfo;

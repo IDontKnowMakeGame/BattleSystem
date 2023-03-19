@@ -14,7 +14,7 @@ namespace Acts.Characters.Player
         public override void Awake()
         {         
             base.Awake();
-            InputManager<GreatSword>.OnMovePress += Translate;
+            InputManager<Weapon>.OnMovePress += Translate;
         }
 
         public override void Start()

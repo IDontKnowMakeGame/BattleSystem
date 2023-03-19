@@ -17,7 +17,7 @@ public class Spear : Weapon
 	private Block _attackBlock => _mapManager.GetBlock(_characterActor.Position + _currentVec);
 	public override void Init()
 	{
-		InputManager<StraightSword>.OnAttackPress += Attack;
+		InputManager<Spear>.OnAttackPress += Attack;
 
 		_mapManager = Define.GetManager<MapManager>();
 	}
@@ -99,6 +99,7 @@ public class Spear : Weapon
 	public virtual IEnumerator AttackUpCorutine(Vector3 vec)
 	{
 		_attackInfo.RemoveDir(_attackInfo.DirTypes(vec));
+		_attackInfo.PressInput = vec;
 		_currentVec = Vector3.zero;
 		yield return new WaitForSeconds(info.Afs);
 		_playerActor.RemoveState(CharacterState.Attack);

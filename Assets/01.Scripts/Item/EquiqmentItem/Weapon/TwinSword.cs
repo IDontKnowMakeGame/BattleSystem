@@ -9,11 +9,11 @@ public class TwinSword : Weapon
 	private int range = 1;
 	public override void Init()
 	{
-		InputManager<StraightSword>.ChangeKeyCode(KeyboardInput.AttackForward, KeyCode.UpArrow);
-		InputManager<StraightSword>.ChangeKeyCode(KeyboardInput.AttackBackward, KeyCode.DownArrow);
-		InputManager<StraightSword>.ChangeKeyCode(KeyboardInput.AttackLeft, KeyCode.LeftArrow);
-		InputManager<StraightSword>.ChangeKeyCode(KeyboardInput.AttackRight, KeyCode.RightArrow);
-		InputManager<StraightSword>.OnAttackPress += Attack;
+		InputManager<TwinSword>.ChangeKeyCode(KeyboardInput.AttackForward, KeyCode.UpArrow);
+		InputManager<TwinSword>.ChangeKeyCode(KeyboardInput.AttackBackward, KeyCode.DownArrow);
+		InputManager<TwinSword>.ChangeKeyCode(KeyboardInput.AttackLeft, KeyCode.LeftArrow);
+		InputManager<TwinSword>.ChangeKeyCode(KeyboardInput.AttackRight, KeyCode.RightArrow);
+		InputManager<TwinSword>.OnAttackPress += Attack;
 	}
 
 	public override void LoadWeaponClassLevel()
@@ -63,6 +63,7 @@ public class TwinSword : Weapon
 			_attackInfo.AddDir(DirType.Down);
 		}
 
+		_attackInfo.PressInput = vec;
 		_eventParam.attackParam = _attackInfo;
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
 	}

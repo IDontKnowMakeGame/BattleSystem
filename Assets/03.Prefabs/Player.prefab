@@ -312,10 +312,6 @@ MonoBehaviour:
   _characterRender:
     _defaultTexture: {fileID: 2800000, guid: b8dcdc1f31fdb4c459bc678fcee5f96b, type: 3}
     _frame: 11
-  _characterEquipment:
-    _firstWeapon: 2
-    _secondWeapon: 2
-    _halos: 
   _characterStat:
     _basicStat:
       hp: 0
@@ -324,6 +320,10 @@ MonoBehaviour:
       afs: 0
       speed: 0
   _characterState: 0
+  _playerEquipment:
+    _firstWeapon: 1
+    _secondWeapon: 2
+    _halos: 
   _plyerAnimation:
     curClip:
       name: 
