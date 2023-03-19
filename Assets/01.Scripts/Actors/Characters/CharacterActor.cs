@@ -14,6 +14,9 @@ namespace Actors.Characters
         Move = 1 << 0,
         Attack = 1 << 1,
         Skill = 1 << 2,
+        Hold = 1 << 3,
+        StopMove = 1 << 4,
+        Stun = 1 << 5,
     }
     public class CharacterActor : Actor
     {

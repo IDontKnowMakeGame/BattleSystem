@@ -1,3 +1,4 @@
+using Actors.Characters;
 using Core;
 using Managements.Managers;
 using System.Collections;
@@ -53,12 +54,12 @@ public class Spear : Weapon
 
 	public virtual void Attack(Vector3 vec)
 	{
-		if(!_isAttack /*&& 스테이트가 없을 때*/)
+		if(!_isAttack && !_playerActor.HasState(CharacterState.Attack))
 		{
 			_isAttack = true;
 			_characterActor.StartCoroutine(AttackCorutine(vec));
 		}
-		else if(_isAttack/*&& 스테이트가 있을 때*/)
+		else if(_isAttack && _playerActor.HasState(CharacterState.Attack))
 		{
 			_isAttack = false;
 			_characterActor.StartCoroutine(AttackUpCorutine(vec));
@@ -69,13 +70,13 @@ public class Spear : Weapon
 	{
 		_attackInfo.AddDir(_attackInfo.DirTypes(vec));
 		yield return new WaitForSeconds(info.Ats);
-		//여기서 스테이트를 실행시켜준다.
+		_playerActor.AddState(CharacterState.Attack);
 	}
 
 	public virtual IEnumerator AttackUpCorutine(Vector3 vec)
 	{
 		_attackInfo.RemoveDir(_attackInfo.DirTypes(vec));
 		yield return new WaitForSeconds(info.Afs);
-		//여기서 스테이트를 초기화..
+		_playerActor.RemoveState(CharacterState.Attack);
 	}
 }

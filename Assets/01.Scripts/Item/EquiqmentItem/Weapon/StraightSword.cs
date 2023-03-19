@@ -1,3 +1,4 @@
+using Actors.Characters;
 using Core;
 using Managements.Managers;
 using UnityEngine;
@@ -48,5 +49,6 @@ public class StraightSword : Weapon
 		_attackInfo.SizeX = 1;
 		_attackInfo.SizeZ = 1;
 		_attackInfo.AddDir(_attackInfo.DirTypes(vec));
+		_playerActor.AddState(CharacterState.Attack);
 	}
 }

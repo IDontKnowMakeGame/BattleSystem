@@ -15,6 +15,7 @@ public class TwinSword : Weapon
 		InputManager<StraightSword>.ChangeKeyCode(KeyboardInput.AttackRight, KeyCode.RightArrow);
 		InputManager<StraightSword>.OnAttackPress += Attack;
 	}
+
 	public override void LoadWeaponClassLevel()
 	{
 		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("TwinSword");

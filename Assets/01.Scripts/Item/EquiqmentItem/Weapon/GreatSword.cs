@@ -1,3 +1,4 @@
+using Actors.Characters;
 using Core;
 using Managements.Managers;
 using UnityEngine;
@@ -49,8 +50,10 @@ public class GreatSword : Weapon
 
 	public virtual void AttakStart(Vector3 vec)
 	{
-		//TODO 여기서 HOLD라는 스테이트를 실행 시켜준다.
-		//if(_playerActor)
+		if (_playerActor.HasState(CharacterState.Hold))
+			return;
+
+		_playerActor.AddState(CharacterState.Hold);
 		_attackInfo.ResetDir();
 		_currrentVector = vec;
 	}
@@ -58,9 +61,8 @@ public class GreatSword : Weapon
 	{
 		if (timer >= info.Ats)
 		{
-			//if (/*&& !characterBase.State.HasFlag(BaseState.Attack)*/)
-			// characterBase.State.AddState(BaseState.Attack)
-			//TODO 여기서 스테이트를 추가해준다.
+			if (!_playerActor.HasState(CharacterState.Attack))
+				_playerActor.AddState(CharacterState.Attack);
 			return;
 		}
 
@@ -71,13 +73,15 @@ public class GreatSword : Weapon
 	}
 	public virtual void AttackRealease(Vector3 vec)
 	{
-		//TODO 여기에서 characterBase.State.HasFlag(BaseState.Attack) if문 넣어주기
-		_attackInfo.SizeX = 1;
-		_attackInfo.SizeZ = 1;
-		_attackInfo.AddDir(_attackInfo.DirTypes(_currrentVector));
+		if(_playerActor.HasState(CharacterState.Attack))
+		{
+			_attackInfo.SizeX = 1;
+			_attackInfo.SizeZ = 1;
+			_attackInfo.AddDir(_attackInfo.DirTypes(_currrentVector));
+		}
 
 		timer = 0;
 		_currrentVector = Vector3.zero;
-		//TODO 여기서 HOLD라는 스테이트를 제거 시켜준다.
+		_playerActor.RemoveState(CharacterState.Hold);
 	}
 }
