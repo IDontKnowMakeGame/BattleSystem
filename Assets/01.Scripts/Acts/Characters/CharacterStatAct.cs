@@ -59,7 +59,8 @@ public class CharacterStatAct : Act, IDmageAble
 	{
 		_actor = ThisActor as CharacterActor;
 		_changeStat.CopyStat(_basicStat);
-		_changeStat.ChangeStat(_actor.currentWeapon.info);
+		if(_actor.currentWeapon != null)
+			_changeStat.ChangeStat(_actor.currentWeapon.info);
 	}
 
 	public void Damage(float damage, Actor actor)
