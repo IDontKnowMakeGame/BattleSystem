@@ -3,6 +3,7 @@ using Actors.Characters;
 using Actors.Characters.Enemy;
 using Actors.Characters.Player;
 using Data;
+using Acts.Characters.Player;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
@@ -25,6 +26,7 @@ public class Weapon : EquiqmentItem
 	public bool isEnemy;
 	protected CharacterActor _characterActor;
 	protected PlayerActor _playerActor = null;
+	protected PlayerAnimation _playerAnimation;
 
 	public AttackInfo AttackInfo => _attackInfo;
 	protected AttackInfo _attackInfo = new AttackInfo();
@@ -39,6 +41,7 @@ public class Weapon : EquiqmentItem
 		if(!isEnemy)
 		{
 			_playerActor = _characterActor as PlayerActor;
+			_playerAnimation = _playerActor.GetAct<PlayerAnimation>();
 			LoadWeaponClassLevel();
 			LoadWeaponLevel();
 		}

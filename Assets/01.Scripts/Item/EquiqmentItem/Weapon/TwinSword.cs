@@ -2,6 +2,8 @@ using Core;
 using Managements.Managers;
 using System.Collections;
 using System.Collections.Generic;
+using Actors.Characters;
+using Acts.Characters;
 using UnityEngine;
 
 public class TwinSword : Weapon
@@ -13,7 +15,6 @@ public class TwinSword : Weapon
 		InputManager<TwinSword>.ChangeKeyCode(KeyboardInput.AttackBackward, KeyCode.DownArrow);
 		InputManager<TwinSword>.ChangeKeyCode(KeyboardInput.AttackLeft, KeyCode.LeftArrow);
 		InputManager<TwinSword>.ChangeKeyCode(KeyboardInput.AttackRight, KeyCode.RightArrow);
-		InputManager<TwinSword>.OnAttackPress += Attack;
 	}
 
 	public override void LoadWeaponClassLevel()
@@ -46,8 +47,22 @@ public class TwinSword : Weapon
 	{
 
 	}
-	public virtual void Attack(Vector3 vec)
+
+	public override void Equiqment(CharacterActor actor)
 	{
+		base.Equiqment(actor);
+		CharacterMove.OnMoveEnd += Attack;
+	}
+
+	public override void UnEquipment(CharacterActor actor)
+	{
+		base.UnEquipment(actor);
+		CharacterMove.OnMoveEnd -= Attack;
+	}
+
+	public virtual void Attack(int id, Vector3 vec)
+	{
+		if (id != _characterActor.UUID) return;
 		if(vec == Vector3.forward || vec == Vector3.back)
 		{
 			_attackInfo.SizeX = range;

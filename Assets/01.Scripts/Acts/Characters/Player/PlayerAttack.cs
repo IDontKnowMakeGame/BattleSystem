@@ -64,7 +64,7 @@ namespace Acts.Characters.Player
                 Debug.Log(enemy.name);
             }
         }
-
+        
         public override void ReadyAttackAnimation(AttackInfo attackInfo)
         {
             if (_playerActor.HasState(CharacterState.Everything & ~CharacterState.Hold)) return;

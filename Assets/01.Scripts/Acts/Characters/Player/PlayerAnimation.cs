@@ -17,11 +17,6 @@ namespace Acts.Characters.Player
         // 현재 어떤 무기 애니메이션인지?, 애니메이션
         public WeaponClips curWeaponClips;
 
-
-        // TO DO 나중에 ID 불려오는 방식으로 저장
-        [SerializeField]
-        private int curID = 100;
-
         public override void Awake()
         {
             base.Awake();
@@ -31,15 +26,11 @@ namespace Acts.Characters.Player
             {
                 weaponAnimationDic.Add(weaponClips.WeaponID, weaponClips);
             }
-
-            ChangeWeaponClips(curID);
         }
 
         public override void Start()
         {
             base.Start();
-
-            Play("Idle");
         }
 
         // id를 통해 무기 애니메이터를 바꿈

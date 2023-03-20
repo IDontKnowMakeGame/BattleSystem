@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Actors.Bases;
 using Actors.Characters;
@@ -14,6 +15,7 @@ namespace Acts.Characters
     public class CharacterMove : Act
     {
         private Transform _thisTransform;
+        public static event Action<int, Vector3> OnMoveEnd;
         protected bool _isMoving = false;
         
         public override void Awake()
@@ -54,6 +56,7 @@ namespace Acts.Characters
         public IEnumerator PositionUpdateCoroutine()
         {
             _isMoving = true;
+            var originPos = ThisActor.Position;
             while (_isMoving)
             {
                 yield return new WaitForFixedUpdate();
@@ -67,10 +70,12 @@ namespace Acts.Characters
                 {
                     pos.z = Mathf.Round(pos.z);
                 }
-                
                 InGame.SetActorOnBlock(ThisActor, pos);
                 ThisActor.Position = pos;
             }
+
+            var dir = ThisActor.Position - originPos;
+            OnMoveEnd?.Invoke(ThisActor.UUID, dir);
         }
 
         public void Chase(Actor target)

@@ -4,6 +4,8 @@ using Core;
 using Data;
 using System.Collections.Generic;
 using UnityEngine;
+using Acts.Characters.Player;
+using Actors.Characters.Player;
 
 [System.Serializable]
 public class CharacterEquipmentAct : Act
@@ -72,11 +74,16 @@ public class CharacterEquipmentAct : Act
 
 	//ETC
 	private CharacterActor _characterController;
+	private PlayerAnimation _playerAnimation;
+	private PlayerActor _playerActor;
 
 	public override void Start()
 	{
 		_characterController = ThisActor as CharacterActor;
+		_playerActor = InGame.Player.GetComponent<PlayerActor>();
+		_playerAnimation = ThisActor.GetAct<PlayerAnimation>();
 		EquipmentWeapon();
+		EquipAnimation();
 	}
 
 	/// <summary>
@@ -84,6 +91,8 @@ public class CharacterEquipmentAct : Act
 	/// </summary>
 	public virtual void Change()
 	{
+		if (_playerActor.HasAnyState()) return;
+
 		CurrentWeapon?.UnEquipment(_characterController);
 		SecoundWeapon?.Equiqment(_characterController);
 
@@ -91,7 +100,7 @@ public class CharacterEquipmentAct : Act
 		_firstWeapon = _secondWeapon;
 		_secondWeapon = weapon;
 
-
+		EquipAnimation();
 	}
 
 	/// <summary>
@@ -121,5 +130,16 @@ public class CharacterEquipmentAct : Act
 	{
 		//TODO 여기서 헤일로를 더해준다.
 		//_halos.add
+	}
+
+	private void EquipAnimation()
+    {
+		_playerActor.AddState(CharacterState.Equip);
+
+		_playerAnimation.ChangeWeaponClips((int)_firstWeapon);
+		_playerAnimation.Play("Equip");
+
+		// 마지막 프레임에 종료 넣기
+		_playerAnimation.curClip.SetEventOnFrame(_playerAnimation.curClip.fps - 1, () => _playerActor.RemoveState(CharacterState.Equip));
 	}
 }
