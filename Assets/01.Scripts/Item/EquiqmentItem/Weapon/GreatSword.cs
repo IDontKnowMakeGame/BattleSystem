@@ -2,6 +2,7 @@ using Actors.Characters;
 using Core;
 using Managements.Managers;
 using UnityEngine;
+using Acts.Characters.Player;
 
 public class GreatSword : Weapon
 {
@@ -56,6 +57,7 @@ public class GreatSword : Weapon
 		_playerActor.AddState(CharacterState.Hold);
 		_attackInfo.ResetDir();
 		_currrentVector = vec;
+		ChargeAnimation(_currrentVector);
 	}
 	public virtual void Hold(Vector3 vec)
 	{
@@ -77,9 +79,35 @@ public class GreatSword : Weapon
 			_eventParam.attackParam = _attackInfo;
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
 		}
+		else
+        {
+			_playerAnimation.Play("Idle");
+        }			
 
 		timer = 0;
 		_currrentVector = Vector3.zero;
 		_playerActor.RemoveState(CharacterState.Hold);
+	}
+
+	private void ChargeAnimation(Vector3 dir)
+    {
+		if (dir == Vector3.left)
+		{
+			_playerActor.SpriteTransform.localScale = new Vector3(-1, 1, 1);
+			_playerAnimation.Play("VerticalCharge");
+		}
+		else if (dir == Vector3.right)
+		{
+			_playerActor.SpriteTransform.localScale = new Vector3(1, 1, 1);
+			_playerAnimation.Play("VerticalCharge");
+		}
+		else if (dir == Vector3.forward)
+		{
+			_playerAnimation.Play("UpperCharge");
+		}
+		else if (dir == Vector3.back)
+		{
+			_playerAnimation.Play("LowerCharge");
+		}
 	}
 }
