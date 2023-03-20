@@ -13,4 +13,9 @@ public class PlayerEquipment : CharacterEquipmentAct
 		base.Start();
 		InputManager<Weapon>.OnChangePress += Change;
 	}
+
+	public override void Update()
+	{
+		CurrentWeapon?.Update();
+	}
 }

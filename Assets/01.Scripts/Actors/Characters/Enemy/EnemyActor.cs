@@ -7,5 +7,11 @@ namespace Actors.Characters.Enemy
     {
         [SerializeField] protected EnemyAI _enemyAi;
         [SerializeField] protected CharacterEquipmentAct _characterEquipment;
+
+        protected override void Init()
+        {
+            AddAct(_characterEquipment);
+            base.Init();
+        }
     }
 }

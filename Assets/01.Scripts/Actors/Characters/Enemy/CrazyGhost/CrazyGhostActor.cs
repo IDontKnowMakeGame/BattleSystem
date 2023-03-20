@@ -26,7 +26,6 @@ namespace Actors.Characters.Enemy.CrazyGhost
             
             _enemyAi.InitState<IdleState>();
             AddAct(_enemyAi);
-            AddAct(_characterEquipment);
         }
     }
 }
