@@ -1,14 +1,26 @@
+using Actors.Characters;
+using Blocks;
 using Core;
 using Managements.Managers;
+using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class Spear : Weapon
 {
 	private bool _isAttack;
+	private bool _isEnterEnemy = true;
+	private bool _isDown = false;
+	private MapManager _mapManager;
+	private Vector3 _currentVec = Vector3.zero;
+
+	private Block _attackBlock => _mapManager.GetBlock(_characterActor.Position + _currentVec);
 	public override void Init()
 	{
-		InputManager<StraightSword>.OnAttackPress += Attack;
+		InputManager<Spear>.OnAttackPress += Attack;
+
+		_mapManager = Define.GetManager<MapManager>();
 	}
 
 	public override void LoadWeaponClassLevel()
@@ -51,14 +63,26 @@ public class Spear : Weapon
 
 	}
 
+	public override void Update()
+	{
+		if (_isDown && _attackBlock.IsActorOnBlock && _isEnterEnemy)
+		{
+			_eventParam.attackParam = _attackInfo;
+			Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
+			_isEnterEnemy = false;
+		}
+		else if (!_attackBlock.IsActorOnBlock && !_isEnterEnemy)
+			_isEnterEnemy = true;
+	}
+
 	public virtual void Attack(Vector3 vec)
 	{
-		if(!_isAttack /*&& 스테이트가 없을 때*/)
+		if(!_isAttack && !_isDown)
 		{
 			_isAttack = true;
 			_characterActor.StartCoroutine(AttackCorutine(vec));
 		}
-		else if(_isAttack/*&& 스테이트가 있을 때*/)
+		else if(_isAttack && _isDown && vec ==_currentVec)
 		{
 			_isAttack = false;
 			_characterActor.StartCoroutine(AttackUpCorutine(vec));
@@ -68,14 +92,17 @@ public class Spear : Weapon
 	public virtual IEnumerator AttackCorutine(Vector3 vec)
 	{
 		_attackInfo.AddDir(_attackInfo.DirTypes(vec));
+		_currentVec = vec;
 		yield return new WaitForSeconds(info.Ats);
-		//여기서 스테이트를 실행시켜준다.
+		_isDown = true;
 	}
 
 	public virtual IEnumerator AttackUpCorutine(Vector3 vec)
 	{
 		_attackInfo.RemoveDir(_attackInfo.DirTypes(vec));
+		_attackInfo.PressInput = vec;
+		_currentVec = Vector3.zero;
 		yield return new WaitForSeconds(info.Afs);
-		//여기서 스테이트를 초기화..
+		_isDown = false;
 	}
 }

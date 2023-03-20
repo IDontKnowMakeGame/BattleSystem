@@ -1,16 +1,21 @@
-﻿using System.Collections;
-using System.Runtime.InteropServices.WindowsRuntime;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using Actors.Bases;
+using Actors.Characters;
 using Acts.Base;
 using Core;
 using DG.Tweening;
 using Managements.Managers;
 using UnityEngine;
+using UnityEngine.Animations;
 
 namespace Acts.Characters
 {
     public class CharacterMove : Act
     {
         private Transform _thisTransform;
+        public static event Action<int, Vector3> OnMoveEnd;
         protected bool _isMoving = false;
         
         public override void Awake()
@@ -36,7 +41,9 @@ namespace Acts.Characters
             MoveAnimation(position - currentPos);
 
             ThisActor.StartCoroutine(PositionUpdateCoroutine());
-            seq.Append(_thisTransform.DOMove(nextPos, 0.3f).SetEase(Ease.Linear));
+            var character = ThisActor as CharacterActor;
+            var speed = character.currentWeapon.WeaponInfo.Speed;
+            seq.Append(_thisTransform.DOMove(nextPos, speed).SetEase(Ease.Linear));
             seq.AppendCallback(() =>
             {
                 ThisActor.Position = nextPos;
@@ -49,6 +56,7 @@ namespace Acts.Characters
         public IEnumerator PositionUpdateCoroutine()
         {
             _isMoving = true;
+            var originPos = ThisActor.Position;
             while (_isMoving)
             {
                 yield return new WaitForFixedUpdate();
@@ -62,17 +70,31 @@ namespace Acts.Characters
                 {
                     pos.z = Mathf.Round(pos.z);
                 }
-                
                 InGame.SetActorOnBlock(ThisActor, pos);
                 ThisActor.Position = pos;
             }
+
+            var dir = ThisActor.Position - originPos;
+            OnMoveEnd?.Invoke(ThisActor.UUID, dir);
         }
 
-        public Vector3 GetRoute()
+        public void Chase(Actor target)
         {
-            return Vector3.zero;
+            if(_isMoving) return;
+            ThisActor.StartCoroutine(AstarCoroutine(target.Position));
         }
 
+        private IEnumerator AstarCoroutine(Vector3 end)
+        {
+            var astar = new Astar();
+            astar.SetPath(ThisActor.Position, end);
+            ThisActor.StartCoroutine(astar.FindPath());
+            yield return new WaitUntil(astar.IsFinished);
+            var nextBlock = astar.GetNextPath();
+            if (nextBlock == null) yield break;
+            var nextPos = nextBlock.Position;
+            Move(nextPos);
+        }
         protected virtual void MoveAnimation(Vector3 dir)
         {
 

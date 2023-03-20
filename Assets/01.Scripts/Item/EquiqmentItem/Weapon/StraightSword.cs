@@ -1,3 +1,4 @@
+using Actors.Characters;
 using Core;
 using Managements.Managers;
 using UnityEngine;
@@ -47,6 +48,10 @@ public class StraightSword : Weapon
 	{
 		_attackInfo.SizeX = 1;
 		_attackInfo.SizeZ = 1;
+		_attackInfo.PressInput = vec;
+		_attackInfo.ResetDir();
 		_attackInfo.AddDir(_attackInfo.DirTypes(vec));
+		_eventParam.attackParam = _attackInfo;
+		Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
 	}
 }

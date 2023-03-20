@@ -4,6 +4,7 @@ using UnityEngine;
 using Managements.Managers;
 using Core;
 using Actors.Characters.Player;
+using Actors.Characters;
 
 namespace Acts.Characters.Player
 {
@@ -16,21 +17,15 @@ namespace Acts.Characters.Player
 
         private List<SampleControoler> enemys = new List<SampleControoler>();
 
-
-        AttackInfo attackInfo = new AttackInfo();
-        AttackInfo attackInfo2 = new AttackInfo();
-
-        private AttackInfo temp;
-
         public override void Awake()
         {
-            InputManager<GreatSword>.OnAttackPress += ReadyAttackAnimation;
             base.Awake();
         }
 
         public override void Start()
         {
             base.Start();
+            Define.GetManager<EventManager>().StartListening(EventFlag.Attack, Attack);
             _playerAnimation = ThisActor.GetAct<PlayerAnimation>();
             _playerActor = InGame.Player.GetComponent<PlayerActor>();
 
@@ -38,43 +33,26 @@ namespace Acts.Characters.Player
 
             // Test Code
             //attackInfo.SizeZ = 1;
-
-            attackInfo.ReachFrame = 5;
-            attackInfo.SizeZ = 1;
-
-            attackInfo2.ReachFrame = 5;
-            attackInfo2.SizeZ = 2;
-
-            temp = attackInfo;
-
-            attackCol.SetAttackCol(ref temp);
         }
 
         public override void Update()
         {
             base.Update();
-
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                temp = attackInfo;
-                attackCol.SetAttackCol(ref temp);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                temp = attackInfo2;
-                attackCol.SetAttackCol(ref temp);
-            }
         }
 
         public override void AttackCheck(AttackInfo attackInfo)
         {
             enemys.Clear();
 
+            attackCol.SetAttackCol(attackInfo);
+
             if(attackCol.CurrntDirNearEnemy() != null)
                 enemys.Add(attackCol.CurrntDirNearEnemy());
 
             if(enemys.Count > 0)
+            {
                 _playerAnimation.curClip.SetEventOnFrame(attackInfo.ReachFrame, Attack);
+            }
 
             attackCol.AllReset();
         }
@@ -85,43 +63,46 @@ namespace Acts.Characters.Player
             {
                 Debug.Log(enemy.name);
             }
-
         }
-
-        public override void ReadyAttackAnimation(Vector3 dir)
+        
+        public override void ReadyAttackAnimation(AttackInfo attackInfo)
         {
-            if (_playerActor.IsPlaying) return;
+            if (_playerActor.HasState(CharacterState.Everything & ~CharacterState.Hold)) return;
+            _playerActor.AddState(CharacterState.Attack);
 
-            _playerActor.IsPlaying = true;
-
-            temp.ResetDir();
-
-            if (dir == Vector3.left)
+            if (attackInfo.PressInput == Vector3.left)
             {
                 ThisActor.SpriteTransform.localScale = new Vector3(-1, 1, 1);
-                temp.AddDir(DirType.Left);
                 _playerAnimation.Play("VerticalAttack");
             }
-            else if (dir == Vector3.right)
+            else if (attackInfo.PressInput == Vector3.right)
             {
                 ThisActor.SpriteTransform.localScale = new Vector3(1, 1, 1);
-                temp.AddDir(DirType.Right);
                 _playerAnimation.Play("VerticalAttack");
             }
-            else if (dir == Vector3.forward)
+            else if (attackInfo.PressInput == Vector3.forward)
             {
-                temp.AddDir(DirType.Up);
                 _playerAnimation.Play("UpperAttack");
             }
-            else if (dir == Vector3.back)
+            else if (attackInfo.PressInput == Vector3.back)
             {
-                temp.AddDir(DirType.Down);
                 _playerAnimation.Play("LowerAttack");
             }
 
-            AttackCheck(temp);
+            AttackCheck(attackInfo);
 
-            _playerAnimation.curClip.SetEventOnFrame(_playerAnimation.curClip.fps - 1 , () => _playerActor.IsPlaying = false);
+            // 마지막 프레임에 종료 넣기
+            _playerAnimation.curClip.SetEventOnFrame(_playerAnimation.curClip.fps - 1 , () => _playerActor.RemoveState(Actors.Characters.CharacterState.Attack));
         }
+
+        private void Attack(EventParam eventParam)
+        {
+            ReadyAttackAnimation(eventParam.attackParam);
+		}
+
+        public override void OnDisable()
+        {
+			Define.GetManager<EventManager>()?.StopListening(EventFlag.Attack, Attack);
+		}
     }
 }

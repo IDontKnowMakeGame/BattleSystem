@@ -20,6 +20,7 @@ public class AttackInfo
     private int offsetZ;
     private DirType wantDir;
     private int reachFrame;
+    private Vector3 pressInput;
 
     const int none = -987654321;
 
@@ -56,6 +57,12 @@ public class AttackInfo
     }
 
     public DirType WantDir => wantDir;
+
+    public Vector3 PressInput
+    {
+        get => pressInput;
+        set => pressInput = value;
+    }
 
     public void AddDir(DirType getDir)
     {

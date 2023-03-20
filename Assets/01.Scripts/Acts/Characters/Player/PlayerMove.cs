@@ -14,7 +14,7 @@ namespace Acts.Characters.Player
         public override void Awake()
         {         
             base.Awake();
-            InputManager<GreatSword>.OnMovePress += Translate;
+            InputManager<Weapon>.OnMovePress += Translate;
         }
 
         public override void Start()
@@ -26,8 +26,8 @@ namespace Acts.Characters.Player
 
         protected override void Move(Vector3 position)
         {
-            if (_playerActor.IsPlaying) return;
-            InGame.Player.GetComponent<PlayerActor>().IsPlaying = true;
+            if (_playerActor.HasAnyState()) return;
+            _playerActor.AddState(Actors.Characters.CharacterState.Move);
             base.Move(position);
         }
 
@@ -35,8 +35,8 @@ namespace Acts.Characters.Player
         /// Player Animation Setting
         /// </summary>
         protected override void MoveAnimation(Vector3 dir)
-        { 
-            if(dir == Vector3.left)
+        {
+            if (dir == Vector3.left)
             {
                 ThisActor.SpriteTransform.localScale = new Vector3(-1, 1, 1);
                 _playerAnimation.Play("VerticalMove");
@@ -59,7 +59,7 @@ namespace Acts.Characters.Player
         protected override void MoveStop()
         {
             _playerAnimation.Play("Idle");
-            InGame.Player.GetComponent<PlayerActor>().IsPlaying = false;
+            _playerActor.RemoveState(Actors.Characters.CharacterState.Move);
         }
     }
 }

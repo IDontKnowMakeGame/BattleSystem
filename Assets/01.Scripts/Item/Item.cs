@@ -1,17 +1,18 @@
 using Data;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// itemÀÇ ±âº»ÀûÀÎ ±¸Á¶¸¦ °üÀåÇØÁÖ´Â Å¬·¡½º
+/// itemì˜ ê¸°ë³¸ì ì¸ êµ¬ì¡°ë¥¼ ê´€ì¥í•´ì£¼ëŠ” í´ë˜ìŠ¤
 /// </summary>
 public class Item
 {
 	public ItemInfo info;
 
 	/// <summary>
-	/// Startº¸´Ù ºü¸£´Ù´ø°¡ awakeº¸´Ù ºü¸£´Ù°Å³ª
+	/// Startë³´ë‹¤ ë¹ ë¥´ë‹¤ë˜ê°€ awakeë³´ë‹¤ ë¹ ë¥´ë‹¤ê±°ë‚˜
 	/// </summary>
 	public virtual void Init()
 	{

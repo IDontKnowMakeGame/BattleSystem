@@ -3,11 +3,13 @@ using Actors.Characters;
 using Actors.Characters.Enemy;
 using Actors.Characters.Player;
 using Data;
+using Acts.Characters.Player;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEditorInternal;
 using UnityEngine;
+using System;
 
 public class Weapon : EquiqmentItem
 {
@@ -22,15 +24,18 @@ public class Weapon : EquiqmentItem
 		}
 	}
 
-	public bool isEnemy;
+	public bool isEnemy = true;
 	protected CharacterActor _characterActor;
 	protected PlayerActor _playerActor = null;
+	protected PlayerAnimation _playerAnimation;
 
 	public AttackInfo AttackInfo => _attackInfo;
-	protected AttackInfo _attackInfo;
+	protected AttackInfo _attackInfo = new AttackInfo();
 
-	protected ItemInfo _weaponClassLevelInfo;
-	protected ItemInfo _weaponLevelInfo;
+	protected ItemInfo _weaponClassLevelInfo = new ItemInfo();
+	protected ItemInfo _weaponLevelInfo = new ItemInfo();
+
+	protected EventParam _eventParam = new EventParam();
 
 	public override void Equiqment(CharacterActor actor)
 	{
@@ -38,6 +43,7 @@ public class Weapon : EquiqmentItem
 		if(!isEnemy)
 		{
 			_playerActor = _characterActor as PlayerActor;
+			_playerAnimation = _playerActor.GetAct<PlayerAnimation>();
 			LoadWeaponClassLevel();
 			LoadWeaponLevel();
 		}

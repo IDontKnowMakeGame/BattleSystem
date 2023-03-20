@@ -1,6 +1,8 @@
+using Actors.Characters;
 using Core;
 using Managements.Managers;
 using UnityEngine;
+using Acts.Characters.Player;
 
 public class GreatSword : Weapon
 {
@@ -49,21 +51,16 @@ public class GreatSword : Weapon
 
 	public virtual void AttakStart(Vector3 vec)
 	{
-		//TODO 여기서 HOLD라는 스테이트를 실행 시켜준다.
-		//if(_playerActor)
+		if (_playerActor.HasState(CharacterState.Hold))
+			return;
+
+		_playerActor.AddState(CharacterState.Hold);
 		_attackInfo.ResetDir();
 		_currrentVector = vec;
+		ChargeAnimation(_currrentVector);
 	}
 	public virtual void Hold(Vector3 vec)
 	{
-		if (timer >= info.Ats)
-		{
-			//if (/*&& !characterBase.State.HasFlag(BaseState.Attack)*/)
-			// characterBase.State.AddState(BaseState.Attack)
-			//TODO 여기서 스테이트를 추가해준다.
-			return;
-		}
-
 		if (timer >= info.Ats)
 			return;
 
@@ -71,13 +68,46 @@ public class GreatSword : Weapon
 	}
 	public virtual void AttackRealease(Vector3 vec)
 	{
-		//TODO 여기에서 characterBase.State.HasFlag(BaseState.Attack) if문 넣어주기
-		_attackInfo.SizeX = 1;
-		_attackInfo.SizeZ = 1;
-		_attackInfo.AddDir(_attackInfo.DirTypes(_currrentVector));
+		if(timer >= info.Ats)
+		{
+			_attackInfo.SizeX = 1;
+			_attackInfo.SizeZ = 1;
+			_attackInfo.ResetDir();
+			_attackInfo.PressInput = vec;
+			_attackInfo.AddDir(_attackInfo.DirTypes(_currrentVector));
+
+			_eventParam.attackParam = _attackInfo;
+			Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
+		}
+		else
+        {
+			_playerAnimation.Play("Idle");
+        }			
 
 		timer = 0;
 		_currrentVector = Vector3.zero;
-		//TODO 여기서 HOLD라는 스테이트를 제거 시켜준다.
+		_playerActor.RemoveState(CharacterState.Hold);
+	}
+
+	private void ChargeAnimation(Vector3 dir)
+    {
+		if (dir == Vector3.left)
+		{
+			_playerActor.SpriteTransform.localScale = new Vector3(-1, 1, 1);
+			_playerAnimation.Play("VerticalCharge");
+		}
+		else if (dir == Vector3.right)
+		{
+			_playerActor.SpriteTransform.localScale = new Vector3(1, 1, 1);
+			_playerAnimation.Play("VerticalCharge");
+		}
+		else if (dir == Vector3.forward)
+		{
+			_playerAnimation.Play("UpperCharge");
+		}
+		else if (dir == Vector3.back)
+		{
+			_playerAnimation.Play("LowerCharge");
+		}
 	}
 }

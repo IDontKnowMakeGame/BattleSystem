@@ -75,9 +75,16 @@ namespace Blocks
 
         [SerializeField] private Actor _actorOnBlock;
         public Actor ActorOnBlock => _actorOnBlock;
-        protected override void Init()
+        public bool IsActorOnBlock => ActorOnBlock != null;
+
+		protected override void Init()
         {
             AddAct<BlockRender>();
+            tileOBJ = this.gameObject;
+            isWalkable = true;
+            Vector3 pos = transform.position;
+            x = (int)pos.x;
+            z = (int)pos.z;
         }
 
         protected override void Awake()

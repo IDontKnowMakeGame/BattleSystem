@@ -23,6 +23,6 @@ namespace AI
         }
         public Action OnEnter;
         public Action OnExit;
-        public Action OnUpdate;
+        public Action OnStay;
     }
 }
