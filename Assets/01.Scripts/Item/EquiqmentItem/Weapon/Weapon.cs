@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using UnityEditorInternal;
 using UnityEngine;
+using System;
 
 public class Weapon : EquiqmentItem
 {
@@ -23,7 +24,7 @@ public class Weapon : EquiqmentItem
 		}
 	}
 
-	public bool isEnemy;
+	public bool isEnemy = true;
 	protected CharacterActor _characterActor;
 	protected PlayerActor _playerActor = null;
 	protected PlayerAnimation _playerAnimation;
@@ -35,6 +36,7 @@ public class Weapon : EquiqmentItem
 	protected ItemInfo _weaponLevelInfo = new ItemInfo();
 
 	protected EventParam _eventParam = new EventParam();
+
 	public override void Equiqment(CharacterActor actor)
 	{
 		_characterActor = actor;

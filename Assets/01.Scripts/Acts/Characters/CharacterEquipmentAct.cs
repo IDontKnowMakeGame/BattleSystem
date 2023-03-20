@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Acts.Characters.Player;
 using Actors.Characters.Player;
+using System;
 
 [System.Serializable]
 public class CharacterEquipmentAct : Act
@@ -26,10 +27,15 @@ public class CharacterEquipmentAct : Act
 			_useWeapon.TryGetValue(_firstWeapon, out _characterController.currentWeapon);
 			if (_characterController.currentWeapon == null)
 			{
-				_useWeapon.Add(_firstWeapon, Define.GetManager<ItemManager>().weapons[_firstWeapon]);
+				var weapon = Define.GetManager<ItemManager>().weapons[_firstWeapon];
+				var clone = ObjectExtensions.Copy(weapon);
+				_useWeapon.Add(_firstWeapon, clone);
 				_characterController.currentWeapon = _useWeapon[_firstWeapon];
 			}
-			
+
+			if (_isPlayer)
+				_characterController.currentWeapon.isEnemy = false;
+
 			return _characterController.currentWeapon;
 		}
 	}
@@ -44,9 +50,14 @@ public class CharacterEquipmentAct : Act
 			_useWeapon.TryGetValue(_secondWeapon, out weapon);
 			if (weapon == null)
 			{
-				_useWeapon.Add(_secondWeapon, Define.GetManager<ItemManager>().weapons[_secondWeapon]);
+				weapon = Define.GetManager<ItemManager>().weapons[_secondWeapon];
+				var clone = ObjectExtensions.Copy(weapon);
+				_useWeapon.Add(_secondWeapon, clone);
 				weapon = _useWeapon[_secondWeapon];
 			}
+
+			if (_isPlayer)
+				weapon.isEnemy = false;
 
 			return weapon;
 		}
@@ -72,18 +83,15 @@ public class CharacterEquipmentAct : Act
 	protected Dictionary<ItemID, Halo> _useHalo = new Dictionary<ItemID, Halo>();
 	#endregion
 
+	[SerializeField]
+	protected bool _isPlayer = false;
 	//ETC
-	private CharacterActor _characterController;
-	private PlayerAnimation _playerAnimation;
-	private PlayerActor _playerActor;
+	protected CharacterActor _characterController;
 
 	public override void Start()
 	{
 		_characterController = ThisActor as CharacterActor;
-		_playerActor = InGame.Player.GetComponent<PlayerActor>();
-		_playerAnimation = ThisActor.GetAct<PlayerAnimation>();
-		EquipmentWeapon();
-		EquipAnimation();
+		CurrentWeapon?.Equiqment(_characterController);
 	}
 
 	/// <summary>
@@ -91,55 +99,17 @@ public class CharacterEquipmentAct : Act
 	/// </summary>
 	public virtual void Change()
 	{
-		if (_playerActor.HasAnyState()) return;
-
 		CurrentWeapon?.UnEquipment(_characterController);
 		SecoundWeapon?.Equiqment(_characterController);
 
 		ItemID weapon = _firstWeapon;
 		_firstWeapon = _secondWeapon;
 		_secondWeapon = weapon;
-
-		EquipAnimation();
-	}
-
-	/// <summary>
-	/// 비어져있을때는 Equiqment를 안 비어있을 때는 뺄거와 바꿀거를 해준다.
-	/// </summary>
-	protected virtual void EquipmentWeapon()
-	{
-		//TODO 여기서 EventParam을 받아주는데 그때 여기서 변경해줄 무기의 인덱스와 무기 종류를 넣어준다.
-		if (_firstWeapon == ItemID.None /*&& evnetParam.intparam == 1*/)
-		{
-			//firstWeapon = Datamanger.Instnace.firstWeapon;
-			CurrentWeapon.Equiqment(_characterController);
-		}
-
-		if (_secondWeapon == ItemID.None /*&& evnetParam.intparam == 2*/)
-		{
-			//secoundWeapon = Datamanger.Instnace.firstWeapon;
-		}
-
-		CurrentWeapon.UnEquipment(_characterController);
-		//firstWeapon = DataManager.Instance.firstWeaopn;
-		//secondWeapon = DataManager.Instance.secoundWeaopn;
-		CurrentWeapon.Equiqment(_characterController);
 	}
 
 	protected virtual void EquipmentHalo()
 	{
 		//TODO 여기서 헤일로를 더해준다.
 		//_halos.add
-	}
-
-	private void EquipAnimation()
-    {
-		_playerActor.AddState(CharacterState.Equip);
-
-		_playerAnimation.ChangeWeaponClips((int)_firstWeapon);
-		_playerAnimation.Play("Equip");
-
-		// 마지막 프레임에 종료 넣기
-		_playerAnimation.curClip.SetEventOnFrame(_playerAnimation.curClip.fps - 1, () => _playerActor.RemoveState(CharacterState.Equip));
 	}
 }

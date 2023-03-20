@@ -70,7 +70,6 @@ public class Spear : Weapon
 			_eventParam.attackParam = _attackInfo;
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
 			_isEnterEnemy = false;
-			Debug.Log("À×");
 		}
 		else if (!_attackBlock.IsActorOnBlock && !_isEnterEnemy)
 			_isEnterEnemy = true;
@@ -96,7 +95,6 @@ public class Spear : Weapon
 		_currentVec = vec;
 		yield return new WaitForSeconds(info.Ats);
 		_isDown = true;
-		Debug.Log("¾î¾ß");
 	}
 
 	public virtual IEnumerator AttackUpCorutine(Vector3 vec)

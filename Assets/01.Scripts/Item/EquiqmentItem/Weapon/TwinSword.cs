@@ -52,6 +52,7 @@ public class TwinSword : Weapon
 	{
 		base.Equiqment(actor);
 		CharacterMove.OnMoveEnd += Attack;
+		Debug.Log("??");
 	}
 
 	public override void UnEquipment(CharacterActor actor)
