@@ -70,6 +70,7 @@ public class Spear : Weapon
 			_eventParam.attackParam = _attackInfo;
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
 			_isEnterEnemy = false;
+			Debug.Log("À×");
 		}
 		else if (!_attackBlock.IsActorOnBlock && !_isEnterEnemy)
 			_isEnterEnemy = true;
