@@ -1,5 +1,30 @@
 {
-    "inventoryInWeaponList": [],
+    "inventoryInWeaponList": [
+        {
+            "id": 3,
+            "name": "ItemID",
+            "currentCnt": 0,
+            "maxCnt": 0
+        },
+        {
+            "id": 2,
+            "name": "ItemID",
+            "currentCnt": 0,
+            "maxCnt": 0
+        },
+        {
+            "id": 4,
+            "name": "ItemID",
+            "currentCnt": 0,
+            "maxCnt": 0
+        },
+        {
+            "id": 5,
+            "name": "ItemID",
+            "currentCnt": 0,
+            "maxCnt": 0
+        }
+    ],
     "inventoryInHaloList": [],
     "inventoryInUsableItemList": [],
     "inventoryInQuestItemList": []

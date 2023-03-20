@@ -1,13 +1,13 @@
 .SelectItemTypeBox {
     width: 150px;
     height: 100%;
-    background-color: rgba(70, 70, 70, 255);
+    background-color: rgb(70, 70, 70);
     margin-left: 5px;
     margin-right: 5px;
-    border-left-color: rgba(110, 144, 147, 255);
-    border-right-color: rgba(110, 144, 147, 255);
-    border-top-color: rgba(110, 144, 147, 255);
-    border-bottom-color: rgba(110, 144, 147, 255);
+    border-left-color: rgb(110, 144, 147);
+    border-right-color: rgb(110, 144, 147);
+    border-top-color: rgb(110, 144, 147);
+    border-bottom-color: rgb(110, 144, 147);
     border-left-width: 5px;
     border-right-width: 5px;
     border-top-width: 5px;
@@ -23,28 +23,26 @@
 .ItemPanel {
     width: 100%;
     height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-color: rgba(36, 36, 36, 255);
-    border-left-color: rgba(236, 236, 236, 255);
-    border-right-color: rgba(236, 236, 236, 255);
-    border-top-color: rgba(236, 236, 236, 255);
-    border-bottom-color: rgba(236, 236, 236, 255);
+    background-color: rgb(36, 36, 36);
+    border-left-color: rgb(236, 236, 236);
+    border-right-color: rgb(236, 236, 236);
+    border-top-color: rgb(236, 236, 236);
+    border-bottom-color: rgb(236, 236, 236);
     border-left-width: 5px;
     border-right-width: 5px;
     border-top-width: 5px;
     border-bottom-width: 5px;
+    position: absolute;
 }
 
 .WeaponEquipBox {
-    background-color: rgba(79, 79, 79, 255);
+    background-color: rgb(79, 79, 79);
     height: 100%;
     width: 120px;
 }
 
 .UseableEquipBox {
-    background-color: rgba(140, 140, 140, 255);
+    background-color: rgb(140, 140, 140);
     height: 100%;
     width: 130px;
     margin-right: 10px;

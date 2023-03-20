@@ -109,17 +109,17 @@ namespace Managements
         private void Init()
         {
             instance = this;
-            Instance.AddManager<MapManager>();
+            //Instance.AddManager<MapManager>();
             Instance.AddManager<DataManager>();
             Instance.AddManager<PoolManager>();
             instance.AddManager<ResourceManager>();
-            Instance.AddManager<InputManager<GreatSword>>();
-            Instance.AddManager<InputManager<StraightSword>>();
-            Instance.AddManager<InputManager<TwinSword>>();
-            Instance.AddManager<InputManager<Spear>>();
-            Instance.AddManager<InputManager<Bow>>();
-            Instance.AddManager<InputManager<Weapon>>();
-            Instance.AddManager<ItemManager>();
+            //Instance.AddManager<InputManager<GreatSword>>();
+            //Instance.AddManager<InputManager<StraightSword>>();
+            //Instance.AddManager<InputManager<TwinSword>>();
+            //Instance.AddManager<InputManager<Spear>>();
+            //Instance.AddManager<InputManager<Bow>>();
+            //Instance.AddManager<InputManager<Weapon>>();
+            //Instance.AddManager<ItemManager>();
         }
 
         public void Awake()
