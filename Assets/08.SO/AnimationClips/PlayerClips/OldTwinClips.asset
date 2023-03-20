@@ -20,19 +20,19 @@ MonoBehaviour:
     fps: 12
     isLoop: 1
     delay: 0.1
-  - name: VerticalAttack
+  - name: VerticalMove
     nextIdx: 0
     texture: {fileID: 2800000, guid: 59b4e53a6801d0144a2a344c12a50084, type: 3}
     fps: 7
     isLoop: 0
     delay: 0.06
-  - name: UpperAttack
+  - name: UpperMove
     nextIdx: 0
     texture: {fileID: 2800000, guid: 8c3cbca605d66574d9d3fd6d1edb9dd0, type: 3}
     fps: 7
     isLoop: 0
     delay: 0.07
-  - name: LowerAttack
+  - name: LowerMove
     nextIdx: 0
     texture: {fileID: 2800000, guid: f131412586859494992a6505b389a448, type: 3}
     fps: 7
