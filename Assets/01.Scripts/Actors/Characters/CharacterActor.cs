@@ -18,6 +18,7 @@ namespace Actors.Characters
         Hold = 1 << 3,
         StopMove = 1 << 4,
         Stun = 1 << 5,
+        Equip = 1 << 6,
         Everything = ~None,
     }
     public class CharacterActor : Actor
