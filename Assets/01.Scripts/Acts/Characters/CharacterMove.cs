@@ -38,6 +38,14 @@ namespace Acts.Characters
             var nextPos = position;
             nextPos.y = 1;
 
+            var map = Define.GetManager<MapManager>();
+
+            if (map.GetBlock(nextPos.SetY(0)) == null)
+            {
+                MoveStop();
+                return;
+            }
+
             MoveAnimation(position - currentPos);
 
             ThisActor.StartCoroutine(PositionUpdateCoroutine());

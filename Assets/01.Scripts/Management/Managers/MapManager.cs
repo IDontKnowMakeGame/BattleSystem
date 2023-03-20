@@ -15,6 +15,8 @@ namespace Managements.Managers
 
         public Block GetBlock(Vector3 pos)
         {
+            if (!_mapDict.ContainsKey(pos))
+                return null;
             return _mapDict[pos];
         }
 
