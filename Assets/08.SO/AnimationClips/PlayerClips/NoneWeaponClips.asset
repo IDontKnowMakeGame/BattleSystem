@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca2b332a7b5e5447adcd7343094485c, type: 3}
+  m_Name: NoneWeaponClips
+  m_EditorClassIdentifier: 
+  weaponID: 0
+  clips:
+  - name: Idle
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: b8dcdc1f31fdb4c459bc678fcee5f96b, type: 3}
+    fps: 11
+    isLoop: 1
+    delay: 0.1
+  - name: VerticalMove
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 2d25e0fe47634f542bf62e9c1949696c, type: 3}
+    fps: 9
+    isLoop: 0
+    delay: 0.1
+  - name: UpperMove
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: b58a120adffd4934ab3a48f449d38a15, type: 3}
+    fps: 9
+    isLoop: 0
+    delay: 0.1
+  - name: LowerMove
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 2866a3926844a7741903d427b7b89a19, type: 3}
+    fps: 9
+    isLoop: 0
+    delay: 0.1
+  - name: Equip
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 3300f2add978a4e42b1d49b628bb414d, type: 3}
+    fps: 9
+    isLoop: 0
+    delay: 0.1
