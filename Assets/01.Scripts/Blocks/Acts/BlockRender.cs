@@ -36,14 +36,24 @@ namespace Blocks.Acts
                 SetOutlineColor(Color.white);
         }
 
+        public Color GetMainColor()
+        {
+            return _renderer.material.GetColor("_MainColor");
+        }
         public void SetMainColor(Color color)
         {
             _renderer.material.SetColor("_MainColor", color);
         }
         
+        public Color GetOutlineColor()
+        {
+            return _renderer.material.GetColor("_OutlineColor");
+        }
+
         public void SetOutlineColor(Color color)
         {
             _renderer.material.SetColor("_OutlineColor", color);
         }
+        
     }
 }

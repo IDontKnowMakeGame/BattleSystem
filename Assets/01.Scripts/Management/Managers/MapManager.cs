@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Actors.Bases;
 using Blocks;
 using UnityEngine;
 
@@ -18,6 +19,13 @@ namespace Managements.Managers
             if (!_mapDict.ContainsKey(pos))
                 return null;
             return _mapDict[pos];
+        }
+        
+        public void AttackBlock(Vector3 pos, float damage, Actor attacker)
+        {
+            if (!_mapDict.ContainsKey(pos))
+                return;
+            _mapDict[pos].Attack(damage, Color.red, 0.5f, attacker);
         }
 
         public List<Block> GetNeighbors(Block tile)

@@ -53,6 +53,7 @@ public class CharacterStatAct : Act, IDmageAble
 		}
 	}
 
+	[SerializeField]
 	private CharacterStat _changeStat =new CharacterStat();
 	private CharacterActor _actor;
 	public override void Start()

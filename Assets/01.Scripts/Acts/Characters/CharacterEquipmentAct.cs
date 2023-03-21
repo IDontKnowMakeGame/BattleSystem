@@ -88,9 +88,13 @@ public class CharacterEquipmentAct : Act
 	//ETC
 	protected CharacterActor _characterController;
 
-	public override void Start()
+	public override void Awake()
 	{
 		_characterController = ThisActor as CharacterActor;
+	}
+
+	public override void Start()
+	{
 		CurrentWeapon?.Equiqment(_characterController);
 	}
 
