@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Actors.Bases;
+using Actors.Characters;
 using Blocks.Acts;
 using Core;
 using UnityEngine;
@@ -113,6 +114,8 @@ namespace Blocks
 
         private IEnumerator AttackCoroutine(float damage, Color color, float delay, Actor attacker)
         {
+            var character = attacker as CharacterActor;
+            character.AddState(CharacterState.Attack);
             var originalColor = _blockRender.GetMainColor();
             _blockRender.SetMainColor(color);
             yield return new WaitForSeconds(delay);
@@ -121,6 +124,7 @@ namespace Blocks
                 yield break;
             var stat = _actorOnBlock.GetAct<CharacterStatAct>();
             stat.Damage(damage, attacker);
+            character.RemoveState(CharacterState.Attack);
         }
     }
 }
