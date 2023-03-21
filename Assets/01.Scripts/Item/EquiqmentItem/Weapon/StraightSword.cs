@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class StraightSword : Weapon
 {
-	public override void Init()
-	{
-		InputManager<StraightSword>.OnAttackPress += Attack;
-	}
 	public override void LoadWeaponClassLevel()
 	{
 		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("StraightSword");
@@ -43,7 +39,20 @@ public class StraightSword : Weapon
 	{
 
 	}
-
+	public override void Equiqment(CharacterActor actor)
+	{
+		base.Equiqment(actor);
+		if (isEnemy)
+			return;
+		InputManager<GreatSword>.OnAttackPress += Attack;
+	}
+	public override void UnEquipment(CharacterActor actor)
+	{
+		base.UnEquipment(actor);
+		if (isEnemy)
+			return;
+		InputManager<GreatSword>.OnAttackPress -= Attack;
+	}
 	public virtual void Attack(Vector3 vec)
 	{
 		_attackInfo.SizeX = 1;

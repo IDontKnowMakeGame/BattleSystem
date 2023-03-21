@@ -3,18 +3,14 @@ using Core;
 using Managements.Managers;
 using UnityEngine;
 using Acts.Characters.Player;
+using System;
 
 public class GreatSword : Weapon
 {
 	public Vector3 _currrentVector;
+	
 	public float timer;
 	private float _half = 0;
-	public override void Init()
-	{
-		InputManager<GreatSword>.OnAttackPress += AttakStart;
-		InputManager<GreatSword>.OnAttackHold += Hold;
-		InputManager<GreatSword>.OnAttackRelease += AttackRealease;
-	}
 	public override void LoadWeaponClassLevel()
 	{
 		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("GreatSword");
@@ -43,20 +39,37 @@ public class GreatSword : Weapon
 	{
 
 	}
-
+	public override void Equiqment(CharacterActor actor)
+	{
+		base.Equiqment(actor);
+		if (isEnemy)
+			return;
+		InputManager<GreatSword>.OnAttackPress += AttakStart;
+		InputManager<GreatSword>.OnAttackHold += Hold;
+		InputManager<GreatSword>.OnAttackRelease += AttackRealease;
+	}
+	public override void UnEquipment(CharacterActor actor)
+	{
+		base.UnEquipment(actor);
+		if (isEnemy)
+			return;
+		InputManager<GreatSword>.OnAttackPress -= AttakStart;
+		InputManager<GreatSword>.OnAttackHold -= Hold;
+		InputManager<GreatSword>.OnAttackRelease -= AttackRealease;
+	}
 	public virtual void AttakStart(Vector3 vec)
 	{
-		if (_playerActor.HasState(CharacterState.Hold))
+		if (_characterActor.HasState(CharacterState.Hold))
 			return;
 
-		_playerActor.AddState(CharacterState.Hold);
+		_characterActor.AddState(CharacterState.Hold);
 		_attackInfo.ResetDir();
 		_currrentVector = vec;
 		ChargeAnimation(_currrentVector);
 	}
 	public virtual void Hold(Vector3 vec)
 	{
-		_playerActor.GetAct<CharacterStatAct>().Half += _half;
+		_characterActor.GetAct<CharacterStatAct>().Half += _half;
 		if (timer >= info.Ats)
 			return;
 		timer += Time.deltaTime;
@@ -81,20 +94,20 @@ public class GreatSword : Weapon
 
 		timer = 0;
 		_currrentVector = Vector3.zero;
-		_playerActor.GetAct<CharacterStatAct>().Half -= _half;
-		_playerActor.RemoveState(CharacterState.Hold);
+		_characterActor.GetAct<CharacterStatAct>().Half -= _half;
+		_characterActor.RemoveState(CharacterState.Hold);
 	}
 
 	private void ChargeAnimation(Vector3 dir)
     {
 		if (dir == Vector3.left)
 		{
-			_playerActor.SpriteTransform.localScale = new Vector3(-1, 1, 1);
+			_characterActor.SpriteTransform.localScale = new Vector3(-1, 1, 1);
 			_playerAnimation.Play("VerticalCharge");
 		}
 		else if (dir == Vector3.right)
 		{
-			_playerActor.SpriteTransform.localScale = new Vector3(1, 1, 1);
+			_characterActor.SpriteTransform.localScale = new Vector3(1, 1, 1);
 			_playerAnimation.Play("VerticalCharge");
 		}
 		else if (dir == Vector3.forward)

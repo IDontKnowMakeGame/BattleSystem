@@ -11,6 +11,7 @@ public class TwinSword : Weapon
 	private int range = 1;
 	public override void Init()
 	{
+		base.Init(); 
 		InputManager<TwinSword>.ChangeKeyCode(KeyboardInput.AttackForward, KeyCode.UpArrow);
 		InputManager<TwinSword>.ChangeKeyCode(KeyboardInput.AttackBackward, KeyCode.DownArrow);
 		InputManager<TwinSword>.ChangeKeyCode(KeyboardInput.AttackLeft, KeyCode.LeftArrow);
@@ -51,19 +52,22 @@ public class TwinSword : Weapon
 	public override void Equiqment(CharacterActor actor)
 	{
 		base.Equiqment(actor);
-		CharacterMove.OnMoveEnd += Attack;
-		Debug.Log("??");
+		if (isEnemy)
+			return;
+		InputManager<TwinSword>.OnMovePress += Attack;
 	}
 
 	public override void UnEquipment(CharacterActor actor)
 	{
 		base.UnEquipment(actor);
-		CharacterMove.OnMoveEnd -= Attack;
+		if (isEnemy)
+			return;
+		InputManager<TwinSword>.OnMovePress -= Attack;
 	}
 
-	public virtual void Attack(int id, Vector3 vec)
+	public virtual void Attack(/*int id,*/ Vector3 vec)
 	{
-		if (id != _characterActor.UUID) return;
+		//if (id != _characterActor.UUID) return;
 		if(vec == Vector3.forward || vec == Vector3.back)
 		{
 			_attackInfo.SizeX = range;
@@ -80,6 +84,7 @@ public class TwinSword : Weapon
 		}
 
 		_attackInfo.PressInput = vec;
+		_attackInfo.ReachFrame = 0;
 		_eventParam.attackParam = _attackInfo;
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
 	}

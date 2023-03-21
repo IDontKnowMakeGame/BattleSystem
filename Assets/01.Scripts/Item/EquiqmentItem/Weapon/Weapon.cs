@@ -29,9 +29,20 @@ public class Weapon : EquiqmentItem
 	protected bool _isCoolTime = false;
 	protected float _currentTimerSecound = 0f;
 	#endregion
-
+	public int a = 10;
 	public bool isEnemy = true;
-	protected CharacterActor _characterActor;
+	protected CharacterActor _characterActor
+	{
+		get => aaa;
+		set
+		{
+			a = 12;
+			Debug.Log(value);
+			aaa = value;
+		}
+	}
+
+	public CharacterActor aaa;
 	protected PlayerActor _playerActor = null;
 	protected PlayerAnimation _playerAnimation;
 
