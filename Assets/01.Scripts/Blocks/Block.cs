@@ -107,24 +107,36 @@ namespace Blocks
             _actorOnBlock = null;
         }
 
-        public void Attack(float damage, Color color, float delay, Actor attacker)
+        public void Attack(float damage, Color color, float delay, Actor attacker, bool isLast = false)
         {
-            StartCoroutine(AttackCoroutine(damage, color, delay, attacker));
+            StartCoroutine(AttackCoroutine(damage, color, delay, attacker, isLast));
         }
 
-        private IEnumerator AttackCoroutine(float damage, Color color, float delay, Actor attacker)
+        private IEnumerator AttackCoroutine(float damage, Color color, float delay, Actor attacker, bool isLast = false)
         {
             var character = attacker as CharacterActor;
             character.AddState(CharacterState.Attack);
+            if(isLast == false)
+                character.AddState(CharacterState.Hold);
             var originalColor = _blockRender.GetMainColor();
             _blockRender.SetMainColor(color);
             yield return new WaitForSeconds(delay);
             _blockRender.SetMainColor(originalColor);
+            
+            if(isLast)
+                character.RemoveState(CharacterState.Attack);
+            else
+            {
+                character.RemoveState(CharacterState.Hold);
+            }
+            
             if(_actorOnBlock == null)
                 yield break;
+            if(_actorOnBlock == attacker)
+                yield break;
+            
             var stat = _actorOnBlock.GetAct<CharacterStatAct>();
             stat.Damage(damage, attacker);
-            character.RemoveState(CharacterState.Attack);
         }
     }
 }

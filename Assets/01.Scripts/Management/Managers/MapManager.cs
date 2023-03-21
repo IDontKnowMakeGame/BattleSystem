@@ -21,11 +21,11 @@ namespace Managements.Managers
             return _mapDict[pos];
         }
         
-        public void AttackBlock(Vector3 pos, float damage, float delay, Actor attacker)
+        public void AttackBlock(Vector3 pos, float damage, float delay, Actor attacker, bool isLast = false)
         {
             if (!_mapDict.ContainsKey(pos))
                 return;
-            _mapDict[pos].Attack(damage, Color.red, delay, attacker);
+            _mapDict[pos].Attack(damage, Color.red, delay, attacker, isLast);
         }
 
         public List<Block> GetNeighbors(Block tile)

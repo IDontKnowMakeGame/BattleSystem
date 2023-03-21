@@ -28,11 +28,11 @@ namespace Actors.Characters.Enemy.CrazyGhost
             
             
             var random = _enemyAi.AddState<RandomState>();
-            random.OnEnter += () =>
+            random.RandomList.Add(() =>
             {
                 var dir = InGame.Player.Position - Position;
-                attack.ForwardAttak(dir);
-            };
+                attack.BackAttack(dir, true);
+            });
             random.SetTarget<WaitState>();
 
             var wait = _enemyAi.AddState<WaitState>();

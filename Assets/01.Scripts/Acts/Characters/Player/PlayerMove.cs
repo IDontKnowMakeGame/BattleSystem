@@ -34,7 +34,7 @@ namespace Acts.Characters.Player
             CameraDir();
         }
 
-        protected override void Translate(Vector3 direction)
+        public override void Translate(Vector3 direction)
         {
             if (_playerActor.HasAnyState()) return;
             playerDir = direction;
@@ -42,9 +42,8 @@ namespace Acts.Characters.Player
             base.Translate(direction* distance);
         }
 
-        protected override void Move(Vector3 position)
+        public override void Move(Vector3 position)
         {
-            _playerActor.AddState(Actors.Characters.CharacterState.Move);
             base.Move(position);
         }
 
@@ -76,7 +75,7 @@ namespace Acts.Characters.Player
         protected override void MoveStop()
         {
             _playerAnimation.Play("Idle");
-            _playerActor.RemoveState(Actors.Characters.CharacterState.Move);
+            base.MoveStop();
         }
 
         private void CameraDir()
