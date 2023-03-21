@@ -91,7 +91,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 	}
 	public override void OnDisable()
 	{
-		Define.GetManager<EventManager>().StopListening(EventFlag.WeaponEquip, EquipmentWeapon);
+		Define.GetManager<EventManager>()?.StopListening(EventFlag.WeaponEquip, EquipmentWeapon);
 		base.OnDisable();
 	}
 }

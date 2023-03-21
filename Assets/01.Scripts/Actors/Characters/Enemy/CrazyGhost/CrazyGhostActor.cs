@@ -31,8 +31,9 @@ namespace Actors.Characters.Enemy.CrazyGhost
             random.OnEnter += () =>
             {
                 var dir = InGame.Player.Position - Position;
-                attack.DefaultAttack(dir);
+                attack.ForwardAttak(dir);
             };
+            random.SetTarget<ChaseState>();
             
             _enemyAi.InitState<IdleState>();
             AddAct(_enemyAi);

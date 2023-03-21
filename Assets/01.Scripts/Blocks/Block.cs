@@ -117,6 +117,8 @@ namespace Blocks
             _blockRender.SetMainColor(color);
             yield return new WaitForSeconds(delay);
             _blockRender.SetMainColor(originalColor);
+            if(_actorOnBlock == null)
+                yield break;
             var stat = _actorOnBlock.GetAct<CharacterStatAct>();
             stat.Damage(damage, attacker);
         }

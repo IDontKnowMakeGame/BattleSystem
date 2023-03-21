@@ -793,6 +793,22 @@ public static class ExtensionMethods
     {
         return new Vector3((start.x + end.x) / 2, (start.y + end.y) / 2, (start.z + end.z) / 2);
     }
+    
+    public static float GetDegree(this Vector3 vector, Vector3 other)
+    {
+        var delta = other - vector;
+        var degree = Mathf.Atan2(delta.x, delta.z) * Mathf.Rad2Deg;
+        return degree;
+    }
+    
+    public static Vector3 Rotate(this Vector3 vector, float degree)
+    {
+        var result = Quaternion.Euler(0, degree, 0) * vector;
+        result.x = Mathf.RoundToInt(result.x);
+        result.y = Mathf.RoundToInt(result.y);
+        result.z = Mathf.RoundToInt(result.z);
+        return result;
+    }
 
     #endregion
 }
