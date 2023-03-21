@@ -9,7 +9,7 @@ namespace AI.Conditions
             var character = actorParam as CharacterActor;
             if (character == null)
                 return false;
-            var result = character.HasState(CharacterState.Attack);
+            var result = !character.HasState(CharacterState.Attack);
             return result;
         }
     }

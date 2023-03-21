@@ -24,6 +24,11 @@ namespace Acts.Characters.Enemy
 
         public void ForwardAttak(Vector3 dir, bool isLast = false)
         {
+            var character = ThisActor as CharacterActor;
+            character.AddState(CharacterState.Attack);
+            if(isLast == false)
+                character.AddState(CharacterState.Hold);
+            
             var map = Define.GetManager<MapManager>();
             var originPos = ThisActor.Position;
             var nextPos = originPos + dir;
@@ -39,6 +44,11 @@ namespace Acts.Characters.Enemy
 
         public void RoundAttack(bool isLast = false)
         {
+            var character = ThisActor as CharacterActor;
+            character.AddState(CharacterState.Attack);
+            if(isLast == false)
+                character.AddState(CharacterState.Hold);
+            
             for (var i = -1; i <= 1; i++)
             {
                 for (var j = -1; j <= 1; j++)
@@ -53,6 +63,11 @@ namespace Acts.Characters.Enemy
         
         public void BackAttack(Vector3 dir, bool isLast = false)
         {
+            var character = ThisActor as CharacterActor;
+            character.AddState(CharacterState.Attack);
+            if(isLast == false)
+                character.AddState(CharacterState.Hold);
+            
             ThisActor.StartCoroutine(BackAttackCoroutine(dir, isLast));
         }
 
@@ -65,13 +80,13 @@ namespace Acts.Characters.Enemy
             yield return new WaitUntil(() => !character.HasState(CharacterState.Hold));
             move.Translate(-dir);
             yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
+            yield return new WaitForSeconds(statInfo.Afs);
             if (ThisActor.Position.IsInBox(InGame.Player.Position, 3) == false)
             {
                 character.RemoveState(CharacterState.Attack);
                 yield break;
             }
 
-            yield return new WaitForSeconds(statInfo.Afs);
             
             move.Jump(InGame.Player.Position);
             yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
