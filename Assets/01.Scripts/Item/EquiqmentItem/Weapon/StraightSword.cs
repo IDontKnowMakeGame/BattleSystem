@@ -44,14 +44,14 @@ public class StraightSword : Weapon
 		base.Equiqment(actor);
 		if (isEnemy)
 			return;
-		InputManager<GreatSword>.OnAttackPress += Attack;
+		InputManager<StraightSword>.OnAttackPress += Attack;
 	}
 	public override void UnEquipment(CharacterActor actor)
 	{
 		base.UnEquipment(actor);
 		if (isEnemy)
 			return;
-		InputManager<GreatSword>.OnAttackPress -= Attack;
+		InputManager<StraightSword>.OnAttackPress -= Attack;
 	}
 	public virtual void Attack(Vector3 vec)
 	{

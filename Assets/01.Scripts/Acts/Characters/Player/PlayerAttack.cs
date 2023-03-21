@@ -70,7 +70,7 @@ namespace Acts.Characters.Player
             {
                 Debug.Log(enemy.name);
                 GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Damage");
-                obj.GetComponent<DamagePopUp>().DamageText(_playerEquipment.CurrentWeapon.WeaponInfo.Atk, enemy.transform.position);
+                obj.GetComponent<DamagePopUp>().DamageText((ThisActor as CharacterActor).currentWeapon.WeaponInfo.Atk, enemy.transform.position);
             }
         }
         
