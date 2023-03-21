@@ -12,71 +12,89 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca2b332a7b5e5447adcd7343094485c, type: 3}
   m_Name: OldSpearClips
   m_EditorClassIdentifier: 
-  weaponID: 1
+  weaponID: 4
   clips:
   - name: Idle
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 269628f340c00fd47b25822b1ec111ea, type: 3}
-    fps: 10
+    texture: {fileID: 2800000, guid: a7900225c3316d84a99296034ef23c59, type: 3}
+    fps: 7
     isLoop: 1
     delay: 0.1
   - name: VerticalMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 0bd2d5c4c638087448eb721d9cae6041, type: 3}
-    fps: 7
+    texture: {fileID: 2800000, guid: a04d5cfcd85f418489be1b49448a2d54, type: 3}
+    fps: 6
     isLoop: 1
     delay: 0.1
   - name: UpperMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 03c4c788b8ebc284a99803741ec9b3a0, type: 3}
-    fps: 7
+    texture: {fileID: 2800000, guid: a8d1ea8072c349541b4659d2b56eb4c6, type: 3}
+    fps: 6
     isLoop: 1
     delay: 0.1
   - name: LowerMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: d80b58d2ddde7624cba839cd2e70e734, type: 3}
-    fps: 7
+    texture: {fileID: 2800000, guid: 9716e081d0c2a2d43b350b33db38fcc7, type: 3}
+    fps: 6
     isLoop: 1
     delay: 0.1
-  - name: VerticalAttack
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 842eb53c5241b524bb291102dcfb0d0e, type: 3}
-    fps: 10
-    isLoop: 0
-    delay: 0.03
-  - name: UpperAttack
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 914dfd1f3a4b8634787249a11870d1c9, type: 3}
-    fps: 10
-    isLoop: 0
-    delay: 0.03
-  - name: LowerAttack
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: f9d9f8e418a462745919f0f67ab5f093, type: 3}
-    fps: 10
-    isLoop: 0
-    delay: 0.03
-  - name: VerticalSkill
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 84abf7da35ae3144dab917e5106fa8c7, type: 3}
-    fps: 10
-    isLoop: 0
-    delay: 0.06
-  - name: UpperSkill
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: c2943b0a4352a4e48a7d0e82f994e724, type: 3}
-    fps: 9
-    isLoop: 0
-    delay: 0.06
-  - name: LowerSkill
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: b800b987398afcb4db63c41ac43cb8bd, type: 3}
-    fps: 9
-    isLoop: 0
-    delay: 0.06
+  - name: VerticalReadyVerticalMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 35a6700f0b31dca4ababd24bb9052d06, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.1
+  - name: VerticalReadyUpperMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 236eb3afaea503442a6fb3fabd27633c, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.1
+  - name: VerticalReadyLowerMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: a0087de56de305b41bc4307567440744, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.1
+  - name: UpperReadyVirticalMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 7fd393e1d0fd2a84dbe4cb4ac54fb4ed, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.1
+  - name: UpperReadyUpperMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 7ae641f5b39557645865e032beee5883, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.1
+  - name: UpperReadyLowerMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: d89bac9e8d75cf142b5e7265c001987e, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.1
+  - name: LowerReadyVerticalMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 328aaf23b940e3c45875aa7a2abac936, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.1
+  - name: LowerReadyUpperMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: dc2f94bf6ec59ac45a3efc75bf588cfe, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.1
+  - name: LowerReadyLowerMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: a8e49b52ef991364ba223080c0d4331f, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.1
   - name: Equip
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: bda5e55315d03114e9757b2fc7088495, type: 3}
-    fps: 10
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: ed64f7372be96444292aaa393ee9e278, type: 3}
+    fps: 11
     isLoop: 0
     delay: 0.1
