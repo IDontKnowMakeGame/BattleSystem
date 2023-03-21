@@ -5,6 +5,7 @@ using Managements.Managers;
 using Core;
 using Actors.Characters.Player;
 using Actors.Characters;
+using Actors.Characters.Enemy;
 
 namespace Acts.Characters.Player
 {
@@ -15,7 +16,7 @@ namespace Acts.Characters.Player
 
         private AttackCollider attackCol;
 
-        private List<SampleControoler> enemys = new List<SampleControoler>();
+        private List<EnemyActor> enemys = new List<EnemyActor>();
 
         private Vector3 currentDir;
 
@@ -62,7 +63,7 @@ namespace Acts.Characters.Player
 
         private void Attack()
         {
-            foreach (SampleControoler enemy in enemys)
+            foreach (EnemyActor enemy in enemys)
             {
                 Debug.Log(enemy.name);
                 GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Damage");
