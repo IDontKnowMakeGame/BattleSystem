@@ -38,6 +38,10 @@ public class UISmithy : UIBase
 
         _characterImage = _root.Q<VisualElement>("CharacterImage");
         _weaponSelectBtn = _characterImage.Q<VisualElement>("WeaponSelect");
+        _weaponSelectBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            OpenWeaponSelectPanel();
+        });
 
         _weaponSelectPanel = _root.Q<VisualElement>("WeaponSelectPanel");
         _weaponScrollPanel = _weaponSelectPanel.Q<VisualElement>("WeaponScrollPanel");
@@ -80,7 +84,10 @@ public class UISmithy : UIBase
             _weaponScrollPanel.Add(card);
         }
     }
-
+    public void OpenWeaponSelectPanel()
+    {
+        _weaponSelectPanel.style.display = DisplayStyle.Flex;
+    }
     public void SelectWeaponCardOnClick(VisualElement card,ItemID id)
     {
         _weaponSelectPanel.style.display = DisplayStyle.None;
