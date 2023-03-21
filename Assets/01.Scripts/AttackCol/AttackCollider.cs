@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using Actors.Characters.Enemy;
 
 [Flags]
 public enum DirType
@@ -92,10 +93,10 @@ public class AttackCollider : MonoBehaviour
     }
 
     // TO DO
-    public SampleControoler CurrntDirNearEnemy()
+    public EnemyActor CurrntDirNearEnemy()
     {
         float minDistnace = float.MaxValue;
-        SampleControoler temp = null;
+        EnemyActor temp = null;
 
         if(currentInfo == null)
         {
@@ -109,7 +110,7 @@ public class AttackCollider : MonoBehaviour
             {
                 if (attackRanges[type].NearEnemy().distance < minDistnace)
                 {
-                    temp = attackRanges[type].NearEnemy().obj.GetComponent<SampleControoler>();
+                    temp = attackRanges[type].NearEnemy().obj.GetComponent<EnemyActor>();
                     minDistnace = attackRanges[type].NearEnemy().distance;
                 }
             }

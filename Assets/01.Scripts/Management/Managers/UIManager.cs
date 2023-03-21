@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public UIInGame InGame = new UIInGame();
     public UIInventory Inventory = new UIInventory();
     public UIItemStore ItemStore = new UIItemStore();
+    public UISmithy Smithy = new UISmithy();
 
     public ItemStoreTableSO itemStoreTable;
 
@@ -42,6 +43,7 @@ public class UIManager : MonoBehaviour
         InGame.Init();
         Inventory.Init();
         ItemStore.Init();
+        Smithy.Init();
     }
 
     private void Update()
@@ -53,6 +55,10 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             Inventory.ShowInventory();
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Smithy.ShowSmithy();
         }
     }
 

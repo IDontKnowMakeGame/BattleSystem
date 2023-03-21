@@ -6,6 +6,7 @@ using Core;
 using Data;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class CharacterStat
@@ -83,6 +84,9 @@ public class CharacterStatAct : Act, IDmageAble
 
 	public void Die()
 	{
-
+		if (ThisActor is PlayerActor)
+		{
+			SceneManager.LoadScene("Lobby");
+		}
 	}
 }

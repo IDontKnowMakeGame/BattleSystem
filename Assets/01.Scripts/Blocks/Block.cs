@@ -115,9 +115,6 @@ namespace Blocks
         private IEnumerator AttackCoroutine(float damage, Color color, float delay, Actor attacker, bool isLast = false)
         {
             var character = attacker as CharacterActor;
-            character.AddState(CharacterState.Attack);
-            if(isLast == false)
-                character.AddState(CharacterState.Hold);
             var originalColor = _blockRender.GetMainColor();
             _blockRender.SetMainColor(color);
             yield return new WaitForSeconds(delay);

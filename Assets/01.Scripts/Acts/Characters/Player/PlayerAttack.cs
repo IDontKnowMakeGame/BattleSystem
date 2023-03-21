@@ -5,6 +5,7 @@ using Managements.Managers;
 using Core;
 using Actors.Characters.Player;
 using Actors.Characters;
+using Actors.Characters.Enemy;
 
 namespace Acts.Characters.Player
 {
@@ -12,10 +13,13 @@ namespace Acts.Characters.Player
     {
         private PlayerAnimation _playerAnimation;
         private PlayerActor _playerActor;
+        private PlayerEquipment _playerEquipment;
 
         private AttackCollider attackCol;
 
-        private List<SampleControoler> enemys = new List<SampleControoler>();
+        private List<EnemyActor> enemys = new List<EnemyActor>();
+
+        private Vector3 currentDir;
 
         public override void Awake()
         {
@@ -28,6 +32,7 @@ namespace Acts.Characters.Player
             Define.GetManager<EventManager>().StartListening(EventFlag.Attack, Attack);
             _playerAnimation = ThisActor.GetAct<PlayerAnimation>();
             _playerActor = InGame.Player.GetComponent<PlayerActor>();
+            _playerEquipment = _playerActor.GetAct<PlayerEquipment>();
 
             attackCol = ThisActor.GetComponentInChildren<AttackCollider>();
 
@@ -38,6 +43,7 @@ namespace Acts.Characters.Player
         public override void Update()
         {
             base.Update();
+            ColParentRotate();
         }
 
         public override void AttackCheck(AttackInfo attackInfo)
@@ -60,11 +66,11 @@ namespace Acts.Characters.Player
 
         private void Attack()
         {
-            foreach (SampleControoler enemy in enemys)
+            foreach (EnemyActor enemy in enemys)
             {
                 Debug.Log(enemy.name);
                 GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Damage");
-                obj.GetComponent<DamagePopUp>().DamageText(5, enemy.transform.position);
+                obj.GetComponent<DamagePopUp>().DamageText(_playerEquipment.CurrentWeapon.WeaponInfo.Atk, enemy.transform.position);
             }
         }
         
@@ -103,9 +109,36 @@ namespace Acts.Characters.Player
             ReadyAttackAnimation(eventParam.attackParam);
 		}
 
+        private void ColParentRotate()
+        {
+            Vector3 cameraDir = InGame.CameraDir();
+
+            if (currentDir == cameraDir) return;
+
+            currentDir = cameraDir;
+
+            if(cameraDir == Vector3.right)
+            {
+                attackCol.transform.rotation = Quaternion.Euler(0, 90, 0);
+            }
+            else if(cameraDir == Vector3.left)
+            {
+                attackCol.transform.rotation = Quaternion.Euler(0, -90, 0);
+            }
+            else if(cameraDir == Vector3.forward)
+            {
+                attackCol.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if (cameraDir == Vector3.back)
+            {
+                attackCol.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+        }
+
         public override void OnDisable()
         {
 			Define.GetManager<EventManager>()?.StopListening(EventFlag.Attack, Attack);
 		}
+
     }
 }

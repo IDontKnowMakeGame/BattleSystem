@@ -1,7 +1,13 @@
 .StatusBox {
     width: 300px;
     height: 80px;
-    background-color: rgba(79, 79, 79, 255);
+    background-color: rgb(79, 79, 79);
     margin-top: 10px;
     margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.StatusText {
+    font-size: 24px;
 }

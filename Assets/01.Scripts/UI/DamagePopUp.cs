@@ -9,6 +9,9 @@ using Core;
 public class DamagePopUp : Actor
 {
 	[SerializeField]
+	private TextRenderer _textRenderer;
+
+	[SerializeField]
 	private TextMeshPro num;
 
 
@@ -29,7 +32,7 @@ public class DamagePopUp : Actor
 
 	protected override void Init()
 	{
-
+		AddAct(_textRenderer);
 	}
 
 	public void DamageText(float text, Vector3 pos)

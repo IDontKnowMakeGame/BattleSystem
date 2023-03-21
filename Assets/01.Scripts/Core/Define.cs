@@ -11,7 +11,12 @@ namespace Core
     public static class Define
     {
         private static Camera _mainCamera;
-        public static Camera MainCamera => _mainCamera ??= Camera.main;
+
+        public static Camera MainCamera
+        {
+            get => _mainCamera;
+            set => _mainCamera = value;
+        }
         
         public static T GetManager<T>() where T : Manager
         {
@@ -104,6 +109,8 @@ namespace Core
             return block;
         }
 
+        public static Actor GetActor(Vector3 pos) => GetBlock(pos).ActorOnBlock;
+
         public static void SetActorOnBlock(Actor actor, Vector3 nextPos)
         {
             nextPos.y = 0;
@@ -115,7 +122,27 @@ namespace Core
             if(nextBlock != null)
                 nextBlock.SetActorOnBlock(actor);
         }
-        
+        public static Vector3 CameraDir()
+        {
+            Vector3 cameraDir;
+
+            Vector3 heading = InGame.MainCam.transform.localRotation * Vector3.forward;
+            heading.y = 0;
+            heading = heading.normalized;
+
+            if (Mathf.Abs(heading.x) >= Mathf.Abs(heading.z))
+            {
+                if (heading.x >= 0) cameraDir = Vector3.right;
+                else cameraDir = Vector3.left;
+            }
+            else
+            {
+                if (heading.z >= 0) cameraDir = Vector3.forward;
+                else cameraDir = Vector3.back;
+            }
+
+            return cameraDir;
+        }
     }
 
 }
