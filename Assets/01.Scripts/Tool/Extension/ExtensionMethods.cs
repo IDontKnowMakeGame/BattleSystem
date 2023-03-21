@@ -813,7 +813,7 @@ public static class ExtensionMethods
     
     public static bool IsInBox(this Vector3 vector, Vector3 other, int length)
     {
-        if(other.x + length >= vector.x && other.x - length <= vector.x && other.z + length >= vector.z && other.z - length <= vector.z)
+        if(vector.x + length >= other.x && vector.x - length <= other.x && vector.z + length >= other.z && vector.z - length <= other.z)
         {
             return true;
         }
