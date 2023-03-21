@@ -21,7 +21,6 @@ public class AiConditionHolder : MonoBehaviour
         var ai = enemy.GetAct<EnemyAI>();
         foreach (var condition in Conditions)
         {
-
             var currentStateType = Type.GetType("AI.States." + Target + "State");
             var nextStateType = Type.GetType("AI.States." + Goal + "State");
             if (currentStateType == null || nextStateType == null)
@@ -31,6 +30,7 @@ public class AiConditionHolder : MonoBehaviour
             }
             var currentState = ai._states[currentStateType];
             var nextTransition = currentState.Transitions.Find((x) => x.NextState == nextStateType);
+            condition._thisActor = enemy;
             nextTransition.ConditionHolder = this;
             nextTransition.Init();
         }

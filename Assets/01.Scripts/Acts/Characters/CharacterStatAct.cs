@@ -55,6 +55,7 @@ public class CharacterStatAct : Act, IDmageAble
 
 	public float Half { get; set; }
 
+	[SerializeField]
 	private CharacterStat _changeStat =new CharacterStat();
 	private CharacterActor _actor;
 	public override void Start()

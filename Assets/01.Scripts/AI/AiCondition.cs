@@ -7,6 +7,7 @@ namespace AI
     {
         TimeCondition,
         DistanceCondition,
+        BesideCondition,
     }
     [System.Serializable]
     public class AiCondition
@@ -16,6 +17,7 @@ namespace AI
         public virtual bool IsSatisfied() => true;
         public bool IsNegative;
         public bool IsNeeded;
+        public Actor _thisActor;
 
         public string stringParam;
         public float floatParam;

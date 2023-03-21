@@ -48,6 +48,7 @@ namespace AI
                 newCondition.intParam = condition.intParam;
                 newCondition.actorParam = condition.actorParam;
                 newCondition.vectorParam = condition.vectorParam;
+                newCondition._thisActor = condition._thisActor;
                 _conditions.Add(newCondition);
             }
         }

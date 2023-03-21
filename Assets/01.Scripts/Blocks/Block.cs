@@ -1,4 +1,5 @@
-﻿using Actors.Bases;
+﻿using System.Collections;
+using Actors.Bases;
 using Blocks.Acts;
 using Core;
 using UnityEngine;
@@ -76,10 +77,11 @@ namespace Blocks
         [SerializeField] private Actor _actorOnBlock;
         public Actor ActorOnBlock => _actorOnBlock;
         public bool IsActorOnBlock => ActorOnBlock != null;
+        private BlockRender _blockRender;
 
 		protected override void Init()
         {
-            AddAct<BlockRender>();
+            _blockRender = AddAct<BlockRender>();
             tileOBJ = this.gameObject;
             isWalkable = true;
             Vector3 pos = transform.position;
@@ -102,6 +104,23 @@ namespace Blocks
         public void RemoveActorOnBlock()
         {
             _actorOnBlock = null;
+        }
+
+        public void Attack(float damage, Color color, float delay, Actor attacker)
+        {
+            StartCoroutine(AttackCoroutine(damage, color, delay, attacker));
+        }
+
+        private IEnumerator AttackCoroutine(float damage, Color color, float delay, Actor attacker)
+        {
+            var originalColor = _blockRender.GetMainColor();
+            _blockRender.SetMainColor(color);
+            yield return new WaitForSeconds(delay);
+            _blockRender.SetMainColor(originalColor);
+            if(_actorOnBlock == null)
+                yield break;
+            var stat = _actorOnBlock.GetAct<CharacterStatAct>();
+            stat.Damage(damage, attacker);
         }
     }
 }
