@@ -79,6 +79,11 @@ public class PlayerEquipment : CharacterEquipmentAct
 		CurrentWeapon?.Equiqment(_characterController);
 	}
 	#endregion
+
+	private void Skill()
+	{
+		CurrentWeapon?.Skill();
+	}
 	private void EquipAnimation()
 	{
 		_playerActor.AddState(CharacterState.Equip);
