@@ -29,7 +29,7 @@ public class DamagePopUp : Actor
 
 	protected override void Init()
 	{
-		AddAct<CharacterRender>();
+
 	}
 
 	public void DamageText(float text, Vector3 pos)
