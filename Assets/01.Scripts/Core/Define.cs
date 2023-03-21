@@ -115,7 +115,27 @@ namespace Core
             if(nextBlock != null)
                 nextBlock.SetActorOnBlock(actor);
         }
-        
+        public static Vector3 CameraDir()
+        {
+            Vector3 cameraDir;
+
+            Vector3 heading = InGame.MainCam.transform.localRotation * Vector3.forward;
+            heading.y = 0;
+            heading = heading.normalized;
+
+            if (Mathf.Abs(heading.x) >= Mathf.Abs(heading.z))
+            {
+                if (heading.x >= 0) cameraDir = Vector3.right;
+                else cameraDir = Vector3.left;
+            }
+            else
+            {
+                if (heading.z >= 0) cameraDir = Vector3.forward;
+                else cameraDir = Vector3.back;
+            }
+
+            return cameraDir;
+        }
     }
 
 }

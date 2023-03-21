@@ -14,6 +14,7 @@ namespace Acts.Characters.Player
         private Vector3 cameraDir;
         private Vector3 playerDir;
 
+        public float distance = 1;
         public override void Awake()
         {         
             base.Awake();
@@ -30,20 +31,19 @@ namespace Acts.Characters.Player
         public override void Update()
         {
             base.Update();
-            CameraDir();
+            cameraDir = InGame.CameraDir();
         }
 
-        protected override void Translate(Vector3 direction)
+        public override void Translate(Vector3 direction)
         {
             if (_playerActor.HasAnyState()) return;
             playerDir = direction;
             direction = CamDirCheck(direction);
-            base.Translate(direction);
+            base.Translate(direction* distance);
         }
 
-        protected override void Move(Vector3 position)
+        public override void Move(Vector3 position)
         {
-            _playerActor.AddState(Actors.Characters.CharacterState.Move);
             base.Move(position);
         }
 
@@ -75,25 +75,7 @@ namespace Acts.Characters.Player
         protected override void MoveStop()
         {
             _playerAnimation.Play("Idle");
-            _playerActor.RemoveState(Actors.Characters.CharacterState.Move);
-        }
-
-        private void CameraDir()
-        {
-            Vector3 heading = InGame.MainCam.transform.localRotation * Vector3.forward;
-            heading.y = 0;
-            heading = heading.normalized;
-
-            if (Mathf.Abs(heading.x) >= Mathf.Abs(heading.z))
-            {
-                if (heading.x >= 0) cameraDir = Vector3.right;
-                else cameraDir = Vector3.left;
-            }
-            else
-            {
-                if (heading.z >= 0) cameraDir = Vector3.forward;
-                else cameraDir = Vector3.back;
-            }
+            base.MoveStop();
         }
 
         private Vector3 CamDirCheck(Vector3 direction)

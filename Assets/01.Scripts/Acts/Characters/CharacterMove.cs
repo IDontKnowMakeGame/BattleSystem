@@ -17,21 +17,23 @@ namespace Acts.Characters
         private Transform _thisTransform;
         public static event Action<int, Vector3> OnMoveEnd;
         protected bool _isMoving = false;
+        private CharacterActor _character => ThisActor as CharacterActor;
         
         public override void Awake()
         {
             _thisTransform = ThisActor.transform;
         }
 
-        protected virtual void Translate(Vector3 direction)
+        public virtual void Translate(Vector3 direction)
         {
             var nextPos = ThisActor.Position + direction;
             Move(nextPos);
         }
         
-        protected virtual void Move(Vector3 position)
+        public virtual void Move(Vector3 position)
         {
             if (_isMoving) return;
+            _character.AddState(Actors.Characters.CharacterState.Move);
             var seq = DOTween.Sequence();
             var currentPos = ThisActor.Position;
             var nextPos = position;
@@ -48,9 +50,39 @@ namespace Acts.Characters
             MoveAnimation();
 
             ThisActor.StartCoroutine(PositionUpdateCoroutine());
-            var character = ThisActor as CharacterActor;
-            var speed = character.currentWeapon.WeaponInfo.Speed;
+            var speed = _character.currentWeapon.WeaponInfo.Speed;
             seq.Append(_thisTransform.DOMove(nextPos, speed).SetEase(Ease.Linear));
+            seq.AppendCallback(() =>
+            {
+                ThisActor.Position = nextPos;
+                _isMoving = false;
+                MoveStop();
+                seq.Kill();
+            });
+        }
+
+        public virtual void Jump(Vector3 position)
+        {
+            if (_isMoving) return;
+            _character.AddState(Actors.Characters.CharacterState.Move);
+            var seq = DOTween.Sequence();
+            var currentPos = ThisActor.Position;
+            var nextPos = position;
+            nextPos.y = 1;
+
+            var map = Define.GetManager<MapManager>();
+
+            if (map.GetBlock(nextPos.SetY(0)) == null)
+            {
+                MoveStop();
+                return;
+            }
+
+            MoveAnimation();
+
+            ThisActor.StartCoroutine(PositionUpdateCoroutine());
+            var speed = _character.currentWeapon.WeaponInfo.Speed;
+            seq.Append(_thisTransform.DOJump(nextPos, 1, 1, speed));
             seq.AppendCallback(() =>
             {
                 ThisActor.Position = nextPos;
@@ -109,7 +141,7 @@ namespace Acts.Characters
 
         protected virtual void MoveStop()
         {
-
+            _character.RemoveState(CharacterState.Move);
         }
     }
 }

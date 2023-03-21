@@ -120,7 +120,7 @@ namespace Managements
             Instance.AddManager<InputManager<Bow>>();
             Instance.AddManager<InputManager<Weapon>>();
             Instance.AddManager<ItemManager>();
-            //Instance.AddManager<EventManager>();
+            Instance.AddManager<EventManager>();
         }
 
         public void Awake()

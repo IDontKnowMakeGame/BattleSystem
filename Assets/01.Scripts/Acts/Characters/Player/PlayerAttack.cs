@@ -17,6 +17,8 @@ namespace Acts.Characters.Player
 
         private List<SampleControoler> enemys = new List<SampleControoler>();
 
+        private Vector3 currentDir;
+
         public override void Awake()
         {
             base.Awake();
@@ -38,6 +40,7 @@ namespace Acts.Characters.Player
         public override void Update()
         {
             base.Update();
+            ColParentRotate();
         }
 
         public override void AttackCheck(AttackInfo attackInfo)
@@ -62,6 +65,8 @@ namespace Acts.Characters.Player
             foreach (SampleControoler enemy in enemys)
             {
                 Debug.Log(enemy.name);
+                GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Damage");
+                obj.GetComponent<DamagePopUp>().DamageText(5, enemy.transform.position);
             }
         }
         
@@ -100,9 +105,36 @@ namespace Acts.Characters.Player
             ReadyAttackAnimation(eventParam.attackParam);
 		}
 
+        private void ColParentRotate()
+        {
+            Vector3 cameraDir = InGame.CameraDir();
+
+            if (currentDir == cameraDir) return;
+
+            currentDir = cameraDir;
+
+            if(cameraDir == Vector3.right)
+            {
+                attackCol.transform.rotation = Quaternion.Euler(0, 90, 0);
+            }
+            else if(cameraDir == Vector3.left)
+            {
+                attackCol.transform.rotation = Quaternion.Euler(0, -90, 0);
+            }
+            else if(cameraDir == Vector3.forward)
+            {
+                attackCol.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if (cameraDir == Vector3.back)
+            {
+                attackCol.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+        }
+
         public override void OnDisable()
         {
 			Define.GetManager<EventManager>()?.StopListening(EventFlag.Attack, Attack);
 		}
+
     }
 }

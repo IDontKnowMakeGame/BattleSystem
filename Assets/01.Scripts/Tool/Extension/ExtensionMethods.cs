@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TreeEditor;
 using UnityEngine;
 
 //Copyright (c) 2022 khjtoy
@@ -808,6 +809,16 @@ public static class ExtensionMethods
         result.y = Mathf.RoundToInt(result.y);
         result.z = Mathf.RoundToInt(result.z);
         return result;
+    }
+    
+    public static bool IsInBox(this Vector3 vector, Vector3 other, int length)
+    {
+        if(vector.x + length >= other.x && vector.x - length <= other.x && vector.z + length >= other.z && vector.z - length <= other.z)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     #endregion
