@@ -63,37 +63,36 @@ public class Spear : Weapon
 	public override void Equiqment(CharacterActor actor)
 	{
 		base.Equiqment(actor);
-		if (isEnemy)
-			return;
 		InputManager<Spear>.OnAttackPress += Attack;
 	}
 	public override void UnEquipment(CharacterActor actor)
 	{
 		base.UnEquipment(actor);
-		if (isEnemy)
-			return;
 		InputManager<Spear>.OnAttackPress -= Attack;
 	}
 	public override void Update()
 	{
-		if (_isDown && _attackBlock.IsActorOnBlock && _isEnterEnemy)
+		if (_isDown)
+			Debug.DrawLine(_characterActor.transform.position, _characterActor.transform.position + _currentVec, Color.red);
+		if (_isDown && _isEnterEnemy)
 		{
+			Debug.Log("?");
 			_eventParam.attackParam = _attackInfo;
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
 			_isEnterEnemy = false;
 		}
-		else if (!_attackBlock.IsActorOnBlock && !_isEnterEnemy)
+		else if (!_isEnterEnemy &&_isDown)
 			_isEnterEnemy = true;
 	}
 
 	public virtual void Attack(Vector3 vec)
 	{
-		if(!_isAttack && !_isDown)
+		if (!_isAttack && !_isDown)
 		{
 			_isAttack = true;
 			_characterActor.StartCoroutine(AttackCorutine(vec));
 		}
-		else if(_isAttack && _isDown && vec ==_currentVec)
+		else if (_isAttack && _isDown && vec == _currentVec)
 		{
 			_isAttack = false;
 			_characterActor.StartCoroutine(AttackUpCorutine(vec));

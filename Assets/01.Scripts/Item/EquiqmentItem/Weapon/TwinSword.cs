@@ -52,16 +52,12 @@ public class TwinSword : Weapon
 	public override void Equiqment(CharacterActor actor)
 	{
 		base.Equiqment(actor);
-		if (isEnemy)
-			return;
 		InputManager<TwinSword>.OnMovePress += Attack;
 	}
 
 	public override void UnEquipment(CharacterActor actor)
 	{
 		base.UnEquipment(actor);
-		if (isEnemy)
-			return;
 		InputManager<TwinSword>.OnMovePress -= Attack;
 	}
 
