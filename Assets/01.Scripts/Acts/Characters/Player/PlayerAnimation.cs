@@ -54,6 +54,7 @@ namespace Acts.Characters.Player
         // 이름으로 애니메이션 재생
         public override void Play(string name)
         {
+            if (!weaponClipDic.ContainsKey(name)) return;
             if (currentCoroutine != null)
                 ThisActor.StopCoroutine(currentCoroutine);
             curClip = weaponClipDic[name];
