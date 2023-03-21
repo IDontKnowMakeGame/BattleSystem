@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Core;
 using Managements.Managers;
 using UnityEngine;
 
@@ -121,6 +122,7 @@ namespace Managements
             Instance.AddManager<InputManager<Weapon>>();
             Instance.AddManager<ItemManager>();
             Instance.AddManager<EventManager>();
+            Define.MainCamera = Camera.main;
         }
 
         public void Awake()

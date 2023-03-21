@@ -11,7 +11,12 @@ namespace Core
     public static class Define
     {
         private static Camera _mainCamera;
-        public static Camera MainCamera => _mainCamera ??= Camera.main;
+
+        public static Camera MainCamera
+        {
+            get => _mainCamera;
+            set => _mainCamera = value;
+        }
         
         public static T GetManager<T>() where T : Manager
         {
