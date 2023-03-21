@@ -59,8 +59,8 @@ public class GreatSword : Weapon
 	}
 	public virtual void AttakStart(Vector3 vec)
 	{
-		if (_characterActor.HasState(CharacterState.Hold))
-			return;
+		if (_playerActor.HasState(CharacterState.Everything))
+			return;		
 
 		_characterActor.AddState(CharacterState.Hold);
 		_attackInfo.ResetDir();
