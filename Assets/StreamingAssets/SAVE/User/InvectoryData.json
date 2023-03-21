@@ -27,5 +27,12 @@
     ],
     "inventoryInHaloList": [],
     "inventoryInUsableItemList": [],
-    "inventoryInQuestItemList": []
+    "inventoryInQuestItemList": [
+        {
+            "id": 300,
+            "name": "ItemID",
+            "currentCnt": 6,
+            "maxCnt": 0
+        }
+    ]
 }

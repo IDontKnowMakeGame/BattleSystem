@@ -308,18 +308,18 @@ public class DataManager : Manager
         item.currentCnt = count;
         item.name = id.GetType().Name;
 
-        if ((int)id < 101)
+        if ((int)id < 100)
         { //Weapon
             if (HaveWeapon(id)) return;
             InventoryData_.inventoryInWeaponList.Add(item);
 
         }
-        else if ((int)id < 201)
+        else if ((int)id < 200)
         { //Helo
             if (HaveHalo(id)) return;
             InventoryData_.inventoryInHaloList.Add(item);
         }
-        else if ((int)id < 301)
+        else if ((int)id < 300)
         { //UseableItem
 
             SaveItemData info = LoadUsableItemFromInventory(id);
@@ -333,7 +333,7 @@ public class DataManager : Manager
                 AddItemCount(item);
             }
         }
-        else if ((int)item.id < 401)
+        else if ((int)item.id < 400)
         { //QuestItem
             if (HaveQuestItem(item.id)) return;
             InventoryData_.inventoryInQuestItemList.Add(item);
@@ -343,19 +343,19 @@ public class DataManager : Manager
     }
     public SaveItemData LoadItemFromInventory(ItemID id)
     {
-        if ((int)id < 101)
+        if ((int)id < 100)
         { //Weapon
             return LoadWeaponDataFromInventory(id);
         }
-        else if ((int)id < 201)
+        else if ((int)id < 200)
         { //Helo
             return LoadHaloDataFromInventory(id);
         }
-        else if ((int)id < 301)
+        else if ((int)id < 300)
         { //UseableItem
             return LoadUsableItemFromInventory(id);
         }
-        else if ((int)id < 401)
+        else if ((int)id < 400)
         { //QuestItem
             return LoadQuestFromInventory(id);
         }

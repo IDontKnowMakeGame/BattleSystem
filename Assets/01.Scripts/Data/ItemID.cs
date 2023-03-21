@@ -24,6 +24,8 @@ namespace Data
         //Torch = 200,
         //Shield = 201,
         //HPPotion = 202
-        //300~299 QuestItem
+        //300~399 QuestItem
+        TEST = 300
+
     }
 }

@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     public UIInventory Inventory = new UIInventory();
     public UIItemStore ItemStore = new UIItemStore();
 
-    public ItemStoreTableSO itemStoreTable = new ItemStoreTableSO();
+    public ItemStoreTableSO itemStoreTable;
 
 
     private void Awake()
@@ -34,7 +34,6 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-
         Init();
     }
 
@@ -47,9 +46,13 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A))
+        if(Input.GetKeyDown(KeyCode.X))
         {
             ItemStore.ShowItemStore(itemStoreTable);
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Inventory.ShowInventory();
         }
     }
 

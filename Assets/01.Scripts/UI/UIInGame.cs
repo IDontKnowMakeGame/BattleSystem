@@ -1,3 +1,4 @@
+using Core;
 using Mono.Cecil;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,6 +32,8 @@ public class UIInGame : UIBase
         _itembox = _root.Q<VisualElement>("itembox");
 
         _feather = _root.Q<Label>("featherCnt");
+
+        _feather.text = Define.GetManager<DataManager>().GetFeather().ToString();
     }
 
     public void ChanageMaxHP(int value)
