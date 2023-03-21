@@ -31,7 +31,7 @@ namespace Acts.Characters.Player
         public override void Update()
         {
             base.Update();
-            CameraDir();
+            cameraDir = InGame.CameraDir();
         }
 
         protected override void Translate(Vector3 direction)
@@ -77,24 +77,6 @@ namespace Acts.Characters.Player
         {
             _playerAnimation.Play("Idle");
             _playerActor.RemoveState(Actors.Characters.CharacterState.Move);
-        }
-
-        private void CameraDir()
-        {
-            Vector3 heading = InGame.MainCam.transform.localRotation * Vector3.forward;
-            heading.y = 0;
-            heading = heading.normalized;
-
-            if (Mathf.Abs(heading.x) >= Mathf.Abs(heading.z))
-            {
-                if (heading.x >= 0) cameraDir = Vector3.right;
-                else cameraDir = Vector3.left;
-            }
-            else
-            {
-                if (heading.z >= 0) cameraDir = Vector3.forward;
-                else cameraDir = Vector3.back;
-            }
         }
 
         private Vector3 CamDirCheck(Vector3 direction)
