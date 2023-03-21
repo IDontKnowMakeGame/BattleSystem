@@ -8,6 +8,7 @@ public class GreatSword : Weapon
 {
 	public Vector3 _currrentVector;
 	public float timer;
+	private float _half = 0;
 	public override void Init()
 	{
 		InputManager<GreatSword>.OnAttackPress += AttakStart;
@@ -20,26 +21,20 @@ public class GreatSword : Weapon
 		switch (KillToLevel(level.killedCount))
 		{
 			case 1:
-				//_weaponClassLevelInfo.Atk = 10;
-				//_weaponClassLevelInfo.Ats -= 0.01f;
+				_half = 5;
 				break;
 			case 2:
-				//_weaponClassLevelInfo.Atk = 15;
-				//_weaponClassLevelInfo.Ats -= 0.03f;
+				_half = 10;
 				break;
 			case 3:
-				//_weaponClassLevelInfo.Atk = 20;
-				//_weaponClassLevelInfo.Ats -= 0.05f;
+				_half = 15;
 				break;
 			case 4:
-				//_weaponClassLevelInfo.Atk = 20;
-				//_weaponClassLevelInfo.Ats -= 0.07f;
-				//_weaponClassLevelInfo.Afs -= 0.01f;
+				_half = 20;
 				break;
 			case 5:
-				//_weaponClassLevelInfo.Atk = 20;
-				//_weaponClassLevelInfo.Ats -= 0.07f;
-				//_weaponClassLevelInfo.Afs -= 0.05f;
+				_half = 20;
+				_weaponClassLevelInfo.Atk = 20;
 				break;
 		}
 	}
@@ -61,9 +56,9 @@ public class GreatSword : Weapon
 	}
 	public virtual void Hold(Vector3 vec)
 	{
+		_playerActor.GetAct<CharacterStatAct>().Half += _half;
 		if (timer >= info.Ats)
 			return;
-
 		timer += Time.deltaTime;
 	}
 	public virtual void AttackRealease(Vector3 vec)
@@ -86,6 +81,7 @@ public class GreatSword : Weapon
 
 		timer = 0;
 		_currrentVector = Vector3.zero;
+		_playerActor.GetAct<CharacterStatAct>().Half -= _half;
 		_playerActor.RemoveState(CharacterState.Hold);
 	}
 

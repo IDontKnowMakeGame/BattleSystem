@@ -23,9 +23,8 @@ namespace Acts.Characters
             _thisTransform = ThisActor.transform;
         }
 
-        protected void Translate(Vector3 direction)
+        protected virtual void Translate(Vector3 direction)
         {
-            Debug.Log("?");
             var nextPos = ThisActor.Position + direction;
             Move(nextPos);
         }
@@ -46,7 +45,7 @@ namespace Acts.Characters
                 return;
             }
 
-            MoveAnimation(position - currentPos);
+            MoveAnimation();
 
             ThisActor.StartCoroutine(PositionUpdateCoroutine());
             var character = ThisActor as CharacterActor;
@@ -103,7 +102,7 @@ namespace Acts.Characters
             var nextPos = nextBlock.Position;
             Move(nextPos);
         }
-        protected virtual void MoveAnimation(Vector3 dir)
+        protected virtual void MoveAnimation()
         {
 
         }

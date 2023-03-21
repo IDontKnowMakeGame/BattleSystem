@@ -72,6 +72,16 @@ using UnityEngine;
                          new Rect(rect.x, rect.y, EditorGUIUtility.currentViewWidth, EditorGUIUtility.singleLineHeight),
                          element.FindPropertyRelative("intParam"), new GUIContent("Goal Distance"));
                      break;
+                 case Condition.BesideCondition:
+                     EditorGUI.PropertyField(
+                         new Rect(rect.x, rect.y, EditorGUIUtility.currentViewWidth, EditorGUIUtility.singleLineHeight),
+                         element.FindPropertyRelative("actorParam"), new GUIContent("Target"));
+                     break;
+                 case Condition.AttackCondition:
+                     EditorGUI.PropertyField(
+                         new Rect(rect.x, rect.y, EditorGUIUtility.currentViewWidth, EditorGUIUtility.singleLineHeight),
+                         element.FindPropertyRelative("actorParam"), new GUIContent("This Actor"));
+                     break;
              }
          };
          reorderableList.elementHeight = 150;

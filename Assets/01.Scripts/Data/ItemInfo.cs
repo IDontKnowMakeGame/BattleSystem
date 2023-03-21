@@ -16,6 +16,7 @@ namespace Data
         public float Ats;
         public float Afs;
         public int Weight;
+        public float CoolTime;
 
         public static float WeightToSpeed(int weight)
         {
@@ -29,9 +30,10 @@ namespace Data
         {
             origin.Hp += other.Hp;
             origin.Atk += other.Atk;
-            origin.Ats -= other.Ats;
-            origin.Afs -= other.Afs;
+            origin.Ats += other.Ats;
+            origin.Afs += other.Afs;
             origin.Weight += other.Weight;
+            origin.CoolTime += other.CoolTime;
             return origin;
         }
 	}

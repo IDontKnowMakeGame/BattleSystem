@@ -53,6 +53,9 @@ public class CharacterStatAct : Act, IDmageAble
 		}
 	}
 
+	public float Half { get; set; }
+
+	[SerializeField]
 	private CharacterStat _changeStat =new CharacterStat();
 	private CharacterActor _actor;
 	public override void Start()
@@ -65,13 +68,14 @@ public class CharacterStatAct : Act, IDmageAble
 
 	public void Damage(float damage, Actor actor)
 	{
-		ChangeStat.hp -= damage;
+		ChangeStat.hp -= damage * (Half/100);
 		if(ChangeStat.hp <= 0)
 		{
 			if(actor is PlayerActor)
 			{
 				PlayerActor player = actor as PlayerActor;
-				//player.currentWeapon.info.Name;
+				Define.GetManager<DataManager>().AddWeaponClassKillData(player.currentWeapon.info.Name);
+				player.GetAct<PlayerEquipment>().CurrentWeapon.LoadWeaponClassLevel();
 			}
 			Die();
 		}

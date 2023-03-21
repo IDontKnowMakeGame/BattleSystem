@@ -10,6 +10,7 @@ using System.Numerics;
 using UnityEditorInternal;
 using UnityEngine;
 using System;
+using Managements;
 
 public class Weapon : EquiqmentItem
 {
@@ -23,6 +24,11 @@ public class Weapon : EquiqmentItem
 				return info;
 		}
 	}
+
+	#region 타이머 관련 변수
+	protected bool _isCoolTime = false;
+	protected float _currentTimerSecound = 0f;
+	#endregion
 
 	public bool isEnemy = true;
 	protected CharacterActor _characterActor;
@@ -47,7 +53,6 @@ public class Weapon : EquiqmentItem
 			LoadWeaponClassLevel();
 			LoadWeaponLevel();
 		}
-
 	}
 
 	/// <summary>
@@ -66,6 +71,32 @@ public class Weapon : EquiqmentItem
 
 	}
 
+	/// <summary>
+	/// Weapon들의 기본 스킬
+	/// </summary>
+	public virtual void Skill()
+	{
+		if (_isCoolTime)
+			return;
+	}
+
+	public override void Update()
+	{
+		Timer();
+	}
+	protected void Timer()
+	{
+		if (!_isCoolTime)
+			return;
+
+		if(_currentTimerSecound < info.CoolTime)
+			_currentTimerSecound += Time.deltaTime;
+		else
+		{
+			_isCoolTime = false;
+			_currentTimerSecound = 0;
+		}
+	}
 	protected int KillToLevel(int count) => count switch
 	{
 		<= 40 => 1,
