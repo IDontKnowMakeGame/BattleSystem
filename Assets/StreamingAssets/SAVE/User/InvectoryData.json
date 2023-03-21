@@ -1,26 +1,32 @@
 {
     "inventoryInWeaponList": [
         {
-            "id": 3,
-            "name": "ItemID",
+            "id": 1,
+            "name": "OldStraightSword",
             "currentCnt": 0,
             "maxCnt": 0
         },
         {
             "id": 2,
-            "name": "ItemID",
+            "name": "OldGreatSword",
+            "currentCnt": 0,
+            "maxCnt": 0
+        },
+        {
+            "id": 3,
+            "name": "OldTwinSword",
             "currentCnt": 0,
             "maxCnt": 0
         },
         {
             "id": 4,
-            "name": "ItemID",
+            "name": "OldSpear",
             "currentCnt": 0,
             "maxCnt": 0
         },
         {
             "id": 5,
-            "name": "ItemID",
+            "name": "OldBow",
             "currentCnt": 0,
             "maxCnt": 0
         }

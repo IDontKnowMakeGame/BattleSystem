@@ -92,7 +92,7 @@ public class UIItemStore : UIBase
 
     public void BorderWdith(VisualElement visualElement,float width)
     {
-       VisualElement card = visualElement.Q<VisualElement>("ItemCardTemp");
+       VisualElement card = visualElement.Q<VisualElement>("card");
         card.style.borderLeftWidth = new StyleFloat(width);
         card.style.borderRightWidth = new StyleFloat(width);
         card.style.borderTopWidth = new StyleFloat(width);

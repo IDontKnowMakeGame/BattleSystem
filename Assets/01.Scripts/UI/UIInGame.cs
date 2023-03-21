@@ -1,4 +1,5 @@
 using Core;
+using Data;
 using Mono.Cecil;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Diagnostics;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 public class UIInGame : UIBase
 {
@@ -34,11 +36,14 @@ public class UIInGame : UIBase
         _feather = _root.Q<Label>("featherCnt");
 
         _feather.text = Define.GetManager<DataManager>().GetFeather().ToString();
+
+        ChangeFirstWeaponImage(DataManager.UserData_.firstWeapon);
+        ChangeSecondWeaponImage(DataManager.UserData_.secondWeapon);
     }
 
     public void ChanageMaxHP(int value)
     {
-        VisualElement bar = _hpSlider.Q<VisualElement>("bar_backgroud");
+        VisualElement bar = _hpSlider.Q<VisualElement>("bar_hpbackgroud");
         bar.style.width = new Length(value, LengthUnit.Percent);
     }
     public void ChangeCurrentHP(int value)
@@ -58,12 +63,14 @@ public class UIInGame : UIBase
         bar.style.width = new Length(value, LengthUnit.Percent);
     }
 
-    public void ChangeFirstWeaponImage(Sprite sprite)
+    public void ChangeFirstWeaponImage(ItemID itemID)
     {
+        Sprite sprite = Define.GetManager<ResourceManager>().Load<Sprite>("Image/" + itemID.ToString());
         _firstWaepon.style.backgroundImage = new StyleBackground(sprite);
     }
-    public void ChangeSecondWeaponImage(Sprite sprite)
+    public void ChangeSecondWeaponImage(ItemID itemID)
     {
+        Sprite sprite = Define.GetManager<ResourceManager>().Load<Sprite>("Image/" + itemID.ToString());
         _secondWeapon.style.backgroundImage = new StyleBackground(sprite);
     }
     public void ChangeItemPanelImage(Sprite sprite)

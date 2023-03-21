@@ -29,13 +29,12 @@ public class UIManager : MonoBehaviour
 
         _document = GetComponent<UIDocument>();
 
-
-
+        Init();
     }
 
     private void Start()
     {
-        Init();
+
     }
 
     private void Init()

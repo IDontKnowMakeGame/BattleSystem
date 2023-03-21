@@ -56,20 +56,14 @@ public class DataManager : Manager
 
     public void SwapWeaponData()
     {
-
-
         SaveToUserData();
     }
-    public void ChangeUserWeaponData(string name, bool isFirstWeapon = true)
+    public void ChangeUserWeaponData(ItemID item,int num = 1 )
     {
-        if (isFirstWeapon)
-        {
-
-        }
-        else
-        {
-
-        }
+        if (num == 1)
+            UserData_.firstWeapon = item;
+        else if (num == 2) 
+            UserData_.secondWeapon = item;
 
         SaveToUserData();
     }
@@ -306,7 +300,7 @@ public class DataManager : Manager
         SaveItemData item = new SaveItemData();
         item.id = id;
         item.currentCnt = count;
-        item.name = id.GetType().Name;
+        item.name = id.ToString();
 
         if ((int)id < 100)
         { //Weapon

@@ -1,3 +1,3 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:VisualElement name="InventoryQuestItemCardTemp" class="ets" style="width: 170px; height: 225px; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; background-color: rgba(94, 88, 88, 255);" />
+    <ui:VisualElement name="card" class="ets" style="width: 170px; height: 225px; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; background-color: rgb(94, 88, 88);" />
 </ui:UXML>
