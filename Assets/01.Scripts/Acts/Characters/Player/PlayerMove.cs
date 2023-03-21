@@ -14,6 +14,7 @@ namespace Acts.Characters.Player
         private Vector3 cameraDir;
         private Vector3 playerDir;
 
+        public float distance = 1;
         public override void Awake()
         {         
             base.Awake();
@@ -38,7 +39,7 @@ namespace Acts.Characters.Player
             if (_playerActor.HasAnyState()) return;
             playerDir = direction;
             direction = CamDirCheck(direction);
-            base.Translate(direction);
+            base.Translate(direction* distance);
         }
 
         protected override void Move(Vector3 position)
