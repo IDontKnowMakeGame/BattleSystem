@@ -62,6 +62,8 @@ namespace Acts.Characters.Player
             foreach (SampleControoler enemy in enemys)
             {
                 Debug.Log(enemy.name);
+                GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Damage");
+                obj.GetComponent<DamagePopUp>().DamageText(5, enemy.transform.position);
             }
         }
         

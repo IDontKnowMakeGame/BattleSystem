@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="ItemCardTemp" style="width: 100px; height: 150px; background-color: rgb(103, 103, 103); margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; border-left-color: rgb(24, 192, 182); border-right-color: rgb(24, 192, 182); border-top-color: rgb(24, 192, 182); border-bottom-color: rgb(24, 192, 182);" />
+</ui:UXML>
