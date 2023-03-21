@@ -4,6 +4,7 @@ using Acts.Base;
 using Core;
 using Data;
 using Managements.Managers;
+using Palmmedia.ReportGenerator.Core;
 using UnityEngine;
 
 namespace Acts.Characters.Enemy
@@ -60,6 +61,31 @@ namespace Acts.Characters.Enemy
                 }
             }
         }
+
+        public void HalfAttack(Vector3 dir, bool isLast = false)
+        {
+            var character = ThisActor as CharacterActor;
+            character.AddState(CharacterState.Attack);
+            if(isLast == false)
+                character.AddState(CharacterState.Hold);
+            var map = Define.GetManager<MapManager>();
+            var originPos = ThisActor.Position;
+            var nextPos = originPos + dir;
+            var degree = originPos.GetDegree(nextPos);
+
+            for (var i = -1; i <= 1; i++)
+            {
+                for(var j = 0; j <= 1; j++)
+                {
+                    if(i == 0 && j == 0)
+                        continue;
+                    var attackPos = new Vector3(i, 0, j);
+                    attackPos = attackPos.Rotate(degree);
+                    attackPos += originPos;
+                    map.AttackBlock(attackPos, _defaultStat.Atk, _defaultStat.Ats, ThisActor, isLast);
+                }
+            }
+        }
         
         public void BackAttack(Vector3 dir, bool isLast = false)
         {
@@ -88,10 +114,42 @@ namespace Acts.Characters.Enemy
             }
 
             
-            move.Jump(InGame.Player.Position);
+            move.Jump(InGame.Player.Position + dir);
             yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
-            RoundAttack(true);
+            RoundAttack(isLast);
         }
 
+        public void TripleAttack(Vector3 dir, bool isLast = false)
+        {
+            var character = ThisActor as CharacterActor;
+            character.AddState(CharacterState.Attack);
+            if(isLast == false)
+                character.AddState(CharacterState.Hold);
+            
+            ThisActor.StartCoroutine(TripleAttackCoroutine(dir, isLast));
+        }
+        
+        private IEnumerator TripleAttackCoroutine(Vector3 dir, bool isLast)
+        {
+            var characeter = ThisActor as CharacterActor;
+            var statInfo = characeter.GetAct<CharacterEquipmentAct>().CurrentWeapon.WeaponInfo;
+            var move = ThisActor.GetAct<CharacterMove>();
+            yield return new WaitForSeconds(statInfo.Ats);
+            ForwardAttak(dir);
+            yield return new WaitUntil(() => !characeter.HasState(CharacterState.Hold));
+            if (ThisActor.Position + dir != InGame.Player.Position)
+            {
+                move.Translate(dir);
+                yield return new WaitUntil(() => !characeter.HasState(CharacterState.Move));
+            }
+            ForwardAttak(dir);
+            yield return new WaitUntil(() => !characeter.HasState(CharacterState.Hold));
+            if (ThisActor.Position + dir != InGame.Player.Position)
+            {
+                move.Translate(dir);
+                yield return new WaitUntil(() => !characeter.HasState(CharacterState.Move));
+            }
+            HalfAttack(dir, isLast);
+        }
     }
 }

@@ -48,13 +48,8 @@ namespace Core
 
         public static PlayerActor Player
         {
-            get
-            {
-                if (player == null)
-                    player = GameObject.FindObjectOfType<PlayerActor>();
-
-                return player;
-            }
+            get => player;
+            set => player = value;
         }
         
         public static void AddActor(Actor actor)
