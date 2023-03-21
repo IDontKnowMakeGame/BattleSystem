@@ -38,6 +38,11 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 var dir = InGame.Player.Position - Position;
                 attack.BackAttack(dir, true);
             });
+            random.RandomList.Add(() =>
+            {
+                var dir = InGame.Player.Position - Position;
+                attack.TripleAttack(dir, true);
+            });
             random.SetTarget<WaitState>();
 
             var wait = _enemyAi.AddState<WaitState>();

@@ -20,6 +20,10 @@ public class PlayerEquipment : CharacterEquipmentAct
 		_playerActor = _characterController as PlayerActor;
 		_playerAnimation = ThisActor.GetAct<PlayerAnimation>();
 		InputManager<Weapon>.OnChangePress += Change;
+		InputManager<Weapon>.OnChangePress += () =>
+		{
+			Debug.Log("Change Triggered");
+		};
 		InputManager<Weapon>.OnSkillPress += Skill;
 		Define.GetManager<EventManager>().StartListening(EventFlag.WeaponEquip, EquipmentWeapon);
 		EquipAnimation();

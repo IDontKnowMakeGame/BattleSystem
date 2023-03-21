@@ -48,13 +48,8 @@ namespace Core
 
         public static PlayerActor Player
         {
-            get
-            {
-                if (player == null)
-                    player = GameObject.FindObjectOfType<PlayerActor>();
-
-                return player;
-            }
+            get => player;
+            set => player = value;
         }
         
         public static void AddActor(Actor actor)
@@ -108,6 +103,8 @@ namespace Core
             }
             return block;
         }
+
+        public static Actor GetActor(Vector3 pos) => GetBlock(pos).ActorOnBlock;
 
         public static void SetActorOnBlock(Actor actor, Vector3 nextPos)
         {

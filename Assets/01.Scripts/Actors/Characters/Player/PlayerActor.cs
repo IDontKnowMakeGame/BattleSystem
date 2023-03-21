@@ -1,4 +1,5 @@
 ﻿using Acts.Characters.Player;
+using Core;
 using UnityEngine;
 
 namespace Actors.Characters.Player
@@ -18,6 +19,7 @@ namespace Actors.Characters.Player
             AddAct(_playerAttack);
             AddAct(_plyerAnimation);
             AddAct(_playerUseAbleItem);
-		}
+            InGame.Player = this;
+        }
     }
 }

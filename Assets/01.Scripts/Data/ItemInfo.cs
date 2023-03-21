@@ -28,12 +28,13 @@ namespace Data
 	
         public static ItemInfo operator+(ItemInfo origin, ItemInfo other)
         {
-            origin.Hp += other.Hp;
-            origin.Atk += other.Atk;
-            origin.Ats += other.Ats;
-            origin.Afs += other.Afs;
-            origin.Weight += other.Weight;
-            origin.CoolTime += other.CoolTime;
+            ItemInfo item = new ItemInfo();
+            item.Hp = origin.Hp + other.Hp;
+            item.Atk = origin.Atk +  other.Atk;
+            item.Ats = origin.Ats + other.Ats;
+            item.Afs = origin.Afs + other.Afs;
+            item.Weight = origin.Weight + other.Weight;
+			item.CoolTime = origin.CoolTime + other.CoolTime;
             return origin;
         }
 	}

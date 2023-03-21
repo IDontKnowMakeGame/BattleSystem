@@ -18,8 +18,6 @@ public class Spear : Weapon
 	private Block _attackBlock => _mapManager.GetBlock(_characterActor.Position + _currentVec);
 	public override void Init()
 	{
-		InputManager<Spear>.OnAttackPress += Attack;
-
 		_mapManager = Define.GetManager<MapManager>();
 	}
 
@@ -62,7 +60,20 @@ public class Spear : Weapon
 	{
 
 	}
-
+	public override void Equiqment(CharacterActor actor)
+	{
+		base.Equiqment(actor);
+		if (isEnemy)
+			return;
+		InputManager<Spear>.OnAttackPress += Attack;
+	}
+	public override void UnEquipment(CharacterActor actor)
+	{
+		base.UnEquipment(actor);
+		if (isEnemy)
+			return;
+		InputManager<Spear>.OnAttackPress -= Attack;
+	}
 	public override void Update()
 	{
 		if (_isDown && _attackBlock.IsActorOnBlock && _isEnterEnemy)

@@ -21,10 +21,10 @@ public class Shield : UseAbleItem
         // πÊ«‚
         use = !use;
 
-        if (use)
-            InputManager<GreatSword>.OnAttackPress += SpawnShield;
-        else
-            InputManager<GreatSword>.OnAttackPress -= SpawnShield;
+        //if (use)
+        //    InputManager<GreatSword>.OnAttackPress += SpawnShield;
+        //else
+        //    InputManager<GreatSword>.OnAttackPress -= SpawnShield;
     }
 
     private void SpawnShield(Vector3 dir)

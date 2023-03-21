@@ -41,7 +41,7 @@ namespace Acts.Characters
 
             var map = Define.GetManager<MapManager>();
 
-            if (map.GetBlock(nextPos.SetY(0)) == null)
+            if (map.GetBlock(nextPos.SetY(0)) == null || InGame.GetActor(nextPos.SetY(0)) != null)
             {
                 MoveStop();
                 return;
@@ -82,6 +82,7 @@ namespace Acts.Characters
 
             ThisActor.StartCoroutine(PositionUpdateCoroutine());
             var speed = _character.currentWeapon.WeaponInfo.Speed;
+
             seq.Append(_thisTransform.DOJump(nextPos, 1, 1, speed));
             seq.AppendCallback(() =>
             {
