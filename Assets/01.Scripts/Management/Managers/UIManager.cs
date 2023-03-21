@@ -13,6 +13,9 @@ public class UIManager : MonoBehaviour
 
     public UIInGame InGame = new UIInGame();
     public UIInventory Inventory = new UIInventory();
+    public UIItemStore ItemStore = new UIItemStore();
+
+    public ItemStoreTableSO itemStoreTable = new ItemStoreTableSO();
 
 
     private void Awake()
@@ -39,13 +42,14 @@ public class UIManager : MonoBehaviour
     {
         InGame.Init();
         Inventory.Init();
+        ItemStore.Init();
     }
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.A))
         {
-            Inventory.ShowInventory();
+            ItemStore.ShowItemStore(itemStoreTable);
         }
     }
 
