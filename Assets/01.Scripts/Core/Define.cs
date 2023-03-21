@@ -109,6 +109,8 @@ namespace Core
             return block;
         }
 
+        public static Actor GetActor(Vector3 pos) => GetBlock(pos).ActorOnBlock;
+
         public static void SetActorOnBlock(Actor actor, Vector3 nextPos)
         {
             nextPos.y = 0;

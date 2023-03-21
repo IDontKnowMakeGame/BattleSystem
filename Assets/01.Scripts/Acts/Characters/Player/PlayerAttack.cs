@@ -13,6 +13,7 @@ namespace Acts.Characters.Player
     {
         private PlayerAnimation _playerAnimation;
         private PlayerActor _playerActor;
+        private PlayerEquipment _playerEquipment;
 
         private AttackCollider attackCol;
 
@@ -31,6 +32,7 @@ namespace Acts.Characters.Player
             Define.GetManager<EventManager>().StartListening(EventFlag.Attack, Attack);
             _playerAnimation = ThisActor.GetAct<PlayerAnimation>();
             _playerActor = InGame.Player.GetComponent<PlayerActor>();
+            _playerEquipment = _playerActor.GetAct<PlayerEquipment>();
 
             attackCol = ThisActor.GetComponentInChildren<AttackCollider>();
 
@@ -67,7 +69,7 @@ namespace Acts.Characters.Player
             {
                 Debug.Log(enemy.name);
                 GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Damage");
-                obj.GetComponent<DamagePopUp>().DamageText(5, enemy.transform.position);
+                obj.GetComponent<DamagePopUp>().DamageText(_playerEquipment.CurrentWeapon.WeaponInfo.Atk, enemy.transform.position);
             }
         }
         
