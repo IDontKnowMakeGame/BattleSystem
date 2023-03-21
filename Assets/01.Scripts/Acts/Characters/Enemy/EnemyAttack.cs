@@ -151,5 +151,43 @@ namespace Acts.Characters.Enemy
             }
             HalfAttack(dir, isLast);
         }
+        
+        public void SoulAttack(Vector3 dir, bool isLast = false)
+        {
+            var character = ThisActor as CharacterActor;
+            character.AddState(CharacterState.Attack);
+            if(isLast == false)
+                character.AddState(CharacterState.Hold);
+            
+            ThisActor.StartCoroutine(SoulAttackCoroutine(dir, isLast));
+        }
+
+        private IEnumerator SoulAttackCoroutine(Vector3 dir, bool isLast)
+        {
+            var map = Define.GetManager<MapManager>();
+            var characeter = ThisActor as CharacterActor;
+            var statInfo = characeter.GetAct<CharacterEquipmentAct>().CurrentWeapon.WeaponInfo;
+            var move = ThisActor.GetAct<CharacterMove>();
+            yield return new WaitForSeconds(statInfo.Ats);
+            var distance = 3;
+            var nextPos = ThisActor.Position - dir * distance;
+            while (map.IsStayable(nextPos) == false)
+            {
+                distance--;
+                nextPos = ThisActor.Position - dir * distance;
+                if(distance == 0)
+                    break;
+            }
+            move.Jump(nextPos);
+            yield return new WaitUntil(() => !characeter.HasState(CharacterState.Move));
+            distance = 0;
+            while (map.IsStayable(nextPos) == true)
+            {
+                distance++;
+                nextPos = ThisActor.Position + dir * distance;
+            }
+            
+
+        }
     }
 }
