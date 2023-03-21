@@ -27,6 +27,18 @@ namespace Core
     {
         private static Dictionary<int, Actor> Actors = new();
 
+        private static Camera mainCam = null;
+        public static Camera MainCam
+        {
+            get
+            {
+                if (mainCam == null)
+                    mainCam = Camera.main;
+
+                return mainCam;
+            }
+        }
+
         private static PlayerActor player = null;
 
         public static PlayerActor Player
