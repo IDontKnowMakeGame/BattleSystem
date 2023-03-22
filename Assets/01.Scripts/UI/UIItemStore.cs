@@ -122,8 +122,6 @@ public class UIItemStore : UIBase
         int value = _currentFeather - (_currentItemPrice * _currentPurchaseCnt);
         if (value < 0) return;
 
-
-
         _currentFeather = value;
         Define.GetManager<DataManager>().SetFeahter(_currentFeather);
         Define.GetManager<DataManager>().AddItemInInventory(_currentItemID,_currentPurchaseCnt);

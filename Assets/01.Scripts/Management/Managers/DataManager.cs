@@ -4,8 +4,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Tool.Data.Json;
+using Tool.Data.Json.ParsingList;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class DataManager : Manager
 {
@@ -14,6 +16,8 @@ public class DataManager : Manager
     public static InventoryData InventoryData_;
     public static WeaponClassLevelDataList WeaponClassLevelListData_;
     public static WeaponLevelDataList WeaponLevelListData_;
+    public static ItemTable ItemTableData;
+    public Dictionary<ItemID, ItemInfo> weaponDictionary;
 
     private string URL;
     public override void Awake()
@@ -23,6 +27,7 @@ public class DataManager : Manager
         SavePointData_ = JsonManager.LoadJsonFile<SavePointData>(Application.streamingAssetsPath + "/SAVE/User", "SavePointData");
         WeaponClassLevelListData_ = JsonManager.LoadJsonFile<WeaponClassLevelDataList>(Application.streamingAssetsPath + "/SAVE/Weapon", "ClassLevelData");
         WeaponLevelListData_ = JsonManager.LoadJsonFile<WeaponLevelDataList>(Application.streamingAssetsPath + "/SAVE/Weapon", "WeaponLevelData");
+        ItemTableData = JsonManager.LoadJsonFile<ItemTable>(Application.dataPath + "/Save/Json/" + typeof(ItemTable), typeof(ItemTable).ToString());
 
         if (WeaponClassLevelListData_.weaponClassLevelDataList.Count <= 0)
         {
@@ -30,7 +35,21 @@ public class DataManager : Manager
         }
 
         Debug.Log("Load Json Complate");
+
+        WeaponInfoSerialize();
     }
+    public void WeaponInfoSerialize()
+    {
+        foreach(ItemInfo item in ItemTableData.ItemList)
+        {
+            weaponDictionary[item.Id] = item;
+        }
+    }
+    public ItemInfo GetWeaponData(ItemID id)
+    {
+        return weaponDictionary[id];
+    }
+
     #region UserData
     public void SaveToUserData()
     {
