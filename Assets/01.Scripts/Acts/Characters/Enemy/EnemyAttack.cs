@@ -11,12 +11,7 @@ namespace Acts.Characters.Enemy
 {
     public class EnemyAttack : Act
     {
-        private ItemInfo _defaultStat = null;
-        public override void Start()
-        {
-            _defaultStat = ThisActor.GetAct<CharacterEquipmentAct>().CurrentWeapon.WeaponInfo;
-        }
-
+        private ItemInfo _defaultStat => ThisActor.GetAct<CharacterEquipmentAct>().CurrentWeapon.WeaponInfo;
         public void DefaultAttack(Vector3 dir, bool isLast = false)
         {
             var map = Define.GetManager<MapManager>();
@@ -48,7 +43,8 @@ namespace Acts.Characters.Enemy
             var character = ThisActor as CharacterActor;
             character.AddState(CharacterState.Attack);
             if(isLast == false)
-                character.AddState(CharacterState.Hold);
+                character.AddState(CharacterState.Hold); 
+            var map = Define.GetManager<MapManager>();
             
             for (var i = -1; i <= 1; i++)
             {
@@ -56,7 +52,6 @@ namespace Acts.Characters.Enemy
                 {
                     var attackPos = new Vector3(i, 0, j);
                     attackPos += ThisActor.Position;
-                    var map = Define.GetManager<MapManager>();
                     map.AttackBlock(attackPos, _defaultStat.Atk, _defaultStat.Ats, ThisActor, isLast);
                 }
             }

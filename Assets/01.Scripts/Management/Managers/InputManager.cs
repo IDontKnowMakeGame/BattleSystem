@@ -100,6 +100,11 @@ namespace Managements.Managers
 			}
 		}
 
+		public override void OnDisable()
+		{
+			AllActionClear();			
+		}
+
 		private void InputPress()
 		{
 			
@@ -292,6 +297,25 @@ namespace Managements.Managers
 					return;
 				}
 			}
+		}
+
+		public static void AllActionClear()
+		{
+			OnMovePress = null;
+			OnMoveRelease = null;
+			OnMoveHold = null;
+			OnAttackPress = null;
+			OnAttackRelease = null;
+			OnAttackHold = null;
+			OnSkillPress = null;
+			OnSkillRelease = null;
+			OnSkillHold = null;
+			OnSubPress = null;
+			OnChangePress = null;
+			OnOffPress = null;
+			OnTestChangePress = null;
+			OnInteractionPress = null;
+			OnItemPress = null;
 		}
 	}
 }
