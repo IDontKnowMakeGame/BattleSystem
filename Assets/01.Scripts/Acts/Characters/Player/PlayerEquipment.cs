@@ -44,21 +44,21 @@ public class PlayerEquipment : CharacterEquipmentAct
 	protected virtual void EquipmentWeapon(EventParam eventParam)
 	{
 		//TODO 여기서 EventParam을 받아주는데 그때 여기서 변경해줄 무기의 인덱스와 무기 종류를 넣어준다.
-		if (_firstWeapon == ItemID.None /*&& evnetParam.intparam == 1*/)
+		if (_firstWeapon == ItemID.None )
 		{
-			//firstWeapon = Datamanger.Instnace.firstWeapon;
-			CurrentWeapon.Equiqment(_characterController);
+            _firstWeapon = DataManager.UserData_.firstWeapon;
+            CurrentWeapon.Equiqment(_characterController);
 		}
 
-		if (_secondWeapon == ItemID.None /*&& evnetParam.intparam == 2*/)
+		if (_secondWeapon == ItemID.None )
 		{
-			//secoundWeapon = Datamanger.Instnace.firstWeapon;
+			_secondWeapon = DataManager.UserData_.firstWeapon;
 		}
 
 		CurrentWeapon.UnEquipment(_characterController);
-		//firstWeapon = DataManager.Instance.firstWeaopn;
-		//secondWeapon = DataManager.Instance.secoundWeaopn;
-		CurrentWeapon.Equiqment(_characterController);
+		_firstWeapon = DataManager.UserData_.firstWeapon;
+		_secondWeapon = DataManager.UserData_.secondWeapon;
+        CurrentWeapon.Equiqment(_characterController);
 	}
 
 	/// <summary>
