@@ -39,7 +39,7 @@ namespace Acts.Characters.Player
             if (_playerActor.HasAnyState()) return;
             playerDir = direction;
             direction = CamDirCheck(direction);
-            base.Translate(direction* distance);
+            base.Translate(direction * distance);
         }
 
         public override void Move(Vector3 position)

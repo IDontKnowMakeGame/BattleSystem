@@ -13,10 +13,13 @@ namespace Acts.Characters
         public override void Awake()
         {
             _renderer = ThisActor.GetComponentInChildren<Renderer>();
-            _renderer.material.SetTexture("_MainTex", _defaultTexture);
-            var length = _defaultTexture.width / _frame;
-            var tiling = new Vector2(1f / _frame, 1);
-            _renderer.material.SetVector("_Tiling", tiling);
+            if (_defaultTexture != null)
+            {
+                _renderer.material.SetTexture("_MainTex", _defaultTexture);
+                var length = _defaultTexture.width / _frame;
+                var tiling = new Vector2(1f / _frame, 1);
+                _renderer.material.SetVector("_Tiling", tiling);
+            }
         }
 
         public override void LateUpdate()

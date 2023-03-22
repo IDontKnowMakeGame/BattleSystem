@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Actors.Bases;
 using Blocks;
+using UnityEditor.Callbacks;
 using UnityEngine;
 
 namespace Managements.Managers
@@ -47,6 +48,23 @@ namespace Managements.Managers
             }
 
             return neighbors;
+        }
+        public bool IsStayable(Vector3 pos)
+        {
+            if (!_mapDict.ContainsKey(pos))
+                return false;
+            return IsStayable(_mapDict[pos]);
+        }
+        public bool IsStayable(Block tile)
+        {
+            if(tile == null)
+                return false;
+            if(tile.isWalkable == false)
+                return false;
+            if (tile.IsActorOnBlock == true)
+                return false;
+
+            return true;
         }
     }
 }

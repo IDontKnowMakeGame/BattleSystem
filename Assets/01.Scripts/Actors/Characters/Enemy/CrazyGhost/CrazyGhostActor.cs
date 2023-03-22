@@ -28,16 +28,16 @@ namespace Actors.Characters.Enemy.CrazyGhost
             
             
             var random = _enemyAi.AddState<RandomState>();
-            // random.RandomList.Add(() =>
-            // {
-            //     var dir = InGame.Player.Position - Position;
-            //     attack.ForwardAttak(dir, true);
-            // });
-            // random.RandomList.Add(() =>
-            // {
-            //     var dir = InGame.Player.Position - Position;
-            //     attack.BackAttack(dir, true);
-            // });
+            random.RandomList.Add(() =>
+            {
+                var dir = InGame.Player.Position - Position;
+                attack.ForwardAttak(dir, true);
+            });
+            random.RandomList.Add(() =>
+            {
+                var dir = InGame.Player.Position - Position;
+                attack.BackAttack(dir, true);
+            });
             random.RandomList.Add(() =>
             {
                 var dir = InGame.Player.Position - Position;

@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using Acts.Characters.Player;
 
 public class Spear : Weapon
 {
@@ -13,6 +14,7 @@ public class Spear : Weapon
 	private bool _isEnterEnemy = true;
 	private bool _isDown = false;
 	private MapManager _mapManager => Define.GetManager<MapManager>();
+	private PlayerAnimation _playerAnimation;
 	private Vector3 _currentVec = Vector3.zero;
 	public override void Init()
 	{
@@ -61,7 +63,14 @@ public class Spear : Weapon
 	public override void Equiqment(CharacterActor actor)
 	{
 		base.Equiqment(actor);
+
+		_playerAnimation = _playerActor.GetAct<PlayerAnimation>();
+
 		InputManager<Spear>.OnAttackPress += Attack;
+
+		_playerAnimation.GetClip("VerticalMove").texture = _playerAnimation.GetClip("DefaultVerticalMove").texture;
+		_playerAnimation.GetClip("UpperMove").texture = _playerAnimation.GetClip("DefaultUpperMove").texture;
+		_playerAnimation.GetClip("LowerMove").texture = _playerAnimation.GetClip("DefaultLowerMove").texture;
 	}
 	public override void UnEquipment(CharacterActor actor)
 	{
@@ -74,7 +83,7 @@ public class Spear : Weapon
 			Debug.DrawLine(_characterActor.transform.position, _characterActor.transform.position + _currentVec, Color.red);
 		if (_isDown && _isEnterEnemy && _mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock)
 		{
-			Debug.Log("¿¨");
+			Debug.Log("ï¿½ï¿½");
 			_eventParam.attackParam = _attackInfo;
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
 			_isEnterEnemy = false;
@@ -82,9 +91,9 @@ public class Spear : Weapon
 		else if (!_isEnterEnemy &&_isDown && !_mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock)
 			_isEnterEnemy = true;
 
-		Debug.Log("´Ù¿î µÇ¾ú³Ä : " + _isDown);
-		Debug.Log("¶§¸± ¼ö ÀÖ³Ä : " + _isEnterEnemy);
-		Debug.Log("ÀûÀÌ ÀÌ ºí·° À§¿¡ ÀÖ³Ä : " + _mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock);
+		Debug.Log("ï¿½Ù¿ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ : " + _isDown);
+		Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö³ï¿½ : " + _isEnterEnemy);
+		Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö³ï¿½ : " + _mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock);
 	}
 
 	public virtual void Attack(Vector3 vec)
@@ -105,8 +114,31 @@ public class Spear : Weapon
 	{
 		_attackInfo.AddDir(_attackInfo.DirTypes(vec));
 		_currentVec = vec;
+		ReadyAnimation(_currentVec);
 		yield return new WaitForSeconds(info.Ats);
 		_isDown = true;
+	}
+
+	private void ReadyAnimation(Vector3 vec)
+    {
+		if (vec == Vector3.left || vec == Vector3.right)
+		{
+			_playerAnimation.GetClip("VerticalMove").texture = _playerAnimation.GetClip("VerticalReadyVerticalMove").texture;
+			_playerAnimation.GetClip("UpperMove").texture = _playerAnimation.GetClip("VerticalReadyUpperMove").texture;
+			_playerAnimation.GetClip("LowerMove").texture = _playerAnimation.GetClip("VerticalReadyLowerMove").texture;
+		}
+		else if (vec == Vector3.forward)
+		{
+			_playerAnimation.GetClip("VerticalMove").texture = _playerAnimation.GetClip("UpperReadyVerticalMove").texture;
+			_playerAnimation.GetClip("UpperMove").texture = _playerAnimation.GetClip("UpperReadyUpperMove").texture;
+			_playerAnimation.GetClip("LowerMove").texture = _playerAnimation.GetClip("UpperReadyLowerMove").texture;
+		}
+		else if(vec == Vector3.back)
+        {
+			_playerAnimation.GetClip("VerticalMove").texture = _playerAnimation.GetClip("LowerReadyVerticalMove").texture;
+			_playerAnimation.GetClip("UpperMove").texture = _playerAnimation.GetClip("LowerReadyUpperMove").texture;
+			_playerAnimation.GetClip("LowerMove").texture = _playerAnimation.GetClip("LowerReadyLowerMove").texture;
+		}
 	}
 
 	public virtual IEnumerator AttackUpCorutine(Vector3 vec)
