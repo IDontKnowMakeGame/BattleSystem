@@ -73,7 +73,8 @@ namespace Acts.Characters.Player
                 GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Damage");
                 obj.GetComponent<DamagePopUp>().DamageText((ThisActor as CharacterActor).currentWeapon.WeaponInfo.Atk, enemy.transform.position);
             }
-        }
+			_playerAnimation.curClip.events.Clear();
+		}
         
         public override void ReadyAttackAnimation(AttackInfo attackInfo)
         {

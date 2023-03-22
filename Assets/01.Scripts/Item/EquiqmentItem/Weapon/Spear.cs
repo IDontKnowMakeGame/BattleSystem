@@ -85,15 +85,15 @@ public class Spear : Weapon
 		{
 			Debug.Log("엥");
 			_eventParam.attackParam = _attackInfo;
-			Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
+			Define.GetManager<EventManager>().TriggerEvent(EventFlag.NoneAniAttack, _eventParam);
 			_isEnterEnemy = false;
 		}
 		else if (!_isEnterEnemy && !_mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock)
 			_isEnterEnemy = true;
 
-		Debug.Log("창내림 : " + _isDown);
-		Debug.Log("때릴 수 있음 : " + _isEnterEnemy);
-		Debug.Log("공격 칸 위에 있는 적 : " + _mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock);
+		//Debug.Log("창내림 : " + _isDown);
+		//Debug.Log("때릴 수 있음 : " + _isEnterEnemy);
+		//Debug.Log("공격 칸 위에 있는 적 : " + _mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock);
 	}
 
 	public virtual void Attack(Vector3 vec)
