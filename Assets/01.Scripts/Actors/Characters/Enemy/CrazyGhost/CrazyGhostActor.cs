@@ -25,8 +25,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 move.Chase(InGame.Player);
             };
             chase.SetTarget<RandomState>();
-            
-            
+
             var random = _enemyAi.AddState<RandomState>();
             random.RandomList.Add(() =>
             {
@@ -42,6 +41,16 @@ namespace Actors.Characters.Enemy.CrazyGhost
             {
                 var dir = InGame.Player.Position - Position;
                 attack.TripleAttack(dir, true);
+            });
+            random.RandomList.Add(() =>
+            {
+                if (IsSecondPhase() == false)
+                {
+                    _enemyAi.InitState<ChaseState>();
+                    return;
+                }
+                var dir = InGame.Player.Position - Position;
+                attack.SoulAttack(dir, true);
             });
             random.SetTarget<WaitState>();
 

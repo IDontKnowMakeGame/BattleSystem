@@ -49,6 +49,18 @@ namespace Managements.Managers
 
             return neighbors;
         }
+        
+        public bool IsWalkable(Vector3 pos)
+        {
+            if (!_mapDict.ContainsKey(pos))
+                return false;
+            var tile = _mapDict[pos];
+            if (tile == null)
+                return false;
+            if(tile.isWalkable == false)
+                return false;
+            return true;
+        }
         public bool IsStayable(Vector3 pos)
         {
             if (!_mapDict.ContainsKey(pos))
