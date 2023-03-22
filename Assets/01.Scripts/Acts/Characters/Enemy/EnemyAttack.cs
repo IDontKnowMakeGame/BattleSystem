@@ -16,9 +16,10 @@ namespace Acts.Characters.Enemy
         {
             var map = Define.GetManager<MapManager>();
             map.AttackBlock(ThisActor.Position + dir, _defaultStat.Atk, _defaultStat.Ats, ThisActor, isLast);
+            ThisActor.StartCoroutine(ResetAttackCoroutine());
         }
 
-        public void ForwardAttak(Vector3 dir, bool isLast = false)
+        public void ForwardAttack(Vector3 dir, bool isLast = false)
         {
             var character = ThisActor as CharacterActor;
             character.AddState(CharacterState.Attack);
@@ -36,6 +37,7 @@ namespace Acts.Characters.Enemy
                 attackPos += originPos;
                 map.AttackBlock(attackPos, _defaultStat.Atk, _defaultStat.Ats, ThisActor, isLast);
             }
+            ThisActor.StartCoroutine(ResetAttackCoroutine());
         }
 
         public void RoundAttack(bool isLast = false)
@@ -55,6 +57,7 @@ namespace Acts.Characters.Enemy
                     map.AttackBlock(attackPos, _defaultStat.Atk, _defaultStat.Ats, ThisActor, isLast);
                 }
             }
+            ThisActor.StartCoroutine(ResetAttackCoroutine());
         }
 
         public void HalfAttack(Vector3 dir, bool isLast = false)
@@ -80,6 +83,7 @@ namespace Acts.Characters.Enemy
                     map.AttackBlock(attackPos, _defaultStat.Atk, _defaultStat.Ats, ThisActor, isLast);
                 }
             }
+            ThisActor.StartCoroutine(ResetAttackCoroutine());
         }
         
         public void BackAttack(Vector3 dir, bool isLast = false)
@@ -96,7 +100,7 @@ namespace Acts.Characters.Enemy
         {
             var character = ThisActor as CharacterActor;
             var move = ThisActor.GetAct<CharacterMove>();
-            ForwardAttak(dir);
+            ForwardAttack(dir);
             yield return new WaitUntil(() => !character.HasState(CharacterState.Hold));
             move.Translate(-dir);
             yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
@@ -129,14 +133,14 @@ namespace Acts.Characters.Enemy
             var statInfo = characeter.GetAct<CharacterEquipmentAct>().CurrentWeapon.WeaponInfo;
             var move = ThisActor.GetAct<CharacterMove>();
             yield return new WaitForSeconds(statInfo.Ats);
-            ForwardAttak(dir);
+            ForwardAttack(dir);
             yield return new WaitUntil(() => !characeter.HasState(CharacterState.Hold));
             if (ThisActor.Position + dir != InGame.Player.Position)
             {
                 move.Translate(dir);
                 yield return new WaitUntil(() => !characeter.HasState(CharacterState.Move));
             }
-            ForwardAttak(dir);
+            ForwardAttack(dir);
             yield return new WaitUntil(() => !characeter.HasState(CharacterState.Hold));
             if (ThisActor.Position + dir != InGame.Player.Position)
             {
@@ -187,6 +191,23 @@ namespace Acts.Characters.Enemy
                 Debug.Log(vec);
                 map.AttackBlock(vec, _defaultStat.Atk, _defaultStat.Ats, ThisActor, isLast);
             }
+
+            ThisActor.StartCoroutine(ResetAttackCoroutine());
+        }
+        
+        private void ResetAttack()
+        {
+            var character = ThisActor as CharacterActor;
+            if (character.HasState(CharacterState.Attack) == false)
+                return;
+            character.RemoveState(CharacterState.Attack);
+            character.RemoveState(CharacterState.Hold);
+        }
+        
+        private IEnumerator ResetAttackCoroutine()
+        {
+            yield return new WaitForSeconds(1f);
+            ResetAttack();
         }
     }
 }
