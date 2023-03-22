@@ -61,6 +61,12 @@ namespace Acts.Characters.Player
             currentCoroutine = ThisActor.StartCoroutine(AnimationPlay());
         }
 
+        public ClipBase GetClip(string name)
+        {
+            if (!weaponClipDic.ContainsKey(name)) return null;
+            return weaponClipDic[name];
+        }
+
         // 인덱스로 애니메이션 재생
         public override void Play(int idx)
         {

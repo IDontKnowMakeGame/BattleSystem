@@ -103,13 +103,20 @@ public class CharacterEquipmentAct : Act
 	/// </summary>
 	public virtual void Change()
 	{
-		CurrentWeapon?.UnEquipment(_characterController);
-		SecoundWeapon?.Equiqment(_characterController);
-
 		ItemID weapon = _firstWeapon;
 		_firstWeapon = _secondWeapon;
 		_secondWeapon = weapon;
+
+		EquipAnimation();
+
+		SecoundWeapon?.UnEquipment(_characterController);
+		CurrentWeapon?.Equiqment(_characterController);
 	}
+
+	protected virtual void EquipAnimation()
+    {
+
+    }
 
 	protected virtual void EquipmentHalo()
 	{

@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using Acts.Characters.Player;
 
 public class Spear : Weapon
 {
@@ -13,6 +14,7 @@ public class Spear : Weapon
 	private bool _isEnterEnemy = true;
 	private bool _isDown = false;
 	private MapManager _mapManager;
+	private PlayerAnimation _playerAnimation;
 	private Vector3 _currentVec = Vector3.zero;
 
 	private Block _attackBlock => _mapManager.GetBlock(_characterActor.Position + _currentVec);
@@ -65,7 +67,14 @@ public class Spear : Weapon
 		base.Equiqment(actor);
 		if (isEnemy)
 			return;
+
+		_playerAnimation = _playerActor.GetAct<PlayerAnimation>();
+
 		InputManager<Spear>.OnAttackPress += Attack;
+
+		_playerAnimation.GetClip("VerticalMove").texture = _playerAnimation.GetClip("DefaultVerticalMove").texture;
+		_playerAnimation.GetClip("UpperMove").texture = _playerAnimation.GetClip("DefaultUpperMove").texture;
+		_playerAnimation.GetClip("LowerMove").texture = _playerAnimation.GetClip("DefaultLowerMove").texture;
 	}
 	public override void UnEquipment(CharacterActor actor)
 	{
@@ -104,8 +113,31 @@ public class Spear : Weapon
 	{
 		_attackInfo.AddDir(_attackInfo.DirTypes(vec));
 		_currentVec = vec;
+		ReadyAnimation(_currentVec);
 		yield return new WaitForSeconds(info.Ats);
 		_isDown = true;
+	}
+
+	private void ReadyAnimation(Vector3 vec)
+    {
+		if (vec == Vector3.left || vec == Vector3.right)
+		{
+			_playerAnimation.GetClip("VerticalMove").texture = _playerAnimation.GetClip("VerticalReadyVerticalMove").texture;
+			_playerAnimation.GetClip("UpperMove").texture = _playerAnimation.GetClip("VerticalReadyUpperMove").texture;
+			_playerAnimation.GetClip("LowerMove").texture = _playerAnimation.GetClip("VerticalReadyLowerMove").texture;
+		}
+		else if (vec == Vector3.forward)
+		{
+			_playerAnimation.GetClip("VerticalMove").texture = _playerAnimation.GetClip("UpperReadyVerticalMove").texture;
+			_playerAnimation.GetClip("UpperMove").texture = _playerAnimation.GetClip("UpperReadyUpperMove").texture;
+			_playerAnimation.GetClip("LowerMove").texture = _playerAnimation.GetClip("UpperReadyLowerMove").texture;
+		}
+		else if(vec == Vector3.back)
+        {
+			_playerAnimation.GetClip("VerticalMove").texture = _playerAnimation.GetClip("LowerReadyVerticalMove").texture;
+			_playerAnimation.GetClip("UpperMove").texture = _playerAnimation.GetClip("LowerReadyUpperMove").texture;
+			_playerAnimation.GetClip("LowerMove").texture = _playerAnimation.GetClip("LowerReadyLowerMove").texture;
+		}
 	}
 
 	public virtual IEnumerator AttackUpCorutine(Vector3 vec)
