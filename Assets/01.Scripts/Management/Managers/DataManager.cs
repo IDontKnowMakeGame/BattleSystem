@@ -17,7 +17,7 @@ public class DataManager : Manager
     public static WeaponClassLevelDataList WeaponClassLevelListData_;
     public static WeaponLevelDataList WeaponLevelListData_;
     public static ItemTable ItemTableData;
-    public Dictionary<ItemID, ItemInfo> weaponDictionary;
+    public Dictionary<ItemID, ItemInfo> weaponDictionary = new Dictionary<ItemID, ItemInfo>();
 
     private string URL;
     public override void Awake()

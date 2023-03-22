@@ -52,6 +52,10 @@ public class UISmithy : UIBase
         _smithyNowFeatherText = _weaponUpgradePanel.Q<Label>("NowFeatherText");
         _smithyAfterFeatherText = _weaponUpgradePanel.Q<Label>("BeforeFeatherText");
         _purchaseBtn = _weaponUpgradePanel.Q<VisualElement>("PurchaseBtn");
+        _purchaseBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            PurchaseBtn();
+        });
 
         _feaderBox = _root.Q<VisualElement>("FeatherBox");
 
@@ -98,11 +102,29 @@ public class UISmithy : UIBase
 
         int myAtk = (int)Define.GetManager<DataManager>().GetWeaponData(id).Atk;
         nowAtk = myAtk + LevelToAtk(nowLevel);
-        afterLevel = myAtk + LevelToAtk(afterLevel);
+        afterAtk = myAtk + LevelToAtk(afterLevel);
+
+        price = LevelToFeather(afterLevel);
 
         UpdateSmithyUI();
     }
+    public void PurchaseBtn()
+    {
+        if (currentItem == ItemID.None) return;
 
+        nowLevel++;
+        afterLevel++;
+        int myAtk = (int)Define.GetManager<DataManager>().GetWeaponData(currentItem).Atk;
+        nowAtk = myAtk + LevelToAtk(nowLevel);
+        afterAtk = myAtk + LevelToAtk(afterLevel);
+
+        nowFeather = afterFeather;
+        price = LevelToFeather(afterLevel);
+
+        Define.GetManager<DataManager>().SaveUpGradeWeaponLevelData(currentItem);
+
+        UpdateSmithyUI();
+    }
     public int LevelToAtk(int level)
     {
         int value = 0;
@@ -141,13 +163,62 @@ public class UISmithy : UIBase
 
         return value;
     }
+    public int LevelToFeather(int level)
+    {
+        int value = 0;
+        switch (level)
+        {
+            case 0:
+                value = 0;
+                break;
+            case 1:
+                value = 500;
+                break;
+            case 2:
+                value = 800;
+                break;
+            case 3:
+                value = 1000;
+                break;
+            case 4:
+                value = 2500;
+                break;
+            case 5:
+                value = 4500;
+                break;
+            case 6:
+                value = 8500;
+                break;
+            case 7:
+                value = 10000;
+                break;
+            case 8:
+                value = 12500;
+                break;
+            case 9:
+                value = 15000;
+                break;
+            case 10:
+                value = 25000;
+                break;
+            case 11:
+                value = 35000;
+                break;
+            case 12:
+                value = 45000;
+                break;
+            default:
+                break;
+        }
+        return value;
+    }
     public void UpdateSmithyUI()
     {
         _levelText.text = string.Format("Level {0} -> {1}", nowLevel, afterLevel);
         _atkText.text = string.Format("Atk {0} -> {1}", nowAtk, afterAtk);
 
         _smithyNowFeatherText.text = nowFeather.ToString();
-        afterLevel = nowFeather - price;
-        _smithyAfterFeatherText.text = afterLevel.ToString();
+        afterFeather = nowFeather - price;
+        _smithyAfterFeatherText.text = afterFeather.ToString();
     }
 }
