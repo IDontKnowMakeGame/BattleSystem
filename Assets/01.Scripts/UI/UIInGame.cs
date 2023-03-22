@@ -48,7 +48,6 @@ public class UIInGame : UIBase
     }
     public void ChangeCurrentHP(int value)
     {
-        Debug.Log(value);
         VisualElement bar = _hpSlider.Q<VisualElement>("Fill");
         bar.style.width = new Length(value, LengthUnit.Percent);
     }

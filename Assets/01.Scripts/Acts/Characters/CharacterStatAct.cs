@@ -57,7 +57,7 @@ public class CharacterStatAct : Act, IDmageAble
 		}
 	}
 
-	public float Half { get; set; } = 100;
+	public float Half { get; set; }
 
 	[SerializeField]
 	private CharacterStat _changeStat =new CharacterStat();
@@ -78,7 +78,7 @@ public class CharacterStatAct : Act, IDmageAble
 
 	public void Damage(float damage, Actor actor)
 	{
-		ChangeStat.hp -= damage * (Half/100);
+		ChangeStat.hp -= damage - (damage * (Half/100));
 		if(ChangeStat.hp <= 0)
 		{
 			if(actor is PlayerActor)
