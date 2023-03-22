@@ -30,6 +30,7 @@ namespace Acts.Characters.Player
         {
             base.Start();
             Define.GetManager<EventManager>().StartListening(EventFlag.Attack, Attack);
+            Define.GetManager<EventManager>().StartListening(EventFlag.NoneAniAttack, NoneAniAttack);
             _playerAnimation = ThisActor.GetAct<PlayerAnimation>();
             _playerActor = InGame.Player.GetComponent<PlayerActor>();
             _playerEquipment = _playerActor.GetAct<PlayerEquipment>();
@@ -101,13 +102,24 @@ namespace Acts.Characters.Player
             AttackCheck(attackInfo);
 
             // 마지막 프레임에 종료 넣기
-            _playerAnimation.curClip.SetEventOnFrame(_playerAnimation.curClip.fps - 1 , () => _playerActor.RemoveState(Actors.Characters.CharacterState.Attack));
+            _playerAnimation.curClip.SetEventOnFrame(_playerAnimation.curClip.fps - 1 , FinishAttack);
+        }
+
+        private void FinishAttack()
+        {
+            _playerActor.RemoveState(Actors.Characters.CharacterState.Attack);
+            _playerAnimation.curClip.events.Clear();
         }
 
         private void Attack(EventParam eventParam)
         {
             ReadyAttackAnimation(eventParam.attackParam);
 		}
+
+        private void NoneAniAttack(EventParam eventParam)
+        {
+            AttackCheck(eventParam.attackParam);
+        }
 
         private void ColParentRotate()
         {
@@ -138,7 +150,8 @@ namespace Acts.Characters.Player
         public override void OnDisable()
         {
 			Define.GetManager<EventManager>()?.StopListening(EventFlag.Attack, Attack);
-		}
+            Define.GetManager<EventManager>()?.StopListening(EventFlag.NoneAniAttack, NoneAniAttack);
+        }
 
     }
 }

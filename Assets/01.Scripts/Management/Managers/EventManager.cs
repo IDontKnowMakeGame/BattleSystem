@@ -31,7 +31,8 @@ public enum EventFlag
 	WeaponUpgrade,
 	SetWeapon,
 	UnsetWeapon,
-	Attack
+	Attack,
+	NoneAniAttack,
 }
 public class EventManager : Manager
 {
