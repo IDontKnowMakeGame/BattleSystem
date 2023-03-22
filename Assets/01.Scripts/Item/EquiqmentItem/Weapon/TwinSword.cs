@@ -5,10 +5,13 @@ using System.Collections.Generic;
 using Actors.Characters;
 using Acts.Characters;
 using UnityEngine;
+using Acts.Characters.Player;
 
 public class TwinSword : Weapon
 {
 	private int range = 1;
+	private PlayerAnimation _playerAnimation;
+
 	public override void Init()
 	{
 		base.Init(); 
@@ -53,6 +56,8 @@ public class TwinSword : Weapon
 	{
 		base.Equiqment(actor);
 		InputManager<TwinSword>.OnMovePress += Attack;
+		if (_playerAnimation == null)
+			_playerAnimation = _playerActor.GetAct<PlayerAnimation>();
 	}
 
 	public override void UnEquipment(CharacterActor actor)
@@ -70,6 +75,8 @@ public class TwinSword : Weapon
 			_attackInfo.ResetDir();
 			_attackInfo.AddDir(DirType.Left);
 			_attackInfo.AddDir(DirType.Right);
+
+			_playerAnimation.GetClip(vec == Vector3.forward ? "UpperMove" : "LowerMove").SetEventOnFrame(2, () => Define.GetManager<EventManager>().TriggerEvent(EventFlag.NoneAniAttack, _eventParam));
 		}
 		else if(vec == Vector3.left || vec == Vector3.right)
 		{
@@ -77,11 +84,12 @@ public class TwinSword : Weapon
 			_attackInfo.ResetDir();
 			_attackInfo.AddDir(DirType.Up);
 			_attackInfo.AddDir(DirType.Down);
+
+			_playerAnimation.GetClip("VerticalMove").SetEventOnFrame(2, () => Define.GetManager<EventManager>().TriggerEvent(EventFlag.NoneAniAttack, _eventParam));
 		}
 
 		_attackInfo.PressInput = vec;
 		_attackInfo.ReachFrame = 0;
 		_eventParam.attackParam = _attackInfo;
-		Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
 	}
 }
