@@ -27,5 +27,10 @@ namespace Tools
             }
             events[frame] = action;
         }
+        
+        public void ClearEvent()
+        {
+            events = new();
+        }
     }
 }

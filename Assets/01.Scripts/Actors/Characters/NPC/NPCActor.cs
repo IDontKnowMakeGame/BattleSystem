@@ -17,7 +17,6 @@ namespace Actors.Characters.NPC
         protected override void Init()
         {
             base.Init();
-            AddAct<CharacterRender>();
             AddAct(_npcAnimation);
 
             InputManager<Weapon>.OnInteractionPress += Interact;

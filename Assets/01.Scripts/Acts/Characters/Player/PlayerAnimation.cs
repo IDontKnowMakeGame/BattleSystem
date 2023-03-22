@@ -80,5 +80,15 @@ namespace Acts.Characters.Player
         {
             return curClip;
         }
+
+        public override void OnDisable()
+        {
+            currentCoroutine = null;
+            foreach (var item in weaponClipDic.Values)
+            {
+                item.ClearEvent();
+            }
+            base.OnDisable();
+        }
     }
 }

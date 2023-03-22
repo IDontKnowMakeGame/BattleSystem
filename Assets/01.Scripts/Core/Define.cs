@@ -113,9 +113,11 @@ namespace Core
             var nextBlock = GetBlock(nextPos);
             
             if (currentBlock != null)
-                currentBlock.RemoveActorOnBlock();
+                if(currentBlock.ActorOnBlock == actor)
+                    currentBlock.RemoveActorOnBlock();
             if(nextBlock != null)
-                nextBlock.SetActorOnBlock(actor);
+                if(nextBlock.ActorOnBlock == null)
+                    nextBlock.SetActorOnBlock(actor);
         }
         public static Vector3 CameraDir()
         {

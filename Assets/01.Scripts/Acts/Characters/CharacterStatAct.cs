@@ -57,7 +57,7 @@ public class CharacterStatAct : Act, IDmageAble
 		}
 	}
 
-	public float Half { get; set; }
+	public float Half { get; set; } = 100;
 
 	[SerializeField]
 	private CharacterStat _changeStat =new CharacterStat();
