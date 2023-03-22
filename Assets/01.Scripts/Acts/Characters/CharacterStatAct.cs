@@ -86,13 +86,17 @@ public class CharacterStatAct : Act, IDmageAble
 				PlayerActor player = actor as PlayerActor;
 				Define.GetManager<DataManager>().AddWeaponClassKillData(player.currentWeapon.info.Name);
 
-				float value = _changeStat.hp / _basicStat.hp;
-                UIManager.Instance.InGame.ChangeCurrentHP((int)value);
 				player.GetAct<PlayerEquipment>().CurrentWeapon.LoadWeaponClassLevel();
 			}
+			
 			Die();
 		}
-	}
+        if (ThisActor is PlayerActor)
+        {
+            float value = (ChangeStat.hp / BaseStat.hp) * 100;
+            UIManager.Instance.InGame.ChangeCurrentHP((int)value);
+        }
+    }
 
 	public void Die()
 	{
