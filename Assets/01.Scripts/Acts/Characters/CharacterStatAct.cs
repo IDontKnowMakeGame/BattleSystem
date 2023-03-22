@@ -5,6 +5,7 @@ using Acts.Base;
 using Core;
 using Data;
 using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -41,6 +42,8 @@ public class CharacterStatAct : Act, IDmageAble
 {
 	[SerializeField]
 	private CharacterStat _basicStat;
+
+	public CharacterStat BaseStat => _basicStat;
 
 	public CharacterStat ChangeStat
 	{
@@ -95,6 +98,7 @@ public class CharacterStatAct : Act, IDmageAble
 	{
 		if (ThisActor is PlayerActor)
 		{
+			DOTween.KillAll();
 			SceneManager.LoadScene("Lobby");
 		}
 	}

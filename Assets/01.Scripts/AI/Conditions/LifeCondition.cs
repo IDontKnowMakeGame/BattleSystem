@@ -9,7 +9,10 @@ namespace AI.Conditions
             var character = actorParam as CharacterActor;
             if (character == null)
                 return false;
-            var result = character.GetAct<CharacterStatAct>().ChangeStat.hp > floatParam;
+            var stat = character.GetAct<CharacterStatAct>();
+            var maxHp = stat.BaseStat.hp;
+            var hp = stat.ChangeStat.hp;
+            var result = (hp / maxHp) * 100 > floatParam;
             return result;
         }
     }

@@ -100,13 +100,12 @@ namespace Acts.Characters.Enemy
         private IEnumerator BackAttackCoroutine(Vector3 dir, bool isLast = false)
         {
             var character = ThisActor as CharacterActor;
-            var statInfo = character.GetAct<CharacterEquipmentAct>().CurrentWeapon.WeaponInfo;
             var move = ThisActor.GetAct<CharacterMove>();
             ForwardAttak(dir);
             yield return new WaitUntil(() => !character.HasState(CharacterState.Hold));
             move.Translate(-dir);
             yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
-            yield return new WaitForSeconds(statInfo.Afs);
+            yield return new WaitForSeconds(_defaultStat.Afs);
             if (ThisActor.Position.IsInBox(InGame.Player.Position, 3) == false)
             {
                 character.RemoveState(CharacterState.Attack);
@@ -166,12 +165,11 @@ namespace Acts.Characters.Enemy
         {
             var map = Define.GetManager<MapManager>();
             var characeter = ThisActor as CharacterActor;
-            var statInfo = characeter.GetAct<CharacterEquipmentAct>().CurrentWeapon.WeaponInfo;
             var move = ThisActor.GetAct<CharacterMove>();
-            yield return new WaitForSeconds(statInfo.Ats);
+            yield return new WaitForSeconds(_defaultStat.Ats);
             var distance = 3;
             var nextPos = ThisActor.Position - dir * distance;
-            while (map.IsStayable(nextPos) == false)
+            while (map.IsWalkable(nextPos) == false)
             {
                 distance--;
                 nextPos = ThisActor.Position - dir * distance;
@@ -180,14 +178,20 @@ namespace Acts.Characters.Enemy
             }
             move.Jump(nextPos);
             yield return new WaitUntil(() => !characeter.HasState(CharacterState.Move));
-            distance = 0;
-            while (map.IsStayable(nextPos) == true)
+            distance = 1;
+            nextPos = ThisActor.Position + dir * distance;
+            while (map.IsWalkable(nextPos) == true)
             {
                 distance++;
                 nextPos = ThisActor.Position + dir * distance;
             }
-            
 
+
+            for (var vec = ThisActor.Position; vec != nextPos; vec += dir)
+            {
+                Debug.Log(vec);
+                map.AttackBlock(vec, _defaultStat.Atk, _defaultStat.Ats, ThisActor, isLast);
+            }
         }
     }
 }

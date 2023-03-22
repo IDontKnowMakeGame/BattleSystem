@@ -82,6 +82,15 @@ using UnityEngine;
                          new Rect(rect.x, rect.y, EditorGUIUtility.currentViewWidth, EditorGUIUtility.singleLineHeight),
                          element.FindPropertyRelative("actorParam"), new GUIContent("This Actor"));
                      break;
+                 case Condition.LifeCondition:
+                     EditorGUI.PropertyField(
+                         new Rect(rect.x, rect.y, EditorGUIUtility.currentViewWidth, EditorGUIUtility.singleLineHeight),
+                         element.FindPropertyRelative("actorParam"), new GUIContent("This Actor"));
+                     rect.y += EditorGUIUtility.singleLineHeight + 2; // 라인 간격
+                     EditorGUI.PropertyField(
+                         new Rect(rect.x, rect.y, EditorGUIUtility.currentViewWidth, EditorGUIUtility.singleLineHeight),
+                         element.FindPropertyRelative("floatParam"), new GUIContent("Goal Perceent"));
+                     break;
              }
          };
          reorderableList.elementHeight = 150;

@@ -11,6 +11,8 @@ public class GreatSword : Weapon
 	
 	public float timer;
 	private float _half = 0;
+
+	private EventManager _eventManager => Define.GetManager<EventManager>();
 	public override void LoadWeaponClassLevel()
 	{
 		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("GreatSword");
@@ -42,8 +44,6 @@ public class GreatSword : Weapon
 	public override void Equiqment(CharacterActor actor)
 	{
 		base.Equiqment(actor);
-		if (isEnemy)
-			return;
 		InputManager<GreatSword>.OnAttackPress += AttakStart;
 		InputManager<GreatSword>.OnAttackHold += Hold;
 		InputManager<GreatSword>.OnAttackRelease += AttackRealease;
@@ -51,8 +51,6 @@ public class GreatSword : Weapon
 	public override void UnEquipment(CharacterActor actor)
 	{
 		base.UnEquipment(actor);
-		if (isEnemy)
-			return;
 		InputManager<GreatSword>.OnAttackPress -= AttakStart;
 		InputManager<GreatSword>.OnAttackHold -= Hold;
 		InputManager<GreatSword>.OnAttackRelease -= AttackRealease;
@@ -62,6 +60,8 @@ public class GreatSword : Weapon
 		if (_playerActor.HasState(CharacterState.Everything))
 			return;		
 
+		_eventManager.TriggerEvent(EventFlag.SliderInit, new EventParam { floatParam = WeaponInfo.Ats });
+		_eventManager.TriggerEvent(EventFlag.SliderFalse, new EventParam { boolParam = true });
 		_characterActor.AddState(CharacterState.Hold);
 		_attackInfo.ResetDir();
 		_currrentVector = vec;
@@ -73,6 +73,7 @@ public class GreatSword : Weapon
 		if (timer >= info.Ats)
 			return;
 		timer += Time.deltaTime;
+		_eventManager.TriggerEvent(EventFlag.SliderUp, new EventParam { floatParam = timer }) ;
 	}
 	public virtual void AttackRealease(Vector3 vec)
 	{
@@ -96,6 +97,7 @@ public class GreatSword : Weapon
 		_currrentVector = Vector3.zero;
 		_characterActor.GetAct<CharacterStatAct>().Half -= _half;
 		_characterActor.RemoveState(CharacterState.Hold);
+		_eventManager.TriggerEvent(EventFlag.SliderFalse, new EventParam { boolParam = false });
 	}
 
 	private void ChargeAnimation(Vector3 dir)

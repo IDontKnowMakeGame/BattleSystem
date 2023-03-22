@@ -1,16 +1,8 @@
-using Actors.Bases;
 using Actors.Characters;
-using Actors.Characters.Enemy;
 using Actors.Characters.Player;
 using Data;
 using Acts.Characters.Player;
-using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
-using UnityEditorInternal;
 using UnityEngine;
-using System;
-using Managements;
 
 public class Weapon : EquiqmentItem
 {
@@ -19,7 +11,7 @@ public class Weapon : EquiqmentItem
 		get
 		{
 			if (!isEnemy)
-				return info + _weaponClassLevelInfo + _weaponLevelInfo;
+				return info + _weaponClassLevelInfo + _weaponLevelInfo + _weaponBuffInfo;
 			else
 				return info;
 		}
@@ -29,20 +21,8 @@ public class Weapon : EquiqmentItem
 	protected bool _isCoolTime = false;
 	protected float _currentTimerSecound = 0f;
 	#endregion
-	public int a = 10;
 	public bool isEnemy = true;
-	protected CharacterActor _characterActor
-	{
-		get => aaa;
-		set
-		{
-			a = 12;
-			Debug.Log(value);
-			aaa = value;
-		}
-	}
-
-	public CharacterActor aaa;
+	protected CharacterActor _characterActor;
 	protected PlayerActor _playerActor = null;
 	protected PlayerAnimation _playerAnimation;
 
@@ -51,6 +31,7 @@ public class Weapon : EquiqmentItem
 
 	protected ItemInfo _weaponClassLevelInfo = new ItemInfo();
 	protected ItemInfo _weaponLevelInfo = new ItemInfo();
+	protected ItemInfo _weaponBuffInfo = new ItemInfo();
 
 	protected EventParam _eventParam = new EventParam();
 
@@ -64,6 +45,15 @@ public class Weapon : EquiqmentItem
 			LoadWeaponClassLevel();
 			LoadWeaponLevel();
 		}
+
+		if (isEnemy)
+			return;
+	}
+
+	public override void UnEquipment(CharacterActor actor)
+	{
+		if (isEnemy)
+			return;
 	}
 
 	/// <summary>

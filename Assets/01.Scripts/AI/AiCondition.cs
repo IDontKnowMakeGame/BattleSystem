@@ -9,6 +9,7 @@ namespace AI
         DistanceCondition,
         BesideCondition,
         AttackCondition,
+        LifeCondition,
     }
     [System.Serializable]
     public class AiCondition

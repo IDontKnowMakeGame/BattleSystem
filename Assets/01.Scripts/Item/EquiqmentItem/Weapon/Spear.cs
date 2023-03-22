@@ -13,14 +13,12 @@ public class Spear : Weapon
 	private bool _isAttack;
 	private bool _isEnterEnemy = true;
 	private bool _isDown = false;
-	private MapManager _mapManager;
+	private MapManager _mapManager => Define.GetManager<MapManager>();
 	private PlayerAnimation _playerAnimation;
 	private Vector3 _currentVec = Vector3.zero;
-
-	private Block _attackBlock => _mapManager.GetBlock(_characterActor.Position + _currentVec);
 	public override void Init()
 	{
-		_mapManager = Define.GetManager<MapManager>();
+
 	}
 
 	public override void LoadWeaponClassLevel()
@@ -65,8 +63,6 @@ public class Spear : Weapon
 	public override void Equiqment(CharacterActor actor)
 	{
 		base.Equiqment(actor);
-		if (isEnemy)
-			return;
 
 		_playerAnimation = _playerActor.GetAct<PlayerAnimation>();
 
@@ -79,30 +75,35 @@ public class Spear : Weapon
 	public override void UnEquipment(CharacterActor actor)
 	{
 		base.UnEquipment(actor);
-		if (isEnemy)
-			return;
 		InputManager<Spear>.OnAttackPress -= Attack;
 	}
 	public override void Update()
 	{
-		if (_isDown && _attackBlock.IsActorOnBlock && _isEnterEnemy)
+		if (_isDown)
+			Debug.DrawLine(_characterActor.transform.position, _characterActor.transform.position + _currentVec, Color.red);
+		if (_isDown && _isEnterEnemy && _mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock)
 		{
+			Debug.Log("엥");
 			_eventParam.attackParam = _attackInfo;
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
 			_isEnterEnemy = false;
 		}
-		else if (!_attackBlock.IsActorOnBlock && !_isEnterEnemy)
+		else if (!_isEnterEnemy && !_mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock)
 			_isEnterEnemy = true;
+
+		Debug.Log("창내림 : " + _isDown);
+		Debug.Log("때릴 수 있음 : " + _isEnterEnemy);
+		Debug.Log("공격 칸 위에 있는 적 : " + _mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock);
 	}
 
 	public virtual void Attack(Vector3 vec)
 	{
-		if(!_isAttack && !_isDown)
+		if (!_isAttack && !_isDown)
 		{
 			_isAttack = true;
 			_characterActor.StartCoroutine(AttackCorutine(vec));
 		}
-		else if(_isAttack && _isDown && vec ==_currentVec)
+		else if (_isAttack && _isDown && vec == _currentVec)
 		{
 			_isAttack = false;
 			_characterActor.StartCoroutine(AttackUpCorutine(vec));
