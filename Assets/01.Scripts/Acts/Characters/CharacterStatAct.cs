@@ -71,7 +71,7 @@ public class CharacterStatAct : Act, IDmageAble
 
 		if (ThisActor is PlayerActor)
 		{
-            UIManager.Instance.InGame.ChanageMaxHP((int)_basicStat.hp / 10);
+            //UIManager.Instance.InGame.ChanageMaxHP((int)_basicStat.hp / 10);
         }
 			
 	}
