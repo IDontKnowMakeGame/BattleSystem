@@ -88,7 +88,7 @@ public class Spear : Weapon
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
 			_isEnterEnemy = false;
 		}
-		else if (!_isEnterEnemy &&_isDown && !_mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock)
+		else if (!_isEnterEnemy && !_mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock)
 			_isEnterEnemy = true;
 
 		Debug.Log("창내림 : " + _isDown);
