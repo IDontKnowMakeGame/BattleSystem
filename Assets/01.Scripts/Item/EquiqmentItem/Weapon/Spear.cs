@@ -83,9 +83,8 @@ public class Spear : Weapon
 			Debug.DrawLine(_characterActor.transform.position, _characterActor.transform.position + _currentVec, Color.red);
 		if (_isDown && _isEnterEnemy && _mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock)
 		{
-			Debug.Log("엥");
 			_eventParam.attackParam = _attackInfo;
-			Define.GetManager<EventManager>().TriggerEvent(EventFlag.NoneAniAttack, _eventParam);
+			Define.GetManager<EventManager>().TriggerEvent(EventFlag.FureAttack, _eventParam);
 			_isEnterEnemy = false;
 		}
 		else if (!_isEnterEnemy && !_mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock)

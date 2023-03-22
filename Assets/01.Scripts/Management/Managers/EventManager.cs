@@ -33,6 +33,7 @@ public enum EventFlag
 	UnsetWeapon,
 	Attack,
 	NoneAniAttack,
+	FureAttack
 }
 public class EventManager : Manager
 {

@@ -31,6 +31,7 @@ namespace Acts.Characters.Player
             base.Start();
             Define.GetManager<EventManager>().StartListening(EventFlag.Attack, Attack);
             Define.GetManager<EventManager>().StartListening(EventFlag.NoneAniAttack, NoneAniAttack);
+            Define.GetManager<EventManager>().StartListening(EventFlag.FureAttack, FureAttack);
             _playerAnimation = ThisActor.GetAct<PlayerAnimation>();
             _playerActor = InGame.Player.GetComponent<PlayerActor>();
             _playerEquipment = _playerActor.GetAct<PlayerEquipment>();
@@ -58,7 +59,6 @@ namespace Acts.Characters.Player
 
             if(enemys.Count > 0)
             {
-                Debug.Log(attackInfo.ReachFrame);
                 _playerAnimation.curClip.SetEventOnFrame(attackInfo.ReachFrame, Attack);
             }
 
@@ -67,13 +67,13 @@ namespace Acts.Characters.Player
 
         private void Attack()
         {
+            Debug.Log("Çה");
             foreach (EnemyActor enemy in enemys)
             {
-                Debug.Log(enemy.name);
                 GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Damage");
                 obj.GetComponent<DamagePopUp>().DamageText((ThisActor as CharacterActor).currentWeapon.WeaponInfo.Atk, enemy.transform.position);
             }
-			_playerAnimation.curClip.events.Clear();
+			_playerAnimation.curClip.events?.Clear();
 		}
         
         public override void ReadyAttackAnimation(AttackInfo attackInfo)
@@ -122,6 +122,16 @@ namespace Acts.Characters.Player
             AttackCheck(eventParam.attackParam);
         }
 
+        private void FureAttack(EventParam eventParam)
+        {
+			enemys.Clear();
+
+			attackCol.SetAttackCol(eventParam.attackParam);
+
+			if (attackCol.CurrntDirNearEnemy() != null)
+				enemys.Add(attackCol.CurrntDirNearEnemy());
+			Attack();
+        }
         private void ColParentRotate()
         {
             Vector3 cameraDir = InGame.CameraDir();
