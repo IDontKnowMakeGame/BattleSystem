@@ -66,10 +66,10 @@ public class GreatSword : Weapon
 		_attackInfo.ResetDir();
 		_currrentVector = vec;
 		ChargeAnimation(_currrentVector);
-	}
+        _characterActor.GetAct<CharacterStatAct>().Half += _half;
+    }
 	public virtual void Hold(Vector3 vec)
 	{
-		_characterActor.GetAct<CharacterStatAct>().Half += _half;
 		if (timer >= info.Ats)
 			return;
 		timer += Time.deltaTime;
