@@ -42,7 +42,7 @@ namespace Acts.Characters
 
             var map = Define.GetManager<MapManager>();
 
-            if (map.IsStayable(nextPos.SetY(0)))
+            if (!map.IsStayable(nextPos.SetY(0)))
             {
                 MoveStop();
                 return;
