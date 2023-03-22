@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public UIInventory Inventory = new UIInventory();
     public UIItemStore ItemStore = new UIItemStore();
     public UISmithy Smithy = new UISmithy();
+    public UIBossBar BossBar = new UIBossBar();
 
     public ItemStoreTableSO itemStoreTable;
 
@@ -43,6 +44,7 @@ public class UIManager : MonoBehaviour
         Inventory.Init();
         ItemStore.Init();
         Smithy.Init();
+        BossBar.Init();
     }
 
     private void Update()
@@ -60,5 +62,4 @@ public class UIManager : MonoBehaviour
             Smithy.ShowSmithy();
         }
     }
-
 }
