@@ -188,6 +188,7 @@ public class UIInventory : UIBase
             Define.GetManager<DataManager>().EquipUsableItem(id, equipNum);
 
         EquipWeaponBoxImage();
+        Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponEquip, new EventParam());
     }
     public void EquipItemBox(VisualElement card,int equipNum)
     {
