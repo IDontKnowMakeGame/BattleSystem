@@ -16,9 +16,10 @@ public class PlayerEquipment : CharacterEquipmentAct
 	private PlayerAnimation _playerAnimation;
 	public override void Start()
 	{
-		base.Start();
 		_playerActor = _characterController as PlayerActor;
 		_playerAnimation = ThisActor.GetAct<PlayerAnimation>();
+		EquipAnimation();
+		base.Start();
 		InputManager<Weapon>.OnChangePress += Change;
 		InputManager<Weapon>.OnChangePress += () =>
 		{
@@ -26,7 +27,6 @@ public class PlayerEquipment : CharacterEquipmentAct
 		};
 		InputManager<Weapon>.OnSkillPress += Skill;
 		Define.GetManager<EventManager>().StartListening(EventFlag.WeaponEquip, EquipmentWeapon);
-		EquipAnimation();
 	}
 
 	public override void Update()
@@ -38,7 +38,6 @@ public class PlayerEquipment : CharacterEquipmentAct
 	{
 		if (_playerActor.HasAnyState()) return;
 		base.Change();
-		EquipAnimation();
 	}
 
 	#region Equipment
@@ -89,7 +88,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 	{
 		CurrentWeapon?.Skill();
 	}
-	private void EquipAnimation()
+	protected override void EquipAnimation()
 	{
 		_playerActor.AddState(CharacterState.Equip);
 
