@@ -16,6 +16,8 @@ public class PlayerEquipment : CharacterEquipmentAct
 	private PlayerAnimation _playerAnimation;
 	public override void Start()
 	{
+		_firstWeapon = DataManager.UserData_.firstWeapon;
+		_secondWeapon = DataManager.UserData_.secondWeapon;
 		_playerActor = _characterController as PlayerActor;
 		_playerAnimation = ThisActor.GetAct<PlayerAnimation>();
 		EquipAnimation();
