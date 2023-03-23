@@ -95,6 +95,7 @@ public class CharacterEquipmentAct : Act
 
 	public override void Start()
 	{
+		Debug.Log(CurrentWeapon);
 		CurrentWeapon?.Equiqment(_characterController);
 	}
 
