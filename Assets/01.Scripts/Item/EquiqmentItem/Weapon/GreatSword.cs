@@ -70,6 +70,8 @@ public class GreatSword : Weapon
     }
 	public virtual void Hold(Vector3 vec)
 	{
+		if (!_characterActor.HasState(CharacterState.Hold))
+			return;
 		if (timer >= info.Ats)
 			return;
 		timer += Time.deltaTime;
@@ -77,7 +79,10 @@ public class GreatSword : Weapon
 	}
 	public virtual void AttackRealease(Vector3 vec)
 	{
-		if(timer >= info.Ats)
+		if (!_characterActor.HasState(CharacterState.Hold))
+			return;
+
+		if (timer >= info.Ats)
 		{
 			_attackInfo.SizeX = 1;
 			_attackInfo.SizeZ = 1;
