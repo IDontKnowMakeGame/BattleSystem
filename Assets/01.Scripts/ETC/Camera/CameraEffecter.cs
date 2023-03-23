@@ -6,8 +6,6 @@ using UnityEngine;
 public class CameraEffecter : MonoBehaviour
 {
     private CinemachineVirtualCamera _cvCam;
-    [SerializeField]
-    private float value;
 
     private bool _isCameraAction;
 
@@ -51,7 +49,7 @@ public class CameraEffecter : MonoBehaviour
     public void ZoomOut()
     {
         StopAllCoroutines();
-        StartCoroutine(ZoomInOut(60, 0.002f));
+        StartCoroutine(ZoomInOut(40, 0.002f));
     }
     private IEnumerator ZoomInOut(float value, float smoothTime)
     {
