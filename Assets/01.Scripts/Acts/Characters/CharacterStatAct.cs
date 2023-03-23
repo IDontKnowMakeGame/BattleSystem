@@ -95,6 +95,7 @@ public class CharacterStatAct : Act, IDmageAble
         {
             float value = (ChangeStat.hp / BaseStat.hp) * 100;
             UIManager.Instance.InGame.ChangeCurrentHP((int)value);
+			Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, new EventParam());
         }
     }
 
