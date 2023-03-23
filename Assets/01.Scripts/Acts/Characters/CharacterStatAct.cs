@@ -8,6 +8,7 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Actors.Characters.Enemy;
 
 [Serializable]
 public class CharacterStat
@@ -95,6 +96,16 @@ public class CharacterStatAct : Act, IDmageAble
         {
             float value = (ChangeStat.hp / BaseStat.hp) * 100;
             UIManager.Instance.InGame.ChangeCurrentHP((int)value);
+			EventParam eventParam = new EventParam();
+			eventParam.intParam = 0;
+			Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam);
+        }
+        if (ThisActor is EnemyActor)
+        {
+			Debug.Log("asd");
+            EventParam eventParam = new EventParam();
+            eventParam.intParam = 1;
+            Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam);
         }
     }
 
