@@ -67,13 +67,11 @@ namespace Acts.Characters.Player
 
         private void Attack()
         {
-            Debug.Log("Çה");
             foreach (EnemyActor enemy in enemys)
             {
                 GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Damage");
                 obj.GetComponent<DamagePopUp>().DamageText((ThisActor as CharacterActor).currentWeapon.WeaponInfo.Atk, enemy.transform.position);
             }
-			_playerAnimation.curClip.events?.Clear();
 		}
         
         public override void ReadyAttackAnimation(AttackInfo attackInfo)
@@ -131,7 +129,8 @@ namespace Acts.Characters.Player
 			if (attackCol.CurrntDirNearEnemy() != null)
 				enemys.Add(attackCol.CurrntDirNearEnemy());
 			Attack();
-        }
+			_playerAnimation.curClip.events?.Clear();
+		}
         private void ColParentRotate()
         {
             Vector3 cameraDir = InGame.CameraDir();
