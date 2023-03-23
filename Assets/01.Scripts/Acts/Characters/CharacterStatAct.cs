@@ -85,7 +85,7 @@ public class CharacterStatAct : Act, IDmageAble
 			if(actor is PlayerActor)
 			{
 				PlayerActor player = actor as PlayerActor;
-				Define.GetManager<DataManager>().AddWeaponClassKillData(player.currentWeapon.info.Name);
+				Define.GetManager<DataManager>().AddWeaponClassKillData(player.currentWeapon.info.Class);
 
 				player.GetAct<PlayerEquipment>().CurrentWeapon.LoadWeaponClassLevel();
 			}
