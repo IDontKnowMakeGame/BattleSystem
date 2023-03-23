@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Core;
+using DG.Tweening;
 using Managements.Managers;
 using UnityEngine;
 
@@ -188,6 +189,17 @@ namespace Managements
             {
                 manager.OnDestroy();
             }
+        }
+        
+        public void MoveScene(string sceneName)
+        {
+            foreach (var manager in _managers.Values)
+            {
+                manager.OnDestroy();
+            }
+            _managers.Clear();
+            DOTween.KillAll();
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
         }
     }
 }

@@ -15,6 +15,10 @@ namespace Blocks
         private int z;
 
         public bool isWalkable = false;
+        public void SetWalkable(bool value)
+        {
+            isWalkable = value;
+        }
         public bool canEnemyEnter = true;
         public bool canBossEnter = false;
         private int g;
