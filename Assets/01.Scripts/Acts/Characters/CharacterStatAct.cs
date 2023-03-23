@@ -103,6 +103,8 @@ public class CharacterStatAct : Act, IDmageAble
         if (ThisActor is EnemyActor)
         {
 			Debug.Log("asd");
+            float value = (ChangeStat.hp / BaseStat.hp) * 100;
+            UIManager.Instance.BossBar.ChangeBossBarValue((int)value);
             EventParam eventParam = new EventParam();
             eventParam.intParam = 1;
             Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam);
