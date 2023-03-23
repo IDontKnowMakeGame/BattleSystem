@@ -10,7 +10,7 @@ public class Bow : Weapon
 
 	public override void LoadWeaponClassLevel()
 	{
-		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("TwinSword");
+		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("Bow");
 		switch (KillToLevel(level.killedCount))
 		{
 			case 1:

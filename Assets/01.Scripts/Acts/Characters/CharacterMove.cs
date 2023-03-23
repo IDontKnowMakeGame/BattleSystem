@@ -38,14 +38,17 @@ namespace Acts.Characters
             var currentPos = ThisActor.Position;
             var nextPos = position;
             nextPos.y = 1;
+            
 
             var map = Define.GetManager<MapManager>();
 
-            if (map.GetBlock(nextPos.SetY(0)) == null || InGame.GetActor(nextPos.SetY(0)) != null)
+            if (!map.IsStayable(nextPos.SetY(0)))
             {
                 MoveStop();
                 return;
             }
+            
+            map.GetBlock(nextPos.SetY(0)).isWalkable = false;
 
             MoveAnimation();
 
@@ -56,6 +59,7 @@ namespace Acts.Characters
             {
                 ThisActor.Position = nextPos;
                 _isMoving = false;
+                map.GetBlock(nextPos.SetY(0)).isWalkable = true;
                 MoveStop();
                 seq.Kill();
             });
@@ -69,15 +73,17 @@ namespace Acts.Characters
             var currentPos = ThisActor.Position;
             var nextPos = position;
             nextPos.y = 1;
-
+            
             var map = Define.GetManager<MapManager>();
-
+            
             if (map.GetBlock(nextPos.SetY(0)) == null)
             {
                 MoveStop();
                 return;
             }
 
+            map.GetBlock(nextPos.SetY(0)).isWalkable = false;
+            
             MoveAnimation();
 
             ThisActor.StartCoroutine(PositionUpdateCoroutine());
@@ -87,6 +93,7 @@ namespace Acts.Characters
             seq.AppendCallback(() =>
             {
                 ThisActor.Position = nextPos;
+                map.GetBlock(nextPos.SetY(0)).isWalkable = true;
                 _isMoving = false;
                 MoveStop();
                 seq.Kill();
