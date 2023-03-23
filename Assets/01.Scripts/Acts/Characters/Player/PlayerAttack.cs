@@ -67,10 +67,12 @@ namespace Acts.Characters.Player
 
         private void Attack()
         {
+            var character = ThisActor as CharacterActor;
             foreach (EnemyActor enemy in enemys)
             {
                 GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Damage");
-                obj.GetComponent<DamagePopUp>().DamageText((ThisActor as CharacterActor).currentWeapon.WeaponInfo.Atk, enemy.transform.position);
+                obj.GetComponent<DamagePopUp>().DamageText(character.currentWeapon.WeaponInfo.Atk, enemy.transform.position);
+                enemy.GetAct<CharacterStatAct>().Damage(character.currentWeapon.WeaponInfo.Atk, ThisActor);
             }
 		}
         
