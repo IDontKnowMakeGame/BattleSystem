@@ -47,6 +47,8 @@ namespace Acts.Characters
                 MoveStop();
                 return;
             }
+            
+            map.GetBlock(nextPos.SetY(0)).isWalkable = false;
 
             MoveAnimation();
 
@@ -57,6 +59,7 @@ namespace Acts.Characters
             {
                 ThisActor.Position = nextPos;
                 _isMoving = false;
+                map.GetBlock(nextPos.SetY(0)).isWalkable = true;
                 MoveStop();
                 seq.Kill();
             });

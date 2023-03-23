@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterMove.cs" afterDir="false" />
-    </list>
+    <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,7 +107,7 @@
       <workItem from="1679391119433" duration="6144000" />
       <workItem from="1679411461507" duration="1709000" />
       <workItem from="1679478245992" duration="6186000" />
-      <workItem from="1679494199307" duration="3321000" />
+      <workItem from="1679494199307" duration="3346000" />
     </task>
     <servers />
   </component>

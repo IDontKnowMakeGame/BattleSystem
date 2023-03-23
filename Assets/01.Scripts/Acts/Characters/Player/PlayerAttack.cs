@@ -106,6 +106,7 @@ namespace Acts.Characters.Player
 
         private void FinishAttack()
         {
+            Debug.Log("왜 안나감");
             _playerActor.RemoveState(Actors.Characters.CharacterState.Attack);
             _playerAnimation.curClip.events.Clear();
         }
