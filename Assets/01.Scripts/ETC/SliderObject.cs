@@ -56,7 +56,11 @@ public class SliderObject : MonoBehaviour
 		else
 		{
 			_chargeValue = (eventParam.floatParam / _maxChargeValue) * 100f;
-			vec.y = (_maxYScalevalue * _chargeValue) / 100f;
+
+			if (float.IsInfinity(_chargeValue))
+				_chargeValue = 0;
+
+			vec.y = _maxYScalevalue * Mathf.Floor(_chargeValue) / 100f;
 			_slider.transform.localScale = vec;
 		}
 	}

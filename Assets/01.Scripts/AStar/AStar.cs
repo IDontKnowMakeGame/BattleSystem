@@ -15,6 +15,7 @@ public class Astar
 
     public IEnumerator FindPath()
     {
+        route.Clear();
 
         bool pathSuccess = false;
 

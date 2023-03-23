@@ -122,6 +122,8 @@ namespace Acts.Characters.Enemy
                 character.AddState(CharacterState.Hold);
                 ThisActor.StartCoroutine(ResetHoldCoroutine());
             }
+
+            ThisActor.StartCoroutine(BackAttackCoroutine(dir, isLast));
         }
 
         private IEnumerator BackAttackCoroutine(Vector3 dir, bool isLast = false)
