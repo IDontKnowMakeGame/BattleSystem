@@ -24,7 +24,7 @@ namespace Blocks
         private int g;
         private int h;
 
-        private Block parent;
+        private Block parent = null;
 
 
         public GameObject TileOBJ { get => tileOBJ; }
