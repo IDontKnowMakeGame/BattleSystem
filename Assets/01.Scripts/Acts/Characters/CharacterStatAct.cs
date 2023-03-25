@@ -85,7 +85,7 @@ public class CharacterStatAct : Act, IDmageAble
 			if(actor is PlayerActor)
 			{
 				PlayerActor player = actor as PlayerActor;
-				Define.GetManager<DataManager>().AddWeaponClassKillData(player.currentWeapon.info.Name);
+				Define.GetManager<DataManager>().AddWeaponClassKillData(player.currentWeapon.info.Class);
 
 				player.GetAct<PlayerEquipment>().CurrentWeapon.LoadWeaponClassLevel();
 			}
@@ -102,7 +102,8 @@ public class CharacterStatAct : Act, IDmageAble
         }
         if (ThisActor is EnemyActor)
         {
-			Debug.Log("asd");
+            float value = (ChangeStat.hp / BaseStat.hp) * 100;
+            UIManager.Instance.BossBar.ChangeBossBarValue((int)value);
             EventParam eventParam = new EventParam();
             eventParam.intParam = 1;
             Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam);

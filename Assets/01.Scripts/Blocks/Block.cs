@@ -24,7 +24,7 @@ namespace Blocks
         private int g;
         private int h;
 
-        private Block parent;
+        private Block parent = null;
 
 
         public GameObject TileOBJ { get => tileOBJ; }
@@ -119,7 +119,7 @@ namespace Blocks
         private IEnumerator AttackCoroutine(float damage, Color color, float delay, Actor attacker, bool isLast = false)
         {
             var character = attacker as CharacterActor;
-            var originalColor = _blockRender.GetMainColor();
+            var originalColor = Color.black;
             _blockRender.SetMainColor(color);
             yield return new WaitForSeconds(delay);
             _blockRender.SetMainColor(originalColor);

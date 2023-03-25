@@ -62,4 +62,9 @@ public class UIManager : MonoBehaviour
             Smithy.ShowSmithy();
         }
     }
+
+    public  void show(string name)
+    {
+        BossBar.ShowBossBar(name);
+    }
 }
