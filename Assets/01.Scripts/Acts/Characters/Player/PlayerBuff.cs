@@ -77,8 +77,8 @@ namespace Acts.Characters.Player
             {
                 angerDecrease = true;
                 decreaseAngerTimer = decreaseTime;
-                //_playerStat.multistat.Atk += 1;
-                //ThisBase.GetBehaviour<PlayerStat>().Half += 50;
+                _playerStat.Multi(StatType.ATK, 2);
+                _playerStat.Half += 50;
                 angerParticle.gameObject.SetActive(true);
             }
             if (angerDecrease)
@@ -87,8 +87,8 @@ namespace Acts.Characters.Player
                 {
                     anger = 0;
                     angerDecrease = false;
-                    //_playerStat.multistat.Atk -= 1;
-                    //ThisBase.GetBehaviour<PlayerStat>().Half -= 50;
+                    _playerStat.Dev(StatType.ATK, 2);
+                    _playerStat.Half -= 50;
                     angerParticle.gameObject.SetActive(false);
                     return;
                 }
@@ -120,8 +120,8 @@ namespace Acts.Characters.Player
             {
                 adneralineDecrease = true;
                 decreaseAdneralineTimer = decreaseTime;
-                //_playerStat.multistat.Atk += 0.5f;
-                //_playerStat.addstat.Agi += 1;
+                _playerStat.Multi(StatType.ATK, 0.5f);
+                _playerStat.Plus(StatType.SPEED, 1);
                 adneralineParticle.gameObject.SetActive(true);
             }
             if (adneralineDecrease)
@@ -130,8 +130,8 @@ namespace Acts.Characters.Player
                 {
                     adneraline = 0;
                     adneralineDecrease = false;
-                    //_playerStat.multistat.Atk -= 0.5f;
-                    //_playerStat.addstat.Agi -= 1;
+                    _playerStat.Dev(StatType.ATK, 0.5f);
+                    _playerStat.Sub(StatType.SPEED, 1);
                     adneralineParticle.gameObject.SetActive(false);
                     return;
                 }
