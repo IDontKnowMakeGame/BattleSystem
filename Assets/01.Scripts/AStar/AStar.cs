@@ -127,7 +127,7 @@ public class Astar
             {
                 if (route.Count > 1000)
                 {
-                    Debug.LogError("ÀÌÁ¤µµ°¡ ³ª¿Ã¼ö°¡ ¾ø´Âµ¥..");
+                    Debug.LogError("ì´ì •ë„ê°€ ë‚˜ì˜¬ìˆ˜ê°€ ì—†ëŠ”ë°..");
                     break;
                 }
                 route.Push(currentTile);

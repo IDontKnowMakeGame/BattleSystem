@@ -13,21 +13,25 @@ namespace Actors.Characters.Enemy.CrazyGhost
         protected override void Init()
         {
             base.Init(); 
-            var move = AddAct<CharacterMove>();
-            var attack = AddAct<EnemyAttack>();
-            
-            var idle = _enemyAi.AddState<IdleState>();
-            idle.SetTarget<ChaseState>();
-            
-            var chase = _enemyAi.AddState<ChaseState>();
+            AddAct(_enemyAi);
+            AddAct<CharacterMove>();
+            AddAct<EnemyAttack>();
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            var move = GetAct<CharacterMove>();
+            var attack = GetAct<EnemyAttack>();
+            var chase = _enemyAi.GetState<ChaseState>();
             chase.OnStay += () =>
             {
                 move.Chase(InGame.Player);
             };
-            chase.SetTarget<RandomState>();
+            
+            var random = _enemyAi.GetState<RandomState>();
 
-            var random = _enemyAi.AddState<RandomState>();
-            random.RandomList.Add(() =>
+            random.RandomList.Add(() => 
             {
                 var dir = InGame.Player.Position - Position;
                 attack.ForwardAttack(dir, true);
@@ -42,23 +46,6 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 var dir = InGame.Player.Position - Position;
                 attack.TripleAttack(dir, true);
             });
-            random.RandomList.Add(() =>
-            {
-                if (IsSecondPhase() == false)
-                {
-                    _enemyAi.InitState<ChaseState>();
-                    return;
-                }
-                var dir = InGame.Player.Position - Position;
-                attack.SoulAttack(dir, true);
-            });
-            random.SetTarget<WaitState>();
-
-            var wait = _enemyAi.AddState<WaitState>();
-            wait.SetTarget<ChaseState>();
-
-            _enemyAi.InitState<IdleState>();
-            AddAct(_enemyAi);
         }
     }
 }

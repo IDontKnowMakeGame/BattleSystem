@@ -3,7 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Blocks/Block.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Blocks/Block.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/AiCondition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/AiCondition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/AiState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/AiState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/AiTransition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/AiTransition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/AttackCondition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/AttackCondition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/BesideCondition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/BesideCondition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/LifeCondition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/LifeCondition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/TimeCondition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/TimeCondition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AStar/AStar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AStar/AStar.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/CrazyGhost/CrazyGhostActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/CrazyGhost/CrazyGhostActor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/EnemyActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/EnemyActor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAttack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Editor.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Editor/PropertyHolderEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Editor/PropertyHolderEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefabs/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/KHJScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/KHJScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,11 +31,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4746c126b0b54f3b834845974d1a9190159000/82/cd09b53c/Vector3.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/4746c126b0b54f3b834845974d1a9190159000/8d/8684ffc0/02000217.il" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4746c126b0b54f3b834845974d1a9190159000/68/5f43c607/PropertyAttribute.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4746c126b0b54f3b834845974d1a9190159000/c2/2a78ef3d/ContextMenuItemAttribute.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/44/c34d5f03/Attribute.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/7e/ec4312ad/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/AI/AiConditionHolder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/BesideCondition.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterStatAct.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/Editor/PropertyHolderEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@12.1.8/Editor/Data/Graphs/SerializableTexture.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -112,6 +132,7 @@
       <workItem from="1679478245992" duration="6186000" />
       <workItem from="1679494199307" duration="3346000" />
       <workItem from="1679531151593" duration="2006000" />
+      <workItem from="1679739331135" duration="12981000" />
     </task>
     <servers />
   </component>
