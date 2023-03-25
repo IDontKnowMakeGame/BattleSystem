@@ -1,4 +1,5 @@
 using Actors.Characters;
+using Actors.Characters.Player;
 using Core;
 using Managements.Managers;
 using System.Collections;
@@ -7,7 +8,6 @@ using UnityEngine;
 
 public class Bow : Weapon
 {
-
 	public override void LoadWeaponClassLevel()
 	{
 		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("Bow");
@@ -50,7 +50,7 @@ public class Bow : Weapon
 
 	public virtual void Shoot(Vector3 vec)
 	{
-		GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Arrow");
-		//Arrow arrow = obj.GetComponent();
+		//TODO 이거 애니메이션 끝나고 넣어주는 함수
+		Arrow.ShootArrow(vec, _characterActor.Position, _characterActor, info.Afs, info.Atk, 6);
 	}
 }
