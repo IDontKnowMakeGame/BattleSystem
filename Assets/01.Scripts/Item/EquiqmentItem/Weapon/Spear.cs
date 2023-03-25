@@ -14,15 +14,7 @@ public class Spear : Weapon
 	private bool _isEnterEnemy = true;
 	private bool _isDown = false;
 	private MapManager _mapManager => Define.GetManager<MapManager>();
-	private PlayerAnimation _playerAnimation;
 	private Vector3 _currentVec = Vector3.zero;
-	public override void Init()
-	{
-		InputManager<Spear>.ChangeKeyCode(KeyboardInput.AttackForward, KeyCode.W);
-		InputManager<Spear>.ChangeKeyCode(KeyboardInput.AttackBackward, KeyCode.S);
-		InputManager<Spear>.ChangeKeyCode(KeyboardInput.AttackLeft, KeyCode.A);
-		InputManager<Spear>.ChangeKeyCode(KeyboardInput.AttackRight, KeyCode.D);
-	}
 
 	public override void LoadWeaponClassLevel()
 	{
@@ -87,7 +79,6 @@ public class Spear : Weapon
 
 		if (_isDown && _isEnterEnemy && _mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock)
 		{
-			Debug.Log("엥");
 			_eventParam.attackParam = _attackInfo;
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.FureAttack, _eventParam);
 			_isEnterEnemy = false;
