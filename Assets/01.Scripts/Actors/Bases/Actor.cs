@@ -7,7 +7,7 @@ namespace Actors.Bases
 {
     public class Actor : MonoBehaviour
     {
-        public int UUID => GetInstanceID();
+        public int UUID => gameObject.GetInstanceID();
         private Dictionary<Type, Act> _behaviours = new();
         [SerializeField] private Vector3 position = Vector3.zero;
         protected Transform spriteTransform;
