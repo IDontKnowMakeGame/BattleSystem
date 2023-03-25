@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Acts.Base;
+using Core;
 
 namespace Actors.Bases
 {
@@ -31,6 +32,7 @@ namespace Actors.Bases
             //Add or Init Acts
             Position = transform.position;
             spriteTransform = this.GetComponentInChildren<MeshRenderer>().transform;
+            InGame.AddActor(this);
         }
 
         protected virtual void Awake()
