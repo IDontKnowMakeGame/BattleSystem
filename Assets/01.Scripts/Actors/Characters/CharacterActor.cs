@@ -16,7 +16,7 @@ namespace Actors.Characters
         Attack = 1 << 1,
         Skill = 1 << 2,
         Hold = 1 << 3,
-        StopMove = 1 << 4,
+        StopMove = 1 << 4,              
         Stun = 1 << 5,
         Equip = 1 << 6,
         Everything = ~None,
@@ -37,7 +37,6 @@ namespace Actors.Characters
 
         protected override void Awake()
         {
-            InGame.AddActor(this);
             base.Awake();
         }
 
