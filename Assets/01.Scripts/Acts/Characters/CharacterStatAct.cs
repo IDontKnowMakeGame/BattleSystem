@@ -38,6 +38,15 @@ public class CharacterStat
 	}
 }
 
+public enum StatType
+{
+	HP,
+	ATK,
+	ATS,
+	AFS,
+	SPEED
+}
+
 [Serializable]
 public class CharacterStatAct : Act, IDmageAble
 {
@@ -116,6 +125,94 @@ public class CharacterStatAct : Act, IDmageAble
 		{
 			DOTween.KillAll();
 			SceneManager.LoadScene("Lobby");
+		}
+	}
+
+	public void Dev(StatType type, float times)
+	{
+		switch(type)
+		{
+			case StatType.HP:
+				ChangeStat.hp /= times;
+				break;
+			case StatType.ATK:
+				ChangeStat.atk /= times;
+				break;
+			case StatType.ATS:
+				ChangeStat.ats /= times;
+				break;
+			case StatType.AFS:
+				ChangeStat.afs /= times;
+				break;
+			case StatType.SPEED:
+				ChangeStat.speed /= times;
+				break;
+		}	
+	}
+
+	public void Multi(StatType type, float times)
+	{
+		switch (type)
+		{
+			case StatType.HP:
+				ChangeStat.hp *= times;
+				break;
+			case StatType.ATK:
+				ChangeStat.atk *= times;
+				break;		   
+			case StatType.ATS: 
+				ChangeStat.ats *= times;
+				break;		   
+			case StatType.AFS: 
+				ChangeStat.afs *= times;
+				break;
+			case StatType.SPEED:
+				ChangeStat.speed *= times;
+				break;
+		}
+	}
+
+	public void Plus(StatType type, float add)
+	{
+		switch (type)
+		{
+			case StatType.HP:
+				ChangeStat.hp += add;
+				break;
+			case StatType.ATK:
+				ChangeStat.atk += add;
+				break;
+			case StatType.ATS:
+				ChangeStat.ats += add;
+				break;
+			case StatType.AFS:
+				ChangeStat.afs += add;
+				break;
+			case StatType.SPEED:
+				ChangeStat.speed += add;
+				break;
+		}
+	}
+
+	public void Sub(StatType type, float min)
+	{
+		switch (type)
+		{
+			case StatType.HP:
+				ChangeStat.hp -= min;
+				break;
+			case StatType.ATK:
+				ChangeStat.atk -= min;
+				break;		   
+			case StatType.ATS: 
+				ChangeStat.ats -= min;
+				break;		   
+			case StatType.AFS: 
+				ChangeStat.afs -= min;
+				break;
+			case StatType.SPEED:
+				ChangeStat.speed -= min;
+				break;
 		}
 	}
 }
