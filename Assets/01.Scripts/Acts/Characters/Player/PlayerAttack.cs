@@ -132,7 +132,7 @@ namespace Acts.Characters.Player
 			if (attackCol.CurrntDirNearEnemy() != null)
 				enemys.Add(attackCol.CurrntDirNearEnemy());
 			Attack();
-			_playerAnimation.curClip.events?.Clear();
+			attackCol.AllReset();
 		}
         private void ColParentRotate()
         {

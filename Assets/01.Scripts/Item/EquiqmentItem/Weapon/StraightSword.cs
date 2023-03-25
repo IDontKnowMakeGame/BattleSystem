@@ -53,6 +53,7 @@ public class StraightSword : Weapon
 	{
 		_attackInfo.SizeX = 1;
 		_attackInfo.SizeZ = 1;
+		_attackInfo.ReachFrame = 5;
 		_attackInfo.PressInput = vec;
 		_attackInfo.ResetDir();
 		_attackInfo.AddDir(_attackInfo.DirTypes(vec));

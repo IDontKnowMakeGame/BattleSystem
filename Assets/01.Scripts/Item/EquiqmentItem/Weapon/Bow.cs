@@ -45,7 +45,7 @@ public class Bow : Weapon
 	public override void UnEquipment(CharacterActor actor)
 	{
 		base.UnEquipment(actor);
-		InputManager<TwinSword>.OnMovePress -= Shoot;
+		InputManager<TwinSword>.OnAttackPress -= Shoot;
 	}
 
 	public virtual void Shoot(Vector3 vec)

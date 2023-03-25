@@ -57,7 +57,7 @@ public class GreatSword : Weapon
 	}
 	public virtual void AttakStart(Vector3 vec)
 	{
-		if (_playerActor.HasState(CharacterState.Everything))
+		if (_characterActor.HasState(CharacterState.Everything))
 			return;		
 
 		_eventManager.TriggerEvent(EventFlag.SliderInit, new EventParam { floatParam = WeaponInfo.Ats });

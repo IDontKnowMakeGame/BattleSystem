@@ -3,6 +3,7 @@ using Actors.Characters.Player;
 using Data;
 using Acts.Characters.Player;
 using UnityEngine;
+using TMPro;
 
 public class Weapon : EquiqmentItem
 {
@@ -42,6 +43,8 @@ public class Weapon : EquiqmentItem
 		{
 			_playerActor = _characterActor as PlayerActor;
 			_playerAnimation = _playerActor.GetAct<PlayerAnimation>();
+			Debug.Log(_playerAnimation);
+			Debug.Log(_characterActor);
 			LoadWeaponClassLevel();
 			LoadWeaponLevel();
 		}

@@ -23,7 +23,7 @@ public class OldTwinSword : TwinSword
 		_isCoolTime = true;
 		for(int i = 0; i<6; i++)
 		{
-			Define.GetManager<MapManager>().AttackBlock(vec, info.Atk, 1f, _playerActor);
+			Define.GetManager<MapManager>().AttackBlock(vec, info.Atk, 1f, _characterActor);
 		}
 		_characterActor.StartCoroutine(SkillCorutine(vec));
 	}

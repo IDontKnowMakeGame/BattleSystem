@@ -57,7 +57,7 @@ public class TwinSword : Weapon
 		base.Equiqment(actor);
 		InputManager<TwinSword>.OnMovePress += Attack;
 		if (_playerAnimation == null)
-			_playerAnimation = _playerActor.GetAct<PlayerAnimation>();
+			_playerAnimation = _characterActor.GetAct<PlayerAnimation>();
 	}
 
 	public override void UnEquipment(CharacterActor actor)

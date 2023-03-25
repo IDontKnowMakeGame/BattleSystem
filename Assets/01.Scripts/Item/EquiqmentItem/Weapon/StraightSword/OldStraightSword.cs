@@ -11,7 +11,7 @@ public class OldStraightSword : StraightSword
 	{
 		base.Skill();
 		_characterActor.AddState(CharacterState.Skill);
-		_playerActor.GetAct<PlayerMove>().distance = 2;
+		_characterActor.GetAct<PlayerMove>().distance = 2;
 		InputManager<StraightSword>.OnMovePress += SkillStart;
 		PlayerMove.OnMoveEnd += SkillEnd;
 	}
@@ -23,7 +23,7 @@ public class OldStraightSword : StraightSword
 	}
 	private void SkillEnd(int id, Vector3 vec)
 	{
-		_playerActor.GetAct<PlayerMove>().distance = 1;
+		_characterActor.GetAct<PlayerMove>().distance = 1;
 		_isCoolTime = true;
 		PlayerMove.OnMoveEnd -= SkillEnd;
 	}

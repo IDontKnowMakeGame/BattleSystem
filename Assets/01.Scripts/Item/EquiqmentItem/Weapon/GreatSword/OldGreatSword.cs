@@ -12,8 +12,8 @@ public class OldGreatSword : GreatSword
 
 	private IEnumerator HalfSkill()
 	{
-		_playerActor.GetAct<CharacterStatAct>().Half += 30;
+		_characterActor.GetAct<CharacterStatAct>().Half += 30;
 		yield return new WaitForSeconds(0.5f);
-		_playerActor.GetAct<CharacterStatAct>().Half -= 30;
+		_characterActor.GetAct<CharacterStatAct>().Half -= 30;
 	}
 }
