@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class Bow : Weapon
 {
+	public bool isShoot = false;
 	public override void LoadWeaponClassLevel()
 	{
 		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("Bow");
@@ -50,7 +51,10 @@ public class Bow : Weapon
 
 	public virtual void Shoot(Vector3 vec)
 	{
-		//TODO 이거 애니메이션 끝나고 넣어주는 함수
-		Arrow.ShootArrow(vec, _characterActor.Position, _characterActor, info.Afs, info.Atk, 6);
+		if (isShoot && _playerActor != null)
+			return;
+
+		isShoot = true;
+		Arrow.ShootArrow(vec, _characterActor.Position, _characterActor, info.Ats, info.Atk, 6);
 	}
 }

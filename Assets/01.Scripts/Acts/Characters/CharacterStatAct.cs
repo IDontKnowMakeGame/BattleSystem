@@ -128,6 +128,7 @@ public class CharacterStatAct : Act, IDmageAble
 		}
 	}
 
+	#region FAO
 	public void Dev(StatType type, float times)
 	{
 		switch(type)
@@ -215,4 +216,5 @@ public class CharacterStatAct : Act, IDmageAble
 				break;
 		}
 	}
+	#endregion
 }

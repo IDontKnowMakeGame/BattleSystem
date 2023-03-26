@@ -49,18 +49,18 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.X))
-        {
-            ItemStore.ShowItemStore(itemStoreTable);
-        }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Inventory.ShowInventory();
-        }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            Smithy.ShowSmithy();
-        }
+        //if(Input.GetKeyDown(KeyCode.X))
+        //{
+        //    ItemStore.ShowItemStore(itemStoreTable);
+        //}
+        //if (Input.GetKeyDown(KeyCode.C))
+        //{
+        //    Inventory.ShowInventory();
+        //}
+        //if (Input.GetKeyDown(KeyCode.V))
+        //{
+        //    Smithy.ShowSmithy();
+        //}
     }
 
     public  void show(string name)
