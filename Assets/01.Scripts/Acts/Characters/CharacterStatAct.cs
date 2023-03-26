@@ -9,6 +9,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Actors.Characters.Enemy;
+using Acts.Characters.Player;
 
 [Serializable]
 public class CharacterStat
@@ -104,6 +105,9 @@ public class CharacterStatAct : Act, IDmageAble
         if (ThisActor is PlayerActor)
         {
             float value = (ChangeStat.hp / BaseStat.hp) * 100;
+
+			ThisActor.GetAct<PlayerBuff>().ChangeAnger(1);
+
             UIManager.Instance.InGame.ChangeCurrentHP((int)value);
 			EventParam eventParam = new EventParam();
 			eventParam.intParam = 0;

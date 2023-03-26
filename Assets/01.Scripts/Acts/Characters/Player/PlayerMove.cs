@@ -31,14 +31,13 @@ namespace Acts.Characters.Player
         public override void Update()
         {
             base.Update();
-            cameraDir = InGame.CameraDir();
         }
 
         public override void Translate(Vector3 direction)
         {
             if (_playerActor.HasAnyState()) return;
             playerDir = direction;
-            direction = CamDirCheck(direction);
+            direction = InGame.CamDirCheck(direction);
             base.Translate(direction * distance);
         }
 
@@ -76,23 +75,6 @@ namespace Acts.Characters.Player
         {
             _playerAnimation.Play("Idle");
             base.MoveStop();
-        }
-
-        private Vector3 CamDirCheck(Vector3 direction)
-        {
-            if (cameraDir.x != 0)
-            {
-                float swap = direction.x;
-                direction.x = direction.z * cameraDir.x;
-                direction.z = cameraDir.x * -swap;
-            }
-            else if (cameraDir.z != 0)
-            {
-                direction.x = direction.x * cameraDir.z;
-                direction.z = direction.z * cameraDir.z;
-            }
-
-            return direction;
         }
     }
 }

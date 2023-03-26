@@ -10,6 +10,7 @@ namespace Actors.Characters.Player
         [SerializeField] private PlayerAnimation _plyerAnimation;
         [SerializeField] private PlayerAttack _playerAttack;
         [SerializeField] private PlayerUseAbleItem _playerUseAbleItem;
+        [SerializeField] private PlayerBuff _playerBuff;
 
         protected override void Init()
         {
@@ -19,6 +20,7 @@ namespace Actors.Characters.Player
             AddAct(_playerAttack);
             AddAct(_plyerAnimation);
             AddAct(_playerUseAbleItem);
+            AddAct(_playerBuff);
             InGame.Player = this;
         }
     }
