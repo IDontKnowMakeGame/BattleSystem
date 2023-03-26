@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ca2b332a7b5e5447adcd7343094485c, type: 3}
-  m_Name: Test
+  m_Name: OldBowClips
   m_EditorClassIdentifier: 
   weaponID: 5
   clips:
@@ -23,19 +23,19 @@ MonoBehaviour:
   - name: VerticalMove
     nextIdx: -1
     texture: {fileID: 2800000, guid: 0bd2d5c4c638087448eb721d9cae6041, type: 3}
-    fps: 7
+    fps: 6
     isLoop: 1
     delay: 0.1
   - name: UpperMove
     nextIdx: -1
     texture: {fileID: 2800000, guid: 03c4c788b8ebc284a99803741ec9b3a0, type: 3}
-    fps: 7
+    fps: 6
     isLoop: 1
     delay: 0.1
   - name: LowerMove
     nextIdx: -1
     texture: {fileID: 2800000, guid: d80b58d2ddde7624cba839cd2e70e734, type: 3}
-    fps: 7
+    fps: 6
     isLoop: 1
     delay: 0.1
   - name: VerticalAttack

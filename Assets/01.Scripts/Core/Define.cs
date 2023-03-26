@@ -140,6 +140,25 @@ namespace Core
 
             return cameraDir;
         }
+
+        public static Vector3 CamDirCheck(Vector3 direction)
+        {
+            Vector3 cameraDir = CameraDir();
+
+            if (cameraDir.x != 0)
+            {
+                float swap = direction.x;
+                direction.x = direction.z * cameraDir.x;
+                direction.z = cameraDir.x * -swap;
+            }
+            else if (cameraDir.z != 0)
+            {
+                direction.x = direction.x * cameraDir.z;
+                direction.z = direction.z * cameraDir.z;
+            }
+
+            return direction;
+        }
     }
 
 }
