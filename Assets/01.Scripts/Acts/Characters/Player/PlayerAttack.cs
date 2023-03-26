@@ -74,6 +74,8 @@ namespace Acts.Characters.Player
                 obj.GetComponent<DamagePopUp>().DamageText(character.currentWeapon.WeaponInfo.Atk, enemy.transform.position);
                 enemy.GetAct<CharacterStatAct>().Damage(character.currentWeapon.WeaponInfo.Atk, ThisActor);
             }
+
+            _playerActor.GetAct<PlayerBuff>().ChangeAdneraline(1);
 		}
         
         public override void ReadyAttackAnimation(AttackInfo attackInfo)
