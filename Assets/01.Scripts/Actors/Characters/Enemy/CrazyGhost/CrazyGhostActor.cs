@@ -10,6 +10,8 @@ namespace Actors.Characters.Enemy.CrazyGhost
 {
     public class CrazyGhostActor : EnemyActor
     {
+
+        private PatternState patternState;
         protected override void Init()
         {
             base.Init(); 
@@ -22,26 +24,43 @@ namespace Actors.Characters.Enemy.CrazyGhost
         {
             base.Start();
             var move = GetAct<CharacterMove>();
-            var attack = GetAct<EnemyAttack>();
             var chase = _enemyAi.GetState<ChaseState>();
             chase.OnStay += () =>
             {
                 move.Chase(InGame.Player);
             };
             
-            var random = _enemyAi.GetState<RandomState>();
+            SetPattern();
 
-            random.RandomList.Add(() => 
+            var secondPhase = _enemyAi.GetState<SecondPhaseState>();
+            secondPhase.OnEnter += () =>
+            {
+                patternState.RandomActions.Clear();
+                SetPattern();
+                patternState.RandomActions.Add(() =>
+                {
+                    var attack = GetAct<EnemyAttack>();
+                    var dir = InGame.Player.Position - Position;
+                    attack.SoulAttack(dir, true);
+                });
+            };
+        }
+
+        private void SetPattern()
+        {
+            patternState = _enemyAi.GetState<PatternState>();
+            var attack = GetAct<EnemyAttack>();
+            patternState.RandomActions.Add(() =>
             {
                 var dir = InGame.Player.Position - Position;
                 attack.ForwardAttack(dir, true);
             });
-            random.RandomList.Add(() =>
+            patternState.RandomActions.Add(() =>
             {
                 var dir = InGame.Player.Position - Position;
                 attack.BackAttack(dir, true);
             });
-            random.RandomList.Add(() =>
+            patternState.RandomActions.Add(() =>
             {
                 var dir = InGame.Player.Position - Position;
                 attack.TripleAttack(dir, true);

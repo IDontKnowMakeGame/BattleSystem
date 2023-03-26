@@ -15,6 +15,7 @@ namespace AI
         [ContextMenuItem("Add Time Condition", "AddTimeCondition")]
         [ContextMenuItem("Add Beside Condition", "AddBesideCondition")]
         [ContextMenuItem("Add Attack Condition", "AddAttackCondition")]
+        [ContextMenuItem("Add Life Condition", "AddLifeCondition")]
         [SerializeReference]
         public List<AiCondition> _conditions = new();
         private Type _nextState;
@@ -74,6 +75,13 @@ namespace AI
         {
             var condition = new AttackCondition();
             condition.Type = Condition.AttackCondition;
+            _conditions.Add(condition);
+        }
+        
+        public void AddLifeCondition()
+        {
+            var condition = new LifeCondition();
+            condition.Type = Condition.LifeCondition;
             _conditions.Add(condition);
         }
     }

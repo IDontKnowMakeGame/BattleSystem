@@ -61,9 +61,17 @@ namespace Acts.Characters.Enemy
             {
                 var fromType = Type.GetType("AI.States." + transition.From + "State"); 
                 var toType = Type.GetType("AI.States." + transition.To + "State");
-                var instance = Activator.CreateInstance(fromType) as AiState;
-                _states.Add(fromType, instance);
-                instance.Init();
+                AiState instance;
+                if (_states.ContainsKey(fromType))
+                {
+                    instance = _states[fromType];
+                }
+                else
+                {
+                    instance = Activator.CreateInstance(fromType) as AiState;
+                    _states.Add(fromType, instance);
+                    instance.Init();
+                }
                 transition.SetNextState(toType);
                 instance.Transitions.Add(toType, transition);
                 Debug.Log(instance.GetType());
