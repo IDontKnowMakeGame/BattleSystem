@@ -1,14 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using Actors.Characters.Enemy;
+using AI.Conditions;
+using UnityEditor;
 using UnityEngine;
 
 namespace AI
 {
     [System.Serializable]
-    public class AiTransition
+    public class AiTransition : MonoBehaviour
     {
-        public AiConditionHolder ConditionHolder;
-        private List<AiCondition> _conditions = new();
+        public string From;
+        public string To;
+        [ContextMenuItem("Add Time Condition", "AddTimeCondition")]
+        [ContextMenuItem("Add Beside Condition", "AddBesideCondition")]
+        [ContextMenuItem("Add Attack Condition", "AddAttackCondition")]
+        [ContextMenuItem("Add Life Condition", "AddLifeCondition")]
+        [SerializeReference]
+        public List<AiCondition> _conditions = new();
         private Type _nextState;
         public Type NextState  => _nextState;
 
@@ -34,23 +43,10 @@ namespace AI
         {
             _nextState = typeof(T);
         }
-
-        public void Init()
+        
+        public void SetNextState(Type type)
         {
-            foreach (var condition in ConditionHolder.Conditions)
-            {
-                var type = Type.GetType("AI.Conditions." + condition.Type);
-                var newCondition = (AiCondition) Activator.CreateInstance(type);
-                newCondition.IsNegative = condition.IsNegative;
-                newCondition.IsNeeded = condition.IsNeeded;
-                newCondition.stringParam = condition.stringParam;
-                newCondition.floatParam = condition.floatParam;
-                newCondition.intParam = condition.intParam;
-                newCondition.actorParam = condition.actorParam;
-                newCondition.vectorParam = condition.vectorParam;
-                newCondition._thisActor = condition._thisActor;
-                _conditions.Add(newCondition);
-            }
+            _nextState = type;
         }
 
         public void ResetAllConditions()
@@ -59,6 +55,34 @@ namespace AI
             {
                 condition.Reset();
             }
+        }
+        
+        public void AddTimeCondition()
+        {
+            var condition = new TimeCondition();
+            condition.Type = Condition.TimeCondition;
+            _conditions.Add(condition);
+        }
+        
+        public void AddBesideCondition()
+        {
+            var condition = new BesideCondition();
+            condition.Type = Condition.BesideCondition;
+            _conditions.Add(condition);
+        }
+        
+        public void AddAttackCondition()
+        {
+            var condition = new AttackCondition();
+            condition.Type = Condition.AttackCondition;
+            _conditions.Add(condition);
+        }
+        
+        public void AddLifeCondition()
+        {
+            var condition = new LifeCondition();
+            condition.Type = Condition.LifeCondition;
+            _conditions.Add(condition);
         }
     }
 }

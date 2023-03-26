@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Acts.Base;
 using AI;
+using AI.States;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,32 +12,9 @@ namespace Acts.Characters.Enemy
     public class EnemyAI : Act
     {
         public Dictionary<Type, AiState> _states = new();
-        private AiConditionHolder[] _conditionHolders;
         public AiState CurrentState;
         private bool _hasEntered = false;
         private bool _hasFinished = false;
-
-        public override void Start()
-        {
-            _conditionHolders = ThisActor.GetComponents<AiConditionHolder>();
-            foreach (var conditionHolder in _conditionHolders)
-            {
-                var currentStateType = Type.GetType("AI.States." + conditionHolder.Target + "State");
-                var nextStateType = Type.GetType("AI.States." + conditionHolder.Goal + "State");
-                if (currentStateType == null || nextStateType == null)
-                {
-                    Debug.LogError("State not found");
-                    return;
-                }
-                var currentState = _states[currentStateType];
-                var nextTransition = currentState.Transitions.Find((x) => x.NextState == nextStateType);
-                conditionHolder.Conditions.ForEach((x) => x._thisActor = ThisActor);
-                if (nextTransition == null)
-                    Debug.Log(nextStateType);
-                nextTransition.ConditionHolder = conditionHolder;
-                nextTransition.Init();
-            }
-        }
 
         public override void Update()
         {
@@ -46,7 +24,7 @@ namespace Acts.Characters.Enemy
                 _hasEntered = true;
             }
             
-            foreach (var currentTransition in CurrentState.Transitions)
+            foreach (var currentTransition in CurrentState.Transitions.Values)
             {
                 if (currentTransition.CheckCondition())
                 {
@@ -70,6 +48,37 @@ namespace Acts.Characters.Enemy
                 
         }
 
+        public override void Awake()
+        {
+            SetEnemyAI();
+        }
+
+        private void SetEnemyAI()
+        {
+            var transitions = ThisActor.GetComponents<AiTransition>();
+            
+            foreach (var transition in transitions)
+            {
+                var fromType = Type.GetType("AI.States." + transition.From + "State"); 
+                var toType = Type.GetType("AI.States." + transition.To + "State");
+                AiState instance;
+                if (_states.ContainsKey(fromType))
+                {
+                    instance = _states[fromType];
+                }
+                else
+                {
+                    instance = Activator.CreateInstance(fromType) as AiState;
+                    _states.Add(fromType, instance);
+                    instance.Init();
+                }
+                transition.SetNextState(toType);
+                instance.Transitions.Add(toType, transition);
+                Debug.Log(instance.GetType());
+            }
+            CurrentState = LoadState(typeof(IdleState));
+        }
+        
         public T  AddState<T>(T instance = null) where T : AiState
         {
             AiState nextState = null;
@@ -105,11 +114,11 @@ namespace Acts.Characters.Enemy
             CurrentState = nextState;
         }
         
-        public AiState GetState<T>() where T : AiState
+        public T GetState<T>() where T : AiState
         {
             var type = typeof(T);
             AiState nextState = LoadState(type);
-            return nextState;
+            return nextState as T;
         }
 
         public void MoveNextState(AiTransition moveTransition)
@@ -138,7 +147,7 @@ namespace Acts.Characters.Enemy
         
         public void ResetAllConditions()
         {
-            foreach (var currentTransition in CurrentState.Transitions)
+            foreach (var currentTransition in CurrentState.Transitions.Values)
             {
                 currentTransition.ResetAllConditions();
             }

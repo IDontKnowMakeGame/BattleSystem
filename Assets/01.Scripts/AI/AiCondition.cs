@@ -11,6 +11,7 @@ namespace AI
         AttackCondition,
         LifeCondition,
     }
+    
     [System.Serializable]
     public class AiCondition
     {
@@ -20,13 +21,6 @@ namespace AI
         public bool IsNegative;
         public bool IsNeeded;
         public Actor _thisActor;
-
-        public string stringParam;
-        public float floatParam;
-        public int intParam; 
-        public Actor actorParam;
-        public Vector3 vectorParam;
-
 
         public virtual void Reset()
         {
