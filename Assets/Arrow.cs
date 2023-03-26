@@ -3,9 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 using Core;
 using Managements.Managers;
-using Blocks;
 using Actors.Characters.Player;
-using Managements;
 using Actors.Characters.Enemy;
 using System.Collections;
 
@@ -35,9 +33,24 @@ public class Arrow : MonoBehaviour
 	public virtual void Shoot(Vector3 vec, Vector3 position, CharacterActor actor, float speed, float damage, int distance)
 	{
 		position.y = 1;
-		Vector3 goalPos = position + (vec * distance);
+
+		int count = 0;
 		this.transform.position = position;
-		this.transform.DOMove(goalPos, speed).OnComplete(StickOnBlock);
+
+		var map = Define.GetManager<MapManager>();
+
+		for(count = 0; count < distance; count++)
+		{
+			if (map.GetBlock((position - Vector3.up) + (vec * count)) == null)
+			{
+				count -= 1;
+				break;
+			}
+		}
+
+		float time = count / speed;
+
+		this.transform.DOMove(position + (vec * count), time).OnComplete(StickOnBlock);
 		_shootVec = vec;
 		_shootActor = actor;
 		_damage = damage;
@@ -48,9 +61,6 @@ public class Arrow : MonoBehaviour
 
 	protected virtual void StickOnBlock()
 	{
-		Debug.Log("À×");
-		Block block = Define.GetManager<MapManager>().GetBlock(this.transform.position);
-		//this.transform.parent = block.transform;
 		_isStick = true;
 	}
 
@@ -91,8 +101,8 @@ public class Arrow : MonoBehaviour
 		CharacterActor actor = other.GetComponent<CharacterActor>();
 		if (actor == null)
 			return;
-		
-		if (_shootActor.UUID != actor.UUID)
+
+		if (_shootActor.UUID != actor.UUID && !_isStick)
 		{
 			StickActor(other);
 		}
