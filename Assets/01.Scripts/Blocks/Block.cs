@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using Actors.Bases;
 using Actors.Characters;
+using Actors.Characters.Enemy;
+using Actors.Characters.Player;
 using Blocks.Acts;
 using Core;
 using UnityEngine;
@@ -139,6 +141,24 @@ namespace Blocks
             Debug.Log(_actorOnBlock + " is attacked by " + attacker + " for " + damage + " damage");
             var stat = _actorOnBlock.GetAct<CharacterStatAct>();
             stat.Damage(damage, attacker);
+        }
+        
+        public bool CheckActorOnBlock(Actor actor)
+        {
+            if (actor is PlayerActor)
+                return true;
+            if(actor is EnemyActor)
+            {
+                if(!canEnemyEnter)
+                    return false;
+            }
+            if(actor is BossActor)
+            {
+                if(!canBossEnter)
+                    return false;
+            }
+
+            return true;
         }
     }
 }

@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Actors.Characters.Enemy.CrazyGhost
 {
-    public class CrazyGhostActor : EnemyActor
+    public class CrazyGhostActor : BossActor
     {
 
         private PatternState patternState;
@@ -35,14 +35,12 @@ namespace Actors.Characters.Enemy.CrazyGhost
             var secondPhase = _enemyAi.GetState<SecondPhaseState>();
             secondPhase.OnEnter += () =>
             {
-                patternState.RandomActions.Clear();
-                SetPattern();
-                patternState.RandomActions.Add(() =>
-                {
-                    var attack = GetAct<EnemyAttack>();
-                    var dir = InGame.Player.Position - Position;
-                    attack.SoulAttack(dir, true);
-                });
+                var dir = InGame.Player.Position - Position;
+                dir = dir.normalized;
+                dir.x = Mathf.RoundToInt(dir.x);
+                dir.z = Mathf.RoundToInt(dir.z);
+                var attack = GetAct<EnemyAttack>();
+                attack.SoulAttack(dir, true);
             };
         }
 

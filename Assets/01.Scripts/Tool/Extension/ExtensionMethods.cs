@@ -820,6 +820,16 @@ public static class ExtensionMethods
 
         return false;
     }
+    
+    public static bool IsLine(this Vector3 vector, Vector3 other)
+    {
+        if(vector.x == other.x || vector.z == other.z)
+        {
+            return true;
+        }
+
+        return false;
+    }
 
     #endregion
 }
