@@ -63,7 +63,11 @@ public class Bow : Weapon
 		if (_isCharge)
 			return;
 
+		if (isShoot)
+			return;
+
 		_isCharge = true;
+		isShoot = true;
 
 		_currentVec = InGame.CamDirCheck(vec);
 		_characterActor.AddState(CharacterState.StopMove);
