@@ -203,14 +203,16 @@ namespace Acts.Characters.Enemy
             var map = Define.GetManager<MapManager>();
             var character = ThisActor as CharacterActor;
             var move = ThisActor.GetAct<CharacterMove>();
+            var degree = ThisActor.Position.GetDegree(InGame.Player.Position);
             yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
             yield return new WaitForSeconds(_defaultStat.Ats);
             var distance = 3;
-            var nextPos = ThisActor.Position - dir * distance;
+            var nextPos = InGame.Player.Position - dir * distance;
+            
             while (map.IsWalkable(nextPos) == false)
             {
                 distance--;
-                nextPos = ThisActor.Position - dir * distance;
+                nextPos = InGame.Player.Position - dir * distance;
                 if (distance == 0)
                     break;
             }
@@ -219,17 +221,26 @@ namespace Acts.Characters.Enemy
             yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
             distance = 1;
             nextPos = ThisActor.Position + dir * distance;
-            while (map.IsWalkable(nextPos) == true)
+            var block = map.GetBlock(nextPos);
+            if(block == null)
+                yield break;
+            while (block.CheckActorOnBlock(ThisActor) == true)
             {
                 distance++;
                 nextPos = ThisActor.Position + dir * distance;
+
+                if (distance <= 5)
+                    break;
             }
 
 
             for (var vec = ThisActor.Position; vec != nextPos; vec += dir)
             {
-                //Debug.Log(vec);
+                //var leftVec = vec + (Quaternion.Euler(0, degree, 0) * Vector3.left);
+                //var rightVec = vec + (Quaternion.Euler(0, degree, 0) * Vector3.right);
                 map.AttackBlock(vec, _defaultStat.Atk, _defaultStat.Ats, ThisActor, isLast);
+                //map.AttackBlock(leftVec, _defaultStat.Atk, _defaultStat.Ats, ThisActor, isLast);
+                //map.AttackBlock(rightVec, _defaultStat.Atk, _defaultStat.Ats, ThisActor, isLast);
             }
         }
 

@@ -16,67 +16,169 @@ MonoBehaviour:
   clips:
   - name: Idle
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 269628f340c00fd47b25822b1ec111ea, type: 3}
+    texture: {fileID: 2800000, guid: c3f00a5162308344380996f40577ee19, type: 3}
     fps: 10
     isLoop: 1
     delay: 0.1
   - name: VerticalMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 0bd2d5c4c638087448eb721d9cae6041, type: 3}
+    texture: {fileID: 2800000, guid: 26f379eb604429d4bad1e32fa894741d, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: UpperMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 03c4c788b8ebc284a99803741ec9b3a0, type: 3}
+    texture: {fileID: 2800000, guid: ea5db2def96e78c47bb3eaec1512db93, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: LowerMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: d80b58d2ddde7624cba839cd2e70e734, type: 3}
+    texture: {fileID: 2800000, guid: 3692298b47205364c8f871186c0d8f9f, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
-  - name: VerticalAttack
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 842eb53c5241b524bb291102dcfb0d0e, type: 3}
-    fps: 10
-    isLoop: 0
-    delay: 0.03
-  - name: UpperAttack
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 914dfd1f3a4b8634787249a11870d1c9, type: 3}
-    fps: 10
-    isLoop: 0
-    delay: 0.03
-  - name: LowerAttack
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: f9d9f8e418a462745919f0f67ab5f093, type: 3}
-    fps: 10
-    isLoop: 0
-    delay: 0.03
-  - name: VerticalSkill
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 84abf7da35ae3144dab917e5106fa8c7, type: 3}
-    fps: 10
+  - name: VerticalCharge
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: e85866298f69f73418d7be34ede500e7, type: 3}
+    fps: 8
     isLoop: 0
     delay: 0.06
-  - name: UpperSkill
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: c2943b0a4352a4e48a7d0e82f994e724, type: 3}
-    fps: 9
+  - name: UpperCharge
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 883afe941a41bd44b9a24be4cc4165a8, type: 3}
+    fps: 8
     isLoop: 0
     delay: 0.06
-  - name: LowerSkill
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: b800b987398afcb4db63c41ac43cb8bd, type: 3}
-    fps: 9
+  - name: LowerCharge
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 4959b25c29dadd64fa0c821ff12bf483, type: 3}
+    fps: 8
     isLoop: 0
     delay: 0.06
-  - name: Equip
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: bda5e55315d03114e9757b2fc7088495, type: 3}
+  - name: VerticalPull
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: c1d45e428f2eaa746a348dad2fa0b22c, type: 3}
     fps: 10
     isLoop: 0
     delay: 0.1
+  - name: UpperPull
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: f831fc28f12f4e1408663cd4d46eb187, type: 3}
+    fps: 10
+    isLoop: 0
+    delay: 0.05
+  - name: LowerPull
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 2389fe79134cbd140aa7fda6d8e5db41, type: 3}
+    fps: 10
+    isLoop: 0
+    delay: 0.05
+  - name: VerticalShoot
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 66805d1068948774ca6331e101a3152d, type: 3}
+    fps: 5
+    isLoop: 0
+    delay: 0.1
+  - name: UpperShoot
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 0369a186020465b4cb042285f5dde538, type: 3}
+    fps: 5
+    isLoop: 0
+    delay: 0.05
+  - name: LowerShoot
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 1d433f51a12ec6849882fa51e03c8c6f, type: 3}
+    fps: 5
+    isLoop: 0
+    delay: 0.05
+  - name: Equip
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 34b12c8ff85668e40ac56b55ef20316e, type: 3}
+    fps: 10
+    isLoop: 0
+    delay: 0.1
+  - name: UseIdle
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: c3f00a5162308344380996f40577ee19, type: 3}
+    fps: 10
+    isLoop: 1
+    delay: 0.1
+  - name: NoneIdle
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: fa1a501fc3d0eda4b8e2d2867bf88e62, type: 3}
+    fps: 10
+    isLoop: 1
+    delay: 0.1
+  - name: UseVerticalMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 26f379eb604429d4bad1e32fa894741d, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.1
+  - name: NoneVerticalMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: bbe6cd844c55c6e47b88fad646903006, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.1
+  - name: UseUpperMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: ea5db2def96e78c47bb3eaec1512db93, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.1
+  - name: NoneUpperMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: d5b6823f268f3f0419d6ec27e599623a, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.1
+  - name: UseLowerMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 3692298b47205364c8f871186c0d8f9f, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.1
+  - name: NoneLowerMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 0044f15e01a19f643827fd51558dadd0, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.1
+  - name: UseVerticalCharge
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: e85866298f69f73418d7be34ede500e7, type: 3}
+    fps: 8
+    isLoop: 0
+    delay: 0.06
+  - name: NoneVerticalCharge
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: abec0550c9ddf3542ae86e5c6ff6464f, type: 3}
+    fps: 8
+    isLoop: 0
+    delay: 0.06
+  - name: UseUpperCharge
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 883afe941a41bd44b9a24be4cc4165a8, type: 3}
+    fps: 8
+    isLoop: 0
+    delay: 0.06
+  - name: NoneUpperCharge
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 883afe941a41bd44b9a24be4cc4165a8, type: 3}
+    fps: 7
+    isLoop: 0
+    delay: 0.06
+  - name: UseLowerCharge
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 4959b25c29dadd64fa0c821ff12bf483, type: 3}
+    fps: 8
+    isLoop: 0
+    delay: 0.06
+  - name: NoneLowerCharge
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 107ed1ebc7474ae4da072e66bc0e7862, type: 3}
+    fps: 8
+    isLoop: 0
+    delay: 0.06

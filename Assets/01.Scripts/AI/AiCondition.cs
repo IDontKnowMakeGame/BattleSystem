@@ -10,6 +10,8 @@ namespace AI
         BesideCondition,
         AttackCondition,
         LifeCondition,
+        BlockCondition,
+        LineCondition,
     }
     
     [System.Serializable]

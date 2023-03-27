@@ -16,6 +16,8 @@ namespace AI
         [ContextMenuItem("Add Beside Condition", "AddBesideCondition")]
         [ContextMenuItem("Add Attack Condition", "AddAttackCondition")]
         [ContextMenuItem("Add Life Condition", "AddLifeCondition")]
+        [ContextMenuItem("Add Block Condition", "AddBlockCondition")]
+        [ContextMenuItem("Add Line Condition", "AddLineCondition")]
         [SerializeReference]
         public List<AiCondition> _conditions = new();
         private Type _nextState;
@@ -23,7 +25,7 @@ namespace AI
 
         public bool CheckCondition()
         {
-            bool isSatisfied = true;
+            bool isSatisfied = false;
             var needCondition = _conditions.FindAll((condition) => condition.IsNeeded);
             var unNeedCondition = _conditions.FindAll((condition) => !condition.IsNeeded);
             
@@ -31,6 +33,10 @@ namespace AI
             {
                 isSatisfied |= currentCondition.IsSatisfied() != currentCondition.IsNegative;
             }
+
+            if (unNeedCondition.Count == 0)
+                isSatisfied = true;
+            
             foreach (var currentCondition in needCondition)
             {
                 isSatisfied &= currentCondition.IsSatisfied() != currentCondition.IsNegative;
@@ -82,6 +88,20 @@ namespace AI
         {
             var condition = new LifeCondition();
             condition.Type = Condition.LifeCondition;
+            _conditions.Add(condition);
+        }
+        
+        public void AddBlockCondition()
+        {
+            var condition = new BlockCondition();
+            condition.Type = Condition.BlockCondition;
+            _conditions.Add(condition);
+        }
+        
+        public void AddLineCondition()
+        {
+            var condition = new LineCondition();
+            condition.Type = Condition.LineCondition;
             _conditions.Add(condition);
         }
     }

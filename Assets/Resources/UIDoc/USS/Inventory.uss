@@ -4,16 +4,9 @@
     background-color: rgb(70, 70, 70);
     margin-left: 5px;
     margin-right: 5px;
-    border-left-color: rgb(110, 144, 147);
-    border-right-color: rgb(110, 144, 147);
-    border-top-color: rgb(110, 144, 147);
-    border-bottom-color: rgb(110, 144, 147);
-    border-left-width: 5px;
-    border-right-width: 5px;
-    border-top-width: 5px;
-    border-bottom-width: 5px;
     align-items: center;
     justify-content: center;
+    background-image: url('project://database/Assets/02.Sprites/UI/Player_UI_Hpvar.png?fileID=-1464394398&guid=592a4313b6d8fa44987488eb3b4085aa&type=3#Player_UI_Hpvar_1');
 }
 
 .SelectItemTypeText {
@@ -24,15 +17,16 @@
     width: 100%;
     height: 100%;
     background-color: rgb(36, 36, 36);
-    border-left-color: rgb(236, 236, 236);
-    border-right-color: rgb(236, 236, 236);
-    border-top-color: rgb(236, 236, 236);
-    border-bottom-color: rgb(236, 236, 236);
     border-left-width: 5px;
     border-right-width: 5px;
     border-top-width: 5px;
     border-bottom-width: 5px;
     position: absolute;
+    background-image: url('project://database/Assets/02.Sprites/UI/InGame_UI_FeatherIcon.png?fileID=-1522164109&guid=51366b9a6ca4e804789e3772d10af377&type=3#InGame_UI_FeatherIcon_1');
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
 }
 
 .WeaponEquipBox {
