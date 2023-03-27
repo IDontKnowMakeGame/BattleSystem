@@ -2,6 +2,8 @@ using Actors.Characters;
 using Core;
 using Managements.Managers;
 using UnityEngine;
+using Actors.Characters.Player;
+using Acts.Characters.Player;
 
 public class Bow : Weapon
 {
@@ -9,9 +11,9 @@ public class Bow : Weapon
 
 	private bool _isCharge = false;
 	protected Vector3 _currentVec;
+	private Vector3 _orginVec;
 
 	private float _currentTimer = 0;
-
 	private EventManager _eventManager => Define.GetManager<EventManager>();
 	public override void LoadWeaponClassLevel()
 	{
@@ -69,6 +71,7 @@ public class Bow : Weapon
 		_isCharge = true;
 		isShoot = true;
 
+		_orginVec = vec;
 		_currentVec = InGame.CamDirCheck(vec);
 		_characterActor.AddState(CharacterState.StopMove);
 		_characterActor.AddState(CharacterState.Hold);
@@ -82,6 +85,12 @@ public class Bow : Weapon
 		if (!_isCharge)
 			return;
 
+		// Player Animation
+		if (_characterActor is PlayerActor)
+		{
+			ChargeAnimation(_orginVec);
+		}
+
 		_currentTimer += Time.deltaTime;
 		_eventManager.TriggerEvent(EventFlag.SliderUp, new EventParam { floatParam = _currentTimer });
 		if (_currentTimer >= info.Ats)
@@ -90,8 +99,53 @@ public class Bow : Weapon
 			_isCharge = false;
 			_characterActor.RemoveState(CharacterState.StopMove);
 			_characterActor.RemoveState(CharacterState.Hold);
-			Arrow.ShootArrow(_currentVec, _characterActor.Position, _characterActor,info.Ats, info.Atk, 6);
+			ShootAnimation(_orginVec);
+			Arrow.ShootArrow(_currentVec, _characterActor.Position, _characterActor, info.Ats, info.Atk, 6);
 			_eventManager.TriggerEvent(EventFlag.SliderFalse, new EventParam { boolParam = false });
+		}
+	}
+
+	private void ChargeAnimation(Vector3 dir)
+	{
+		if (dir == Vector3.left)
+		{
+			_characterActor.SpriteTransform.localScale = new Vector3(-1, 1, 1);
+			_playerAnimation.Play("VerticalCharge");
+		}
+		else if (dir == Vector3.right)
+		{
+			_characterActor.SpriteTransform.localScale = new Vector3(1, 1, 1);
+			_playerAnimation.Play("VerticalCharge");
+		}
+		else if (dir == Vector3.forward)
+		{
+			_playerAnimation.Play("UpperCharge");
+		}
+		else if (dir == Vector3.back)
+		{
+			_playerAnimation.Play("LowerCharge");
+		}
+	}
+
+	private void ShootAnimation(Vector3 dir)
+	{
+		if (dir == Vector3.left)
+		{
+			_characterActor.SpriteTransform.localScale = new Vector3(-1, 1, 1);
+			_playerAnimation.Play("VerticalShoot");
+		}
+		else if (dir == Vector3.right)
+		{
+			_characterActor.SpriteTransform.localScale = new Vector3(1, 1, 1);
+			_playerAnimation.Play("VerticalShoot");
+		}
+		else if (dir == Vector3.forward)
+		{
+			_playerAnimation.Play("UpperShoot");
+		}
+		else if (dir == Vector3.back)
+		{
+			_playerAnimation.Play("LowerShoot");
 		}
 	}
 }
