@@ -1,13 +1,18 @@
-using Actors.Characters;
+using Actors.Characters;  
 using Core;
 using Managements.Managers;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bow : Weapon
 {
+	public bool isShoot = false;
 
+	private bool _isCharge = false;
+	protected Vector3 _currentVec;
+
+	private float _currentTimer = 0;
+
+	private EventManager _eventManager => Define.GetManager<EventManager>();
 	public override void LoadWeaponClassLevel()
 	{
 		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("Bow");
@@ -45,12 +50,48 @@ public class Bow : Weapon
 	public override void UnEquipment(CharacterActor actor)
 	{
 		base.UnEquipment(actor);
-		InputManager<TwinSword>.OnMovePress -= Shoot;
+		InputManager<Bow>.OnAttackPress -= Shoot;
+	}
+
+	public override void Update()
+	{
+		Charge();
 	}
 
 	public virtual void Shoot(Vector3 vec)
 	{
-		GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Arrow");
-		//Arrow arrow = obj.GetComponent();
+		if (_isCharge)
+			return;
+
+		if (isShoot)
+			return;
+
+		_isCharge = true;
+		isShoot = true;
+
+		_currentVec = InGame.CamDirCheck(vec);
+		_characterActor.AddState(CharacterState.StopMove);
+		_characterActor.AddState(CharacterState.Hold);
+
+		_eventManager.TriggerEvent(EventFlag.SliderInit, new EventParam { floatParam = WeaponInfo.Ats });
+		_eventManager.TriggerEvent(EventFlag.SliderFalse, new EventParam { boolParam = true });
+	}
+
+	private void Charge()
+	{
+		if (!_isCharge)
+			return;
+
+		_currentTimer += Time.deltaTime;
+		_eventManager.TriggerEvent(EventFlag.SliderUp, new EventParam { floatParam = _currentTimer });
+		if (_currentTimer >= info.Ats)
+		{
+			_currentTimer = 0;
+			_isCharge = false;
+			_characterActor.RemoveState(CharacterState.StopMove);
+			_characterActor.RemoveState(CharacterState.Hold);
+			Arrow.ShootArrow(_currentVec, _characterActor.Position, _characterActor,info.Ats, info.Atk, 6);
+			_eventManager.TriggerEvent(EventFlag.SliderFalse, new EventParam { boolParam = false });
+		}
 	}
 }

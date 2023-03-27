@@ -106,22 +106,56 @@ public class Astar
 
     void MakePath(Block startTile, Block endTile)
     {
+        
         route.Clear();
         Block currentTile = endTile;
-        while (currentTile != startTile)
+
+        while(currentTile != null)
+        {
+            if (currentTile == start)
+                break;
+
+            route.Push(currentTile);
+            Block beforeBlock = currentTile;
+            currentTile = currentTile.Parent;
+            beforeBlock.Parent = null; 
+        }
+
+/*        while (currentTile != startTile)
         {
             if (currentTile != start)
             {
+                if (route.Count > 1000)
+                {
+                    Debug.LogError("이정도가 나올수가 없는데..");
+                    break;
+                }
                 route.Push(currentTile);
                 currentTile = currentTile.Parent;
             }
-        }
+        }*/
+        
+
+        /*
+        route.Clear();
+        Block currentTile = endTile;
+        while(currentTile != null)
+        {
+            if (currentTile == start)
+                break;
+
+            route.Push(currentTile);
+            currentTile = currentTile.Parent;
+        }*/
     }
 
     public Block GetNextPath()
     {
         if (route.Count > 0)
-            return route.Pop();
+        {
+            Block block = route.Pop();
+            return block;
+        }
         return null;
     }
 

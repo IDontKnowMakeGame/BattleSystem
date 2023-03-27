@@ -14,12 +14,7 @@ public class Spear : Weapon
 	private bool _isEnterEnemy = true;
 	private bool _isDown = false;
 	private MapManager _mapManager => Define.GetManager<MapManager>();
-	private PlayerAnimation _playerAnimation;
 	private Vector3 _currentVec = Vector3.zero;
-	public override void Init()
-	{
-
-	}
 
 	public override void LoadWeaponClassLevel()
 	{
@@ -64,7 +59,7 @@ public class Spear : Weapon
 	{
 		base.Equiqment(actor);
 
-		_playerAnimation = _playerActor.GetAct<PlayerAnimation>();
+		_playerAnimation = _characterActor.GetAct<PlayerAnimation>();
 
 		InputManager<Spear>.OnAttackPress += Attack;
 
@@ -80,7 +75,8 @@ public class Spear : Weapon
 	public override void Update()
 	{
 		if (_isDown)
-			Debug.DrawLine(_characterActor.transform.position, _characterActor.transform.position + _currentVec, Color.red);
+			Debug.DrawLine(_characterActor.transform.position, _characterActor.transform.position + _currentVec);
+
 		if (_isDown && _isEnterEnemy && _mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock)
 		{
 			_eventParam.attackParam = _attackInfo;
@@ -89,10 +85,6 @@ public class Spear : Weapon
 		}
 		else if (!_isEnterEnemy && !_mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock)
 			_isEnterEnemy = true;
-
-		//Debug.Log("창내림 : " + _isDown);
-		//Debug.Log("때릴 수 있음 : " + _isEnterEnemy);
-		//Debug.Log("공격 칸 위에 있는 적 : " + _mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock);
 	}
 
 	public virtual void Attack(Vector3 vec)
@@ -111,6 +103,7 @@ public class Spear : Weapon
 
 	public virtual IEnumerator AttackCorutine(Vector3 vec)
 	{
+		Debug.Log(vec);
 		_attackInfo.AddDir(_attackInfo.DirTypes(vec));
 		_currentVec = vec;
 		ReadyAnimation(_currentVec);

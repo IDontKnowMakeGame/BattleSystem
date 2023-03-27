@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using Acts.Base;
+using Core;
 
 namespace Actors.Bases
 {
     public class Actor : MonoBehaviour
     {
-        public int UUID => GetInstanceID();
+        public int UUID => gameObject.GetInstanceID();
         private Dictionary<Type, Act> _behaviours = new();
         [SerializeField] private Vector3 position = Vector3.zero;
         protected Transform spriteTransform;
@@ -31,6 +32,7 @@ namespace Actors.Bases
             //Add or Init Acts
             Position = transform.position;
             spriteTransform = this.GetComponentInChildren<MeshRenderer>().transform;
+            InGame.AddActor(this);
         }
 
         protected virtual void Awake()

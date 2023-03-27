@@ -10,55 +10,61 @@ namespace Actors.Characters.Enemy.CrazyGhost
 {
     public class CrazyGhostActor : EnemyActor
     {
+
+        private PatternState patternState;
         protected override void Init()
         {
             base.Init(); 
-            var move = AddAct<CharacterMove>();
-            var attack = AddAct<EnemyAttack>();
-            
-            var idle = _enemyAi.AddState<IdleState>();
-            idle.SetTarget<ChaseState>();
-            
-            var chase = _enemyAi.AddState<ChaseState>();
+            AddAct(_enemyAi);
+            AddAct<CharacterMove>();
+            AddAct<EnemyAttack>();
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            var move = GetAct<CharacterMove>();
+            var chase = _enemyAi.GetState<ChaseState>();
             chase.OnStay += () =>
             {
                 move.Chase(InGame.Player);
             };
-            chase.SetTarget<RandomState>();
+            
+            SetPattern();
 
-            var random = _enemyAi.AddState<RandomState>();
-            random.RandomList.Add(() =>
+            var secondPhase = _enemyAi.GetState<SecondPhaseState>();
+            secondPhase.OnEnter += () =>
+            {
+                patternState.RandomActions.Clear();
+                SetPattern();
+                patternState.RandomActions.Add(() =>
+                {
+                    var attack = GetAct<EnemyAttack>();
+                    var dir = InGame.Player.Position - Position;
+                    attack.SoulAttack(dir, true);
+                });
+            };
+        }
+
+        private void SetPattern()
+        {
+            patternState = _enemyAi.GetState<PatternState>();
+            var attack = GetAct<EnemyAttack>();
+            patternState.RandomActions.Add(() =>
             {
                 var dir = InGame.Player.Position - Position;
                 attack.ForwardAttack(dir, true);
             });
-            random.RandomList.Add(() =>
+            patternState.RandomActions.Add(() =>
             {
                 var dir = InGame.Player.Position - Position;
                 attack.BackAttack(dir, true);
             });
-            random.RandomList.Add(() =>
+            patternState.RandomActions.Add(() =>
             {
                 var dir = InGame.Player.Position - Position;
                 attack.TripleAttack(dir, true);
             });
-            random.RandomList.Add(() =>
-            {
-                if (IsSecondPhase() == false)
-                {
-                    _enemyAi.InitState<ChaseState>();
-                    return;
-                }
-                var dir = InGame.Player.Position - Position;
-                attack.SoulAttack(dir, true);
-            });
-            random.SetTarget<WaitState>();
-
-            var wait = _enemyAi.AddState<WaitState>();
-            wait.SetTarget<ChaseState>();
-
-            _enemyAi.InitState<IdleState>();
-            AddAct(_enemyAi);
         }
     }
 }

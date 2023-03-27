@@ -3,6 +3,8 @@ using Actors.Characters.Player;
 using Data;
 using Acts.Characters.Player;
 using UnityEngine;
+using TMPro;
+using Core;
 
 public class Weapon : EquiqmentItem
 {
@@ -61,7 +63,6 @@ public class Weapon : EquiqmentItem
 	/// </summary>
 	public virtual void LoadWeaponClassLevel()
 	{
-
 	}
 
 	/// <summary>
@@ -69,7 +70,40 @@ public class Weapon : EquiqmentItem
 	/// </summary>
 	public virtual void LoadWeaponLevel()
 	{
+		int levelData = Define.GetManager<DataManager>().LoadWeaponLevelData(info.Id);
+		switch (levelData)
+		{
+			case 1:
 
+				break;
+			case 2:
+
+				break;
+			case 3:
+
+				break;
+			case 4:
+
+				break;
+			case 5:
+
+				break;
+			case 6:
+
+				break;
+			case 7:
+
+				break;
+			case 8:
+
+				break;
+			case 9:
+
+				break;
+			case 10:
+
+				break;
+		}
 	}
 
 	/// <summary>

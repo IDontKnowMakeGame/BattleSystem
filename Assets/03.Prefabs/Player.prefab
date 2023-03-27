@@ -315,7 +315,7 @@ MonoBehaviour:
     _frame: 11
   _characterStat:
     _basicStat:
-      hp: 0
+      hp: 500
       atk: 0
       ats: 0
       afs: 0
@@ -328,10 +328,10 @@ MonoBehaviour:
       speed: 0
   _characterState: 0
   _playerEquipment:
-    _firstWeapon: 1
-    _secondWeapon: 2
+    _firstWeapon: 4
+    _secondWeapon: 5
     _halos: 
-    _isPlayer: 0
+    _isPlayer: 1
   _plyerAnimation:
     curClip:
       name: 
@@ -344,7 +344,12 @@ MonoBehaviour:
     index: 0
     isFinished: 0
     weaponAnimations:
+    - {fileID: 11400000, guid: 651f6e69f4faded4f976185e05fdc649, type: 2}
     - {fileID: 11400000, guid: ed2cea15ff594c5409d6a694979bac24, type: 2}
+    - {fileID: 11400000, guid: fedd084822809d5449c27d0ecddb0c4d, type: 2}
+    - {fileID: 11400000, guid: eb04cdf1f0d107b45981f8ccba80e5d0, type: 2}
+    - {fileID: 11400000, guid: 899b69bc9b1473e4cb4f4acdc988e3a0, type: 2}
+    - {fileID: 11400000, guid: 1cbf4ccb99f2cd643b9baf1d9c944210, type: 2}
     curWeaponClips: {fileID: 0}
 --- !u!1 &959488258716677487
 GameObject:
@@ -548,6 +553,10 @@ PrefabInstance:
     - target: {fileID: 2662873638032127355, guid: eb4d15c0829167445810bb6b3f3f5795, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793524356732830310, guid: eb4d15c0829167445810bb6b3f3f5795, type: 3}
+      propertyPath: _maxYScalevalue
+      value: 0.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb4d15c0829167445810bb6b3f3f5795, type: 3}
