@@ -34,11 +34,6 @@ public class StraightSword : Weapon
 				break;
 		}
 	}
-
-	public override void LoadWeaponLevel()
-	{
-
-	}
 	public override void Equiqment(CharacterActor actor)
 	{
 		base.Equiqment(actor);

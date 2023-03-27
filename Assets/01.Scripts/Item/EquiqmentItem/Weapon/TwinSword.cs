@@ -47,11 +47,6 @@ public class TwinSword : Weapon
 		}
 	}
 
-	public override void LoadWeaponLevel()
-	{
-
-	}
-
 	public override void Equiqment(CharacterActor actor)
 	{
 		base.Equiqment(actor);
@@ -68,7 +63,7 @@ public class TwinSword : Weapon
 
 	public virtual void Attack(/*int id,*/ Vector3 vec)
 	{
-		//if (id != _characterActor.UUID) return;
+		if (_characterActor.HasState(CharacterState.Attack)) return;
 		if(vec == Vector3.forward || vec == Vector3.back)
 		{
 			_attackInfo.SizeX = range;

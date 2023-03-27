@@ -53,7 +53,7 @@ namespace Acts.Characters
             MoveAnimation();
 
             ThisActor.StartCoroutine(PositionUpdateCoroutine());
-            var speed = _character.currentWeapon.WeaponInfo.Speed;
+            var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
             seq.Append(_thisTransform.DOMove(nextPos, speed).SetEase(Ease.Linear));
             seq.AppendCallback(() =>
             {

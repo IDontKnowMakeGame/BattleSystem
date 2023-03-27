@@ -41,7 +41,7 @@ public class Arrow : MonoBehaviour
 
 		for(count = 0; count < distance; count++)
 		{
-			if (map.GetBlock((position - Vector3.up) + (vec * count)) == null)
+			if (map.GetBlock((position - Vector3.up) + (vec * count)) == null || !map.GetBlock((position - Vector3.up) + (vec * count)).isWalkable)
 			{
 				count -= 1;
 				break;

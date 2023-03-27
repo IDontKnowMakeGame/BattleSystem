@@ -61,7 +61,10 @@ public class CharacterStatAct : Act, IDmageAble
 		get
 		{
 			if (_actor.currentWeapon == null)
-				return _basicStat;
+			{
+				_changeStat.speed = _basicStat.speed;
+				return _changeStat;
+			}
 
 			_changeStat.ChangeStat(_actor.currentWeapon.info);
 			return _changeStat;

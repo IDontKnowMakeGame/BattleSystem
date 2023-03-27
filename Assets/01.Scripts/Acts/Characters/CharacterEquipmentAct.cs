@@ -16,7 +16,7 @@ public class CharacterEquipmentAct : Act
 	protected ItemID _firstWeapon;
 	[SerializeField]
 	protected ItemID _secondWeapon;
-	public Weapon CurrentWeapon
+	public virtual Weapon CurrentWeapon
 	{
 		get
 		{
@@ -79,7 +79,7 @@ public class CharacterEquipmentAct : Act
 			return _halo;
 		}
 	}
-	private ItemInfo _halo;
+	private ItemInfo _halo = new ItemInfo();
 	protected Dictionary<ItemID, Halo> _useHalo = new Dictionary<ItemID, Halo>();
 	#endregion
 

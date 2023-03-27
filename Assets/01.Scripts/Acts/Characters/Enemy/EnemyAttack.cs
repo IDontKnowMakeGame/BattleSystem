@@ -228,7 +228,7 @@ namespace Acts.Characters.Enemy
 
             for (var vec = ThisActor.Position; vec != nextPos; vec += dir)
             {
-                Debug.Log(vec);
+                //Debug.Log(vec);
                 map.AttackBlock(vec, _defaultStat.Atk, _defaultStat.Ats, ThisActor, isLast);
             }
         }

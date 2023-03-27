@@ -118,6 +118,7 @@ namespace Blocks
 
         private IEnumerator AttackCoroutine(float damage, Color color, float delay, Actor attacker, bool isLast = false)
         {
+            Debug.Log("/");
             var character = attacker as CharacterActor;
             var originalColor = Color.black;
             _blockRender.SetMainColor(color);
@@ -138,6 +139,7 @@ namespace Blocks
             
             Debug.Log(_actorOnBlock + " is attacked by " + attacker + " for " + damage + " damage");
             var stat = _actorOnBlock.GetAct<CharacterStatAct>();
+            Debug.Log("?");
             stat.Damage(damage, attacker);
         }
     }

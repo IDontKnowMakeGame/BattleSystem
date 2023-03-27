@@ -26,6 +26,7 @@ namespace Managements.Managers
         {
             if (!_mapDict.ContainsKey(pos))
                 return;
+            Debug.Log("?");
             _mapDict[pos].Attack(damage, Color.red, delay, attacker, isLast);
         }
 

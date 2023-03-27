@@ -8,12 +8,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using JetBrains.Annotations;
+using UnityEngine.TextCore.Text;
 
 [Serializable]
 public class PlayerEquipment : CharacterEquipmentAct
 {
 	protected PlayerActor _playerActor;
 	private PlayerAnimation _playerAnimation;
+
+	private bool _haveinHand = true;
+
+	public override Weapon CurrentWeapon
+	{
+		get
+		{
+			if (!_haveinHand)
+				return null;
+			return base.CurrentWeapon;
+		}
+	}
+
+	#region Life Cycle
 	public override void Start()
 	{
 		_firstWeapon = DataManager.UserData_.firstWeapon;
@@ -23,24 +39,21 @@ public class PlayerEquipment : CharacterEquipmentAct
 		EquipAnimation();
 		base.Start();
 		InputManager<Weapon>.OnChangePress += Change;
-		InputManager<Weapon>.OnChangePress += () =>
-		{
-			Debug.Log("Change Triggered");
-		};
 		InputManager<Weapon>.OnSkillPress += Skill;
+		InputManager<Weapon>.OnOffPress += WeaponOnOff;
 		Define.GetManager<EventManager>().StartListening(EventFlag.WeaponEquip, EquipmentWeapon);
+		Define.GetManager<EventManager>().StartListening(EventFlag.WeaponUpgrade, Upgrade);
 	}
-
 	public override void Update()
 	{
 		CurrentWeapon?.Update();
 	}
-
-	public override void Change()
+	public override void OnDisable()
 	{
-		if (_playerActor.HasAnyState()) return;
-		base.Change();
+		Define.GetManager<EventManager>()?.StopListening(EventFlag.WeaponEquip, EquipmentWeapon);
+		base.OnDisable();
 	}
+	#endregion
 
 	#region Equipment
 	protected virtual void EquipmentWeapon(EventParam eventParam)
@@ -84,12 +97,6 @@ public class PlayerEquipment : CharacterEquipmentAct
 		//secondWeapon = DataManager.Instance.secoundWeaopn;
 		CurrentWeapon?.Equiqment(_characterController);
 	}
-	#endregion
-
-	private void Skill()
-	{
-		CurrentWeapon?.Skill();
-	}
 	protected override void EquipAnimation()
 	{
 		_playerActor.AddState(CharacterState.Equip);
@@ -100,9 +107,36 @@ public class PlayerEquipment : CharacterEquipmentAct
 		// 마지막 프레임에 종료 넣기
 		_playerAnimation.curClip.SetEventOnFrame(_playerAnimation.curClip.fps - 1, () => _playerActor.RemoveState(CharacterState.Equip));
 	}
-	public override void OnDisable()
+	#endregion
+
+	public void WeaponOnOff()
 	{
-		Define.GetManager<EventManager>()?.StopListening(EventFlag.WeaponEquip, EquipmentWeapon);
-		base.OnDisable();
+		if (_haveinHand)
+		{
+			CurrentWeapon?.UnEquipment(_characterController);
+			_characterController.currentWeapon = null;
+		}
+		else
+		{
+			CurrentWeapon?.Equiqment(_characterController);
+		}
+		_haveinHand = !_haveinHand;
+	}
+	public override void Change()
+	{
+		if (!_haveinHand)
+			return;
+		if (_playerActor.HasAnyState()) return;
+		base.Change();
+	}
+	private void Skill()
+	{
+		if (!_haveinHand)
+			return;
+		CurrentWeapon?.Skill();
+	}
+	private void Upgrade(EventParam eventParam)
+	{
+		CurrentWeapon?.LoadWeaponLevel();
 	}
 }
