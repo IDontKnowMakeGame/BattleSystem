@@ -47,6 +47,25 @@ public class Bow : Weapon
 	{
 		base.Equiqment(actor);
 		InputManager<Bow>.OnAttackPress += Shoot;
+
+		_playerAnimation.GetClip("VerticalPull").SetEventOnFrame(_playerAnimation.GetClip("VerticalPull").fps - 1, SetAnimation);
+		_playerAnimation.GetClip("UpperPull").SetEventOnFrame(_playerAnimation.GetClip("UpperPull").fps - 1, SetAnimation);
+		_playerAnimation.GetClip("LowerPull").SetEventOnFrame(_playerAnimation.GetClip("LowerPull").fps - 1, SetAnimation);
+
+		SetAnimation();
+	}
+
+	private void SetAnimation()
+    {
+		string str = isShoot ? "None" : "Use";
+
+		_playerAnimation.GetClip("Idle").ChangeClip(_playerAnimation.GetClip(str + "Idle"));
+		_playerAnimation.GetClip("VerticalMove").ChangeClip(_playerAnimation.GetClip(str + "VerticalMove"));
+		_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip(str + "UpperMove"));
+		_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip(str + "LowerMove"));
+		_playerAnimation.GetClip("VerticalCharge").ChangeClip(_playerAnimation.GetClip(str + "VerticalCharge"));
+		_playerAnimation.GetClip("UpperCharge").ChangeClip(_playerAnimation.GetClip(str + "UpperCharge"));
+		_playerAnimation.GetClip("LowerCharge").ChangeClip(_playerAnimation.GetClip(str + "LowerCharge"));
 	}
 
 	public override void UnEquipment(CharacterActor actor)
@@ -89,6 +108,7 @@ public class Bow : Weapon
 		if (_characterActor is PlayerActor)
 		{
 			ChargeAnimation(_orginVec);
+			//SetAnimation();
 		}
 
 		_currentTimer += Time.deltaTime;
@@ -125,6 +145,7 @@ public class Bow : Weapon
 		{
 			_playerAnimation.Play("LowerCharge");
 		}
+
 	}
 
 	private void ShootAnimation(Vector3 dir)
@@ -147,5 +168,7 @@ public class Bow : Weapon
 		{
 			_playerAnimation.Play("LowerShoot");
 		}
+
+		_playerAnimation.CurrentClip().SetEventOnFrame(_playerAnimation.CurrentClip().fps - 1, SetAnimation);
 	}
 }

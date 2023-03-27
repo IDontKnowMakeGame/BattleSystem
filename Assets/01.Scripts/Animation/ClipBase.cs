@@ -32,5 +32,12 @@ namespace Tools
         {
             events = new();
         }
+
+        public void ChangeClip(ClipBase clipBase)
+        {
+            texture = clipBase.texture;
+            fps = clipBase.fps;
+            delay = clipBase.delay;
+        }
     }
 }
