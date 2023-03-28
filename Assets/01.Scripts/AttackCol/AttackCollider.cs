@@ -69,6 +69,8 @@ public class AttackCollider : MonoBehaviour
             ChangeSizeZ(curDir, currentInfo.SizeZ);
             ChangeOffsetX(curDir, currentInfo.OffsetX);
             ChangeOffsetZ(curDir, currentInfo.OffsetZ);
+
+            Debug.Log($"{curDir}:SizeX:{currentInfo.SizeX},SizeZ:{currentInfo.SizeZ}");
         }
     }
 
