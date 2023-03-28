@@ -6,7 +6,7 @@
     margin-right: 5px;
     align-items: center;
     justify-content: center;
-    background-image: url('project://database/Assets/02.Sprites/UI/Player_UI_Hpvar.png?fileID=-1464394398&guid=592a4313b6d8fa44987488eb3b4085aa&type=3#Player_UI_Hpvar_1');
+    background-image: url('project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-1221198161&guid=a1cbd5f1f818af548831518a40057cbf&type=3#UI_Icon_0');
 }
 
 .SelectItemTypeText {
@@ -22,7 +22,7 @@
     border-top-width: 5px;
     border-bottom-width: 5px;
     position: absolute;
-    background-image: url('project://database/Assets/02.Sprites/UI/InGame_UI_FeatherIcon.png?fileID=-1522164109&guid=51366b9a6ca4e804789e3772d10af377&type=3#InGame_UI_FeatherIcon_1');
+    background-image: url('project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-1221198161&guid=a1cbd5f1f818af548831518a40057cbf&type=3#UI_Icon_0');
     border-left-color: rgb(0, 0, 0);
     border-right-color: rgb(0, 0, 0);
     border-top-color: rgb(0, 0, 0);
@@ -42,4 +42,10 @@
     margin-right: 10px;
     align-items: center;
     justify-content: center;
+}
+
+.Case {
+    width: 100%;
+    height: 100%;
+    background-image: url('project://database/Assets/02.Sprites/UI/Case_Empty_UI.png?fileID=548808370&guid=8d14667a022af2940949b1ab8780e0d4&type=3#Case_Empty_UI_0');
 }

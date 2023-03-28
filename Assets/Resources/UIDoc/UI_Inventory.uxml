@@ -8,28 +8,34 @@
         <ui:VisualElement name="InventoryPanel" style="width: 80%; height: 80%; background-color: rgb(108, 108, 108); border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; overflow: hidden;">
             <ui:VisualElement name="SelectItemType" style="flex-basis: 15%; flex-direction: row; align-items: flex-end;">
                 <ui:VisualElement name="Weapon" class="SelectItemTypeBox">
-                    <ui:Label text="Weapon" display-tooltip-when-elided="true" class="SelectItemTypeText" />
+                    <ui:Label text="Weapon" display-tooltip-when-elided="true" class="SelectItemTypeText" style="display: none;" />
+                    <ui:VisualElement name="Icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-875096578&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_4&apos;); width: 100px; height: 100px;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Halo" class="SelectItemTypeBox" style="height: 80%;">
-                    <ui:Label text="Halo" display-tooltip-when-elided="true" class="SelectItemTypeText" />
+                    <ui:Label text="Halo" display-tooltip-when-elided="true" class="SelectItemTypeText" style="display: none;" />
+                    <ui:VisualElement name="Icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-1143893429&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_5&apos;); width: 100px; height: 100px;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="UseableItem" class="SelectItemTypeBox" style="height: 80%;">
-                    <ui:Label text="Useable" display-tooltip-when-elided="true" class="SelectItemTypeText" />
+                    <ui:Label text="Useable" display-tooltip-when-elided="true" class="SelectItemTypeText" style="display: none;" />
+                    <ui:VisualElement name="Icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-1643081658&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_6&apos;); width: 100px; height: 100px;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="QuestItem" class="SelectItemTypeBox" style="height: 80%;">
-                    <ui:Label text="Quest" display-tooltip-when-elided="true" class="SelectItemTypeText" />
+                    <ui:Label text="Quest" display-tooltip-when-elided="true" class="SelectItemTypeText" style="display: none;" />
+                    <ui:VisualElement name="Icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=1653532630&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_7&apos;); width: 100px; height: 100px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="ItemPanel" style="flex-basis: 85%; flex-direction: row; translate: 0 0;">
+            <ui:VisualElement name="ItemPanel" style="flex-basis: 85%; flex-direction: row; translate: 0 0; overflow: hidden;">
                 <ui:VisualElement name="WeaponPanel" class="ItemPanel" style="flex-direction: row; display: flex; left: 0;">
-                    <ui:VisualElement name="CharacterView" style="flex-basis: 30%;">
+                    <ui:VisualElement name="CharacterView" style="flex-basis: 30%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-1221198161&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_0&apos;);">
                         <ui:VisualElement name="CharacterImage" style="flex-basis: 80%;" />
                         <ui:VisualElement name="WeaponEquip" style="flex-basis: 20%; flex-direction: row; justify-content: space-around; border-left-color: rgb(128, 128, 128); border-right-color: rgb(128, 128, 128); border-top-color: rgb(128, 128, 128); border-bottom-color: rgb(128, 128, 128); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px;">
                             <ui:VisualElement name="FirstWeapon" class="WeaponEquipBox" style="align-items: center; justify-content: center;">
-                                <ui:Label text="First Weapon" display-tooltip-when-elided="true" />
+                                <ui:Label text="First Weapon" display-tooltip-when-elided="true" style="display: none;" />
+                                <ui:VisualElement name="Case" class="Case" />
                             </ui:VisualElement>
                             <ui:VisualElement name="SecondWeapon" class="WeaponEquipBox" style="align-items: center; justify-content: center;">
-                                <ui:Label text="Second Weapon" display-tooltip-when-elided="true" />
+                                <ui:Label text="Second Weapon" display-tooltip-when-elided="true" style="display: none;" />
+                                <ui:VisualElement name="Case" class="Case" />
                             </ui:VisualElement>
                         </ui:VisualElement>
                     </ui:VisualElement>
