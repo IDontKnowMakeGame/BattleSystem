@@ -30,16 +30,16 @@
                 <ui:VisualElement name="weaponbox_first" style="flex-basis: 25%; background-color: rgb(106, 106, 106); height: 100%; margin-right: 10px;">
                     <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/InGame_UI_FeatherIcon.png?fileID=-1522164109&amp;guid=51366b9a6ca4e804789e3772d10af377&amp;type=3#InGame_UI_FeatherIcon_1&apos;);" />
                 </ui:VisualElement>
-                <ui:VisualElement name="weaponbox_second" style="flex-basis: 20%; background-color: rgb(115, 115, 115); height: 70%; margin-right: 10px;">
+                <ui:VisualElement name="weaponbox_second" style="flex-basis: 18%; background-color: rgb(115, 115, 115); height: 70%; margin-right: 10px;">
                     <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/InGame_UI_FeatherIcon.png?fileID=-1522164109&amp;guid=51366b9a6ca4e804789e3772d10af377&amp;type=3#InGame_UI_FeatherIcon_1&apos;);" />
                 </ui:VisualElement>
                 <ui:VisualElement name="itembox" style="flex-basis: 17%; height: 92px; background-color: rgb(84, 84, 84);">
                     <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/InGame_UI_FeatherIcon.png?fileID=-1522164109&amp;guid=51366b9a6ca4e804789e3772d10af377&amp;type=3#InGame_UI_FeatherIcon_1&apos;);" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="box_feather" style="background-color: rgb(0, 0, 0); width: 400px; height: 40px; justify-content: flex-start; align-items: center; flex-direction: row; background-image: url(&apos;project://database/Assets/02.Sprites/UI/InGame_UI_FeatherIcon.png?fileID=215331032&amp;guid=51366b9a6ca4e804789e3772d10af377&amp;type=3#InGame_UI_FeatherIcon_0&apos;);">
-                <ui:VisualElement name="featherIcon" style="height: 100%; width: 43px; background-image: url(&apos;project://database/Assets/02.Sprites/UI/InGame_UI_FeatherIcon.png?fileID=-884404196&amp;guid=51366b9a6ca4e804789e3772d10af377&amp;type=3#InGame_UI_FeatherIcon_2&apos;); -unity-background-scale-mode: stretch-to-fill; -unity-slice-left: -3; -unity-slice-top: -3; -unity-slice-right: -3; -unity-slice-bottom: -3;" />
-                <ui:Label text="9999999999" display-tooltip-when-elided="true" name="featherCnt" style="margin-left: 10px; font-size: 23px; color: rgb(245, 245, 245);" />
+            <ui:VisualElement name="box_feather" style="background-color: rgb(0, 0, 0); width: 400px; height: 40px; justify-content: flex-start; align-items: center; flex-direction: row; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-1221198161&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_0&apos;);">
+                <ui:VisualElement name="featherIcon" style="height: 100%; width: 41px; background-image: url(&apos;project://database/Assets/02.Sprites/UI/InGame_UI_FeatherIcon.png?fileID=-884404196&amp;guid=51366b9a6ca4e804789e3772d10af377&amp;type=3#InGame_UI_FeatherIcon_2&apos;); -unity-background-scale-mode: stretch-to-fill; -unity-slice-left: -3; -unity-slice-top: -3; -unity-slice-right: -3; -unity-slice-bottom: -3; left: -41px;" />
+                <ui:Label text="9999999999" display-tooltip-when-elided="true" name="featherCnt" style="margin-left: 10px; font-size: 23px; color: rgb(245, 245, 245); left: -38px;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
