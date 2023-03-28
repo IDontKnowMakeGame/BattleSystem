@@ -24,6 +24,7 @@ public class TwinSword : Weapon
 	public override void LoadWeaponClassLevel()
 	{
 		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("TwinSword");
+		Debug.Log(KillToLevel(level.killedCount));
 		switch (KillToLevel(level.killedCount))
 		{
 			case 1:

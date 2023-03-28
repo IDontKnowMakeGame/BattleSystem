@@ -34,10 +34,7 @@ public class OldSpear : Spear
 		}
 		else if(count == 3)
 		{
-			Debug.Log(_weaponBuffInfo.Atk);
-			Debug.Log(beforeAtk);
 			_weaponBuffInfo.Atk -= beforeAtk;
-			Debug.Log(_weaponBuffInfo.Atk);
 			count = 0;
 		}
 	}

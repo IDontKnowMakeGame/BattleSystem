@@ -83,6 +83,8 @@ public class CharacterEquipmentAct : Act
 	protected Dictionary<ItemID, Halo> _useHalo = new Dictionary<ItemID, Halo>();
 	#endregion
 
+	public ItemInfo EquipemntStat => CurrentWeapon.WeaponInfo + HaloInfo;
+
 	[SerializeField]
 	protected bool _isPlayer = false;
 	//ETC

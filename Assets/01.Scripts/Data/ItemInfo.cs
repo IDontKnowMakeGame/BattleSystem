@@ -23,6 +23,12 @@ namespace Data
            var speed = (Mathf.Pow(weight, 2) + 20) * 0.01f;
            return speed;
         }
+
+        public static int SpeedToWeight(float speed)
+        {
+            int weight = (int)Mathf.Sqrt((speed * 100)- 20);
+			return weight;
+		}
         
         public float Speed => WeightToSpeed(Weight);
 	
