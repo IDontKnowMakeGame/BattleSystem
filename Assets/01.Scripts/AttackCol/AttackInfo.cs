@@ -1,49 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Core;
 
+public class ColliderStat
+{
+    private int _sizeX;
+    private int _sizeZ;
+    private int _offsetX;
+    private int _offsetZ;
+
+    public int SizeX => _sizeX;
+    public int SizeZ => _sizeZ;
+    public int OffsetX => _offsetX;
+    public int OffsetZ => _offsetZ;
+
+    public ColliderStat()
+    {
+        _sizeX = InGame.None;
+        _sizeZ = InGame.None;
+        _offsetX = InGame.None;
+        _offsetZ = InGame.None;
+    }
+
+    public ColliderStat(int sizeX, int sizeZ, int offsetX, int offsetZ)
+    {
+        _sizeX = sizeX;
+        _sizeZ = sizeZ;
+        _offsetX = offsetX;
+        _offsetZ = offsetZ;
+    }
+}
 
 public class AttackInfo
 {
     public AttackInfo()
     {
-        sizeX = none;
-        sizeZ = none;
-        offsetX = none;
-        offsetZ = none;
         wantDir = DirType.None;
     }
 
-    private int sizeX;
-    private int sizeZ;
-    private int offsetX;
-    private int offsetZ;
     private DirType wantDir;
     private int reachFrame;
     private Vector3 pressInput;
 
-    const int none = -987654321;
+    private ColliderStat leftStat = new ColliderStat();
+    private ColliderStat rightStat = new ColliderStat();
+    private ColliderStat upStat = new ColliderStat();
+    private ColliderStat downStat = new ColliderStat();
 
-    public int SizeX
-    {
-        get => sizeX;
-        set => sizeX = value;
-    }
-    public int SizeZ
-    {
-        get => sizeZ;
-        set => sizeZ = value;
-    }
-    public int OffsetX
-    {
-        get => offsetX;
-        set => offsetX = value;
-    }
-    public int OffsetZ
-    {
-        get => offsetZ;
-        set => offsetZ = value;
-    }
+    public DirType WantDir => wantDir;
 
     public int ReachFrame
     {
@@ -51,18 +56,36 @@ public class AttackInfo
         set => reachFrame = value;
     }
 
-    public int None
-    {
-        get => none;
-    }
-
-    public DirType WantDir => wantDir;
-
     public Vector3 PressInput
     {
         get => pressInput;
         set => pressInput = value;
     }
+
+    public ColliderStat LeftStat
+    {
+        get => leftStat;
+        set => leftStat = value;
+    }
+
+    public ColliderStat RightStat
+    {
+        get => rightStat;
+        set => rightStat = value;
+    }
+
+    public ColliderStat UpStat
+    {
+        get => upStat;
+        set => upStat = value;
+    }
+
+    public ColliderStat DownStat
+    {
+        get => downStat;
+        set => downStat = value;
+    }
+
 
     public void AddDir(DirType getDir)
     {
@@ -82,21 +105,6 @@ public class AttackInfo
     public void AllDir()
     {
         wantDir = DirType.All;
-    }
-
-    public void ResetInfo()
-    {
-        sizeX = none;
-        sizeZ = none;
-        offsetX = none;
-        offsetZ = none;
-        wantDir = DirType.None;
-    }
-
-    private void Start()
-    {
-        AddDir(DirType.Up);
-        AddDir(DirType.Down);
     }
 
 	public DirType DirTypes(Vector3 vec)

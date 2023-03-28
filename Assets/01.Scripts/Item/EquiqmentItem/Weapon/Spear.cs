@@ -15,6 +15,8 @@ public class Spear : Weapon
 	private bool _isDown = false;
 	private MapManager _mapManager => Define.GetManager<MapManager>();
 	private Vector3 _currentVec = Vector3.zero;
+
+	private int range = 1;
 	public override void LoadWeaponClassLevel()
 	{
 		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("Spear");
@@ -44,8 +46,11 @@ public class Spear : Weapon
 				_weaponClassLevelInfo.Atk = 20;
 				_weaponClassLevelInfo.Ats -= 0.07f;
 				_weaponClassLevelInfo.Afs -= 0.07f;
-				_attackInfo.SizeX = 2;
-				_attackInfo.SizeZ = 2;
+
+				_attackInfo.UpStat = new ColliderStat(2, 2, InGame.None, InGame.None);
+				_attackInfo.DownStat = new ColliderStat(2, 2, InGame.None, InGame.None);
+				_attackInfo.LeftStat = new ColliderStat(2, 2, InGame.None, InGame.None);
+				_attackInfo.RightStat = new ColliderStat(2, 2, InGame.None, InGame.None);
 				break;
 		}
 	}
@@ -68,13 +73,33 @@ public class Spear : Weapon
 	}
 	public override void Update()
 	{
-		if (_isDown && _isEnterEnemy && _mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock)
+		if (_isDown)
+			Debug.DrawLine(_characterActor.transform.position, _characterActor.transform.position + _currentVec * range);
+
+		bool isEnemy = false;
+		for(int i =1; i<=range; i++)
 		{
+			if (_mapManager.GetBlock(_characterActor.Position + _currentVec * i).ActorOnBlock)
+				isEnemy = true;
+		}
+
+		if (_isDown && _isEnterEnemy && isEnemy)
+		{
+			if (range == 2 && _currentVec == Vector3.forward || _currentVec == Vector3.back)
+			{
+				_attackInfo.SizeZ = range;
+				_attackInfo.SizeX = 1;
+			}
+			else if(range == 2)
+			{
+				_attackInfo.SizeX = range;
+				_attackInfo.SizeZ = 1;
+			}
 			_eventParam.attackParam = _attackInfo;
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.FureAttack, _eventParam);
 			_isEnterEnemy = false;
 		}
-		else if (!_isEnterEnemy && !_mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock)
+		else if (!_isEnterEnemy && !isEnemy)
 			_isEnterEnemy = true;
 	}
 
@@ -85,7 +110,7 @@ public class Spear : Weapon
 			_isAttack = true;
 			_characterActor.StartCoroutine(AttackCorutine(vec));
 		}
-		else if (_isAttack && _isDown && vec == _currentVec)
+		else if (_isAttack && _isDown && InGame.CamDirCheck(vec) == _currentVec)
 		{
 			_isAttack = false;
 			_characterActor.StartCoroutine(AttackUpCorutine(vec));

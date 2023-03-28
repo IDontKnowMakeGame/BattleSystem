@@ -1,6 +1,4 @@
 using Managements;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -14,6 +12,7 @@ public class SliderObject : MonoBehaviour
 	private float _chargeValue;
 	private float _addValue;
 
+	private Vector3 _originPos;
 	private bool _isPull;
 	private float _power;
 	private Color _color = Color.white;
@@ -22,13 +21,14 @@ public class SliderObject : MonoBehaviour
 	private GameObject _slider;
 	private GameObject _backGroundObject;
 
-	private Vector3 firstSliderScale = new Vector3(1, 0, 1);
-	private Vector3 vec = new Vector3(1, 0, 1);
+	private Vector3 firstSliderScale = new Vector3(0, 0, 1);
+	private Vector3 vec = new Vector3(0.5f, 0, 1);
 	private void Start()
 	{
 		_sliders = this.gameObject.transform.AllChildrenObjList();
 		_slider = _sliders.Find((a) => a.name == "Slider");
 		_backGroundObject = _sliders.Find((a) => a.name == "BackGround");
+		_originPos = this.transform.localPosition;
 		ActiveObjects(false);
 
 		GameManagement.Instance.GetManager<EventManager>().StartListening(EventFlag.SliderInit, SliderInit);
@@ -39,7 +39,7 @@ public class SliderObject : MonoBehaviour
 
 	private void Update()
 	{
-		PullAnimation(_power, _color);
+		PullAnimation();
 	}
 	private void SliderInit(EventParam eventParam)
 	{
@@ -71,7 +71,10 @@ public class SliderObject : MonoBehaviour
 	{
 		_isPull = eventParam.boolParam;
 		_power = eventParam.floatParam;
-		//_color = eventParam.color;
+		_color = eventParam.color;
+
+		_backGroundObject.GetComponent<SpriteRenderer>().color = _color;
+		this.transform.localPosition = _originPos;
 	}
 
 	private void ActiveObjects(bool isActive)
@@ -82,11 +85,9 @@ public class SliderObject : MonoBehaviour
 		}
 	}
 
-	private void PullAnimation(float power, Color color)
+	private void PullAnimation()
 	{
 		if (_isPull)
-		{
-			_backGroundObject.GetComponent<SpriteRenderer>().color = color;
-		}
+			transform.localPosition = (Vector3)Random.insideUnitCircle * _power + _originPos;
 	}
 }
