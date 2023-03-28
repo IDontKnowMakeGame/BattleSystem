@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 using Actors.Characters.Enemy;
+using Core;
 
 [Flags]
 public enum DirType
@@ -27,8 +28,6 @@ public class AttackCollider : MonoBehaviour
 
     private Dictionary<DirType, Vector3> changeCenterSize = new Dictionary<DirType, Vector3>();
     private Dictionary<DirType, Vector3> changeSize = new Dictionary<DirType, Vector3>();
-
-    const int none = -987654321;
 
     AttackInfo currentInfo;
 
@@ -60,18 +59,25 @@ public class AttackCollider : MonoBehaviour
     {
         currentInfo = attackInfo;
 
-        for (int i = 0; i < 4; i++)
-        {
-            int check = 1 << i;
+        ChangeSizeX(DirType.Up, currentInfo.UpStat.SizeX);
+        ChangeSizeZ(DirType.Up, currentInfo.UpStat.SizeZ);
+        ChangeOffsetX(DirType.Up, currentInfo.UpStat.OffsetX);
+        ChangeOffsetZ(DirType.Up, currentInfo.UpStat.OffsetZ);
 
-            DirType curDir = (DirType)check;
-            ChangeSizeX(curDir, currentInfo.SizeX);
-            ChangeSizeZ(curDir, currentInfo.SizeZ);
-            ChangeOffsetX(curDir, currentInfo.OffsetX);
-            ChangeOffsetZ(curDir, currentInfo.OffsetZ);
+        ChangeSizeX(DirType.Down, currentInfo.DownStat.SizeX);
+        ChangeSizeZ(DirType.Down, currentInfo.DownStat.SizeZ);
+        ChangeOffsetX(DirType.Down, currentInfo.DownStat.OffsetX);
+        ChangeOffsetZ(DirType.Down, currentInfo.DownStat.OffsetZ);
 
-            Debug.Log($"{curDir}:SizeX:{currentInfo.SizeX},SizeZ:{currentInfo.SizeZ}");
-        }
+        ChangeSizeX(DirType.Left, currentInfo.LeftStat.SizeX);
+        ChangeSizeZ(DirType.Left, currentInfo.LeftStat.SizeZ);
+        ChangeOffsetX(DirType.Left, currentInfo.LeftStat.OffsetX);
+        ChangeOffsetZ(DirType.Left, currentInfo.LeftStat.OffsetZ);
+
+        ChangeSizeX(DirType.Right, currentInfo.RightStat.SizeX);
+        ChangeSizeZ(DirType.Right, currentInfo.RightStat.SizeZ);
+        ChangeOffsetX(DirType.Right, currentInfo.RightStat.OffsetX);
+        ChangeOffsetZ(DirType.Right, currentInfo.RightStat.OffsetZ);
     }
 
     public void AllReset()
@@ -129,7 +135,7 @@ public class AttackCollider : MonoBehaviour
 
     private void ChangeSizeX(DirType direction, int space)
     {
-        if (space == none) return;
+        if (space == InGame.None) return;
 
         changeCenterSize[direction] = changeCenterSize[direction].SetX(oriCenterSize[direction].x + ((oriCenterSize[direction].x * 0.5f)) * (space - 1));
         changeSize[direction] = changeSize[direction].SetX(oriSize[direction].x * space);
@@ -139,7 +145,7 @@ public class AttackCollider : MonoBehaviour
 
     private void ChangeOffsetX(DirType direction, float space)
     {
-        if (space == none) return;
+        if (space == InGame.None) return;
 
         changeCenterSize[direction] = changeCenterSize[direction].SetX(space);
 
@@ -148,7 +154,7 @@ public class AttackCollider : MonoBehaviour
 
     private void ChangeSizeZ(DirType direction, float space)
     {
-        if (space == none) return;
+        if (space == InGame.None) return;
 
         changeCenterSize[direction] = changeCenterSize[direction].SetZ(oriCenterSize[direction].z + (oriCenterSize[direction].z > 0 ? 1 : -1) * 0.5f * (space - 1));
         changeSize[direction] = changeSize[direction].SetZ(oriSize[direction].z * space);
@@ -158,7 +164,7 @@ public class AttackCollider : MonoBehaviour
 
     private void ChangeOffsetZ(DirType direction, float space)
     {
-        if (space == none) return;
+        if (space == InGame.None) return;
 
         changeCenterSize[direction] = changeCenterSize[direction].SetZ(space);
 
