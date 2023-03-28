@@ -1,4 +1,5 @@
-﻿using Acts.Base;
+﻿using System.Collections;
+using Acts.Base;
 using UnityEngine;
 
 namespace Blocks.Acts
@@ -53,6 +54,18 @@ namespace Blocks.Acts
         public void SetOutlineColor(Color color)
         {
             _renderer.material.SetColor("_OutlineColor", color);
+        }
+        
+        public void DelayChangeColor(Color color, float delay)
+        {
+            ThisActor.StartCoroutine(DelayChangeColorCoroutine(color, delay));
+
+        }
+        IEnumerator DelayChangeColorCoroutine(Color color1, float f)
+        {
+            SetMainColor(color1);
+            yield return new WaitForSeconds(f);
+            SetMainColor(Color.black);
         }
         
     }

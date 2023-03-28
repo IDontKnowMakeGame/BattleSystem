@@ -131,12 +131,13 @@ namespace Acts.Characters
 
         public void Chase(Actor target)
         {
-            if(_isMoving) return;
+            if(_character.HasState(CharacterState.Move)) return;
             ThisActor.StartCoroutine(AstarCoroutine(target.Position));
         }
 
         private IEnumerator AstarCoroutine(Vector3 end)
         {
+            _character.AddState(CharacterState.Move);
             var astar = new Astar();
             astar.SetPath(ThisActor.Position, end);
             ThisActor.StartCoroutine(astar.FindPath());
