@@ -5,6 +5,7 @@ using UnityEngine;
 using Managements;
 using Managements.Managers;
 using Blocks;
+using Blocks.Acts;
 
 public class Astar
 {
@@ -15,7 +16,6 @@ public class Astar
 
     public IEnumerator FindPath()
     {
-        route.Clear();
 
         bool pathSuccess = false;
 
@@ -74,7 +74,6 @@ public class Astar
         {
             MakePath(start, end);
             //RedPath(start, end);
-            isFinding = false;
         }
 
         yield return null;
@@ -106,7 +105,6 @@ public class Astar
 
     void MakePath(Block startTile, Block endTile)
     {
-        
         route.Clear();
         Block currentTile = endTile;
 
@@ -120,6 +118,7 @@ public class Astar
             currentTile = currentTile.Parent;
             beforeBlock.Parent = null; 
         }
+        isFinding = false;
 
 /*        while (currentTile != startTile)
         {

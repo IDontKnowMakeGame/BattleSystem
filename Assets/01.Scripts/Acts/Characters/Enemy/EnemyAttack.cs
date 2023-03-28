@@ -221,27 +221,42 @@ namespace Acts.Characters.Enemy
             yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
             distance = 1;
             nextPos = ThisActor.Position + dir * distance;
-            var block = map.GetBlock(nextPos);
-            if(block == null)
-                yield break;
-            while (block.CheckActorOnBlock(ThisActor) == true)
+            while (map.IsCheckFitBlock(nextPos, ThisActor))
             {
                 distance++;
                 nextPos = ThisActor.Position + dir * distance;
 
-                if (distance <= 5)
-                    break;
             }
-
-
+            
             for (var vec = ThisActor.Position; vec != nextPos; vec += dir)
             {
-                //var leftVec = vec + (Quaternion.Euler(0, degree, 0) * Vector3.left);
-                //var rightVec = vec + (Quaternion.Euler(0, degree, 0) * Vector3.right);
-                map.AttackBlock(vec, _defaultStat.Atk, _defaultStat.Ats, ThisActor, isLast);
-                //map.AttackBlock(leftVec, _defaultStat.Atk, _defaultStat.Ats, ThisActor, isLast);
-                //map.AttackBlock(rightVec, _defaultStat.Atk, _defaultStat.Ats, ThisActor, isLast);
+                var absDir = new Vector3(Mathf.Abs(dir.x), 0, Mathf.Abs(dir.z));
+                var quat = Quaternion.Euler(0, degree, 0);
+                var leftVec = quat * Vector3.left;
+                var rightVec = quat * Vector3.right;
+                if (absDir is {x: > 0, z: > 0})
+                {
+                    leftVec = quat * new Vector3(-1, 0, -1);
+                    leftVec.x = Mathf.RoundToInt(leftVec.x);
+                    leftVec.z = Mathf.RoundToInt(leftVec.z);
+                    rightVec = quat * new Vector3(1, 0, -1);
+                    rightVec.x = Mathf.RoundToInt(rightVec.x);
+                    rightVec.z = Mathf.RoundToInt(rightVec.z);
+                }
+
+                var leftPos = vec + leftVec;
+                var rightPos = vec + rightVec;
+                map.AttackBlock(vec, _defaultStat.Atk * 2,_defaultStat.Ats, ThisActor);
+                map.AttackBlock(leftPos, _defaultStat.Atk * 2, _defaultStat.Ats, ThisActor);
+                map.AttackBlock(rightPos, _defaultStat.Atk * 2, _defaultStat.Ats, ThisActor);
             }
+            
+            yield return new WaitUntil(() => !character.HasState(CharacterState.Hold));
+
+            yield return new WaitForSeconds(5f);
+            
+            character.RemoveState(CharacterState.Attack);
+            character.RemoveState(CharacterState.Hold);
         }
 
     }
