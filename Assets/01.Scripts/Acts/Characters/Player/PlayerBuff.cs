@@ -77,7 +77,7 @@ namespace Acts.Characters.Player
                 angerDecrease = true;
                 decreaseAngerTimer = decreaseTime;
                 _playerStat.Multi(StatType.ATK, 2);
-                _playerStat.Half += 50;
+				_playerStat.Half += 50;
                 //angerParticle.gameObject.SetActive(true);
             }
             if (angerDecrease)
@@ -87,7 +87,7 @@ namespace Acts.Characters.Player
                     anger = 0;
                     angerDecrease = false;
                     _playerStat.Dev(StatType.ATK, 2);
-                    _playerStat.Half -= 50;
+					_playerStat.Half -= 50;
                     //angerParticle.gameObject.SetActive(false);
                     return;
                 }
