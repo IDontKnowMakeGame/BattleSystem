@@ -33,7 +33,6 @@ namespace Acts.Characters
         public virtual void Move(Vector3 position)
         {
             if (_isMoving) return;
-            _character.AddState(Actors.Characters.CharacterState.Move);
             var seq = DOTween.Sequence();
             var currentPos = ThisActor.Position;
             var nextPos = position;
@@ -48,18 +47,21 @@ namespace Acts.Characters
                 return;
             }
             
-            map.GetBlock(nextPos.SetY(0)).isWalkable = false;
+            var block = map.GetBlock(nextPos.SetY(0));
+            if(block.CheckActorOnBlock(ThisActor) == false) return;
+            _character.AddState(Actors.Characters.CharacterState.Move);
+            block.isWalkable = false;
 
             MoveAnimation();
 
             ThisActor.StartCoroutine(PositionUpdateCoroutine());
-            var speed = _character.currentWeapon.WeaponInfo.Speed;
+            var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
             seq.Append(_thisTransform.DOMove(nextPos, speed).SetEase(Ease.Linear));
             seq.AppendCallback(() =>
             {
                 ThisActor.Position = nextPos;
                 _isMoving = false;
-                map.GetBlock(nextPos.SetY(0)).isWalkable = true;
+                block.isWalkable = true;
                 MoveStop();
                 seq.Kill();
             });
@@ -68,22 +70,24 @@ namespace Acts.Characters
         public virtual void Jump(Vector3 position)
         {
             if (_isMoving) return;
-            _character.AddState(Actors.Characters.CharacterState.Move);
             var seq = DOTween.Sequence();
             var currentPos = ThisActor.Position;
             var nextPos = position;
             nextPos.y = 1;
             
             var map = Define.GetManager<MapManager>();
-            
+
             if (map.GetBlock(nextPos.SetY(0)) == null)
             {
                 MoveStop();
                 return;
             }
 
-            map.GetBlock(nextPos.SetY(0)).isWalkable = false;
-            
+            var block = map.GetBlock(nextPos.SetY(0));
+            if(block.CheckActorOnBlock(ThisActor) == false) return;
+            _character.AddState(Actors.Characters.CharacterState.Move);
+            block.isWalkable = false;
+
             MoveAnimation();
 
             ThisActor.StartCoroutine(PositionUpdateCoroutine());
@@ -93,7 +97,7 @@ namespace Acts.Characters
             seq.AppendCallback(() =>
             {
                 ThisActor.Position = nextPos;
-                map.GetBlock(nextPos.SetY(0)).isWalkable = true;
+                block.isWalkable = true;
                 _isMoving = false;
                 MoveStop();
                 seq.Kill();

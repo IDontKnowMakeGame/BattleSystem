@@ -15,7 +15,6 @@ public class Spear : Weapon
 	private bool _isDown = false;
 	private MapManager _mapManager => Define.GetManager<MapManager>();
 	private Vector3 _currentVec = Vector3.zero;
-
 	public override void LoadWeaponClassLevel()
 	{
 		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("Spear");
@@ -50,11 +49,6 @@ public class Spear : Weapon
 				break;
 		}
 	}
-
-	public override void LoadWeaponLevel()
-	{
-
-	}
 	public override void Equiqment(CharacterActor actor)
 	{
 		base.Equiqment(actor);
@@ -74,9 +68,6 @@ public class Spear : Weapon
 	}
 	public override void Update()
 	{
-		if (_isDown)
-			Debug.DrawLine(_characterActor.transform.position, _characterActor.transform.position + _currentVec);
-
 		if (_isDown && _isEnterEnemy && _mapManager.GetBlock(_characterActor.Position + _currentVec).ActorOnBlock)
 		{
 			_eventParam.attackParam = _attackInfo;
@@ -103,9 +94,8 @@ public class Spear : Weapon
 
 	public virtual IEnumerator AttackCorutine(Vector3 vec)
 	{
-		Debug.Log(vec);
 		_attackInfo.AddDir(_attackInfo.DirTypes(vec));
-		_currentVec = vec;
+		_currentVec = InGame.CamDirCheck(vec);
 		ReadyAnimation(_currentVec);
 		yield return new WaitForSeconds(info.Ats);
 		_isDown = true;

@@ -13,7 +13,9 @@ public class Weapon : EquiqmentItem
 		get
 		{
 			if (!isEnemy)
+			{
 				return info + _weaponClassLevelInfo + _weaponLevelInfo + _weaponBuffInfo;
+			}
 			else
 				return info;
 		}
@@ -74,34 +76,40 @@ public class Weapon : EquiqmentItem
 		switch (levelData)
 		{
 			case 1:
-
+				_weaponLevelInfo.Atk = 20;
 				break;
 			case 2:
-
+				_weaponLevelInfo.Atk = 45;
 				break;
 			case 3:
-
+				_weaponLevelInfo.Atk = 75;
 				break;
 			case 4:
-
+				_weaponLevelInfo.Atk = 110;
 				break;
 			case 5:
-
+				_weaponLevelInfo.Atk = 150;
 				break;
 			case 6:
-
+				_weaponLevelInfo.Atk = 195;
 				break;
 			case 7:
-
+				_weaponLevelInfo.Atk = 245;
 				break;
 			case 8:
-
+				_weaponLevelInfo.Atk = 300;
 				break;
 			case 9:
-
+				_weaponLevelInfo.Atk = 360;
 				break;
 			case 10:
-
+				_weaponLevelInfo.Atk = 425;
+				break;
+			case 11:
+				_weaponLevelInfo.Atk = 495;
+				break;
+			case 12:
+				_weaponLevelInfo.Atk = 570;
 				break;
 		}
 	}

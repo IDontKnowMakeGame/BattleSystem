@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using Actors.Bases;
 using Actors.Characters;
+using Actors.Characters.Enemy;
+using Actors.Characters.Player;
 using Blocks.Acts;
 using Core;
 using UnityEngine;
@@ -118,6 +120,7 @@ namespace Blocks
 
         private IEnumerator AttackCoroutine(float damage, Color color, float delay, Actor attacker, bool isLast = false)
         {
+            Debug.Log("/");
             var character = attacker as CharacterActor;
             var originalColor = Color.black;
             _blockRender.SetMainColor(color);
@@ -138,7 +141,26 @@ namespace Blocks
             
             Debug.Log(_actorOnBlock + " is attacked by " + attacker + " for " + damage + " damage");
             var stat = _actorOnBlock.GetAct<CharacterStatAct>();
+            Debug.Log("?");
             stat.Damage(damage, attacker);
+        }
+        
+        public bool CheckActorOnBlock(Actor actor)
+        {
+            if (actor is PlayerActor)
+                return true;
+            if(actor is EnemyActor)
+            {
+                if(!canEnemyEnter)
+                    return false;
+            }
+            if(actor is BossActor)
+            {
+                if(!canBossEnter)
+                    return false;
+            }
+
+            return true;
         }
     }
 }

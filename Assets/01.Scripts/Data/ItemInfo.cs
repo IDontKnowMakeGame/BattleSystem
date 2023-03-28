@@ -35,7 +35,7 @@ namespace Data
             item.Afs = origin.Afs + other.Afs;
             item.Weight = origin.Weight + other.Weight;
 			item.CoolTime = origin.CoolTime + other.CoolTime;
-            return origin;
+            return item;
         }
 	}
 }

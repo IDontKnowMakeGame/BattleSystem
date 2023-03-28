@@ -15,7 +15,6 @@ public class Astar
 
     public IEnumerator FindPath()
     {
-        route.Clear();
 
         bool pathSuccess = false;
 
@@ -106,7 +105,6 @@ public class Astar
 
     void MakePath(Block startTile, Block endTile)
     {
-        
         route.Clear();
         Block currentTile = endTile;
 

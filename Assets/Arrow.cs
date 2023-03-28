@@ -6,6 +6,7 @@ using Managements.Managers;
 using Actors.Characters.Player;
 using Actors.Characters.Enemy;
 using System.Collections;
+using Acts.Characters.Player;
 
 public class Arrow : MonoBehaviour
 {
@@ -20,10 +21,15 @@ public class Arrow : MonoBehaviour
 	private bool _isStick = false;
 	private bool _canPull = false;
 
+	private PlayerAnimation _playerAnimation;
+
 	public void Start()
 	{
 		if (_shootActor is EnemyActor)
 			StartCoroutine(Destroy());
+
+		if (_shootActor is PlayerActor)
+			_playerAnimation = InGame.Player.GetAct<PlayerAnimation>();
 	}
 	public static void ShootArrow(Vector3 vec, Vector3 position, CharacterActor actor, float speed, float damage, int distance)
 	{
@@ -41,7 +47,7 @@ public class Arrow : MonoBehaviour
 
 		for(count = 0; count < distance; count++)
 		{
-			if (map.GetBlock((position - Vector3.up) + (vec * count)) == null)
+			if (map.GetBlock((position - Vector3.up) + (vec * count)) == null || !map.GetBlock((position - Vector3.up) + (vec * count)).isWalkable)
 			{
 				count -= 1;
 				break;
@@ -87,6 +93,8 @@ public class Arrow : MonoBehaviour
 
 		_stickActor?.GetAct<CharacterStatAct>().Damage(_damage / 2, _shootActor);
 
+		PullAnimation();
+
 		InputManager<Bow>.OnSubPress -= Pull;
 		Define.GetManager<ResourceManager>().Destroy(this.gameObject);
 	}
@@ -129,6 +137,33 @@ public class Arrow : MonoBehaviour
 		if (_shootActor.UUID == actor.UUID && _isStick)
 		{
 			_canPull = false;
+		}
+	}
+
+	private void PullAnimation()
+	{
+		Vector3 dir = (transform.position - InGame.Player.Position).normalized;
+		dir.y = 0;
+
+		Debug.Log(dir);
+
+		if (dir == Vector3.left)
+		{
+			InGame.Player.SpriteTransform.localScale = new Vector3(-1, 1, 1);
+			_playerAnimation.Play("VerticalPull");
+		}
+		else if (dir == Vector3.right)
+		{
+			InGame.Player.SpriteTransform.localScale = new Vector3(1, 1, 1);
+			_playerAnimation.Play("VerticalPull");
+		}
+		else if (dir == Vector3.forward)
+		{
+			_playerAnimation.Play("UpperPull");
+		}
+		else
+		{
+			_playerAnimation.Play("LowerPull");
 		}
 	}
 }

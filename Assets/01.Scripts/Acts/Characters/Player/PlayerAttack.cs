@@ -68,10 +68,13 @@ namespace Acts.Characters.Player
         private void Attack()
         {
             var character = ThisActor as CharacterActor;
-            foreach (EnemyActor enemy in enemys)
+
+			foreach (EnemyActor enemy in enemys)
             {
                 GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Damage");
                 obj.GetComponent<DamagePopUp>().DamageText(character.currentWeapon.WeaponInfo.Atk, enemy.transform.position);
+
+                Debug.Log(character.currentWeapon.WeaponInfo.Atk);
                 enemy.GetAct<CharacterStatAct>().Damage(character.currentWeapon.WeaponInfo.Atk, ThisActor);
             }
 
@@ -122,8 +125,10 @@ namespace Acts.Characters.Player
 
         private void NoneAniAttack(EventParam eventParam)
         {
-            AttackCheck(eventParam.attackParam);
-        }
+			_playerActor.AddState(CharacterState.Attack);
+			AttackCheck(eventParam.attackParam);
+			_playerActor.RemoveState(CharacterState.Attack);
+		}
 
         private void FureAttack(EventParam eventParam)
         {
@@ -133,7 +138,11 @@ namespace Acts.Characters.Player
 
 			if (attackCol.CurrntDirNearEnemy() != null)
 				enemys.Add(attackCol.CurrntDirNearEnemy());
-			Attack();
+
+            if (enemys.Count > 0)
+            {
+                Attack();
+            }
 			attackCol.AllReset();
 		}
         private void ColParentRotate()

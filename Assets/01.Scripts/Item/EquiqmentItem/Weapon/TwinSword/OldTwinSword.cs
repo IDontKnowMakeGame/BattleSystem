@@ -21,14 +21,15 @@ public class OldTwinSword : TwinSword
 	{
 		InputManager<TwinSword>.OnMovePress -= Skill;
 		_isCoolTime = true;
+		Vector3 vector = InGame.CamDirCheck(vec);
 		for(int i = 0; i<6; i++)
 		{
-			Define.GetManager<MapManager>().AttackBlock(vec, info.Atk, 1f, _characterActor);
+			Define.GetManager<MapManager>().AttackBlock(_characterActor.Position+vector, info.Atk, 1f, _characterActor, true);
 		}
-		_characterActor.StartCoroutine(SkillCorutine(vec));
+		_characterActor.StartCoroutine(SkillCorutine());
 	}
 
-	private IEnumerator SkillCorutine(Vector3 vec)
+	private IEnumerator SkillCorutine()
 	{
 		yield return new WaitForSeconds(1f);
 		_characterActor.RemoveState(CharacterState.Skill);

@@ -203,14 +203,16 @@ namespace Acts.Characters.Enemy
             var map = Define.GetManager<MapManager>();
             var character = ThisActor as CharacterActor;
             var move = ThisActor.GetAct<CharacterMove>();
+            var degree = ThisActor.Position.GetDegree(InGame.Player.Position);
             yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
             yield return new WaitForSeconds(_defaultStat.Ats);
             var distance = 3;
-            var nextPos = ThisActor.Position - dir * distance;
+            var nextPos = InGame.Player.Position - dir * distance;
+            
             while (map.IsWalkable(nextPos) == false)
             {
                 distance--;
-                nextPos = ThisActor.Position - dir * distance;
+                nextPos = InGame.Player.Position - dir * distance;
                 if (distance == 0)
                     break;
             }
@@ -219,18 +221,42 @@ namespace Acts.Characters.Enemy
             yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
             distance = 1;
             nextPos = ThisActor.Position + dir * distance;
-            while (map.IsWalkable(nextPos) == true)
+            while (map.IsCheckFitBlock(nextPos, ThisActor))
             {
                 distance++;
                 nextPos = ThisActor.Position + dir * distance;
+
             }
-
-
+            
             for (var vec = ThisActor.Position; vec != nextPos; vec += dir)
             {
-                Debug.Log(vec);
-                map.AttackBlock(vec, _defaultStat.Atk, _defaultStat.Ats, ThisActor, isLast);
+                var absDir = new Vector3(Mathf.Abs(dir.x), 0, Mathf.Abs(dir.z));
+                var quat = Quaternion.Euler(0, degree, 0);
+                var leftVec = quat * Vector3.left;
+                var rightVec = quat * Vector3.right;
+                if (absDir is {x: > 0, z: > 0})
+                {
+                    leftVec = quat * new Vector3(-1, 0, -1);
+                    leftVec.x = Mathf.RoundToInt(leftVec.x);
+                    leftVec.z = Mathf.RoundToInt(leftVec.z);
+                    rightVec = quat * new Vector3(1, 0, -1);
+                    rightVec.x = Mathf.RoundToInt(rightVec.x);
+                    rightVec.z = Mathf.RoundToInt(rightVec.z);
+                }
+
+                var leftPos = vec + leftVec;
+                var rightPos = vec + rightVec;
+                map.AttackBlock(vec, _defaultStat.Atk * 2,_defaultStat.Ats, ThisActor);
+                map.AttackBlock(leftPos, _defaultStat.Atk * 2, _defaultStat.Ats, ThisActor);
+                map.AttackBlock(rightPos, _defaultStat.Atk * 2, _defaultStat.Ats, ThisActor);
             }
+            
+            yield return new WaitUntil(() => !character.HasState(CharacterState.Hold));
+
+            yield return new WaitForSeconds(5f);
+            
+            character.RemoveState(CharacterState.Attack);
+            character.RemoveState(CharacterState.Hold);
         }
 
     }
