@@ -51,7 +51,11 @@ namespace Core
             get => player;
             set => player = value;
         }
-        
+
+        private static int none = -987654321;
+
+        public static int None => none;
+
         public static void AddActor(Actor actor)
         {
             if (Actors.ContainsKey(actor.UUID))

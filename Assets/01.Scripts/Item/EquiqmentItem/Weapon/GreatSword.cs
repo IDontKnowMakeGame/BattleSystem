@@ -85,8 +85,11 @@ public class GreatSword : Weapon
 
 		if (timer >= info.Ats)
 		{
-			_attackInfo.SizeX = 1;
-			_attackInfo.SizeZ = 1;
+			_attackInfo.UpStat = new ColliderStat(1, 1, InGame.None, InGame.None);
+			_attackInfo.DownStat = new ColliderStat(1, 1, InGame.None, InGame.None);
+			_attackInfo.LeftStat = new ColliderStat(1, 1, InGame.None, InGame.None);
+			_attackInfo.RightStat = new ColliderStat(1, 1, InGame.None, InGame.None);
+
 			_attackInfo.ResetDir();
 			_attackInfo.PressInput = vec;
 			_attackInfo.AddDir(_attackInfo.DirTypes(_currrentVector));

@@ -159,7 +159,7 @@ public class UIInventory : UIBase
         foreach(SaveItemData item in list)
         {
             VisualElement card = temp.Instantiate().Q<VisualElement>("card");
-            card.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Image/{item.name}"));
+            card.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)item.id}"));
 
             card.RegisterCallback<ClickEvent>(e =>
             {

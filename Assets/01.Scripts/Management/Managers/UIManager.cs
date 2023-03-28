@@ -53,10 +53,10 @@ public class UIManager : MonoBehaviour
         //{
         //    ItemStore.ShowItemStore(itemStoreTable);
         //}
-        //if (Input.GetKeyDown(KeyCode.C))
-        //{
-        //    Inventory.ShowInventory();
-        //}
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Inventory.ShowInventory();
+        }
         //if (Input.GetKeyDown(KeyCode.V))
         //{
         //    Smithy.ShowSmithy();

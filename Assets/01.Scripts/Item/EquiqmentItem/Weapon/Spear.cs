@@ -46,7 +46,11 @@ public class Spear : Weapon
 				_weaponClassLevelInfo.Atk = 20;
 				_weaponClassLevelInfo.Ats -= 0.07f;
 				_weaponClassLevelInfo.Afs -= 0.07f;
-				range = 2;
+
+				_attackInfo.UpStat = new ColliderStat(2, 2, InGame.None, InGame.None);
+				_attackInfo.DownStat = new ColliderStat(2, 2, InGame.None, InGame.None);
+				_attackInfo.LeftStat = new ColliderStat(2, 2, InGame.None, InGame.None);
+				_attackInfo.RightStat = new ColliderStat(2, 2, InGame.None, InGame.None);
 				break;
 		}
 	}

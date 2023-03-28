@@ -46,8 +46,11 @@ public class StraightSword : Weapon
 	}
 	public virtual void Attack(Vector3 vec)
 	{
-		_attackInfo.SizeX = 1;
-		_attackInfo.SizeZ = 1;
+		_attackInfo.UpStat = new ColliderStat(1, 1, InGame.None, InGame.None);
+		_attackInfo.DownStat = new ColliderStat(1, 1, InGame.None, InGame.None);
+		_attackInfo.LeftStat = new ColliderStat(1, 1, InGame.None, InGame.None);
+		_attackInfo.RightStat = new ColliderStat(1, 1, InGame.None, InGame.None);
+
 		_attackInfo.ReachFrame = 5;
 		_attackInfo.PressInput = vec;
 		_attackInfo.ResetDir();

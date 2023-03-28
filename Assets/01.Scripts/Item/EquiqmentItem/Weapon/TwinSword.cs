@@ -67,6 +67,8 @@ public class TwinSword : Weapon
 		if (_characterActor.HasState(CharacterState.Attack)) return;
 		if(vec == Vector3.forward || vec == Vector3.back)
 		{
+			_attackInfo.LeftStat = new ColliderStat(range, InGame.None, InGame.None, InGame.None);
+			_attackInfo.RightStat = new ColliderStat(range, InGame.None, InGame.None, InGame.None);
 			_attackInfo.ResetDir();
 			_attackInfo.SizeX = 1;
 			if (range == 1)
@@ -93,6 +95,8 @@ public class TwinSword : Weapon
 		}
 		else if(vec == Vector3.left || vec == Vector3.right)
 		{
+			_attackInfo.UpStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
+			_attackInfo.DownStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
 			_attackInfo.ResetDir();
 
 			_attackInfo.SizeZ = 1;
