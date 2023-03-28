@@ -66,12 +66,12 @@ public class UIInGame : UIBase
 
     public void ChangeFirstWeaponImage(ItemID itemID)
     {
-        Sprite sprite = Define.GetManager<ResourceManager>().Load<Sprite>("Image/" + itemID.ToString());
+        Sprite sprite = Define.GetManager<ResourceManager>().Load<Sprite>("Item/" + (int)itemID);
         _firstWaepon.style.backgroundImage = new StyleBackground(sprite);
     }
     public void ChangeSecondWeaponImage(ItemID itemID)
     {
-        Sprite sprite = Define.GetManager<ResourceManager>().Load<Sprite>("Image/" + itemID.ToString());
+        Sprite sprite = Define.GetManager<ResourceManager>().Load<Sprite>("Item/" + (int)itemID);
         _secondWeapon.style.backgroundImage = new StyleBackground(sprite);
     }
     public void ChangeItemPanelImage(Sprite sprite)

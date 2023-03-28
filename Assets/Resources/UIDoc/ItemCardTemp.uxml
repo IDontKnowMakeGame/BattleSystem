@@ -1,3 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:VisualElement name="card" style="width: 100px; height: 150px; background-color: rgb(103, 103, 103); margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; border-left-color: rgb(24, 192, 182); border-right-color: rgb(24, 192, 182); border-top-color: rgb(24, 192, 182); border-bottom-color: rgb(24, 192, 182);" />
+    <ui:VisualElement name="card" style="width: 100px; height: 150px; background-color: rgb(56, 56, 56); margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; border-left-color: rgb(24, 192, 182); border-right-color: rgb(24, 192, 182); border-top-color: rgb(24, 192, 182); border-bottom-color: rgb(24, 192, 182);">
+        <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Card.png?fileID=738687179&amp;guid=f8d86aaee61368341922d38dda1585f6&amp;type=3#UI_Card_1&apos;);" />
+    </ui:VisualElement>
 </ui:UXML>
