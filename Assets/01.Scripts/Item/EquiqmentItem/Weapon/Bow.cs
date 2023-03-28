@@ -43,11 +43,16 @@ public class Bow : Weapon
 		base.Equiqment(actor);
 		InputManager<Bow>.OnAttackPress += Shoot;
 
-		_playerAnimation.GetClip("VerticalPull").SetEventOnFrame(_playerAnimation.GetClip("VerticalPull").fps - 1, SetAnimation);
-		_playerAnimation.GetClip("UpperPull").SetEventOnFrame(_playerAnimation.GetClip("UpperPull").fps - 1, SetAnimation);
-		_playerAnimation.GetClip("LowerPull").SetEventOnFrame(_playerAnimation.GetClip("LowerPull").fps - 1, SetAnimation);
-
-		SetAnimation();
+		if (actor is PlayerActor)
+		{
+			_playerAnimation.GetClip("VerticalPull").SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
+			_playerAnimation.GetClip("UpperPull").SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
+			_playerAnimation.GetClip("LowerPull").SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
+			_playerAnimation.GetClip("VerticalPull").SetEventOnFrame(_playerAnimation.GetClip("VerticalPull").fps - 1, SetAnimation);
+			_playerAnimation.GetClip("UpperPull").SetEventOnFrame(_playerAnimation.GetClip("UpperPull").fps - 1, SetAnimation);
+			_playerAnimation.GetClip("LowerPull").SetEventOnFrame(_playerAnimation.GetClip("LowerPull").fps - 1, SetAnimation);
+			SetAnimation();
+		}
 	}
 
 	private void SetAnimation()
@@ -61,6 +66,9 @@ public class Bow : Weapon
 		_playerAnimation.GetClip("VerticalCharge").ChangeClip(_playerAnimation.GetClip(str + "VerticalCharge"));
 		_playerAnimation.GetClip("UpperCharge").ChangeClip(_playerAnimation.GetClip(str + "UpperCharge"));
 		_playerAnimation.GetClip("LowerCharge").ChangeClip(_playerAnimation.GetClip(str + "LowerCharge"));
+
+		_characterActor.RemoveState(CharacterState.StopMove);
+		_characterActor.RemoveState(CharacterState.Attack);
 	}
 
 	public override void UnEquipment(CharacterActor actor)
@@ -80,6 +88,9 @@ public class Bow : Weapon
 			return;
 
 		if (isShoot)
+			return;
+
+		if (_playerActor.HasState(CharacterState.Everything))
 			return;
 
 		_isCharge = true;
@@ -114,6 +125,7 @@ public class Bow : Weapon
 			_isCharge = false;
 			_characterActor.RemoveState(CharacterState.StopMove);
 			_characterActor.RemoveState(CharacterState.Hold);
+			_characterActor.AddState(CharacterState.Attack);
 			ShootAnimation(_orginVec);
 			Arrow.ShootArrow(_currentVec, _characterActor.Position, _characterActor, info.Ats, info.Atk, 6);
 			_eventManager.TriggerEvent(EventFlag.SliderFalse, new EventParam { boolParam = false });

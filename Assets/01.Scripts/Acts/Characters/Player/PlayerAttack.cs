@@ -54,6 +54,8 @@ namespace Acts.Characters.Player
 
             attackCol.SetAttackCol(attackInfo);
 
+
+
             if(attackCol.CurrntDirNearEnemy() != null)
                 enemys.Add(attackCol.CurrntDirNearEnemy());
 
