@@ -139,6 +139,8 @@ public class UIInventory : UIBase
     public void HideInventory()
     {
         _root.style.display = DisplayStyle.None;
+        HideWeaponInfoPanel();
+        SelectOptionInit(true);
     }
 
     public void EquipWeaponBoxImage()
@@ -176,7 +178,7 @@ public class UIInventory : UIBase
             parent.Add(card);
         }
     }
-    public void ShowWeaponInfo(ItemID itemID)
+    public void ShowWeaponInfoPanel(ItemID itemID)
     {
         ItemInfo data = Define.GetManager<DataManager>().weaponDictionary[itemID];
         int weaponLevel = Define.GetManager<DataManager>().LoadWeaponLevelData(itemID);
@@ -185,10 +187,15 @@ public class UIInventory : UIBase
         _weaponStatusPanel.Q<VisualElement>("Image").style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)itemID}"));
 
         VisualElement status = _weaponInfoPanel.Q<VisualElement>("Status");
+        status.Q<Label>("Atk").text = string.Format("Level : {0}", weaponLevel);
         status.Q<Label>("Atk").text = string.Format("공격력 : {0} + {1}", data.Atk, weaponLevel);
         status.Q<Label>("Ats").text = string.Format("공격속도 : {0}", data.Ats);
         status.Q<Label>("Afs").text = string.Format("후 딜레이 : {0}", data.Afs);
         status.Q<Label>("Wei").text = string.Format("무게 : {0}", data.Weight);
+    }
+    public void HideWeaponInfoPanel()
+    {
+        _weaponInfoPanel.style.display = DisplayStyle.None;
     }
     public void UseableEquipBoxSetting()
     {
@@ -224,6 +231,11 @@ public class UIInventory : UIBase
         }
         else
         {
+            if (selectCard == card)
+            {
+                SelectOptionInit(true);
+                return;
+            }
             if (selectCard != null)
                 CardBorderWidth(selectCard, 0, Color.white);
             selectCard = card;
@@ -244,9 +256,16 @@ public class UIInventory : UIBase
         }
         else
         {
+            if(selectCard == card)
+            {
+                SelectOptionInit(true);
+                return;
+            }
+                
             if (selectCard != null)
                 CardBorderWidth(selectCard, 0, Color.white);
-            ShowWeaponInfo(id);
+
+            ShowWeaponInfoPanel(id);
             selectCard = card;
             CardBorderWidth(selectCard, 3, Color.red);
             currentItemId = id;
@@ -264,6 +283,8 @@ public class UIInventory : UIBase
         currentItemId = ItemID.None;
         isSelectCard = false;
         isSelectEquipBox = false;
+
+        HideWeaponInfoPanel();
     }
     public void CardBorderWidth(VisualElement card,float value,Color color)
     {
