@@ -13,6 +13,10 @@ namespace Acts.Characters.Player
         [Range(0, 10)] private float anger;
         [SerializeField]
         [Range(0, 10)] private float adneraline;
+        [SerializeField]
+        private ParticleSystem angerParticle;
+        [SerializeField]
+        private ParticleSystem adneralineParticle;
 
         private bool angerDecrease = false;
         private bool adneralineDecrease = false;
@@ -38,10 +42,10 @@ namespace Acts.Characters.Player
             attackCount = 0;
             attackCheckTimer = attckCheckTime;
 
-            /*            if (angerParticle != null)
-                            angerParticle.gameObject.SetActive(false);
-                        if (adneralineParticle != null)
-                            adneralineParticle.gameObject.SetActive(false);*/
+            if (angerParticle != null)
+                angerParticle.gameObject.SetActive(false);
+            if (adneralineParticle != null)
+                adneralineParticle.gameObject.SetActive(false);
 
             UIManager.Instance.InGame.ChangeAngerValue(0);
             UIManager.Instance.InGame.ChangeAdrenalineValue(0);
@@ -78,7 +82,7 @@ namespace Acts.Characters.Player
                 decreaseAngerTimer = decreaseTime;
                 _playerStat.Multi(StatType.ATK, 2);
                 _playerStat.Half += 50;
-                //angerParticle.gameObject.SetActive(true);
+                angerParticle.gameObject.SetActive(true);
             }
             if (angerDecrease)
             {
@@ -88,7 +92,7 @@ namespace Acts.Characters.Player
                     angerDecrease = false;
                     _playerStat.Dev(StatType.ATK, 2);
                     _playerStat.Half -= 50;
-                    //angerParticle.gameObject.SetActive(false);
+                    angerParticle.gameObject.SetActive(false);
                     return;
                 }
 
@@ -121,7 +125,7 @@ namespace Acts.Characters.Player
                 decreaseAdneralineTimer = decreaseTime;
                 _playerStat.Multi(StatType.ATK, 0.5f);
                 _playerStat.Plus(StatType.SPEED, 1);
-                //adneralineParticle.gameObject.SetActive(true);
+                adneralineParticle.gameObject.SetActive(true);
             }
             if (adneralineDecrease)
             {
@@ -131,7 +135,7 @@ namespace Acts.Characters.Player
                     adneralineDecrease = false;
                     _playerStat.Dev(StatType.ATK, 0.5f);
                     _playerStat.Sub(StatType.SPEED, 1);
-                    //adneralineParticle.gameObject.SetActive(false);
+                    adneralineParticle.gameObject.SetActive(false);
                     return;
                 }
 
