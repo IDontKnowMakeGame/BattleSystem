@@ -62,7 +62,11 @@ public class UIManager : MonoBehaviour
         //    Smithy.ShowSmithy();
         //}
     }
-
+    public void UpdateInGameUI()
+    {
+        InGame.ChangeFirstWeaponImage(DataManager.UserData_.firstWeapon);
+        InGame.ChangeSecondWeaponImage(DataManager.UserData_.secondWeapon);
+    }
     public  void show(string name)
     {
         BossBar.ShowBossBar(name);
