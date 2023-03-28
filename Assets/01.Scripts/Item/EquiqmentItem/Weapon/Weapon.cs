@@ -25,6 +25,7 @@ public class Weapon : EquiqmentItem
 	protected bool _isCoolTime = false;
 	protected float _currentTimerSecound = 0f;
 	#endregion
+
 	public bool isEnemy = true;
 	protected CharacterActor _characterActor;
 	protected PlayerActor _playerActor = null;
@@ -142,11 +143,11 @@ public class Weapon : EquiqmentItem
 	}
 	protected int KillToLevel(int count) => count switch
 	{
-		<= 40 => 1,
-		<= 50 => 2,
-		<= 60 => 3,
-		<= 70 => 4,
-		<= 80 => 5,
+		>= 40 and < 50  => 1,
+		>= 50 and < 60 => 2,
+		>= 60 and < 70 => 3,
+		>= 70 and < 80 => 4,
+		>= 80 => 5,
 		_ => 0
 	};
 }

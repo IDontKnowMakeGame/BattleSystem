@@ -14,6 +14,7 @@ using Acts.Characters.Player;
 [Serializable]
 public class CharacterStat
 {
+	public float maxHP;
 	public float hp;
 	public float atk;
 	public float ats;
@@ -31,6 +32,7 @@ public class CharacterStat
 
 	public void CopyStat(CharacterStat stat)
 	{
+		this.maxHP = stat.maxHP;
 		this.hp = stat.hp;
 		this.atk = stat.atk;
 		this.ats = stat.ats;
@@ -66,7 +68,6 @@ public class CharacterStatAct : Act, IDmageAble
 				return _changeStat;
 			}
 
-			_changeStat.ChangeStat(_actor.currentWeapon.info);
 			return _changeStat;
 		}
 	}
@@ -74,22 +75,26 @@ public class CharacterStatAct : Act, IDmageAble
 	public float Half { get; set; }
 
 	[SerializeField]
-	private CharacterStat _changeStat =new CharacterStat();
+	protected CharacterStat _changeStat =new CharacterStat();
 	private CharacterActor _actor;
 	public override void Start()
 	{
 		_actor = ThisActor as CharacterActor;
 		_changeStat.CopyStat(_basicStat);
-		if(_actor.currentWeapon != null)
-			_changeStat.ChangeStat(_actor.currentWeapon.info);
 
-		if (ThisActor is PlayerActor)
-		{
-            UIManager.Instance.InGame.ChanageMaxHP((int)_basicStat.hp / 10);
-        }
-			
+		if (_actor.currentWeapon != null)
+			StatChange();
+
+		_changeStat.hp = _changeStat.maxHP;
 	}
+	public virtual void StatChange()
+	{
+		CharacterEquipmentAct equipement = _actor.GetAct<CharacterEquipmentAct>();
 
+		ItemInfo info = equipement.EquipemntStat;
+		_changeStat.ChangeStat(info);
+		_changeStat.maxHP = _basicStat.maxHP + info.Hp;
+	}
 	public void Damage(float damage, Actor actor)
 	{
 		ChangeStat.hp -= damage - (damage * (Half/100));
@@ -125,7 +130,6 @@ public class CharacterStatAct : Act, IDmageAble
             Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam);
         }
     }
-
 	public void Die()
 	{
 		if (ThisActor is PlayerActor)

@@ -120,7 +120,7 @@ namespace Acts.Characters.Player
                 adneralineDecrease = true;
                 decreaseAdneralineTimer = decreaseTime;
                 _playerStat.Multi(StatType.ATK, 0.5f);
-                _playerStat.Plus(StatType.SPEED, 1);
+                _playerStat.Sub(StatType.SPEED, 1);
                 //adneralineParticle.gameObject.SetActive(true);
             }
             if (adneralineDecrease)
@@ -130,7 +130,7 @@ namespace Acts.Characters.Player
                     adneraline = 0;
                     adneralineDecrease = false;
                     _playerStat.Dev(StatType.ATK, 0.5f);
-                    _playerStat.Sub(StatType.SPEED, 1);
+                    _playerStat.Plus(StatType.SPEED, 1);
                     //adneralineParticle.gameObject.SetActive(false);
                     return;
                 }
