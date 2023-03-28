@@ -62,6 +62,15 @@ namespace Managements.Managers
                 return false;
             return true;
         }
+        
+        public bool IsCheckFitBlock(Vector3 pos, Actor actor)
+        {
+            var block = GetBlock(pos);
+            if (block == null)
+                return false;
+            return block.CheckActorOnBlock(actor);
+        }
+        
         public bool IsStayable(Vector3 pos)
         {
             if (!_mapDict.ContainsKey(pos))
