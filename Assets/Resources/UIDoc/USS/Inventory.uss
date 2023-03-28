@@ -36,9 +36,9 @@
 }
 
 .UseableEquipBox {
-    background-color: rgb(140, 140, 140);
+    background-color: rgb(67, 67, 67);
     height: 100%;
-    width: 130px;
+    width: 110px;
     margin-right: 10px;
     align-items: center;
     justify-content: center;
