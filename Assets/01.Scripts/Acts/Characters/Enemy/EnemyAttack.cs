@@ -26,6 +26,15 @@ namespace Acts.Characters.Enemy
             {
                 character.AddState(CharacterState.Hold);
             }
+
+            ThisActor.StartCoroutine(DefaultAttackCoroutine(shakeType, isLast));
+        }
+
+        public IEnumerator DefaultAttackCoroutine(MovementType shakeType = MovementType.None, bool isLast = false)
+        {
+            var character = ThisActor as CharacterActor;
+            var move = ThisActor.GetAct<CharacterMove>();
+            yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
             var map = Define.GetManager<MapManager>();
             map.AttackBlock(ThisActor.Position, _defaultStat.Atk, _defaultStat.Ats, ThisActor, shakeType, isLast);
         }
@@ -42,8 +51,15 @@ namespace Acts.Characters.Enemy
             {
                 character.AddState(CharacterState.Hold);
             }
+            
+            ThisActor.StartCoroutine(ForwardAttackCoroutine(dir, shakeType, isLast));
+        }
 
-
+        public IEnumerator ForwardAttackCoroutine(Vector3 dir, MovementType shakeType = MovementType.None, bool isLast = false)
+        {
+            var character = ThisActor as CharacterActor;
+            var move = ThisActor.GetAct<CharacterMove>();
+            yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
             var map = Define.GetManager<MapManager>();
             var originPos = ThisActor.Position;
             var nextPos = originPos + dir;
