@@ -70,23 +70,6 @@ public class TwinSword : Weapon
 			_attackInfo.LeftStat = new ColliderStat(range, InGame.None, InGame.None, InGame.None);
 			_attackInfo.RightStat = new ColliderStat(range, InGame.None, InGame.None, InGame.None);
 			_attackInfo.ResetDir();
-			_attackInfo.SizeX = 1;
-			if (range == 1)
-			{
-				_attackInfo.SizeZ = 1;
-			}
-			else if(range == 2)
-			{
-				_attackInfo.SizeZ = 2;
-			}
-			else
-			{
-				_attackInfo.SizeZ = 2;
-				if(vec== Vector3.forward)
-				_attackInfo.AddDir(DirType.Up);
-				else
-					_attackInfo.AddDir(DirType.Down);
-			}
 
 			_attackInfo.AddDir(DirType.Left);
 			_attackInfo.AddDir(DirType.Right);
@@ -99,23 +82,6 @@ public class TwinSword : Weapon
 			_attackInfo.DownStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
 			_attackInfo.ResetDir();
 
-			_attackInfo.SizeZ = 1;
-			if (range == 1)
-			{
-				_attackInfo.SizeX = 1;
-			}
-			else if (range == 2)
-			{
-				_attackInfo.SizeX = 2;
-			}
-			else
-			{
-				_attackInfo.SizeX = 2;
-				if (vec == Vector3.left)
-					_attackInfo.AddDir(DirType.Left);
-				else
-					_attackInfo.AddDir(DirType.Right);
-			}
 
 			_attackInfo.AddDir(DirType.Up);
 			_attackInfo.AddDir(DirType.Down);

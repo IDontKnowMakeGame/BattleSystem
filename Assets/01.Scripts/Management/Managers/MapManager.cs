@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Actors.Bases;
 using Blocks;
+using Blocks.Acts;
 using UnityEditor.Callbacks;
 using UnityEngine;
 
@@ -22,12 +23,12 @@ namespace Managements.Managers
             return _mapDict[pos];
         }
         
-        public void AttackBlock(Vector3 pos, float damage, float delay, Actor attacker, bool isLast = false)
+        public void AttackBlock(Vector3 pos, float damage, float delay, Actor attacker, MovementType shakeType = MovementType.None,bool isLast = false, float strength = 0.5f)
         {
             if (!_mapDict.ContainsKey(pos))
                 return;
             Debug.Log("?");
-            _mapDict[pos].Attack(damage, Color.red, delay, attacker, isLast);
+            _mapDict[pos].Attack(damage, Color.red, delay, attacker, shakeType, isLast, strength);
         }
 
         public List<Block> GetNeighbors(Block tile)
