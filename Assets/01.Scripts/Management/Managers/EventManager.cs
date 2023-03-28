@@ -84,4 +84,5 @@ public struct EventParam
 	public int intParam;
 	public bool boolParam;
 	public AttackInfo attackParam;
+	public Color color;
 }

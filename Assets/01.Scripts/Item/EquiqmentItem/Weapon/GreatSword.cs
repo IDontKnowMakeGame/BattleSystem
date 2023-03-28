@@ -68,7 +68,13 @@ public class GreatSword : Weapon
 		if (!_characterActor.HasState(CharacterState.Hold))
 			return;
 		if (timer >= info.Ats)
+		{
+			_eventParam.boolParam = true;
+			_eventParam.floatParam = 0.1f;
+			_eventParam.color = Color.red;
+			_eventManager.TriggerEvent(EventFlag.PullSlider, _eventParam);
 			return;
+		}
 		timer += Time.deltaTime;
 		_eventManager.TriggerEvent(EventFlag.SliderUp, new EventParam { floatParam = timer }) ;
 	}
@@ -97,6 +103,12 @@ public class GreatSword : Weapon
 		_currrentVector = Vector3.zero;
 		_characterActor.GetAct<CharacterStatAct>().Half -= _half;
 		_characterActor.RemoveState(CharacterState.Hold);
+
+		_eventParam.boolParam = false;
+		_eventParam.floatParam = 0f;
+		_eventParam.color = Color.white;
+
+		_eventManager.TriggerEvent(EventFlag.PullSlider, _eventParam);
 		_eventManager.TriggerEvent(EventFlag.SliderFalse, new EventParam { boolParam = false });
 	}
 

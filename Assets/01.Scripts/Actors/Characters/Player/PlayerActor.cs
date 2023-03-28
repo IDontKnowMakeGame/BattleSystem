@@ -6,13 +6,14 @@ namespace Actors.Characters.Player
 {
     public class PlayerActor : CharacterActor
     {
+		[SerializeField] private PlayerStatAct _playerStat;
         [SerializeField] private PlayerEquipment _playerEquipment;
         [SerializeField] private PlayerAnimation _plyerAnimation;
         [SerializeField] private PlayerAttack _playerAttack;
         [SerializeField] private PlayerUseAbleItem _playerUseAbleItem;
         [SerializeField] private PlayerBuff _playerBuff;
 
-        protected override void Init()
+		protected override void Init()
         {
 			AddAct(_playerEquipment);
             base.Init();
@@ -21,6 +22,7 @@ namespace Actors.Characters.Player
             AddAct(_plyerAnimation);
             AddAct(_playerUseAbleItem);
             AddAct(_playerBuff);
+            AddAct(_playerStat);
             InGame.Player = this;
         }
     }

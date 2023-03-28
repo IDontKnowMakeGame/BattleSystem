@@ -10,10 +10,12 @@ namespace Actors.Characters.Enemy
         [SerializeField] protected float _secondPhaseHpPercent;
         [SerializeField] protected EnemyAI _enemyAi;
         [SerializeField] protected CharacterEquipmentAct _characterEquipment;
+		[SerializeField] private CharacterStatAct _characterStat;
 
-        protected override void Init()
+		protected override void Init()
         {
             AddAct(_characterEquipment);
+            AddAct(_characterStat);
             base.Init();
         }
 

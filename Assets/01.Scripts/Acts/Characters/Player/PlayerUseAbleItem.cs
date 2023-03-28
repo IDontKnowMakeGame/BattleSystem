@@ -9,7 +9,6 @@ namespace Acts.Characters.Player
     [System.Serializable]
     public class PlayerUseAbleItem : Act
     {
-
         private Torch torchItem;
         private Shield shieldItem;
 

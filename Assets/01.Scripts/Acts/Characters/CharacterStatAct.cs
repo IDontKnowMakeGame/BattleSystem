@@ -10,7 +10,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Actors.Characters.Enemy;
 using Acts.Characters.Player;
-using UnityEditor.VersionControl;
 
 [Serializable]
 public class CharacterStat
@@ -47,7 +46,7 @@ public class CharacterStat
 
 public enum StatType
 {
-	HP,
+	MAXHP,
 	ATK,
 	ATS,
 	AFS,
@@ -99,6 +98,15 @@ public class CharacterStatAct : Act, IDmageAble
 		_changeStat.ChangeStat(info);
 		_changeStat.maxHP = _basicStat.maxHP + info.Hp;
 	}
+	public virtual void Heal(int hp)
+	{
+		ChangeStat.hp += hp;
+
+		if (ChangeStat.hp >= ChangeStat.maxHP)
+			ChangeStat.hp = ChangeStat.maxHP;
+
+
+	}
 	public void Damage(float damage, Actor actor)
 	{
 		ChangeStat.hp -= damage - (damage * (Half / 100));
@@ -148,8 +156,8 @@ public class CharacterStatAct : Act, IDmageAble
 	{
 		switch (type)
 		{
-			case StatType.HP:
-				ChangeStat.hp /= times;
+			case StatType.MAXHP:
+				ChangeStat.maxHP /= times;
 				break;
 			case StatType.ATK:
 				ChangeStat.atk /= times;
@@ -170,8 +178,8 @@ public class CharacterStatAct : Act, IDmageAble
 	{
 		switch (type)
 		{
-			case StatType.HP:
-				ChangeStat.hp *= times;
+			case StatType.MAXHP:
+				ChangeStat.maxHP *= times;
 				break;
 			case StatType.ATK:
 				ChangeStat.atk *= times;
@@ -192,8 +200,8 @@ public class CharacterStatAct : Act, IDmageAble
 	{
 		switch (type)
 		{
-			case StatType.HP:
-				ChangeStat.hp += add;
+			case StatType.MAXHP:
+				ChangeStat.maxHP += add;
 				break;
 			case StatType.ATK:
 				ChangeStat.atk += add;
@@ -218,8 +226,8 @@ public class CharacterStatAct : Act, IDmageAble
 	{
 		switch (type)
 		{
-			case StatType.HP:
-				ChangeStat.hp -= min;
+			case StatType.MAXHP:
+				ChangeStat.maxHP -= min;
 				break;
 			case StatType.ATK:
 				ChangeStat.atk -= min;

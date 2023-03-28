@@ -67,8 +67,25 @@ public class TwinSword : Weapon
 		if (_characterActor.HasState(CharacterState.Attack)) return;
 		if(vec == Vector3.forward || vec == Vector3.back)
 		{
-			_attackInfo.SizeX = range;
 			_attackInfo.ResetDir();
+			_attackInfo.SizeX = 1;
+			if (range == 1)
+			{
+				_attackInfo.SizeZ = 1;
+			}
+			else if(range == 2)
+			{
+				_attackInfo.SizeZ = 2;
+			}
+			else
+			{
+				_attackInfo.SizeZ = 2;
+				if(vec== Vector3.forward)
+				_attackInfo.AddDir(DirType.Up);
+				else
+					_attackInfo.AddDir(DirType.Down);
+			}
+
 			_attackInfo.AddDir(DirType.Left);
 			_attackInfo.AddDir(DirType.Right);
 
@@ -76,8 +93,26 @@ public class TwinSword : Weapon
 		}
 		else if(vec == Vector3.left || vec == Vector3.right)
 		{
-			_attackInfo.SizeZ = range;
 			_attackInfo.ResetDir();
+
+			_attackInfo.SizeZ = 1;
+			if (range == 1)
+			{
+				_attackInfo.SizeX = 1;
+			}
+			else if (range == 2)
+			{
+				_attackInfo.SizeX = 2;
+			}
+			else
+			{
+				_attackInfo.SizeX = 2;
+				if (vec == Vector3.left)
+					_attackInfo.AddDir(DirType.Left);
+				else
+					_attackInfo.AddDir(DirType.Right);
+			}
+
 			_attackInfo.AddDir(DirType.Up);
 			_attackInfo.AddDir(DirType.Down);
 

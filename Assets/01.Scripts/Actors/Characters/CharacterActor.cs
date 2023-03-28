@@ -24,7 +24,6 @@ namespace Actors.Characters
     public class CharacterActor : Actor
     {
         [SerializeField] private CharacterRender _characterRender;
-        [SerializeField] private CharacterStatAct _characterStat;
         [SerializeField] private CharacterState _characterState;
 
         public Weapon currentWeapon;
@@ -32,7 +31,6 @@ namespace Actors.Characters
         {
             base.Init();
             AddAct(_characterRender);
-            AddAct(_characterStat);
         }
 
         protected override void Awake()
