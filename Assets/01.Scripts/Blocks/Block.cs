@@ -92,7 +92,6 @@ namespace Blocks
             _blockRender = AddAct<BlockRender>();
             _blockMovement = AddAct<BlockMovement>();
             tileOBJ = this.gameObject;
-            isWalkable = true;
             Vector3 pos = transform.position;
             x = (int)pos.x;
             z = (int)pos.z;
