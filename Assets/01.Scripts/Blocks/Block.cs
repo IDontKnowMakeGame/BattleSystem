@@ -122,7 +122,7 @@ namespace Blocks
 
         private IEnumerator AttackCoroutine(float damage, Color color, float delay, Actor attacker, MovementType shakeType = MovementType.None, bool isLast = false, float strength = 0.5f)
         {
-            Debug.Log("/");
+            //Debug.Log("/");
             var character = attacker as CharacterActor;
             var originalColor = Color.black;
             _blockRender.SetMainColor(color);

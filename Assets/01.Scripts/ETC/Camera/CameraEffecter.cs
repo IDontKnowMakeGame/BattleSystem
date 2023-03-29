@@ -96,7 +96,7 @@ public class CameraEffecter : MonoBehaviour
         {
             dir = cam.transform.position - playerPos;
             var hits = Physics.RaycastAll(playerPos + new Vector3(i, 0), dir.normalized, 3000, Mask);
-            Debug.Log(dir.normalized);
+            //Debug.Log(dir.normalized);
             foreach (var hit in hits)
             {
                 var actor = InGame.GetActor(hit.collider.gameObject.GetInstanceID());
