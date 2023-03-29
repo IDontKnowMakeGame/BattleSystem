@@ -13,6 +13,9 @@ public class Spear : Weapon
 	private bool _isAttack;
 	private bool _isEnterEnemy = true;
 	private bool _isDown = false;
+
+	public bool IsDown => _isDown;
+
 	private MapManager _mapManager => Define.GetManager<MapManager>();
 	private Vector3 _currentVec = Vector3.zero;
 
@@ -62,9 +65,7 @@ public class Spear : Weapon
 
 		InputManager<Spear>.OnAttackPress += Attack;
 
-		_playerAnimation.GetClip("VerticalMove").texture = _playerAnimation.GetClip("DefaultVerticalMove").texture;
-		_playerAnimation.GetClip("UpperMove").texture = _playerAnimation.GetClip("DefaultUpperMove").texture;
-		_playerAnimation.GetClip("LowerMove").texture = _playerAnimation.GetClip("DefaultLowerMove").texture;
+		DefaultAnimation();
 	}
 	public override void UnEquipment(CharacterActor actor)
 	{
@@ -116,25 +117,40 @@ public class Spear : Weapon
 		_isDown = true;
 	}
 
+	private void DefaultAnimation()
+    {
+		_playerAnimation.GetClip("VerticalMove").ChangeClip(_playerAnimation.GetClip("DefaultVerticalMove"));
+		_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip("DefaultUpperMove"));
+		_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip("DefaultLowerMove"));
+		_playerAnimation.GetClip("Idle").ChangeClip(_playerAnimation.GetClip("DefaultIdle"));
+	}
+
 	private void ReadyAnimation(Vector3 vec)
     {
 		if (vec == Vector3.left || vec == Vector3.right)
 		{
-			_playerAnimation.GetClip("VerticalMove").texture = _playerAnimation.GetClip("VerticalReadyVerticalMove").texture;
-			_playerAnimation.GetClip("UpperMove").texture = _playerAnimation.GetClip("VerticalReadyUpperMove").texture;
-			_playerAnimation.GetClip("LowerMove").texture = _playerAnimation.GetClip("VerticalReadyLowerMove").texture;
+			InGame.Player.SpriteTransform.localScale = vec == Vector3.left ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+			_playerAnimation.GetClip("VerticalMove").ChangeClip(_playerAnimation.GetClip("VerticalReadyVerticalMove"));
+			_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip("VerticalReadyUpperMove"));
+			_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip("VerticalReadyLowerMove"));
+			_playerAnimation.GetClip("Idle").ChangeClip(_playerAnimation.GetClip("VerticalReadyIdle"));
+			_playerAnimation.Play("VerticalReady");
 		}
-		else if (vec == Vector3.forward)
+		else if (vec == Vector3.back)
 		{
-			_playerAnimation.GetClip("VerticalMove").texture = _playerAnimation.GetClip("UpperReadyVerticalMove").texture;
-			_playerAnimation.GetClip("UpperMove").texture = _playerAnimation.GetClip("UpperReadyUpperMove").texture;
-			_playerAnimation.GetClip("LowerMove").texture = _playerAnimation.GetClip("UpperReadyLowerMove").texture;
+			_playerAnimation.GetClip("VerticalMove").ChangeClip(_playerAnimation.GetClip("UpperReadyVerticalMove"));
+			_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip("UpperReadyUpperMove"));
+			_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip("UpperReadyLowerMove"));
+			_playerAnimation.GetClip("Idle").ChangeClip(_playerAnimation.GetClip("UpperReadyIdle"));
+			_playerAnimation.Play("UpperReady");
 		}
-		else if(vec == Vector3.back)
+		else if(vec == Vector3.forward)
         {
-			_playerAnimation.GetClip("VerticalMove").texture = _playerAnimation.GetClip("LowerReadyVerticalMove").texture;
-			_playerAnimation.GetClip("UpperMove").texture = _playerAnimation.GetClip("LowerReadyUpperMove").texture;
-			_playerAnimation.GetClip("LowerMove").texture = _playerAnimation.GetClip("LowerReadyLowerMove").texture;
+			_playerAnimation.GetClip("VerticalMove").ChangeClip(_playerAnimation.GetClip("LowerReadyVerticalMove"));
+			_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip("LowerReadyUpperMove"));
+			_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip("LowerReadyLowerMove"));
+			_playerAnimation.GetClip("Idle").ChangeClip(_playerAnimation.GetClip("LowerReadyIdle"));
+			_playerAnimation.Play("LowerReady");
 		}
 	}
 
@@ -143,6 +159,7 @@ public class Spear : Weapon
 		_attackInfo.RemoveDir(_attackInfo.DirTypes(vec));
 		_attackInfo.PressInput = vec;
 		_currentVec = Vector3.zero;
+		DefaultAnimation();
 		yield return new WaitForSeconds(info.Afs);
 		_isDown = false;
 	}
