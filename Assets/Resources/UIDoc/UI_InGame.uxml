@@ -10,14 +10,14 @@
                 <ui:VisualElement name="Icon" style="position: absolute; width: 76px; height: 76px; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Player_UI_Hpvar.png?fileID=730970451&amp;guid=592a4313b6d8fa44987488eb3b4085aa&amp;type=3#Player_UI_Hpvar_2&apos;); left: 8px;" />
             </ui:VisualElement>
             <ui:VisualElement name="slider_angerbar" style="flex-basis: 25%; width: 100%; padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; justify-content: center;">
-                <ui:VisualElement name="bar_angerbackgroud" style="width: 25%; height: 80%; left: 37px;">
-                    <ui:VisualElement name="Fill" style="width: 100%; background-color: rgb(168, 31, 87); height: 100%; max-width: 100%; min-width: 0; display: flex; position: absolute; left: 0; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Slilder.png?fileID=2009281166&amp;guid=5c0fe44ae223cbc44add2c8a043a259b&amp;type=3#UI_Slilder_1&apos;);" />
+                <ui:VisualElement name="bar_angerbackgroud" style="width: 25%; height: 80%; left: 37px; background-color: rgba(36, 36, 36, 255);">
+                    <ui:VisualElement name="Fill" style="width: 73%; background-color: rgb(168, 31, 87); height: 100%; max-width: 100%; min-width: 0; display: flex; position: absolute; left: 0; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Slilder.png?fileID=2009281166&amp;guid=5c0fe44ae223cbc44add2c8a043a259b&amp;type=3#UI_Slilder_1&apos;);" />
                     <ui:VisualElement name="BackGround" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Player_UI_Hpvar.png?fileID=-1464394398&amp;guid=592a4313b6d8fa44987488eb3b4085aa&amp;type=3#Player_UI_Hpvar_1&apos;);" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Icon" style="position: absolute; width: 45px; height: 45px; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Player_UI_Hpvar.png?fileID=633027&amp;guid=592a4313b6d8fa44987488eb3b4085aa&amp;type=3#Player_UI_Hpvar_3&apos;); left: 23px;" />
             </ui:VisualElement>
             <ui:VisualElement name="slider_adrenaline" style="flex-basis: 25%; width: 100%; padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; justify-content: center;">
-                <ui:VisualElement name="bar_adbackgroud" style="width: 25%; height: 80%; left: 37px;">
+                <ui:VisualElement name="bar_adbackgroud" style="width: 25%; height: 80%; left: 37px; background-color: rgba(36, 36, 36, 255);">
                     <ui:VisualElement name="Fill" style="width: 100%; background-color: rgb(25, 164, 24); height: 100%; max-width: 100%; min-width: 0; display: flex; position: absolute; left: 0; top: 0; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Slilder.png?fileID=1836534824&amp;guid=5c0fe44ae223cbc44add2c8a043a259b&amp;type=3#UI_Slilder_2&apos;);" />
                     <ui:VisualElement name="BackGround" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Player_UI_Hpvar.png?fileID=-1464394398&amp;guid=592a4313b6d8fa44987488eb3b4085aa&amp;type=3#Player_UI_Hpvar_1&apos;);" />
                 </ui:VisualElement>
