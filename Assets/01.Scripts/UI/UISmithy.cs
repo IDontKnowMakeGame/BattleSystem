@@ -79,7 +79,8 @@ public class UISmithy : UIBase
         _weaponScrollPanel.Clear();
         foreach (SaveItemData item in list)
         {
-            VisualElement card = _weaponCardTemp.Instantiate();
+            VisualElement card = _weaponCardTemp.Instantiate().Q<VisualElement>("card");
+            card.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)item.id}"));
             card.RegisterCallback<ClickEvent>(e =>
             {
                 SelectWeaponCardOnClick(card,item.id);
@@ -95,6 +96,7 @@ public class UISmithy : UIBase
     public void SelectWeaponCardOnClick(VisualElement card,ItemID id)
     {
         _weaponSelectPanel.style.display = DisplayStyle.None;
+        _weaponSelectBtn.style.backgroundImage = card.style.backgroundImage;
 
         currentItem = id;
         nowLevel = Define.GetManager<DataManager>().LoadWeaponLevelData(currentItem);
