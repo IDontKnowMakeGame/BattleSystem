@@ -3,6 +3,7 @@ using Core;
 using Managements.Managers;
 using System.Collections;
 using System.Collections.Generic;
+using Blocks.Acts;
 using UnityEngine;
 
 public class OldTwinSword : TwinSword
@@ -24,7 +25,7 @@ public class OldTwinSword : TwinSword
 		Vector3 vector = InGame.CamDirCheck(vec);
 		for(int i = 0; i<6; i++)
 		{
-			Define.GetManager<MapManager>().AttackBlock(_characterActor.Position+vector, info.Atk, 1f, _characterActor, true);
+			Define.GetManager<MapManager>().AttackBlock(_characterActor.Position+vector, info.Atk, 1f, _characterActor, MovementType.None, true);
 		}
 		_characterActor.StartCoroutine(SkillCorutine());
 	}

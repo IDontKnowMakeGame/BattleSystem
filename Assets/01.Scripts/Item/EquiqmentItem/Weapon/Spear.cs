@@ -85,14 +85,6 @@ public class Spear : Weapon
 
 		if (_isDown && _isEnterEnemy && isEnemy)
 		{
-			if (range == 2 && _currentVec == Vector3.forward || _currentVec == Vector3.back)
-			{
-
-			}
-			else if(range == 2)
-			{
-
-			}
 			_eventParam.attackParam = _attackInfo;
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.FureAttack, _eventParam);
 			_isEnterEnemy = false;

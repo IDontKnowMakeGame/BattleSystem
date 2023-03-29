@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Actors.Characters;
 using Acts.Base;
+using Blocks.Acts;
 using Core;
 using Data;
 using Managements.Managers;
@@ -13,13 +14,7 @@ namespace Acts.Characters.Enemy
     {
         private ItemInfo _defaultStat => ThisActor.GetAct<CharacterEquipmentAct>().CurrentWeapon.WeaponInfo;
 
-        public void DefaultAttack(bool isLast = false)
-        {
-            var map = Define.GetManager<MapManager>();
-            map.AttackBlock(ThisActor.Position, _defaultStat.Atk, _defaultStat.Ats, ThisActor, isLast);
-        }
-
-        public void ForwardAttack(Vector3 dir, bool isLast = false)
+        public void DefaultAttack(MovementType shakeType = MovementType.None, bool isLast = false)
         {
             var character = ThisActor as CharacterActor;
 
@@ -32,7 +27,39 @@ namespace Acts.Characters.Enemy
                 character.AddState(CharacterState.Hold);
             }
 
+            ThisActor.StartCoroutine(DefaultAttackCoroutine(shakeType, isLast));
+        }
 
+        public IEnumerator DefaultAttackCoroutine(MovementType shakeType = MovementType.None, bool isLast = false)
+        {
+            var character = ThisActor as CharacterActor;
+            var move = ThisActor.GetAct<CharacterMove>();
+            yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
+            var map = Define.GetManager<MapManager>();
+            map.AttackBlock(ThisActor.Position, _defaultStat.Atk, _defaultStat.Ats, ThisActor, shakeType, isLast);
+        }
+        
+        public void ForwardAttack(Vector3 dir, MovementType shakeType = MovementType.None, bool isLast = false)
+        {
+            var character = ThisActor as CharacterActor;
+
+            if (isLast)
+            {
+                character.AddState(CharacterState.Attack);
+            }
+            else
+            {
+                character.AddState(CharacterState.Hold);
+            }
+            
+            ThisActor.StartCoroutine(ForwardAttackCoroutine(dir, shakeType, isLast));
+        }
+
+        public IEnumerator ForwardAttackCoroutine(Vector3 dir, MovementType shakeType = MovementType.None, bool isLast = false)
+        {
+            var character = ThisActor as CharacterActor;
+            var move = ThisActor.GetAct<CharacterMove>();
+            yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
             var map = Define.GetManager<MapManager>();
             var originPos = ThisActor.Position;
             var nextPos = originPos + dir;
@@ -42,12 +69,12 @@ namespace Acts.Characters.Enemy
                 var attackPos = new Vector3(i, 0, 1);
                 attackPos = attackPos.Rotate(degree);
                 attackPos += originPos;
-                map.AttackBlock(attackPos, _defaultStat.Atk, _defaultStat.Ats, ThisActor, isLast);
+                map.AttackBlock(attackPos, _defaultStat.Atk, _defaultStat.Ats, ThisActor, shakeType, isLast);
             }
-            DefaultAttack(isLast);
+            DefaultAttack(MovementType.None, isLast);
         }
 
-        public void RoundAttack(bool isLast = false)
+        public void RoundAttack(MovementType shakeType = MovementType.None, bool isLast = false)
         {
             var character = ThisActor as CharacterActor;
             if (isLast)
@@ -67,12 +94,15 @@ namespace Acts.Characters.Enemy
                 {
                     var attackPos = new Vector3(i, 0, j);
                     attackPos += ThisActor.Position;
-                    map.AttackBlock(attackPos, _defaultStat.Atk, _defaultStat.Ats, ThisActor, isLast);
+                    if (i == 0 && j == 0)
+                        map.AttackBlock(attackPos, _defaultStat.Atk, _defaultStat.Ats, ThisActor, MovementType.None, isLast);
+                        
+                    map.AttackBlock(attackPos, _defaultStat.Atk, _defaultStat.Ats, ThisActor, shakeType, isLast, 0.3f);
                 }
             }
         }
 
-        public void HalfAttack(Vector3 dir, bool isLast = false)
+        public void HalfAttack(Vector3 dir, MovementType shakeType = MovementType.None, bool isLast = false)
         {
             var character = ThisActor as CharacterActor;
             if (isLast)
@@ -98,10 +128,10 @@ namespace Acts.Characters.Enemy
                     var attackPos = new Vector3(i, 0, j);
                     attackPos = attackPos.Rotate(degree);
                     attackPos += originPos;
-                    map.AttackBlock(attackPos, _defaultStat.Atk, _defaultStat.Ats, ThisActor, isLast);
+                    map.AttackBlock(attackPos, _defaultStat.Atk, _defaultStat.Ats, ThisActor, shakeType, isLast);
                 }
             }
-            DefaultAttack(isLast);
+            DefaultAttack(MovementType.None, isLast);
         }
 
         public void BackAttack(Vector3 dir, bool isLast = false)
@@ -139,7 +169,7 @@ namespace Acts.Characters.Enemy
 
             move.Jump(InGame.Player.Position + dir);
             yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
-            RoundAttack(isLast);
+            RoundAttack(MovementType.Bounce, isLast);
         }
 
         public void TripleAttack(Vector3 dir, bool isLast = false)
@@ -180,7 +210,7 @@ namespace Acts.Characters.Enemy
                 yield return new WaitUntil(() => !characeter.HasState(CharacterState.Move));
             }
 
-            HalfAttack(dir, isLast);
+            HalfAttack(dir, MovementType.None, isLast);
         }
 
         public void SoulAttack(Vector3 dir, bool isLast = false)
@@ -246,9 +276,9 @@ namespace Acts.Characters.Enemy
 
                 var leftPos = vec + leftVec;
                 var rightPos = vec + rightVec;
-                map.AttackBlock(vec, _defaultStat.Atk * 2,_defaultStat.Ats, ThisActor);
-                map.AttackBlock(leftPos, _defaultStat.Atk * 2, _defaultStat.Ats, ThisActor);
-                map.AttackBlock(rightPos, _defaultStat.Atk * 2, _defaultStat.Ats, ThisActor);
+                map.AttackBlock(vec, _defaultStat.Atk * 2,_defaultStat.Ats, ThisActor, MovementType.Shake);
+                map.AttackBlock(leftPos, _defaultStat.Atk * 2, _defaultStat.Ats, ThisActor, MovementType.Shake);
+                map.AttackBlock(rightPos, _defaultStat.Atk * 2, _defaultStat.Ats, ThisActor, MovementType.Shake);
             }
             
             yield return new WaitUntil(() => !character.HasState(CharacterState.Hold));

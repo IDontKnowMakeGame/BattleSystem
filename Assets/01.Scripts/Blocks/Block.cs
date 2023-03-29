@@ -85,10 +85,12 @@ namespace Blocks
         public Actor ActorOnBlock => _actorOnBlock;
         public bool IsActorOnBlock => ActorOnBlock != null;
         private BlockRender _blockRender;
+        private BlockMovement _blockMovement;
 
 		protected override void Init()
         {
             _blockRender = AddAct<BlockRender>();
+            _blockMovement = AddAct<BlockMovement>();
             tileOBJ = this.gameObject;
             isWalkable = true;
             Vector3 pos = transform.position;
@@ -113,19 +115,20 @@ namespace Blocks
             _actorOnBlock = null;
         }
 
-        public void Attack(float damage, Color color, float delay, Actor attacker, bool isLast = false)
+        public void Attack(float damage, Color color, float delay, Actor attacker, MovementType shakeType = MovementType.None, bool isLast = false, float strength = 0.5f)
         {
-            StartCoroutine(AttackCoroutine(damage, color, delay, attacker, isLast));
+            StartCoroutine(AttackCoroutine(damage, color, delay, attacker, shakeType, isLast, strength));
         }
 
-        private IEnumerator AttackCoroutine(float damage, Color color, float delay, Actor attacker, bool isLast = false)
+        private IEnumerator AttackCoroutine(float damage, Color color, float delay, Actor attacker, MovementType shakeType = MovementType.None, bool isLast = false, float strength = 0.5f)
         {
-            Debug.Log("/");
+            //Debug.Log("/");
             var character = attacker as CharacterActor;
             var originalColor = Color.black;
             _blockRender.SetMainColor(color);
             yield return new WaitForSeconds(delay);
             _blockRender.SetMainColor(originalColor);
+            Shake(delay / 2, shakeType, strength);
             
             if(isLast)
                 character.RemoveState(CharacterState.Attack);
@@ -161,6 +164,24 @@ namespace Blocks
             }
 
             return true;
+        }
+
+        public void Shake(float durantion, MovementType type, float strength = 1f, int vibrato = 10,
+            float randomness = 90f)
+        {
+            switch (type)
+            {
+                case MovementType.Shake:
+                {
+                    _blockMovement.Shake(durantion, strength, vibrato, randomness);
+                    break;
+                }
+                case MovementType.Bounce:
+                {
+                    _blockMovement.Bounce(durantion, strength);
+                    break;
+                }
+            }
         }
     }
 }

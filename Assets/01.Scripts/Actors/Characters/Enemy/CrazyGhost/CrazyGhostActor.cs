@@ -3,6 +3,7 @@ using Acts.Characters.Enemy;
 using AI;
 using AI.Conditions;
 using AI.States;
+using Blocks.Acts;
 using Core;
 using UnityEngine;
 
@@ -51,7 +52,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
             patternState.RandomActions.Add(() =>
             {
                 var dir = InGame.Player.Position - Position;
-                attack.ForwardAttack(dir, true);
+                attack.ForwardAttack(dir, MovementType.None, true);
             });
             patternState.RandomActions.Add(() =>
             {

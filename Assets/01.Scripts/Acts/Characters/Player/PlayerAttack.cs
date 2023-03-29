@@ -61,6 +61,7 @@ namespace Acts.Characters.Player
 
             if(enemys.Count > 0)
             {
+                Debug.Log("Attack!");
                 _playerAnimation.curClip.SetEventOnFrame(attackInfo.ReachFrame, Attack);
             }
 
