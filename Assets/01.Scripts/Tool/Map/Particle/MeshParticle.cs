@@ -11,6 +11,9 @@ using Random = UnityEngine.Random;
 
 public class MeshParticle : MonoBehaviour
 {
+    private static MeshParticle _instance;
+    public static MeshParticle Instance => _instance;
+    
     private const int MAX_QUADS = 1000;
 
     [System.Serializable]
@@ -96,6 +99,7 @@ public class MeshParticle : MonoBehaviour
 
     private void Start()
     {
+        _instance = this;
         foreach (var textureData in textureDataList)
         {
             AddMesh(textureData.Key);

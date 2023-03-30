@@ -10,7 +10,7 @@ namespace Actors.Characters.Enemy
         [SerializeField] protected float _secondPhaseHpPercent;
         [SerializeField] protected EnemyAI _enemyAi;
         [SerializeField] protected CharacterEquipmentAct _characterEquipment;
-		[SerializeField] private CharacterStatAct _characterStat;
+		[SerializeField] private EnemyStatAct _characterStat;
 
 		protected override void Init()
         {

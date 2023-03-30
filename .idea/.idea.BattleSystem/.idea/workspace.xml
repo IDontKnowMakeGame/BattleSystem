@@ -2,19 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/Tool/Map/Particle.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/Tool/Map/Particle/MeshParticle.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/Tool/Map/Particle/MeshParticle.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/06.Shaders/Particle.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/06.Shaders/Particle/AlphaShader.shadergraph" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyStatAct.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyStatAct.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Sprites/Scratch.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Sprites/Scratch.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nokdef_VFXPack/AurasBuffsAndShields/Upgrades/StandardPipelineShaders.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Nokdef_VFXPack/AurasBuffsAndShields/Upgrades/UniversalPipelineShaders.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ProjectAsset/Mirza Beig/Particle Systems/Ultimate VFX/Demos/Starfall/Starfall.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ProjectAsset/Mirza Beig/Particle Systems/Ultimate VFX/Demos/The Last Particle/The Last Particle.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/KHJScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/KHJScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/EnemyActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/EnemyActor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterStatAct.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterStatAct.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Player/PlayerStatAct.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Player/PlayerStatAct.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Tool/Map/Particle/MeshParticle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Tool/Map/Particle/MeshParticle.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,6 +128,7 @@
       <workItem from="1680170177009" duration="2878000" />
       <workItem from="1680173648690" duration="524000" />
       <workItem from="1680174988701" duration="593000" />
+      <workItem from="1680183900635" duration="911000" />
     </task>
     <servers />
   </component>
