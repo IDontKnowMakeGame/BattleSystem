@@ -10,7 +10,6 @@ using Acts.Characters.Player;
 public class TwinSword : Weapon
 {
 	private int range = 1;
-	private PlayerAnimation _playerAnimation;
 
 	public override void Init()
 	{
@@ -64,28 +63,22 @@ public class TwinSword : Weapon
 
 	public virtual void Attack(Vector3 vec)
 	{
-		if (_characterActor.HasState(CharacterState.Everything)) return;
+		//if (_characterActor.HasState(CharacterState.Move)) return;
 		Vector3 vector = InGame.CamDirCheck(vec);
 		int z = (int)vector.z;
 		int x = (int)vector.x;
 
 		_attackInfo.PressInput = vec;
-		_attackInfo.ReachFrame = 4;
+		_attackInfo.ReachFrame = 2;
 		if (vec == Vector3.forward || vec == Vector3.back)
 		{
 			_attackInfo.ResetDir();
 			if (range == 3)
 			{
-				if (vec == Vector3.forward)
-				{
-					_attackInfo.AddDir(DirType.Up);
-				}
-				else
-				{
-					_attackInfo.AddDir(DirType.Down);
-				}
-				_attackInfo.LeftStat = new ColliderStat(1, 2, z, x);
-				_attackInfo.RightStat = new ColliderStat(1, 2, -z, -x);
+				Debug.Log(_attackInfo.DirTypes(vec));
+				_attackInfo.AddDir(_attackInfo.DirTypes(vec));
+				_attackInfo.LeftStat = new ColliderStat(1, 2, z, x * 2);
+				_attackInfo.RightStat = new ColliderStat(1, 2, -z, -x * 2);
 				_attackInfo.UpStat = new ColliderStat(1, 1, 0, 1);
 				_attackInfo.DownStat = new ColliderStat(1, 1, 0, -1);
 			}
@@ -99,15 +92,18 @@ public class TwinSword : Weapon
 			_attackInfo.AddDir(DirType.Right);
 
 			_eventParam.attackParam = _attackInfo;
+			_playerAnimation.GetClip(vec == Vector3.forward ? "UpperMove" : "LowerMove").SetEventOnFrame(_eventParam.attackParam.ReachFrame,
+() => Define.GetManager<EventManager>().TriggerEvent(EventFlag.FureAttack, _eventParam));
 		}
 		else if (vec == Vector3.left || vec == Vector3.right)
 		{
 			_attackInfo.ResetDir();
 			if (range == 3)
 			{
+				Debug.Log(_attackInfo.DirTypes(vec));
 				_attackInfo.AddDir(_attackInfo.DirTypes(vec));
-				_attackInfo.UpStat = new ColliderStat(2, 1, z, x);
-				_attackInfo.DownStat = new ColliderStat(2, 1, -z, -x);
+				_attackInfo.UpStat = new ColliderStat(2, 1, z * 2, x);
+				_attackInfo.DownStat = new ColliderStat(2, 1, -z * 2, -x);
 				_attackInfo.LeftStat = new ColliderStat(1, 1, 1, 0);
 				_attackInfo.RightStat = new ColliderStat(1, 1, -1, 0);
 			}
@@ -115,13 +111,12 @@ public class TwinSword : Weapon
 			{
 				_attackInfo.UpStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
 				_attackInfo.DownStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
-
-				_attackInfo.AddDir(DirType.Up);
-				_attackInfo.AddDir(DirType.Down);
-
-				_eventParam.attackParam = _attackInfo;
 			}
+			_attackInfo.AddDir(DirType.Up);
+			_attackInfo.AddDir(DirType.Down);
+
+			_eventParam.attackParam = _attackInfo;
+			_playerAnimation.GetClip("VerticalMove").SetEventOnFrame(_eventParam.attackParam.ReachFrame, () => Define.GetManager<EventManager>().TriggerEvent(EventFlag.FureAttack, _eventParam));
 		}
-		Define.GetManager<EventManager>().TriggerEvent(EventFlag.NoneAniAttack, _eventParam);
 	}
 }

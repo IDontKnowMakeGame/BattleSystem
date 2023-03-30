@@ -128,7 +128,16 @@ namespace Acts.Characters.Player
         private void NoneAniAttack(EventParam eventParam)
         {
 			_playerActor.AddState(CharacterState.Attack);
-			FureAttack(eventParam);
+            Vector3 vec = eventParam.attackParam.PressInput;
+            if (vec == Vector3.forward || vec == Vector3.back)
+            {
+				_playerAnimation.GetClip(vec == Vector3.forward ? "UpperMove" : "LowerMove").SetEventOnFrame(eventParam.attackParam.ReachFrame,
+	() => FureAttack(eventParam));
+			}
+            else
+            {
+				_playerAnimation.GetClip("VerticalMove").SetEventOnFrame(eventParam.attackParam.ReachFrame, () => FureAttack(eventParam));
+            }
 			_playerActor.RemoveState(CharacterState.Attack);
 		}
 
