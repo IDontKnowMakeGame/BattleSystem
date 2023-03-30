@@ -61,7 +61,7 @@ public class Spear : Weapon
 	{
 		base.Equiqment(actor);
 
-		_playerAnimation = _characterActor.GetAct<PlayerAnimation>();
+		_playerAnimation = _characterActor?.GetAct<PlayerAnimation>();
 
 		InputManager<Spear>.OnAttackPress += Attack;
 

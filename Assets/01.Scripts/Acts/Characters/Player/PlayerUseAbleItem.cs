@@ -12,7 +12,10 @@ namespace Acts.Characters.Player
     {
         private Torch torchItem;
         private Shield shieldItem;
+        [SerializeField]
         private HPPotion _hpPotion;
+
+        public HPPotion HPPotion => _hpPotion;
 
 
         //private Dictionary<ItemID, UseAbleItem> useAbleItems;
@@ -30,15 +33,17 @@ namespace Acts.Characters.Player
             //useAbleItems.Add(ItemID.Torch, new Torch(this));
             //useAbleItems.Add(ItemID.Shield, new Shield(this));
 
-            _hpPotion = new HPPotion();
-
             InputManager<Weapon>.OnPotionPress += _hpPotion.UseItem;
+
+            _hpPotion.SettingItem();
 
         }
 
         public override void Update()
         {
             base.Update();
+
+            _hpPotion.UpdateItem();
 
 /*            if(Input.GetKeyDown(KeyCode.Alpha1))
             {

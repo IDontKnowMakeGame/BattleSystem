@@ -12,4 +12,14 @@ public class UseAbleItem : Item
 	{
 
 	}
+
+	public virtual void SettingItem()
+    {
+
+    }
+
+	public virtual void UpdateItem()
+    {
+
+    }
 }
