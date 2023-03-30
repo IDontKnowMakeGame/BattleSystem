@@ -65,71 +65,75 @@ public class TwinSword : Weapon
 	public virtual void Attack(Vector3 vec)
 	{
 		if (_characterActor.HasState(CharacterState.Attack)) return;
-		if(vec == Vector3.forward || vec == Vector3.back)
+		Vector3 vector = InGame.CamDirCheck(vec);
+		int z = (int)vector.z;
+		int x = (int)vector.x;
+
+		_attackInfo.PressInput = vec;
+		_attackInfo.ReachFrame = 4;
+		if (vec == Vector3.forward || vec == Vector3.back)
 		{
-			if(range == 3)
-			{
-				int z = 1;
-				if(vec == Vector3.forward)
+			_attackInfo.ResetDir();
+			//if(range == 3)
+			//{
+				if (vec == Vector3.forward)
 				{
 					_attackInfo.AddDir(DirType.Up);
 				}
 				else
 				{
-					z = -z;
 					_attackInfo.AddDir(DirType.Down);
 				}
-				_attackInfo.LeftStat = new ColliderStat(1, 2, InGame.None, z);
-				_attackInfo.RightStat = new ColliderStat(1, 2, InGame.None, z);
+				_attackInfo.LeftStat = new ColliderStat(1, 2, z, x);
+				_attackInfo.RightStat = new ColliderStat(1, 2, -z, -x);
 				_attackInfo.UpStat = new ColliderStat(1, 1, 0, 1);
 				_attackInfo.DownStat = new ColliderStat(1, 1, 0, -1);
-			}
-			else
-			{
-				_attackInfo.LeftStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
-				_attackInfo.RightStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
-			}
-			_attackInfo.ResetDir();
+
+				Debug.Log("?");
+			//}
+			//else
+			//{
+			//	_attackInfo.LeftStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
+			//	_attackInfo.RightStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
+			//}
 
 			_attackInfo.AddDir(DirType.Left);
 			_attackInfo.AddDir(DirType.Right);
 
-			_playerAnimation.GetClip(vec == Vector3.forward ? "UpperMove" : "LowerMove").SetEventOnFrame(6, () => Define.GetManager<EventManager>().TriggerEvent(EventFlag.FureAttack, _eventParam));
+			_eventParam.attackParam = _attackInfo;
+			_playerAnimation.GetClip(vec == Vector3.forward ? "UpperMove" : "LowerMove").SetEventOnFrame(3, () => Define.GetManager<EventManager>().TriggerEvent(EventFlag.NoneAniAttack, _eventParam));
 		}
 		else if(vec == Vector3.left || vec == Vector3.right)
 		{
-			if (range == 3)
-			{
-				int z = 1;
+			_attackInfo.ResetDir();
+			//if (range == 3)
+			//{
 				if (vec == Vector3.left)
 				{
-					z = -z;
 					_attackInfo.AddDir(DirType.Left);
 				}
 				else
 				{
 					_attackInfo.AddDir(DirType.Right);
 				}
-				_attackInfo.UpStat = new ColliderStat(2, 1, z, InGame.None);
-				_attackInfo.DownStat = new ColliderStat(2, 1, z, InGame.None);
+				_attackInfo.UpStat = new ColliderStat(2, 1, z, x);
+				_attackInfo.DownStat = new ColliderStat(2, 1, -z, -x);
 				_attackInfo.LeftStat = new ColliderStat(1, 1, 1, 0);
 				_attackInfo.RightStat = new ColliderStat(1, 1, -1, 0);
-			}
-			else
-			{
-				_attackInfo.UpStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
-				_attackInfo.DownStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
-			}
-			_attackInfo.ResetDir();
+
+			//	Debug.Log("/");
+			//}
+			//else
+			//{
+			//	_attackInfo.UpStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
+			//	_attackInfo.DownStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
+			//}
 
 			_attackInfo.AddDir(DirType.Up);
 			_attackInfo.AddDir(DirType.Down);
 
-			_playerAnimation.GetClip(vec == Vector3.forward ? "UpperMove" : "LowerMove").SetEventOnFrame(6, () => Define.GetManager<EventManager>().TriggerEvent(EventFlag.FureAttack, _eventParam));
+			_eventParam.attackParam = _attackInfo;
+			_playerAnimation.GetClip("VerticalMove").SetEventOnFrame(3, () => Define.GetManager<EventManager>().TriggerEvent(EventFlag.NoneAniAttack, _eventParam));
 		}
-
-		_attackInfo.PressInput = vec;
-		_attackInfo.ReachFrame = 0;
-		_eventParam.attackParam = _attackInfo;
 	}
 }
