@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="ExitBtn" style="width: 80px; height: 80px; background-color: rgb(255, 80, 80); border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px; align-items: center; justify-content: center;">
+        <ui:Label text="X" display-tooltip-when-elided="true" style="color: rgb(0, 0, 0); font-size: 46px;" />
+    </ui:VisualElement>
+</ui:UXML>

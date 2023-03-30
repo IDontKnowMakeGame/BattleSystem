@@ -49,3 +49,9 @@
     height: 100%;
     background-image: url('project://database/Assets/02.Sprites/UI/Case_Empty_UI.png?fileID=548808370&guid=8d14667a022af2940949b1ab8780e0d4&type=3#Case_Empty_UI_0');
 }
+
+.Text {
+    color: rgba(224, 224, 224, 255);
+    font-size: 18px;
+    display: flex;
+}

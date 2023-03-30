@@ -1,10 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="ExitBtn" src="project://database/Assets/Resources/UIDoc/ExitBtn.uxml?fileID=9197481963319205126&amp;guid=026ad5a06dfcabf48b22e6f13c706d58&amp;type=3#ExitBtn" />
     <ui:Template name="InventoryWeaponItemCard" src="project://database/Assets/Resources/UIDoc/InventoryWeaponItemCard.uxml?fileID=9197481963319205126&amp;guid=dee5e798766fc7b418ec331020af07aa&amp;type=3#InventoryWeaponItemCard" />
     <Style src="project://database/Assets/Resources/UIDoc/USS/Inventory.uss?fileID=7433441132597879392&amp;guid=06c2d37b5c549d84c8ca098e2b839d33&amp;type=3#Inventory" />
     <ui:VisualElement name="background" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; align-items: center; justify-content: center; flex-direction: row;">
-        <ui:VisualElement name="ExitBtn" style="translate: 0 -392px; width: 80px; height: 80px; background-color: rgb(255, 80, 80); border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px; align-items: center; justify-content: center;">
-            <ui:Label text="X" display-tooltip-when-elided="true" style="color: rgb(0, 0, 0); font-size: 46px;" />
-        </ui:VisualElement>
+        <ui:Instance template="ExitBtn" name="ExitBtn" style="top: -392px;" />
         <ui:VisualElement name="InventoryPanel" style="width: 80%; height: 80%; background-color: rgb(108, 108, 108); border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; overflow: hidden;">
             <ui:VisualElement name="SelectItemType" style="flex-basis: 15%; flex-direction: row; align-items: flex-end;">
                 <ui:VisualElement name="Weapon" class="SelectItemTypeBox">
@@ -37,14 +36,14 @@
                                         <ui:VisualElement name="BackGround" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/InGame_UI_FeatherIcon.png?fileID=-1522164109&amp;guid=51366b9a6ca4e804789e3772d10af377&amp;type=3#InGame_UI_FeatherIcon_1&apos;);" />
                                     </ui:VisualElement>
                                     <ui:VisualElement name="Status" style="flex-basis: 65%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/InGame_UI_FeatherIcon.png?fileID=215331032&amp;guid=51366b9a6ca4e804789e3772d10af377&amp;type=3#InGame_UI_FeatherIcon_0&apos;); padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; align-items: center; justify-content: space-around;">
-                                        <ui:Label text="공격력 : 9999" display-tooltip-when-elided="true" name="Atk" />
-                                        <ui:Label text="공격속도 : 999" display-tooltip-when-elided="true" name="Ats" />
-                                        <ui:Label text="후 딜레이 : 1" display-tooltip-when-elided="true" name="Afs" />
-                                        <ui:Label text="무게 : 10" display-tooltip-when-elided="true" name="Wei" />
+                                        <ui:Label text="공격력 : 9999" display-tooltip-when-elided="true" name="Atk" class="Text" />
+                                        <ui:Label text="공격속도 : 999" display-tooltip-when-elided="true" name="Ats" class="Text" />
+                                        <ui:Label text="후 딜레이 : 1" display-tooltip-when-elided="true" name="Afs" class="Text" />
+                                        <ui:Label text="무게 : 10" display-tooltip-when-elided="true" name="Wei" class="Text" />
                                     </ui:VisualElement>
                                 </ui:VisualElement>
-                                <ui:ScrollView name="Explain" style="flex-basis: 60%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/InGame_UI_FeatherIcon.png?fileID=-1522164109&amp;guid=51366b9a6ca4e804789e3772d10af377&amp;type=3#InGame_UI_FeatherIcon_1&apos;); padding-left: 15px; padding-right: 15px; padding-top: 15px; padding-bottom: 15px;">
-                                    <ui:Label text="이건 진짜 무기에 대한 설명이다 " display-tooltip-when-elided="true" name="ExplainText" />
+                                <ui:ScrollView name="Explain" style="flex-basis: 60%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/InGame_UI_FeatherIcon.png?fileID=-1522164109&amp;guid=51366b9a6ca4e804789e3772d10af377&amp;type=3#InGame_UI_FeatherIcon_1&apos;); padding-left: 15px; padding-right: 15px; padding-top: 15px; padding-bottom: 15px; flex-direction: row; flex-wrap: wrap; flex-shrink: 0;">
+                                    <ui:Label text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" display-tooltip-when-elided="true" name="ExplainText" class="Text" />
                                 </ui:ScrollView>
                             </ui:VisualElement>
                             <ui:VisualElement name="WeaponEquip" style="flex-basis: 20%; flex-direction: row; justify-content: space-around; border-left-color: rgb(128, 128, 128); border-right-color: rgb(128, 128, 128); border-top-color: rgb(128, 128, 128); border-bottom-color: rgb(128, 128, 128); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px;">

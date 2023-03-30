@@ -166,8 +166,11 @@ public class UIInventory : UIBase
     }
     public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<SaveItemData> list,Action<VisualElement,ItemID> action)
     {
-        foreach(SaveItemData item in list)
+        parent.Clear();
+        foreach (SaveItemData item in list)
         {
+            if (HaveToItem(item.id)) continue;
+
             VisualElement card = temp.Instantiate().Q<VisualElement>("card");
             card.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)item.id}"));
 
@@ -177,6 +180,22 @@ public class UIInventory : UIBase
             });
             parent.Add(card);
         }
+    }
+    public bool HaveToItem(ItemID id)
+    {
+        EquipUesableItemSetting setting = DataManager.UserData_.equipUseableItem;
+        if (DataManager.UserData_.firstWeapon == id || DataManager.UserData_.secondWeapon == id) return true;
+        if (setting.first == id) return true;
+        if (setting.second == id) return true;
+        if (setting.third == id) return true;
+        if (setting.fourth == id) return true;
+        if (setting.fifth == id) return true;
+        if (setting.sixth == id) return true;
+        if (setting.seventh == id) return true;
+        if (setting.eighth == id) return true;
+        if (setting.ninth == id) return true;
+
+        return false;
     }
     public void ShowWeaponInfoPanel(ItemID itemID)
     {
@@ -212,7 +231,10 @@ public class UIInventory : UIBase
     public void EquipItem(ItemID id,int equipNum)
     {
         if((int)id < 100)
+        {
             Define.GetManager<DataManager>().ChangeUserWeaponData(id, equipNum);
+            CreateCardList(_weaponScrollPanel, _weaponCardTemp, Define.GetManager<DataManager>().LoadWeaponDataFromInventory(), SelectCard);
+        }
         else
             Define.GetManager<DataManager>().EquipUsableItem(id, equipNum);
 
