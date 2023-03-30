@@ -61,7 +61,6 @@ namespace Acts.Characters.Player
 
             if(enemys.Count > 0)
             {
-                Debug.Log("Attack!");
                 _playerAnimation.curClip.SetEventOnFrame(attackInfo.ReachFrame, Attack);
             }
 
@@ -129,7 +128,7 @@ namespace Acts.Characters.Player
         private void NoneAniAttack(EventParam eventParam)
         {
 			_playerActor.AddState(CharacterState.Attack);
-			AttackCheck(eventParam.attackParam);
+			FureAttack(eventParam);
 			_playerActor.RemoveState(CharacterState.Attack);
 		}
 

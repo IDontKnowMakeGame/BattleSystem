@@ -14,7 +14,7 @@ public class TwinSword : Weapon
 
 	public override void Init()
 	{
-		base.Init(); 
+		base.Init();
 		InputManager<TwinSword>.ChangeKeyCode(KeyboardInput.AttackForward, KeyCode.UpArrow);
 		InputManager<TwinSword>.ChangeKeyCode(KeyboardInput.AttackBackward, KeyCode.DownArrow);
 		InputManager<TwinSword>.ChangeKeyCode(KeyboardInput.AttackLeft, KeyCode.LeftArrow);
@@ -64,7 +64,7 @@ public class TwinSword : Weapon
 
 	public virtual void Attack(Vector3 vec)
 	{
-		if (_characterActor.HasState(CharacterState.Attack)) return;
+		if (_characterActor.HasState(CharacterState.Everything)) return;
 		Vector3 vector = InGame.CamDirCheck(vec);
 		int z = (int)vector.z;
 		int x = (int)vector.x;
@@ -74,8 +74,8 @@ public class TwinSword : Weapon
 		if (vec == Vector3.forward || vec == Vector3.back)
 		{
 			_attackInfo.ResetDir();
-			//if(range == 3)
-			//{
+			if (range == 3)
+			{
 				if (vec == Vector3.forward)
 				{
 					_attackInfo.AddDir(DirType.Up);
@@ -88,52 +88,40 @@ public class TwinSword : Weapon
 				_attackInfo.RightStat = new ColliderStat(1, 2, -z, -x);
 				_attackInfo.UpStat = new ColliderStat(1, 1, 0, 1);
 				_attackInfo.DownStat = new ColliderStat(1, 1, 0, -1);
-
-				Debug.Log("?");
-			//}
-			//else
-			//{
-			//	_attackInfo.LeftStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
-			//	_attackInfo.RightStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
-			//}
+			}
+			else
+			{
+				_attackInfo.LeftStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
+				_attackInfo.RightStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
+			}
 
 			_attackInfo.AddDir(DirType.Left);
 			_attackInfo.AddDir(DirType.Right);
 
 			_eventParam.attackParam = _attackInfo;
-			_playerAnimation.GetClip(vec == Vector3.forward ? "UpperMove" : "LowerMove").SetEventOnFrame(3, () => Define.GetManager<EventManager>().TriggerEvent(EventFlag.NoneAniAttack, _eventParam));
 		}
-		else if(vec == Vector3.left || vec == Vector3.right)
+		else if (vec == Vector3.left || vec == Vector3.right)
 		{
 			_attackInfo.ResetDir();
-			//if (range == 3)
-			//{
-				if (vec == Vector3.left)
-				{
-					_attackInfo.AddDir(DirType.Left);
-				}
-				else
-				{
-					_attackInfo.AddDir(DirType.Right);
-				}
+			if (range == 3)
+			{
+				_attackInfo.AddDir(_attackInfo.DirTypes(vec));
 				_attackInfo.UpStat = new ColliderStat(2, 1, z, x);
 				_attackInfo.DownStat = new ColliderStat(2, 1, -z, -x);
 				_attackInfo.LeftStat = new ColliderStat(1, 1, 1, 0);
 				_attackInfo.RightStat = new ColliderStat(1, 1, -1, 0);
+			}
+			else
+			{
+				_attackInfo.UpStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
+				_attackInfo.DownStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
 
-			//	Debug.Log("/");
-			//}
-			//else
-			//{
-			//	_attackInfo.UpStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
-			//	_attackInfo.DownStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
-			//}
+				_attackInfo.AddDir(DirType.Up);
+				_attackInfo.AddDir(DirType.Down);
 
-			_attackInfo.AddDir(DirType.Up);
-			_attackInfo.AddDir(DirType.Down);
-
-			_eventParam.attackParam = _attackInfo;
-			_playerAnimation.GetClip("VerticalMove").SetEventOnFrame(3, () => Define.GetManager<EventManager>().TriggerEvent(EventFlag.NoneAniAttack, _eventParam));
+				_eventParam.attackParam = _attackInfo;
+			}
 		}
+		Define.GetManager<EventManager>().TriggerEvent(EventFlag.NoneAniAttack, _eventParam);
 	}
 }
