@@ -53,12 +53,14 @@ namespace Acts.Characters.Player
         {
             if (playerDir == Vector3.left)
             {
-                ThisActor.SpriteTransform.localScale = new Vector3(-1, 1, 1);
+                if((_playerActor.currentWeapon is OldSpear == false) || !((_playerActor.currentWeapon as OldSpear).IsDown))
+                    ThisActor.SpriteTransform.localScale = new Vector3(-1, 1, 1);
                 _playerAnimation.Play("VerticalMove");
             }
             else if(playerDir == Vector3.right)
             {
-                ThisActor.SpriteTransform.localScale = new Vector3(1, 1, 1);
+                if ((_playerActor.currentWeapon is OldSpear == false) || !((_playerActor.currentWeapon as OldSpear).IsDown))
+                    ThisActor.SpriteTransform.localScale = new Vector3(1, 1, 1);
                 _playerAnimation.Play("VerticalMove");
             }
             else if(playerDir == Vector3.forward)

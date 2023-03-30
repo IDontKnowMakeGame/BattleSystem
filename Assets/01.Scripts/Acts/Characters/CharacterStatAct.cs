@@ -147,6 +147,7 @@ public class CharacterStatAct : Act, IDmageAble
 		if (ThisActor is PlayerActor)
 		{
 			DOTween.KillAll();
+			ThisActor.StopAllCoroutines();
 			SceneManager.LoadScene("Lobby");
 		}
 	}

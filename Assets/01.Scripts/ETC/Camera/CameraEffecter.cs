@@ -91,17 +91,11 @@ public class CameraEffecter : MonoBehaviour
         var playerPos = InGame.Player.transform.position;
         var cam = Define.MainCamera;
         var dir = cam.transform.position - playerPos;
-;
-        for (var i = -2; i <= 2; i++)
+        var hits = Physics.RaycastAll(playerPos, dir.normalized, 3000, Mask);
+        foreach (var hit in hits)
         {
-            dir = cam.transform.position - playerPos;
-            var hits = Physics.RaycastAll(playerPos + new Vector3(i, 0), dir.normalized, 3000, Mask);
-            //Debug.Log(dir.normalized);
-            foreach (var hit in hits)
-            {
-                var actor = InGame.GetActor(hit.collider.gameObject.GetInstanceID());
-                actor.GetAct<WallRender>().Invisible();
-            }
+            var actor = InGame.GetActor(hit.collider.gameObject.GetInstanceID());
+            actor.GetAct<WallRender>().Invisible();
         }
     }
 }
