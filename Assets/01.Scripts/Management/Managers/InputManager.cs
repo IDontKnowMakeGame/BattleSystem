@@ -27,6 +27,7 @@ namespace Managements.Managers
 		Slot03,
 		Slot04,
 		Slot05,
+		HPPotion,
 	}
 
 	[Serializable]
@@ -57,7 +58,10 @@ namespace Managements.Managers
 		public static event Action OnTestChangePress;
 		public static event Action OnInteractionPress;
 
+
 		public static event Action<int> OnItemPress;
+		
+		public static event Action OnPotionPress;
 
 
 		private static List<KeyboardInputData> _keyboardInputDatas = new()
@@ -77,11 +81,13 @@ namespace Managements.Managers
 			new KeyboardInputData() { keyboardInput = KeyboardInput.TestChangeKey, keyCode = KeyCode.T },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.Interaction, keyCode = KeyCode.E },
 
-			new KeyboardInputData() {  keyboardInput = KeyboardInput.Slot01, keyCode = KeyCode.Alpha1},
-			new KeyboardInputData() {  keyboardInput = KeyboardInput.Slot02, keyCode = KeyCode.Alpha2},
-			new KeyboardInputData() {  keyboardInput = KeyboardInput.Slot03, keyCode = KeyCode.Alpha3},
-			new KeyboardInputData() {  keyboardInput = KeyboardInput.Slot04, keyCode = KeyCode.Alpha4},
-			new KeyboardInputData() {  keyboardInput = KeyboardInput.Slot05, keyCode = KeyCode.Alpha5},
+			new KeyboardInputData() { keyboardInput = KeyboardInput.Slot01, keyCode = KeyCode.Alpha1 },
+			new KeyboardInputData() { keyboardInput = KeyboardInput.Slot02, keyCode = KeyCode.Alpha2 },
+			new KeyboardInputData() { keyboardInput = KeyboardInput.Slot03, keyCode = KeyCode.Alpha3 },
+			new KeyboardInputData() { keyboardInput = KeyboardInput.Slot04, keyCode = KeyCode.Alpha4 },
+			new KeyboardInputData() { keyboardInput = KeyboardInput.Slot05, keyCode = KeyCode.Alpha5 },
+
+			new KeyboardInputData() { keyboardInput = KeyboardInput.HPPotion, keyCode = KeyCode.F },
 		};
 
 		public override void Awake()
@@ -197,6 +203,11 @@ namespace Managements.Managers
 			{
 				OnItemPress?.Invoke(5);
 			}
+
+			if(Input.GetKeyDown(GetKeyCode(KeyboardInput.HPPotion)))
+            {
+				OnPotionPress?.Invoke();
+            }
 		}
 
 		private void InputRelease()
@@ -316,6 +327,7 @@ namespace Managements.Managers
 			OnTestChangePress = null;
 			OnInteractionPress = null;
 			OnItemPress = null;
+			OnPotionPress = null;
 		}
 	}
 }

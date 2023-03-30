@@ -124,24 +124,28 @@ public class CharacterStatAct : Act, IDmageAble
 		}
 		if (ThisActor is PlayerActor)
 		{
-			float value = (ChangeStat.hp / BaseStat.hp) * 100;
-
 			ThisActor.GetAct<PlayerBuff>().ChangeAnger(1);
 
-			UIManager.Instance.InGame.ChangeCurrentHP((int)value);
+			UIManager.Instance.InGame.ChangeCurrentHP(PercentHP());
 			EventParam eventParam = new EventParam();
 			eventParam.intParam = 0;
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam);
 		}
 		if (ThisActor is EnemyActor)
 		{
-			float value = (ChangeStat.hp / BaseStat.hp) * 100;
-			UIManager.Instance.BossBar.ChangeBossBarValue((int)value);
+			UIManager.Instance.BossBar.ChangeBossBarValue(PercentHP());
 			EventParam eventParam = new EventParam();
 			eventParam.intParam = 1;
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam);
 		}
 	}
+
+	public int PercentHP()
+    {
+		return (int)((ChangeStat.hp / BaseStat.hp) * 100);
+
+	}
+
 	public void Die()
 	{
 		if (ThisActor is PlayerActor)
