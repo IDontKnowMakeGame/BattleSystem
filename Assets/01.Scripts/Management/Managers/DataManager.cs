@@ -19,7 +19,6 @@ public class DataManager : Manager
     public static ItemTable ItemTableData;
     public Dictionary<ItemID, ItemInfo> weaponDictionary = new Dictionary<ItemID, ItemInfo>();
 
-    private string URL;
     public override void Awake()
     {
         InventoryData_ = JsonManager.LoadJsonFile<InventoryData>(Application.streamingAssetsPath + "/SAVE/User", "InvectoryData");
@@ -75,6 +74,10 @@ public class DataManager : Manager
 
     public void SwapWeaponData()
     {
+        ItemID temp = UserData_.firstWeapon;
+        UserData_.firstWeapon = UserData_.secondWeapon;
+        UserData_.secondWeapon = temp;
+
         SaveToUserData();
     }
     public void ChangeUserWeaponData(ItemID item,int num = 1 )
