@@ -107,7 +107,7 @@ public class CharacterStatAct : Act, IDmageAble
 
 
 	}
-	public void Damage(float damage, Actor actor)
+	public virtual void Damage(float damage, Actor actor)
 	{
 		ChangeStat.hp -= damage - (damage * (Half / 100));
 		if (ChangeStat.hp <= 0)
@@ -121,25 +121,6 @@ public class CharacterStatAct : Act, IDmageAble
 			}
 
 			Die();
-		}
-		if (ThisActor is PlayerActor)
-		{
-			ThisActor.GetAct<PlayerBuff>().ChangeAnger(1);
-
-			if (ThisActor.GetAct<PlayerUseAbleItem>().HPPotion.UsePortion)
-				ThisActor.GetAct<PlayerUseAbleItem>().HPPotion.ResetPortion();
-
-			UIManager.Instance.InGame.ChangeCurrentHP(PercentHP());
-			EventParam eventParam = new EventParam();
-			eventParam.intParam = 0;
-			Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam);
-		}
-		if (ThisActor is EnemyActor)
-		{
-			UIManager.Instance.BossBar.ChangeBossBarValue(PercentHP());
-			EventParam eventParam = new EventParam();
-			eventParam.intParam = 1;
-			Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam);
 		}
 	}
 
