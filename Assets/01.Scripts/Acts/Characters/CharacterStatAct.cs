@@ -126,6 +126,9 @@ public class CharacterStatAct : Act, IDmageAble
 		{
 			ThisActor.GetAct<PlayerBuff>().ChangeAnger(1);
 
+			if (ThisActor.GetAct<PlayerUseAbleItem>().HPPotion.UsePortion)
+				ThisActor.GetAct<PlayerUseAbleItem>().HPPotion.ResetPortion();
+
 			UIManager.Instance.InGame.ChangeCurrentHP(PercentHP());
 			EventParam eventParam = new EventParam();
 			eventParam.intParam = 0;
