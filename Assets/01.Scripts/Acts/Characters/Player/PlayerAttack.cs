@@ -90,12 +90,12 @@ namespace Acts.Characters.Player
 
             if (attackInfo.PressInput == Vector3.left)
             {
-                ThisActor.SpriteTransform.localScale = new Vector3(-1, 1, 1);
+                ThisActor.SpriteTransform.localScale =  new Vector3(-(Mathf.Abs(ThisActor.SpriteTransform.localScale.x)), 1, 1);
                 _playerAnimation.Play("VerticalAttack");
             }
             else if (attackInfo.PressInput == Vector3.right)
             {
-                ThisActor.SpriteTransform.localScale = new Vector3(1, 1, 1);
+                ThisActor.SpriteTransform.localScale = new Vector3(Mathf.Abs(ThisActor.SpriteTransform.localScale.x), 1, 1);
                 _playerAnimation.Play("VerticalAttack");
             }
             else if (attackInfo.PressInput == Vector3.forward)
