@@ -2,9 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/Tool/Map/Particle.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/Tool/Map/Particle/MeshParticle.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/Tool/Map/Particle/MeshParticle.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/06.Shaders/Particle.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/06.Shaders/Particle/AlphaShader.shadergraph" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterStatAct.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterStatAct.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Player/PlayerAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Player/PlayerAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Sprites/Scratch.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Sprites/Scratch.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Nokdef_VFXPack/AurasBuffsAndShields/Upgrades/StandardPipelineShaders.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Nokdef_VFXPack/AurasBuffsAndShields/Upgrades/UniversalPipelineShaders.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ProjectAsset/Mirza Beig/Particle Systems/Ultimate VFX/Demos/Starfall/Starfall.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ProjectAsset/Mirza Beig/Particle Systems/Ultimate VFX/Demos/The Last Particle/The Last Particle.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/KHJScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/KHJScene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +26,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3ea01e77be99618395f448b16bd7cc2bd4248bd9e5d8474964b2d97f39c5d74/System.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d44b17e136d09081da1e8fd0e8c83fde60e11818b9f2442d7ed8cb733fae895e/System.Collections.Generic.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/AI/AiConditionHolder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/BesideCondition.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterStatAct.cs" root0="FORCE_HIGHLIGHTING" />
@@ -120,6 +131,9 @@
       <workItem from="1679963127116" duration="10734000" />
       <workItem from="1679996513586" duration="7545000" />
       <workItem from="1680082177256" duration="3386000" />
+      <workItem from="1680170177009" duration="2878000" />
+      <workItem from="1680173648690" duration="524000" />
+      <workItem from="1680174988701" duration="593000" />
     </task>
     <servers />
   </component>
