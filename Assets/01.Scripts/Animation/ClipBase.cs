@@ -13,7 +13,6 @@ namespace Tools
         public int fps;
         public bool isLoop;
         public float delay;
-        public float scaleX = 1;
         public List<Action> events = null;
 
         public void SetEventOnFrame(int frame, Action action)

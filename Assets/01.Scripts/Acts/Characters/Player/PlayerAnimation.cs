@@ -60,7 +60,6 @@ namespace Acts.Characters.Player
                 ThisActor.StopCoroutine(currentCoroutine);
             curClip = weaponClipDic[name];
             currentCoroutine = ThisActor.StartCoroutine(AnimationPlay());
-            InGame.Player.SpriteTransform.localScale = new Vector3(weaponClipDic[name].scaleX, 1, 1);
         }
 
         public ClipBase GetClip(string name)
