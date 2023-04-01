@@ -16,7 +16,6 @@ namespace Acts.Characters.Player
 
         // 현재 어떤 무기 애니메이션인지?, 애니메이션
         public WeaponClips curWeaponClips;
-
         public override void Awake()
         {
             base.Awake();

@@ -63,7 +63,7 @@ namespace Acts.Characters
                 _isMoving = false;
                 block.isWalkable = true;
                 MoveStop();
-                seq.Kill();
+				seq.Kill();
             });
         }
 

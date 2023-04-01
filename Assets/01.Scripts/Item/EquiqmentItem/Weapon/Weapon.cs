@@ -5,9 +5,16 @@ using Acts.Characters.Player;
 using UnityEngine;
 using TMPro;
 using Core;
+using System;
 
 public class Weapon : EquiqmentItem
 {
+	public Weapon DeepCopy()
+	{
+		Weapon other = (Weapon)this.MemberwiseClone();
+		return other;
+	}
+
 	public ItemInfo WeaponInfo
 	{
 		get

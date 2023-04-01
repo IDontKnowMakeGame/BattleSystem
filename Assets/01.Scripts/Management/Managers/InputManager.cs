@@ -113,7 +113,22 @@ namespace Managements.Managers
 
 		private void InputPress()
 		{
-			
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.AttackForward)))
+			{
+				OnAttackPress?.Invoke(Vector3.forward);
+			}
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.AttackBackward)))
+			{
+				OnAttackPress?.Invoke(Vector3.back);
+			}
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.AttackLeft)))
+			{
+				OnAttackPress?.Invoke(Vector3.left);
+			}
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.AttackRight)))
+			{
+				OnAttackPress?.Invoke(Vector3.right);
+			}
 			// Press
 			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.MoveForward)))
 			{
@@ -130,23 +145,6 @@ namespace Managements.Managers
 			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.MoveRight)))
 			{
 				OnMovePress?.Invoke(Vector3.right);
-			}
-
-			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.AttackForward)))
-			{
-				OnAttackPress?.Invoke(Vector3.forward);
-			}
-			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.AttackBackward)))
-			{
-				OnAttackPress?.Invoke(Vector3.back);
-			}
-			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.AttackLeft)))
-			{
-				OnAttackPress?.Invoke(Vector3.left);
-			}
-			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.AttackRight)))
-			{
-				OnAttackPress?.Invoke(Vector3.right);
 			}
 
 			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.Skill)))

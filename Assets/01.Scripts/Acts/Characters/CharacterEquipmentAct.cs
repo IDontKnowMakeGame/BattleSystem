@@ -7,6 +7,7 @@ using UnityEngine;
 using Acts.Characters.Player;
 using Actors.Characters.Player;
 using System;
+using Unity.VisualScripting;
 
 [System.Serializable]
 public class CharacterEquipmentAct : Act
@@ -32,7 +33,6 @@ public class CharacterEquipmentAct : Act
 				_useWeapon.Add(_firstWeapon, clone);
 				_characterController.currentWeapon = _useWeapon[_firstWeapon];
 			}
-
 			if (_isPlayer)
 				_characterController.currentWeapon.isEnemy = false;
 
@@ -50,9 +50,9 @@ public class CharacterEquipmentAct : Act
 			_useWeapon.TryGetValue(_secondWeapon, out weapon);
 			if (weapon == null)
 			{
-				weapon = Define.GetManager<ItemManager>().weapons[_secondWeapon];
-				var clone = ObjectExtensions.Copy(weapon);
-				_useWeapon.Add(_secondWeapon, clone);
+				weapon = Define.GetManager<ItemManager>().weapons[_secondWeapon].DeepCopy();
+				//var clone = ObjectExtensions.Copy(weapon);
+				_useWeapon.Add(_secondWeapon, weapon);
 				weapon = _useWeapon[_secondWeapon];
 			}
 

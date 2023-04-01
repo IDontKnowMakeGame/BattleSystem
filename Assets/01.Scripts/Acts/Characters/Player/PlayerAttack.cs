@@ -54,8 +54,6 @@ namespace Acts.Characters.Player
 
             attackCol.SetAttackCol(attackInfo);
 
-
-
             if(attackCol.CurrntDirNearEnemy() != null)
                 enemys.Add(attackCol.CurrntDirNearEnemy());
 
@@ -127,26 +125,31 @@ namespace Acts.Characters.Player
 
         private void NoneAniAttack(EventParam eventParam)
         {
-			_playerActor.AddState(CharacterState.Attack);
-            Vector3 vec = eventParam.attackParam.PressInput;
-            if (vec == Vector3.forward || vec == Vector3.back)
+            if(eventParam.boolParam == false)
             {
-				_playerAnimation.GetClip(vec == Vector3.forward ? "UpperMove" : "LowerMove").SetEventOnFrame(eventParam.attackParam.ReachFrame,
-	() => FureAttack(eventParam));
+				enemys.Clear();
+				attackCol.SetAttackCol(eventParam.attackParam);
+				_playerActor.AddState(CharacterState.Attack);
 			}
             else
             {
-				_playerAnimation.GetClip("VerticalMove").SetEventOnFrame(eventParam.attackParam.ReachFrame, () => FureAttack(eventParam));
-            }
-			_playerActor.RemoveState(CharacterState.Attack);
+				if (attackCol.CurrntDirNearEnemy() != null)
+					enemys.Add(attackCol.CurrntDirNearEnemy());
+
+				if (enemys.Count > 0)
+				{
+					Attack();
+				}
+				attackCol.AllReset();
+				_playerActor.RemoveState(CharacterState.Attack);
+			}
 		}
 
         private void FureAttack(EventParam eventParam)
         {
 			enemys.Clear();
 
-			attackCol.SetAttackCol(eventParam.attackParam);
-
+            attackCol.SetAttackCol(eventParam.attackParam);
 			if (attackCol.CurrntDirNearEnemy() != null)
 				enemys.Add(attackCol.CurrntDirNearEnemy());
 

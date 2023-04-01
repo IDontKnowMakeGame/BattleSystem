@@ -6,6 +6,8 @@ using Actors.Characters;
 using Acts.Characters;
 using UnityEngine;
 using Acts.Characters.Player;
+using System.ComponentModel;
+using UnityEngine.Experimental.Rendering.RenderGraphModule;
 
 public class TwinSword : Weapon
 {
@@ -23,7 +25,6 @@ public class TwinSword : Weapon
 	public override void LoadWeaponClassLevel()
 	{
 		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("TwinSword");
-		Debug.Log(KillToLevel(level.killedCount));
 		switch (KillToLevel(level.killedCount))
 		{
 			case 1:
@@ -50,7 +51,7 @@ public class TwinSword : Weapon
 	public override void Equiqment(CharacterActor actor)
 	{
 		base.Equiqment(actor);
-		InputManager<TwinSword>.OnMovePress += Attack;
+		InputManager<TwinSword>.OnAttackPress += Attack;
 		if (_playerAnimation == null)
 			_playerAnimation = _characterActor.GetAct<PlayerAnimation>();
 	}
@@ -58,65 +59,67 @@ public class TwinSword : Weapon
 	public override void UnEquipment(CharacterActor actor)
 	{
 		base.UnEquipment(actor);
-		InputManager<TwinSword>.OnMovePress -= Attack;
+		InputManager<TwinSword>.OnAttackPress -= Attack;
 	}
 
 	public virtual void Attack(Vector3 vec)
 	{
-		//if (_characterActor.HasState(CharacterState.Move)) return;
-		Vector3 vector = InGame.CamDirCheck(vec);
-		int z = (int)vector.z;
-		int x = (int)vector.x;
+		if (_characterActor.HasState(CharacterState.Move) || _characterActor.HasState(CharacterState.Attack)) return;
+		int z = (int)vec.z;
+		int x = (int)vec.x;
 
 		_attackInfo.PressInput = vec;
 		_attackInfo.ReachFrame = 2;
 		if (vec == Vector3.forward || vec == Vector3.back)
 		{
 			_attackInfo.ResetDir();
-			if (range == 3)
-			{
-				Debug.Log(_attackInfo.DirTypes(vec));
-				_attackInfo.AddDir(_attackInfo.DirTypes(vec));
-				_attackInfo.LeftStat = new ColliderStat(1, 2, z, x * 2);
-				_attackInfo.RightStat = new ColliderStat(1, 2, -z, -x * 2);
-				_attackInfo.UpStat = new ColliderStat(1, 1, 0, 1);
-				_attackInfo.DownStat = new ColliderStat(1, 1, 0, -1);
-			}
-			else
-			{
-				_attackInfo.LeftStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
-				_attackInfo.RightStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
-			}
+			_attackInfo.LeftStat = new ColliderStat(1, range, 1, z);
+			_attackInfo.RightStat = new ColliderStat(1, range, -1, z);
+			_attackInfo.UpStat = new ColliderStat(1, 1, 0, 1);
+			_attackInfo.DownStat = new ColliderStat(1, 1, 0, -1);
 
 			_attackInfo.AddDir(DirType.Left);
 			_attackInfo.AddDir(DirType.Right);
 
 			_eventParam.attackParam = _attackInfo;
-			_playerAnimation.GetClip(vec == Vector3.forward ? "UpperMove" : "LowerMove").SetEventOnFrame(_eventParam.attackParam.ReachFrame,
-() => Define.GetManager<EventManager>().TriggerEvent(EventFlag.FureAttack, _eventParam));
 		}
 		else if (vec == Vector3.left || vec == Vector3.right)
 		{
 			_attackInfo.ResetDir();
-			if (range == 3)
-			{
-				Debug.Log(_attackInfo.DirTypes(vec));
-				_attackInfo.AddDir(_attackInfo.DirTypes(vec));
-				_attackInfo.UpStat = new ColliderStat(2, 1, z * 2, x);
-				_attackInfo.DownStat = new ColliderStat(2, 1, -z * 2, -x);
-				_attackInfo.LeftStat = new ColliderStat(1, 1, 1, 0);
-				_attackInfo.RightStat = new ColliderStat(1, 1, -1, 0);
-			}
-			else
-			{
-				_attackInfo.UpStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
-				_attackInfo.DownStat = new ColliderStat(InGame.None, range, InGame.None, InGame.None);
-			}
+			_attackInfo.UpStat = new ColliderStat(range, 1, x, 1);
+			_attackInfo.DownStat = new ColliderStat(range, 1, x, -1);
+			_attackInfo.LeftStat = new ColliderStat(1, 1, -1, 0);
+			_attackInfo.RightStat = new ColliderStat(1, 1, 1, 0);
+
 			_attackInfo.AddDir(DirType.Up);
 			_attackInfo.AddDir(DirType.Down);
 
 			_eventParam.attackParam = _attackInfo;
-			_playerAnimation.GetClip("VerticalMove").SetEventOnFrame(_eventParam.attackParam.ReachFrame, () => Define.GetManager<EventManager>().TriggerEvent(EventFlag.FureAttack, _eventParam));
 		}
+		_characterActor.StartCoroutine(Attack(_attackInfo.ReachFrame, vec));
+	}
+
+	private IEnumerator Attack(int frame, Vector3 vec)
+	{
+		float time = 0;
+		_eventParam.boolParam = false;
+		yield return null;
+		if (vec == Vector3.forward || vec == Vector3.back)
+		{
+			float a = _playerAnimation.GetClip(vec == Vector3.forward ? "UpperMove" : "LowerMove").delay;
+			time = frame * a;
+		}
+		else
+		{
+			float b = _playerAnimation.GetClip("VerticalMove").delay;
+			time = frame * b;
+		}
+		Define.GetManager<EventManager>().TriggerEvent(EventFlag.NoneAniAttack, _eventParam);
+		yield return new WaitForSeconds(time);
+		_eventParam.boolParam = true;
+		if(_characterActor.HasState(CharacterState.Attack))
+		Define.GetManager<EventManager>().TriggerEvent(EventFlag.NoneAniAttack, _eventParam);
+		else
+			_playerActor.RemoveState(CharacterState.Attack);
 	}
 }

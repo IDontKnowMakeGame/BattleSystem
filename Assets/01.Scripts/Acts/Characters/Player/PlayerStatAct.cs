@@ -18,7 +18,6 @@ public class PlayerStatAct : CharacterStatAct
 
 	public void StatChange(EventParam eventParam)
 	{
-		Debug.Log("?");
 		base.StatChange();
 		UIManager.Instance.InGame.ChanageMaxHP((int)_changeStat.hp / 10);
 	}
