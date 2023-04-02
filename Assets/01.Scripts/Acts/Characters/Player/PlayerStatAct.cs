@@ -12,14 +12,14 @@ public class PlayerStatAct : CharacterStatAct
 	public override void Start()
 	{
 		base.Start();
-		UIManager.Instance.InGame.ChanageMaxHP((int)_changeStat.hp / 10);
+		UIManager.Instance.InGame.ChanageMaxHP((int)_changeStat.maxHP / 10);
 		Define.GetManager<EventManager>().StartListening(EventFlag.ChangeStat, StatChange);
 	}
 
 	public void StatChange(EventParam eventParam)
 	{
 		base.StatChange();
-		UIManager.Instance.InGame.ChanageMaxHP((int)_changeStat.hp / 10);
+		UIManager.Instance.InGame.ChanageMaxHP((int)_changeStat.maxHP / 10);
 	}
 
 	public override void Damage(float damage, Actor actor)
