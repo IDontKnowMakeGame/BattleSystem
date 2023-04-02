@@ -9,6 +9,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Actors.Characters.Enemy;
+using Acts.Characters;
 using Acts.Characters.Player;
 
 [Serializable]
@@ -80,8 +81,10 @@ public class CharacterStatAct : Act, IDmageAble
 	[SerializeField]
 	protected CharacterStat _changeStat = new CharacterStat();
 	private CharacterActor _actor;
+	private CharacterRender _render;
 	public override void Start()
 	{
+		_render = ThisActor.GetAct<CharacterRender>();
 		_actor = ThisActor as CharacterActor;
 		_changeStat.CopyStat(_basicStat);
 
@@ -110,13 +113,13 @@ public class CharacterStatAct : Act, IDmageAble
 	public virtual void Damage(float damage, Actor actor)
 	{
 		ChangeStat.hp -= damage - (damage * (Half / 100));
+		_render.Blink();
 		if (ChangeStat.hp <= 0)
 		{
 			if (actor is PlayerActor)
 			{
 				PlayerActor player = actor as PlayerActor;
 				Define.GetManager<DataManager>().AddWeaponClassKillData(player.currentWeapon.info.Class);
-
 				player.GetAct<PlayerEquipment>().CurrentWeapon.LoadWeaponClassLevel();
 			}
 
