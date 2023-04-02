@@ -69,15 +69,14 @@ namespace Acts.Characters.Player
 
         private void Attack()
         {
-            var character = ThisActor as CharacterActor;
+            var character = ThisActor.GetAct<CharacterStatAct>();
 
 			foreach (EnemyActor enemy in enemys)
             {
                 GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Damage");
-                obj.GetComponent<DamagePopUp>().DamageText(character.currentWeapon.WeaponInfo.Atk, enemy.transform.position);
+                obj.GetComponent<DamagePopUp>().DamageText(character.ChangeStat.atk, enemy.transform.position);
 
-                Debug.Log(character.currentWeapon.WeaponInfo.Atk);
-                enemy.GetAct<CharacterStatAct>().Damage(character.currentWeapon.WeaponInfo.Atk, ThisActor);
+                enemy.GetAct<CharacterStatAct>().Damage(character.ChangeStat.atk, ThisActor);
             }
 
             _playerActor.GetAct<PlayerBuff>().ChangeAdneraline(1);
@@ -90,12 +89,12 @@ namespace Acts.Characters.Player
 
             if (attackInfo.PressInput == Vector3.left)
             {
-                ThisActor.SpriteTransform.localScale =  new Vector3(-(Mathf.Abs(ThisActor.SpriteTransform.localScale.x)), 1, 1);
+                ThisActor.SpriteTransform.localScale =  new Vector3(-1, 1, 1);
                 _playerAnimation.Play("VerticalAttack");
             }
             else if (attackInfo.PressInput == Vector3.right)
             {
-                ThisActor.SpriteTransform.localScale = new Vector3(Mathf.Abs(ThisActor.SpriteTransform.localScale.x), 1, 1);
+                ThisActor.SpriteTransform.localScale = new Vector3(1, 1, 1);
                 _playerAnimation.Play("VerticalAttack");
             }
             else if (attackInfo.PressInput == Vector3.forward)

@@ -55,7 +55,7 @@ public class GreatSword : Weapon
 		if (_characterActor.HasState(CharacterState.Everything))
 			return;		
 
-		_eventManager.TriggerEvent(EventFlag.SliderInit, new EventParam { floatParam = WeaponInfo.Ats });
+		_eventManager.TriggerEvent(EventFlag.SliderInit, new EventParam { floatParam = _characterActor.GetAct<CharacterStatAct>().ChangeStat.ats });
 		_eventManager.TriggerEvent(EventFlag.SliderFalse, new EventParam { boolParam = true });
 		_characterActor.AddState(CharacterState.Hold);
 		_attackInfo.ResetDir();
