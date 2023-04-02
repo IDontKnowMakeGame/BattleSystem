@@ -150,6 +150,8 @@ public class UIInventory : UIBase
         id = DataManager.UserData_.secondWeapon;
         _secondWeaponImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
     }
+    public void UpdateWeaponIcon()
+    { }
     public void SelectItemBtn(int pageNum,VisualElement chageBox)
     {
         _selectBtnBox.style.height = new Length(80, LengthUnit.Percent);

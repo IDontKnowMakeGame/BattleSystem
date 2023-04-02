@@ -1,5 +1,6 @@
 ﻿using System;
 using Actors.Bases;
+using Actors.Characters;
 using Actors.Characters.Enemy;
 using Core;
 using UnityEngine;
@@ -13,11 +14,13 @@ namespace Acts.Characters.Enemy
         public override void Damage(float damage, Actor actor)
         {
             base.Damage(damage, actor);
+            
             if (ThisActor is EnemyActor)
             {
                 UIManager.Instance.BossBar.ChangeBossBarValue(PercentHP());
                 EventParam eventParam = new EventParam();
                 eventParam.intParam = 1;
+                eventParam.stringParam = (actor as CharacterActor).currentWeapon.info.Class;
                 Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam);
             }
             DamageEffect();
