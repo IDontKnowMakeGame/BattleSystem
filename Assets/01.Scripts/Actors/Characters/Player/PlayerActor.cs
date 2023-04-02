@@ -6,6 +6,7 @@ namespace Actors.Characters.Player
 {
     public class PlayerActor : CharacterActor
     {
+        [SerializeField] private PlayerMove _playerMove;
 		[SerializeField] private PlayerStatAct _playerStat;
         [SerializeField] private PlayerEquipment _playerEquipment;
         [SerializeField] private PlayerAnimation _plyerAnimation;
@@ -17,7 +18,7 @@ namespace Actors.Characters.Player
         {
 			AddAct(_playerEquipment);
             base.Init();
-            AddAct<PlayerMove>();
+            AddAct(_playerMove);
             AddAct(_playerAttack);
             AddAct(_plyerAnimation);
             AddAct(_playerUseAbleItem);
