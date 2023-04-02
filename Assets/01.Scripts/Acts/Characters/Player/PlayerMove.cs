@@ -6,6 +6,7 @@ using Actors.Characters.Player;
 
 namespace Acts.Characters.Player
 {
+    [System.Serializable]
     public class PlayerMove : CharacterMove
     {
         private PlayerAnimation _playerAnimation;
@@ -15,6 +16,7 @@ namespace Acts.Characters.Player
         private Vector3 playerDir;
 
         public float distance = 1;
+
         public override void Awake()
         {         
             base.Awake();

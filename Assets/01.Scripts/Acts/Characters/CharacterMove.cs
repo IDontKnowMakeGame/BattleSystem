@@ -18,7 +18,10 @@ namespace Acts.Characters
         public static event Action<int, Vector3> OnMoveEnd;
         protected bool _isMoving = false;
         private CharacterActor _character => ThisActor as CharacterActor;
-        
+
+        [SerializeField]
+        private float defaultSpeed = 0;
+
         public override void Awake()
         {
             _thisTransform = ThisActor.transform;
@@ -93,7 +96,7 @@ namespace Acts.Characters
             ThisActor.StartCoroutine(PositionUpdateCoroutine());
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
 
-            seq.Append(_thisTransform.DOJump(nextPos, 1, 1, speed));
+            seq.Append(_thisTransform.DOJump(nextPos, 1, 1, speed - defaultSpeed));
             seq.AppendCallback(() =>
             {
                 ThisActor.Position = nextPos;
