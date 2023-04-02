@@ -129,7 +129,8 @@ public class Spear : Weapon
     {
 		if (vec == Vector3.left || vec == Vector3.right)
 		{
-			InGame.Player.SpriteTransform.localScale = vec == Vector3.left ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+			InGame.Player.SpriteTransform.localScale = vec == Vector3.left ? new Vector3(1, 1, 1) 
+				: new Vector3(-1, 1, 1);
 			_playerAnimation.GetClip("VerticalMove").ChangeClip(_playerAnimation.GetClip("VerticalReadyVerticalMove"));
 			_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip("VerticalReadyUpperMove"));
 			_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip("VerticalReadyLowerMove"));

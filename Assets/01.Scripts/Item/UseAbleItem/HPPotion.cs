@@ -8,74 +8,68 @@ using Actors.Characters;
 [System.Serializable]
 public class HPPotion : UseAbleItem
 {
-    private int _cnt;
-    private float _timer = 0f;
-
-    private float accTimer = 0f;
+    private float maxHealth = 100f;
+    private float currentHealth = 0f;
+    private float healRate = 70f; // HP per second(100 / 1.5 = 66.67)
+    private float healDuration = 1.5f;
+    private float lastHP = 0f;
 
     private bool _useHP = false;
     public bool UsePortion => _useHP;
 
     [SerializeField]
-    private float maxTimer = 0.015f;
-    [SerializeField]
     private ParticleSystem holyParticle;
 
     private PlayerStatAct _playerStatAct;
 
+    private float timer = 0f;
+
+
     public override void SettingItem()
     {
-        ResetPortion();
+        ResetPotion();
         _playerStatAct = InGame.Player.GetAct<PlayerStatAct>();
     }
 
     public override void UseItem()
     {
-        if (!_useHP)
+        if(!_useHP)
         {
-            InGame.Player.AddState(CharacterState.StopMove);
+            //InGame.Player.AddState(CharacterState.StopMove);
             _useHP = true;
-            holyParticle.Play();
+            //holyParticle.Play();
         }
     }
 
     public override void UpdateItem()
     {
-        if (_useHP)
-            IncreaseHpPortion();
-
-    }
-
-    public void IncreaseHpPortion()
-    {
-        if (_cnt > 100 || _playerStatAct.ChangeStat.hp >= _playerStatAct.ChangeStat.maxHP)
+        if(_useHP)
         {
-            ResetPortion();
-            return;
-        }
+            if (timer > healDuration)
+            {
+                ResetPotion();
+                return;
+            }
 
-        _timer += Time.deltaTime;
+            timer += Time.deltaTime;
+            float healAmount = healRate * Time.deltaTime;
+            currentHealth += healAmount;
+            currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
 
-        if (_timer >= maxTimer)
-        {
-            Debug.Log(_timer);
-            accTimer += _timer;
-            _timer = 0;
-            _playerStatAct.Heal(1);
+            int healedAmount = Mathf.RoundToInt(currentHealth) - Mathf.RoundToInt(lastHP);
+            lastHP = currentHealth;
+            _playerStatAct.Heal(healedAmount);
             UIManager.Instance.InGame.ChangeCurrentHP(_playerStatAct.PercentHP());
-            _cnt++;
         }
     }
 
-    public void ResetPortion()
+    public void ResetPotion()
     {
-        Debug.Log("AccTimer:" + accTimer);
-        Debug.Log("cnt" + _cnt);
-        accTimer = 0f;
-        InGame.Player.RemoveState(CharacterState.StopMove);
+        Debug.Log(timer);
+        currentHealth = 0f;
+        lastHP = 0f;
+        timer = 0f;
         _useHP = false;
-        _cnt = 0;
-        _timer = 0;
     }
 }
 

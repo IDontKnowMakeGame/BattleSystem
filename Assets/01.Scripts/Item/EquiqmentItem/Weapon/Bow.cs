@@ -101,7 +101,7 @@ public class Bow : Weapon
 		_characterActor.AddState(CharacterState.StopMove);
 		_characterActor.AddState(CharacterState.Hold);
 
-		_eventManager.TriggerEvent(EventFlag.SliderInit, new EventParam { floatParam = WeaponInfo.Ats });
+		_eventManager.TriggerEvent(EventFlag.SliderInit, new EventParam { floatParam = _characterActor.GetAct<CharacterStatAct>().ChangeStat.ats });
 		_eventManager.TriggerEvent(EventFlag.SliderFalse, new EventParam { boolParam = true });
 	}
 
