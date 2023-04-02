@@ -140,10 +140,8 @@ namespace Blocks
                 yield break;
             if(_actorOnBlock == attacker)
                 yield break;
-            
-            Debug.Log(_actorOnBlock + " is attacked by " + attacker + " for " + damage + " damage");
+
             var stat = _actorOnBlock.GetAct<CharacterStatAct>();
-            Debug.Log("?");
             stat.Damage(damage, attacker);
         }
         

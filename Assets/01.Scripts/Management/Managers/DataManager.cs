@@ -33,8 +33,6 @@ public class DataManager : Manager
             CreateWeaponClassListData();
         }
 
-        Debug.Log("Load Json Complate");
-
         WeaponInfoSerialize();
     }
     public void WeaponInfoSerialize()

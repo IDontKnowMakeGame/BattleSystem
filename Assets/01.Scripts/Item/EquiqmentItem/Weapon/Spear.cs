@@ -71,6 +71,8 @@ public class Spear : Weapon
 	{
 		base.UnEquipment(actor);
 		InputManager<Spear>.OnAttackPress -= Attack;
+		_isAttack = false;
+		_isDown = false;
 	}
 	public override void Update()
 	{

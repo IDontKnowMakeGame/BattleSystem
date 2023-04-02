@@ -76,7 +76,7 @@ namespace Acts.Characters.Player
 
                 enemy.GetAct<CharacterStatAct>().Damage(character.ChangeStat.atk, ThisActor);
             }
-
+			OnAttackEnd?.Invoke(_playerActor.UUID);
             _playerActor.GetAct<PlayerBuff>().ChangeAdneraline(1);
 		}
         

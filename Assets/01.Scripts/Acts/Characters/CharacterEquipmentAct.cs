@@ -50,9 +50,9 @@ public class CharacterEquipmentAct : Act
 			_useWeapon.TryGetValue(_secondWeapon, out weapon);
 			if (weapon == null)
 			{
-				weapon = Define.GetManager<ItemManager>().weapons[_secondWeapon].DeepCopy();
-				//var clone = ObjectExtensions.Copy(weapon);
-				_useWeapon.Add(_secondWeapon, weapon);
+				weapon = Define.GetManager<ItemManager>().weapons[_secondWeapon];
+				var clone = ObjectExtensions.Copy(weapon);
+				_useWeapon.Add(_secondWeapon, clone);
 				weapon = _useWeapon[_secondWeapon];
 			}
 
