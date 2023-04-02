@@ -146,9 +146,9 @@ public class UIInventory : UIBase
     public void EquipWeaponBoxImage()
     {
         ItemID id = DataManager.UserData_.firstWeapon;
-        _firstWeaponImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Image/{id}"));
+        _firstWeaponImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
         id = DataManager.UserData_.secondWeapon;
-        _secondWeaponImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Image/{id}"));
+        _secondWeaponImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
     }
     public void SelectItemBtn(int pageNum,VisualElement chageBox)
     {
