@@ -119,12 +119,12 @@ public class GreatSword : Weapon
     {
 		if (dir == Vector3.left)
 		{
-			_characterActor.SpriteTransform.localScale = new Vector3(-1, 1, 1);
+			_characterActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
 			_playerAnimation.Play("VerticalCharge");
 		}
 		else if (dir == Vector3.right)
 		{
-			_characterActor.SpriteTransform.localScale = new Vector3(1, 1, 1);
+			_characterActor.SpriteTransform.localScale = new Vector3(2, 1, 1);
 			_playerAnimation.Play("VerticalCharge");
 		}
 		else if (dir == Vector3.forward)

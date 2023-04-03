@@ -163,12 +163,12 @@ public class Arrow : MonoBehaviour
 
 		if (dir == Vector3.left)
 		{
-			InGame.Player.SpriteTransform.localScale = new Vector3(-1, 1, 1);
+			InGame.Player.SpriteTransform.localScale = new Vector3(-2, 1, 1);
 			_playerAnimation.Play("VerticalPull");
 		}
 		else if (dir == Vector3.right)
 		{
-			InGame.Player.SpriteTransform.localScale = new Vector3(1, 1, 1);
+			InGame.Player.SpriteTransform.localScale = new Vector3(2, 1, 1);
 			_playerAnimation.Play("VerticalPull");
 		}
 		else if (dir == Vector3.forward)

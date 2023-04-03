@@ -35,8 +35,8 @@ public class PlayerStatAct : CharacterStatAct
 
 			UIManager.Instance.InGame.ChangeCurrentHP(PercentHP());
 			EventParam eventParam = new EventParam();
-			eventParam.intParam = 0;
-			Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam);
+			eventParam.stringParam = "Damaged";
+            Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam);
 		}
 	}
 }
