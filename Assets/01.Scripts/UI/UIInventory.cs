@@ -103,7 +103,7 @@ public class UIInventory : UIBase
         _useableItemPanel = _itemPanel.Q<VisualElement>("UseblePanel");
         _questItemPanel = _itemPanel.Q<VisualElement>("QuestPanel");
 
-        _weaponChacraterViewImage = _weaponPanel.Q<VisualElement>("CharacterImage/Character");
+        _weaponChacraterViewImage = _weaponPanel.Q<VisualElement>("Character");
         _weaponInfoPanel = _weaponPanel.Q<VisualElement>("WeaponInfoPanel");
         _weaponStatusPanel = _weaponInfoPanel.Q<VisualElement>("StatusPanel");
         _firstWeaponImage = _weaponPanel.Q<VisualElement>("FirstWeapon");
