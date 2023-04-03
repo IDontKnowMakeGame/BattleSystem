@@ -50,10 +50,10 @@ public class Weapon : EquiqmentItem
 	public override void Equiqment(CharacterActor actor)
 	{
 		_characterActor = actor;
-		if(!isEnemy)
+		if(actor is PlayerActor)
 		{
 			_playerActor = _characterActor as PlayerActor;
-			_playerAnimation = _playerActor.GetAct<PlayerAnimation>();
+			_playerAnimation = _characterActor.GetAct<PlayerAnimation>();
 			Debug.Log(_playerAnimation);
 			LoadWeaponClassLevel();
 			LoadWeaponLevel();

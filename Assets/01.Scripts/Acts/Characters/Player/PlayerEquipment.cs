@@ -113,9 +113,9 @@ public class PlayerEquipment : CharacterEquipmentAct
 		CurrentWeapon.UnEquipment(_characterController);
 		_firstWeapon = DataManager.UserData_.firstWeapon;
 		_secondWeapon = DataManager.UserData_.secondWeapon;
+		EquipAnimation();
 		CurrentWeapon.Equiqment(_characterController);
 
-		EquipAnimation();
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.ChangeStat, _eventParam);
 	}
 

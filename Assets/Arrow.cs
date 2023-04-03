@@ -52,21 +52,19 @@ public class Arrow : MonoBehaviour
 	}
 	public virtual void Shoot(Vector3 vec, Vector3 position, CharacterActor actor, float speed, float damage, int distance)
 	{
-		position.y = 1;
-
-		int count = 0;
-		this.transform.position = position;
-
 		var map = Define.GetManager<MapManager>();
-
-		for(count = 0; count < distance; count++)
+		int count = 0;
+		for(count = 0; count <= distance; count++)
 		{
-			if (map.GetBlock((position - Vector3.up) + (vec * count)) == null || !map.GetBlock((position - Vector3.up) + (vec * count)).isWalkable)
+			if (map.GetBlock(position + (vec * count)) == null || !map.GetBlock(position + (vec * count)).isWalkable)
 			{
 				count -= 1;
 				break;
 			}
 		}
+		position.y = 1;
+
+		this.transform.position = position;
 
 		float time = count / speed;
 
@@ -82,6 +80,10 @@ public class Arrow : MonoBehaviour
 	protected virtual void StickOnBlock()
 	{
 		_isStick = true;
+		Quaternion quater = this.transform.localRotation;
+		Vector3 vec = quater.eulerAngles;
+		vec.x = 150;
+		this.transform.rotation = Quaternion.Euler(vec);
 	}
 
 	protected virtual void StickActor(Collider other)
@@ -98,6 +100,9 @@ public class Arrow : MonoBehaviour
 	protected virtual void Pull()
 	{
 		if (!_canPull)
+			return;
+
+		if (_shootActor.HasState(CharacterState.Move))
 			return;
 
 		_isStick = false;

@@ -14,6 +14,12 @@ public class DamagePopUp : Actor
 	[SerializeField]
 	private TextMeshPro num;
 
+	[SerializeField]
+	private Color _basiccolor;
+
+	[SerializeField]
+	private Color _criticalColor;
+
 
 	[SerializeField]
 	private float yPower;
@@ -41,10 +47,10 @@ public class DamagePopUp : Actor
 		Vector2 vec = Random.insideUnitCircle;
 		transform.position = new Vector3(pos.x, Random.Range(pos.y, pos.y + 1f), pos.z);
 		//transform.localEulerAngles = new Vector3(transform.rotation.x - 45, transform.rotation.y, transform.rotation.z);
-		if (text >= 10)
-			num.color = Color.red;
+		if (text >= 50)
+			num.color = _criticalColor;
 		else
-			num.color = Color.yellow;
+			num.color = _basiccolor;
 
 		num.text = string.Format(text.ToString());
 		Sequence mySequence = DOTween.Sequence();
