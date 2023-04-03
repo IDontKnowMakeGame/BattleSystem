@@ -54,7 +54,6 @@ public class UIInGame : UIBase
 
     public void ChangeAngerValue(int value)
     {
-        Debug.Log("Anger:" + value);
         VisualElement bar = _angerSlider.Q<VisualElement>("Fill");
         bar.style.width = new Length(value, LengthUnit.Percent);
     }

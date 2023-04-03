@@ -34,7 +34,21 @@ public class Arrow : MonoBehaviour
 	public static void ShootArrow(Vector3 vec, Vector3 position, CharacterActor actor, float speed, float damage, int distance)
 	{
 		Arrow obj = Define.GetManager<ResourceManager>().Instantiate("Arrow").GetComponent<Arrow>();
+		obj.transform.rotation = Quaternion.Euler(VecToRotation(vec));
 		obj.Shoot(vec, position, actor, speed, damage, distance);
+	}
+	private static Vector3 VecToRotation(Vector3 vec)
+	{
+		if (vec == Vector3.forward)
+			return new Vector3(90, 0, 0);
+		else if (vec == Vector3.back)
+			return new Vector3(90, 180f, 0);
+		else if (vec == Vector3.left)
+			return new Vector3(90, -90f, 0);
+		else if (vec == Vector3.right)
+			return new Vector3(90, 90f, 0);
+		else
+			return Vector3.zero;
 	}
 	public virtual void Shoot(Vector3 vec, Vector3 position, CharacterActor actor, float speed, float damage, int distance)
 	{

@@ -79,6 +79,8 @@ public class PlayerEquipment : CharacterEquipmentAct
 		if (_playerActor.HasAnyState()) return;
 		base.Change();
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.ChangeStat, _eventParam);
+		Define.GetManager<DataManager>().SwapWeaponData();
+		UIManager.Instance.UpdateInGameUI();
 	}
 	private void Skill()
 	{

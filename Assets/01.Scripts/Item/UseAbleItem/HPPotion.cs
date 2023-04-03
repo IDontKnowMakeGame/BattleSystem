@@ -65,7 +65,6 @@ public class HPPotion : UseAbleItem
 
     public void ResetPotion()
     {
-        Debug.Log(timer);
         currentHealth = 0f;
         lastHP = 0f;
         timer = 0f;

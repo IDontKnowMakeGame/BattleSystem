@@ -5,9 +5,16 @@ using Acts.Characters.Player;
 using UnityEngine;
 using TMPro;
 using Core;
+using System;
 
 public class Weapon : EquiqmentItem
 {
+	public Weapon DeepCopy()
+	{
+		Weapon other = (Weapon)this.MemberwiseClone();
+		return other;
+	}
+
 	public ItemInfo WeaponInfo
 	{
 		get
@@ -47,6 +54,7 @@ public class Weapon : EquiqmentItem
 		{
 			_playerActor = _characterActor as PlayerActor;
 			_playerAnimation = _playerActor.GetAct<PlayerAnimation>();
+			Debug.Log(_playerAnimation);
 			LoadWeaponClassLevel();
 			LoadWeaponLevel();
 		}

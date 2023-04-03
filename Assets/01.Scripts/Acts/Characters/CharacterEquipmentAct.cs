@@ -7,6 +7,7 @@ using UnityEngine;
 using Acts.Characters.Player;
 using Actors.Characters.Player;
 using System;
+using Unity.VisualScripting;
 
 [System.Serializable]
 public class CharacterEquipmentAct : Act
@@ -32,7 +33,6 @@ public class CharacterEquipmentAct : Act
 				_useWeapon.Add(_firstWeapon, clone);
 				_characterController.currentWeapon = _useWeapon[_firstWeapon];
 			}
-
 			if (_isPlayer)
 				_characterController.currentWeapon.isEnemy = false;
 

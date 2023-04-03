@@ -35,9 +35,12 @@ namespace Tools
 
         public void ChangeClip(ClipBase clipBase)
         {
-            texture = clipBase.texture;
-            fps = clipBase.fps;
-            delay = clipBase.delay;
+            if (clipBase != null)
+            {
+                texture = clipBase.texture;
+                fps = clipBase.fps;
+                delay = clipBase.delay;
+            }
         }
     }
 }
