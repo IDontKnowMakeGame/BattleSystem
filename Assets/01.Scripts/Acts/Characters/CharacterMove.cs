@@ -78,7 +78,7 @@ namespace Acts.Characters
             
             var map = Define.GetManager<MapManager>();
 
-            if (map.GetBlock(nextPos.SetY(0)) == null)
+            if (!map.IsStayable(nextPos.SetY(0)))
             {
                 MoveStop();
                 return;
@@ -109,7 +109,7 @@ namespace Acts.Characters
             var originPos = ThisActor.Position;
             nextPos.y = 0;
             var block = InGame.GetBlock(nextPos);
-            block.isMoving = false;
+            block.isMoving = true;
             while (_isMoving)
             {
                 yield return new WaitForFixedUpdate();
@@ -129,7 +129,7 @@ namespace Acts.Characters
                 ThisActor.Position = pos;
             }
 
-            block.isMoving = true;
+            block.isMoving = false;
             var dir = ThisActor.Position - originPos;
             OnMoveEnd?.Invoke(ThisActor.UUID, dir);
         }
