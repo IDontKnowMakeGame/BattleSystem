@@ -17,7 +17,7 @@ namespace Actors.Characters.Enemy
         {
             AddAct(_characterEquipment);
             AddAct(_characterStat);
-            AddAct(_enemyAnimation);
+            //AddAct(_enemyAnimation);
             base.Init();
         }
 
