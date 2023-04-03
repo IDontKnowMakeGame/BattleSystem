@@ -53,8 +53,7 @@ namespace Acts.Characters
             var block = map.GetBlock(nextPos.SetY(0));
             if(block.CheckActorOnBlock(ThisActor) == false) return;
             _character.AddState(Actors.Characters.CharacterState.Move);
-            block.isWalkable = false;
-
+            
             MoveAnimation();
 
             ThisActor.StartCoroutine(PositionUpdateCoroutine());
@@ -64,7 +63,6 @@ namespace Acts.Characters
             {
                 ThisActor.Position = nextPos;
                 _isMoving = false;
-                block.isWalkable = true;
                 MoveStop();
 				seq.Kill();
             });
@@ -89,7 +87,6 @@ namespace Acts.Characters
             var block = map.GetBlock(nextPos.SetY(0));
             if(block.CheckActorOnBlock(ThisActor) == false) return;
             _character.AddState(Actors.Characters.CharacterState.Move);
-            block.isWalkable = false;
 
             MoveAnimation();
 
@@ -100,34 +97,38 @@ namespace Acts.Characters
             seq.AppendCallback(() =>
             {
                 ThisActor.Position = nextPos;
-                block.isWalkable = true;
                 _isMoving = false;
                 MoveStop();
                 seq.Kill();
             });
         }
         
-        public IEnumerator PositionUpdateCoroutine()
+        public IEnumerator PositionUpdateCoroutine(Vector3 nextPos)
         {
             _isMoving = true;
             var originPos = ThisActor.Position;
+            var block = InGame.GetBlock(nextPos);
+            block.isWalkable = false;
             while (_isMoving)
             {
                 yield return new WaitForFixedUpdate();
                 var pos = _thisTransform.position;
-                if (Mathf.Round(pos.x) != pos.x)
+                var x = Mathf.Round(pos.x);
+                var z = Mathf.Round(pos.z);
+                if (x != pos.x)
                 {
-                    pos.x = Mathf.Round(pos.x);
+                    pos.x = x;
                 }
 
-                if (Mathf.Round(pos.z) != pos.z)
+                if (z != pos.z)
                 {
-                    pos.z = Mathf.Round(pos.z);
+                    pos.z = z;
                 }
                 InGame.SetActorOnBlock(ThisActor, pos);
                 ThisActor.Position = pos;
             }
 
+            block.isWalkable = true;
             var dir = ThisActor.Position - originPos;
             OnMoveEnd?.Invoke(ThisActor.UUID, dir);
         }
