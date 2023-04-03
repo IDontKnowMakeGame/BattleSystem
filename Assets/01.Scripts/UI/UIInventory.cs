@@ -103,7 +103,7 @@ public class UIInventory : UIBase
         _useableItemPanel = _itemPanel.Q<VisualElement>("UseblePanel");
         _questItemPanel = _itemPanel.Q<VisualElement>("QuestPanel");
 
-        _weaponChacraterViewImage = _weaponPanel.Q<VisualElement>("CharacterImage");
+        _weaponChacraterViewImage = _weaponPanel.Q<VisualElement>("CharacterImage/Character");
         _weaponInfoPanel = _weaponPanel.Q<VisualElement>("WeaponInfoPanel");
         _weaponStatusPanel = _weaponInfoPanel.Q<VisualElement>("StatusPanel");
         _firstWeaponImage = _weaponPanel.Q<VisualElement>("FirstWeapon");
@@ -146,9 +146,13 @@ public class UIInventory : UIBase
     public void EquipWeaponBoxImage()
     {
         ItemID id = DataManager.UserData_.firstWeapon;
+        ItemInfo data = Define.GetManager<DataManager>().weaponDictionary[id];
         _firstWeaponImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
+        _weaponChacraterViewImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Image/{data.Class}"));
+
         id = DataManager.UserData_.secondWeapon;
         _secondWeaponImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
+        
     }
     public void UpdateWeaponIcon()
     { }
