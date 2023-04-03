@@ -70,6 +70,7 @@ namespace Acts.Characters.Player
 
         public void ChangeAdneraline(float percent)
         {
+            return;
             if (percent > 0)
                 attackCount++;
             adneraline = Mathf.Clamp(adneraline + percent, 0, 10);
