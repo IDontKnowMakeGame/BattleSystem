@@ -64,8 +64,8 @@ public class MeshParticle : MonoBehaviour
     {
         public Vector3 minPosition;
         public Vector3 maxPosition;
-        public int minRotation;
-        public int maxRotation;
+        public float minRotation;
+        public float maxRotation;
         public Vector3 minQuadSize;
         public Vector3 maxQuadSize;
 
@@ -74,7 +74,7 @@ public class MeshParticle : MonoBehaviour
             UnityEngine.Random.Range(minPosition.y, maxPosition.y),
             UnityEngine.Random.Range(minPosition.z, maxPosition.z));
 
-        public int RandomRot => UnityEngine.Random.Range(minRotation, maxRotation);
+        public float RandomRot => UnityEngine.Random.Range(minRotation, maxRotation);
 
         public Vector3 RandomQuadSize => new Vector3(
             UnityEngine.Random.Range(minQuadSize.x, maxQuadSize.x),

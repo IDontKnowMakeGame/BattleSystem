@@ -45,12 +45,12 @@ public class Bow : Weapon
 
 		if (actor is PlayerActor)
 		{
-			_playerAnimation.GetClip("VerticalPull").SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
-			_playerAnimation.GetClip("UpperPull").SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
-			_playerAnimation.GetClip("LowerPull").SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
-			_playerAnimation.GetClip("VerticalPull").SetEventOnFrame(_playerAnimation.GetClip("VerticalPull").fps - 1, SetAnimation);
-			_playerAnimation.GetClip("UpperPull").SetEventOnFrame(_playerAnimation.GetClip("UpperPull").fps - 1, SetAnimation);
-			_playerAnimation.GetClip("LowerPull").SetEventOnFrame(_playerAnimation.GetClip("LowerPull").fps - 1, SetAnimation);
+			_playerAnimation.GetClip("VerticalPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
+			_playerAnimation.GetClip("UpperPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
+			_playerAnimation.GetClip("LowerPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
+			_playerAnimation.GetClip("VerticalPull")?.SetEventOnFrame(_playerAnimation.GetClip("VerticalPull").fps - 1, SetAnimation);
+			_playerAnimation.GetClip("UpperPull")?.SetEventOnFrame(_playerAnimation.GetClip("UpperPull").fps - 1, SetAnimation);
+			_playerAnimation.GetClip("LowerPull")?.SetEventOnFrame(_playerAnimation.GetClip("LowerPull").fps - 1, SetAnimation);
 			SetAnimation();
 		}
 	}

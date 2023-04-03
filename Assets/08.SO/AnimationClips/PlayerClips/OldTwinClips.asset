@@ -22,19 +22,19 @@ MonoBehaviour:
     delay: 0.1
   - name: VerticalMove
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 134cab0abdda9a34da0271ec01bf5e96, type: 3}
+    texture: {fileID: 2800000, guid: 902f9083c1faadc439c13be683df4706, type: 3}
     fps: 7
     isLoop: 0
     delay: 0.04
   - name: UpperMove
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 3e1ec87a2d6f4fd498edd1772358e071, type: 3}
+    texture: {fileID: 2800000, guid: ba94455cacbf9864eb2507f8c4f442d8, type: 3}
     fps: 7
     isLoop: 0
     delay: 0.04
   - name: LowerMove
     nextIdx: 0
-    texture: {fileID: 2800000, guid: c9e47aabde577cf4da577c6bc6aff6ac, type: 3}
+    texture: {fileID: 2800000, guid: c7ca1abbc9aa8714ea416a93501ad148, type: 3}
     fps: 7
     isLoop: 0
     delay: 0.04
