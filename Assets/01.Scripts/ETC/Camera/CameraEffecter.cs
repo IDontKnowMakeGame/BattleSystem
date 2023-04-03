@@ -88,6 +88,7 @@ public class CameraEffecter : MonoBehaviour
 
     private void Update()
     {
+        if(InGame.Player == null) return;
         var playerPos = InGame.Player.transform.position;
         var cam = Define.MainCamera;
         var dir = cam.transform.position - playerPos;

@@ -340,7 +340,7 @@ Transform:
   m_GameObject: {fileID: 959488258380157409}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3909976407663358328}
@@ -464,11 +464,17 @@ MonoBehaviour:
   _characterRender:
     _defaultTexture: {fileID: 2800000, guid: b8dcdc1f31fdb4c459bc678fcee5f96b, type: 3}
     _frame: 11
+    _blinkCnt: 1
+    _blinkTime: 0.1
+    _blinkDelay: 0.1
   _characterState: 0
+  _playerMove:
+    defaultSpeed: 0.1
+    distance: 1
   _playerStat:
     _basicStat:
-      maxHP: 10000
-      hp: 0
+      maxHP: 100
+      hp: 100
       atk: 0
       ats: 0
       afs: 0
@@ -506,6 +512,19 @@ MonoBehaviour:
     - {fileID: 11400000, guid: db63f3c8fd83b8b478edfae14c59904c, type: 2}
     - {fileID: 11400000, guid: de94fb9242d062340819835d5ed910aa, type: 2}
     curWeaponClips: {fileID: 0}
+  _playerUseAbleItem:
+    _hpPotion:
+      info:
+        Name: 
+        Id: 0
+        Class: 
+        Hp: 0
+        Atk: 0
+        Ats: 0
+        Afs: 0
+        Weight: 0
+        CoolTime: 0
+      holyParticle: {fileID: 0}
   _playerBuff:
     anger: 0
     adneraline: 0
@@ -927,6 +946,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2662873638032127355, guid: eb4d15c0829167445810bb6b3f3f5795, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2662873638032127355, guid: eb4d15c0829167445810bb6b3f3f5795, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -968,7 +991,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6793524356732830310, guid: eb4d15c0829167445810bb6b3f3f5795, type: 3}
       propertyPath: _maxYScalevalue
-      value: 0.9
+      value: 0.65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb4d15c0829167445810bb6b3f3f5795, type: 3}

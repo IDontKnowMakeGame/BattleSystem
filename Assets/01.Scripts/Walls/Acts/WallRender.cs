@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Acts.Base;
 using Core;
 using UnityEngine;
@@ -25,6 +26,7 @@ namespace Walls.Acts
 
         public override void LateUpdate()
         {
+            if(InGame.Player == null) return;
             var material = thisMaterial;
             var playerPos = InGame.Player.transform.position;
             var cam = Define.MainCamera;

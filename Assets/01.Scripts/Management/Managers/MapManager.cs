@@ -84,6 +84,8 @@ namespace Managements.Managers
                 return false;
             if(tile.isWalkable == false)
                 return false;
+            if (tile.isMoving == false)
+                return false;
             if (tile.IsActorOnBlock == true)
                 return false;
 

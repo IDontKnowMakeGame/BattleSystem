@@ -109,7 +109,7 @@ namespace Acts.Characters
             var originPos = ThisActor.Position;
             nextPos.y = 0;
             var block = InGame.GetBlock(nextPos);
-            block.isWalkable = false;
+            block.isMoving = false;
             while (_isMoving)
             {
                 yield return new WaitForFixedUpdate();
@@ -129,7 +129,7 @@ namespace Acts.Characters
                 ThisActor.Position = pos;
             }
 
-            block.isWalkable = true;
+            block.isMoving = true;
             var dir = ThisActor.Position - originPos;
             OnMoveEnd?.Invoke(ThisActor.UUID, dir);
         }

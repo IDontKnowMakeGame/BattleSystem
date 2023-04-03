@@ -24,14 +24,15 @@ namespace ETC
 
         public void FocusCenter()
         {
-            InGame.Player.enabled = false;
+            InGame.Player.StopAllCoroutines();
+            Destroy(InGame.Player.gameObject);
             Sequence seq = DOTween.Sequence();
-            vignette.intensity.value = 1f;
-            DOTween.To(() => vignette.intensity.value, x => vignette.intensity.value = x, 1f, 2f);
-            seq.AppendInterval(4f);
+            vignette.intensity.value = 0;
+            vignette.rounded.value = true;
+            seq.Append(DOTween.To(() => vignette.intensity.value, x => vignette.intensity.value = x, 1f, 2f));
+            seq.AppendInterval(2f);
             seq.AppendCallback(() =>
             {
-                InGame.Player.StopAllCoroutines();
                 SceneManager.LoadScene("Lobby");
                 DOTween.KillAll();
             });
