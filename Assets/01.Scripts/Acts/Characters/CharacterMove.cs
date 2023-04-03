@@ -107,6 +107,7 @@ namespace Acts.Characters
         {
             _isMoving = true;
             var originPos = ThisActor.Position;
+            nextPos.y = 0;
             var block = InGame.GetBlock(nextPos);
             block.isWalkable = false;
             while (_isMoving)
