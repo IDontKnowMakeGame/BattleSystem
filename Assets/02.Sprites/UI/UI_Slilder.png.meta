@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 998cc906b86cc574a92dbba1c438ad44
-      internalID: -1817886032
+      spriteID: 0fd6fccf90f07f240b99bcbd40b55c14
+      internalID: -640806315
       vertices: []
       indices: 
       edges: []
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4452feaefbddacd4081297e3fcd94938
-      internalID: 1648096076
+      spriteID: b9abbcf01abe93f488016bc53114cf82
+      internalID: 461472133
       vertices: []
       indices: 
       edges: []
@@ -161,8 +161,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0ba7568c77809643b75ecb12b4270bd
-      internalID: -494692570
+      spriteID: 95edcb4032db61e41b874f933870dbd6
+      internalID: -1433791024
       vertices: []
       indices: 
       edges: []
@@ -170,7 +170,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 51afbde84e10a134496c502ff307f209
+    spriteID: d71cfd821bd8f7d428a99be4fbc6ed73
     internalID: 0
     vertices: []
     indices: 
@@ -178,9 +178,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      UI_Slilder_1: 1648096076
-      UI_Slilder_0: -1817886032
-      UI_Slilder_2: -494692570
+      UI_Slilder_1: 461472133
+      UI_Slilder_0: -640806315
+      UI_Slilder_2: -1433791024
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
