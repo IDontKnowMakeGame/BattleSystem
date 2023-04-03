@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Diagnostics;
 using UnityEngine.UIElements;
 using static UnityEditor.Progress;
+using static UnityEngine.Rendering.DebugUI;
 
 public class UIInGame : UIBase
 {
@@ -57,10 +58,26 @@ public class UIInGame : UIBase
         VisualElement bar = _angerSlider.Q<VisualElement>("Fill");
         bar.style.width = new Length(value, LengthUnit.Percent);
     }
+    public void FlagAngerBuff(bool value)
+    {
+        VisualElement back = _angerSlider.Q<VisualElement>("BackGround");
+        if (value)
+            back.AddToClassList("OnAnger");
+        else
+            back.RemoveFromClassList("OnAnger");
+    }
     public void ChangeAdrenalineValue(int value)
     {
         VisualElement bar = _adrenalineSlider.Q<VisualElement>("Fill");
         bar.style.width = new Length(value, LengthUnit.Percent);
+    }
+    public void FlagAdrenalineBuff(bool value)
+    {
+        VisualElement back = _angerSlider.Q<VisualElement>("BackGround");
+        if (value)
+            back.AddToClassList("OnAdrenalin");
+        else
+            back.RemoveFromClassList("OnAdrenalin");
     }
 
     public void ChangeFirstWeaponImage(ItemID itemID)

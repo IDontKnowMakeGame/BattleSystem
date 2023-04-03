@@ -3,27 +3,27 @@
         {
             "name": "StraightSword",
             "level": 0,
-            "killedCount": 3
+            "killedCount": 34
         },
         {
             "name": "GreatSword",
             "level": 0,
-            "killedCount": 0
+            "killedCount": 9
         },
         {
             "name": "TwinSword",
             "level": 0,
-            "killedCount": 0
+            "killedCount": 8
         },
         {
             "name": "Spear",
             "level": 0,
-            "killedCount": 6
+            "killedCount": 60
         },
         {
             "name": "Bow",
             "level": 0,
-            "killedCount": 2
+            "killedCount": 38
         }
     ]
 }
