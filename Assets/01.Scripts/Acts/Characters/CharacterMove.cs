@@ -56,7 +56,7 @@ namespace Acts.Characters
             
             MoveAnimation();
 
-            ThisActor.StartCoroutine(PositionUpdateCoroutine());
+            ThisActor.StartCoroutine(PositionUpdateCoroutine(nextPos));
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
             seq.Append(_thisTransform.DOMove(nextPos, speed - defaultSpeed).SetEase(Ease.Linear));
             seq.AppendCallback(() =>
@@ -90,7 +90,7 @@ namespace Acts.Characters
 
             MoveAnimation();
 
-            ThisActor.StartCoroutine(PositionUpdateCoroutine());
+            ThisActor.StartCoroutine(PositionUpdateCoroutine(nextPos));
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
 
             seq.Append(_thisTransform.DOJump(nextPos, 1, 1, speed));
