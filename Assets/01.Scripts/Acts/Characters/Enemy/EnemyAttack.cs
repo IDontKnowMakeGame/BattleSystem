@@ -289,5 +289,29 @@ namespace Acts.Characters.Enemy
             character.RemoveState(CharacterState.Hold);
         }
 
+        private void SlashParticle(Vector3 dir)
+        {
+            var degree = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+            var particle = new MeshParticle.Particle
+            {
+                randomProperties = new MeshParticle.ParticleRandomProperties()
+                {
+                    minPosition = new Vector3(-0.2f, -0.2f),
+                    maxPosition = new Vector3(0.2f, 0.2f),
+                    minRotation = degree - 5,
+                    maxRotation = degree + 5,
+                    minQuadSize = new Vector3(1f, 1f),
+                    maxQuadSize = new Vector3(1f, 1f),
+                }
+            };
+            var pos = ThisActor.transform.position + dir;
+            particle.position = new Vector3(pos.x, pos.z) + particle.randomProperties.RandomPos;
+            particle.rotation = particle.randomProperties.RandomRot;
+            particle.quadSize = particle.randomProperties.RandomQuadSize;
+            particle.skewed = true;
+            particle.uvIndex = Random.Range(0, 2);
+            MeshParticle.Instance.AddParticle("Slice", particle);
+        }
+
     }
 }
