@@ -17,6 +17,7 @@ namespace Blocks
         private int z;
 
         public bool isWalkable = false;
+        public bool isMoving = false;
         public void SetWalkable(bool value)
         {
             isWalkable = value;

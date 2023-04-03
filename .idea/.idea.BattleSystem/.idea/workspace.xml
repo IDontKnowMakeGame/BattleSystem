@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefabs/Splash.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/URP/Splash.vfx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/BossActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/BossActor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterMove.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Blocks/Block.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Blocks/Block.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/ETC/Camera/CameraEffecter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/ETC/Camera/CameraEffecter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/ETC/PlayerDeath.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/ETC/PlayerDeath.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Management/Managers/MapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Management/Managers/MapManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Walls/Acts/WallRender.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Walls/Acts/WallRender.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefabs/Player.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +133,8 @@
       <workItem from="1680174988701" duration="593000" />
       <workItem from="1680183900635" duration="911000" />
       <workItem from="1680445468467" duration="2856000" />
-      <workItem from="1680515214994" duration="606000" />
+      <workItem from="1680515214994" duration="3825000" />
+      <workItem from="1680532868476" duration="3284000" />
     </task>
     <servers />
   </component>

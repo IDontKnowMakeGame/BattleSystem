@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Actors.Bases;
 using Actors.Characters.Player;
 using Acts.Characters.Player;
+using ETC;
 using UnityEngine;
 
 [System.Serializable]
@@ -38,5 +39,10 @@ public class PlayerStatAct : CharacterStatAct
 			eventParam.stringParam = "Damaged";
             Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam);
 		}
+	}
+
+	public override void Die()
+	{
+		PlayerDeath.Instance.FocusCenter();
 	}
 }

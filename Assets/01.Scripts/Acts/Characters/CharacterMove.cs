@@ -53,18 +53,16 @@ namespace Acts.Characters
             var block = map.GetBlock(nextPos.SetY(0));
             if(block.CheckActorOnBlock(ThisActor) == false) return;
             _character.AddState(Actors.Characters.CharacterState.Move);
-            block.isWalkable = false;
-
+            
             MoveAnimation();
 
-            ThisActor.StartCoroutine(PositionUpdateCoroutine());
+            ThisActor.StartCoroutine(PositionUpdateCoroutine(nextPos));
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
             seq.Append(_thisTransform.DOMove(nextPos, speed - defaultSpeed).SetEase(Ease.Linear));
             seq.AppendCallback(() =>
             {
                 ThisActor.Position = nextPos;
                 _isMoving = false;
-                block.isWalkable = true;
                 MoveStop();
 				seq.Kill();
             });
@@ -80,7 +78,7 @@ namespace Acts.Characters
             
             var map = Define.GetManager<MapManager>();
 
-            if (map.GetBlock(nextPos.SetY(0)) == null)
+            if (!map.IsStayable(nextPos.SetY(0)))
             {
                 MoveStop();
                 return;
@@ -89,45 +87,49 @@ namespace Acts.Characters
             var block = map.GetBlock(nextPos.SetY(0));
             if(block.CheckActorOnBlock(ThisActor) == false) return;
             _character.AddState(Actors.Characters.CharacterState.Move);
-            block.isWalkable = false;
 
             MoveAnimation();
 
-            ThisActor.StartCoroutine(PositionUpdateCoroutine());
+            ThisActor.StartCoroutine(PositionUpdateCoroutine(nextPos));
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
 
             seq.Append(_thisTransform.DOJump(nextPos, 1, 1, speed));
             seq.AppendCallback(() =>
             {
                 ThisActor.Position = nextPos;
-                block.isWalkable = true;
                 _isMoving = false;
                 MoveStop();
                 seq.Kill();
             });
         }
         
-        public IEnumerator PositionUpdateCoroutine()
+        public IEnumerator PositionUpdateCoroutine(Vector3 nextPos)
         {
             _isMoving = true;
             var originPos = ThisActor.Position;
+            nextPos.y = 0;
+            var block = InGame.GetBlock(nextPos);
+            block.isMoving = true;
             while (_isMoving)
             {
                 yield return new WaitForFixedUpdate();
                 var pos = _thisTransform.position;
-                if (Mathf.Round(pos.x) != pos.x)
+                var x = Mathf.Round(pos.x);
+                var z = Mathf.Round(pos.z);
+                if (x != pos.x)
                 {
-                    pos.x = Mathf.Round(pos.x);
+                    pos.x = x;
                 }
 
-                if (Mathf.Round(pos.z) != pos.z)
+                if (z != pos.z)
                 {
-                    pos.z = Mathf.Round(pos.z);
+                    pos.z = z;
                 }
                 InGame.SetActorOnBlock(ThisActor, pos);
                 ThisActor.Position = pos;
             }
 
+            block.isMoving = false;
             var dir = ThisActor.Position - originPos;
             OnMoveEnd?.Invoke(ThisActor.UUID, dir);
         }

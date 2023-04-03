@@ -133,14 +133,9 @@ public class CharacterStatAct : Act, IDmageAble
 
 	}
 
-	public void Die()
+	public virtual void Die()
 	{
-		if (ThisActor is PlayerActor)
-		{
-			DOTween.KillAll();
-			ThisActor.StopAllCoroutines();
-			SceneManager.LoadScene("Lobby");
-		}
+		
 	}
 
 	#region FAO
