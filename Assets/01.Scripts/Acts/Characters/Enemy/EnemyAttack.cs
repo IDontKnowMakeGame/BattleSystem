@@ -203,7 +203,7 @@ namespace Acts.Characters.Enemy
                 move.Translate(dir);
                 yield return new WaitUntil(() => !characeter.HasState(CharacterState.Move));
             }
-            SecondtAttackAnimation(dir);
+            SecondAttackAnimation(dir);
             ForwardAttack(dir);
             yield return new WaitUntil(() => !characeter.HasState(CharacterState.Hold));
             if (ThisActor.Position + dir != InGame.Player.Position)
@@ -235,7 +235,6 @@ namespace Acts.Characters.Enemy
             var map = Define.GetManager<MapManager>();
             var character = ThisActor as CharacterActor;
             var move = ThisActor.GetAct<CharacterMove>();
-            FirstAttackAnimation(dir);
             var degree = ThisActor.Position.GetDegree(InGame.Player.Position);
             yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
             yield return new WaitForSeconds(_defaultStat.Ats);
@@ -250,7 +249,8 @@ namespace Acts.Characters.Enemy
                     break;
             }
 
-            move.Jump(nextPos);
+            
+            move.BackStep(nextPos);
             yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
             distance = 1;
             nextPos = ThisActor.Position + dir * distance;
@@ -261,6 +261,9 @@ namespace Acts.Characters.Enemy
 
             }
             
+
+            ThisActor.GetAct<EnemyAnimation>().Play("SoulAttack");
+            yield return new WaitForSeconds(_defaultStat.Ats);
             for (var vec = ThisActor.Position; vec != nextPos; vec += dir)
             {
                 var absDir = new Vector3(Mathf.Abs(dir.x), 0, Mathf.Abs(dir.z));
@@ -285,7 +288,7 @@ namespace Acts.Characters.Enemy
             }
             
             yield return new WaitUntil(() => !character.HasState(CharacterState.Hold));
-
+            
             yield return new WaitForSeconds(5f);
             
             character.RemoveState(CharacterState.Attack);
@@ -318,7 +321,7 @@ namespace Acts.Characters.Enemy
 
         private void FirstAttackAnimation(Vector3 dir)
         {
-            dir = dir.normalized;
+            dir = -dir.normalized;
             Debug.Log(dir);
             var animation = ThisActor.GetAct<EnemyAnimation>();
             if (dir == Vector3.forward)
@@ -344,9 +347,9 @@ namespace Acts.Characters.Enemy
             }
         }
         
-        private void SecondtAttackAnimation(Vector3 dir)
+        private void SecondAttackAnimation(Vector3 dir)
         {
-            dir = dir.normalized;
+            dir = -dir.normalized;
             Debug.Log(dir);
             var animation = ThisActor.GetAct<EnemyAnimation>();
             if (dir == Vector3.forward)
@@ -374,7 +377,7 @@ namespace Acts.Characters.Enemy
         
         private void TripleAttackAnimation(Vector3 dir)
         {
-            dir = dir.normalized;
+            dir = -dir.normalized;
             Debug.Log(dir);
             var animation = ThisActor.GetAct<EnemyAnimation>();
             if (dir == Vector3.forward)

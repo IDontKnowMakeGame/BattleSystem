@@ -3,14 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/CrazyGhost/CrazyGhostActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/CrazyGhost/CrazyGhostActor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterMove.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterRender.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterRender.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAttack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Sprites/CrazyGhost/CrazyGhost_Horizontal_Move.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Sprites/CrazyGhost/CrazyGhost_Horizontal_Move.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Sprites/CrazyGhost/CrazyGhost_Lower_Move.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Sprites/CrazyGhost/CrazyGhost_Lower_Move.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/Boss/CrazyGhost.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/Boss/CrazyGhost.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/KHJScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/KHJScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VEG/Smash.vfx" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VEG/Smash.vfx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Sprites/CrazyGhost/CrazyGhost_SoulAttack.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Sprites/CrazyGhost/CrazyGhost_SoulAttack.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/Weapon/ClassLevelData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/Weapon/ClassLevelData.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +132,8 @@
       <workItem from="1680445468467" duration="2856000" />
       <workItem from="1680515214994" duration="3825000" />
       <workItem from="1680532868476" duration="12615000" />
-      <workItem from="1680600462713" duration="5587000" />
+      <workItem from="1680600462713" duration="6013000" />
+      <workItem from="1680618274018" duration="2439000" />
     </task>
     <servers />
   </component>
@@ -162,6 +160,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/01.Scripts/Acts/Base/ActorAnimation.cs</url>
+          <line>85</line>
+          <properties documentPath="D:\Github\BattleSystem\Assets\01.Scripts\Acts\Base\ActorAnimation.cs" initialLine="85" containingFunctionPresentation="method 'Play'">
+            <startOffsets>
+              <option value="2565" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2566" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -49,13 +49,19 @@ MonoBehaviour:
     texture: {fileID: 2800000, guid: d01ea74982cd31141b1f58c66419c446, type: 3}
     fps: 16
     isLoop: 0
-    delay: 0.1
+    delay: 0.0346
   - name: SoulAttack
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 2e1824078e9d7d343be08917d12dddec, type: 3}
-    fps: 41
+    nextIdx: 7
+    texture: {fileID: 2800000, guid: c2c3223457d8eba4c8139a265000ce9d, type: 3}
+    fps: 26
     isLoop: 0
-    delay: 0.1
+    delay: 0.001
+  - name: SoulAttackStun
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 44a31dd00e57adc458fc583bd0e17124, type: 3}
+    fps: 16
+    isLoop: 0
+    delay: 0.22
   - name: HorizontalComboAttack1
     nextIdx: 0
     texture: {fileID: 2800000, guid: cc2fa2c6cc0782d43aa27abe3ce57b70, type: 3}

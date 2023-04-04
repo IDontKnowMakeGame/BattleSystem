@@ -21,13 +21,13 @@ namespace Acts.Characters
         {
             _renderer = ThisActor.GetComponentInChildren<Renderer>();
             currentMat = _renderer.material;
-            if (_defaultTexture != null)
-            {
-                _renderer.material.SetTexture("_MainTex", _defaultTexture);
-                var length = _defaultTexture.width / _frame;
-                var tiling = new Vector2(1f / _frame, 1);
-                _renderer.material.SetVector("_Tiling", tiling);
-            }
+            // if (_defaultTexture != null)
+            // {
+            //     _renderer.material.SetTexture("_MainTex", _defaultTexture);
+            //     var length = _defaultTexture.width / _frame;
+            //     var tiling = new Vector2(1f / _frame, 1);
+            //     _renderer.material.SetVector("_Tiling", tiling);
+            // }
         }
 
         public override void LateUpdate()
