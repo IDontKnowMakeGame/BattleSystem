@@ -25,7 +25,7 @@ public class OldTwinSword : TwinSword
 		Vector3 vector = InGame.CamDirCheck(vec);
 		for(int i = 0; i<6; i++)
 		{
-			Define.GetManager<MapManager>().AttackBlock(_characterActor.Position+vector, info.Atk, 1f, _characterActor, MovementType.None, true);
+			Define.GetManager<MapManager>().AttackBlock(_characterActor.Position+vector, info.Atk, i * 0.2f, _characterActor, MovementType.None, true);
 		}
 		_characterActor.StartCoroutine(SkillCorutine());
 	}

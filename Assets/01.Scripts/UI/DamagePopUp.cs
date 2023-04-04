@@ -41,7 +41,7 @@ public class DamagePopUp : Actor
 		AddAct(_textRenderer);
 	}
 
-	public void DamageText(float text, Vector3 pos)
+	public void DamageText(int text, Vector3 pos)
 	{
 		num.alpha = 1;
 		Vector2 vec = Random.insideUnitCircle;

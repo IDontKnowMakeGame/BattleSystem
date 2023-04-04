@@ -16,7 +16,7 @@ namespace Acts.Characters.Enemy
             base.Damage(damage, actor);
 
             GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Damage");
-            obj.GetComponent<DamagePopUp>().DamageText(damage, ThisActor.transform.position);
+            obj.GetComponent<DamagePopUp>().DamageText((int)damage, ThisActor.transform.position);
 
 
 			if (ThisActor is BossActor)
