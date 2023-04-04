@@ -21,6 +21,8 @@ public class Arrow : MonoBehaviour
 	private bool _isStick = false;
 	private bool _canPull = false;
 
+
+
 	private PlayerAnimation _playerAnimation;
 
 	public void Start()
@@ -161,26 +163,25 @@ public class Arrow : MonoBehaviour
 
 	private void PullAnimation()
 	{
-		Vector3 dir = (transform.position - InGame.Player.Position).normalized;
-		dir.y = 0;
-
-		Debug.Log(dir);
-
-		if (dir == Vector3.left)
+		if(transform.parent == null)
+        {
+			_playerAnimation.Play("GroundPull");
+		}
+		else if (-_shootVec == Vector3.left)
 		{
 			InGame.Player.SpriteTransform.localScale = new Vector3(-2, 1, 1);
 			_playerAnimation.Play("VerticalPull");
 		}
-		else if (dir == Vector3.right)
+		else if (-_shootVec == Vector3.right)
 		{
 			InGame.Player.SpriteTransform.localScale = new Vector3(2, 1, 1);
 			_playerAnimation.Play("VerticalPull");
 		}
-		else if (dir == Vector3.forward)
+		else if (-_shootVec == Vector3.forward)
 		{
 			_playerAnimation.Play("UpperPull");
 		}
-		else
+		else if(-_shootVec == Vector3.back)	
 		{
 			_playerAnimation.Play("LowerPull");
 		}

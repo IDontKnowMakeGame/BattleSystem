@@ -48,9 +48,11 @@ public class Bow : Weapon
 			_playerAnimation.GetClip("VerticalPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
 			_playerAnimation.GetClip("UpperPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
 			_playerAnimation.GetClip("LowerPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
+			_playerAnimation.GetClip("GroundPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
 			_playerAnimation.GetClip("VerticalPull")?.SetEventOnFrame(_playerAnimation.GetClip("VerticalPull").fps - 1, SetAnimation);
 			_playerAnimation.GetClip("UpperPull")?.SetEventOnFrame(_playerAnimation.GetClip("UpperPull").fps - 1, SetAnimation);
 			_playerAnimation.GetClip("LowerPull")?.SetEventOnFrame(_playerAnimation.GetClip("LowerPull").fps - 1, SetAnimation);
+			_playerAnimation.GetClip("GroundPull")?.SetEventOnFrame(_playerAnimation.GetClip("GroundPull").fps - 1, SetAnimation);
 			SetAnimation();
 		}
 	}
@@ -96,10 +98,18 @@ public class Bow : Weapon
 		_isCharge = true;
 		isShoot = true;
 
+
 		_orginVec = vec;
 		_currentVec = InGame.CamDirCheck(vec);
 		_characterActor.AddState(CharacterState.StopMove);
 		_characterActor.AddState(CharacterState.Hold);
+
+		// Player Animation
+		if (_characterActor is PlayerActor)
+		{
+			ChargeAnimation(_orginVec);
+			//SetAnimation();
+		}
 
 		_eventManager.TriggerEvent(EventFlag.SliderInit, new EventParam { floatParam = _characterActor.GetAct<CharacterStatAct>().ChangeStat.ats });
 		_eventManager.TriggerEvent(EventFlag.SliderFalse, new EventParam { boolParam = true });
@@ -109,13 +119,6 @@ public class Bow : Weapon
 	{
 		if (!_isCharge)
 			return;
-
-		// Player Animation
-		if (_characterActor is PlayerActor)
-		{
-			ChargeAnimation(_orginVec);
-			//SetAnimation();
-		}
 
 		_currentTimer += Time.deltaTime;
 		_eventManager.TriggerEvent(EventFlag.SliderUp, new EventParam { floatParam = _currentTimer });

@@ -63,14 +63,12 @@ namespace Acts.Characters.Player
 
         public void ChangeAnger(float percent)
         {
-            return;
             anger = Mathf.Clamp(anger + percent, 0, 10);
             UIManager.Instance.InGame.ChangeAngerValue((int)anger * 10);
         }
 
         public void ChangeAdneraline(float percent)
         {
-            return;
             if (percent > 0)
                 attackCount++;
             adneraline = Mathf.Clamp(adneraline + percent, 0, 10);
