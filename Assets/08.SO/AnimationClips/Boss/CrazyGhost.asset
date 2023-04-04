@@ -16,97 +16,97 @@ MonoBehaviour:
   clips:
   - name: Idle
     nextIdx: -1
-    texture: {fileID: 2800000, guid: e633a2320df1d554c9f410e2882ea400, type: 3}
+    texture: {fileID: 2800000, guid: c4a38d5ae439db14490ad2a5a99d195e, type: 3}
     fps: 19
     isLoop: 1
     delay: 0.1
   - name: HorizontalMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: fbe702be98dc14247ba4da8ee8d79bf8, type: 3}
+    texture: {fileID: 2800000, guid: e044e77b634df4a4a9e203a184cee4d6, type: 3}
     fps: 16
     isLoop: 1
     delay: 0.0346
   - name: LowerMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 269aa22ed4a915f41860e546bf4835b2, type: 3}
+    texture: {fileID: 2800000, guid: b8fb2906bf10ae742aed8743d11cd2cd, type: 3}
     fps: 12
     isLoop: 1
     delay: 0.0346
   - name: UpperMove
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 720b7869aaf37f743a8b29807f254fba, type: 3}
+    texture: {fileID: 2800000, guid: 257afd9031c3ef3489709e6a4c57d07d, type: 3}
     fps: 14
     isLoop: 0
     delay: 0.0346
   - name: HorizontalBackStep
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 914fd2a5776057b41a08b28e9af0e845, type: 3}
+    texture: {fileID: 2800000, guid: d651239ad720b174088a2cc0440c17bf, type: 3}
     fps: 10
     isLoop: 0
     delay: 0.1
   - name: JumpAttack
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 0e2c07af2e215c647a5f814fbdb7c298, type: 3}
+    texture: {fileID: 2800000, guid: d01ea74982cd31141b1f58c66419c446, type: 3}
     fps: 16
     isLoop: 0
     delay: 0.1
   - name: SoulAttack
     nextIdx: 0
-    texture: {fileID: 2800000, guid: f860679422045da4f8d360e110eace8f, type: 3}
+    texture: {fileID: 2800000, guid: 2e1824078e9d7d343be08917d12dddec, type: 3}
     fps: 41
     isLoop: 0
     delay: 0.1
   - name: HorizontalComboAttack1
     nextIdx: 0
-    texture: {fileID: 2800000, guid: c696a15f37384c649aeb241c99c9af89, type: 3}
+    texture: {fileID: 2800000, guid: cc2fa2c6cc0782d43aa27abe3ce57b70, type: 3}
     fps: 13
     isLoop: 0
     delay: 0.1
   - name: HorizontalComboAttack2
     nextIdx: 0
-    texture: {fileID: 2800000, guid: b665254c10ad8194286b16906020f105, type: 3}
+    texture: {fileID: 2800000, guid: 4df391fad6c07a346a00a307e909e06b, type: 3}
     fps: 13
     isLoop: 0
     delay: 0.1
   - name: HorizontalComboAttack3
     nextIdx: 0
-    texture: {fileID: 2800000, guid: f441ec404a6a4eb42b1e08e64e5ae4a0, type: 3}
+    texture: {fileID: 2800000, guid: 077a5a0abb9f3dc40a38e40d40d51014, type: 3}
     fps: 13
     isLoop: 0
     delay: 0.1
   - name: LowerComboAttack1
     nextIdx: 0
-    texture: {fileID: 2800000, guid: d8b5c84552073b84a94353240ce5c4dc, type: 3}
+    texture: {fileID: 2800000, guid: 998c8a2a6bf41f14c98d5e40e8823b68, type: 3}
     fps: 13
     isLoop: 0
     delay: 0.1
   - name: LowerComboAttack2
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 9fb5952dd70b35c40a48e229f03267c2, type: 3}
+    texture: {fileID: 2800000, guid: bccc267eb61cd384f9a166529945296c, type: 3}
     fps: 13
     isLoop: 0
     delay: 0.1
   - name: LowerComboAttack3
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 9481ff01d49945449935f2f607f3e57b, type: 3}
+    texture: {fileID: 2800000, guid: 3552ddbbc6637d84c949bec06e5ed2a0, type: 3}
     fps: 13
     isLoop: 0
     delay: 0.1
   - name: UpperComboAttack1
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 5d4d8bd001c54fd4b93bfc2f1c5e02b6, type: 3}
+    texture: {fileID: 2800000, guid: 910d3029f70f5f74ab713303ed59603e, type: 3}
     fps: 13
     isLoop: 0
     delay: 0.1
   - name: UpperComboAttack2
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 3a0cd97c761ffcc4683a0bc379bf58a9, type: 3}
+    texture: {fileID: 2800000, guid: c6eddad572b7ed6488eeaf56543baec7, type: 3}
     fps: 13
     isLoop: 0
     delay: 0.1
   - name: UpperComboAttack3
     nextIdx: 0
-    texture: {fileID: 2800000, guid: d560642c213bea54f8ca829a8249a153, type: 3}
+    texture: {fileID: 2800000, guid: ba049ff43e78b0744ac3db5ae191d862, type: 3}
     fps: 13
     isLoop: 0
     delay: 0.1
