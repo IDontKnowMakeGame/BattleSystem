@@ -13,6 +13,8 @@ public class Spear : Weapon
 	private bool _isAttack;
 	private bool _isEnterEnemy = true;
 	private bool _isDown = false;
+	private bool _isCurrentVec = false;
+	private bool _isClick = false;
 
 	public bool IsDown => _isDown;
 
@@ -66,6 +68,8 @@ public class Spear : Weapon
 		_playerAnimation = _characterActor?.GetAct<PlayerAnimation>();
 
 		InputManager<Spear>.OnAttackPress += Attack;
+		InputManager<Spear>.OnMovePress += CurrentBool;
+		PlayerMove.OnMoveEnd += MoveEnd;
 
 		DefaultAnimation();
 	}
@@ -75,6 +79,8 @@ public class Spear : Weapon
 		if (isEnemy)
 			return;
 		InputManager<Spear>.OnAttackPress -= Attack;
+		InputManager<Spear>.OnMovePress -= CurrentBool;
+		_isCurrentVec = false;
 		_isAttack = false;
 		_isDown = false;
 	}
@@ -84,13 +90,13 @@ public class Spear : Weapon
 			Debug.DrawLine(_characterActor.transform.position, _characterActor.transform.position + _currentVec * range);
 
 		bool isEnemy = false;
-		for(int i =1; i<=range; i++)
+		for (int i = 1; i <= range; i++)
 		{
 			if (_mapManager.GetBlock(_characterActor.Position + _currentVec * i)?.ActorOnBlock)
 				isEnemy = true;
 		}
 
-		if (_isDown && _isEnterEnemy && isEnemy)
+		if (_isDown && _isEnterEnemy && isEnemy && (_isCurrentVec || (!_isClick && !_characterActor.HasState(CharacterState.Move))))
 		{
 			_eventParam.attackParam = _attackInfo;
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.FureAttack, _eventParam);
@@ -102,6 +108,9 @@ public class Spear : Weapon
 
 	public virtual void Attack(Vector3 vec)
 	{
+		if (_characterActor.HasState(CharacterState.Equip))
+			return;
+
 		if (!_isAttack && !_isDown)
 		{
 			_isAttack = true;
@@ -118,13 +127,14 @@ public class Spear : Weapon
 	{
 		_attackInfo.AddDir(_attackInfo.DirTypes(vec));
 		_currentVec = InGame.CamDirCheck(vec);
+		_attackInfo.PressInput = vec;
 		ReadyAnimation(_currentVec);
 		yield return new WaitForSeconds(info.Ats);
 		_isDown = true;
 	}
 
 	private void DefaultAnimation()
-    {
+	{
 		_playerAnimation.GetClip("VerticalMove").ChangeClip(_playerAnimation.GetClip("DefaultVerticalMove"));
 		_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip("DefaultUpperMove"));
 		_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip("DefaultLowerMove"));
@@ -132,10 +142,10 @@ public class Spear : Weapon
 	}
 
 	private void ReadyAnimation(Vector3 vec)
-    {
+	{
 		if (vec == Vector3.left || vec == Vector3.right)
 		{
-			InGame.Player.SpriteTransform.localScale = vec == Vector3.left ? new Vector3(2, 1, 1) 
+			InGame.Player.SpriteTransform.localScale = vec == Vector3.left ? new Vector3(2, 1, 1)
 				: new Vector3(-2, 1, 1);
 			_playerAnimation.GetClip("VerticalMove").ChangeClip(_playerAnimation.GetClip("VerticalReadyVerticalMove"));
 			_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip("VerticalReadyUpperMove"));
@@ -151,8 +161,8 @@ public class Spear : Weapon
 			_playerAnimation.GetClip("Idle").ChangeClip(_playerAnimation.GetClip("UpperReadyIdle"));
 			_playerAnimation.Play("UpperReady");
 		}
-		else if(vec == Vector3.forward)
-        {
+		else if (vec == Vector3.forward)
+		{
 			_playerAnimation.GetClip("VerticalMove").ChangeClip(_playerAnimation.GetClip("LowerReadyVerticalMove"));
 			_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip("LowerReadyUpperMove"));
 			_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip("LowerReadyLowerMove"));
@@ -169,5 +179,39 @@ public class Spear : Weapon
 		DefaultAnimation();
 		yield return new WaitForSeconds(info.Afs);
 		_isDown = false;
+	}
+
+	private void CurrentBool(Vector3 vec)
+	{
+		_isClick = true;
+
+		if (!(vec == _attackInfo.PressInput && _isDown))
+			return;
+
+		Vector3 vector = InGame.CamDirCheck(vec);
+
+
+		for(int i =range; i<range+2; i++)
+		{
+			if (_mapManager.GetBlock(_characterActor.Position + vector * i)?.ActorOnBlock)
+			{
+				_isCurrentVec = true;
+				return;
+			}
+		}
+
+		_isCurrentVec = false;
+	}
+
+	private void MoveEnd(int id, Vector3 vec)
+	{
+		if (id != _characterActor.UUID)
+			return;
+
+		if (_isDown && _isEnterEnemy)
+			_isEnterEnemy = false;
+
+		_isClick = false;
+		_isCurrentVec = false;
 	}
 }
