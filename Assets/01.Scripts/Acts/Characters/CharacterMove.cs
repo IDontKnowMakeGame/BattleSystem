@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using Actors.Bases;
 using Actors.Characters;
 using Acts.Base;
@@ -142,13 +143,22 @@ namespace Acts.Characters
 
         private IEnumerator AstarCoroutine(Vector3 end)
         {
+            if (InGame.GetBlock(end).isWalkable == false)
+            {
+                _character.RemoveState(CharacterState.Move);
+                yield break;
+            }
             _character.AddState(CharacterState.Move);
             var astar = new Astar();
             astar.SetPath(ThisActor.Position, end);
             ThisActor.StartCoroutine(astar.FindPath());
             yield return new WaitUntil(astar.IsFinished);
             var nextBlock = astar.GetNextPath();
-            if (nextBlock == null) yield break;
+            if (nextBlock == null)
+            {
+                _character.RemoveState(CharacterState.Move);
+                yield break;
+            }
             var nextPos = nextBlock.Position;
             Move(nextPos);
         }
