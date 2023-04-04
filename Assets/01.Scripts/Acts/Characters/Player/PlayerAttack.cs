@@ -62,7 +62,8 @@ namespace Acts.Characters.Player
                 _playerAnimation.curClip.SetEventOnFrame(attackInfo.ReachFrame, Attack);
             }
 
-            attackCol.AllReset();
+			OnAttackEnd?.Invoke(_playerActor.UUID);
+			attackCol.AllReset();
         }
 
         private void Attack()
@@ -71,12 +72,8 @@ namespace Acts.Characters.Player
 
 			foreach (EnemyActor enemy in enemys)
             {
-                GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Damage");
-                obj.GetComponent<DamagePopUp>().DamageText(character.ChangeStat.atk, enemy.transform.position);
-
                 enemy.GetAct<CharacterStatAct>().Damage(character.ChangeStat.atk, ThisActor);
             }
-			OnAttackEnd?.Invoke(_playerActor.UUID);
             _playerActor.GetAct<PlayerBuff>().ChangeAdneraline(1);
 		}
         
@@ -112,7 +109,6 @@ namespace Acts.Characters.Player
 
         private void FinishAttack()
         {
-            Debug.Log("왜 안나감");
             _playerActor.RemoveState(Actors.Characters.CharacterState.Attack);
             _playerAnimation.curClip.events.Clear();
         }
@@ -139,6 +135,7 @@ namespace Acts.Characters.Player
 				{
 					Attack();
 				}
+				OnAttackEnd?.Invoke(_playerActor.UUID);
 				attackCol.AllReset();
 				_playerActor.RemoveState(CharacterState.Attack);
 			}
@@ -156,6 +153,7 @@ namespace Acts.Characters.Player
             {
                 Attack();
             }
+			OnAttackEnd?.Invoke(_playerActor.UUID);
 			attackCol.AllReset();
 		}
         private void ColParentRotate()

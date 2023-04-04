@@ -1,6 +1,9 @@
 using Actors.Characters;
+using Acts.Characters.Player;
 using Core;
 using Managements.Managers;
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class StraightSword : Weapon
@@ -40,16 +43,31 @@ public class StraightSword : Weapon
 		if (isEnemy)
 			return;
 		InputManager<StraightSword>.OnAttackPress += Attack;
+
+		PlayerAttack.OnAttackEnd += AttackEnd;
 	}
+
+	private void AttackEnd(int obj)
+	{
+		if (obj != _characterActor.UUID)
+			return;
+
+		AtsTimer();
+	}
+
 	public override void UnEquipment(CharacterActor actor)
 	{
 		base.UnEquipment(actor);
 		if (isEnemy)
 			return;
 		InputManager<StraightSword>.OnAttackPress -= Attack;
+		PlayerAttack.OnAttackEnd -= AttackEnd;
 	}
 	public virtual void Attack(Vector3 vec)
 	{
+		if (!_attakAble)
+			return;
+
 		_attackInfo.UpStat = new ColliderStat(1, 1, InGame.None, InGame.None);
 		_attackInfo.DownStat = new ColliderStat(1, 1, InGame.None, InGame.None);
 		_attackInfo.LeftStat = new ColliderStat(1, 1, InGame.None, InGame.None);

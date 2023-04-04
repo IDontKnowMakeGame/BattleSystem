@@ -6,6 +6,7 @@ using UnityEngine;
 using TMPro;
 using Core;
 using System;
+using System.Collections;
 
 public class Weapon : EquiqmentItem
 {
@@ -34,6 +35,7 @@ public class Weapon : EquiqmentItem
 	#endregion
 
 	public bool isEnemy = true;
+	protected bool _attakAble = true;
 	protected CharacterActor _characterActor;
 	protected PlayerActor _playerActor = null;
 	protected PlayerAnimation _playerAnimation;
@@ -146,6 +148,17 @@ public class Weapon : EquiqmentItem
 			_isCoolTime = false;
 			_currentTimerSecound = 0;
 		}
+	}
+
+	protected void AtsTimer() => _characterActor.StartCoroutine(WaitAttack());
+
+	private IEnumerator WaitAttack()
+	{
+		_attakAble = false;
+		Debug.Log(_attakAble);
+		yield return new WaitForSeconds(info.Afs);
+		_attakAble = true;
+		Debug.Log(_attakAble);
 	}
 	protected int KillToLevel(int count) => count switch
 	{

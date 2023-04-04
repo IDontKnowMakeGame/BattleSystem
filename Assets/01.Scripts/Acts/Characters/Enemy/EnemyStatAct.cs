@@ -4,6 +4,8 @@ using Actors.Characters;
 using Actors.Characters.Enemy;
 using Core;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
+using UnityEngine.TextCore.Text;
 using Random = UnityEngine.Random;
 
 namespace Acts.Characters.Enemy
@@ -14,8 +16,12 @@ namespace Acts.Characters.Enemy
         public override void Damage(float damage, Actor actor)
         {
             base.Damage(damage, actor);
-            
-            if (ThisActor is EnemyActor)
+
+            GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Damage");
+            obj.GetComponent<DamagePopUp>().DamageText(damage, ThisActor.transform.position);
+
+
+			if (ThisActor is BossActor)
             {
                 UIManager.Instance.BossBar.ChangeBossBarValue(PercentHP());
                 EventParam eventParam = new EventParam();
