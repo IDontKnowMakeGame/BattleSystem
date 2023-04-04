@@ -53,6 +53,7 @@ namespace Acts.Characters.Player
         /// </summary>
         protected override void MoveAnimation()
         {
+            Debug.Log("X번");
             if (playerDir == Vector3.left)
             {
                 if((_playerActor.currentWeapon is OldSpear == false) || !((_playerActor.currentWeapon as OldSpear).IsDown))
