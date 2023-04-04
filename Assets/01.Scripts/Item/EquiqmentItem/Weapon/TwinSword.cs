@@ -73,12 +73,12 @@ public class TwinSword : Weapon
 		int x = (int)vec.x;
 
 		_attackInfo.PressInput = vec;
-		_attackInfo.ReachFrame = 2;
+		_attackInfo.ReachFrame = 5;
 		if (vec == Vector3.forward || vec == Vector3.back)
 		{
 			_attackInfo.ResetDir();
-			_attackInfo.LeftStat = new ColliderStat(1, range, 1, z);
-			_attackInfo.RightStat = new ColliderStat(1, range, -1, z);
+			_attackInfo.LeftStat = new ColliderStat(1, range, 1, 0);
+			_attackInfo.RightStat = new ColliderStat(1, range, -1, 0);
 			_attackInfo.UpStat = new ColliderStat(1, 1, 0, 1);
 			_attackInfo.DownStat = new ColliderStat(1, 1, 0, -1);
 
@@ -90,8 +90,8 @@ public class TwinSword : Weapon
 		else if (vec == Vector3.left || vec == Vector3.right)
 		{
 			_attackInfo.ResetDir();
-			_attackInfo.UpStat = new ColliderStat(range, 1, x, 1);
-			_attackInfo.DownStat = new ColliderStat(range, 1, x, -1);
+			_attackInfo.UpStat = new ColliderStat(range, 1, 0, 1);
+			_attackInfo.DownStat = new ColliderStat(range, 1, 0, -1);
 			_attackInfo.LeftStat = new ColliderStat(1, 1, -1, 0);
 			_attackInfo.RightStat = new ColliderStat(1, 1, 1, 0);
 
