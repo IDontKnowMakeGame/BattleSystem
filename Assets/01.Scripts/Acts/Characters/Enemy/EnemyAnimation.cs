@@ -22,6 +22,7 @@ namespace Acts.Characters.Enemy
             {
                 weaponClipDic.Add(clip.name, clip);
             }
+            Play("Idle");
         }
 
         public override void Play(string name)
@@ -33,7 +34,7 @@ namespace Acts.Characters.Enemy
             currentCoroutine = ThisActor.StartCoroutine(AnimationPlay());
         }
 
-        // ÀÎµ¦½º·Î ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
+        // ì¸ë±ìŠ¤ë¡œ ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ
         public override void Play(int idx)
         {
             if (currentCoroutine != null)

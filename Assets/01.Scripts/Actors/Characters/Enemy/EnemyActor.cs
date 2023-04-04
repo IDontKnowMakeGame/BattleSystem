@@ -11,13 +11,13 @@ namespace Actors.Characters.Enemy
         [SerializeField] protected EnemyAI _enemyAi;
         [SerializeField] protected CharacterEquipmentAct _characterEquipment;
 		[SerializeField] private EnemyStatAct _characterStat;
-        [SerializeField] private EnemyAnimation _enemyAnimation;
+        [SerializeField] protected EnemyAnimation _enemyAnimation;
 
 		protected override void Init()
         {
             AddAct(_characterEquipment);
             AddAct(_characterStat);
-            //AddAct(_enemyAnimation);
+            AddAct(_enemyAnimation);
             base.Init();
         }
 
