@@ -180,7 +180,7 @@ MonoBehaviour:
     CurrentState:
       Name: 
   _characterEquipment:
-    _firstWeapon: 1
+    _firstWeapon: 6
     _secondWeapon: 0
     _halos: 
     _isPlayer: 0
@@ -207,10 +207,10 @@ MonoBehaviour:
       fps: 0
       isLoop: 0
       delay: 0
-    renderer: {fileID: 0}
+    renderer: {fileID: 6350170633076742250}
     index: 0
     isFinished: 0
-    curClips: {fileID: 0}
+    curClips: {fileID: 11400000, guid: 891f041e9b68cef4d87719147a370ae6, type: 2}
 --- !u!114 &6350170632396079033
 MonoBehaviour:
   m_ObjectHideFlags: 0
