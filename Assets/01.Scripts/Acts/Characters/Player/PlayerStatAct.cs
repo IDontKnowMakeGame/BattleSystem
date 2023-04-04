@@ -43,6 +43,7 @@ public class PlayerStatAct : CharacterStatAct
 
 	public override void Die()
 	{
+		base.Die();
 		PlayerDeath.Instance.FocusCenter();
 	}
 }

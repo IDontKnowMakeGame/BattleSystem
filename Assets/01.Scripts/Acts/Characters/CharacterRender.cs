@@ -48,6 +48,8 @@ namespace Acts.Characters
 
         public void Blink()
         {
+            if (ThisActor == null) return;
+            if (ThisActor.gameObject.activeInHierarchy == false) return;
             ThisActor.StartCoroutine(BlinkCoroutine());   
         }
         

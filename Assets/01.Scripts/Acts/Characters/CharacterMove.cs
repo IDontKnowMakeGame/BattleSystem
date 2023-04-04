@@ -63,7 +63,7 @@ namespace Acts.Characters
             {
                 ThisActor.Position = nextPos;
                 _isMoving = false;
-                MoveStop();
+                MoveStop(); 
 				seq.Kill();
             });
         }

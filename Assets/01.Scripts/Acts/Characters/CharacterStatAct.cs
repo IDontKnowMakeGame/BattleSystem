@@ -135,7 +135,19 @@ public class CharacterStatAct : Act, IDmageAble
 
 	public virtual void Die()
 	{
+		var particle = Define.GetManager<ResourceManager>().Instantiate("DeathParticle", ThisActor.transform);
+		particle.transform.localPosition = Vector3.zero;
+		var anchorTrm = ThisActor.transform.Find("Anchor");
+		var modelTrm = anchorTrm.Find("Model");
+		var scale = modelTrm.localScale;
+		var rotation = anchorTrm.transform.rotation;
+		var particleAnchorTrm = particle.transform.Find("Anchor");
+		var particleModelTrm = particleAnchorTrm.Find("Model");
+		particleAnchorTrm.rotation = rotation;
+		particleModelTrm.localScale = scale;
+		particle.transform.SetParent(null);
 		
+		ThisActor.gameObject.SetActive(false);
 	}
 
 	#region FAO
