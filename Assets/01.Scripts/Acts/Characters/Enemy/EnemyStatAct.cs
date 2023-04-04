@@ -4,8 +4,6 @@ using Actors.Characters;
 using Actors.Characters.Enemy;
 using Core;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
-using UnityEngine.TextCore.Text;
 using Random = UnityEngine.Random;
 
 namespace Acts.Characters.Enemy
