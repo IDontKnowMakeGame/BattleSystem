@@ -35,7 +35,72 @@ namespace Acts.Characters
             var nextPos = ThisActor.Position + direction;
             Move(nextPos);
         }
-        
+
+        public virtual void BackStep(Vector3 direction)
+        {
+            if (_isMoving) return;
+            var seq = DOTween.Sequence();
+            var currentPos = ThisActor.Position;
+            var nextPos = ThisActor.Position + direction;
+            nextPos.y = 1;
+            
+
+            var map = Define.GetManager<MapManager>();
+
+            if (!map.IsStayable(nextPos.SetY(0)))
+            {
+                MoveStop();
+                return;
+            }
+            
+            var block = map.GetBlock(nextPos.SetY(0));
+            if(block.CheckActorOnBlock(ThisActor) == false) return;
+            _character.AddState(Actors.Characters.CharacterState.Move);
+
+            dir = (currentPos - nextPos).SetY(0);
+            MoveBackAnimation();
+
+            ThisActor.StartCoroutine(PositionUpdateCoroutine(nextPos));
+            var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
+            seq.Append(_thisTransform.DOMove(nextPos, speed - defaultSpeed).SetEase(Ease.Linear));
+            seq.AppendCallback(() =>
+            {
+                OnMoveEnd?.Invoke(ThisActor.UUID, nextPos - _character.Position);
+                ThisActor.Position = nextPos;
+                _isMoving = false;
+                MoveStop(); 
+                seq.Kill();
+            });
+        }
+
+        private void MoveBackAnimation()
+        {
+            dir = dir.normalized;
+            var animation = ThisActor.GetAct<EnemyAnimation>();
+            Debug.Log(dir);
+            if (dir == Vector3.forward)
+            {
+                animation.Play("LowerMove");
+            }
+
+            if (dir == Vector3.back)
+            {
+                animation.Play("UpperMove");
+            }
+
+            if (dir == Vector3.left)
+            {
+                ThisActor.SpriteTransform.localScale = new Vector3(-3, 3, 3);
+                animation.Play("HorizontalBackStep");
+            }
+
+            if (dir == Vector3.right)
+            {
+                ThisActor.SpriteTransform.localScale = new Vector3(3, 3,3);
+                animation.Play("HorizontalBackStep");   
+            }
+        }
+
         public virtual void Move(Vector3 position)
         {
             if (_isMoving) return;
@@ -92,8 +157,6 @@ namespace Acts.Characters
             var block = map.GetBlock(nextPos.SetY(0));
             if(block.CheckActorOnBlock(ThisActor) == false) return;
             _character.AddState(Actors.Characters.CharacterState.Move);
-
-            MoveAnimation();
 
             ThisActor.StartCoroutine(PositionUpdateCoroutine(nextPos));
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
@@ -182,13 +245,13 @@ namespace Acts.Characters
 
             if (dir == Vector3.left)
             {
-                ThisActor.SpriteTransform.localScale = new Vector3(5, 5,5);
+                ThisActor.SpriteTransform.localScale = new Vector3(3, 3,3);
                 animation.Play("HorizontalMove");
             }
 
             if (dir == Vector3.right)
             {
-                ThisActor.SpriteTransform.localScale = new Vector3(-5, 5, 5);
+                ThisActor.SpriteTransform.localScale = new Vector3(-3, 3, 3);
                 animation.Play("HorizontalMove");   
             }
         }
