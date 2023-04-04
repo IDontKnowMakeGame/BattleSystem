@@ -142,6 +142,8 @@ public class Arrow : MonoBehaviour
 		if (actor == null)
 			return;
 
+		if (_shootActor == null)
+			return;
 		if (_shootActor.UUID == actor.UUID && _isStick)
 		{
 			_canPull = true;

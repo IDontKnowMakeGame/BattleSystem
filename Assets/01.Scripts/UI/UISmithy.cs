@@ -21,6 +21,8 @@ public class UISmithy : UIBase
     private Label _smithyAfterFeatherText;
     private VisualElement _purchaseBtn;
 
+    private VisualElement _exitBtn;
+
     private VisualElement _feaderBox;
 
     private ItemID currentItem;
@@ -35,6 +37,12 @@ public class UISmithy : UIBase
     public override void Init()
     {
         _root = UIManager.Instance._document.rootVisualElement.Q<VisualElement>("UI_Smithy");
+
+        _exitBtn = _root.Q<VisualElement>("ExitBtn");
+        _exitBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            HideSmithy();
+        });
 
         _characterImage = _root.Q<VisualElement>("CharacterImage");
         _weaponSelectBtn = _characterImage.Q<VisualElement>("WeaponSelect");
@@ -69,6 +77,10 @@ public class UISmithy : UIBase
         _weaponSelectPanel.style.display = DisplayStyle.Flex;
         CreateWeaponCardList();
         UpdateSmithyUI();
+    }
+    public void HideSmithy()
+    {
+        _root.style.display = DisplayStyle.None;
     }
     public void CreateWeaponCardList()
     {

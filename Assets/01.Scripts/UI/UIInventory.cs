@@ -9,6 +9,8 @@ using UnityEngine.UIElements;
 
 public class UIInventory : UIBase
 {
+    private bool isOpen;
+
     private VisualElement _selectBtnBox;
     private VisualElement _exitBtn;
 
@@ -64,6 +66,7 @@ public class UIInventory : UIBase
 
     public override void Init()
     {
+        isOpen = false;
         _root = UIManager.Instance._document.rootVisualElement.Q<VisualElement>("UI_Inventory");
 
         _exitBtn = _root.Q<VisualElement>("ExitBtn");
@@ -133,11 +136,19 @@ public class UIInventory : UIBase
     }
     public void ShowInventory()
     {
+        if(isOpen)
+        {
+            HideInventory();
+            return;
+        }
+
+        isOpen = true;
         _root.style.display = DisplayStyle.Flex;
         EquipWeaponBoxImage();
     }
     public void HideInventory()
     {
+        isOpen = false;
         _root.style.display = DisplayStyle.None;
         HideWeaponInfoPanel();
         SelectOptionInit(true);

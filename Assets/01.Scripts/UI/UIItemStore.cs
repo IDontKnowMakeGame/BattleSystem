@@ -16,6 +16,8 @@ public class UIItemStore : UIBase
     private VisualElement _minusCntBtn;
     private VisualElement _purchaseBtn;
 
+    private VisualElement _exitBtn;
+
     private VisualTreeAsset _itemCardTemp;
 
     private int _currentFeather;
@@ -31,6 +33,11 @@ public class UIItemStore : UIBase
         _root = UIManager.Instance._document.rootVisualElement.Q<VisualElement>("UI_ItemStore");
 
         _characterImage = _root.Q<VisualElement>("area_characterImage");
+        _exitBtn = _characterImage.Q<VisualElement>("ExitBtn");
+        _exitBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            HideItemStore();
+        });
         _itemScrollPanel = _root.Q<VisualElement>("ItemScrollPanel");
 
         VisualElement infoPanel = _root.Q<VisualElement>("InfoPanel");
@@ -72,6 +79,10 @@ public class UIItemStore : UIBase
 
             _itemScrollPanel.Add(card);
         }
+    }
+    public void HideItemStore()
+    {
+        _root.style.display = DisplayStyle.None;
     }
 
     public void SelectItme(VisualElement item,ItemID itemID,int itemPrice)

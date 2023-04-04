@@ -64,7 +64,7 @@ namespace Acts.Characters
 				OnMoveEnd?.Invoke(ThisActor.UUID, position - _character.Position);
 				ThisActor.Position = nextPos;
                 _isMoving = false;
-                MoveStop();
+                MoveStop(); 
 				seq.Kill();
             });
         }

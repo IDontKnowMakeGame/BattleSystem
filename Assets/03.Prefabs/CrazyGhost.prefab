@@ -171,6 +171,19 @@ MonoBehaviour:
   _characterRender:
     _defaultTexture: {fileID: 2800000, guid: 3f004c9320d8a834eaaa5f94d4ff7cb7, type: 3}
     _frame: 17
+    _blinkCnt: 1
+    _blinkTime: 0.1
+    _blinkDelay: 0.1
+  _characterState: 0
+  _secondPhaseHpPercent: 0
+  _enemyAi:
+    CurrentState:
+      Name: 
+  _characterEquipment:
+    _firstWeapon: 1
+    _secondWeapon: 0
+    _halos: 
+    _isPlayer: 0
   _characterStat:
     _basicStat:
       maxHP: 1000
@@ -186,16 +199,18 @@ MonoBehaviour:
       ats: 0
       afs: 0
       speed: 0
-  _characterState: 0
-  _secondPhaseHpPercent: 0
-  _enemyAi:
-    CurrentState:
-      Name: 
-  _characterEquipment:
-    _firstWeapon: 1
-    _secondWeapon: 0
-    _halos: 
-    _isPlayer: 0
+  _enemyAnimation:
+    curClip:
+      name: 
+      nextIdx: -1
+      texture: {fileID: 0}
+      fps: 0
+      isLoop: 0
+      delay: 0
+    renderer: {fileID: 0}
+    index: 0
+    isFinished: 0
+    curClips: {fileID: 0}
 --- !u!114 &6350170632396079033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +330,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2000318462
 MonoBehaviour:
@@ -508,7 +523,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6350170633393943945}
   m_Layer: 0
-  m_Name: 'Anchor '
+  m_Name: Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
