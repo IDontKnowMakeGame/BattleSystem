@@ -60,6 +60,8 @@ public class Spear : Weapon
 	public override void Equiqment(CharacterActor actor)
 	{
 		base.Equiqment(actor);
+		if (isEnemy)
+			return;
 
 		_playerAnimation = _characterActor?.GetAct<PlayerAnimation>();
 
@@ -70,6 +72,8 @@ public class Spear : Weapon
 	public override void UnEquipment(CharacterActor actor)
 	{
 		base.UnEquipment(actor);
+		if (isEnemy)
+			return;
 		InputManager<Spear>.OnAttackPress -= Attack;
 		_isAttack = false;
 		_isDown = false;

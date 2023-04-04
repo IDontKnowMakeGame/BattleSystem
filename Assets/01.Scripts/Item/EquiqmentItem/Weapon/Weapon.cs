@@ -58,15 +58,11 @@ public class Weapon : EquiqmentItem
 			LoadWeaponClassLevel();
 			LoadWeaponLevel();
 		}
-
-		if (isEnemy)
-			return;
 	}
 
 	public override void UnEquipment(CharacterActor actor)
 	{
-		if (isEnemy)
-			return;
+
 	}
 
 	/// <summary>
@@ -142,7 +138,9 @@ public class Weapon : EquiqmentItem
 			return;
 
 		if(_currentTimerSecound < info.CoolTime)
+		{
 			_currentTimerSecound += Time.deltaTime;
+		}
 		else
 		{
 			_isCoolTime = false;

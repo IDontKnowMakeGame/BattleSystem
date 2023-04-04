@@ -7,6 +7,10 @@ public class OldGreatSword : GreatSword
 {
 	public override void Skill()
 	{
+		if (_isCoolTime)
+			return;
+
+		_isCoolTime = true;
 		_characterActor.StartCoroutine(HalfSkill());
 	}
 

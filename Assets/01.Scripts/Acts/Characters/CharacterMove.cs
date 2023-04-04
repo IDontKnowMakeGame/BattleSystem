@@ -61,7 +61,8 @@ namespace Acts.Characters
             seq.Append(_thisTransform.DOMove(nextPos, speed - defaultSpeed).SetEase(Ease.Linear));
             seq.AppendCallback(() =>
             {
-                ThisActor.Position = nextPos;
+				OnMoveEnd?.Invoke(ThisActor.UUID, position - _character.Position);
+				ThisActor.Position = nextPos;
                 _isMoving = false;
                 MoveStop();
 				seq.Kill();
@@ -131,7 +132,6 @@ namespace Acts.Characters
 
             block.isMoving = false;
             var dir = ThisActor.Position - originPos;
-            OnMoveEnd?.Invoke(ThisActor.UUID, dir);
         }
 
         public void Chase(Actor target)

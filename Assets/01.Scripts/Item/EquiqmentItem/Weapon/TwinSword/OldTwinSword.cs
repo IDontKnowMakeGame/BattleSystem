@@ -10,10 +10,10 @@ public class OldTwinSword : TwinSword
 {
 	public override void Skill()
 	{
-		base.Skill();
 		if (_characterActor.HasState(CharacterState.Skill))
 			return;
-
+		if (_isCoolTime)
+			return;
 		_characterActor.AddState(CharacterState.Skill);
 		InputManager<TwinSword>.OnMovePress += Skill;
 	}

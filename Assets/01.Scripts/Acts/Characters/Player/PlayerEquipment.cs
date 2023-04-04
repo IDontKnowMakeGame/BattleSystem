@@ -60,16 +60,20 @@ public class PlayerEquipment : CharacterEquipmentAct
 	#region Weapon
 	public void WeaponOnOff()
 	{
+		Debug.Log("?");
 		if (_haveinHand)
 		{
+			Debug.Log("UnEquipment");
 			CurrentWeapon?.UnEquipment(_characterController);
+			Debug.Log(CurrentWeapon);
 			_characterController.currentWeapon = null;
+			_haveinHand = !_haveinHand;
 		}
 		else
 		{
+			_haveinHand = !_haveinHand;
 			CurrentWeapon?.Equiqment(_characterController);
 		}
-		_haveinHand = !_haveinHand;
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.ChangeStat, _eventParam);
 	}
 	public override void Change()

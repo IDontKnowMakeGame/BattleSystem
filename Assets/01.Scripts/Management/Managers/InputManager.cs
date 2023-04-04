@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Core;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Managements.Managers
@@ -77,9 +78,9 @@ namespace Managements.Managers
 			new KeyboardInputData() { keyboardInput = KeyboardInput.Skill, keyCode = KeyCode.Space },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.SubKey, keyCode = KeyCode.V },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.ChangeKey, keyCode = KeyCode.R },
-			new KeyboardInputData() { keyboardInput = KeyboardInput.OffKey, keyCode = KeyCode.Q },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.TestChangeKey, keyCode = KeyCode.T },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.Interaction, keyCode = KeyCode.E },
+			new KeyboardInputData() { keyboardInput = KeyboardInput.OffKey, keyCode = KeyCode.Q },
 
 			new KeyboardInputData() { keyboardInput = KeyboardInput.Slot01, keyCode = KeyCode.Alpha1 },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.Slot02, keyCode = KeyCode.Alpha2 },

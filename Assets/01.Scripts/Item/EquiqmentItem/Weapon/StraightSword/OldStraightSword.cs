@@ -1,5 +1,6 @@
 using Actors.Characters;
 using Acts.Characters.Player;
+using Core;
 using Managements.Managers;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +10,8 @@ public class OldStraightSword : StraightSword
 {
 	public override void Skill()
 	{
-		base.Skill();
+		if (_isCoolTime)
+			return;
 		_characterActor.AddState(CharacterState.Skill);
 		_characterActor.GetAct<PlayerMove>().distance = 2;
 		InputManager<StraightSword>.OnMovePress += SkillStart;
@@ -23,6 +25,9 @@ public class OldStraightSword : StraightSword
 	}
 	private void SkillEnd(int id, Vector3 vec)
 	{
+		if (id != _characterActor.UUID)
+			return;
+
 		_characterActor.GetAct<PlayerMove>().distance = 1;
 		_isCoolTime = true;
 		PlayerMove.OnMoveEnd -= SkillEnd;

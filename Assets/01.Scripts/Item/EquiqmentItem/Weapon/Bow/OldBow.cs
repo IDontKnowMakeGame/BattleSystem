@@ -10,7 +10,10 @@ public class OldBow : Bow
 	{
 		if (!_characterActor.HasState(CharacterState.Hold))
 			return;
+		if (_isCoolTime)
+			return;
 
+		Debug.Log("?");
 		_isCoolTime = true;
 		_characterActor.GetAct<PlayerMove>().Move(_characterActor.Position + -_currentVec);
 	}

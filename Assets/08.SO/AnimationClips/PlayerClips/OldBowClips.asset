@@ -67,13 +67,13 @@ MonoBehaviour:
     texture: {fileID: 2800000, guid: f831fc28f12f4e1408663cd4d46eb187, type: 3}
     fps: 10
     isLoop: 0
-    delay: 0.05
+    delay: 0.1
   - name: LowerPull
     nextIdx: -1
     texture: {fileID: 2800000, guid: 2389fe79134cbd140aa7fda6d8e5db41, type: 3}
     fps: 10
     isLoop: 0
-    delay: 0.05
+    delay: 0.1
   - name: VerticalShoot
     nextIdx: -1
     texture: {fileID: 2800000, guid: 66805d1068948774ca6331e101a3152d, type: 3}

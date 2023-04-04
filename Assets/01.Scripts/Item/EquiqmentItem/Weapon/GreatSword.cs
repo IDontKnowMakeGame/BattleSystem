@@ -39,6 +39,8 @@ public class GreatSword : Weapon
 	public override void Equiqment(CharacterActor actor)
 	{
 		base.Equiqment(actor);
+		if (isEnemy)
+			return;
 		InputManager<GreatSword>.OnAttackPress += AttakStart;
 		InputManager<GreatSword>.OnAttackHold += Hold;
 		InputManager<GreatSword>.OnAttackRelease += AttackRealease;
@@ -46,6 +48,8 @@ public class GreatSword : Weapon
 	public override void UnEquipment(CharacterActor actor)
 	{
 		base.UnEquipment(actor);
+		if (isEnemy)
+			return;
 		InputManager<GreatSword>.OnAttackPress -= AttakStart;
 		InputManager<GreatSword>.OnAttackHold -= Hold;
 		InputManager<GreatSword>.OnAttackRelease -= AttackRealease;
@@ -53,9 +57,9 @@ public class GreatSword : Weapon
 	public virtual void AttakStart(Vector3 vec)
 	{
 		if (_characterActor.HasState(CharacterState.Everything))
-			return;		
+			return;
 
-		_eventManager.TriggerEvent(EventFlag.SliderInit, new EventParam { floatParam = _characterActor.GetAct<CharacterStatAct>().ChangeStat.ats });
+		_eventManager.TriggerEvent(EventFlag.SliderInit, new EventParam { floatParam = info.Ats });
 		_eventManager.TriggerEvent(EventFlag.SliderFalse, new EventParam { boolParam = true });
 		_characterActor.AddState(CharacterState.Hold);
 		_attackInfo.ResetDir();

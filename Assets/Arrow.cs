@@ -54,9 +54,10 @@ public class Arrow : MonoBehaviour
 	{
 		var map = Define.GetManager<MapManager>();
 		int count = 0;
-		for(count = 0; count <= distance; count++)
+		Debug.Log(position);
+		for (count = 0; count < distance; count++)
 		{
-			if (map.GetBlock(position + (vec * count)) == null || !map.GetBlock(position + (vec * count)).isWalkable)
+			if (map.GetBlock(position + (vec * count)) == null || (!map.GetBlock(position + (vec * count)).isWalkable && map.GetBlock(position + (vec * count)).ActorOnBlock == null))
 			{
 				count -= 1;
 				break;

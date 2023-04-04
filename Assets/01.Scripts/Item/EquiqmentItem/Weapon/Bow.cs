@@ -41,6 +41,8 @@ public class Bow : Weapon
 	public override void Equiqment(CharacterActor actor)
 	{
 		base.Equiqment(actor);
+		if (isEnemy)
+			return;
 		InputManager<Bow>.OnAttackPress += Shoot;
 
 		if (actor is PlayerActor)
@@ -74,11 +76,14 @@ public class Bow : Weapon
 	public override void UnEquipment(CharacterActor actor)
 	{
 		base.UnEquipment(actor);
+		if (isEnemy)
+			return;
 		InputManager<Bow>.OnAttackPress -= Shoot;
 	}
 
 	public override void Update()
 	{
+		base.Update();
 		Charge();
 	}
 
