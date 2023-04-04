@@ -22,6 +22,7 @@ namespace Acts.Characters.Enemy
             {
                 weaponClipDic.Add(clip.name, clip);
             }
+            Play("Idle");
         }
 
         public override void Play(string name)
@@ -30,6 +31,15 @@ namespace Acts.Characters.Enemy
             if (currentCoroutine != null)
                 ThisActor.StopCoroutine(currentCoroutine);
             curClip = weaponClipDic[name];
+            currentCoroutine = ThisActor.StartCoroutine(AnimationPlay());
+        }
+
+        // 인덱스로 애니메이션 재생
+        public override void Play(int idx)
+        {
+            if (currentCoroutine != null)
+                ThisActor.StopCoroutine(currentCoroutine);
+            curClip = curClips.Clips[idx];
             currentCoroutine = ThisActor.StartCoroutine(AnimationPlay());
         }
     }

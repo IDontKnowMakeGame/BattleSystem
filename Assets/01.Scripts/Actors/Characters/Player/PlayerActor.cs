@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Actors.Characters.Player
 {
+
     public class PlayerActor : CharacterActor
     {
         [SerializeField] private PlayerMove _playerMove;
@@ -15,7 +16,7 @@ namespace Actors.Characters.Player
         [SerializeField] private PlayerBuff _playerBuff;
 
 		protected override void Init()
-        {
+        { 
 			AddAct(_playerEquipment);
             base.Init();
             AddAct(_playerMove);

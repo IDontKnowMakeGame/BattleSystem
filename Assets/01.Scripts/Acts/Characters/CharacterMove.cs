@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using Actors.Bases;
 using Actors.Characters;
 using Acts.Base;
+using Acts.Characters.Enemy;
 using Core;
 using DG.Tweening;
 using Managements.Managers;
@@ -17,6 +19,7 @@ namespace Acts.Characters
         private Transform _thisTransform;
         public static event Action<int, Vector3> OnMoveEnd;
         protected bool _isMoving = false;
+        private Vector3 dir;
         private CharacterActor _character => ThisActor as CharacterActor;
 
         [SerializeField]
@@ -53,7 +56,8 @@ namespace Acts.Characters
             var block = map.GetBlock(nextPos.SetY(0));
             if(block.CheckActorOnBlock(ThisActor) == false) return;
             _character.AddState(Actors.Characters.CharacterState.Move);
-            
+
+            dir = (currentPos - nextPos).SetY(0);
             MoveAnimation();
 
             ThisActor.StartCoroutine(PositionUpdateCoroutine(nextPos));
@@ -142,19 +146,51 @@ namespace Acts.Characters
 
         private IEnumerator AstarCoroutine(Vector3 end)
         {
+            if (InGame.GetBlock(end).isWalkable == false)
+            {
+                _character.RemoveState(CharacterState.Move);
+                yield break;
+            }
             _character.AddState(CharacterState.Move);
             var astar = new Astar();
             astar.SetPath(ThisActor.Position, end);
             ThisActor.StartCoroutine(astar.FindPath());
             yield return new WaitUntil(astar.IsFinished);
             var nextBlock = astar.GetNextPath();
-            if (nextBlock == null) yield break;
+            if (nextBlock == null)
+            {
+                _character.RemoveState(CharacterState.Move);
+                yield break;
+            }
             var nextPos = nextBlock.Position;
             Move(nextPos);
         }
         protected virtual void MoveAnimation()
         {
+            dir = dir.normalized;
+            var animation = ThisActor.GetAct<EnemyAnimation>();
+            Debug.Log(dir);
+            if (dir == Vector3.forward)
+            {
+                animation.Play("UpperMove");
+            }
 
+            if (dir == Vector3.back)
+            {
+                animation.Play("LowerMove");
+            }
+
+            if (dir == Vector3.left)
+            {
+                ThisActor.SpriteTransform.localScale = new Vector3(5, 5,5);
+                animation.Play("HorizontalMove");
+            }
+
+            if (dir == Vector3.right)
+            {
+                ThisActor.SpriteTransform.localScale = new Vector3(-5, 5, 5);
+                animation.Play("HorizontalMove");   
+            }
         }
 
         protected virtual void MoveStop()
