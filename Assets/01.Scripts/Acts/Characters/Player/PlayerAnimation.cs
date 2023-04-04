@@ -55,6 +55,9 @@ namespace Acts.Characters.Player
         public override void Play(string name)
         {
             if (!weaponClipDic.ContainsKey(name)) return;
+
+            Debug.Log(name);
+
             if (currentCoroutine != null)
                 ThisActor.StopCoroutine(currentCoroutine);
             curClip = weaponClipDic[name];
