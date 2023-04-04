@@ -3,13 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterMove.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterRender.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterRender.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterStatAct.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterStatAct.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Player/PlayerStatAct.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Player/PlayerStatAct.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/ETC/PlayerDeath.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/ETC/PlayerDeath.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Arrow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Arrow.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/Weapon/ClassLevelData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/Weapon/ClassLevelData.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VEG/Disappear.vfx" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VEG/Disappear.vfx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +130,7 @@
       <workItem from="1680183900635" duration="911000" />
       <workItem from="1680445468467" duration="2856000" />
       <workItem from="1680515214994" duration="3825000" />
-      <workItem from="1680532868476" duration="6280000" />
+      <workItem from="1680532868476" duration="7159000" />
     </task>
     <servers />
   </component>

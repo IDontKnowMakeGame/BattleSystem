@@ -29,7 +29,7 @@ namespace ETC
             Sequence seq = DOTween.Sequence();
             vignette.intensity.value = 0;
             vignette.rounded.value = true;
-            seq.Append(DOTween.To(() => vignette.intensity.value, x => vignette.intensity.value = x, 1f, 2f));
+            seq.Append(DOTween.To(() => vignette.intensity.value, x => vignette.intensity.value = x, 1f, 1f));
             seq.AppendInterval(2f);
             seq.AppendCallback(() =>
             {
