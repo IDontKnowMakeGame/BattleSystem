@@ -32,5 +32,14 @@ namespace Acts.Characters.Enemy
             curClip = weaponClipDic[name];
             currentCoroutine = ThisActor.StartCoroutine(AnimationPlay());
         }
+
+        // 인덱스로 애니메이션 재생
+        public override void Play(int idx)
+        {
+            if (currentCoroutine != null)
+                ThisActor.StopCoroutine(currentCoroutine);
+            curClip = curClips.Clips[idx];
+            currentCoroutine = ThisActor.StartCoroutine(AnimationPlay());
+        }
     }
 }
