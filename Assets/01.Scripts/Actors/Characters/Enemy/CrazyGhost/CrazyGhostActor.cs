@@ -52,6 +52,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
             patternState.RandomActions.Add(() =>
             {
                 var dir = InGame.Player.Position - Position;
+                _enemyAnimation.Play("HorizontalComboAttack1");
                 attack.ForwardAttack(dir, MovementType.None, true);
             });
             patternState.RandomActions.Add(() =>

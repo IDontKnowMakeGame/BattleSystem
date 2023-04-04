@@ -155,17 +155,18 @@ namespace Acts.Characters.Enemy
             var move = ThisActor.GetAct<CharacterMove>();
             yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
             yield return new WaitForSeconds(_defaultStat.Ats);
+            FirstAttackAnimation(dir);
             ForwardAttack(dir);
             yield return new WaitUntil(() => !character.HasState(CharacterState.Hold));
-            move.Translate(-dir);
+            move.BackStep(-dir);
             yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
+            ThisActor.GetAct<EnemyAnimation>().Play("JumpAttack");
             yield return new WaitForSeconds(_defaultStat.Afs);
             if (ThisActor.Position.IsInBox(InGame.Player.Position, 3) == false)
             {
                 character.RemoveState(CharacterState.Attack);
                 yield break;
             }
-
 
             move.Jump(InGame.Player.Position + dir);
             yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
@@ -194,6 +195,7 @@ namespace Acts.Characters.Enemy
             var move = ThisActor.GetAct<CharacterMove>();
             yield return new WaitUntil(() => !characeter.HasState(CharacterState.Move));
             yield return new WaitForSeconds(statInfo.Ats);
+            FirstAttackAnimation(dir);
             ForwardAttack(dir);
             yield return new WaitUntil(() => !characeter.HasState(CharacterState.Hold));
             if (ThisActor.Position + dir != InGame.Player.Position)
@@ -201,7 +203,7 @@ namespace Acts.Characters.Enemy
                 move.Translate(dir);
                 yield return new WaitUntil(() => !characeter.HasState(CharacterState.Move));
             }
-
+            SecondtAttackAnimation(dir);
             ForwardAttack(dir);
             yield return new WaitUntil(() => !characeter.HasState(CharacterState.Hold));
             if (ThisActor.Position + dir != InGame.Player.Position)
@@ -209,7 +211,7 @@ namespace Acts.Characters.Enemy
                 move.Translate(dir);
                 yield return new WaitUntil(() => !characeter.HasState(CharacterState.Move));
             }
-
+            TripleAttackAnimation(dir);
             HalfAttack(dir, MovementType.None, isLast);
         }
 
@@ -233,6 +235,7 @@ namespace Acts.Characters.Enemy
             var map = Define.GetManager<MapManager>();
             var character = ThisActor as CharacterActor;
             var move = ThisActor.GetAct<CharacterMove>();
+            FirstAttackAnimation(dir);
             var degree = ThisActor.Position.GetDegree(InGame.Player.Position);
             yield return new WaitUntil(() => !character.HasState(CharacterState.Move));
             yield return new WaitForSeconds(_defaultStat.Ats);
@@ -313,5 +316,88 @@ namespace Acts.Characters.Enemy
             MeshParticle.Instance.AddParticle("Slice", particle);
         }
 
+        private void FirstAttackAnimation(Vector3 dir)
+        {
+            dir = dir.normalized;
+            Debug.Log(dir);
+            var animation = ThisActor.GetAct<EnemyAnimation>();
+            if (dir == Vector3.forward)
+            {
+                animation.Play("UpperComboAttack1");
+            }
+
+            if (dir == Vector3.back)
+            {
+                animation.Play("LowerComboAttack1");
+            }
+
+            if (dir == Vector3.left)
+            {
+                ThisActor.SpriteTransform.localScale = new Vector3(3, 3, 3);
+                animation.Play("HorizontalComboAttack1");
+            }
+
+            if (dir == Vector3.right)
+            {
+                ThisActor.SpriteTransform.localScale = new Vector3(-3, 3, 3);
+                animation.Play("HorizontalComboAttack1");
+            }
+        }
+        
+        private void SecondtAttackAnimation(Vector3 dir)
+        {
+            dir = dir.normalized;
+            Debug.Log(dir);
+            var animation = ThisActor.GetAct<EnemyAnimation>();
+            if (dir == Vector3.forward)
+            {
+                animation.Play("UpperComboAttack2");
+            }
+
+            if (dir == Vector3.back)
+            {
+                animation.Play("LowerComboAttack2");
+            }
+
+            if (dir == Vector3.left)
+            {
+                ThisActor.SpriteTransform.localScale = new Vector3(3, 3,3);
+                animation.Play("HorizontalComboAttack2");
+            }
+
+            if (dir == Vector3.right)
+            {
+                ThisActor.SpriteTransform.localScale = new Vector3(-3, 3, 3);
+                animation.Play("HorizontalComboAttack2");   
+            }
+        }
+        
+        private void TripleAttackAnimation(Vector3 dir)
+        {
+            dir = dir.normalized;
+            Debug.Log(dir);
+            var animation = ThisActor.GetAct<EnemyAnimation>();
+            if (dir == Vector3.forward)
+            {
+                animation.Play("UpperComboAttack3");
+            }
+
+            if (dir == Vector3.back)
+            {
+                animation.Play("LowerComboAttack3");
+            }
+
+            if (dir == Vector3.left)
+            {
+                ThisActor.SpriteTransform.localScale = new Vector3(3, 3,3);
+                animation.Play("HorizontalComboAttack3");
+            }
+
+            if (dir == Vector3.right)
+            {
+                ThisActor.SpriteTransform.localScale = new Vector3(-3, 3, 3);
+                animation.Play("HorizontalComboAttack3");   
+            }
+        }
     }
 }
