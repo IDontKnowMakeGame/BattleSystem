@@ -1,12 +1,3 @@
 {
-    "weaponLevelDataList": [
-        {
-            "id": 1,
-            "level": 0
-        },
-        {
-            "id": 3,
-            "level": 0
-        }
-    ]
+    "weaponLevelDataList": []
 }

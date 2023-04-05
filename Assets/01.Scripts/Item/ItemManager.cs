@@ -62,7 +62,7 @@ public class ItemManager : Manager
 	{
 		Type name = Type.GetType(id.ToString());
 		T instance = Activator.CreateInstance(name) as T;
-		ItemTable table = JsonManager.LoadJsonFile<ItemTable>(Application.dataPath + "/Save/Json/" + typeof(ItemTable), typeof(ItemTable).ToString());
+		ItemTable table = JsonManager.LoadJsonFile<ItemTable>(Application.streamingAssetsPath + "/Save/Json/" + typeof(ItemTable), typeof(ItemTable).ToString());
 		foreach (var item in table.ItemList)
 		{
 			if (item.Id == id)

@@ -55,14 +55,17 @@ namespace Acts.Characters.Player
         {
             if (playerDir == Vector3.left)
             {
-                if((_playerActor.currentWeapon is OldSpear == false) || !((_playerActor.currentWeapon as OldSpear).IsDown))
+                if(_playerActor.currentWeapon is OldSpear == false || (_playerActor.currentWeapon as OldSpear).NonDir == false)
                     ThisActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
                 _playerAnimation.Play("VerticalMove");
             }
             else if(playerDir == Vector3.right)
             {
-                if ((_playerActor.currentWeapon is OldSpear == false) || !((_playerActor.currentWeapon as OldSpear).IsDown))
+                if (_playerActor.currentWeapon is OldSpear == false || (_playerActor.currentWeapon as OldSpear).NonDir == false)
+                {
+                    Debug.Log("ㅋ");
                     ThisActor.SpriteTransform.localScale = new Vector3(2, 1, 1);
+                }
                 _playerAnimation.Play("VerticalMove");
             }
             else if(playerDir == Vector3.forward)
