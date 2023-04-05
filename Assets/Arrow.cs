@@ -105,8 +105,7 @@ public class Arrow : MonoBehaviour
 		if (!_canPull)
 			return;
 
-		if (_shootActor.HasState(CharacterState.Move))
-			return;
+		if (_shootActor.HasAnyState()) return;
 
 		_isStick = false;
 		_canPull = false;

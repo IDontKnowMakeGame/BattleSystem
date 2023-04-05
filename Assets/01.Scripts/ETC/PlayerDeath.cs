@@ -25,8 +25,6 @@ namespace ETC
         public void FocusCenter()
         {
             InGame.Player.StopAllCoroutines();
-            DOTween.CompleteAll();
-            DOTween.KillAll();
             Destroy(InGame.Player.gameObject);
             Sequence seq = DOTween.Sequence();
             vignette.intensity.value = 0;
@@ -35,7 +33,10 @@ namespace ETC
             seq.AppendInterval(2f);
             seq.AppendCallback(() =>
             {
+                DOTween.CompleteAll();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                DOTween.KillAll();
+                DOTween.Kill(seq);
             });
         }
     }

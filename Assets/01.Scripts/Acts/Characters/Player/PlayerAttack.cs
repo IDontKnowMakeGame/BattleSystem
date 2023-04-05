@@ -24,6 +24,8 @@ namespace Acts.Characters.Player
         public override void Awake()
         {
             base.Awake();
+
+            OnAttackEnd = null;
         }
 
         public override void Start()

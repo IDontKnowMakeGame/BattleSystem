@@ -28,6 +28,8 @@ namespace Acts.Characters
         public override void Awake()
         {
             _thisTransform = ThisActor.transform;
+
+            OnMoveEnd = null;
         }
 
         public virtual void Translate(Vector3 direction)
