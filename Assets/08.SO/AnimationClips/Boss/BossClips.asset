@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ca2b332a7b5e5447adcd7343094485c, type: 3}
-  m_Name: CrazyGhostBoss
+  m_Name: BossClips
   m_EditorClassIdentifier: 
   weaponID: 0
   clips:
@@ -36,7 +36,7 @@ MonoBehaviour:
     nextIdx: 0
     texture: {fileID: 2800000, guid: 5e67354758ca3df43ab01cf63104a4b2, type: 3}
     fps: 7
-    isLoop: 0
+    isLoop: 1
     delay: 0.0346
   - name: HorizontalBackStep
     nextIdx: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
     delay: 0.036
   - name: LowerBackStep
     nextIdx: 0
-    texture: {fileID: 2800000, guid: fcd3e9711d01483468cfe222357be75f, type: 3}
+    texture: {fileID: 2800000, guid: 45f5694764df6f542b29ea35dc663617, type: 3}
     fps: 10
     isLoop: 0
     delay: 0.036
@@ -112,7 +112,7 @@ MonoBehaviour:
     delay: 0.036
   - name: LowerComboAttack2
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 8abcf1f83aa8b2849a3cc9fcfa13d360, type: 3}
+    texture: {fileID: 2800000, guid: 31ec0f3a2a9f57046a4adb749c156ffa, type: 3}
     fps: 13
     isLoop: 0
     delay: 0.023
