@@ -4,10 +4,6 @@ using Core;
 using Data;
 using System.Collections.Generic;
 using UnityEngine;
-using Acts.Characters.Player;
-using Actors.Characters.Player;
-using System;
-using Unity.VisualScripting;
 
 [System.Serializable]
 public class CharacterEquipmentAct : Act
@@ -17,6 +13,7 @@ public class CharacterEquipmentAct : Act
 	protected ItemID _firstWeapon;
 	[SerializeField]
 	protected ItemID _secondWeapon;
+
 	public virtual Weapon CurrentWeapon
 	{
 		get
@@ -64,35 +61,12 @@ public class CharacterEquipmentAct : Act
 	}
 	protected Dictionary<ItemID, Weapon> _useWeapon = new Dictionary<ItemID, Weapon>();
 	#endregion
-
+	
 	#region Halo
 	[SerializeField]
 	protected List<ItemID> _halos = new List<ItemID>();
-	public ItemInfo HaloInfo
-	{
-		get
-		{
-			foreach (var info in _halos)
-			{
-				_halo += _useHalo[info].info;
-			}
-			return _halo;
-		}
-	}
-	private ItemInfo _halo = new ItemInfo();
 	protected Dictionary<ItemID, Halo> _useHalo = new Dictionary<ItemID, Halo>();
 	#endregion
-
-	public ItemInfo EquipemntStat
-	{
-		get
-		{
-			if (CurrentWeapon != null)
-				return CurrentWeapon.WeaponInfo + HaloInfo;
-			else
-				return HaloInfo;
-		}
-	}
 
 	[SerializeField]
 	protected bool _isPlayer = false;

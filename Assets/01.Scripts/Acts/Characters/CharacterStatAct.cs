@@ -5,12 +5,9 @@ using Acts.Base;
 using Core;
 using Data;
 using System;
-using DG.Tweening;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using Actors.Characters.Enemy;
 using Acts.Characters;
-using Acts.Characters.Player;
+using static UnityEngine.CullingGroup;
 
 [Serializable]
 public class CharacterStat
@@ -22,7 +19,7 @@ public class CharacterStat
 	public float afs;
 	public float speed;
 
-	public CharacterStat ChangeStat(ItemInfo info)
+	public CharacterStat ChangeStat (ItemInfo info)
 	{
 		this.atk = info.Atk;
 		this.ats = info.Ats;
@@ -55,12 +52,15 @@ public enum StatType
 }
 
 [Serializable]
-public class CharacterStatAct : Act, IDmageAble
+public class CharacterStatAct : Act
 {
 	[SerializeField]
 	private CharacterStat _basicStat;
 
 	public CharacterStat BaseStat => _basicStat;
+
+	[SerializeField]
+	protected CharacterStat _changeStat = new CharacterStat();
 
 	public CharacterStat ChangeStat
 	{
@@ -72,20 +72,28 @@ public class CharacterStatAct : Act, IDmageAble
 				return _changeStat;
 			}
 
+			StatChange();
+			_changeStat.atk = (_changeStat.atk * _drainageStat) + ((_changeStat.atk * _drainageStat) * (_percentStat / 100));
+
 			return _changeStat;
 		}
 	}
 
+	private float _drainageStat = 1;
+	private float _percentStat = 0;
+
 	public float Half { get; set; }
 
-	[SerializeField]
-	protected CharacterStat _changeStat = new CharacterStat();
 	private CharacterActor _actor;
 	private CharacterRender _render;
+	private CharacterEquipmentAct _eqipment;
+
 	public override void Start()
 	{
+		_eqipment = ThisActor.GetAct<CharacterEquipmentAct>();
 		_render = ThisActor.GetAct<CharacterRender>();
 		_actor = ThisActor as CharacterActor;
+
 		_changeStat.CopyStat(_basicStat);
 
 		if (_actor.currentWeapon != null)
@@ -93,11 +101,13 @@ public class CharacterStatAct : Act, IDmageAble
 
 		_changeStat.hp = _changeStat.maxHP;
 	}
+
+	public virtual void DrainageAtk(float plusValue) => _drainageStat += plusValue;
+	public virtual void PercentAtk(float percentValue) => _percentStat += percentValue;
+
 	public virtual void StatChange()
 	{
-		CharacterEquipmentAct equipement = _actor.GetAct<CharacterEquipmentAct>();
-
-		ItemInfo info = equipement.EquipemntStat;
+		ItemInfo info = _eqipment.CurrentWeapon.WeaponInfo;
 		_changeStat.ChangeStat(info);
 		_changeStat.maxHP = _basicStat.maxHP + info.Hp;
 	}
@@ -156,19 +166,19 @@ public class CharacterStatAct : Act, IDmageAble
 		switch (type)
 		{
 			case StatType.MAXHP:
-				ChangeStat.maxHP /= times;
+				_changeStat.maxHP /= times;
 				break;
 			case StatType.ATK:
-				ChangeStat.atk /= times;
+				_changeStat.atk /= times;
 				break;
 			case StatType.ATS:
-				ChangeStat.ats /= times;
+				_changeStat.ats /= times;
 				break;
 			case StatType.AFS:
-				ChangeStat.afs /= times;
+				_changeStat.afs /= times;
 				break;
 			case StatType.SPEED:
-				ChangeStat.speed /= times;
+				_changeStat.speed /= times;
 				break;
 		}
 	}
@@ -178,19 +188,19 @@ public class CharacterStatAct : Act, IDmageAble
 		switch (type)
 		{
 			case StatType.MAXHP:
-				ChangeStat.maxHP *= times;
+				_changeStat.maxHP *= times;
 				break;
 			case StatType.ATK:
-				ChangeStat.atk *= times;
+				_changeStat.atk *= times;
 				break;
 			case StatType.ATS:
-				ChangeStat.ats *= times;
+				_changeStat.ats *= times;
 				break;
 			case StatType.AFS:
-				ChangeStat.afs *= times;
+				_changeStat.afs *= times;
 				break;
 			case StatType.SPEED:
-				ChangeStat.speed *= times;
+				_changeStat.speed *= times;
 				break;
 		}
 	}
@@ -200,23 +210,23 @@ public class CharacterStatAct : Act, IDmageAble
 		switch (type)
 		{
 			case StatType.MAXHP:
-				ChangeStat.maxHP += add;
+				_changeStat.maxHP += add;
 				break;
 			case StatType.ATK:
-				ChangeStat.atk += add;
+				_changeStat.atk += add;
 				break;
 			case StatType.ATS:
-				ChangeStat.ats += add;
+				_changeStat.ats += add;
 				break;
 			case StatType.AFS:
-				ChangeStat.afs += add;
+				_changeStat.afs += add;
 				break;
 			case StatType.SPEED:
 				int weight = ItemInfo.SpeedToWeight(ChangeStat.speed);
 				if (weight - add < 9)
-					ChangeStat.speed = ItemInfo.WeightToSpeed(weight - (int)add);
+					_changeStat.speed = ItemInfo.WeightToSpeed(weight - (int)add);
 				else
-					ChangeStat.speed = ItemInfo.WeightToSpeed(1);
+					_changeStat.speed = ItemInfo.WeightToSpeed(1);
 				break;
 		}
 	}
@@ -226,23 +236,23 @@ public class CharacterStatAct : Act, IDmageAble
 		switch (type)
 		{
 			case StatType.MAXHP:
-				ChangeStat.maxHP -= min;
+				_changeStat.maxHP -= min;
 				break;
 			case StatType.ATK:
-				ChangeStat.atk -= min;
+				_changeStat.atk -= min;
 				break;
 			case StatType.ATS:
-				ChangeStat.ats -= min;
+				_changeStat.ats -= min;
 				break;
 			case StatType.AFS:
-				ChangeStat.afs -= min;
+				_changeStat.afs -= min;
 				break;
 			case StatType.SPEED:
 				int weight = ItemInfo.SpeedToWeight(ChangeStat.speed);
 				if (weight - min > 0)
-					ChangeStat.speed = ItemInfo.WeightToSpeed(weight - (int)min);
+					_changeStat.speed = ItemInfo.WeightToSpeed(weight - (int)min);
 				else
-					ChangeStat.speed = ItemInfo.WeightToSpeed(1);
+					_changeStat.speed = ItemInfo.WeightToSpeed(1);
 				break;
 		}
 	}

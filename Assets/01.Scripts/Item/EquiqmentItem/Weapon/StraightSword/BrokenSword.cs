@@ -27,11 +27,11 @@ public class BrokenSword : StraightSword
 		count++;
 		if (count == 99)
 		{
-			_weaponBuffInfo.Atk += 99999999999999999;
+			_stat.Plus(StatType.ATK, 99999999999999999);
 		}
 		else if (count == 100)
 		{
-			_weaponBuffInfo.Atk -= 99999999999999999;
+			_stat.Sub(StatType.ATK, 99999999999999999);
 			count = 0;
 		}
 	}
