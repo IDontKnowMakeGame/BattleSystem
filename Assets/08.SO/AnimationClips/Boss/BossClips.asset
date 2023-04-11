@@ -12,131 +12,134 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca2b332a7b5e5447adcd7343094485c, type: 3}
   m_Name: BossClips
   m_EditorClassIdentifier: 
-  weaponID: 0
+  type: Boss
+  actorName: CrazyGhost
+  weaponID: -1
+  weaponName: 
   clips:
-  - name: Idle
+  - name: CrazyGhost_idle
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 6868e66094dbed44da733a398e9831f5, type: 3}
+    texture: {fileID: 0}
     fps: 19
     isLoop: 1
     delay: 0.07
-  - name: HorizontalMove
+  - name: CrazyGhost_Horizontal_Move
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 819e4fcde69aac343a5930a57aae1594, type: 3}
+    texture: {fileID: 0}
     fps: 7
     isLoop: 1
     delay: 0.0346
-  - name: LowerMove
+  - name: CrazyGhost_Lower_Move
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 94f295e3c82d7ba498ad8746562790c5, type: 3}
+    texture: {fileID: 0}
     fps: 7
     isLoop: 1
     delay: 0.0346
-  - name: UpperMove
+  - name: CrazyGhost_Upper_Move
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 5e67354758ca3df43ab01cf63104a4b2, type: 3}
+    texture: {fileID: 0}
     fps: 7
     isLoop: 1
     delay: 0.0346
-  - name: HorizontalBackStep
+  - name: CrazyGhost_Horizontal_BackStep
     nextIdx: 0
-    texture: {fileID: 2800000, guid: b183da894b700b24cac992bce3b59901, type: 3}
+    texture: {fileID: 0}
     fps: 10
     isLoop: 0
     delay: 0.036
-  - name: UpperBackStep
+  - name: CrazyGhost_Upper_BackStep
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 45f5694764df6f542b29ea35dc663617, type: 3}
+    texture: {fileID: 2800000, guid: 6bc65bf326fb3014b8893be655f5541f, type: 3}
     fps: 10
     isLoop: 0
     delay: 0.036
-  - name: LowerBackStep
+  - name: CrazyGhost_Lower_BackStep
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 45f5694764df6f542b29ea35dc663617, type: 3}
+    texture: {fileID: 2800000, guid: db9d6842f80d6a24591f782a3a67adde, type: 3}
     fps: 10
     isLoop: 0
     delay: 0.036
-  - name: JumpAttack
+  - name: CrazyGhost_JumpAttack
     nextIdx: 0
-    texture: {fileID: 2800000, guid: e5fc0bf5799acb44da2e8837778dfd65, type: 3}
+    texture: {fileID: 2800000, guid: 971215ae9123535439559bd6508003d0, type: 3}
     fps: 16
     isLoop: 0
     delay: 0.0346
-  - name: HorizontalJumpAttack
+  - name: CrazyGhost_Horizontal_JumpAttack
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 86d775ae7e2dcd148bd1aa96953b83f9, type: 3}
+    texture: {fileID: 2800000, guid: 5a01ce9f1d8c63f41a06b4baaad61267, type: 3}
     fps: 10
     isLoop: 0
     delay: 0.036
-  - name: LowerJumpAttack
+  - name: CrazyGhost_Lower_JumpAttack
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 4c97696d12e64aa46ba657c2676b42dc, type: 3}
+    texture: {fileID: 2800000, guid: 1594acaa6eb958749be3655e4cb9e13f, type: 3}
     fps: 10
     isLoop: 0
     delay: 0.036
-  - name: SoulAttack
+  - name: CrazyGhost_SoulAttack
     nextIdx: 7
-    texture: {fileID: 2800000, guid: 5b44b7a6b91c4f94aa2f823105fe78b2, type: 3}
+    texture: {fileID: 2800000, guid: de53e4d9a9aa1d743abd80b9960853fa, type: 3}
     fps: 26
     isLoop: 0
     delay: 0.001
-  - name: SoulAttackStun
+  - name: CrazyGhost_SoulAttack_StunDelay_
     nextIdx: 0
-    texture: {fileID: 2800000, guid: cbb25e21b2d6f6440945f6ba36e42aff, type: 3}
+    texture: {fileID: 2800000, guid: ab78fc69bb851c4458ce40f91041e216, type: 3}
     fps: 16
     isLoop: 0
     delay: 0.22
-  - name: HorizontalComboAttack1
+  - name: CrazyGhost_Horizontal_ComboAttack1
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 9903044e048835b4f8555d530913cb84, type: 3}
+    texture: {fileID: 2800000, guid: 81fe9c4d2569da446a9d2f5524131e5c, type: 3}
     fps: 13
     isLoop: 0
     delay: 0.023
-  - name: HorizontalComboAttack2
+  - name: CrazyGhost_Horizontal_ComboAttack2
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 6c99cf4f364822a4a9a839eb200c2de1, type: 3}
+    texture: {fileID: 2800000, guid: ba751f2b2d749f24e83f65e780d8b779, type: 3}
     fps: 13
     isLoop: 0
     delay: 0.023
-  - name: HorizontalComboAttack3
+  - name: CrazyGhost_Horizontal_ComboAttack3
     nextIdx: 0
-    texture: {fileID: 2800000, guid: d52f80fb4b08b8f448ddf604a78ddfd9, type: 3}
+    texture: {fileID: 2800000, guid: 8d9f1eda2a9dcc942a4eca477584833c, type: 3}
     fps: 13
     isLoop: 0
     delay: 0.023
-  - name: LowerComboAttack1
+  - name: CrazyGhost_Lower_ComboAttack1
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 8abcf1f83aa8b2849a3cc9fcfa13d360, type: 3}
+    texture: {fileID: 2800000, guid: 73d2a16cb6482e549b9de1c0d70587f4, type: 3}
     fps: 13
     isLoop: 0
     delay: 0.036
-  - name: LowerComboAttack2
+  - name: CrazyGhost_Lower_ComboAttack2
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 31ec0f3a2a9f57046a4adb749c156ffa, type: 3}
+    texture: {fileID: 2800000, guid: fe7809926d39cfa4c908e9b857275fff, type: 3}
     fps: 13
     isLoop: 0
     delay: 0.023
-  - name: LowerComboAttack3
+  - name: CrazyGhost_Lower_ComboAttack3
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 40e124a0ae88c9d4ea4e055278bdc649, type: 3}
+    texture: {fileID: 2800000, guid: b39fef18f8dec7c4bbbc2b009fc01333, type: 3}
     fps: 13
     isLoop: 0
     delay: 0.023
-  - name: UpperComboAttack1
+  - name: CrazyGhost_Upper_ComboAttack1
     nextIdx: 0
-    texture: {fileID: 2800000, guid: a13d8752ac1f30749aa064bb969801e9, type: 3}
+    texture: {fileID: 2800000, guid: 65e91474fe575c1418c6747c91d54f6e, type: 3}
     fps: 13
     isLoop: 0
     delay: 0.023
-  - name: UpperComboAttack2
+  - name: CrazyGhost_Upper_ComboAttack1
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 8567566ef1f37714187903c5adab52e1, type: 3}
+    texture: {fileID: 2800000, guid: f2dd0ca35e11b444895de2f534972f06, type: 3}
     fps: 13
     isLoop: 0
     delay: 0.023
-  - name: UpperComboAttack3
+  - name: CrazyGhost_Upper_ComboAttack1
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 18e2f6c2f0346a64ea86df77f1d09db2, type: 3}
+    texture: {fileID: 2800000, guid: a61fdaf30669ff34a847a28f9cdf5389, type: 3}
     fps: 13
     isLoop: 0
     delay: 0.023
