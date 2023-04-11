@@ -106,6 +106,13 @@ namespace Acts.Characters
         public virtual void Move(Vector3 position)
         {
             if (_isMoving) return;
+            var attackState = CharacterState.Attack | CharacterState.Hold;
+            if (_character.HasState(attackState))
+            {
+                _character.RemoveState(CharacterState.Move);
+                return;
+            }
+            
             var seq = DOTween.Sequence();
             var currentPos = ThisActor.Position;
             var nextPos = position;
