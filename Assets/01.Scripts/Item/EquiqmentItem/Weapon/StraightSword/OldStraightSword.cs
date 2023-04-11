@@ -13,6 +13,7 @@ public class OldStraightSword : StraightSword
 		if (_isCoolTime)
 			return;
 		_characterActor.AddState(CharacterState.Skill);
+		_characterActor.GetAct<PlayerMove>().IsSKill = true;
 		_characterActor.GetAct<PlayerMove>().distance = 2;
 		InputManager<StraightSword>.OnMovePress += SkillStart;
 		PlayerMove.OnMoveEnd += SkillEnd;
@@ -30,6 +31,7 @@ public class OldStraightSword : StraightSword
 
 		_characterActor.GetAct<PlayerMove>().distance = 1;
 		_isCoolTime = true;
+		_characterActor.GetAct<PlayerMove>().IsSKill = false;
 		PlayerMove.OnMoveEnd -= SkillEnd;
 	}
 }

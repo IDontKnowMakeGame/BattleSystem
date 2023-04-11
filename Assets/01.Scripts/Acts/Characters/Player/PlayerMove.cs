@@ -17,6 +17,13 @@ namespace Acts.Characters.Player
 
         public float distance = 1;
 
+        private bool isSkill = false;
+        public bool IsSKill
+        {
+            get => isSkill;
+            set => isSkill = value;
+        }
+
         public override void Awake()
         {         
             base.Awake();
@@ -43,32 +50,44 @@ namespace Acts.Characters.Player
             base.Translate(direction * distance);
         }
 
-        public override void Move(Vector3 position)
+        public void BowBackStep(Vector3 position)
         {
+            playerDir = (position - ThisActor.Position);
             base.Move(position);
         }
 
         /// <summary>
         /// Player Animation Setting
         /// </summary>
-        protected override void MoveAnimation()
+        protected override void AnimationCheck()
+        {
+            if(isSkill)
+            {
+                SkillAnimation();
+            }
+            else
+            {
+                OrginalAnimation();
+            }    
+        }
+
+        private void OrginalAnimation()
         {
             if (playerDir == Vector3.left)
             {
-                if(_playerActor.currentWeapon is OldSpear == false || (_playerActor.currentWeapon as OldSpear).NonDir == false)
+                if (_playerActor.currentWeapon is OldSpear == false || (_playerActor.currentWeapon as OldSpear).NonDir == false)
                     ThisActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
                 _playerAnimation.Play("VerticalMove");
             }
-            else if(playerDir == Vector3.right)
+            else if (playerDir == Vector3.right)
             {
                 if (_playerActor.currentWeapon is OldSpear == false || (_playerActor.currentWeapon as OldSpear).NonDir == false)
                 {
-                    Debug.Log("ㅋ");
                     ThisActor.SpriteTransform.localScale = new Vector3(2, 1, 1);
                 }
                 _playerAnimation.Play("VerticalMove");
             }
-            else if(playerDir == Vector3.forward)
+            else if (playerDir == Vector3.forward)
             {
                 _playerAnimation.Play("UpperMove");
             }
@@ -78,9 +97,36 @@ namespace Acts.Characters.Player
             }
         }
 
+       private void SkillAnimation()
+        {
+            if (playerDir == Vector3.left)
+            {
+                ThisActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
+                _playerAnimation.Play("VerticalSkill");
+            }
+            else if (playerDir == Vector3.right)
+            {
+                ThisActor.SpriteTransform.localScale = new Vector3(2, 1, 1);
+                _playerAnimation.Play("VerticalSkill");
+            }
+            else if (playerDir == Vector3.forward)
+            {
+                _playerAnimation.Play("UpperSkill");
+            }
+            else if (playerDir == Vector3.back)
+            {
+                _playerAnimation.Play("LowerSkill");
+            }
+        }
+
         protected override void MoveStop()
         {
-            _playerAnimation.Play("Idle");
+            if(isSkill)
+            {
+                isSkill = false;
+            }
+            else
+                _playerAnimation.Play("Idle");
             base.MoveStop();
         }
     }

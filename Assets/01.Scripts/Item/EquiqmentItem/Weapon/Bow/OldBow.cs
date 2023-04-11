@@ -13,8 +13,8 @@ public class OldBow : Bow
 		if (_isCoolTime)
 			return;
 
-		Debug.Log("?");
 		_isCoolTime = true;
-		_characterActor.GetAct<PlayerMove>().Move(_characterActor.Position + -_currentVec);
+		_characterActor.GetAct<PlayerMove>().IsSKill = true;
+		_characterActor.GetAct<PlayerMove>().BowBackStep(_characterActor.Position + -_currentVec);
 	}
 }
