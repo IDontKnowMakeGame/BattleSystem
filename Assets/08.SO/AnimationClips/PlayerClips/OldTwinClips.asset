@@ -38,6 +38,12 @@ MonoBehaviour:
     fps: 7
     isLoop: 0
     delay: 0.04
+  - name: Skill
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 48aa721f3294a0a4ca1089c4456d62ff, type: 3}
+    fps: 5
+    isLoop: 0
+    delay: 0.03
   - name: Equip
     nextIdx: 0
     texture: {fileID: 2800000, guid: 921b6b026310a1a45aa4966f721af421, type: 3}
