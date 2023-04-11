@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using Actors.Bases;
 
 public enum EventFlag
 {
@@ -34,7 +35,11 @@ public enum EventFlag
 	Attack,
 	NoneAniAttack,
 	FureAttack,
-	ChangeStat
+	ChangeStat,
+
+	// Halo
+	PollutionHalo,
+	HaloOfEreshkigal
 }
 public class EventManager : Manager
 {
@@ -85,4 +90,5 @@ public struct EventParam
 	public bool boolParam;
 	public AttackInfo attackParam;
 	public Color color;
+	public Actor unit;
 }
