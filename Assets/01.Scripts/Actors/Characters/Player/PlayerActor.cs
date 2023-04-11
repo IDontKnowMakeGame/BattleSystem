@@ -17,6 +17,7 @@ namespace Actors.Characters.Player
 
 		protected override void Init()
         { 
+            AddAct(_playerStat);
 			AddAct(_playerEquipment);
             base.Init();
             AddAct(_playerMove);
@@ -24,7 +25,6 @@ namespace Actors.Characters.Player
             AddAct(_plyerAnimation);
             AddAct(_playerUseAbleItem);
             AddAct(_playerBuff);
-            AddAct(_playerStat);
             InGame.Player = this;
         }
     }

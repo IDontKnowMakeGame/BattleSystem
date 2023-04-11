@@ -10,19 +10,13 @@ using System.Collections;
 
 public class Weapon : EquiqmentItem
 {
-	public Weapon DeepCopy()
-	{
-		Weapon other = (Weapon)this.MemberwiseClone();
-		return other;
-	}
-
 	public ItemInfo WeaponInfo
 	{
 		get
 		{
 			if (!isEnemy)
 			{
-				return info + _weaponClassLevelInfo + _weaponLevelInfo + _weaponBuffInfo;
+				return info + _weaponClassLevelInfo + _weaponLevelInfo;
 			}
 			else
 				return info;
@@ -39,20 +33,21 @@ public class Weapon : EquiqmentItem
 	protected CharacterActor _characterActor;
 	protected PlayerActor _playerActor = null;
 	protected PlayerAnimation _playerAnimation;
+	protected CharacterStatAct _stat;
 
 	public AttackInfo AttackInfo => _attackInfo;
 	protected AttackInfo _attackInfo = new AttackInfo();
 
 	protected ItemInfo _weaponClassLevelInfo = new ItemInfo();
 	protected ItemInfo _weaponLevelInfo = new ItemInfo();
-	protected ItemInfo _weaponBuffInfo = new ItemInfo();
 
 	protected EventParam _eventParam = new EventParam();
 
 	public override void Equiqment(CharacterActor actor)
 	{
 		_characterActor = actor;
-		if(actor is PlayerActor)
+		_stat = _characterActor.GetAct<CharacterStatAct>();
+		if (actor is PlayerActor)
 		{
 			_playerActor = _characterActor as PlayerActor;
 			_playerAnimation = _characterActor.GetAct<PlayerAnimation>();

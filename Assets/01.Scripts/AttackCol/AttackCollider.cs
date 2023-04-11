@@ -133,7 +133,7 @@ public class AttackCollider : MonoBehaviour
         attackCol[direction].size = changeSize[direction];
     }
 
-    private void ChangeSizeX(DirType direction, int space)
+    private void ChangeSizeX(DirType direction, float space)
     {
         if (space == InGame.None) return;
 

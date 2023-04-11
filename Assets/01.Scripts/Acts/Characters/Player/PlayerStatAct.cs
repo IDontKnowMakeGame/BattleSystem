@@ -10,6 +10,8 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerStatAct : CharacterStatAct
 {
+	private EventParam statParam;
+
 	public override void Start()
 	{
 		base.Start();
@@ -29,6 +31,9 @@ public class PlayerStatAct : CharacterStatAct
 		
 		if (ThisActor is PlayerActor)
 		{
+			statParam.unit = actor;
+			Define.GetManager<EventManager>().TriggerEvent(EventFlag.PollutionHalo, statParam);
+
 			ThisActor.GetAct<PlayerBuff>().ChangeAnger(1);
 
 			if (ThisActor.GetAct<PlayerUseAbleItem>().HPPotion.UsePortion)

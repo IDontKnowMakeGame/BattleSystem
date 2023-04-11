@@ -39,17 +39,18 @@ public class ItemManager : Manager
 		switch (id)
 		{
 			case 0:
-				Weapon weapon = CreateEnumToClass<Weapon>(itemId);
+				Weapon weapon = CreateEnumToClass<Weapon>(itemId, id);
 				weapon.Init();
 				weapons.Add(itemId, weapon);
 				break;
 			case 1:
-				Halo halo = CreateEnumToClass<Halo>(itemId);
+				Halo halo = CreateEnumToClass<Halo>(itemId, id);
+				Debug.Log(halo);
 				halo.Init();
 				halos.Add(itemId, halo);
 				break;
 			case 2:
-				UseAbleItem useable = CreateEnumToClass<UseAbleItem>(itemId);
+				UseAbleItem useable = CreateEnumToClass<UseAbleItem>(itemId, id);
 				useable.Init();
 				useAbleItems.Add(itemId, useable);
 				break;
@@ -58,20 +59,24 @@ public class ItemManager : Manager
 		}
 	}
 
-	private T CreateEnumToClass<T>(ItemID id) where T : Item, new()
+	private T CreateEnumToClass<T>(ItemID id, int index) where T : Item, new()
 	{
 		Type name = Type.GetType(id.ToString());
 		T instance = Activator.CreateInstance(name) as T;
-		ItemTable table = JsonManager.LoadJsonFile<ItemTable>(Application.streamingAssetsPath + "/Save/Json/" + typeof(ItemTable), typeof(ItemTable).ToString());
-		foreach (var item in table.ItemList)
-		{
-			if (item.Id == id)
+		if(index == 0)
+        {
+			ItemTable table = JsonManager.LoadJsonFile<ItemTable>(Application.streamingAssetsPath + "/Save/Json/" + typeof(ItemTable), typeof(ItemTable).ToString());
+			foreach (var item in table.ItemList)
 			{
-				instance.info = item;
-				items.Add(id, instance);
-				return instance;
+				if (item.Id == id)
+				{
+					instance.info = item;
+					items.Add(id, instance);
+					return instance;
+				}
 			}
+			return null;
 		}
-		return null;
+		return instance;
 	}
 }
