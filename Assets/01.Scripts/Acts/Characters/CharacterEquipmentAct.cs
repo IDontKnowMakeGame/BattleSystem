@@ -72,10 +72,12 @@ public class CharacterEquipmentAct : Act
 	{
 		get
 		{
+			/*
 			foreach (var info in _halos)
 			{
 				_halo += _useHalo[info].info;
 			}
+			*/
 			return _halo;
 		}
 	}

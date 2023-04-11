@@ -129,8 +129,7 @@ public class CharacterStatAct : Act, IDmageAble
 
 	public int PercentHP()
     {
-		return (int)((ChangeStat.hp / BaseStat.hp) * 100);
-
+		return (int)((ChangeStat.hp / ChangeStat.maxHP) * 100);
 	}
 
 	public virtual void Die()

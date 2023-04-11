@@ -45,6 +45,12 @@ public class PlayerEquipment : CharacterEquipmentAct
 		InputManager<Weapon>.OnOffPress += WeaponOnOff;
 		Define.GetManager<EventManager>().StartListening(EventFlag.WeaponEquip, EquipmentWeapon);
 		Define.GetManager<EventManager>().StartListening(EventFlag.WeaponUpgrade, Upgrade);
+
+		_useHalo.Add(ItemID.HaloOfGhost, new HaloOfGhost());
+		_useHalo.Add(ItemID.HaloOfPollution, new HaloOfPollution());
+		_useHalo.Add(ItemID.HaloOfEreshkigal, new HaloOfEreshkigal());
+
+		AddHalo(ItemID.HaloOfEreshkigal);
 	}
 	public override void Update()
 	{
@@ -157,6 +163,20 @@ public class PlayerEquipment : CharacterEquipmentAct
 	#endregion
 
 	#region Halo
+	public void AddHalo(ItemID haloID)
+    {
+		_halos.Add(haloID);
+		_useHalo[haloID].Equiqment(_characterController);
+    }
+
+	public void RemoveHalo(ItemID haloID)
+    {
+		if(_halos.Contains(haloID))
+        {
+			_useHalo[haloID].UnEquipment(_characterController);
+			_halos.Remove(haloID);
+        }
+    }
 	#endregion
 	#region HaloEquipment
 	protected override void EquipmentHalo()

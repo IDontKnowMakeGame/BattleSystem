@@ -18,8 +18,9 @@ namespace Data
 		OutwornBow = 8,
         RustySpear = 9,
         ////100~199 Helo
-        //HeloOfGhost = 100,
-        //HeloOfPollution = 101,
+        HaloOfGhost = 100,
+        HaloOfPollution = 101,
+        HaloOfEreshkigal = 102,
         ////200~299 UseableItem
         //Torch = 200,
         //Shield = 201,
