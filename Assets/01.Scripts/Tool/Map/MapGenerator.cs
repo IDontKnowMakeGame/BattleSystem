@@ -8,6 +8,7 @@ using UnityEngine.Networking;
 
 namespace Tool.Map
 {
+#if UNITY_EDITOR
     public enum Mode
     {
         StartPos,
@@ -25,8 +26,6 @@ namespace Tool.Map
         public float setWallY = -0.5f;
         public float wallOffsetZ = 0.5f;
     }
-
-#if UNITY_EDITOR
     public class MapGenerator : EditorWindow
     {
         #region Editor
@@ -281,5 +280,5 @@ namespace Tool.Map
         #endregion
         #endregion
     }
+#endif
 }
-    #endif

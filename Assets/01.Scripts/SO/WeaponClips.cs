@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Tools;
 
+// Character Clip
 [CreateAssetMenu(fileName = "ClipsData", menuName = "ScriptableObject/ClipsData")]
 public class WeaponClips : ScriptableObject
 {

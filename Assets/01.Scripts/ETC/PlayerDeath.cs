@@ -33,8 +33,10 @@ namespace ETC
             seq.AppendInterval(2f);
             seq.AppendCallback(() =>
             {
-                SceneManager.LoadScene("Lobby");
+                DOTween.CompleteAll();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 DOTween.KillAll();
+                DOTween.Kill(seq);
             });
         }
     }

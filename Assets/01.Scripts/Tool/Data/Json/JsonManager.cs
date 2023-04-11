@@ -51,8 +51,8 @@ namespace Tool.Data.Json
         private static void ParseData<T>(string json) where T : new()
         {
             Debug.Log(json);
-            SaveJsonFile(Application.dataPath + $"/Save/Json/{typeof(T)}", typeof(T).ToString(), json);
-            var obj = LoadJsonFile<T>(Application.dataPath + $"/Save/Json/{typeof(T)}", typeof(T).ToString());
+            SaveJsonFile(Application.streamingAssetsPath + $"/Save/Json/{typeof(T)}", typeof(T).ToString(), json);
+            var obj = LoadJsonFile<T>(Application.streamingAssetsPath + $"/Save/Json/{typeof(T)}", typeof(T).ToString());
             Debug.Log(obj);
         }
     }

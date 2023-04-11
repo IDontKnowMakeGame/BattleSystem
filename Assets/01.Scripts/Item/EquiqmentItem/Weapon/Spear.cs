@@ -15,8 +15,9 @@ public class Spear : Weapon
 	private bool _isDown = false;
 	private bool _isCurrentVec = false;
 	private bool _isClick = false;
+	private bool _nonDir = false;
 
-	public bool IsDown => _isDown;
+	public bool NonDir => _nonDir;
 
 	private MapManager _mapManager => Define.GetManager<MapManager>();
 	private Vector3 _currentVec = Vector3.zero;
@@ -82,9 +83,10 @@ public class Spear : Weapon
 		InputManager<Spear>.OnMovePress -= CurrentBool;
 		_isCurrentVec = false;
 		_isAttack = false;
-		_isDown = false;
+        _isDown = false;
+		_nonDir = false;
 	}
-	public override void Update()
+    public override void Update()
 	{
 		if (_isDown)
 			Debug.DrawLine(_characterActor.transform.position, _characterActor.transform.position + _currentVec * range);
@@ -128,6 +130,7 @@ public class Spear : Weapon
 		_attackInfo.AddDir(_attackInfo.DirTypes(vec));
 		_currentVec = InGame.CamDirCheck(vec);
 		_attackInfo.PressInput = vec;
+		_nonDir = true;
 		ReadyAnimation(_currentVec);
 		yield return new WaitForSeconds(info.Ats);
 		_isDown = true;
@@ -176,6 +179,7 @@ public class Spear : Weapon
 		_attackInfo.RemoveDir(_attackInfo.DirTypes(vec));
 		_attackInfo.PressInput = vec;
 		_currentVec = Vector3.zero;
+		_nonDir = false;
 		DefaultAnimation();
 		yield return new WaitForSeconds(info.Afs);
 		_isDown = false;

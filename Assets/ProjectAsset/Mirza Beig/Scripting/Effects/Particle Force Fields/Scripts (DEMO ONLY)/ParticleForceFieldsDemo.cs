@@ -20,7 +20,7 @@ public class ParticleForceFieldsDemo : MonoBehaviour
 
     [Header("Particle System Settings")]
 
-    new public ParticleSystem particleSystem;
+    public ParticleSystem particleSystem;
 
     ParticleSystem.MainModule particleSystemMainModule;
     ParticleSystem.EmissionModule particleSystemEmissionModule;

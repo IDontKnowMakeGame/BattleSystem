@@ -5,7 +5,6 @@ using Blocks.Acts;
 using Core;
 using Data;
 using Managements.Managers;
-using Palmmedia.ReportGenerator.Core;
 using UnityEngine;
 
 namespace Acts.Characters.Enemy

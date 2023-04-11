@@ -26,7 +26,7 @@ public class DataManager : Manager
         SavePointData_ = JsonManager.LoadJsonFile<SavePointData>(Application.streamingAssetsPath + "/SAVE/User", "SavePointData");
         WeaponClassLevelListData_ = JsonManager.LoadJsonFile<WeaponClassLevelDataList>(Application.streamingAssetsPath + "/SAVE/Weapon", "ClassLevelData");
         WeaponLevelListData_ = JsonManager.LoadJsonFile<WeaponLevelDataList>(Application.streamingAssetsPath + "/SAVE/Weapon", "WeaponLevelData");
-        ItemTableData = JsonManager.LoadJsonFile<ItemTable>(Application.dataPath + "/Save/Json/" + typeof(ItemTable), typeof(ItemTable).ToString());
+        ItemTableData = JsonManager.LoadJsonFile<ItemTable>(Application.streamingAssetsPath + "/Save/Json/" + typeof(ItemTable), typeof(ItemTable).ToString());
 
         if (WeaponClassLevelListData_.weaponClassLevelDataList.Count <= 0)
         {
