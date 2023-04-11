@@ -17,6 +17,7 @@ namespace Data
         BrokenSword = 7,
 		OutwornBow = 8,
         RustySpear = 9,
+        Ascalon = 10,
         ////100~199 Helo
         HaloOfGhost = 100,
         HaloOfPollution = 101,
