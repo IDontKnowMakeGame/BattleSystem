@@ -797,7 +797,9 @@ public static class ExtensionMethods
     public static float GetDegree(this Vector3 vector, Vector3 other)
     {
         var delta = other - vector;
+        delta = delta.normalized;
         var degree = Mathf.Atan2(delta.x, delta.z) * Mathf.Rad2Deg;
+        Debug.Log(degree);
         return degree;
     }
     
@@ -828,6 +830,26 @@ public static class ExtensionMethods
         }
 
         return false;
+    }
+    
+    public static Vector3 GetDirection(this Vector3 vector)
+    {
+        vector = vector.normalized;
+        var x = Mathf.RoundToInt(vector.x);
+        var z = Mathf.RoundToInt(vector.z);
+        return new Vector3(x, 0, z);
+    }
+    
+    public static Quaternion GetRotation(this float degree)
+    {
+        return Quaternion.Euler(0, degree, 0);
+    }
+    
+    public static Quaternion GetDirection(this Quaternion rotation)
+    {
+        var y = rotation.eulerAngles.y;
+        y = Mathf.RoundToInt(y / 90) * 90;
+        return Quaternion.Euler(0, y, 0);
     }
 
     #endregion

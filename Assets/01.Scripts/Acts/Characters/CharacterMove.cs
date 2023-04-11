@@ -106,6 +106,13 @@ namespace Acts.Characters
         public virtual void Move(Vector3 position)
         {
             if (_isMoving) return;
+            var attackState = CharacterState.Attack | CharacterState.Hold;
+            if (_character.HasState(attackState))
+            {
+                _character.RemoveState(CharacterState.Move);
+                return;
+            }
+            
             var seq = DOTween.Sequence();
             var currentPos = ThisActor.Position;
             var nextPos = position;
@@ -125,7 +132,7 @@ namespace Acts.Characters
             _character.AddState(Actors.Characters.CharacterState.Move);
 
             dir = (currentPos - nextPos).SetY(0);
-            MoveAnimation();
+            AnimationCheck();
 
             ThisActor.StartCoroutine(PositionUpdateCoroutine(nextPos));
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
@@ -230,7 +237,7 @@ namespace Acts.Characters
             var nextPos = nextBlock.Position;
             Move(nextPos);
         }
-        protected virtual void MoveAnimation()
+        protected virtual void AnimationCheck()
         {
             dir = dir.normalized;
             var animation = ThisActor.GetAct<EnemyAnimation>();
