@@ -50,7 +50,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 		_useHalo.Add(ItemID.HaloOfPollution, new HaloOfPollution());
 		_useHalo.Add(ItemID.HaloOfEreshkigal, new HaloOfEreshkigal());
 
-		AddHalo(ItemID.HaloOfEreshkigal);
+		AddHalo(ItemID.HaloOfPollution);
 	}
 	public override void Update()
 	{

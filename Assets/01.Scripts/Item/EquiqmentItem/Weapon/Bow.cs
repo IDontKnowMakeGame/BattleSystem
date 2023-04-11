@@ -1,20 +1,23 @@
-using Actors.Characters;  
+using Actors.Characters;
 using Core;
 using Managements.Managers;
 using UnityEngine;
 using Actors.Characters.Player;
 using Acts.Characters.Player;
+using UnityEditor.U2D.Path.GUIFramework;
+using Unity.VisualScripting;
 
 public class Bow : Weapon
 {
 	public bool isShoot = false;
-
 	private bool _isCharge = false;
+	private float _currentTimer = 0;
+
 	protected Vector3 _currentVec;
 	private Vector3 _orginVec;
 
-	private float _currentTimer = 0;
-	private EventManager _eventManager => Define.GetManager<EventManager>();
+	private SliderObject _sliderObject = null;
+
 	public override void LoadWeaponClassLevel()
 	{
 		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("Bow");
@@ -43,6 +46,16 @@ public class Bow : Weapon
 		base.Equiqment(actor);
 		if (isEnemy)
 			return;
+
+		Debug.Log("?");
+		if (_sliderObject == null)
+		{
+			Debug.Log(_characterActor.transform.Find("Model"));
+			Debug.Log(_characterActor.transform.Find("Model").Find("SliderObject"));
+			Debug.Log(_characterActor.transform.Find("Model").Find("SliderObject").GetComponent<SliderObject>());
+			_sliderObject = _characterActor.transform.Find("Model").Find("SliderObject").GetComponent<SliderObject>();
+		}
+
 		InputManager<Bow>.OnAttackPress += Shoot;
 
 		if (actor is PlayerActor)
@@ -60,7 +73,7 @@ public class Bow : Weapon
 	}
 
 	private void SetAnimation()
-    {
+	{
 		string str = isShoot ? "None" : "Use";
 
 		_playerAnimation.GetClip("Idle").ChangeClip(_playerAnimation.GetClip(str + "Idle"));
@@ -97,7 +110,7 @@ public class Bow : Weapon
 		if (isShoot)
 			return;
 
-		if (_playerActor.HasState(CharacterState.Everything))
+		if (_characterActor.HasState(CharacterState.Everything))
 			return;
 
 		_isCharge = true;
@@ -116,8 +129,8 @@ public class Bow : Weapon
 			//SetAnimation();
 		}
 
-		_eventManager.TriggerEvent(EventFlag.SliderInit, new EventParam { floatParam = _characterActor.GetAct<CharacterStatAct>().ChangeStat.ats });
-		_eventManager.TriggerEvent(EventFlag.SliderFalse, new EventParam { boolParam = true });
+		_sliderObject.SliderInit(_stat.ChangeStat.ats);
+		_sliderObject.SliderActive(true);
 	}
 
 	private void Charge()
@@ -126,7 +139,7 @@ public class Bow : Weapon
 			return;
 
 		_currentTimer += Time.deltaTime;
-		_eventManager.TriggerEvent(EventFlag.SliderUp, new EventParam { floatParam = _currentTimer });
+		_sliderObject.SliderUp(_currentTimer);
 		if (_currentTimer >= info.Ats)
 		{
 			_currentTimer = 0;
@@ -136,7 +149,7 @@ public class Bow : Weapon
 			_characterActor.AddState(CharacterState.Attack);
 			ShootAnimation(_orginVec);
 			Arrow.ShootArrow(_currentVec, _characterActor.Position, _characterActor, info.Afs, info.Atk, 6);
-			_eventManager.TriggerEvent(EventFlag.SliderFalse, new EventParam { boolParam = false });
+			_sliderObject.SliderActive(false);
 		}
 	}
 

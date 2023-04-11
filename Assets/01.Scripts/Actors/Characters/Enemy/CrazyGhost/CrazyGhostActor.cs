@@ -11,7 +11,6 @@ namespace Actors.Characters.Enemy.CrazyGhost
 {
     public class CrazyGhostActor : BossActor
     {
-
         private PatternState patternState;
         protected override void Init()
         {

@@ -12,7 +12,7 @@ public class GreatSword : Weapon
 	public float timer;
 	private float _half = 0;
 
-	private EventManager _eventManager => Define.GetManager<EventManager>();
+	private SliderObject _sliderObject;
 	public override void LoadWeaponClassLevel()
 	{
 		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("GreatSword");
@@ -41,6 +41,8 @@ public class GreatSword : Weapon
 		base.Equiqment(actor);
 		if (isEnemy)
 			return;
+		if (_sliderObject == null)
+			_sliderObject = _characterActor.GetComponentInChildren<SliderObject>();
 		InputManager<GreatSword>.OnAttackPress += AttakStart;
 		InputManager<GreatSword>.OnAttackHold += Hold;
 		InputManager<GreatSword>.OnAttackRelease += AttackRealease;
@@ -59,8 +61,8 @@ public class GreatSword : Weapon
 		if (_characterActor.HasState(CharacterState.Everything))
 			return;
 
-		_eventManager.TriggerEvent(EventFlag.SliderInit, new EventParam { floatParam = info.Ats });
-		_eventManager.TriggerEvent(EventFlag.SliderFalse, new EventParam { boolParam = true });
+		_sliderObject.SliderInit(_stat.ChangeStat.ats);
+		_sliderObject.SliderActive(true);
 		_characterActor.AddState(CharacterState.Hold);
 		_attackInfo.ResetDir();
 		_currrentVector = vec;
@@ -73,14 +75,11 @@ public class GreatSword : Weapon
 			return;
 		if (timer >= info.Ats)
 		{
-			_eventParam.boolParam = true;
-			_eventParam.floatParam = 0.1f;
-			_eventParam.color = Color.red;
-			_eventManager.TriggerEvent(EventFlag.PullSlider, _eventParam);
+			_sliderObject.PullSlider(0.1f, true, Color.red);
 			return;
 		}
 		timer += Time.deltaTime;
-		_eventManager.TriggerEvent(EventFlag.SliderUp, new EventParam { floatParam = timer }) ;
+		_sliderObject.SliderUp(timer);
 	}
 	public virtual void AttackRealease(Vector3 vec)
 	{
@@ -111,12 +110,8 @@ public class GreatSword : Weapon
 		_characterActor.GetAct<CharacterStatAct>().Half -= _half;
 		_characterActor.RemoveState(CharacterState.Hold);
 
-		_eventParam.boolParam = false;
-		_eventParam.floatParam = 0f;
-		_eventParam.color = Color.white;
-
-		_eventManager.TriggerEvent(EventFlag.PullSlider, _eventParam);
-		_eventManager.TriggerEvent(EventFlag.SliderFalse, new EventParam { boolParam = false });
+		_sliderObject.PullSlider(0f, false, Color.white);
+		_sliderObject.SliderActive(false);
 	}
 
 	private void ChargeAnimation(Vector3 dir)

@@ -27,7 +27,7 @@ public class Ascalon : GreatSword
 
 		_stat.PercentAtk(-30);
 		GameObject obj = GameManagement.Instance.GetManager<ResourceManager>().Instantiate("Dragon Slayer's Realm");
-		obj.transform.position = _characterActor.Position + (Vector3.up / 2);
+		obj.transform.position = _characterActor.Position + InGame.CamDirCheck(_currrentVector) + (Vector3.up / 2);
 		obj.GetComponent<DragonRealm>().Init(AscalonData.duration, AscalonData.decrease);
 	}
 }
