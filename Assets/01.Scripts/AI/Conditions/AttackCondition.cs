@@ -11,7 +11,8 @@ namespace AI.Conditions
             var character = BaseActor as CharacterActor;
             if (character == null)
                 return false;
-            var result = !character.HasState(CharacterState.Attack);
+            var condition = CharacterState.Attack | CharacterState.Hold;
+            var result = !character.HasState(condition);
             return result;
         }
     }

@@ -17,33 +17,33 @@ MonoBehaviour:
   weaponID: -1
   weaponName: 
   clips:
-  - name: CrazyGhost_idle
+  - name: Idle
     nextIdx: -1
-    texture: {fileID: 0}
+    texture: {fileID: 2800000, guid: 7dc3312f5efee46438385b89b05d8203, type: 3}
     fps: 19
     isLoop: 1
     delay: 0.07
   - name: CrazyGhost_Horizontal_Move
     nextIdx: -1
-    texture: {fileID: 0}
+    texture: {fileID: 2800000, guid: 04583c68bad23ee45aeec1e11953a181, type: 3}
     fps: 7
     isLoop: 1
     delay: 0.0346
   - name: CrazyGhost_Lower_Move
     nextIdx: -1
-    texture: {fileID: 0}
+    texture: {fileID: 2800000, guid: 92085e9a750110849bdd86d0cbe2978e, type: 3}
     fps: 7
     isLoop: 1
     delay: 0.0346
   - name: CrazyGhost_Upper_Move
     nextIdx: 0
-    texture: {fileID: 0}
+    texture: {fileID: 2800000, guid: 50cc89a808aa988448dc3cdcd39eb1a5, type: 3}
     fps: 7
     isLoop: 1
     delay: 0.0346
   - name: CrazyGhost_Horizontal_BackStep
     nextIdx: 0
-    texture: {fileID: 0}
+    texture: {fileID: 2800000, guid: 4059ac3ccffaeab4bab7e100d6534634, type: 3}
     fps: 10
     isLoop: 0
     delay: 0.036
@@ -131,13 +131,13 @@ MonoBehaviour:
     fps: 13
     isLoop: 0
     delay: 0.023
-  - name: CrazyGhost_Upper_ComboAttack1
+  - name: CrazyGhost_Upper_ComboAttack2
     nextIdx: 0
     texture: {fileID: 2800000, guid: f2dd0ca35e11b444895de2f534972f06, type: 3}
     fps: 13
     isLoop: 0
     delay: 0.023
-  - name: CrazyGhost_Upper_ComboAttack1
+  - name: CrazyGhost_Upper_ComboAttack3
     nextIdx: 0
     texture: {fileID: 2800000, guid: a61fdaf30669ff34a847a28f9cdf5389, type: 3}
     fps: 13
