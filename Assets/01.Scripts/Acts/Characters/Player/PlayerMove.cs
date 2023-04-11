@@ -77,7 +77,7 @@ namespace Acts.Characters.Player
             {
                 if (_playerActor.currentWeapon is OldSpear == false || (_playerActor.currentWeapon as OldSpear).NonDir == false)
                     ThisActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
-                _playerAnimation.Play("VerticalMove");
+                _playerAnimation.Play("HorizontalMove");
             }
             else if (playerDir == Vector3.right)
             {
@@ -85,7 +85,7 @@ namespace Acts.Characters.Player
                 {
                     ThisActor.SpriteTransform.localScale = new Vector3(2, 1, 1);
                 }
-                _playerAnimation.Play("VerticalMove");
+                _playerAnimation.Play("HorizontalMove");
             }
             else if (playerDir == Vector3.forward)
             {
@@ -102,12 +102,12 @@ namespace Acts.Characters.Player
             if (playerDir == Vector3.left)
             {
                 ThisActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
-                _playerAnimation.Play("VerticalSkill");
+                _playerAnimation.Play("HorizontalSkill");
             }
             else if (playerDir == Vector3.right)
             {
                 ThisActor.SpriteTransform.localScale = new Vector3(2, 1, 1);
-                _playerAnimation.Play("VerticalSkill");
+                _playerAnimation.Play("HorizontalSkill");
             }
             else if (playerDir == Vector3.forward)
             {

@@ -115,7 +115,7 @@ public class TwinSword : Weapon
 		}
 		else
 		{
-			float b = _playerAnimation.GetClip("VerticalMove").delay;
+			float b = _playerAnimation.GetClip("HorizontalMove").delay;
 			time = frame * b;
 		}
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.NoneAniAttack, _eventParam);
