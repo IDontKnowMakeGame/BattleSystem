@@ -4,6 +4,7 @@ using Managements.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using Blocks.Acts;
+using Acts.Characters.Player;
 using UnityEngine;
 
 public class OldTwinSword : TwinSword
@@ -26,13 +27,14 @@ public class OldTwinSword : TwinSword
 		for(int i = 0; i<6; i++)
 		{
 			Define.GetManager<MapManager>().AttackBlock(_characterActor.Position+vector, info.Atk, i * 0.2f, _characterActor, MovementType.None, true);
+			_characterActor.GetAct<PlayerAnimation>().Play("Skill");
 		}
 		_characterActor.StartCoroutine(SkillCorutine());
 	}
 
 	private IEnumerator SkillCorutine()
 	{
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(0.17f);
 		_characterActor.RemoveState(CharacterState.Skill);
 	}
 }

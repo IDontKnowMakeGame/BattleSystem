@@ -132,7 +132,7 @@ namespace Acts.Characters
             _character.AddState(Actors.Characters.CharacterState.Move);
 
             dir = (currentPos - nextPos).SetY(0);
-            MoveAnimation();
+            AnimationCheck();
 
             ThisActor.StartCoroutine(PositionUpdateCoroutine(nextPos));
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
@@ -237,7 +237,7 @@ namespace Acts.Characters
             var nextPos = nextBlock.Position;
             Move(nextPos);
         }
-        protected virtual void MoveAnimation()
+        protected virtual void AnimationCheck()
         {
             dir = dir.normalized;
             var animation = ThisActor.GetAct<EnemyAnimation>();
