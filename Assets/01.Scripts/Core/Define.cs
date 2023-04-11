@@ -52,9 +52,9 @@ namespace Core
             set => player = value;
         }
 
-        private static int none = -987654321;
+        private static float none = -987654321f;
 
-        public static int None => none;
+        public static float None => none;
 
         public static void AddActor(Actor actor)
         {

@@ -5,15 +5,15 @@ using Core;
 
 public class ColliderStat
 {
-    private int _sizeX;
-    private int _sizeZ;
-    private int _offsetX;
-    private int _offsetZ;
+    private float _sizeX;
+    private float _sizeZ;
+    private float _offsetX;
+    private float _offsetZ;
 
-    public int SizeX => _sizeX;
-    public int SizeZ => _sizeZ;
-    public int OffsetX => _offsetX;
-    public int OffsetZ => _offsetZ;
+    public float SizeX => _sizeX;
+    public float SizeZ => _sizeZ;
+    public float OffsetX => _offsetX;
+    public float OffsetZ => _offsetZ;
 
     public ColliderStat()
     {
@@ -23,7 +23,7 @@ public class ColliderStat
         _offsetZ = InGame.None;
     }
 
-    public ColliderStat(int sizeX, int sizeZ, int offsetX, int offsetZ)
+    public ColliderStat(float sizeX, float sizeZ, float offsetX, float offsetZ)
     {
         _sizeX = sizeX;
         _sizeZ = sizeZ;
