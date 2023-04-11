@@ -16,43 +16,43 @@ MonoBehaviour:
   clips:
   - name: Idle
     nextIdx: -1
-    texture: {fileID: 2800000, guid: c3f00a5162308344380996f40577ee19, type: 3}
+    texture: {fileID: 2800000, guid: fa1a501fc3d0eda4b8e2d2867bf88e62, type: 3}
     fps: 10
     isLoop: 1
     delay: 0.1
   - name: VerticalMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 26f379eb604429d4bad1e32fa894741d, type: 3}
+    texture: {fileID: 2800000, guid: bbe6cd844c55c6e47b88fad646903006, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.03
   - name: UpperMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: ea5db2def96e78c47bb3eaec1512db93, type: 3}
+    texture: {fileID: 2800000, guid: d5b6823f268f3f0419d6ec27e599623a, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.03
   - name: LowerMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 3692298b47205364c8f871186c0d8f9f, type: 3}
+    texture: {fileID: 2800000, guid: 0044f15e01a19f643827fd51558dadd0, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.03
   - name: VerticalCharge
     nextIdx: -1
-    texture: {fileID: 2800000, guid: e85866298f69f73418d7be34ede500e7, type: 3}
+    texture: {fileID: 2800000, guid: abec0550c9ddf3542ae86e5c6ff6464f, type: 3}
     fps: 8
     isLoop: 0
     delay: 0.06
   - name: UpperCharge
     nextIdx: -1
     texture: {fileID: 2800000, guid: 883afe941a41bd44b9a24be4cc4165a8, type: 3}
-    fps: 8
+    fps: 7
     isLoop: 0
     delay: 0.06
   - name: LowerCharge
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 4959b25c29dadd64fa0c821ff12bf483, type: 3}
+    texture: {fileID: 2800000, guid: 107ed1ebc7474ae4da072e66bc0e7862, type: 3}
     fps: 8
     isLoop: 0
     delay: 0.06
@@ -92,6 +92,24 @@ MonoBehaviour:
     fps: 5
     isLoop: 0
     delay: 0.05
+  - name: UpperSkill
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: c0923da81616e88478a81f8ec7c8d9b4, type: 3}
+    fps: 6
+    isLoop: 0
+    delay: 0.06
+  - name: VerticalSkill
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 68c22bc0504a97842a87fd6df1d99d94, type: 3}
+    fps: 6
+    isLoop: 0
+    delay: 0.06
+  - name: LowerSkill
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: e0eb4b54321d58b4da4d7b31b83c037e, type: 3}
+    fps: 6
+    isLoop: 0
+    delay: 0.06
   - name: GroundPull
     nextIdx: -1
     texture: {fileID: 2800000, guid: d8baec665fac3e14fb4c6051d2e6b808, type: 3}
