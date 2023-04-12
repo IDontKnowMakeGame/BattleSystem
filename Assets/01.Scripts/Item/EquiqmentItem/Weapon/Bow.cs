@@ -105,7 +105,7 @@ public class Bow : Weapon
 		if (_isCharge)
 			return;
 
-		if (isShoot)
+		if (isShoot && _playerActor != null)
 			return;
 
 		if (_characterActor.HasState(CharacterState.Everything))
@@ -147,7 +147,8 @@ public class Bow : Weapon
 			_characterActor.RemoveState(CharacterState.StopMove);
 			_characterActor.RemoveState(CharacterState.Hold);
 			_characterActor.AddState(CharacterState.Attack);
-			ShootAnimation(_orginVec);
+			if (_playerActor != null)
+				ShootAnimation(_orginVec);
 			Arrow.ShootArrow(_currentVec, _characterActor.Position, _characterActor, info.Afs, info.Atk, 6);
 			_sliderObject.SliderActive(false);
 		}

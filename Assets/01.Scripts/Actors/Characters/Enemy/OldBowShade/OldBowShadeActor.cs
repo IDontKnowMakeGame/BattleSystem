@@ -32,8 +32,7 @@ public class OldBowShadeActor : EnemyActor
 	private void Shoot()
 	{
 		var dir = InGame.Player.Position - Position;
-		Debug.Log(_characterEquipment.CurrentWeapon);
 		Bow bow = _characterEquipment.CurrentWeapon as Bow;
-		bow.Shoot(dir.normalized);
+		bow.Shoot(InGame.CamDirCheck(dir));
 	}
 }
