@@ -23,9 +23,9 @@ namespace Data
         HaloOfPollution = 101,
         HaloOfEreshkigal = 102,
         ////200~299 UseableItem
-        //Torch = 200,
-        //Shield = 201,
-        //HPPotion = 202
+        Torch = 200,
+        Shield = 201,
+        HPPotion = 202,
         //300~399 QuestItem
         TEST = 300
 
