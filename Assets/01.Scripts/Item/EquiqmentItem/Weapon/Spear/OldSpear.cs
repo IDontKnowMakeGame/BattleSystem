@@ -30,13 +30,13 @@ public class OldSpear : Spear
 		if (count == 2)
 		{
 			beforeAtk = WeaponInfo.Atk;
-			_stat.DrainageAtk(2);
+			_stat.AddDrainageAtk("OldSpear",2);
 			_characterActor.GetAct<CharacterStatAct>().StatChange();
 		}
 		else if(count == 3)
 		{
 			count = 0;
-			_stat.DrainageAtk(-2);
+			_stat.DelDrainageAtk("OldSpear");
 			_characterActor.GetAct<CharacterStatAct>().StatChange();
 		}
 	}

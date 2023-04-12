@@ -52,10 +52,6 @@ public class PlayerEquipment : CharacterEquipmentAct
 
 		AddHalo(ItemID.HaloOfPollution);
 	}
-	public override void Update()
-	{
-		CurrentWeapon?.Update();
-	}
 	public override void OnDisable()
 	{
 		Define.GetManager<EventManager>()?.StopListening(EventFlag.WeaponEquip, EquipmentWeapon);

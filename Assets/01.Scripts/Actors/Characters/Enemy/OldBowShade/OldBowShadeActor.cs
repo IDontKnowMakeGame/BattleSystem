@@ -19,7 +19,9 @@ public class OldBowShadeActor : EnemyActor
 	{
 		base.Start();
 		ShootState state = _enemyAi.GetState<ShootState>();
+		Debug.Log(_characterEquipment.CurrentWeapon);
 		_characterEquipment.CurrentWeapon.Equiqment(this);
+		Debug.Log(":");
 		state.OnEnter += () =>
 		{
 			_enemyAnimation.Play("JumpAttack");

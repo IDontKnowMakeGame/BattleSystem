@@ -78,7 +78,7 @@ namespace Acts.Characters.Player
             {
                 angerDecrease = true;
                 decreaseAngerTimer = decreaseTime;
-                _playerStat.DrainageAtk(2);
+                _playerStat.AddDrainageAtk("Anger",2);
 				_playerStat.Half += 50;
                 angerParticle.gameObject.SetActive(true);
             }
@@ -88,7 +88,7 @@ namespace Acts.Characters.Player
                 {
                     anger = 0;
                     angerDecrease = false;
-                    _playerStat.DrainageAtk(-2);
+                    _playerStat.DelDrainageAtk("Anger");
 					_playerStat.Half -= 50;
                     angerParticle.gameObject.SetActive(false);
                     return;
@@ -121,7 +121,7 @@ namespace Acts.Characters.Player
             {
                 adneralineDecrease = true;
                 decreaseAdneralineTimer = decreaseTime;
-                _playerStat.DrainageAtk(1.5f);
+                _playerStat.AddDrainageAtk("Adneraline", 1.5f);
                 _playerStat.Sub(StatType.SPEED, 0.1f);
                 _playerStat.Sub(StatType.ATS, 0.2f);
                 adneralineParticle.gameObject.SetActive(true);
@@ -132,7 +132,7 @@ namespace Acts.Characters.Player
                 {
                     adneraline = 0;
                     adneralineDecrease = false;
-					_playerStat.DrainageAtk(-1.5f);
+					_playerStat.DelDrainageAtk("Adneraline");
 					_playerStat.Plus(StatType.SPEED, 0.1f);
                     _playerStat.Plus(StatType.ATS, 0.2f);
                     adneralineParticle.gameObject.SetActive(false);

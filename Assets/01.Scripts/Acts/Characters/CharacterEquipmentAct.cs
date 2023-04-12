@@ -81,7 +81,10 @@ public class CharacterEquipmentAct : Act
 	{
 		CurrentWeapon?.Equiqment(_characterController);
 	}
-
+	public override void Update()
+	{
+		CurrentWeapon?.Update();
+	}
 	/// <summary>
 	/// Weapon을 바꿀 때 쓰는 함수이다.
 	/// </summary>

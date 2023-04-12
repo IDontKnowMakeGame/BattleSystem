@@ -44,14 +44,14 @@ public class Bow : Weapon
 	public override void Equiqment(CharacterActor actor)
 	{
 		base.Equiqment(actor);
-		if (isEnemy)
-			return;
-
-		Debug.Log("?");
 		if (_sliderObject == null)
 		{
 			_sliderObject = _characterActor.transform.Find("Anchor").Find("Model").Find("SliderObject").GetComponent<SliderObject>();
 		}
+
+		if (isEnemy)
+			return;
+
 
 		InputManager<Bow>.OnAttackPress += Shoot;
 
@@ -97,6 +97,7 @@ public class Bow : Weapon
 	{
 		base.Update();
 		Charge();
+		Debug.Log("Charge");
 	}
 
 	public virtual void Shoot(Vector3 vec)
@@ -128,6 +129,7 @@ public class Bow : Weapon
 
 		_sliderObject.SliderInit(_stat.ChangeStat.ats);
 		_sliderObject.SliderActive(true);
+		Debug.Log("Shoot");
 	}
 
 	private void Charge()
@@ -135,6 +137,7 @@ public class Bow : Weapon
 		if (!_isCharge)
 			return;
 
+		Debug.Log("Charge");
 		_currentTimer += Time.deltaTime;
 		_sliderObject.SliderUp(_currentTimer);
 		if (_currentTimer >= info.Ats)

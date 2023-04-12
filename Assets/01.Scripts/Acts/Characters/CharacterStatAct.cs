@@ -8,6 +8,8 @@ using System;
 using UnityEngine;
 using Acts.Characters;
 using static UnityEngine.CullingGroup;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 
 [Serializable]
 public class CharacterStat
@@ -74,7 +76,7 @@ public class CharacterStatAct : Act
 
 			StatChange();
 
-			if (_drainageStat != 1)
+			if (_drainageAtk.Count > 0 || _percentStat > 0)
 				_changeStat.atk = (_changeStat.atk * _drainageStat) + ((_changeStat.atk * _drainageStat) * (_percentStat / 100));
 			else
 				_changeStat.atk = (_changeStat.atk * 1) + ((_changeStat.atk * 1) * (_percentStat / 100));
@@ -83,7 +85,19 @@ public class CharacterStatAct : Act
 		}
 	}
 
-	private float _drainageStat = 1;
+	private float _drainageStat
+	{
+		get
+		{
+			float value = 1;
+			foreach (var a in _drainageAtk)
+			{
+				value *= a.Value;
+			}
+
+			return value;
+		}
+	}
 	private float _percentStat = 0;
 
 	public float Half { get; set; }
@@ -91,6 +105,8 @@ public class CharacterStatAct : Act
 	private CharacterActor _actor;
 	private CharacterRender _render;
 	private CharacterEquipmentAct _eqipment;
+
+	private Dictionary<string, float> _drainageAtk = new Dictionary<string, float>();
 
 	public override void Start()
 	{
@@ -106,7 +122,26 @@ public class CharacterStatAct : Act
 		_changeStat.hp = _changeStat.maxHP;
 	}
 
-	public virtual void DrainageAtk(float plusValue) => _drainageStat *= plusValue;
+	public virtual void AddDrainageAtk(string saveName, float plusValue)
+	{
+		float repository = 0f;
+		if (_drainageAtk.TryGetValue(saveName, out repository))
+		{
+			repository *= plusValue;
+			_drainageAtk.Add(saveName, repository);
+		}
+		else
+		{
+			_drainageAtk.Add(saveName, plusValue);
+		}
+	}
+
+	public virtual void DelDrainageAtk(string saveName)
+	{
+		float repository = 0f;
+		if (_drainageAtk.TryGetValue(saveName, out repository))
+			_drainageAtk.Remove(saveName);
+	}
 	public virtual void PercentAtk(float percentValue) => _percentStat += percentValue;
 
 	public virtual void StatChange()
