@@ -60,11 +60,11 @@ public class Bow : Weapon
 
 		if (actor is PlayerActor)
 		{
-			_playerAnimation.GetClip("VerticalPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
+			_playerAnimation.GetClip("HorizontalPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
 			_playerAnimation.GetClip("UpperPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
 			_playerAnimation.GetClip("LowerPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
 			_playerAnimation.GetClip("GroundPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
-			_playerAnimation.GetClip("VerticalPull")?.SetEventOnFrame(_playerAnimation.GetClip("VerticalPull").fps - 1, SetAnimation);
+			_playerAnimation.GetClip("HorizontalPull")?.SetEventOnFrame(_playerAnimation.GetClip("HorizontalPull").fps - 1, SetAnimation);
 			_playerAnimation.GetClip("UpperPull")?.SetEventOnFrame(_playerAnimation.GetClip("UpperPull").fps - 1, SetAnimation);
 			_playerAnimation.GetClip("LowerPull")?.SetEventOnFrame(_playerAnimation.GetClip("LowerPull").fps - 1, SetAnimation);
 			_playerAnimation.GetClip("GroundPull")?.SetEventOnFrame(_playerAnimation.GetClip("GroundPull").fps - 1, SetAnimation);
@@ -77,10 +77,10 @@ public class Bow : Weapon
 		string str = isShoot ? "None" : "Use";
 
 		_playerAnimation.GetClip("Idle").ChangeClip(_playerAnimation.GetClip(str + "Idle"));
-		_playerAnimation.GetClip("VerticalMove").ChangeClip(_playerAnimation.GetClip(str + "VerticalMove"));
+		_playerAnimation.GetClip("HorizontalMove").ChangeClip(_playerAnimation.GetClip(str + "HorizontalMove"));
 		_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip(str + "UpperMove"));
 		_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip(str + "LowerMove"));
-		_playerAnimation.GetClip("VerticalCharge").ChangeClip(_playerAnimation.GetClip(str + "VerticalCharge"));
+		_playerAnimation.GetClip("HorizontalCharge").ChangeClip(_playerAnimation.GetClip(str + "HorizontalCharge"));
 		_playerAnimation.GetClip("UpperCharge").ChangeClip(_playerAnimation.GetClip(str + "UpperCharge"));
 		_playerAnimation.GetClip("LowerCharge").ChangeClip(_playerAnimation.GetClip(str + "LowerCharge"));
 
@@ -158,12 +158,12 @@ public class Bow : Weapon
 		if (dir == Vector3.left)
 		{
 			_characterActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
-			_playerAnimation.Play("VerticalCharge");
+			_playerAnimation.Play("HorizontalCharge");
 		}
 		else if (dir == Vector3.right)
 		{
 			_characterActor.SpriteTransform.localScale = new Vector3(2, 1, 1);
-			_playerAnimation.Play("VerticalCharge");
+			_playerAnimation.Play("HorizontalCharge");
 		}
 		else if (dir == Vector3.forward)
 		{
@@ -181,12 +181,12 @@ public class Bow : Weapon
 		if (dir == Vector3.left)
 		{
 			_characterActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
-			_playerAnimation.Play("VerticalShoot");
+			_playerAnimation.Play("HorizontalShoot");
 		}
 		else if (dir == Vector3.right)
 		{
 			_characterActor.SpriteTransform.localScale = new Vector3(2, 1, 1);
-			_playerAnimation.Play("VerticalShoot");
+			_playerAnimation.Play("HorizontalShoot");
 		}
 		else if (dir == Vector3.forward)
 		{

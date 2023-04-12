@@ -138,7 +138,7 @@ public class Spear : Weapon
 
 	private void DefaultAnimation()
 	{
-		_playerAnimation.GetClip("VerticalMove").ChangeClip(_playerAnimation.GetClip("DefaultVerticalMove"));
+		_playerAnimation.GetClip("HorizontalMove").ChangeClip(_playerAnimation.GetClip("DefaultHorizontalMove"));
 		_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip("DefaultUpperMove"));
 		_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip("DefaultLowerMove"));
 		_playerAnimation.GetClip("Idle").ChangeClip(_playerAnimation.GetClip("DefaultIdle"));
@@ -150,15 +150,15 @@ public class Spear : Weapon
 		{
 			InGame.Player.SpriteTransform.localScale = vec == Vector3.left ? new Vector3(2, 1, 1)
 				: new Vector3(-2, 1, 1);
-			_playerAnimation.GetClip("VerticalMove").ChangeClip(_playerAnimation.GetClip("VerticalReadyVerticalMove"));
-			_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip("VerticalReadyUpperMove"));
-			_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip("VerticalReadyLowerMove"));
-			_playerAnimation.GetClip("Idle").ChangeClip(_playerAnimation.GetClip("VerticalReadyIdle"));
-			_playerAnimation.Play("VerticalReady");
+			_playerAnimation.GetClip("HorizontalMove").ChangeClip(_playerAnimation.GetClip("HorizontalReadyHorizontalMove"));
+			_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip("HorizontalReadyUpperMove"));
+			_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip("HorizontalReadyLowerMove"));
+			_playerAnimation.GetClip("Idle").ChangeClip(_playerAnimation.GetClip("HorizontalReadyIdle"));
+			_playerAnimation.Play("HorizontalReady");
 		}
 		else if (vec == Vector3.back)
 		{
-			_playerAnimation.GetClip("VerticalMove").ChangeClip(_playerAnimation.GetClip("UpperReadyVerticalMove"));
+			_playerAnimation.GetClip("HorizontalMove").ChangeClip(_playerAnimation.GetClip("UpperReadyHorizontalMove"));
 			_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip("UpperReadyUpperMove"));
 			_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip("UpperReadyLowerMove"));
 			_playerAnimation.GetClip("Idle").ChangeClip(_playerAnimation.GetClip("UpperReadyIdle"));
@@ -166,7 +166,7 @@ public class Spear : Weapon
 		}
 		else if (vec == Vector3.forward)
 		{
-			_playerAnimation.GetClip("VerticalMove").ChangeClip(_playerAnimation.GetClip("LowerReadyVerticalMove"));
+			_playerAnimation.GetClip("HorizontalMove").ChangeClip(_playerAnimation.GetClip("LowerReadyHorizontalMove"));
 			_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip("LowerReadyUpperMove"));
 			_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip("LowerReadyLowerMove"));
 			_playerAnimation.GetClip("Idle").ChangeClip(_playerAnimation.GetClip("LowerReadyIdle"));

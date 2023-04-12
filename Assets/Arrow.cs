@@ -172,12 +172,12 @@ public class Arrow : MonoBehaviour
 		else if (-_shootVec == Vector3.left)
 		{
 			InGame.Player.SpriteTransform.localScale = new Vector3(-2, 1, 1);
-			_playerAnimation.Play("VerticalPull");
+			_playerAnimation.Play("HorizontalPull");
 		}
 		else if (-_shootVec == Vector3.right)
 		{
 			InGame.Player.SpriteTransform.localScale = new Vector3(2, 1, 1);
-			_playerAnimation.Play("VerticalPull");
+			_playerAnimation.Play("HorizontalPull");
 		}
 		else if (-_shootVec == Vector3.forward)
 		{
