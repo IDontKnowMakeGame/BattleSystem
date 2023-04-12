@@ -191,14 +191,14 @@ namespace Acts.Characters
             {
                 yield return new WaitForFixedUpdate();
                 var pos = _thisTransform.position;
-                var x = Mathf.Round(pos.x);
-                var z = Mathf.Round(pos.z);
-                if (x != pos.x)
+                var x = Mathf.RoundToInt(pos.x);
+                var z = Mathf.RoundToInt(pos.z);
+                if (Mathf.Abs(x - pos.x) != 0)
                 {
                     pos.x = x;
                 }
 
-                if (z != pos.z)
+                if (Mathf.Abs(z - pos.z) != 0)
                 {
                     pos.z = z;
                 }
