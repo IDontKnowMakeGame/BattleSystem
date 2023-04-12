@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca2b332a7b5e5447adcd7343094485c, type: 3}
   m_Name: OldGreatClips 3
   m_EditorClassIdentifier: 
-  weaponID: 7
+  weaponID: 10
   clips:
   - name: Idle
     nextIdx: -1

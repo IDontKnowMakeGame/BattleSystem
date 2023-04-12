@@ -51,7 +51,6 @@ public class Weapon : EquiqmentItem
 		{
 			_playerActor = _characterActor as PlayerActor;
 			_playerAnimation = _characterActor.GetAct<PlayerAnimation>();
-			Debug.Log(_playerAnimation);
 			LoadWeaponClassLevel();
 			LoadWeaponLevel();
 		}

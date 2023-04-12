@@ -30,24 +30,19 @@ public class SliderObject : MonoBehaviour
 		_backGroundObject = _sliders.Find((a) => a.name == "BackGround");
 		_originPos = this.transform.localPosition;
 		ActiveObjects(false);
-
-		GameManagement.Instance.GetManager<EventManager>().StartListening(EventFlag.SliderInit, SliderInit);
-		GameManagement.Instance.GetManager<EventManager>().StartListening(EventFlag.SliderUp, SliderUp);
-		GameManagement.Instance.GetManager<EventManager>().StartListening(EventFlag.SliderFalse, SliderActive);
-		GameManagement.Instance.GetManager<EventManager>().StartListening(EventFlag.PullSlider, PullSlider);
 	}
 
 	private void Update()
 	{
 		PullAnimation();
 	}
-	private void SliderInit(EventParam eventParam)
+	public void SliderInit(float maxValue)
 	{
-		_maxChargeValue = eventParam.floatParam;
+		_maxChargeValue = maxValue;
 		_slider.transform.localScale = firstSliderScale;
 		ActiveObjects(true);
 	}
-	private void SliderUp(EventParam eventParam)
+	public void SliderUp(float upValue)
 	{
 		if (_slider.transform.localScale.y >= _maxYScalevalue)
 		{
@@ -55,7 +50,7 @@ public class SliderObject : MonoBehaviour
 		}
 		else
 		{
-			_chargeValue = (eventParam.floatParam / _maxChargeValue) * 100f;
+			_chargeValue = (upValue / _maxChargeValue) * 100f;
 
 			if (float.IsInfinity(_chargeValue))
 				_chargeValue = 0;
@@ -65,13 +60,13 @@ public class SliderObject : MonoBehaviour
 		}
 	}
 
-	private void SliderActive(EventParam eventParam) => ActiveObjects(eventParam.boolParam);
+	public void SliderActive(bool active) => ActiveObjects(active);
 
-	private void PullSlider(EventParam eventParam)
+	public void PullSlider(float power, bool isPull, Color color)
 	{
-		_isPull = eventParam.boolParam;
-		_power = eventParam.floatParam;
-		_color = eventParam.color;
+		_isPull = isPull;
+		_power = power;
+		_color = color;
 
 		_backGroundObject.GetComponent<SpriteRenderer>().color = _color;
 		this.transform.localPosition = _originPos;

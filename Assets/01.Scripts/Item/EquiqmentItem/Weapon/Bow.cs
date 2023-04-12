@@ -1,20 +1,23 @@
-using Actors.Characters;  
+using Actors.Characters;
 using Core;
 using Managements.Managers;
 using UnityEngine;
 using Actors.Characters.Player;
 using Acts.Characters.Player;
+using UnityEditor.U2D.Path.GUIFramework;
+using Unity.VisualScripting;
 
 public class Bow : Weapon
 {
 	public bool isShoot = false;
-
 	private bool _isCharge = false;
+	private float _currentTimer = 0;
+
 	protected Vector3 _currentVec;
 	private Vector3 _orginVec;
 
-	private float _currentTimer = 0;
-	private EventManager _eventManager => Define.GetManager<EventManager>();
+	private SliderObject _sliderObject = null;
+
 	public override void LoadWeaponClassLevel()
 	{
 		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("Bow");
@@ -43,15 +46,22 @@ public class Bow : Weapon
 		base.Equiqment(actor);
 		if (isEnemy)
 			return;
+
+		Debug.Log("?");
+		if (_sliderObject == null)
+		{
+			_sliderObject = _characterActor.transform.Find("Anchor").Find("Model").Find("SliderObject").GetComponent<SliderObject>();
+		}
+
 		InputManager<Bow>.OnAttackPress += Shoot;
 
 		if (actor is PlayerActor)
 		{
-			_playerAnimation.GetClip("VerticalPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
+			_playerAnimation.GetClip("HorizontalPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
 			_playerAnimation.GetClip("UpperPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
 			_playerAnimation.GetClip("LowerPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
 			_playerAnimation.GetClip("GroundPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
-			_playerAnimation.GetClip("VerticalPull")?.SetEventOnFrame(_playerAnimation.GetClip("VerticalPull").fps - 1, SetAnimation);
+			_playerAnimation.GetClip("HorizontalPull")?.SetEventOnFrame(_playerAnimation.GetClip("HorizontalPull").fps - 1, SetAnimation);
 			_playerAnimation.GetClip("UpperPull")?.SetEventOnFrame(_playerAnimation.GetClip("UpperPull").fps - 1, SetAnimation);
 			_playerAnimation.GetClip("LowerPull")?.SetEventOnFrame(_playerAnimation.GetClip("LowerPull").fps - 1, SetAnimation);
 			_playerAnimation.GetClip("GroundPull")?.SetEventOnFrame(_playerAnimation.GetClip("GroundPull").fps - 1, SetAnimation);
@@ -60,14 +70,14 @@ public class Bow : Weapon
 	}
 
 	private void SetAnimation()
-    {
+	{
 		string str = isShoot ? "None" : "Use";
 
 		_playerAnimation.GetClip("Idle").ChangeClip(_playerAnimation.GetClip(str + "Idle"));
-		_playerAnimation.GetClip("VerticalMove").ChangeClip(_playerAnimation.GetClip(str + "VerticalMove"));
+		_playerAnimation.GetClip("HorizontalMove").ChangeClip(_playerAnimation.GetClip(str + "HorizontalMove"));
 		_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip(str + "UpperMove"));
 		_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip(str + "LowerMove"));
-		_playerAnimation.GetClip("VerticalCharge").ChangeClip(_playerAnimation.GetClip(str + "VerticalCharge"));
+		_playerAnimation.GetClip("HorizontalCharge").ChangeClip(_playerAnimation.GetClip(str + "HorizontalCharge"));
 		_playerAnimation.GetClip("UpperCharge").ChangeClip(_playerAnimation.GetClip(str + "UpperCharge"));
 		_playerAnimation.GetClip("LowerCharge").ChangeClip(_playerAnimation.GetClip(str + "LowerCharge"));
 
@@ -97,7 +107,7 @@ public class Bow : Weapon
 		if (isShoot)
 			return;
 
-		if (_playerActor.HasState(CharacterState.Everything))
+		if (_characterActor.HasState(CharacterState.Everything))
 			return;
 
 		_isCharge = true;
@@ -116,8 +126,8 @@ public class Bow : Weapon
 			//SetAnimation();
 		}
 
-		_eventManager.TriggerEvent(EventFlag.SliderInit, new EventParam { floatParam = _characterActor.GetAct<CharacterStatAct>().ChangeStat.ats });
-		_eventManager.TriggerEvent(EventFlag.SliderFalse, new EventParam { boolParam = true });
+		_sliderObject.SliderInit(_stat.ChangeStat.ats);
+		_sliderObject.SliderActive(true);
 	}
 
 	private void Charge()
@@ -126,7 +136,7 @@ public class Bow : Weapon
 			return;
 
 		_currentTimer += Time.deltaTime;
-		_eventManager.TriggerEvent(EventFlag.SliderUp, new EventParam { floatParam = _currentTimer });
+		_sliderObject.SliderUp(_currentTimer);
 		if (_currentTimer >= info.Ats)
 		{
 			_currentTimer = 0;
@@ -136,7 +146,7 @@ public class Bow : Weapon
 			_characterActor.AddState(CharacterState.Attack);
 			ShootAnimation(_orginVec);
 			Arrow.ShootArrow(_currentVec, _characterActor.Position, _characterActor, info.Afs, info.Atk, 6);
-			_eventManager.TriggerEvent(EventFlag.SliderFalse, new EventParam { boolParam = false });
+			_sliderObject.SliderActive(false);
 		}
 	}
 
@@ -145,12 +155,12 @@ public class Bow : Weapon
 		if (dir == Vector3.left)
 		{
 			_characterActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
-			_playerAnimation.Play("VerticalCharge");
+			_playerAnimation.Play("HorizontalCharge");
 		}
 		else if (dir == Vector3.right)
 		{
 			_characterActor.SpriteTransform.localScale = new Vector3(2, 1, 1);
-			_playerAnimation.Play("VerticalCharge");
+			_playerAnimation.Play("HorizontalCharge");
 		}
 		else if (dir == Vector3.forward)
 		{
@@ -168,12 +178,12 @@ public class Bow : Weapon
 		if (dir == Vector3.left)
 		{
 			_characterActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
-			_playerAnimation.Play("VerticalShoot");
+			_playerAnimation.Play("HorizontalShoot");
 		}
 		else if (dir == Vector3.right)
 		{
 			_characterActor.SpriteTransform.localScale = new Vector3(2, 1, 1);
-			_playerAnimation.Play("VerticalShoot");
+			_playerAnimation.Play("HorizontalShoot");
 		}
 		else if (dir == Vector3.forward)
 		{

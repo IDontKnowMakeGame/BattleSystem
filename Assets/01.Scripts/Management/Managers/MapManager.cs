@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Actors.Bases;
+using Actors.Characters;
 using Blocks;
 using Blocks.Acts;
 using UnityEngine;
@@ -22,10 +23,18 @@ namespace Managements.Managers
             return _mapDict[pos];
         }
         
-        public void AttackBlock(Vector3 pos, float damage, float delay, Actor attacker, MovementType shakeType = MovementType.None,bool isLast = false, float strength = 0.5f)
+        public void AttackBlock(Vector3 pos, float damage, float delay, CharacterActor attacker, MovementType shakeType = MovementType.None,bool isLast = false, float strength = 0.5f)
         {
             if (!_mapDict.ContainsKey(pos))
                 return;
+            if (isLast)
+            {
+                attacker.AddState(CharacterState.Attack);
+            }
+            else
+            {
+                attacker.AddState(CharacterState.Hold);
+            }
             //Debug.Log("?");
             _mapDict[pos].Attack(damage, Color.red, delay, attacker, shakeType, isLast, strength);
         }

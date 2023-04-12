@@ -19,6 +19,7 @@ namespace Actors.Characters
         StopMove = 1 << 4,              
         Stun = 1 << 5,
         Equip = 1 << 6,
+        NuckBack = 1<<7, 
         Everything = ~None,
     }
     public class CharacterActor : Actor

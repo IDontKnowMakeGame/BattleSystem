@@ -12,149 +12,152 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca2b332a7b5e5447adcd7343094485c, type: 3}
   m_Name: OldSpearClips
   m_EditorClassIdentifier: 
+  type: Player
+  actorName: Weapon
   weaponID: 4
+  weaponName: Old_Spear
   clips:
   - name: Idle
     nextIdx: -1
-    texture: {fileID: 2800000, guid: a7900225c3316d84a99296034ef23c59, type: 3}
+    texture: {fileID: 0}
     fps: 8
     isLoop: 1
     delay: 0.1
-  - name: VerticalMove
+  - name: HorizontalMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: a04d5cfcd85f418489be1b49448a2d54, type: 3}
+    texture: {fileID: 0}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: UpperMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: a8d1ea8072c349541b4659d2b56eb4c6, type: 3}
+    texture: {fileID: 0}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: LowerMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 9716e081d0c2a2d43b350b33db38fcc7, type: 3}
+    texture: {fileID: 0}
     fps: 6
     isLoop: 1
     delay: 0.1
-  - name: DefaultVerticalMove
+  - name: DefaultHorizontalMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: a04d5cfcd85f418489be1b49448a2d54, type: 3}
+    texture: {fileID: 2800000, guid: 2c11149196660d64b9c573f99fd301a9, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: DefaultUpperMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: a8d1ea8072c349541b4659d2b56eb4c6, type: 3}
+    texture: {fileID: 2800000, guid: 32d131af7e533564197711b3b04dc805, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: DefaultLowerMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 9716e081d0c2a2d43b350b33db38fcc7, type: 3}
+    texture: {fileID: 2800000, guid: 8343f13f56f20d84aaf69f45a63db77a, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
-  - name: VerticalReadyVerticalMove
+  - name: HorizontalReadyHorizontalMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 35a6700f0b31dca4ababd24bb9052d06, type: 3}
+    texture: {fileID: 2800000, guid: 28cdbbf7bb76af642931a0782cf21560, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
-  - name: VerticalReadyUpperMove
+  - name: HorizontalReadyUpperMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: bf86a26161f2f614893cd725d1e1a3b9, type: 3}
+    texture: {fileID: 2800000, guid: af65ad2806dbe76469c9cfbdc43bd83a, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
-  - name: VerticalReadyLowerMove
+  - name: HorizontalReadyLowerMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: dcef7eae410b2464d9381ab15a6df211, type: 3}
+    texture: {fileID: 2800000, guid: 26e07599f0237f1439c04db949900fea, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
-  - name: UpperReadyVerticalMove
+  - name: UpperReadyHorizontalMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 7fd393e1d0fd2a84dbe4cb4ac54fb4ed, type: 3}
+    texture: {fileID: 2800000, guid: 287f09c0e535a56459d17868cec8b821, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: UpperReadyUpperMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 7ae641f5b39557645865e032beee5883, type: 3}
+    texture: {fileID: 2800000, guid: 9beebc9a42d86d84c9fba0b90e79b8ce, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: UpperReadyLowerMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: d89bac9e8d75cf142b5e7265c001987e, type: 3}
+    texture: {fileID: 2800000, guid: fba707609bff8764fb98227bcbe2ce0f, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
-  - name: LowerReadyVerticalMove
+  - name: LowerReadyHorizontalMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 328aaf23b940e3c45875aa7a2abac936, type: 3}
+    texture: {fileID: 2800000, guid: bf3c54c754cfff448b60dd7690fa7192, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: LowerReadyUpperMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: dc2f94bf6ec59ac45a3efc75bf588cfe, type: 3}
+    texture: {fileID: 2800000, guid: 6719c829d40ba334781f19fb175e130c, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: LowerReadyLowerMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: a8e49b52ef991364ba223080c0d4331f, type: 3}
+    texture: {fileID: 2800000, guid: 138dba509dff62f43b1c24596e6ab7ff, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: DefaultIdle
     nextIdx: -1
-    texture: {fileID: 2800000, guid: a7900225c3316d84a99296034ef23c59, type: 3}
+    texture: {fileID: 2800000, guid: 4ba929fd0f0b95f48944b481700ac0a4, type: 3}
     fps: 8
     isLoop: 1
     delay: 0.1
-  - name: VerticalReadyIdle
+  - name: HorizontalReadyIdle
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 6de28a8a9862ea8469d6dc940ca927e7, type: 3}
+    texture: {fileID: 2800000, guid: 6c9828c9f96691146a17c50ce87a5f97, type: 3}
     fps: 8
     isLoop: 1
     delay: 0.1
   - name: UpperReadyIdle
     nextIdx: -1
-    texture: {fileID: 2800000, guid: f9f4520f6d1266549931b6076251bbec, type: 3}
+    texture: {fileID: 2800000, guid: 103a9f8b191d82844a086e621f3f30d0, type: 3}
     fps: 8
     isLoop: 1
     delay: 0.1
   - name: LowerReadyIdle
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 977ab2a43bfdb1443bac3b5700c03248, type: 3}
+    texture: {fileID: 2800000, guid: c54a0b1160cb9a344a5a98f3cac3f2b0, type: 3}
     fps: 8
     isLoop: 1
     delay: 0.1
   - name: Equip
     nextIdx: 0
-    texture: {fileID: 2800000, guid: ed64f7372be96444292aaa393ee9e278, type: 3}
+    texture: {fileID: 2800000, guid: 7c04d9b9487db884a9f84c163073b6f4, type: 3}
     fps: 11
     isLoop: 0
     delay: 0.1
-  - name: VerticalReady
+  - name: HorizontalReady
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 7dd595bbd25ee204b9c353d86535ee86, type: 3}
+    texture: {fileID: 2800000, guid: f803185523ff40d4e9d924a5b4a477ee, type: 3}
     fps: 6
     isLoop: 0
     delay: 0.05
   - name: UpperReady
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 9d08e2abf5d4a6e4292c39c7580d8c10, type: 3}
+    texture: {fileID: 2800000, guid: b7bb0d8276006d6498b8baafec848123, type: 3}
     fps: 6
     isLoop: 0
     delay: 0.05
   - name: LowerReady
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 5599c82906a320a4ebae1aa5801dc641, type: 3}
+    texture: {fileID: 2800000, guid: b32409f881db22046b2f1b3f3d37540a, type: 3}
     fps: 6
     isLoop: 0
     delay: 0.05

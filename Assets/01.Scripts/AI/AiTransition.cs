@@ -18,6 +18,7 @@ namespace AI
         [ContextMenuItem("Add Life Condition", "AddLifeCondition")]
         [ContextMenuItem("Add Block Condition", "AddBlockCondition")]
         [ContextMenuItem("Add Line Condition", "AddLineCondition")]
+        [ContextMenuItem("Add Circle Condition", "AddCircleCondition")]
         [SerializeReference]
         public List<AiCondition> _conditions = new();
         private Type _nextState;
@@ -102,6 +103,13 @@ namespace AI
         {
             var condition = new LineCondition();
             condition.Type = Condition.LineCondition;
+            _conditions.Add(condition);
+        }
+        
+        public void AddCircleCondition()
+        {
+            var condition = new CircleCondition();
+            condition.Type = Condition.CircleCondition;
             _conditions.Add(condition);
         }
     }

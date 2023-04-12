@@ -21,11 +21,10 @@ public class CharacterEquipmentAct : Act
 			if (_firstWeapon == ItemID.None)
 				return null;
 
-
 			_useWeapon.TryGetValue(_firstWeapon, out _characterController.currentWeapon);
 			if (_characterController.currentWeapon == null)
 			{
-				var weapon = Define.GetManager<ItemManager>().weapons[_firstWeapon];
+				Weapon weapon = Define.GetManager<ItemManager>().weapons[_firstWeapon];
 				var clone = ObjectExtensions.Copy(weapon);
 				_useWeapon.Add(_firstWeapon, clone);
 				_characterController.currentWeapon = _useWeapon[_firstWeapon];
