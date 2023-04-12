@@ -3,6 +3,7 @@ using System.Reflection;
 using Acts.Base;
 using Core;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace Walls.Acts
 {
@@ -21,6 +22,11 @@ namespace Walls.Acts
         {
             renderer = ThisActor.GetComponentInChildren<Renderer>();
             thisMaterial = renderer.material;
+            thisMaterial.SetFloat(SizeId, 0);
+        }
+
+        public override void Update()
+        {
             thisMaterial.SetFloat(SizeId, 0);
         }
 
