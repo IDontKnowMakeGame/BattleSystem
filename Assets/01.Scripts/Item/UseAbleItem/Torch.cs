@@ -6,13 +6,6 @@ using Core;
 
 public class Torch : UseAbleItem
 {
-    PlayerUseAbleItem playerUseAbleItem = null;
-
-    public Torch(PlayerUseAbleItem _playerUseAbleItem)
-    {
-        playerUseAbleItem = _playerUseAbleItem;
-    }
-
     public override void UseItem()
     {
         // To Do Pooling.
