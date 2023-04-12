@@ -19,7 +19,7 @@ public class CharacterStat
 	public float afs;
 	public float speed;
 
-	public CharacterStat ChangeStat (ItemInfo info)
+	public CharacterStat ChangeStat(ItemInfo info)
 	{
 		this.atk = info.Atk;
 		this.ats = info.Ats;
@@ -73,7 +73,11 @@ public class CharacterStatAct : Act
 			}
 
 			StatChange();
-			_changeStat.atk = (_changeStat.atk * _drainageStat) + ((_changeStat.atk * _drainageStat) * (_percentStat / 100));
+
+			if (_drainageStat != 1)
+				_changeStat.atk = (_changeStat.atk * _drainageStat) + ((_changeStat.atk * _drainageStat) * (_percentStat / 100));
+			else
+				_changeStat.atk = (_changeStat.atk * 1) + ((_changeStat.atk * 1) * (_percentStat / 100));
 
 			return _changeStat;
 		}
@@ -102,7 +106,7 @@ public class CharacterStatAct : Act
 		_changeStat.hp = _changeStat.maxHP;
 	}
 
-	public virtual void DrainageAtk(float plusValue) => _drainageStat += plusValue;
+	public virtual void DrainageAtk(float plusValue) => _drainageStat *= plusValue;
 	public virtual void PercentAtk(float percentValue) => _percentStat += percentValue;
 
 	public virtual void StatChange()
@@ -138,7 +142,7 @@ public class CharacterStatAct : Act
 	}
 
 	public int PercentHP()
-    {
+	{
 		return (int)((ChangeStat.hp / ChangeStat.maxHP) * 100);
 	}
 
@@ -155,7 +159,7 @@ public class CharacterStatAct : Act
 		particleAnchorTrm.rotation = rotation;
 		particleModelTrm.localScale = scale;
 		particle.transform.SetParent(null);
-		
+
 		ThisActor.gameObject.SetActive(false);
 	}
 

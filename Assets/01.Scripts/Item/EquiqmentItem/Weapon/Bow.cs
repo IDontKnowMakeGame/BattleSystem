@@ -50,10 +50,7 @@ public class Bow : Weapon
 		Debug.Log("?");
 		if (_sliderObject == null)
 		{
-			Debug.Log(_characterActor.transform.Find("Model"));
-			Debug.Log(_characterActor.transform.Find("Model").Find("SliderObject"));
-			Debug.Log(_characterActor.transform.Find("Model").Find("SliderObject").GetComponent<SliderObject>());
-			_sliderObject = _characterActor.transform.Find("Model").Find("SliderObject").GetComponent<SliderObject>();
+			_sliderObject = _characterActor.transform.Find("Anchor").Find("Model").Find("SliderObject").GetComponent<SliderObject>();
 		}
 
 		InputManager<Bow>.OnAttackPress += Shoot;
