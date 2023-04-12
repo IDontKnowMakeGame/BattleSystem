@@ -86,7 +86,7 @@ public class CameraEffecter : MonoBehaviour
     
     public LayerMask Mask;
 
-    private void Update()
+    private void LateUpdate()
     {
         if(InGame.Player == null) return;
         var playerPos = InGame.Player.transform.position;
