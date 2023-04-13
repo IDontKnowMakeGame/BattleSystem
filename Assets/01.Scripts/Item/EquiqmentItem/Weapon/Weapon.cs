@@ -149,10 +149,8 @@ public class Weapon : EquiqmentItem
 	private IEnumerator WaitAttack()
 	{
 		_attakAble = false;
-		Debug.Log(_attakAble);
 		yield return new WaitForSeconds(info.Afs);
 		_attakAble = true;
-		Debug.Log(_attakAble);
 	}
 	protected int KillToLevel(int count) => count switch
 	{
