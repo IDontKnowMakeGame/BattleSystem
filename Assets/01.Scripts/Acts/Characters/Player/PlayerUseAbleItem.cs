@@ -4,6 +4,7 @@ using UnityEngine;
 using Acts.Base;
 using Data;
 using Managements.Managers;
+using Core;
 
 namespace Acts.Characters.Player
 {
@@ -20,8 +21,6 @@ namespace Acts.Characters.Player
 
         private Dictionary<ItemID, UseAbleItem> useAbleItems = new Dictionary<ItemID, UseAbleItem>();
 
-        private Dictionary<int, ItemID> keyItems = new Dictionary<int, ItemID>();
-
 
         public override void Start()
         {
@@ -35,21 +34,19 @@ namespace Acts.Characters.Player
             useAbleItems.Add(ItemID.Shield, _shieldItem);
             useAbleItems.Add(ItemID.HPPotion, _hpPotion);
 
-            keyItems.Add(1, ItemID.HPPotion);
-            keyItems.Add(2, ItemID.Shield);
-            keyItems.Add(3, ItemID.Torch);
-
-            InputManager<Weapon>.OnItemPress += ChckItem;
+            InputManager<Weapon>.OnItemPress += CheckItem;
 
             _hpPotion.SettingItem();
             _shieldItem.SettingItem();
             _torchItem.SettingItem();
         }
 
-        private void ChckItem(int itemKey)
+        private void CheckItem(int itemKey)
         {
-            ItemID currentID = ItemID.None;
-            if(keyItems.TryGetValue(itemKey, out currentID))
+            List<SaveItemData> allItems = Define.GetManager<DataManager>().LoadUsableItemFromInventory();
+            ItemID currentID = allItems[itemKey].id;
+
+            if(currentID != ItemID.None)
             {
                 useAbleItems[currentID].UseItem();
             }
