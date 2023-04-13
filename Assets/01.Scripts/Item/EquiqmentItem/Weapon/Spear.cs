@@ -81,6 +81,7 @@ public class Spear : Weapon
 			return;
 		InputManager<Spear>.OnAttackPress -= Attack;
 		InputManager<Spear>.OnMovePress -= CurrentBool;
+		PlayerMove.OnMoveEnd -= MoveEnd;
 		_isCurrentVec = false;
 		_isAttack = false;
         _isDown = false;
@@ -194,7 +195,8 @@ public class Spear : Weapon
 
 		Vector3 vector = InGame.CamDirCheck(vec);
 
-
+		if (vector != InGame.CamDirCheck(_currentVec))
+			return;
 		for(int i =range; i<range+2; i++)
 		{
 			if (_mapManager.GetBlock(_characterActor.Position + vector * i)?.ActorOnBlock)
