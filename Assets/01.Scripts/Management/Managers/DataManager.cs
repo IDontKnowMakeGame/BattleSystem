@@ -179,6 +179,16 @@ public class DataManager : Manager
     {
         return UserData_.equipUseableItem;
     }
+    public List<ItemID> LoadUsableItemList()
+    {
+        List<ItemID> list = new List<ItemID>();
+        list.Add(UserData_.equipUseableItem.first);
+        list.Add(UserData_.equipUseableItem.second);
+        list.Add(UserData_.equipUseableItem.third);
+        list.Add(UserData_.equipUseableItem.fourth);
+        list.Add(UserData_.equipUseableItem.fifth);
+        return list;
+    }
     #endregion
 
     #region SavePointData
