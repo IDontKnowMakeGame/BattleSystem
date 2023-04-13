@@ -61,4 +61,6 @@ sysinfo.txt
 crashlytics-build.properties
 
 *.meta
-*.meta
+!/[Aa]ssets/ProjectAsset/**/*.meta
+!/[Aa]ssets/_TerrainAutoUpgrade/**/*.meta
+!/[Aa]ssets/08.SO/**/*.meta
