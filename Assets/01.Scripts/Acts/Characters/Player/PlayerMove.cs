@@ -28,6 +28,7 @@ namespace Acts.Characters.Player
         {         
             base.Awake();
             InputManager<Weapon>.OnMovePress += Translate;
+            Debug.Log("?");
         }
 
         public override void Start()

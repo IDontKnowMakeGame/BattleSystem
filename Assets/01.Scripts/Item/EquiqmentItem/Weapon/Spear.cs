@@ -7,6 +7,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using Acts.Characters.Player;
+using Acts.Characters;
 
 public class Spear : Weapon
 {
@@ -70,7 +71,7 @@ public class Spear : Weapon
 
 		InputManager<Spear>.OnAttackPress += Attack;
 		InputManager<Spear>.OnMovePress += CurrentBool;
-		PlayerMove.OnMoveEnd += MoveEnd;
+		CharacterMove.OnMoveEnd += MoveEnd;
 
 		DefaultAnimation();
 	}
@@ -79,9 +80,9 @@ public class Spear : Weapon
 		base.UnEquipment(actor);
 		if (isEnemy)
 			return;
+
 		InputManager<Spear>.OnAttackPress -= Attack;
 		InputManager<Spear>.OnMovePress -= CurrentBool;
-		PlayerMove.OnMoveEnd -= MoveEnd;
 		_isCurrentVec = false;
 		_isAttack = false;
         _isDown = false;
@@ -95,15 +96,15 @@ public class Spear : Weapon
 		bool isEnemy = false;
 		for (int i = 1; i <= range; i++)
 		{
-			if (_mapManager.GetBlock(_characterActor.Position + _currentVec * i)?.ActorOnBlock)
+			if (_mapManager.GetBlock(_characterActor.Position + _currentVec * i)?.ActorOnBlock != null)
 				isEnemy = true;
 		}
-
 		if (_isDown && _isEnterEnemy && isEnemy && (_isCurrentVec || (!_isClick && !_characterActor.HasState(CharacterState.Move))))
 		{
 			_eventParam.attackParam = _attackInfo;
-			Define.GetManager<EventManager>().TriggerEvent(EventFlag.FureAttack, _eventParam);
+			_isCurrentVec = false;
 			_isEnterEnemy = false;
+			Define.GetManager<EventManager>().TriggerEvent(EventFlag.FureAttack, _eventParam);
 		}
 		else if (!_isEnterEnemy && !isEnemy)
 			_isEnterEnemy = true;
@@ -195,9 +196,13 @@ public class Spear : Weapon
 
 		Vector3 vector = InGame.CamDirCheck(vec);
 
-		if (vector != InGame.CamDirCheck(_currentVec))
+		if (vector != _currentVec)
+		{
+			_isCurrentVec = false;
 			return;
-		for(int i =range; i<range+2; i++)
+		}
+
+		for (int i =range; i<range+2; i++)
 		{
 			if (_mapManager.GetBlock(_characterActor.Position + vector * i)?.ActorOnBlock)
 			{
@@ -211,6 +216,7 @@ public class Spear : Weapon
 
 	private void MoveEnd(int id, Vector3 vec)
 	{
+		Debug.Log(_isClick);
 		if (id != _characterActor.UUID)
 			return;
 

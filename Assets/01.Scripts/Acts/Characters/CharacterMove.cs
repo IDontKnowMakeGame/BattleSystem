@@ -17,7 +17,7 @@ namespace Acts.Characters
     public class CharacterMove : Act
     {
         private Transform _thisTransform;
-        public static event Action<int, Vector3> OnMoveEnd;
+        public static event Action<int, Vector3> OnMoveEnd = null;
         protected bool _isMoving = false;
         private Vector3 dir;
         private CharacterActor _character => ThisActor as CharacterActor;
@@ -28,8 +28,6 @@ namespace Acts.Characters
         public override void Awake()
         {
             _thisTransform = ThisActor.transform;
-
-            OnMoveEnd = null;
         }
 
         public virtual void Translate(Vector3 direction)
