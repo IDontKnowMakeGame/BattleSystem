@@ -44,7 +44,7 @@ namespace Walls.Acts
         public void Invisible()
         {
             thisMaterial.SetFloat(SizeId, Size);
-            Debug.Log(2);
+            //Debug.Log(2);
         }
     }
 }
