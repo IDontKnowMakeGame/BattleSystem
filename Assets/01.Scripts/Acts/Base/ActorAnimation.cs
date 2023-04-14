@@ -41,6 +41,7 @@ namespace Acts.Characters
                 {
                     index = -1;
                     isFinished = true;
+                    curClip.OnExit?.Invoke();
                     break;
                 }
 

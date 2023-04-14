@@ -42,5 +42,18 @@ namespace Acts.Characters.Enemy
             curClip = curClips.Clips[idx];
             currentCoroutine = ThisActor.StartCoroutine(AnimationPlay());
         }
+        
+        public ClipBase GetClip(string name)
+        {
+            var clips = curClips.Clips;
+            
+            for (int i = 0; i < clips.Count; i++)
+            {
+                if (clips[i].name == name)
+                    return clips[i];
+            }
+
+            return null;
+        }
     }
 }

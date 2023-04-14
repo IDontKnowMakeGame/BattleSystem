@@ -147,14 +147,23 @@ namespace Acts.Characters
             });
         }
 
-        public virtual void Jump(Vector3 position)
+        public virtual void Jump(Vector3 dir, int distance)
         {
             if (_isMoving) return;
             var seq = DOTween.Sequence();
             var currentPos = ThisActor.Position;
-            var nextPos = position;
-            nextPos.y = 1;
-            
+            int i = distance;
+            var nextPos = ThisActor.Position + dir * distance;
+            while (i > 0)
+            {
+                nextPos = ThisActor.Position + dir * i;
+                nextPos.y = 1;
+                var nextBlock = InGame.GetBlock(nextPos.SetY(0));
+                if(nextBlock != null)
+                        break;
+                i--;
+            }
+
             var map = Define.GetManager<MapManager>();
 
             if (!map.IsStayable(nextPos.SetY(0)))
