@@ -102,7 +102,6 @@ namespace Core
             var block = Define.GetManager<MapManager>().GetBlock(position);
             if (block == null)
             {
-                Debug.LogError($"Block {position} is not in this Map.");
                 return null;
             }
             return block;

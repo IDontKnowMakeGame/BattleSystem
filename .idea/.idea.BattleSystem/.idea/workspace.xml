@@ -2,11 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/States/SoulAttackState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Walls/Acts/WallRender.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Walls/Acts/WallRender.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/BesideCondition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/BesideCondition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/CrazyGhost/CrazyGhostActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/CrazyGhost/CrazyGhostActor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/EnemyActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/EnemyActor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Base/ActorAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Base/ActorAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterMove.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/Boss/CrazyGhost/CrazyGhostAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/Boss/CrazyGhost/CrazyGhostAttack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAttack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Animation/ClipBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Animation/ClipBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Core/Define.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Core/Define.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/Boss/BossClips.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/Boss/BossClips.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Horizontal_BackStep.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Horizontal_ComboAttack1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Horizontal_ComboAttack2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Horizontal_ComboAttack3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Horizontal_JumpAttack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Horizontal_Move.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_JumpAttack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Lower_BackStep.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Lower_ComboAttack1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Lower_ComboAttack2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Lower_ComboAttack3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Lower_JumpAttack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Lower_Move.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_SoulAttack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_SoulAttack_StunDelay_.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Upper_BackStep.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Upper_ComboAttack1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Upper_ComboAttack2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Upper_ComboAttack3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Upper_Move.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/Idle.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/KHJScene 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/KHJScene 1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,6 +164,8 @@
       <workItem from="1680532868476" duration="12615000" />
       <workItem from="1680600462713" duration="6013000" />
       <workItem from="1680618274018" duration="3327000" />
+      <workItem from="1681399298136" duration="5432000" />
+      <workItem from="1681450093395" duration="3550000" />
     </task>
     <servers />
   </component>
@@ -150,26 +182,26 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterStatAct.cs</url>
-          <line>174</line>
+          <line>209</line>
           <properties documentPath="D:\Github\BattleSystem\Assets\01.Scripts\Acts\Characters\CharacterStatAct.cs" initialLine="154" containingFunctionPresentation="method 'Dev'">
             <startOffsets>
-              <option value="3554" />
+              <option value="4236" />
             </startOffsets>
             <endOffsets>
-              <option value="3578" />
+              <option value="4260" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/01.Scripts/Acts/Base/ActorAnimation.cs</url>
-          <line>85</line>
+          <line>86</line>
           <properties documentPath="D:\Github\BattleSystem\Assets\01.Scripts\Acts\Base\ActorAnimation.cs" initialLine="85" containingFunctionPresentation="method 'Play'">
             <startOffsets>
-              <option value="2565" />
+              <option value="2611" />
             </startOffsets>
             <endOffsets>
-              <option value="2566" />
+              <option value="2612" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="4" />

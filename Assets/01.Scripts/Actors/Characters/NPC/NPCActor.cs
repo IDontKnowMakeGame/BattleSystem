@@ -9,7 +9,7 @@ using Managements.Managers;
 
 namespace Actors.Characters.NPC
 {
-    public class NPCActor : CharacterActor
+    public class NPCActor : InteractionActor
     {
         [SerializeField] 
         private NPCAnimation _npcAnimation;
@@ -18,16 +18,6 @@ namespace Actors.Characters.NPC
         {
             base.Init();
             AddAct(_npcAnimation);
-
-            InputManager<Weapon>.OnInteractionPress += Interact;
-
-        }
-
-        public virtual void Interact()
-        {
-            if (InGame.Player.Position.IsNeighbor(Position) == false) return;
-            
-            //TODO : 상호작용
         }
     }
 }

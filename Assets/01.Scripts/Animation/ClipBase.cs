@@ -14,6 +14,7 @@ namespace Tools
         public bool isLoop;
         public float delay;
         public List<Action> events = null;
+        public Action OnExit;
 
         public void SetEventOnFrame(int frame, Action action)
         {
@@ -27,7 +28,7 @@ namespace Tools
             }
             events[frame] = action;
         }
-        
+
         public void ClearEvent()
         {
             events = new();
