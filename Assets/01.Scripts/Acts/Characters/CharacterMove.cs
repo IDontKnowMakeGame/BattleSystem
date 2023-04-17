@@ -25,9 +25,12 @@ namespace Acts.Characters
         [SerializeField]
         private float defaultSpeed = 0;
 
+        private IEnumerator _positionUpdateCoroutine;
+
         public override void Awake()
         {
             _thisTransform = ThisActor.transform;
+            
         }
 
         public virtual void Translate(Vector3 direction)
@@ -60,7 +63,7 @@ namespace Acts.Characters
             dir = (currentPos - nextPos).SetY(0);
             MoveBackAnimation();
 
-            ThisActor.StartCoroutine(PositionUpdateCoroutine(nextPos));
+            PositionUpdate(nextPos);
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
             seq.Append(_thisTransform.DOMove(nextPos, speed - defaultSpeed).SetEase(Ease.Linear));
             seq.AppendCallback(() =>
@@ -132,7 +135,7 @@ namespace Acts.Characters
             dir = (currentPos - nextPos).SetY(0);
             AnimationCheck();
 
-            ThisActor.StartCoroutine(PositionUpdateCoroutine(nextPos));
+            PositionUpdate(nextPos);
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
             seq.Append(_thisTransform.DOMove(nextPos, speed - defaultSpeed).SetEase(Ease.Linear));
             seq.AppendCallback(() =>
@@ -145,16 +148,16 @@ namespace Acts.Characters
             });
         }
 
-        public virtual void Jump(Vector3 dir, int distance)
+        public virtual void Jump(Vector3 originPos, Vector3 dir, int distance)
         {
             if (_isMoving) return;
             var seq = DOTween.Sequence();
-            var currentPos = ThisActor.Position;
+            var currentPos = originPos;
             int i = distance;
-            var nextPos = ThisActor.Position + dir * distance;
+            var nextPos = originPos + dir * distance;
             while (i > 0)
             {
-                nextPos = ThisActor.Position + dir * i;
+                nextPos = originPos + dir * i;
                 nextPos.y = 1;
                 var nextBlock = InGame.GetBlock(nextPos.SetY(0));
                 if(nextBlock != null)
@@ -167,6 +170,7 @@ namespace Acts.Characters
             if (!map.IsStayable(nextPos.SetY(0)))
             {
                 MoveStop();
+                Debug.Log(1);
                 return;
             }
 
@@ -174,19 +178,26 @@ namespace Acts.Characters
             if(block.CheckActorOnBlock(ThisActor) == false) return;
             _character.AddState(Actors.Characters.CharacterState.Move);
 
-            ThisActor.StartCoroutine(PositionUpdateCoroutine(nextPos));
+            PositionUpdate(nextPos);
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
 
             seq.Append(_thisTransform.DOJump(nextPos, 1, 1, speed));
             seq.AppendCallback(() =>
             {
-                ThisActor.Position = nextPos;
+                originPos = nextPos;
                 _isMoving = false;
                 MoveStop();
                 seq.Kill();
             });
         }
-        
+
+        public void PositionUpdate(Vector3 nextPos)
+        {
+            if(_positionUpdateCoroutine != null)
+                ThisActor.StopCoroutine(_positionUpdateCoroutine);
+            _positionUpdateCoroutine = PositionUpdateCoroutine(nextPos);
+            ThisActor.StartCoroutine(_positionUpdateCoroutine);
+        }
         public IEnumerator PositionUpdateCoroutine(Vector3 nextPos)
         {
             _isMoving = true;
@@ -215,6 +226,7 @@ namespace Acts.Characters
 
             block.isMoving = false;
             var dir = ThisActor.Position - originPos;
+            _positionUpdateCoroutine = null;
         }
 
         public void Chase(Actor target)
@@ -223,6 +235,7 @@ namespace Acts.Characters
             ThisActor.StartCoroutine(AstarCoroutine(target.Position));
         }
 
+        Astar astar = new Astar();
         private IEnumerator AstarCoroutine(Vector3 end)
         {
             if (InGame.GetBlock(end).isWalkable == false)
@@ -231,10 +244,11 @@ namespace Acts.Characters
                 yield break;
             }
             _character.AddState(CharacterState.Move);
-            var astar = new Astar();
+        
             astar.SetPath(ThisActor.Position, end);
             ThisActor.StartCoroutine(astar.FindPath());
             yield return new WaitUntil(astar.IsFinished);
+            
             var nextBlock = astar.GetNextPath();
             if (nextBlock == null)
             {
@@ -248,7 +262,6 @@ namespace Acts.Characters
         {
             dir = dir.normalized;
             var animation = ThisActor.GetAct<EnemyAnimation>();
-            Debug.Log(dir);
             if (dir == Vector3.forward)
             {
                 animation.Play("UpperMove");
