@@ -31,17 +31,56 @@ namespace Actors.Characters.Enemy.CrazyGhost
             var chase = _enemyAi.GetState<ChaseState>();
             var pattern = _enemyAi.GetState<PatternState>();
             var soulAttack = _enemyAi.GetState<SoulAttackState>();
+            var jump = _enemyAi.GetState<JumpState>();
+            var triple = _enemyAi.GetState<TripleState>();
             chase.OnStay += () => { move.Chase(InGame.Player); };
             pattern.RandomActions.Add(() =>
             {
                 var playerPos = InGame.Player.Position;
-                Attack("LowerSlash", () => { attack.HorizontalAttack(playerPos); });
+                var dir = (Position - playerPos).GetDirection();
+                Attack(dir, "Slash", () => { attack.HorizontalAttack(playerPos, false); });
             });
             pattern.RandomActions.Add(() =>
             {
                 var playerPos = InGame.Player.Position;
-                Attack("LowerPierce", () => { attack.VerticalAttack(playerPos); });
+                var dir = (Position - playerPos).GetDirection();
+                Attack(dir,"Pierce", () => { attack.VerticalAttack(playerPos, false); });
             });
+            jump.OnEnter = () =>
+            {
+                var playerPos = InGame.Player.Position;
+                var dir = (Position - playerPos).GetDirection();
+                AddState(CharacterState.Attack);
+                var jumpClip = _enemyAnimation.GetClip("JumpAttackJump");
+                _enemyAnimation.Play("JumpAttackJump");
+                move.Jump(playerPos, -dir, 1);
+                jumpClip.OnExit += () =>
+                {
+                    Attack(Vector3.zero, "JumpAttack", () => { attack.ForwardAttack(playerPos, false); });
+                };
+            };
+            triple.OnEnter = () =>
+            {
+                var playerPos = InGame.Player.Position;
+                var dir = (Position - playerPos).GetDirection();
+                AddState(CharacterState.Attack);
+                AttackWithNoReturn("LowerCombo1", () =>
+                {
+                    attack.HorizontalAttack(playerPos, false);
+                }, () =>
+                {
+                    AttackWithNoReturn("LowerCombo2", () =>
+                    {
+                        attack.VerticalAttack(playerPos, false);
+                    }, () =>
+                    {
+                        Attack(dir,"Combo3", () =>
+                        {
+                            attack.ForwardAttack(playerPos, false);
+                        });
+                    });
+                });
+            };
             soulAttack.OnEnter = () =>
             {
                 AddState(CharacterState.Attack);
@@ -52,7 +91,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 move.Jump(playerPos, dir, 3);
                 jumpClip.OnExit += () =>
                 {
-                    Attack("SoulAttack", () => { attack.SoulAttack(playerPos); });
+                    Attack(Vector3.zero,"SoulAttack", () => { attack.SoulAttack(playerPos); });
                 };
             };
         }

@@ -9,7 +9,7 @@ namespace AI.States
 
         public override void Init()
         {
-            Name = "Random";
+            Name = "Pattern";
             base.Init();
             OnEnter = RandomAction;
         }
