@@ -58,7 +58,6 @@ public class PlayerEquipment : CharacterEquipmentAct
 		base.OnDisable();
 	}
 	#endregion
-
 	#region Weapon
 	public void WeaponOnOff()
 	{
