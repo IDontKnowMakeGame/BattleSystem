@@ -2,40 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/States/SoulAttackState.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/MoveConditions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/BesideCondition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/BesideCondition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/AiCondition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/AiCondition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/AiTransition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/AiTransition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AStar/AStar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AStar/AStar.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/CrazyGhost/CrazyGhostActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/CrazyGhost/CrazyGhostActor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/EnemyActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/EnemyActor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Base/ActorAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Base/ActorAnimation.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterMove.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/Boss/CrazyGhost/CrazyGhostAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/Boss/CrazyGhost/CrazyGhostAttack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAnimation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAttack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Animation/ClipBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Animation/ClipBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Core/Define.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Core/Define.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/Boss/BossClips.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/Boss/BossClips.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Horizontal_BackStep.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Horizontal_ComboAttack1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Horizontal_ComboAttack2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Horizontal_ComboAttack3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Horizontal_JumpAttack.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Horizontal_Move.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_JumpAttack.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Lower_BackStep.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Lower_ComboAttack1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Lower_ComboAttack2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Lower_ComboAttack3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Lower_JumpAttack.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Lower_Move.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_SoulAttack.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_SoulAttack_StunDelay_.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Upper_BackStep.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Upper_ComboAttack1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Upper_ComboAttack2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Upper_ComboAttack3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/CrazyGhost_Upper_Move.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/CrazyGhost/Idle.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/KHJScene 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/KHJScene 1.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -165,7 +138,9 @@
       <workItem from="1680600462713" duration="6013000" />
       <workItem from="1680618274018" duration="3327000" />
       <workItem from="1681399298136" duration="5432000" />
-      <workItem from="1681450093395" duration="3550000" />
+      <workItem from="1681450093395" duration="3601000" />
+      <workItem from="1681655031608" duration="2877000" />
+      <workItem from="1681722573154" duration="6024000" />
     </task>
     <servers />
   </component>

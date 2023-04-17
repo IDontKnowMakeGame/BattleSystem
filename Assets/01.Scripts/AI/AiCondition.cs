@@ -12,7 +12,8 @@ namespace AI
         LifeCondition,
         BlockCondition,
         LineCondition,
-        CircleCondition
+        CircleCondition,
+        MoveCondition,
     }
     
     [System.Serializable]
