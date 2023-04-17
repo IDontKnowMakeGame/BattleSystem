@@ -19,7 +19,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 38
     y: -190
-    width: 1350
+    width: 1783
     height: 1253
 --- !u!114 &114350483966674976
 MonoBehaviour:
@@ -1678,7 +1678,6 @@ MonoBehaviour:
   m_Direction: 1
   m_LinkedSlots:
   - {fileID: 8926484042661614941}
-  - {fileID: 8926484042661614980}
 --- !u!114 &8926484042661614912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2440,8 +2439,7 @@ MonoBehaviour:
       m_SerializableType: UnityEngine.Mesh, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   m_Direction: 0
-  m_LinkedSlots:
-  - {fileID: 8926484042661614907}
+  m_LinkedSlots: []
 --- !u!114 &8926484042661614981
 MonoBehaviour:
   m_ObjectHideFlags: 0
