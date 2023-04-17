@@ -52,10 +52,11 @@ public class AttackRange : MonoBehaviour
     // TO DO
     public MinDistanceObj NearEnemy()
     {
-        float minDistnace = float.MaxValue;
+		float minDistnace = float.MaxValue;
         GameObject temp = null;
         foreach (GameObject obj in enemys)
         {
+            if (obj == null) continue;
             float distance = obj.transform.position.DistanceFlat(InGame.Player.transform.position);
             if (distance < minDistnace)
             {
