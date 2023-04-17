@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Actors.Bases;
 using Core;
 using UnityEngine;
 using Managements;
@@ -103,6 +105,16 @@ public class Astar
         end = endTile;
     }
 
+    public bool IsActorOnPath(Actor target)
+    {
+        if (route == null)
+            return false;
+        if(route.FirstOrDefault() == null) 
+            return false;
+        if (Vector3.Distance(target.Position, route.First().Position) < 2f)
+            return true;
+        return false;
+    }
     void MakePath(Block startTile, Block endTile)
     {
         route.Clear();

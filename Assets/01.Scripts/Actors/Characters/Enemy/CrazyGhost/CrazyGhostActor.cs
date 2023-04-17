@@ -34,11 +34,13 @@ namespace Actors.Characters.Enemy.CrazyGhost
             chase.OnStay += () => { move.Chase(InGame.Player); };
             pattern.RandomActions.Add(() =>
             {
-                Attack("LowerSlash", () => { attack.HorizontalAttack(InGame.Player.Position); });
+                var playerPos = InGame.Player.Position;
+                Attack("LowerSlash", () => { attack.HorizontalAttack(playerPos); });
             });
             pattern.RandomActions.Add(() =>
             {
-                Attack("LowerPierce", () => { attack.VerticalAttack(InGame.Player.Position); });
+                var playerPos = InGame.Player.Position;
+                Attack("LowerPierce", () => { attack.VerticalAttack(playerPos); });
             });
             soulAttack.OnEnter = () =>
             {
@@ -47,7 +49,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 _enemyAnimation.Play("SoulAttackJump");
                 var dir = (Position - InGame.Player.Position).GetDirection();
                 var playerPos = InGame.Player.Position;
-                move.Jump(dir, 3);
+                move.Jump(playerPos, dir, 3);
                 jumpClip.OnExit += () =>
                 {
                     Attack("SoulAttack", () => { attack.SoulAttack(playerPos); });
