@@ -97,7 +97,7 @@ public class Bow : Weapon
 	{
 		base.Update();
 		Charge();
-		Debug.Log("Charge");
+		//Debug.Log("Charge");
 	}
 
 	public virtual void Shoot(Vector3 vec)
@@ -137,7 +137,6 @@ public class Bow : Weapon
 		if (!_isCharge)
 			return;
 
-		Debug.Log("Charge");
 		_currentTimer += Time.deltaTime;
 		_sliderObject.SliderUp(_currentTimer);
 		if (_currentTimer >= info.Ats)
