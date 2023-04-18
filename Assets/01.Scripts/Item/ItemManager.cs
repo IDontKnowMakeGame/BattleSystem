@@ -45,7 +45,6 @@ public class ItemManager : Manager
 				break;
 			case 1:
 				Halo halo = CreateEnumToClass<Halo>(itemId, id);
-				Debug.Log(halo);
 				halo.Init();
 				halos.Add(itemId, halo);
 				break;

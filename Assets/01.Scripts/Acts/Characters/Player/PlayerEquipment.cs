@@ -14,6 +14,9 @@ using UnityEngine.TextCore.Text;
 [Serializable]
 public class PlayerEquipment : CharacterEquipmentAct
 {
+	[SerializeField]
+	private HaloRenderer _haloRanderer;
+
 	protected PlayerActor _playerActor;
 	private PlayerAnimation _playerAnimation;
 
@@ -49,8 +52,29 @@ public class PlayerEquipment : CharacterEquipmentAct
 		_useHalo.Add(ItemID.HaloOfGhost, new HaloOfGhost());
 		_useHalo.Add(ItemID.HaloOfPollution, new HaloOfPollution());
 		_useHalo.Add(ItemID.HaloOfEreshkigal, new HaloOfEreshkigal());
-
-		AddHalo(ItemID.HaloOfPollution);
+	}
+	private int count = 0;
+	public override void Update()
+	{
+		base.Update();
+		if (Input.GetKeyDown(KeyCode.P))
+		{
+			switch (count++)
+			{
+				case 0:
+					AddHalo(ItemID.HaloOfPollution);
+					break;
+				case 1:
+					AddHalo(ItemID.HaloOfGhost);
+					break;
+				case 2:
+					AddHalo(ItemID.HaloOfEreshkigal);
+					break;
+				default:
+					count = 0;
+					break;
+			}
+		}
 	}
 	public override void OnDisable()
 	{
@@ -161,6 +185,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 	public void AddHalo(ItemID haloID)
     {
 		_halos.Add(haloID);
+		_haloRanderer?.EquipmentHalo(haloID);
 		_useHalo[haloID].Equiqment(_characterController);
     }
 
@@ -171,6 +196,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 			_useHalo[haloID].UnEquipment(_characterController);
 			_halos.Remove(haloID);
         }
+
     }
 	#endregion
 	#region HaloEquipment
