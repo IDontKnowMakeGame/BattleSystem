@@ -179,6 +179,15 @@ namespace Blocks
                     _blockMovement.Bounce(durantion, strength);
                     break;
                 }
+                case MovementType.Roll:
+                {
+                    _blockMovement.Roll(durantion, strength);
+                    break;
+                }
+                case MovementType.None:
+                {
+                    break;
+                }
             }
         }
     }

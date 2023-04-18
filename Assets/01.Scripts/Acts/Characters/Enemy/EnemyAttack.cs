@@ -19,6 +19,12 @@ namespace Acts.Characters.Enemy
             CharacterActor.AddState(CharacterState.Attack);
         }
 
+        public void DefaultAttack(Vector3 dir, bool isLast = true)
+        {
+            Attack();
+            Define.GetManager<MapManager>().AttackBlock(ThisActor.Position - dir, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.None, isLast);
+        }
+        
         public void HorizontalAttack(Vector3 pos, bool isLast = true)
         {
             Attack();
@@ -27,9 +33,12 @@ namespace Acts.Characters.Enemy
             for (var r = 0; r < 3; r++)
             {
                 var attackPos = CharacterActor.Position + (degree * range[r]);
-                Define.GetManager<MapManager>().AttackBlock(attackPos, DefaultStat.Atk, 0.1f, CharacterActor);
+                Define.GetManager<MapManager>()
+                    .AttackBlock(attackPos, DefaultStat.Atk, 0.1f, CharacterActor, MovementType.None);
+
+                Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position, DefaultStat.Atk, DefaultStat.Ats,
+                    CharacterActor, MovementType.None, isLast);
             }
-            Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.None, isLast);
         }
 
         public void VerticalAttack(Vector3 pos, bool isLast = true)
@@ -42,6 +51,7 @@ namespace Acts.Characters.Enemy
                 var attackPos = CharacterActor.Position + (degree * range[r]);
                 Define.GetManager<MapManager>().AttackBlock(attackPos, DefaultStat.Atk, DefaultStat.Ats, CharacterActor);
             }
+            
             Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.None, isLast);
         }
 
