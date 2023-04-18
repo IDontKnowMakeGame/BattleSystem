@@ -207,10 +207,6 @@ public class UIInventory : UIBase
         if (setting.third == id) return true;
         if (setting.fourth == id) return true;
         if (setting.fifth == id) return true;
-        if (setting.sixth == id) return true;
-        if (setting.seventh == id) return true;
-        if (setting.eighth == id) return true;
-        if (setting.ninth == id) return true;
 
         return false;
     }
@@ -238,6 +234,7 @@ public class UIInventory : UIBase
         int index = 1;
         foreach(VisualElement card in _useableEquipPanel.Children())
         {
+            Debug.Log($"{card.name} + {index}");
             card.RegisterCallback<ClickEvent>(e =>
             {
                 EquipItemBox(card,index);
@@ -251,11 +248,12 @@ public class UIInventory : UIBase
         {
             Define.GetManager<DataManager>().ChangeUserWeaponData(id, equipNum);
             CreateCardList(_weaponScrollPanel, _weaponCardTemp, Define.GetManager<DataManager>().LoadWeaponDataFromInventory(), SelectCard);
+            EquipWeaponBoxImage();
         }
         else
             Define.GetManager<DataManager>().EquipUsableItem(id, equipNum);
 
-        EquipWeaponBoxImage();
+        
         Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponEquip, new EventParam());
     }
     public void EquipItemBox(VisualElement card,int equipNum)
@@ -304,7 +302,9 @@ public class UIInventory : UIBase
             if (selectCard != null)
                 CardBorderWidth(selectCard, 0, Color.white);
 
-            ShowWeaponInfoPanel(id);
+            if((int)id < 101 )
+                ShowWeaponInfoPanel(id);
+
             selectCard = card;
             CardBorderWidth(selectCard, 3, Color.red);
             currentItemId = id;

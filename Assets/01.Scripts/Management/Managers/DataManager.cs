@@ -95,9 +95,9 @@ public class DataManager : Manager
     }
     public void EquipUsableItem(ItemID id, int equipnumber)
     {
-        if (HaveUseableItem(id))
+        if (!HaveUseableItem(id))
         {
-            Debug.LogError($"Not  Have Item : {id}");
+            Debug.LogError($"Not  Have Item : {id} + {(int)id}");
             return;
         }
         
@@ -118,20 +118,8 @@ public class DataManager : Manager
             case 5:
                 UserData_.equipUseableItem.fifth = id;
                 break;
-            case 6:
-                UserData_.equipUseableItem.sixth = id;
-                break;
-            case 7:
-                UserData_.equipUseableItem.seventh = id;
-                break;
-            case 8:
-                UserData_.equipUseableItem.eighth = id;
-                break;
-            case 9:
-                UserData_.equipUseableItem.ninth = id;
-                break;
             default:
-                Debug.LogError($"Over Input Equip Number : {equipnumber} -> 1 ~ 9 ");
+                Debug.LogError($"Over Input Equip Number : {equipnumber} -> 1 ~ 5 ");
                 break;
         }
 
@@ -484,6 +472,7 @@ public class DataManager : Manager
     {
         foreach (SaveItemData item in InventoryData_.inventoryInUsableItemList)
         {
+            Debug.Log($"{item.name} + {(int)item.id} : {id} + {(int)id}");
             if (item.id == id)
             {
                 return true;
