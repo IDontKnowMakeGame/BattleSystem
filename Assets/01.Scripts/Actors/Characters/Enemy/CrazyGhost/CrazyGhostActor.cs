@@ -53,7 +53,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 AddState(CharacterState.Attack);
                 var jumpClip = _enemyAnimation.GetClip("JumpAttackJump");
                 _enemyAnimation.Play("JumpAttackJump");
-                move.Jump(playerPos, -dir, 1);
+                move.Jump(playerPos, dir, 1);
                 jumpClip.OnExit += () =>
                 {
                     Attack(Vector3.zero, "JumpAttack", () => { attack.ForwardAttack(playerPos, false); });
