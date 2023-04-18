@@ -2,21 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/EdgeCondition.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/OldShade/OldShadeActor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/OldSpearShade/OldSpearShadeActor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/AiCondition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/AiCondition.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/AiTransition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/AiTransition.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/BlockCondition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/BlockCondition.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/LineCondition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/LineCondition.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAnimation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAttack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Blocks/Acts/BlockMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Blocks/Acts/BlockMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Blocks/Block.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Blocks/Block.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Player/PlayerAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Player/PlayerAnimation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/ETC/PlayerDeath.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/ETC/PlayerDeath.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/06.Shaders/Block/Shader Graphs_OutlineShader.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/06.Shaders/Block/Shader Graphs_OutlineShader.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/NoneWeaponClips.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/NoneWeaponClips.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldBowClips 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldBowClips 1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldBowClips.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldBowClips.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldGreatClips.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldGreatClips.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldLongClips.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldLongClips.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldSpearClips.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldSpearClips.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldTwinClips.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldTwinClips.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/KHJScene 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/KHJScene 1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/Weapon/ClassLevelData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/Weapon/ClassLevelData.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +148,7 @@
       <workItem from="1681722573154" duration="6419000" />
       <workItem from="1681744769597" duration="4969000" />
       <workItem from="1681776350334" duration="11173000" />
-      <workItem from="1681808724674" duration="3763000" />
+      <workItem from="1681808724674" duration="4731000" />
     </task>
     <servers />
   </component>

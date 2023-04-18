@@ -469,6 +469,7 @@ MonoBehaviour:
     _blinkTime: 0.1
     _blinkDelay: 0.1
   _characterState: 0
+  _isBlocking: 1
   _playerMove:
     defaultSpeed: 0.1
     distance: 1
@@ -510,8 +511,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: eb04cdf1f0d107b45981f8ccba80e5d0, type: 2}
     - {fileID: 11400000, guid: 899b69bc9b1473e4cb4f4acdc988e3a0, type: 2}
     - {fileID: 11400000, guid: 1cbf4ccb99f2cd643b9baf1d9c944210, type: 2}
-    - {fileID: 11400000, guid: db63f3c8fd83b8b478edfae14c59904c, type: 2}
-    - {fileID: 11400000, guid: de94fb9242d062340819835d5ed910aa, type: 2}
     curWeaponClips: {fileID: 0}
   _playerUseAbleItem:
     _hpPotion:
