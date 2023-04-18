@@ -19,31 +19,31 @@ MonoBehaviour:
   clips:
   - name: Idle
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 5a95aec0269e1234f82732a619f3d82d, type: 3}
+    texture: {fileID: 2800000, guid: 8935c6af7ad3dae43aca497497442995, type: 3}
     fps: 11
     isLoop: 1
     delay: 0.1
   - name: HorizontalMove
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 56c5d806275f24a4fa570e8ced002c10, type: 3}
+    texture: {fileID: 2800000, guid: 1a749f3e8abb06943b79cc59e2561ee4, type: 3}
     fps: 9
     isLoop: 0
     delay: 0.1
   - name: UpperMove
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 1df44e7731da3f84c81d7221e6c342d4, type: 3}
+    texture: {fileID: 2800000, guid: fff51b7ba5cc1bd41ae734c849d7252a, type: 3}
     fps: 9
     isLoop: 0
     delay: 0.1
   - name: LowerMove
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 45aac3f254d4273439026c04e8721e9f, type: 3}
+    texture: {fileID: 2800000, guid: 1ac6fdfd775a29b45b9db0036b750422, type: 3}
     fps: 9
     isLoop: 0
     delay: 0.1
   - name: Equip
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 05703f13acc2bc145886980fdda90e0d, type: 3}
+    texture: {fileID: 2800000, guid: 89eabe3b8dddb894389cbe04d5f64e75, type: 3}
     fps: 9
     isLoop: 0
     delay: 0.1

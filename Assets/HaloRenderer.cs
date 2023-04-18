@@ -23,6 +23,10 @@ public class HaloRenderer : MonoBehaviour
 
 	private Dictionary<ItemID, Material> _haloMaterial = new Dictionary<ItemID, Material>();
 
+	private	Stack<Material> me = new Stack<Material>();
+
+	private List<Material> _materials = new List<Material>();
+
 	[SerializeField]
 	private int maxCount = 0;
 	private int count = 0;
@@ -33,6 +37,11 @@ public class HaloRenderer : MonoBehaviour
 		{
 			_haloMaterial.Add(halo.id, halo.material);
 		}
+
+		for (int i = 0; i < renderers.Length; i++)
+		{
+			_materials.Add(renderers[i].material);
+		}
 	}
 
 	private void Start()
@@ -41,6 +50,7 @@ public class HaloRenderer : MonoBehaviour
 			renderers[count].gameObject.SetActive(false);
 	}
 
+	#region Stack으로 계속 추가
 	public void EquipmentHalo(ItemID id)
 	{
 		if (count >= maxCount)
@@ -49,8 +59,7 @@ public class HaloRenderer : MonoBehaviour
 			renderers[count].gameObject.SetActive(true);
 		count++;
 
-		Stack<Material> me = new Stack<Material>();
-
+		me.Clear();
 		for(int i = renderers.Length-1; i >= 0; i--)
 		{
 			me.Push(renderers[i].material);
@@ -66,8 +75,27 @@ public class HaloRenderer : MonoBehaviour
 		}
 	}
 
-	public void UnEqupmentHalo(ItemID id)
+	public void UnEqupmentHalo()
 	{
-		//currentRenderer.gameObject.SetActive(false);
+		if (renderers[count].gameObject.activeSelf)
+			renderers[count].gameObject.SetActive(false);
+
+		count--;
 	}
+	#endregion
+
+	#region List를 사용하여 해결
+	public void Equipment(ItemID id, int index)
+	{
+		if (!renderers[index].gameObject.activeSelf)
+			renderers[index].gameObject.SetActive(true);
+
+		_materials[index] = _haloMaterial[id];
+	}
+
+	public void UnEquipment(int index)
+	{
+		renderers[index].gameObject.SetActive(false);
+	}
+	#endregion
 }

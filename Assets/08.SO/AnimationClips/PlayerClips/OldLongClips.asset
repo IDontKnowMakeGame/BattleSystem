@@ -19,67 +19,67 @@ MonoBehaviour:
   clips:
   - name: Idle
     nextIdx: -1
-    texture: {fileID: 2800000, guid: e65dc6a84b6682c4bb2e5239ff57fdd4, type: 3}
+    texture: {fileID: 2800000, guid: 00c43fd53c1278d4c9671c263495dad8, type: 3}
     fps: 10
     isLoop: 1
     delay: 0.1
   - name: HorizontalMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 658ca74fd096a494b815f36d99b453bb, type: 3}
+    texture: {fileID: 2800000, guid: ec476324faca59b45b946a64bbcca6dc, type: 3}
     fps: 7
     isLoop: 1
     delay: 0.1
   - name: UpperMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 386750f1e08c5804bbd5ffd9798e2dd3, type: 3}
+    texture: {fileID: 2800000, guid: 6d3737f999523a54c84667804d0bf3c3, type: 3}
     fps: 7
     isLoop: 1
     delay: 0.1
   - name: LowerMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: daaf345e3bbd1a44c9e565fbccaefd34, type: 3}
+    texture: {fileID: 2800000, guid: 82a698b04005efd439994b96f063ca94, type: 3}
     fps: 7
     isLoop: 1
     delay: 0.1
   - name: HorizontalAttack
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 0bb159a73a2ca87428a66cd594fab009, type: 3}
+    texture: {fileID: 2800000, guid: 04680e0968171034caf840ce32e629ad, type: 3}
     fps: 10
     isLoop: 0
     delay: 0.03
   - name: UpperAttack
     nextIdx: 0
-    texture: {fileID: 2800000, guid: b1407eef10819f54f91081d827a8d1b0, type: 3}
+    texture: {fileID: 2800000, guid: c671d1d2760b2b54999741e4dcc9e65e, type: 3}
     fps: 10
     isLoop: 0
     delay: 0.03
   - name: LowerAttack
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 5bf657eca45ad3e459b56f35611b1acc, type: 3}
+    texture: {fileID: 2800000, guid: 296bf87a7b65e5c4f8074455ef831c9c, type: 3}
     fps: 10
     isLoop: 0
     delay: 0.03
   - name: HorizontalSkill
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 5ebbfc0612aa5db4a9da0b27cb83210b, type: 3}
+    texture: {fileID: 2800000, guid: 05303427af368f441bca3fedf0d0ebc3, type: 3}
     fps: 10
     isLoop: 0
     delay: 0.03
   - name: UpperSkill
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 8d9927be91c9a9445bfab30b96ff0dc4, type: 3}
+    texture: {fileID: 2800000, guid: 219664414255e7c42b7136fba7025d31, type: 3}
     fps: 10
     isLoop: 0
     delay: 0.03
   - name: LowerSkill
     nextIdx: 0
-    texture: {fileID: 2800000, guid: d0f90f015ecf705478c200a9e17ac587, type: 3}
+    texture: {fileID: 2800000, guid: fe5c9ba7b36b8c64caf71da4f49fcda4, type: 3}
     fps: 10
     isLoop: 0
     delay: 0.03
   - name: Equip
     nextIdx: 0
-    texture: {fileID: 2800000, guid: e575df14ea52d9f488719f96cb28e9f7, type: 3}
+    texture: {fileID: 2800000, guid: 2a79443de8e8de943ad07f6d3b0891bc, type: 3}
     fps: 10
     isLoop: 0
     delay: 0.1
