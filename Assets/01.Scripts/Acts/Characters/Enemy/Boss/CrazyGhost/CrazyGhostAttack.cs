@@ -29,7 +29,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                     {
                         var attackPos = new Vector3(i, 0, j);
                         if (area.Contains(attackPos)) continue;
-                        Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position + attackPos, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.Bounce);
+                        Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position + attackPos, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.None);
                         if(distance == 1)
                             area.Add(attackPos);
                     }
@@ -61,7 +61,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                 for (var i = 0; i < 5; i++)
                 {
                     var attackPos = CharacterActor.Position + (degree * (range[i] + Vector3.forward * distance));
-                    Define.GetManager<MapManager>().AttackBlock(attackPos, DefaultStat.Atk * 2f, DefaultStat.Ats, CharacterActor, MovementType.Bounce);
+                    Define.GetManager<MapManager>().AttackBlock(attackPos, DefaultStat.Atk * 2f, DefaultStat.Ats, CharacterActor, MovementType.Roll);
                     block = Define.GetManager<MapManager>().GetBlock(attackPos);
                     if (block != null)
                         if(block.isWalkable)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Core;
 using UnityEngine;
 using Tools;
+using UnityEditor;
 using UnityEditor.UIElements;
 
 // Character Clip
@@ -30,6 +31,9 @@ public class WeaponClips : ScriptableObject
                 clip.texture = Resources.Load<Texture2D>($"Sprites/{type}/{actorName}/{clip.name}");
             }
         }
+        EditorUtility.SetDirty(this);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
     }
     public List<ClipBase> Clips => clips;
 }

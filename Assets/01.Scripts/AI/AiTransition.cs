@@ -20,6 +20,7 @@ namespace AI
         [ContextMenuItem("Add Line Condition", "AddLineCondition")]
         [ContextMenuItem("Add Circle Condition", "AddCircleCondition")]
         [ContextMenuItem("Add Move Condition", "AddMoveCondition")]
+        [ContextMenuItem("Add Edge Condition", "AddEdgeCondition")]
         [SerializeReference]
         public List<AiCondition> _conditions = new();
         private Type _nextState;
@@ -27,21 +28,14 @@ namespace AI
 
         public bool CheckCondition()
         {
-            bool isSatisfied = false;
-            var needCondition = _conditions.FindAll((condition) => condition.IsNeeded);
-            var unNeedCondition = _conditions.FindAll((condition) => !condition.IsNeeded);
+            bool isSatisfied = true;
             
-            foreach (var currentCondition in unNeedCondition)
+            foreach (var currentCondition in _conditions)
             {
-                isSatisfied |= currentCondition.IsSatisfied() != currentCondition.IsNegative;
-            }
-
-            if (unNeedCondition.Count == 0)
-                isSatisfied = true;
-            
-            foreach (var currentCondition in needCondition)
-            {
-                isSatisfied &= currentCondition.IsSatisfied() != currentCondition.IsNegative;
+                if(currentCondition.IsNeeded)
+                    isSatisfied &= currentCondition.IsSatisfied() != currentCondition.IsNegative;
+                if(currentCondition.IsNeeded == false)
+                    isSatisfied |= currentCondition.IsSatisfied() != currentCondition.IsNegative;
             }
 
             return isSatisfied;
@@ -118,6 +112,13 @@ namespace AI
         {
             var condition = new MoveCondition();
             condition.Type = Condition.MoveCondition;
+            _conditions.Add(condition);
+        }
+        
+        public void AddEdgeCondition()
+        {
+            var condition = new EdgeCondition();
+            condition.Type = Condition.EdgeCondition;
             _conditions.Add(condition);
         }
     }

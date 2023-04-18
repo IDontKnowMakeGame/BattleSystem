@@ -2,7 +2,7 @@
 
 namespace AI.Conditions
 {
-    public class BlockCondition : AiCondition
+    public class  BlockCondition : AiCondition
     {
         public int Area;
         public Actor TargetActor;

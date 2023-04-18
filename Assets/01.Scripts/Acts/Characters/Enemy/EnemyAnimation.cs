@@ -18,6 +18,8 @@ namespace Acts.Characters.Enemy
         {
             base.Awake();
 
+            if (curClips.Clips.Count == 0)
+                return;
             foreach (ClipBase clip in curClips.Clips)
             {
                 weaponClipDic.Add(clip.name, clip);

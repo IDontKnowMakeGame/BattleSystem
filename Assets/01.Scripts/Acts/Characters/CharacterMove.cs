@@ -106,19 +106,21 @@ namespace Acts.Characters
 
         public virtual void Move(Vector3 position)
         {
-            if (_isMoving) return;
-            var attackState = CharacterState.Attack | CharacterState.Hold;
+/*            var attackState = CharacterState.Attack | CharacterState.Hold;
             if (_character.HasState(attackState))
             {
+                Debug.Log("attackState");
                 _character.RemoveState(CharacterState.Move);
                 return;
-            }
+            }*/
             
+            if (_isMoving) return;
             var seq = DOTween.Sequence();
             var currentPos = ThisActor.Position;
             var nextPos = position;
             nextPos.y = 1;
             
+            Debug.Log("Move");
 
             var map = Define.GetManager<MapManager>();
 

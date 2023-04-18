@@ -16,6 +16,10 @@ GameObject:
   - component: {fileID: 2602499903621569717}
   - component: {fileID: 2602499903621569718}
   - component: {fileID: 2602499903621569723}
+  - component: {fileID: 6350170632472056016}
+  - component: {fileID: 6350170632472056017}
+  - component: {fileID: 6350170632472056026}
+  - component: {fileID: 6350170632472056027}
   m_Layer: 0
   m_Name: CrazyGhost
   m_TagString: Enemy
@@ -226,6 +230,7 @@ MonoBehaviour:
         IsNeeded: 1
         _thisActor: {fileID: 2602499903621569664}
         TargetActor: {fileID: 0}
+        Distance: -1
     - rid: 4755812595378421764
       type: {class: BlockCondition, ns: AI.Conditions, asm: Assembly-CSharp}
       data:
@@ -290,6 +295,142 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6350170632472056016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2602499903621569667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c99c7c212654c5bb59e9b251e4c5d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: Jump
+  To: Chase
+  _conditions:
+  - rid: 4755812609343619073
+  - rid: 4755812609343619077
+  references:
+    version: 2
+    RefIds:
+    - rid: 4755812609343619073
+      type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 3
+        IsNegative: 0
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        BaseActor: {fileID: 2602499903621569664}
+    - rid: 4755812609343619077
+      type: {class: BesideCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 2
+        IsNegative: 1
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        TargetActor: {fileID: 0}
+--- !u!114 &6350170632472056017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2602499903621569667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c99c7c212654c5bb59e9b251e4c5d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: Chase
+  To: Jump
+  _conditions:
+  - rid: 4755812609343619072
+  - rid: 4755812609343619074
+  references:
+    version: 2
+    RefIds:
+    - rid: 4755812609343619072
+      type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 3
+        IsNegative: 0
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        BaseActor: {fileID: 2602499903621569664}
+    - rid: 4755812609343619074
+      type: {class: BlockCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 5
+        IsNegative: 1
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        Area: 5
+        TargetActor: {fileID: 0}
+--- !u!114 &6350170632472056026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2602499903621569667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c99c7c212654c5bb59e9b251e4c5d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: Jump
+  To: Triple
+  _conditions:
+  - rid: 4755812609343619075
+  - rid: 4755812609343619076
+  references:
+    version: 2
+    RefIds:
+    - rid: 4755812609343619075
+      type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 3
+        IsNegative: 0
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        BaseActor: {fileID: 2602499903621569664}
+    - rid: 4755812609343619076
+      type: {class: BesideCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 2
+        IsNegative: 0
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        TargetActor: {fileID: 0}
+--- !u!114 &6350170632472056027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2602499903621569667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c99c7c212654c5bb59e9b251e4c5d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: Triple
+  To: Chase
+  _conditions:
+  - rid: 4755812609343619078
+  references:
+    version: 2
+    RefIds:
+    - rid: 4755812609343619078
+      type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 3
+        IsNegative: 0
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        BaseActor: {fileID: 2602499903621569664}
 --- !u!1 &2602499904033520471
 GameObject:
   m_ObjectHideFlags: 0

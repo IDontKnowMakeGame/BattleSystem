@@ -9,6 +9,7 @@ namespace Blocks.Acts
         None,
         Shake,
         Bounce,
+        Roll
     }
     public class BlockMovement : Act
     {
@@ -38,6 +39,18 @@ namespace Blocks.Acts
             seq.AppendCallback(() =>
             {
                 _modelTransform.localPosition = Vector3.zero;
+                seq.Kill();
+            });
+        }
+        
+        public void Roll(float duration, float strength = 0.5f)
+        {
+            var seq = DOTween.Sequence();
+            seq.Append(_modelTransform.DOLocalRotate(new Vector3(900, 900, 900), duration, RotateMode.LocalAxisAdd));
+            seq.Join(_modelTransform.DOLocalJump(Vector3.zero, strength / 2f, 1, duration));
+            seq.AppendCallback(() =>
+            {
+                _modelTransform.localRotation = Quaternion.identity;
                 seq.Kill();
             });
         }

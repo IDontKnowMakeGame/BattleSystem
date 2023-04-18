@@ -14,6 +14,7 @@ namespace AI
         LineCondition,
         CircleCondition,
         MoveCondition,
+        EdgeCondition,
     }
     
     [System.Serializable]
