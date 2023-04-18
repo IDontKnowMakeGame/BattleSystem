@@ -20,6 +20,8 @@ namespace Acts.Characters.Player
         private List<EnemyActor> enemys = new List<EnemyActor>();
 
         private Vector3 currentDir;
+        
+        private CharacterActor ThisCharacter => ThisActor as CharacterActor;
 
         public override void Awake()
         {
@@ -121,11 +123,13 @@ namespace Acts.Characters.Player
 
         private void Attack(EventParam eventParam)
         {
+            if (ThisCharacter.HasCCState()) return;
             ReadyAttackAnimation(eventParam.attackParam);
 		}
 
         private void NoneAniAttack(EventParam eventParam)
         {
+            if (ThisCharacter.HasCCState()) return;
             if(eventParam.boolParam == false)
             {
 				enemys.Clear();
@@ -149,7 +153,8 @@ namespace Acts.Characters.Player
 
         private void FureAttack(EventParam eventParam)
         {
-			enemys.Clear();
+            if (ThisCharacter.HasCCState()) return;
+            enemys.Clear();
 
             attackCol.SetAttackCol(eventParam.attackParam);
 			if (attackCol.CurrntDirNearEnemy() != null)
