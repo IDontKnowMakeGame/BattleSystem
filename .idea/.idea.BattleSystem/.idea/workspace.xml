@@ -3,9 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/CrazyGhost/CrazyGhostActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/CrazyGhost/CrazyGhostActor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/KHJScene 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/KHJScene 1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/KHJScene/Global Volume Profile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/KHJScene/Global Volume Profile.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/SO/WeaponClips.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/SO/WeaponClips.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/07.Textures.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/07.Textures/Construtions.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/07.Textures/Construtions/Block.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/07.Textures/Construtions/Block/Brick.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/07.Textures/Construtions/Block/Brick.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/Weapon/ClassLevelData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/Weapon/ClassLevelData.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +143,7 @@
       <workItem from="1681655031608" duration="2877000" />
       <workItem from="1681722573154" duration="6419000" />
       <workItem from="1681744769597" duration="4969000" />
-      <workItem from="1681776350334" duration="753000" />
+      <workItem from="1681776350334" duration="2574000" />
     </task>
     <servers />
   </component>
