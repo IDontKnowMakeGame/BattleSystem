@@ -165,6 +165,13 @@ public class UIInventory : UIBase
         _secondWeaponImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
         
     }
+    public void EquipUseableItemBoxImage(VisualElement card, int i)
+    {
+        Debug.Log($"{card.name} + {i}");
+        List<ItemID> list = Define.GetManager<DataManager>().LoadUsableItemList();
+        card.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)list[i-1]}"));
+
+    }
     public void UpdateWeaponIcon()
     { }
     public void SelectItemBtn(int pageNum,VisualElement chageBox)
@@ -231,16 +238,33 @@ public class UIInventory : UIBase
     }
     public void UseableEquipBoxSetting()
     {
-        int index = 1;
         foreach(VisualElement card in _useableEquipPanel.Children())
         {
-            Debug.Log($"{card.name} + {index}");
+            EquipUseableItemBoxImage(card, UseableEquipBoxSetNunber(card.name));
             card.RegisterCallback<ClickEvent>(e =>
             {
-                EquipItemBox(card,index);
+                int i = UseableEquipBoxSetNunber(card.name);
+                EquipItemBox(card, i);
+                EquipUseableItemBoxImage(card,i);
             });
-            index++;
         }
+    }
+    public int UseableEquipBoxSetNunber(string num)
+    {
+        switch(num)
+        {
+            case "first":
+                return 1;
+            case "second":
+                return 2;
+            case "third":
+                return 3;
+            case "fourth":
+                return 4;
+            case "fifth":
+                return 5;
+        }
+        return 0;
     }
     public void EquipItem(ItemID id,int equipNum)
     {
@@ -249,15 +273,22 @@ public class UIInventory : UIBase
             Define.GetManager<DataManager>().ChangeUserWeaponData(id, equipNum);
             CreateCardList(_weaponScrollPanel, _weaponCardTemp, Define.GetManager<DataManager>().LoadWeaponDataFromInventory(), SelectCard);
             EquipWeaponBoxImage();
+            Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponEquip, new EventParam());
         }
         else
+        {
             Define.GetManager<DataManager>().EquipUsableItem(id, equipNum);
+            EquipUseableItemBoxImage(selectCard, equipNum);
+            CreateCardList(_useableItemScrollPanel, _useableItemCardTemp, Define.GetManager<DataManager>().LoadUsableItemFromInventory(), SelectCard);
+        }
+            
 
         
-        Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponEquip, new EventParam());
+        
     }
     public void EquipItemBox(VisualElement card,int equipNum)
     {
+        Debug.Log($"EquipItemBox {card.name} + {equipNum}");
         if(isSelectCard)
         {
             if (selectCard != null)
