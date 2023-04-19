@@ -20,6 +20,6 @@ public class CharacterGrogy : Act
 
 	public void NuckBack(Vector3 dir, float power, float duration = 1)
 	{
-		_actor.AddState(CharacterState.NuckBack);
+		_actor.AddState(CharacterState.KnockBack);
 	}
 }

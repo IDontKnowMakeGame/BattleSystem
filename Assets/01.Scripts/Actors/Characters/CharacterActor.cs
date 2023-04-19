@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.ComponentModel.Design.Serialization;
 using Actors.Bases;
 using Acts.Characters;
@@ -19,7 +20,7 @@ namespace Actors.Characters
 		StopMove = 1 << 4,
 		Stun = 1 << 5,
 		Equip = 1 << 6,
-		NuckBack = 1 << 7,
+		KnockBack = 1 << 7,
 		Everything = ~None,
 	}
 	public class CharacterActor : Actor
@@ -46,6 +47,13 @@ namespace Actors.Characters
 			base.Start();
 		}
 
+		protected override void Update()
+		{
+			if(Input.GetMouseButtonDown(0)) Stun();
+			if (HasCCState()) return;
+			base.Update();
+		}
+
 		public void AddState(CharacterState state)
 		{
 			_characterState |= state;
@@ -64,6 +72,27 @@ namespace Actors.Characters
 		public bool HasAnyState()
 		{
 			return (_characterState & CharacterState.Everything) != CharacterState.None;
+		}
+		
+		public bool HasCCState()
+		{
+			if (HasState(CharacterState.Stun))
+				return true;
+			if (HasState(CharacterState.KnockBack))
+				return true;
+			return false;
+		}
+
+		public void Stun()
+		{
+			StartCoroutine(StunCoroutine(2f));
+		}
+		
+		private IEnumerator StunCoroutine(float delay)
+		{
+			AddState(CharacterState.Stun);
+			yield return new WaitForSeconds(delay);
+			RemoveState(CharacterState.Stun);
 		}
 	}
 }

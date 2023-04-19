@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Actors.Characters;
+using Actors.Characters.Enemy;
 using Acts.Base;
 using AI;
 using AI.States;
@@ -15,7 +17,6 @@ namespace Acts.Characters.Enemy
         public AiState CurrentState;
         private bool _hasEntered = false;
         private bool _hasFinished = false;
-
         public override void Update()
         {
             if(_hasEntered == false)
