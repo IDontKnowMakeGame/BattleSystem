@@ -3,6 +3,8 @@ using Managements.Managers;
 using UnityEngine;
 using Core;
 using Actors.Characters.Player;
+using Actors.Characters;
+using System.Collections.Generic;
 
 namespace Acts.Characters.Player
 {
@@ -24,10 +26,16 @@ namespace Acts.Characters.Player
             set => isSkill = value;
         }
 
+        public bool test = false;
+
+        private Queue<Vector3> moveDir = new Queue<Vector3>();
+
         public override void Awake()
         {         
             base.Awake();
-            InputManager<Weapon>.OnMovePress += Translate;
+            if(!test)
+                InputManager<Weapon>.OnMovePress += EnqueMove;
+            Debug.Log("?");
         }
 
         public override void Start()
@@ -40,6 +48,7 @@ namespace Acts.Characters.Player
         public override void Update()
         {
             base.Update();
+            PopMove();
         }
 
         public override void Translate(Vector3 direction)
@@ -49,6 +58,24 @@ namespace Acts.Characters.Player
             direction = InGame.CamDirCheck(direction);
             base.Translate(direction * distance);
         }
+
+        #region Test Code
+        private void EnqueMove(Vector3 direction)
+        {
+            if (moveDir.Count > 1 || enableQ) return;
+            moveDir.Enqueue(direction);
+        }
+        private void PopMove()
+        {
+            if(moveDir.Count > 0 && !_playerActor.HasAnyState() && !_isMoving)
+            {
+                enableQ = true;
+                playerDir = moveDir.Dequeue();
+                Vector3 dir = InGame.CamDirCheck(playerDir);
+                base.Translate(dir * distance);
+            }
+        }
+        #endregion
 
         public void BowBackStep(Vector3 position)
         {
