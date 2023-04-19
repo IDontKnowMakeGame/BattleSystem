@@ -144,7 +144,10 @@ namespace Acts.Characters
                 enableQ = false;
                 return;
             }
-            _character.AddState(Actors.Characters.CharacterState.Move);
+
+            if (_character.HasState(CharacterState.Move) == false)
+                _character.AddState(Actors.Characters.CharacterState.Move);
+            else return;
 
             dir = (currentPos - nextPos).SetY(0);
             AnimationCheck();
@@ -173,18 +176,23 @@ namespace Acts.Characters
             while (i > 0)
             {
                 nextPos = originPos + dir * i;
-                nextPos.y = 1;
                 var nextBlock = InGame.GetBlock(nextPos.SetY(0));
                 if(nextBlock != null)
                         break;
                 i--;
             }
 
+            nextPos.y = 1;
             var map = Define.GetManager<MapManager>();
-
-            if (!map.IsStayable(nextPos.SetY(0)))
+            var knockBack = false;
+            Actor detectedTarget = null;
+            if (map.GetBlock(nextPos.SetY(0)).IsActorOnBlock)
             {
-                MoveStop();
+                detectedTarget = map.GetBlock(nextPos.SetY(0)).ActorOnBlock;
+                knockBack = true;
+            }
+            else if (!map.IsStayable(nextPos.SetY(0)))
+            {
                 Debug.Log(1);
                 return;
             }
@@ -193,17 +201,25 @@ namespace Acts.Characters
             if(block.CheckActorOnBlock(ThisActor) == false) return;
             _character.AddState(Actors.Characters.CharacterState.Move);
 
-            PositionUpdate(nextPos);
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
 
             seq.Append(_thisTransform.DOJump(nextPos, 1, 1, speed));
             seq.AppendCallback(() =>
             {
-                originPos = nextPos;
                 _isMoving = false;
+                if (knockBack)
+                {
+                    var target = map.GetBlock(nextPos.SetY(0)).ActorOnBlock;
+                    if (!target) return;
+                    if(detectedTarget == target)
+                        target.GetAct<CharacterMove>()?.KnockBack(dir);
+                }
+                originPos = nextPos;
+                map.GetBlock(nextPos.SetY(0)).SetActorOnBlock(ThisActor);
                 MoveStop();
                 seq.Kill();
             });
+            PositionUpdate(nextPos);
         }
 
         public void PositionUpdate(Vector3 nextPos)
@@ -218,11 +234,11 @@ namespace Acts.Characters
             _isMoving = true;
             var originPos = ThisActor.Position;
             nextPos.y = 0;
-            var block = InGame.GetBlock(nextPos);
-            block.isMoving = true;
+            var nextBlock = InGame.GetBlock(nextPos);
+            var currentBlock = InGame.GetBlock(originPos);
+            nextBlock.isMoving = true;
             while (_isMoving)
             {
-                yield return new WaitForEndOfFrame();
                 var pos = _thisTransform.position;
                 var x = Mathf.RoundToInt(pos.x);
                 var z = Mathf.RoundToInt(pos.z);
@@ -235,11 +251,17 @@ namespace Acts.Characters
                 {
                     pos.z = z;
                 }
-                InGame.SetActorOnBlock(ThisActor, pos);
-                ThisActor.Position = pos;
-            }
 
-            block.isMoving = false;
+                if (Vector3.Distance(pos.SetY(0), nextPos) <= 0.1f) 
+                {
+                    nextBlock.SetActorOnBlock(ThisActor);
+                    currentBlock.RemoveActorOnBlock();
+                    ThisActor.Position = pos;
+                    _isMoving = false;
+                }
+                yield return new WaitForSeconds(Time.deltaTime);
+            }
+            nextBlock.isMoving = false;
             var dir = ThisActor.Position - originPos;
             _positionUpdateCoroutine = null;
         }
@@ -255,19 +277,14 @@ namespace Acts.Characters
         {
             if (InGame.GetBlock(end).isWalkable == false)
             {
-                _character.RemoveState(CharacterState.Move);
                 yield break;
             }
-            _character.AddState(CharacterState.Move);
-        
             astar.SetPath(ThisActor.Position, end);
             ThisActor.StartCoroutine(astar.FindPath());
             yield return new WaitUntil(astar.IsFinished);
-            
             var nextBlock = astar.GetNextPath();
             if (nextBlock == null)
             {
-                _character.RemoveState(CharacterState.Move);
                 yield break;
             }
             var nextPos = nextBlock.Position;
@@ -298,6 +315,30 @@ namespace Acts.Characters
                 ThisActor.SpriteTransform.localScale = new Vector3(-3, 3, 3);
                 animation.Play("HorizontalMove");   
             }
+        }
+
+        public void KnockBack(Vector3 dir)
+        {
+            Debug.Log(dir);
+            _character.AddState(CharacterState.KnockBack);
+            var originPos = ThisActor.Position;
+            var nextPos = originPos + dir;
+            var map = Define.GetManager<MapManager>();
+            if (!map.IsStayable(nextPos))
+            {
+                _character.Stun();
+                return;
+            }
+            nextPos.y = 1;
+            var seq = DOTween.Sequence();
+            seq.Append(_thisTransform.DOMove(nextPos, 0.1f).SetEase(Ease.Flash));
+            seq.AppendCallback(() =>
+            {
+                _character.RemoveState(CharacterState.KnockBack);
+                map.GetBlock(nextPos.SetY(0)).SetActorOnBlock(ThisActor);
+                ThisActor.Position = nextPos;
+                seq.Kill();
+            });
         }
 
         protected virtual void MoveStop()

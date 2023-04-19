@@ -43,121 +43,121 @@ MonoBehaviour:
     delay: 0.1
   - name: DefaultHorizontalMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: d2ce0f324278c1245aedf1ef2eb145af, type: 3}
+    texture: {fileID: 2800000, guid: add79de8924e45e46b183cff5c5cae50, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: DefaultUpperMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 95edb00a2a3f2d4478ca72ae28010a41, type: 3}
+    texture: {fileID: 2800000, guid: 29087796b12e7284f916667f78820ffe, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: DefaultLowerMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 0a759fa92c86c264f817c6d87b3ed060, type: 3}
+    texture: {fileID: 2800000, guid: 4fe2573851b19834787f5ad8002748e0, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: HorizontalReadyHorizontalMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 531280d62dcb75443951b91b2c67e336, type: 3}
+    texture: {fileID: 2800000, guid: aac03427f74c20b4f8427f81ce586c9b, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: HorizontalReadyUpperMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: e1af1a426132bc843b1ed2e30563777e, type: 3}
+    texture: {fileID: 2800000, guid: ffacc5e26bf5e7d48887f079d4279e29, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: HorizontalReadyLowerMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 59f529f92ab656346813b88950f2a4fe, type: 3}
+    texture: {fileID: 2800000, guid: 758f9cea372449048b3a0ab1b472efac, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: UpperReadyHorizontalMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 6f571426c0f4d97418589521983db90a, type: 3}
+    texture: {fileID: 2800000, guid: f1a6b97baa5acab4d9a240d07f448a6a, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: UpperReadyUpperMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 0e5473102588d6f4f8618127ef02343e, type: 3}
+    texture: {fileID: 2800000, guid: 7ac15d4d3d197fe4dbf045ceffa7c6ab, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: UpperReadyLowerMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 266f0aa893ca75340ad12d56279005de, type: 3}
+    texture: {fileID: 2800000, guid: f6da66d69a2e41f4c8c4c0298b7f018e, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: LowerReadyHorizontalMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 831bc7c1420b1f8489f21067d0bd9578, type: 3}
+    texture: {fileID: 2800000, guid: ef80a0fb6e0bae24288e9259c2e03802, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: LowerReadyUpperMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: fc5e8a21ab5f27046ab0f9203d02e5fa, type: 3}
+    texture: {fileID: 2800000, guid: b8ad91933ff3c1b449dde6dd8ad6c6ec, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: LowerReadyLowerMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 4fc9a1d53e5b3084f9f6de0bf5538cbd, type: 3}
+    texture: {fileID: 2800000, guid: 408a210164fce474c9e0373b2669054f, type: 3}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: DefaultIdle
     nextIdx: -1
-    texture: {fileID: 2800000, guid: cccbc401f40ab4d419fe966f072182fc, type: 3}
+    texture: {fileID: 2800000, guid: 8165a9f35bb409a468e7e5c0613cb701, type: 3}
     fps: 8
     isLoop: 1
     delay: 0.1
   - name: HorizontalReadyIdle
     nextIdx: -1
-    texture: {fileID: 2800000, guid: d9ee613f926d5f04f9d61443c4472d0e, type: 3}
+    texture: {fileID: 2800000, guid: f1054556ea9283643ac6d4510eb4b42b, type: 3}
     fps: 8
     isLoop: 1
     delay: 0.1
   - name: UpperReadyIdle
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 7b5e06856d6b2fb4fb219d166552a6c7, type: 3}
+    texture: {fileID: 2800000, guid: 534f373108169e4448584dc1590f411b, type: 3}
     fps: 8
     isLoop: 1
     delay: 0.1
   - name: LowerReadyIdle
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 646022b397e7fc744a588b9c2d537e4f, type: 3}
+    texture: {fileID: 2800000, guid: 2b9d18a54e6e79c47904e4dccf41bcdf, type: 3}
     fps: 8
     isLoop: 1
     delay: 0.1
   - name: Equip
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 4cf3fdef88b40da4586ec85c71b8d690, type: 3}
+    texture: {fileID: 2800000, guid: c82393e155851814a85cc0f0420c447b, type: 3}
     fps: 11
     isLoop: 0
     delay: 0.1
   - name: HorizontalReady
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 8d65cae41e673fc4ea96bb1fcc6466ae, type: 3}
+    texture: {fileID: 2800000, guid: 6babd18903766584bbca208b6ca23963, type: 3}
     fps: 6
     isLoop: 0
     delay: 0.05
   - name: UpperReady
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 88113e7a2ef9c1148a2865e1222343e9, type: 3}
+    texture: {fileID: 2800000, guid: 84d52c87fe4eb884f97b62aa9b2a4a7d, type: 3}
     fps: 6
     isLoop: 0
     delay: 0.05
   - name: LowerReady
     nextIdx: 0
-    texture: {fileID: 2800000, guid: e5443bacaf53718438942a993079ab5d, type: 3}
+    texture: {fileID: 2800000, guid: a6a839a6f393e5748aea916160bc6618, type: 3}
     fps: 6
     isLoop: 0
     delay: 0.05

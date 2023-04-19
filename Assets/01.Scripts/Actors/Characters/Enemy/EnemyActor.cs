@@ -47,36 +47,62 @@ namespace Actors.Characters.Enemy
             return result;
         }
 
-        protected void Attack(Vector3 dir, string stateName, Action onAttack)
+        protected void Attack(Vector3 dir, string stateName, Action onAttack = null, string readies = null, string attacks = null, string returning = null)
         {
+            var ready = "Ready";
+            var attack = "Attack";
+            var returns = "Return";
+            ready = readies ?? ready;
+            attack = attacks ?? attack;
+            returns = returning ?? returns;
             var dirName = GetDirName(dir);
             Debug.Log(dirName);
             var nextState = dirName + stateName;
-            var readyClip =  _enemyAnimation.GetClip( nextState + "Ready");
-            var attackClip = _enemyAnimation.GetClip( nextState + "Attack");
-            var returnClip = _enemyAnimation.GetClip( nextState + "Return");
+            var readyClip =  _enemyAnimation.GetClip( nextState + ready);
+            var attackClip = _enemyAnimation.GetClip( nextState + attack);
+            var returnClip = _enemyAnimation.GetClip( nextState + returns);
             if (readyClip == null || attackClip == null)
             {
                 nextState = "Lower" + stateName;
-                readyClip =  _enemyAnimation.GetClip( nextState + "Ready");
-                attackClip = _enemyAnimation.GetClip( nextState + "Attack");
-                returnClip = _enemyAnimation.GetClip( nextState + "Return");
+                readyClip =  _enemyAnimation.GetClip( nextState + ready);
+                attackClip = _enemyAnimation.GetClip( nextState + attack);
+                returnClip = _enemyAnimation.GetClip( nextState + returns);
             }
-            _enemyAnimation.Play( nextState + "Ready");
+            _enemyAnimation.Play( nextState + ready);
             readyClip.OnExit += () =>
             {
-                _enemyAnimation.Play( nextState + "Attack");
+                _enemyAnimation.Play( nextState + attack);
                 attackClip.SetEventOnFrame(0, () =>
                 {
                     onAttack?.Invoke();
                 });
                 attackClip.OnExit = () =>
                 {
-                    _enemyAnimation.Play( nextState + "Return");
+                    _enemyAnimation.Play( nextState + returns);
                     returnClip.OnExit = () =>
                     {
                         RemoveState(CharacterState.Attack);
                     };
+                };
+            };
+        }
+
+        protected void AttackWithNoReady(string stateName, Action onAttack)
+        {
+            var attackClip = _enemyAnimation.GetClip(stateName + "Attack");
+            var returnClip = _enemyAnimation.GetClip(stateName + "Return");
+            if(attackClip == null || returnClip == null) return;
+            _enemyAnimation.Play(stateName + "Attack");
+            attackClip.SetEventOnFrame(0, () =>
+            {
+                onAttack?.Invoke();
+            });
+            attackClip.OnExit = () =>
+            {
+                _enemyAnimation.Play(stateName + "Return");
+                returnClip.OnExit = () =>
+                {
+                    RemoveState(CharacterState.Attack);
                 };
             };
         }
