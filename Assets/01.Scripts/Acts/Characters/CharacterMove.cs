@@ -27,6 +27,9 @@ namespace Acts.Characters
 
         private IEnumerator _positionUpdateCoroutine;
 
+        // Test Code
+        protected bool enableQ = false;
+
         public override void Awake()
         {
             _thisTransform = ThisActor.transform;
@@ -114,24 +117,33 @@ namespace Acts.Characters
                 return;
             }*/
             
-            if (_isMoving) return;
+            if (_isMoving)
+            {
+                enableQ = false;
+                return;
+            }
             var seq = DOTween.Sequence();
             var currentPos = ThisActor.Position;
             var nextPos = position;
             nextPos.y = 1;
             
-            Debug.Log("Move");
 
             var map = Define.GetManager<MapManager>();
 
             if (!map.IsStayable(nextPos.SetY(0)))
             {
+                enableQ = false;
                 MoveStop();
                 return;
             }
             
+            Debug.Log("Move");
             var block = map.GetBlock(nextPos.SetY(0));
-            if(block.CheckActorOnBlock(ThisActor) == false) return;
+            if(block.CheckActorOnBlock(ThisActor) == false)
+            {
+                enableQ = false;
+                return;
+            }
             _character.AddState(Actors.Characters.CharacterState.Move);
 
             dir = (currentPos - nextPos).SetY(0);
@@ -140,6 +152,7 @@ namespace Acts.Characters
             PositionUpdate(nextPos);
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
             seq.Append(_thisTransform.DOMove(nextPos, speed - defaultSpeed).SetEase(Ease.Linear));
+            seq.InsertCallback((speed - defaultSpeed) / 2, () => enableQ = false);
             seq.AppendCallback(() =>
             {
 				OnMoveEnd?.Invoke(ThisActor.UUID, position - _character.Position);
@@ -209,7 +222,7 @@ namespace Acts.Characters
             block.isMoving = true;
             while (_isMoving)
             {
-                yield return new WaitForFixedUpdate();
+                yield return new WaitForEndOfFrame();
                 var pos = _thisTransform.position;
                 var x = Mathf.RoundToInt(pos.x);
                 var z = Mathf.RoundToInt(pos.z);
