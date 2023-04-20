@@ -21,7 +21,7 @@ public class UIDialog : UIBase
     {
         _root = UIManager.Instance._document.rootVisualElement.Q<VisualElement>("UI_Dialog");
         choiceBoxTmep = Define.GetManager<ResourceManager>().Load<VisualTreeAsset>("DialogChoiceBox");
-
+        
         visualImage = _root.Q<VisualElement>("Visual");
         choicePanel = _root.Q<VisualElement>("ChoicePanel");
         messageBox = _root.Q<VisualElement>("MessageBox");
@@ -30,12 +30,25 @@ public class UIDialog : UIBase
             NextMessage();
         });
 
-        message = _root.Q<Label>("Message"); 
+        message = _root.Q<Label>("Message");
         nameText = _root.Q<Label>("NameText");
     }
-    public void StartListeningDialog(string msgLine)
+    public void FlagDialogue(bool value)
     {
-        this.msgLine.Enqueue(msgLine);
+        if (value)
+            _root.style.display = DisplayStyle.Flex;
+        else
+            _root.style.display = DisplayStyle.None;
+    }
+    public void StartListeningDialog(DialogueData dialogue)
+    {
+        FlagDialogue(true);
+
+        nameText.text = dialogue.name;
+        ChangeVisualImage(dialogue.name);
+
+        foreach (string msg in dialogue.sentence)
+            this.msgLine.Enqueue(msg);
     }
     public void NextMessage()
     {
