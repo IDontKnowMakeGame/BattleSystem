@@ -8,7 +8,6 @@ public class Torch : UseAbleItem
 {
     public override void UseItem()
     {
-        // To Do Pooling.
         GameObject torch = Define.GetManager<ResourceManager>().Instantiate("Torch");
         torch.transform.position = InGame.Player.transform.position;
     }

@@ -146,6 +146,7 @@ Transform:
   - {fileID: 3997527381707070309}
   - {fileID: 1440938716982235038}
   - {fileID: 7035429012915030124}
+  - {fileID: 6888150589780079218}
   m_Father: {fileID: 959488258604861648}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -473,6 +474,7 @@ MonoBehaviour:
   _playerMove:
     defaultSpeed: 0.1
     distance: 1
+    test: 0
   _playerStat:
     _basicStat:
       maxHP: 500
@@ -493,6 +495,7 @@ MonoBehaviour:
     _secondWeapon: 2
     _halos: 
     _isPlayer: 1
+    _haloRanderer: {fileID: 0}
   _plyerAnimation:
     curClip:
       name: 
@@ -1102,4 +1105,66 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2662873638032127355, guid: eb4d15c0829167445810bb6b3f3f5795, type: 3}
   m_PrefabInstance: {fileID: 1348664968597636099}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6883596924541319880
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1624052664}
+    m_Modifications:
+    - target: {fileID: 1249764699762932, guid: c046ef3d1532215438fedadfca815425, type: 3}
+      propertyPath: m_Name
+      value: pf_vfx-ult_demo_psys_oneshot_irisAwakening
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735158485551290, guid: c046ef3d1532215438fedadfca815425, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735158485551290, guid: c046ef3d1532215438fedadfca815425, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735158485551290, guid: c046ef3d1532215438fedadfca815425, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735158485551290, guid: c046ef3d1532215438fedadfca815425, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735158485551290, guid: c046ef3d1532215438fedadfca815425, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735158485551290, guid: c046ef3d1532215438fedadfca815425, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735158485551290, guid: c046ef3d1532215438fedadfca815425, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735158485551290, guid: c046ef3d1532215438fedadfca815425, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735158485551290, guid: c046ef3d1532215438fedadfca815425, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735158485551290, guid: c046ef3d1532215438fedadfca815425, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735158485551290, guid: c046ef3d1532215438fedadfca815425, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c046ef3d1532215438fedadfca815425, type: 3}
+--- !u!4 &6888150589780079218 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4735158485551290, guid: c046ef3d1532215438fedadfca815425, type: 3}
+  m_PrefabInstance: {fileID: 6883596924541319880}
   m_PrefabAsset: {fileID: 0}

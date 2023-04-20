@@ -9,6 +9,7 @@ using Actors.Characters.Enemy;
 
 namespace Acts.Characters.Player
 {
+    [System.Serializable]
     public class PlayerAttack : CharacterAttack
     {
         private PlayerAnimation _playerAnimation;
@@ -22,6 +23,9 @@ namespace Acts.Characters.Player
         private Vector3 currentDir;
         
         private CharacterActor ThisCharacter => ThisActor as CharacterActor;
+
+        [SerializeField]
+        private ParticleSystem attackParticle;
 
         public override void Awake()
         {
@@ -82,6 +86,7 @@ namespace Acts.Characters.Player
             {
                 enemy.GetAct<CharacterStatAct>().Damage(character.ChangeStat.atk, ThisActor);
             }
+            //attackParticle.Play();
             _playerActor.GetAct<PlayerBuff>().ChangeAdneraline(1);
 		}
         
