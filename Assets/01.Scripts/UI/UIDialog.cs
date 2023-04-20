@@ -40,9 +40,17 @@ public class UIDialog : UIBase
         else
             _root.style.display = DisplayStyle.None;
     }
+    public void FlagMessageBox(bool value)
+    {
+        if (value)
+            messageBox.style.display = DisplayStyle.Flex;
+        else
+            messageBox.style.display = DisplayStyle.None;
+    }
     public void StartListeningDialog(DialogueData dialogue)
     {
         FlagDialogue(true);
+        FlagMessageBox(false);
 
         nameText.text = dialogue.name;
         ChangeVisualImage(dialogue.name);
@@ -52,11 +60,14 @@ public class UIDialog : UIBase
     }
     public void NextMessage()
     {
-        
+        SetMessageBoxText(msgLine.Dequeue());
+
+        if (msgLine.Count < 0)
+            EndMessage();
     }
     public void EndMessage()
     {
-
+        FlagMessageBox(true);
     }
     public void SetMessageBoxText(string message)
     {
