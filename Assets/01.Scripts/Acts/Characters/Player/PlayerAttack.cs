@@ -9,6 +9,7 @@ using Actors.Characters.Enemy;
 
 namespace Acts.Characters.Player
 {
+    [System.Serializable]
     public class PlayerAttack : CharacterAttack
     {
         private PlayerAnimation _playerAnimation;
@@ -20,6 +21,11 @@ namespace Acts.Characters.Player
         private List<EnemyActor> enemys = new List<EnemyActor>();
 
         private Vector3 currentDir;
+        
+        private CharacterActor ThisCharacter => ThisActor as CharacterActor;
+
+        [SerializeField]
+        private ParticleSystem attackParticle;
 
         public override void Awake()
         {
@@ -80,6 +86,7 @@ namespace Acts.Characters.Player
             {
                 enemy.GetAct<CharacterStatAct>().Damage(character.ChangeStat.atk, ThisActor);
             }
+            //attackParticle.Play();
             _playerActor.GetAct<PlayerBuff>().ChangeAdneraline(1);
 		}
         
@@ -121,44 +128,43 @@ namespace Acts.Characters.Player
 
         private void Attack(EventParam eventParam)
         {
+            if (ThisCharacter.HasCCState()) return;
             ReadyAttackAnimation(eventParam.attackParam);
 		}
 
         private void NoneAniAttack(EventParam eventParam)
-        {   
-			//AttackCheck(eventParam.attackParam);
-			//_playerAnimation.curClip.SetEventOnFrame(_playerAnimation.curClip.fps - 1, FinishAttack);
+        {
+            if (ThisCharacter.HasCCState()) return;
+            if(eventParam.boolParam == false)
+            {
+				enemys.Clear();
+				attackCol.SetAttackCol(eventParam.attackParam);
+				_playerActor.AddState(CharacterState.Attack);
+			}
+            else
+            {
+				if (attackCol.CurrntDirNearEnemy() != null)
+					enemys.Add(attackCol.CurrntDirNearEnemy());
 
-            //if (eventParam.boolParam == false)
-            //{
-            //    enemys.Clear();
-            //    attackCol.SetAttackCol(eventParam.attackParam);
-            //    _playerActor.AddState(CharacterState.Attack);
-            //}
-            //else
-            //{
-            //    if (attackCol.CurrntDirNearEnemy() != null)
-            //        enemys.Add(attackCol.CurrntDirNearEnemy());
-            //
-            //    if (enemys.Count > 0)
-            //    {
-            //        Attack();
-            //    }
-            //    OnAttackEnd?.Invoke(_playerActor.UUID);
-            //    attackCol.AllReset();
-            //    _playerActor.RemoveState(CharacterState.Attack);
-            //}
-        }
+				if (enemys.Count > 0)
+				{
+					Attack();
+				}
+				OnAttackEnd?.Invoke(_playerActor.UUID);
+				attackCol.AllReset();
+				_playerActor.RemoveState(CharacterState.Attack);
+			}
+		}
 
         private void FureAttack(EventParam eventParam)
         {
-			enemys.Clear();
+            if (ThisCharacter.HasCCState()) return;
+            enemys.Clear();
 
             attackCol.SetAttackCol(eventParam.attackParam);
 			if (attackCol.CurrntDirNearEnemy() != null)
 				enemys.Add(attackCol.CurrntDirNearEnemy());
 
-            Debug.Log(enemys.Count);
             if (enemys.Count > 0)
             {
                 Attack();

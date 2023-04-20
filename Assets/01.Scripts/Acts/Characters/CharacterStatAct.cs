@@ -163,6 +163,11 @@ public class CharacterStatAct : Act
 	{
 		ChangeStat.hp -= damage - (damage * (Half / 100));
 		_render.Blink();
+
+		GameObject blood = Define.GetManager<ResourceManager>().Instantiate("Blood");
+		blood.transform.position = ThisActor.transform.position;
+		blood.GetComponent<ParticleSystem>().Play();
+
 		if (ChangeStat.hp <= 0)
 		{
 			if (actor is PlayerActor)

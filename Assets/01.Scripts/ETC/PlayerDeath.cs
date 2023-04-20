@@ -34,7 +34,7 @@ namespace ETC
             seq.AppendCallback(() =>
             {
                 DOTween.CompleteAll();
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                SceneManager.LoadScene("Lobby");
                 DOTween.KillAll();
                 DOTween.Kill(seq);
             });

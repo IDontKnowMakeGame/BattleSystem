@@ -36,27 +36,34 @@ namespace Actors.Characters.Enemy.CrazyGhost
             chase.OnStay += () => { move.Chase(InGame.Player); };
             pattern.RandomActions.Add(() =>
             {
+                AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
                 var dir = (Position - playerPos).GetDirection();
                 Attack(dir, "Slash", () => { attack.HorizontalAttack(playerPos, false); });
             });
             pattern.RandomActions.Add(() =>
             {
+                AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
                 var dir = (Position - playerPos).GetDirection();
                 Attack(dir,"Pierce", () => { attack.VerticalAttack(playerPos, false); });
             });
             jump.OnEnter = () =>
             {
-                var playerPos = InGame.Player.Position;
-                var dir = (Position - playerPos).GetDirection();
                 AddState(CharacterState.Attack);
                 var jumpClip = _enemyAnimation.GetClip("JumpAttackJump");
-                _enemyAnimation.Play("JumpAttackJump");
-                move.Jump(playerPos, dir, 1);
-                jumpClip.OnExit += () =>
+                var readyClip = _enemyAnimation.GetClip("JumpAttackReady");
+                _enemyAnimation.Play("JumpAttackReady");
+                readyClip.OnExit = () =>
                 {
-                    Attack(Vector3.zero, "JumpAttack", () => { attack.ForwardAttack(playerPos, false); });
+                    var playerPos = InGame.Player.Position;
+                    var dir = (Position - playerPos).GetDirection();
+                    _enemyAnimation.Play("JumpAttackJump");
+                    move.Jump(playerPos, dir, 0);
+                    jumpClip.OnExit = () =>
+                    {
+                        AttackWithNoReady("JumpAttack", () => { attack.ForwardAttack(playerPos, false); });
+                    };
                 };
             };
             triple.OnEnter = () =>

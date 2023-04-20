@@ -32,6 +32,25 @@
         }
     ],
     "inventoryInHaloList": [],
-    "inventoryInUsableItemList": [],
+    "inventoryInUsableItemList": [
+        {
+            "id": 200,
+            "name": "Torch",
+            "currentCnt": 3,
+            "maxCnt": 0
+        },
+        {
+            "id": 201,
+            "name": "Shield",
+            "currentCnt": 3,
+            "maxCnt": 0
+        },
+        {
+            "id": 202,
+            "name": "HPPotion",
+            "currentCnt": 3,
+            "maxCnt": 0
+        }
+    ],
     "inventoryInQuestItemList": []
 }

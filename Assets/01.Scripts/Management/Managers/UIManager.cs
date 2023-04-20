@@ -35,7 +35,9 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-
+        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.Torch, 3);
+        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.Shield ,3);
+        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.HPPotion, 3);
     }
 
     private void Init()

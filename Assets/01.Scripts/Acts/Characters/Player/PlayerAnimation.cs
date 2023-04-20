@@ -20,7 +20,6 @@ namespace Acts.Characters.Player
         public override void Awake()
         {
             base.Awake();
-
             // 무기 애니메이션들을 Dictionary를 통해 관리(ID를 통하여 불려올 수 있음)
             foreach (WeaponClips weaponClips in weaponAnimations)
             {
