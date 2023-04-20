@@ -42,7 +42,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2755650914466401373}
-  - component: {fileID: 762680728433953311}
+  - component: {fileID: 4656177935829726777}
   m_Layer: 0
   m_Name: Halo1Anchor
   m_TagString: Untagged
@@ -66,7 +66,7 @@ Transform:
   m_Father: {fileID: 8441543394442963672}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &762680728433953311
+--- !u!114 &4656177935829726777
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 648394271881324927}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa051dc7d6664b24d8c0aa350880d0cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 13e8411d9f7c558419cf182e726fb9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1615608046938638961
@@ -87,7 +87,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3811974050698849878}
-  - component: {fileID: 5938621410647564766}
+  - component: {fileID: 318308310347407858}
   m_Layer: 0
   m_Name: Halo3Anchor
   m_TagString: Untagged
@@ -111,7 +111,7 @@ Transform:
   m_Father: {fileID: 2343889341577015454}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5938621410647564766
+--- !u!114 &318308310347407858
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1615608046938638961}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa051dc7d6664b24d8c0aa350880d0cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 13e8411d9f7c558419cf182e726fb9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7344623734468666991
@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1698260227421852092}
-  - component: {fileID: 7915925454049359284}
+  - component: {fileID: 1270822738322571602}
   m_Layer: 0
   m_Name: Halo2Anchor
   m_TagString: Untagged
@@ -156,7 +156,7 @@ Transform:
   m_Father: {fileID: 2343889341577015454}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7915925454049359284
+--- !u!114 &1270822738322571602
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7344623734468666991}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa051dc7d6664b24d8c0aa350880d0cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 13e8411d9f7c558419cf182e726fb9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8441543392758995232
@@ -229,7 +229,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c1169b6b558871b46852a4623513d46a, type: 2}
+  - {fileID: 2100000, guid: d9b8539ddd3ecc946917bc80b401dc42, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -312,7 +312,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 271f8e04e182abd4a8ce6e86f2d752d0, type: 2}
+  - {fileID: 2100000, guid: 8b82718a09f9d1f4cb0504f961d4565b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -395,7 +395,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dba4f9e43e3b4384e88b0465746e908c, type: 2}
+  - {fileID: 2100000, guid: d5c86892abaab924dbadeb555fa0235f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -426,7 +426,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8441543394442963672}
-  - component: {fileID: 8441543394442963655}
+  - component: {fileID: 6327054771803259931}
   m_Layer: 0
   m_Name: HaloModel
   m_TagString: Untagged
@@ -451,7 +451,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &8441543394442963655
+--- !u!114 &6327054771803259931
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -460,49 +460,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 8441543394442963673}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f9fbd72f7f78814cb076833fd4c92c9, type: 3}
+  m_Script: {fileID: 11500000, guid: f65650ddd3eb7c241a2d308706549494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _haloAnimators:
-  - {fileID: 762680728433953311}
-  - {fileID: 7915925454049359284}
-  - {fileID: 5938621410647564766}
+  - {fileID: 4656177935829726777}
+  - {fileID: 1270822738322571602}
+  - {fileID: 318308310347407858}
   _haloAnimationInfos:
   - id: 100
     animatoins:
     - state: 2
-      texture: {fileID: 2800000, guid: 4518498b1b41d0d44aec67ade6f0aa51, type: 3}
-      material: {fileID: 2100000, guid: c1169b6b558871b46852a4623513d46a, type: 2}
+      texture: {fileID: 2800000, guid: 5943226198a40be40b05ee2d9be58923, type: 3}
+      material: {fileID: 2100000, guid: d5c86892abaab924dbadeb555fa0235f, type: 2}
       delay:
       - 0.1
-      - 0.1
-      - 0.1
-      - 0.1
-      - 0.1
-      - 0.1
-      - 0.1
-      - 0.1
-      isLoop: 1
+      isLoop: 0
   - id: 101
     animatoins:
     - state: 2
-      texture: {fileID: 2800000, guid: f4056c9d4dc722e4289e95221305ca68, type: 3}
-      material: {fileID: 2100000, guid: 4d0b0b826d26e02489edee36693938a7, type: 2}
+      texture: {fileID: 2800000, guid: fd049261caaad4d44a9bcae0ba223a26, type: 3}
+      material: {fileID: 2100000, guid: d9b8539ddd3ecc946917bc80b401dc42, type: 2}
       delay:
       - 0.1
-      - 0.1
-      - 0.1
-      - 0.1
-      - 0.1
-      - 0.1
-      - 0.1
-      - 0.1
-      isLoop: 1
+      isLoop: 0
   - id: 102
     animatoins:
     - state: 2
-      texture: {fileID: 2800000, guid: c04a582465081b345bb698c15b0a24a5, type: 3}
-      material: {fileID: 2100000, guid: 271f8e04e182abd4a8ce6e86f2d752d0, type: 2}
+      texture: {fileID: 2800000, guid: 5088b2e715943f64a984879e20886e1d, type: 3}
+      material: {fileID: 2100000, guid: abd30272a10e15d42be05407edac70be, type: 2}
       delay:
       - 0.1
       - 0.1
@@ -512,5 +498,5 @@ MonoBehaviour:
       - 0.1
       - 0.1
       - 0.1
-      isLoop: 1
+      isLoop: 0
   maxCount: 3
