@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 264925531992034776}
   - component: {fileID: 264925531988248332}
   - component: {fileID: 264925531994401207}
-  - component: {fileID: 264925531994401204}
+  - component: {fileID: 4671563339701749924}
   m_Layer: 0
   m_Name: box.004
   m_TagString: Enemy
@@ -117,7 +117,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &264925531994401204
+--- !u!114 &4671563339701749924
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 264925531994377724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86bad9910ca0f1340a9977f706d8211c, type: 3}
+  m_Script: {fileID: 11500000, guid: 06c9fde28e87ce74d82ce8b231399d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0, z: 0}
@@ -189,4 +189,4 @@ MonoBehaviour:
       ats: 0
       afs: 0
       speed: 0
-    _brokenObject: {fileID: 2482231287081235985, guid: a76615fa8ef6d1e4fa238578bbb45c0e, type: 3}
+    _brokenObject: {fileID: 2482231287081235985, guid: 4d4232da3fa583f41abde9d9497989ac, type: 3}
