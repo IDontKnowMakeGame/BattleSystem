@@ -209,14 +209,12 @@ namespace Acts.Characters
         public void Chase(Actor target)
         {
             if(_character.HasState(CharacterState.Move)) return;
-            if (isChasing) return;
             ThisActor.StartCoroutine(AstarCoroutine(target.Position));
         }
 
         Astar astar = new Astar();
         private IEnumerator AstarCoroutine(Vector3 end)
         {
-            isChasing = true;
             if (InGame.GetBlock(end).isWalkable == false)
             {
                 yield break;
