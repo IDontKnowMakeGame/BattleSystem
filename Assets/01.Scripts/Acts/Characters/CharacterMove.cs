@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Actors.Bases;
 using Actors.Characters;
@@ -13,6 +14,7 @@ using DG.Tweening;
 using Managements.Managers;
 using UnityEngine;
 using UnityEngine.Animations;
+using Random = UnityEngine.Random;
 
 namespace Acts.Characters
 {
@@ -68,13 +70,11 @@ namespace Acts.Characters
             dir = (currentPos - nextPos).SetY(0);
             MoveBackAnimation();
 
-            PositionUpdate(nextPos);
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
             seq.Append(_thisTransform.DOMove(nextPos, speed - defaultSpeed).SetEase(Ease.Linear));
             seq.AppendCallback(() =>
             {
                 OnMoveEnd?.Invoke(ThisActor.UUID, nextPos - _character.Position);
-                ThisActor.Position = nextPos;
                 MoveStop(); 
                 seq.Kill();
             });
@@ -158,11 +158,9 @@ namespace Acts.Characters
             seq.AppendCallback(() =>
             {
 				OnMoveEnd?.Invoke(ThisActor.UUID, position - _character.Position);
-				ThisActor.Position = nextPos;
                 MoveStop(); 
 				seq.Kill();
             });
-            PositionUpdate(nextPos);
         }
 
         public virtual void Jump(Vector3 targetPos, Vector3 dir, int distance)
@@ -205,59 +203,6 @@ namespace Acts.Characters
                 MoveStop();
                 seq.Kill();
             });
-            PositionUpdate(nextPos);
-        }
-
-        public void PositionUpdate(Vector3 nextPos)
-        {
-            _positionUpdateCoroutine = PositionUpdateCoroutine(nextPos);
-            ThisActor.StartCoroutine(_positionUpdateCoroutine);
-        }
-        public IEnumerator PositionUpdateCoroutine(Vector3 nextPos)
-        {
-            if(ThisActor is EnemyActor)
-                Debug.Log("Position Update Start");
-            _isMoving = true;
-            var originPos = ThisActor.Position;
-            var dir = (nextPos - originPos).GetDirection();
-            nextPos.y = 0;
-            var nextBlock = InGame.GetBlock(nextPos);
-            var currentBlock = InGame.GetBlock(originPos);
-            nextBlock.isMoving = true;
-            while (_isMoving)
-            {
-                var pos = _thisTransform.position;
-                var x = Mathf.RoundToInt(pos.x);
-                var z = Mathf.RoundToInt(pos.z);
-                if (Mathf.Abs(x - pos.x) != 0)
-                {
-                    pos.x = x;
-                }
-
-                if (Mathf.Abs(z - pos.z) != 0)
-                {
-                    pos.z = z;
-                }
-
-                if (Vector3.Distance(pos.SetY(0), nextPos) <= 0.5f) 
-                {
-                    var map = Define.GetManager<MapManager>();
-                    var target = map.GetBlock(nextPos.SetY(0)).ActorOnBlock;
-                    if (target)
-                        if(ThisActor != target)
-                            target.GetAct<CharacterMove>()?.KnockBack(dir);
-                    
-                    nextBlock.isMoving = false;
-                    nextBlock.SetActorOnBlock(ThisActor);
-                    currentBlock.RemoveActorOnBlock();
-                    ThisActor.Position = pos;
-                    _isMoving = false;
-                    if(ThisActor is EnemyActor)
-                        Debug.Log("Position Update End");
-                    isChasing = false;
-                }
-                yield return new WaitForSeconds(Time.deltaTime);
-            }
         }
 
         private bool isChasing = false;
@@ -314,18 +259,19 @@ namespace Acts.Characters
             }
         }
 
-        public void KnockBack(Vector3 dir)
+        public void KnockBack()
         {
-            Debug.Log(dir);
+            var map = Define.GetManager<MapManager>();
+            var dirs = new[] { Vector3.forward, Vector3.back, Vector3.left, Vector3.right };
+            dirs.Where((v) =>
+            {
+                var pos = ThisActor.Position + v;
+                return map.IsStayable(pos);
+            });
+            var dir = dirs[Random.Range(0, dirs.Length)];
             _character.AddState(CharacterState.KnockBack);
             var originPos = ThisActor.Position;
             var nextPos = originPos + dir;
-            var map = Define.GetManager<MapManager>();
-            if (!map.IsStayable(nextPos))
-            {
-                _character.Stun();
-                return;
-            }
             nextPos.y = 1;
             var seq = DOTween.Sequence();
             seq.Append(_thisTransform.DOMove(nextPos, 0.1f).SetEase(Ease.Flash));
@@ -333,7 +279,6 @@ namespace Acts.Characters
             {
                 _character.RemoveState(CharacterState.KnockBack);
                 map.GetBlock(nextPos.SetY(0)).SetActorOnBlock(ThisActor);
-                ThisActor.Position = nextPos;
                 seq.Kill();
             });
         }

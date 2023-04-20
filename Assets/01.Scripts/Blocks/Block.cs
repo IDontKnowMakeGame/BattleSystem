@@ -102,9 +102,9 @@ namespace Blocks
 
         protected override void Awake()
         {
-            Position = transform.position;
-            InGame.AddBlock(this);
             base.Awake();
+            UpdatePosition();
+            InGame.AddBlock(this);
         }
 
         protected override void Update()
@@ -188,7 +188,6 @@ namespace Blocks
                 case MovementType.Bounce:
                 {
                     _blockMovement.Bounce(durantion, strength);
-                    _blockParticle.Play();
                     break;
                 }
                 case MovementType.Roll:

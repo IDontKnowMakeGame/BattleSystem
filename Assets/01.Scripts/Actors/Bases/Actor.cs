@@ -2,7 +2,10 @@
 using System;
 using System.Collections.Generic;
 using Acts.Base;
+using Acts.Characters;
 using Core;
+using Managements.Managers;
+using UnityEngine.SocialPlatforms.Impl;
 
 namespace Actors.Bases
 {
@@ -13,26 +16,16 @@ namespace Actors.Bases
         [SerializeField] private Vector3 position = Vector3.zero;
         protected Transform spriteTransform;
 
-        public Vector3 Position
-        {
-            get => position;
-            set
-            {
-                value.y = 0;
-                position = value;
-            }
-        }
+        public Vector3 Position => position;
 
         public Transform SpriteTransform => spriteTransform;
-
+        
         #region Unit_LifeCycle
 
         protected virtual void Init()
         {
             //Add or Init Acts
-            Position = transform.position;
             spriteTransform = this.GetComponentInChildren<MeshRenderer>().transform;
-            InGame.AddActor(this);
         }
 
         protected virtual void Awake()
@@ -46,6 +39,7 @@ namespace Actors.Bases
 
         protected virtual void Start()
         {
+            InGame.AddActor(this);
             foreach (var behaviour in _behaviours.Values)
             {
                 behaviour.Start();
@@ -54,6 +48,7 @@ namespace Actors.Bases
 
         protected virtual void Update()
         {
+            UpdatePosition();
             foreach (var behaviour in _behaviours.Values)
             {
                 behaviour.Update();
@@ -231,5 +226,14 @@ namespace Actors.Bases
         }
 
         #endregion
+
+        protected virtual void UpdatePosition()
+        {
+            var pos = transform.position;
+            pos.x = Mathf.RoundToInt(pos.x);
+            pos.y = 0;
+            pos.z = Mathf.RoundToInt(pos.z);
+            position = pos;
+        }
     }
 }

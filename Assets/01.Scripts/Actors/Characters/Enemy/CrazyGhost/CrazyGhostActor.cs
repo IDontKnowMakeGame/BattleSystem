@@ -15,10 +15,12 @@ namespace Actors.Characters.Enemy.CrazyGhost
     public class CrazyGhostActor : BossActor
     {
         private PatternState patternState;
+        [SerializeField] private EnemyParticle particle;
         protected override void Init()
         {
             base.Init(); 
             AddAct(_enemyAi);
+            AddAct(particle);
             AddAct<CharacterMove>();
             AddAct<CrazyGhostAttack>();
         }
@@ -62,7 +64,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                     move.Jump(playerPos, dir, 0);
                     jumpClip.OnExit = () =>
                     {
-                        AttackWithNoReady("JumpAttack", () => { attack.ForwardAttack(playerPos, false); });
+                        AttackWithNoReady("JumpAttack", () => { attack.RoundAttack(1, false); });
                     };
                 };
             };
