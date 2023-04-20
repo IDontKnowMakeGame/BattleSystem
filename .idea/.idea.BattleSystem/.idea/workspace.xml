@@ -1,7 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="" />
+    <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefabs/CrazyGhost.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefabs/CrazyGhost.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/06.Shaders/Block/Shader Graphs_OutlineShader.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/06.Shaders/Block/Shader Graphs_OutlineShader.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/07.Textures/Halo/HaloOfEreshkigal.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/07.Textures/Halo/HaloOfGhost.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/07.Textures/Halo/HaloOfPollution.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/Boss/BossClips.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/Boss/BossClips.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/NoneWeaponClips.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/NoneWeaponClips.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldBowClips 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldBowClips 1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldBowClips.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldBowClips.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldGreatClips.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldGreatClips.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldLongClips.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldLongClips.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldSpearClips.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldSpearClips.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldTwinClips.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldTwinClips.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/10. Meatrial/HaloOfEreshkigal.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/10. Meatrial/HaloOfGhost.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/10. Meatrial/HaloOfPollution.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_Add_CG.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_Add_CG.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_BlendDistort.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_BlendDistort.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_Blend_CG.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_Blend_CG.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_Blend_Normals.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_Blend_Normals.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_Blend_TwoSides.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_Blend_TwoSides.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_Distortion.shadergraph" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_Distortion.shadergraph" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_Distortion.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_Distortion.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_Explosion.shadergraph" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_Explosion.shadergraph" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_Explosion.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_Explosion.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_Ice.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_Ice.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_LightGlow.shader.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_LightGlow.shader.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_Lit_CenterGlow.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_Lit_CenterGlow.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_ParallaxIce.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_ParallaxIce.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_ShockWave.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_ShockWave.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_SoftNoise.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_SoftNoise.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_SwordSlash.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_SwordSlash.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_VolumeLaser.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hovl Studio/Render Pipelines support/Shaders/URP_VolumeLaser.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/LandingParticle.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/LandingParticle.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/KHJScene 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/KHJScene 1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -140,7 +178,7 @@
       <workItem from="1681896324740" duration="6940000" />
       <workItem from="1681917329951" duration="4443000" />
       <workItem from="1681950779798" duration="12203000" />
-      <workItem from="1681984429959" duration="4818000" />
+      <workItem from="1681984429959" duration="5425000" />
     </task>
     <servers />
   </component>
