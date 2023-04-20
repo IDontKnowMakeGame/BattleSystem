@@ -13,7 +13,9 @@ using UnityEngine.Analytics;
 public class BrokenObjectStatAct : CharacterStatAct
 {
 	[SerializeField]
-	private GameObject _brokenObjectName;
+	private GameObject _brokenObject;
+	//[SerializeField]
+	//private ParticleSystem _particle;
 
 	public override void Damage(float damage, Actor actor)
 	{
@@ -26,7 +28,7 @@ public class BrokenObjectStatAct : CharacterStatAct
 
 	public override void Die()
 	{
-		GameObject obj = GameObject.Instantiate(_brokenObjectName);
+		GameObject obj = GameObject.Instantiate(_brokenObject);
 		obj.transform.position = ThisActor.transform.position + Vector3.up;
 		GameManagement.Instance.GetManager<ResourceManager>().Destroy(ThisActor.gameObject);
 	}

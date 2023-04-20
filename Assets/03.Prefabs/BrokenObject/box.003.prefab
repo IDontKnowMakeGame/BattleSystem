@@ -188,4 +188,4 @@ MonoBehaviour:
       ats: 0
       afs: 0
       speed: 0
-    _brokenObjectName: {fileID: 6140026781672766214, guid: ba3e70c0dee9f7c4fbfa5667c7f329d1, type: 3}
+    _brokenObject: {fileID: 6140026781672766214, guid: ba3e70c0dee9f7c4fbfa5667c7f329d1, type: 3}

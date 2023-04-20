@@ -173,7 +173,7 @@ MonoBehaviour:
       ats: 0
       afs: 0
       speed: 0
-    _brokenObjectName: {fileID: 465980900595328281, guid: 223eb14e203726747bf2a400f7e84e08, type: 3}
+    _brokenObject: {fileID: 465980900595328281, guid: 223eb14e203726747bf2a400f7e84e08, type: 3}
 --- !u!54 &7958460928653473885
 Rigidbody:
   m_ObjectHideFlags: 0
