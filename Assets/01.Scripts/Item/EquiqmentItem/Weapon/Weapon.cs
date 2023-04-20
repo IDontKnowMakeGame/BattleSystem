@@ -7,6 +7,9 @@ using TMPro;
 using Core;
 using System;
 using System.Collections;
+using UnityEngine.Windows;
+using Input = UnityEngine.Input;
+using Managements.Managers;
 
 public class Weapon : EquiqmentItem
 {
@@ -30,6 +33,8 @@ public class Weapon : EquiqmentItem
 
 	public bool isEnemy = true;
 	protected bool _attakAble = true;
+	protected bool _input = false;
+
 	protected CharacterActor _characterActor;
 	protected PlayerActor _playerActor = null;
 	protected PlayerAnimation _playerAnimation;
@@ -127,6 +132,25 @@ public class Weapon : EquiqmentItem
 	public override void Update()
 	{
 		Timer();
+		if(_input)
+		{
+			if(Input.GetKeyDown(KeyCode.W))
+			{
+				STimeInputSkill(Vector3.forward);
+			}
+			if (Input.GetKeyDown(KeyCode.S))
+			{
+				STimeInputSkill(Vector3.back);
+			}
+			if (Input.GetKeyDown(KeyCode.A))
+			{
+				STimeInputSkill(Vector3.left);
+			}
+			if (Input.GetKeyDown(KeyCode.D))
+			{
+				STimeInputSkill(Vector3.right);
+			}
+		}
 	}
 	protected void Timer()
 	{
@@ -142,6 +166,33 @@ public class Weapon : EquiqmentItem
 			_isCoolTime = false;
 			_currentTimerSecound = 0;
 		}
+	}
+
+	protected IEnumerator SameTimeInput()
+	{
+		STFirstSkill();
+		yield return new WaitForSeconds(1f);
+		SkillInputEnd(_characterActor.UUID,Vector3.zero);
+	}
+
+	protected virtual void STFirstSkill()
+	{
+		_input = true;
+		//InputManager<Weapon>.OnAttackPress += STimeInputSkill;
+		_characterActor.AddState(CharacterState.Skill);
+	}
+
+	protected virtual void STimeInputSkill(Vector3 vec)
+	{
+
+	}
+
+	protected virtual void SkillInputEnd(int i, Vector3 vec)
+	{
+		_input = false;
+		_isCoolTime = true;
+		_characterActor.RemoveState(CharacterState.Skill);
+		//InputManager<Weapon>.OnAttackPress -= STimeInputSkill;
 	}
 
 	protected void AtsTimer() => _characterActor.StartCoroutine(WaitAttack());

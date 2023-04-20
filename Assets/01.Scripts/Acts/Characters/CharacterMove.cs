@@ -119,8 +119,6 @@ namespace Acts.Characters
             var currentPos = ThisActor.Position;
             var nextPos = position;
             nextPos.y = 1;
-            
-            Debug.Log("Move");
 
             var map = Define.GetManager<MapManager>();
 

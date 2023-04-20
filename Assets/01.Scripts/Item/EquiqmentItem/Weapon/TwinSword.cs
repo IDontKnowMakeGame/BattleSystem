@@ -53,7 +53,8 @@ public class TwinSword : Weapon
 		base.Equiqment(actor);
 		if (isEnemy)
 			return;
-		InputManager<TwinSword>.OnAttackPress += Attack;
+		InputManager<Weapon>.OnMovePress += AttackVec;
+		PlayerMove.OnMoveEnd += OnAttack;
 		if (_playerAnimation == null)
 			_playerAnimation = _characterActor.GetAct<PlayerAnimation>();
 	}
@@ -63,7 +64,45 @@ public class TwinSword : Weapon
 		base.UnEquipment(actor);
 		if (isEnemy)
 			return;
-		InputManager<TwinSword>.OnAttackPress -= Attack;
+		InputManager<Weapon>.OnMovePress -= AttackVec;
+		PlayerMove.OnMoveEnd -= OnAttack;
+	}
+
+	public void AttackVec(Vector3 vec) => _attackInfo.PressInput = vec;
+
+	public void OnAttack(int id, Vector3 vec)
+	{
+		if (id != _characterActor.UUID)
+			return;
+
+		int z = (int)_attackInfo.PressInput.z;
+		int x = (int)_attackInfo.PressInput.x;
+		_attackInfo.ReachFrame = 1;
+		if (_attackInfo.PressInput == Vector3.forward || _attackInfo.PressInput == Vector3.back)
+		{
+			_attackInfo.ResetDir();
+			_attackInfo.LeftStat = new ColliderStat(1, range, 1, 0);
+			_attackInfo.RightStat = new ColliderStat(1, range, -1, 0);
+			_attackInfo.UpStat = new ColliderStat(1, 1, 0, 1);
+			_attackInfo.DownStat = new ColliderStat(1, 1, 0, -1);
+
+			_attackInfo.AddDir(DirType.Left);
+			_attackInfo.AddDir(DirType.Right);
+		}
+		else if (_attackInfo.PressInput == Vector3.left || _attackInfo.PressInput == Vector3.right)
+		{
+			_attackInfo.ResetDir();
+			_attackInfo.UpStat = new ColliderStat(range, 1, 0, 1);
+			_attackInfo.DownStat = new ColliderStat(range, 1, 0, -1);
+			_attackInfo.LeftStat = new ColliderStat(1, 1, -1, 0);
+			_attackInfo.RightStat = new ColliderStat(1, 1, 1, 0);
+
+			_attackInfo.AddDir(DirType.Up);
+			_attackInfo.AddDir(DirType.Down);
+		}
+		_eventParam.attackParam = _attackInfo;
+		Define.GetManager<EventManager>().TriggerEvent(EventFlag.FureAttack, _eventParam);
+		//Attack(vec);
 	}
 
 	public virtual void Attack(Vector3 vec)

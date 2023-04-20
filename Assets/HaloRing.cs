@@ -5,8 +5,11 @@ using UnityEngine;
 public class HaloRing : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] obj;
+    private GameObject[] _obj;
 
+
+    [SerializeField]
+    private float _speed;
     void Start()
     {
         
@@ -15,8 +18,6 @@ public class HaloRing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.Rotate(Vector3.forward * Time.deltaTime * 10);
-        obj[0].transform.localRotation = this.transform.localRotation;
-		obj[1].transform.localRotation = this.transform.localRotation;
+        this.transform.Rotate(Vector3.forward * Time.deltaTime * _speed);
 	}
 }

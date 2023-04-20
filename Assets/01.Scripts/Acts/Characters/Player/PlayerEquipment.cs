@@ -59,21 +59,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 		base.Update();
 		if (Input.GetKeyDown(KeyCode.P))
 		{
-			switch (count++)
-			{
-				case 0:
-					AddHalo(ItemID.HaloOfPollution);
-					break;
-				case 1:
-					AddHalo(ItemID.HaloOfGhost);
-					break;
-				case 2:
-					AddHalo(ItemID.HaloOfEreshkigal);
-					break;
-				default:
-					count = 0;
-					break;
-			}
+			AddHalo(ItemID.HaloOfEreshkigal);
 		}
 	}
 	public override void OnDisable()
@@ -181,11 +167,12 @@ public class PlayerEquipment : CharacterEquipmentAct
 	}
 	#endregion
 
+	private int index = 0;
 	#region Halo
 	public void AddHalo(ItemID haloID)
     {
 		_halos.Add(haloID);
-		_haloRanderer?.EquipmentHalo(haloID);
+		_haloRanderer?.Equipment(haloID, index++);
 		_useHalo[haloID].Equiqment(_characterController);
     }
 

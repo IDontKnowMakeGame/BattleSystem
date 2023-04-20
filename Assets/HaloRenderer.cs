@@ -6,26 +6,38 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
 [Serializable]
-public struct HaloMaterial
+public struct HaloAnimationContainor
 {
 	public ItemID id;
+	public HaloAnimation[] animatoins;
+}
+
+[Serializable]
+public struct HaloAnimation
+{
+	public HaloAnimationState state;
+	public Texture texture;
 	public Material material;
+	
+	public float[] delay;
+	public int fps => delay.Length;
+	public bool isLoop;
 }
 
 public class HaloRenderer : MonoBehaviour
 {
 	[SerializeField]
-	private MeshRenderer[] renderers;
+	private List<HaloAnimator> _haloAnimators = new List<HaloAnimator>();
 
 	[SerializeField]
-	private HaloMaterial[] materials;
+	private HaloAnimationContainor[] _haloAnimationInfos;
 
-	private Dictionary<ItemID, Material> _haloMaterial = new Dictionary<ItemID, Material>();
+	private Dictionary<ItemID, HaloAnimationContainor> _animations = new Dictionary<ItemID, HaloAnimationContainor>();
 
-	private	Stack<Material> me = new Stack<Material>();
+	private	Stack<HaloAnimationContainor> me = new Stack<HaloAnimationContainor>();
 
-	private List<Material> _materials = new List<Material>();
 
 	[SerializeField]
 	private int maxCount = 0;
@@ -33,21 +45,19 @@ public class HaloRenderer : MonoBehaviour
 
 	private void Awake()
 	{
-		foreach (HaloMaterial halo in materials)
+		foreach (HaloAnimationContainor halo in _haloAnimationInfos)
 		{
-			_haloMaterial.Add(halo.id, halo.material);
-		}
-
-		for (int i = 0; i < renderers.Length; i++)
-		{
-			_materials.Add(renderers[i].material);
+			_animations.Add(halo.id, halo);
 		}
 	}
 
 	private void Start()
 	{
-		if (renderers[count].material == null)
-			renderers[count].gameObject.SetActive(false);
+		foreach (HaloAnimator halo in _haloAnimators)
+		{
+			if (halo.State == HaloAnimationState.None)
+				halo.AnimatorStop();
+		}
 	}
 
 	#region Stack으로 계속 추가
@@ -55,30 +65,30 @@ public class HaloRenderer : MonoBehaviour
 	{
 		if (count >= maxCount)
 			return;
-		if (!renderers[count].gameObject.activeSelf)
-			renderers[count].gameObject.SetActive(true);
+		if (_haloAnimators[count].State == HaloAnimationState.None)
+			_haloAnimators[count].AnimatorStart();
 		count++;
 
 		me.Clear();
-		for(int i = renderers.Length-1; i >= 0; i--)
+		for(int i = _haloAnimators.Count-1; i >= 0; i--)
 		{
-			me.Push(renderers[i].material);
+			me.Push(_haloAnimators[i].animationsInfo);
 		}
 
-		me.Push(_haloMaterial[id]);
+		me.Push(_animations[id]);
 
 		int max = me.Count;
 		for (int i = 0; i< max-1; i++)
 		{
-			Material meme = me.Pop();
-			renderers[i].material = meme;
+			HaloAnimationContainor meme = me.Pop();
+			_haloAnimators[i].animationsInfo = meme;
 		}
 	}
 
 	public void UnEqupmentHalo()
 	{
-		if (renderers[count].gameObject.activeSelf)
-			renderers[count].gameObject.SetActive(false);
+		if (_haloAnimators[count].State != HaloAnimationState.None)
+			_haloAnimators[count].AnimatorStop();
 
 		count--;
 	}
@@ -87,15 +97,14 @@ public class HaloRenderer : MonoBehaviour
 	#region List를 사용하여 해결
 	public void Equipment(ItemID id, int index)
 	{
-		if (!renderers[index].gameObject.activeSelf)
-			renderers[index].gameObject.SetActive(true);
-
-		_materials[index] = _haloMaterial[id];
+		_haloAnimators[index].animationsInfo = _animations[id];
+		if (_haloAnimators[index].State == HaloAnimationState.None)
+			_haloAnimators[index].AnimatorStart();
 	}
 
 	public void UnEquipment(int index)
 	{
-		renderers[index].gameObject.SetActive(false);
+		_haloAnimators[index].AnimatorStop();
 	}
 	#endregion
 }

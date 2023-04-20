@@ -1,7 +1,9 @@
 using Actors.Characters;
+using Acts.Characters;
 using Acts.Characters.Player;
 using Core;
 using Managements.Managers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,26 +14,32 @@ public class OldStraightSword : StraightSword
 	{
 		if (_isCoolTime)
 			return;
-		_characterActor.AddState(CharacterState.Skill);
-		_characterActor.GetAct<PlayerMove>().IsSKill = true;
-		_characterActor.GetAct<PlayerMove>().distance = 2;
-		InputManager<StraightSword>.OnMovePress += SkillStart;
-		PlayerMove.OnMoveEnd += SkillEnd;
-	}
-
-	private void SkillStart(Vector3 vec)
-	{
-		InputManager<OldStraightSword>.OnMovePress -= SkillStart;
-		_characterActor.RemoveState(CharacterState.Skill);
-	}
-	private void SkillEnd(int id, Vector3 vec)
-	{
-		if (id != _characterActor.UUID)
+		if (_characterActor.HasState(~CharacterState.None & ~CharacterState.Move))
 			return;
 
-		_characterActor.GetAct<PlayerMove>().distance = 1;
-		_isCoolTime = true;
+		_characterActor.AddState(CharacterState.Skill);
+		_characterActor.StartCoroutine(SameTimeInput());
+	}
+
+	protected override void STimeInputSkill(Vector3 vec)
+	{
+		CharacterMove.OnMoveEnd += SkillInputEnd;
+		_characterActor.RemoveState(CharacterState.Skill);
+		PlayerMove move = _characterActor.GetAct<PlayerMove>();
+		move.IsSKill = true;
+		//if (_characterActor.HasState(CharacterState.Move)
+			
+		move.Move(_characterActor.Position + InGame.CamDirCheck(vec) * 2);
+
+	}
+
+	protected override void SkillInputEnd(int i, Vector3 vec)
+	{
+		if (i != _characterActor.UUID)
+			return;
+
+		base.SkillInputEnd(i, vec);
 		_characterActor.GetAct<PlayerMove>().IsSKill = false;
-		PlayerMove.OnMoveEnd -= SkillEnd;
+		CharacterMove.OnMoveEnd -= SkillInputEnd;
 	}
 }

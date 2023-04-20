@@ -125,27 +125,30 @@ namespace Acts.Characters.Player
 		}
 
         private void NoneAniAttack(EventParam eventParam)
-        {
-            if(eventParam.boolParam == false)
-            {
-				enemys.Clear();
-				attackCol.SetAttackCol(eventParam.attackParam);
-				_playerActor.AddState(CharacterState.Attack);
-			}
-            else
-            {
-				if (attackCol.CurrntDirNearEnemy() != null)
-					enemys.Add(attackCol.CurrntDirNearEnemy());
+        {   
+			//AttackCheck(eventParam.attackParam);
+			//_playerAnimation.curClip.SetEventOnFrame(_playerAnimation.curClip.fps - 1, FinishAttack);
 
-				if (enemys.Count > 0)
-				{
-					Attack();
-				}
-				OnAttackEnd?.Invoke(_playerActor.UUID);
-				attackCol.AllReset();
-				_playerActor.RemoveState(CharacterState.Attack);
-			}
-		}
+            //if (eventParam.boolParam == false)
+            //{
+            //    enemys.Clear();
+            //    attackCol.SetAttackCol(eventParam.attackParam);
+            //    _playerActor.AddState(CharacterState.Attack);
+            //}
+            //else
+            //{
+            //    if (attackCol.CurrntDirNearEnemy() != null)
+            //        enemys.Add(attackCol.CurrntDirNearEnemy());
+            //
+            //    if (enemys.Count > 0)
+            //    {
+            //        Attack();
+            //    }
+            //    OnAttackEnd?.Invoke(_playerActor.UUID);
+            //    attackCol.AllReset();
+            //    _playerActor.RemoveState(CharacterState.Attack);
+            //}
+        }
 
         private void FureAttack(EventParam eventParam)
         {
@@ -155,6 +158,7 @@ namespace Acts.Characters.Player
 			if (attackCol.CurrntDirNearEnemy() != null)
 				enemys.Add(attackCol.CurrntDirNearEnemy());
 
+            Debug.Log(enemys.Count);
             if (enemys.Count > 0)
             {
                 Attack();

@@ -216,7 +216,6 @@ public class Spear : Weapon
 
 	private void MoveEnd(int id, Vector3 vec)
 	{
-		Debug.Log(_isClick);
 		if (id != _characterActor.UUID)
 			return;
 

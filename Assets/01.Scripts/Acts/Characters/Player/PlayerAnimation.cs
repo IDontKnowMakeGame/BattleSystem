@@ -85,6 +85,7 @@ namespace Acts.Characters.Player
         public override void OnDisable()
         {
             currentCoroutine = null;
+            Debug.Log("Disable");
             foreach (var item in weaponClipDic.Values)
             {
                 item.ClearEvent();

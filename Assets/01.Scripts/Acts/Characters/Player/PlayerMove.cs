@@ -50,6 +50,13 @@ namespace Acts.Characters.Player
             base.Translate(direction * distance);
         }
 
+        public override void Move(Vector3 position)
+        {
+            if (isSkill)
+                _isMoving = false;
+            base.Move(position);
+        }
+
         public void BowBackStep(Vector3 position)
         {
             playerDir = (position - ThisActor.Position);

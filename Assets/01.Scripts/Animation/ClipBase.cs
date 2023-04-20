@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 namespace Tools
 {
@@ -27,11 +28,14 @@ namespace Tools
                 events = new List<Action>(new Action[fps]);
             }
             events[frame] = action;
+
+            Debug.Log(frame);
         }
 
         public void ClearEvent()
         {
-            events = new();
+			Debug.Log("Clear");
+			events = new();
         }
 
         public void ChangeClip(ClipBase clipBase)
