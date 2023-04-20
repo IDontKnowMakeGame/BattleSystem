@@ -19,151 +19,151 @@ MonoBehaviour:
   clips:
   - name: Idle
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 723773d532e230948ba0b89541f9ee45, type: 3}
+    texture: {fileID: 2800000, guid: 3f1cf64e6e263904b94959e966b48175, type: 3}
     fps: 19
     isLoop: 1
     delay: 0.1
   - name: LowerSlashReady
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 322599d82967ae544904b40625137256, type: 3}
+    texture: {fileID: 2800000, guid: d496513250a58164592ff97d3c8be851, type: 3}
     fps: 12
     isLoop: 0
     delay: 0.1
   - name: LowerSlashAttack
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 5af6d3da0a074844a950ffa5e50aa6db, type: 3}
+    texture: {fileID: 2800000, guid: 701256a9a3390554d9ee643bf352f54e, type: 3}
     fps: 4
     isLoop: 0
     delay: 0.1
   - name: LowerSlashReturn
     nextIdx: 0
-    texture: {fileID: 2800000, guid: a990cb9ed261eba42b85e486402e2118, type: 3}
+    texture: {fileID: 2800000, guid: 04e95d5bf315068408085c0a55a2f4de, type: 3}
     fps: 6
     isLoop: 0
     delay: 0.1
   - name: LowerPierceReady
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 269ee1bd371467e439ab4666982bc7fc, type: 3}
+    texture: {fileID: 2800000, guid: 7019dd13fa6aae54fa3c0eb2869a63f2, type: 3}
     fps: 10
     isLoop: 0
     delay: 0.1
   - name: LowerPierceAttack
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 432a9e32d1dce224b8e265f90b692442, type: 3}
+    texture: {fileID: 2800000, guid: 752bdc67bf75a1c4496db30f2d68396b, type: 3}
     fps: 4
     isLoop: 0
     delay: 0.1
   - name: LowerPierceReturn
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 7ed80c6870ae5424781ab60efd7e7d88, type: 3}
+    texture: {fileID: 2800000, guid: 6299f16e8a87b4a4ca0010e68e915725, type: 3}
     fps: 6
     isLoop: 0
     delay: 0.1
   - name: SoulAttackJump
     nextIdx: 0
-    texture: {fileID: 2800000, guid: b0dfa493e4271f545baf9f228979f7f7, type: 3}
+    texture: {fileID: 2800000, guid: bed9212417f022f428b40cf9b19528d6, type: 3}
     fps: 11
     isLoop: 0
     delay: 0.03272727
   - name: SoulAttackReady
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 2f79c22f15c2aa0499a7d843f36b3fba, type: 3}
+    texture: {fileID: 2800000, guid: d27e5842d4b9d43408f6462e465f9a7d, type: 3}
     fps: 23
     isLoop: 0
     delay: 0.03
   - name: SoulAttackAttack
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 293c4d1c6bf8fa642bdb2e195f6e7b70, type: 3}
+    texture: {fileID: 2800000, guid: 8a38925ec4edb5144953ac34c2f4024e, type: 3}
     fps: 9
     isLoop: 0
     delay: 0.1
   - name: SoulAttackReturn
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 07cf12b5b16b9cb4391eb5ac06eb4879, type: 3}
+    texture: {fileID: 2800000, guid: 25f654157b5c39c448b2c651572712b7, type: 3}
     fps: 10
     isLoop: 0
     delay: 0.1
   - name: LowerCombo1Ready
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 5de819de2be5d494eb8b0d1cc366324a, type: 3}
+    texture: {fileID: 2800000, guid: f0c5afacef9f9db4ea32ab4bb4e94235, type: 3}
     fps: 12
     isLoop: 0
     delay: 0.1
   - name: LowerCombo1Attack
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 116f78d9fad0e7d42876de63336161d6, type: 3}
+    texture: {fileID: 2800000, guid: 46f7204e61a990b4984196eb461e7c67, type: 3}
     fps: 7
     isLoop: 0
     delay: 0.1
   - name: LowerCombo2Ready
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 406b1354a618f3c418279149f408c78c, type: 3}
+    texture: {fileID: 2800000, guid: 070c01f1adfe25f44b3c8ae1e18eb759, type: 3}
     fps: 6
     isLoop: 0
     delay: 0.1
   - name: LowerCombo2Attack
     nextIdx: 0
-    texture: {fileID: 2800000, guid: e1dcc72819db5e348ab1e26d06f5482f, type: 3}
+    texture: {fileID: 2800000, guid: 61c3438a1046b1b4bb01aa8d6c52b6db, type: 3}
     fps: 5
     isLoop: 0
     delay: 0.1
   - name: LowerCombo3Ready
     nextIdx: 0
-    texture: {fileID: 2800000, guid: dbfa2e6785a4f5643a9cf239a0158531, type: 3}
+    texture: {fileID: 2800000, guid: c3f3ce263b3e60247a4bdc704553eed8, type: 3}
     fps: 10
     isLoop: 0
     delay: 0.1
   - name: LowerCombo3Attack
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 79b06741df85f9342bfbcdafa98d1265, type: 3}
+    texture: {fileID: 2800000, guid: dda619b8b4e616b49af7047360f4b99a, type: 3}
     fps: 4
     isLoop: 0
     delay: 0.1
   - name: LowerCombo3Return
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 5cc1332528bfc1a44ba31ea921b686f2, type: 3}
+    texture: {fileID: 2800000, guid: e09b8e0176919e64bb1188d71437a6a2, type: 3}
     fps: 6
     isLoop: 0
     delay: 0.1
   - name: HorizontalSlashReady
     nextIdx: 0
-    texture: {fileID: 2800000, guid: d688b8c7a91269b41a2068d16a8700a6, type: 3}
+    texture: {fileID: 2800000, guid: 182406f9dd0d5c940865054559faa83f, type: 3}
     fps: 12
     isLoop: 0
     delay: 0.1
   - name: HorizontalSlashAttack
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 9c33968aa283a924b883c7833ccef523, type: 3}
+    texture: {fileID: 2800000, guid: df3734d9251039e4a877e84216f3abe0, type: 3}
     fps: 4
     isLoop: 0
     delay: 0.1
   - name: HorizontalSlashReturn
     nextIdx: 0
-    texture: {fileID: 2800000, guid: fadc23b61f3c62743b88230e22223427, type: 3}
+    texture: {fileID: 2800000, guid: 3cbaa0612d136f64686780cac9717fd4, type: 3}
     fps: 6
     isLoop: 0
     delay: 0.1
   - name: JumpAttackJump
     nextIdx: 0
-    texture: {fileID: 2800000, guid: d7d2f6ceaeb18af48904e410f0ce5cb5, type: 3}
+    texture: {fileID: 2800000, guid: 38817b2d753184a4383a39c82dd172e2, type: 3}
     fps: 6
     isLoop: 0
     delay: 0.059999995
   - name: JumpAttackReady
     nextIdx: 0
-    texture: {fileID: 2800000, guid: c1da1a61834d41c4dab8f34585f6e46b, type: 3}
+    texture: {fileID: 2800000, guid: 6cad3dcb7a042a5408baa099cdb48857, type: 3}
     fps: 5
     isLoop: 0
     delay: 0.1
   - name: JumpAttackAttack
     nextIdx: 0
-    texture: {fileID: 2800000, guid: caf4f4826bf21df42835c992e51ac6b7, type: 3}
+    texture: {fileID: 2800000, guid: 751cfdc468646a846bc327fb293450e6, type: 3}
     fps: 3
     isLoop: 0
     delay: 0.1
   - name: JumpAttackReturn
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 3ab38b4cd834422468f113c68ca71e0b, type: 3}
+    texture: {fileID: 2800000, guid: 8e35d7af061a4fb43a71863c83bc1195, type: 3}
     fps: 5
     isLoop: 0
     delay: 0.1
