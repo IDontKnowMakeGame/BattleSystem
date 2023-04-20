@@ -48,7 +48,6 @@ namespace Actors.Characters
 
 		protected override void Update()
 		{
-			if(Input.GetMouseButtonDown(0)) Stun();
 			if (HasCCState()) return;
 			base.Update();
 		}
@@ -82,9 +81,9 @@ namespace Actors.Characters
 			return false;
 		}
 
-		public void Stun()
+		public void Stun(float delay)
 		{
-			StartCoroutine(StunCoroutine(2f));
+			StartCoroutine(StunCoroutine(delay));
 		}
 		
 		private IEnumerator StunCoroutine(float delay)
@@ -104,7 +103,7 @@ namespace Actors.Characters
 				var target = map.GetBlock(Position).ActorOnBlock;
 				if (target)
 					if(this != target)
-						target.GetAct<CharacterMove>()?.KnockBack();
+						target.GetAct<CharacterMove>()?.KnockBack(2);
 			}
 			InGame.SetActorOnBlock(this);
 		}
