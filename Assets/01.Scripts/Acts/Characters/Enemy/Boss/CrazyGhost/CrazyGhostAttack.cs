@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Actors.Characters.Enemy;
 using Blocks;
 using Blocks.Acts;
 using Core;
@@ -11,6 +12,19 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
 {
     public class CrazyGhostAttack : EnemyAttack
     {
+        public void RoundAttack(int distance, bool isLast = true)
+        {
+            Attack();
+            ThisActor.GetAct<EnemyParticle>().PlayLandingParticle();
+            for (var i = -distance; i <= distance; i++)
+            {
+                for (var j = -distance; j <= distance; j++)
+                {
+                    var attackPos = new Vector3(i, 0, j);
+                    Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position + attackPos, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.Bounce, isLast);
+                }
+            }
+        }
         public void AreaAttack(Vector3 pos)
         {
             Attack();

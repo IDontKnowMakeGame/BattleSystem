@@ -5,6 +5,7 @@ using Actors.Bases;
 using Acts.Characters;
 using Core;
 using Data;
+using Managements.Managers;
 using UnityEngine;
 
 namespace Actors.Characters
@@ -35,15 +36,13 @@ namespace Actors.Characters
 			AddAct(_characterRender);
 		}
 
-		protected override void Awake()
-		{
-			base.Awake();
-		}
-
 		protected override void Start()
 		{
 			if (_isBlocking)
-				InGame.SetActorOnBlock(this, Position);
+			{
+				UpdatePosition();
+				InGame.SetActorOnBlock(this);
+			}
 			base.Start();
 		}
 
@@ -93,6 +92,21 @@ namespace Actors.Characters
 			AddState(CharacterState.Stun);
 			yield return new WaitForSeconds(delay);
 			RemoveState(CharacterState.Stun);
+		}
+
+		protected override void UpdatePosition()
+		{
+			base.UpdatePosition();
+			var map = Define.GetManager<MapManager>();
+			var block = map.GetBlock(Position);
+			if (block != null)
+			{
+				var target = map.GetBlock(Position).ActorOnBlock;
+				if (target)
+					if(this != target)
+						target.GetAct<CharacterMove>()?.KnockBack();
+			}
+			InGame.SetActorOnBlock(this);
 		}
 	}
 }

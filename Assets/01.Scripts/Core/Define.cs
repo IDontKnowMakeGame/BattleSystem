@@ -109,18 +109,11 @@ namespace Core
 
         public static Actor GetActor(Vector3 pos) => GetBlock(pos).ActorOnBlock;
 
-        public static void SetActorOnBlock(Actor actor, Vector3 nextPos)
+        public static void SetActorOnBlock(Actor actor)
         {
-            nextPos.y = 0;
+            Debug.Log(actor.Position);
             var currentBlock = GetBlock(actor.Position);
-            var nextBlock = GetBlock(nextPos);
-            
-            if (currentBlock != null)
-                if(currentBlock.ActorOnBlock == actor)
-                    currentBlock.RemoveActorOnBlock();
-            if(nextBlock != null)
-                if(nextBlock.ActorOnBlock == null)
-                    nextBlock.SetActorOnBlock(actor);
+            currentBlock.SetActorOnBlock(actor);
         }
         public static Vector3 CameraDir()
         {
