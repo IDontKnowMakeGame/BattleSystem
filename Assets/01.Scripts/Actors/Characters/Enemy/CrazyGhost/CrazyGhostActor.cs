@@ -52,11 +52,16 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 var dir = (Position - playerPos).GetDirection();
                 AddState(CharacterState.Attack);
                 var jumpClip = _enemyAnimation.GetClip("JumpAttackJump");
-                _enemyAnimation.Play("JumpAttackJump");
-                move.Jump(playerPos, dir, 1);
+                var readyClip = _enemyAnimation.GetClip("JumpAttackReady");
+                _enemyAnimation.Play("JumpAttackReady");
+                readyClip.OnExit += () =>
+                {
+                    _enemyAnimation.Play("JumpAttackJump");
+                    move.Jump(playerPos, dir, 0);
+                };
                 jumpClip.OnExit += () =>
                 {
-                    Attack(Vector3.zero, "JumpAttack", () => { attack.ForwardAttack(playerPos, false); });
+                    AttackWithNoReady("JumpAttack", () => { attack.ForwardAttack(playerPos, false); });
                 };
             };
             triple.OnEnter = () =>

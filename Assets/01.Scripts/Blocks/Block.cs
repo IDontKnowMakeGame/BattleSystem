@@ -87,11 +87,13 @@ namespace Blocks
         public bool IsActorOnBlock => ActorOnBlock != null;
         private BlockRender _blockRender;
         private BlockMovement _blockMovement;
+        private BlockParticle _blockParticle;
 
 		protected override void Init()
         {
             _blockRender = AddAct<BlockRender>();
             _blockMovement = AddAct<BlockMovement>();
+            _blockParticle = AddAct<BlockParticle>();
             tileOBJ = this.gameObject;
             Vector3 pos = transform.position;
             x = (int)pos.x;
@@ -103,6 +105,14 @@ namespace Blocks
             Position = transform.position;
             InGame.AddBlock(this);
             base.Awake();
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+            if(IsActorOnBlock)
+                if (_actorOnBlock.Position != Position)
+                    _actorOnBlock = null;
         }
 
         public void SetActorOnBlock(Actor actor)
@@ -172,16 +182,19 @@ namespace Blocks
                 case MovementType.Shake:
                 {
                     _blockMovement.Shake(durantion, strength, vibrato, randomness);
+                    _blockParticle.Play();
                     break;
                 }
                 case MovementType.Bounce:
                 {
                     _blockMovement.Bounce(durantion, strength);
+                    _blockParticle.Play();
                     break;
                 }
                 case MovementType.Roll:
                 {
                     _blockMovement.Roll(durantion, strength);
+                    _blockParticle.Play();
                     break;
                 }
                 case MovementType.None:
