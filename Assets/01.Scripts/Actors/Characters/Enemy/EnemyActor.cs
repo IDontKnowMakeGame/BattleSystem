@@ -69,7 +69,7 @@ namespace Actors.Characters.Enemy
                 returnClip = _enemyAnimation.GetClip( nextState + returns);
             }
             _enemyAnimation.Play( nextState + ready);
-            readyClip.OnExit += () =>
+            readyClip.OnExit = () =>
             {
                 _enemyAnimation.Play( nextState + attack);
                 attackClip.SetEventOnFrame(0, () =>
@@ -113,7 +113,7 @@ namespace Actors.Characters.Enemy
             var attackClip = _enemyAnimation.GetClip(stateName + "Attack");
             if(readyClip == null || attackClip == null) return;
             _enemyAnimation.Play(stateName + "Ready");
-            readyClip.OnExit += () =>
+            readyClip.OnExit = () =>
             {
                 _enemyAnimation.Play(stateName + "Attack");
                 attackClip.SetEventOnFrame(0, () =>

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Actors.Bases;
 using Actors.Characters;
+using Actors.Characters.Enemy;
 using Actors.Characters.Player;
 using Acts.Base;
 using Acts.Characters.Enemy;
@@ -151,7 +152,6 @@ namespace Acts.Characters
             dir = (currentPos - nextPos).SetY(0);
             AnimationCheck();
 
-            PositionUpdate(nextPos);
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
             seq.Append(_thisTransform.DOMove(nextPos, speed - defaultSpeed).SetEase(Ease.Linear));
             seq.InsertCallback((speed - defaultSpeed) / 2, () => enableQ = false);
@@ -162,18 +162,18 @@ namespace Acts.Characters
                 MoveStop(); 
 				seq.Kill();
             });
+            PositionUpdate(nextPos);
         }
 
-        public virtual void Jump(Vector3 originPos, Vector3 dir, int distance)
+        public virtual void Jump(Vector3 targetPos, Vector3 dir, int distance)
         {
             if (_isMoving) return;
             var seq = DOTween.Sequence();
-            var currentPos = originPos;
             int i = distance;
-            var nextPos = originPos + dir * distance;
+            var nextPos = targetPos + dir * distance;
             while (i > 0)
             {
-                nextPos = originPos + dir * i;
+                nextPos = targetPos + dir * i;
                 var nextBlock = InGame.GetBlock(nextPos.SetY(0));
                 if(nextBlock != null)
                         break;
@@ -182,12 +182,10 @@ namespace Acts.Characters
 
             nextPos.y = 1;
             var map = Define.GetManager<MapManager>();
-            var knockBack = false;
-            Actor detectedTarget = null;
+
             if (map.GetBlock(nextPos.SetY(0)).IsActorOnBlock)
             {
-                detectedTarget = map.GetBlock(nextPos.SetY(0)).ActorOnBlock;
-                knockBack = true;
+                
             }
             else if (!map.IsStayable(nextPos.SetY(0)))
             {
@@ -200,18 +198,9 @@ namespace Acts.Characters
             _character.AddState(Actors.Characters.CharacterState.Move);
 
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
-
             seq.Append(_thisTransform.DOJump(nextPos, 1, 1, speed));
             seq.AppendCallback(() =>
             {
-                if (knockBack)
-                {
-                    var target = map.GetBlock(nextPos.SetY(0)).ActorOnBlock;
-                    if (!target) return;
-                    if(detectedTarget == target)
-                        target.GetAct<CharacterMove>()?.KnockBack(dir);
-                }
-                originPos = nextPos;
                 map.GetBlock(nextPos.SetY(0)).SetActorOnBlock(ThisActor);
                 MoveStop();
                 seq.Kill();
@@ -226,10 +215,11 @@ namespace Acts.Characters
         }
         public IEnumerator PositionUpdateCoroutine(Vector3 nextPos)
         {
-            if(ThisActor is PlayerActor)
+            if(ThisActor is EnemyActor)
                 Debug.Log("Position Update Start");
             _isMoving = true;
             var originPos = ThisActor.Position;
+            var dir = (nextPos - originPos).GetDirection();
             nextPos.y = 0;
             var nextBlock = InGame.GetBlock(nextPos);
             var currentBlock = InGame.GetBlock(originPos);
@@ -251,29 +241,37 @@ namespace Acts.Characters
 
                 if (Vector3.Distance(pos.SetY(0), nextPos) <= 0.5f) 
                 {
+                    var map = Define.GetManager<MapManager>();
+                    var target = map.GetBlock(nextPos.SetY(0)).ActorOnBlock;
+                    if (target)
+                        if(ThisActor != target)
+                            target.GetAct<CharacterMove>()?.KnockBack(dir);
+                    
                     nextBlock.isMoving = false;
                     nextBlock.SetActorOnBlock(ThisActor);
                     currentBlock.RemoveActorOnBlock();
                     ThisActor.Position = pos;
                     _isMoving = false;
-                    if(ThisActor is PlayerActor)
+                    if(ThisActor is EnemyActor)
                         Debug.Log("Position Update End");
+                    isChasing = false;
                 }
                 yield return new WaitForSeconds(Time.deltaTime);
             }
-            var dir = ThisActor.Position - originPos;
-            _positionUpdateCoroutine = null;
         }
 
+        private bool isChasing = false;
         public void Chase(Actor target)
         {
             if(_character.HasState(CharacterState.Move)) return;
+            if (isChasing) return;
             ThisActor.StartCoroutine(AstarCoroutine(target.Position));
         }
 
         Astar astar = new Astar();
         private IEnumerator AstarCoroutine(Vector3 end)
         {
+            isChasing = true;
             if (InGame.GetBlock(end).isWalkable == false)
             {
                 yield break;
