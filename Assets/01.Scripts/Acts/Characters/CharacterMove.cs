@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Actors.Bases;
 using Actors.Characters;
+using Actors.Characters.Player;
 using Acts.Base;
 using Acts.Characters.Enemy;
 using Core;
@@ -73,7 +74,6 @@ namespace Acts.Characters
             {
                 OnMoveEnd?.Invoke(ThisActor.UUID, nextPos - _character.Position);
                 ThisActor.Position = nextPos;
-                _isMoving = false;
                 MoveStop(); 
                 seq.Kill();
             });
@@ -137,7 +137,6 @@ namespace Acts.Characters
                 return;
             }
             
-            Debug.Log("Move");
             var block = map.GetBlock(nextPos.SetY(0));
             if(block.CheckActorOnBlock(ThisActor) == false)
             {
@@ -160,7 +159,6 @@ namespace Acts.Characters
             {
 				OnMoveEnd?.Invoke(ThisActor.UUID, position - _character.Position);
 				ThisActor.Position = nextPos;
-                _isMoving = false;
                 MoveStop(); 
 				seq.Kill();
             });
@@ -206,7 +204,6 @@ namespace Acts.Characters
             seq.Append(_thisTransform.DOJump(nextPos, 1, 1, speed));
             seq.AppendCallback(() =>
             {
-                _isMoving = false;
                 if (knockBack)
                 {
                     var target = map.GetBlock(nextPos.SetY(0)).ActorOnBlock;
@@ -224,13 +221,13 @@ namespace Acts.Characters
 
         public void PositionUpdate(Vector3 nextPos)
         {
-            if(_positionUpdateCoroutine != null)
-                ThisActor.StopCoroutine(_positionUpdateCoroutine);
             _positionUpdateCoroutine = PositionUpdateCoroutine(nextPos);
             ThisActor.StartCoroutine(_positionUpdateCoroutine);
         }
         public IEnumerator PositionUpdateCoroutine(Vector3 nextPos)
         {
+            if(ThisActor is PlayerActor)
+                Debug.Log("Position Update Start");
             _isMoving = true;
             var originPos = ThisActor.Position;
             nextPos.y = 0;
@@ -252,16 +249,18 @@ namespace Acts.Characters
                     pos.z = z;
                 }
 
-                if (Vector3.Distance(pos.SetY(0), nextPos) <= 0.1f) 
+                if (Vector3.Distance(pos.SetY(0), nextPos) <= 0.5f) 
                 {
+                    nextBlock.isMoving = false;
                     nextBlock.SetActorOnBlock(ThisActor);
                     currentBlock.RemoveActorOnBlock();
                     ThisActor.Position = pos;
                     _isMoving = false;
+                    if(ThisActor is PlayerActor)
+                        Debug.Log("Position Update End");
                 }
                 yield return new WaitForSeconds(Time.deltaTime);
             }
-            nextBlock.isMoving = false;
             var dir = ThisActor.Position - originPos;
             _positionUpdateCoroutine = null;
         }
