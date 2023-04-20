@@ -257,10 +257,10 @@ namespace Acts.Characters
             }
         }
 
-        public void KnockBack()
+        public void KnockBack(int power)
         {
             var map = Define.GetManager<MapManager>();
-            var dirs = new[] { Vector3.forward, Vector3.back, Vector3.left, Vector3.right };
+            var dirs = new[] { Vector3.forward * power, Vector3.back * power, Vector3.left * power, Vector3.right * power };
             dirs.Where((v) =>
             {
                 var pos = ThisActor.Position + v;
