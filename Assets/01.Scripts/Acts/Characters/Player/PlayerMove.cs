@@ -26,15 +26,12 @@ namespace Acts.Characters.Player
             set => isSkill = value;
         }
 
-        public bool test = false;
-
         private Queue<Vector3> moveDir = new Queue<Vector3>();
 
         public override void Awake()
         {         
             base.Awake();
-            if(!test)
-                InputManager<Weapon>.OnMovePress += EnqueMove;
+            InputManager<Weapon>.OnMovePress += EnqueMove;
             Debug.Log("?");
         }
 
@@ -53,7 +50,6 @@ namespace Acts.Characters.Player
 
         public override void Translate(Vector3 direction)
         {
-            Debug.Log(direction);
             if (_playerActor.HasAnyState()) return;
             playerDir = direction;
             direction = InGame.CamDirCheck(direction);
@@ -62,7 +58,6 @@ namespace Acts.Characters.Player
 
         public override void Move(Vector3 position)
         {
-            Debug.Log(position);
             if (isSkill)
                 _isMoving = false;
             base.Move(position);
