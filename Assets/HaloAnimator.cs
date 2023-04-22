@@ -1,5 +1,6 @@
 using ArrayExtensions;
 using Data;
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -66,26 +67,29 @@ public class HaloAnimator : MonoBehaviour
 
 	public Coroutine currentCoroutine;
 
+	[SerializeField]
+	private float maxYvalue = 0f;
+	[SerializeField]
+	private float minYvalue = 0f;
+	[SerializeField]
+	private float yTimer = 0f;
+	[SerializeField]
+	private float waitTimer = 0f;
+
+	private bool isloop = false;
+
 	#region LifeCycle
 	public void Awake()
 	{
 		_currentRenderer = GetComponentInChildren<Renderer>();
 	}
 
-	public void Start()
-	{
-
-	}
-
-	public void Update()
-	{
-
-	}
-
 	public void OnDisable()
 	{
 		if (currentCoroutine != null)
 			StopCoroutine(currentCoroutine);
+		if (sequence != null)
+			sequence.Kill();
 	}
 	#endregion
 
@@ -161,4 +165,27 @@ public class HaloAnimator : MonoBehaviour
 	}
 
 	#endregion
+
+	Sequence sequence = null;
+
+	public void SetTexture()
+	{
+		_currentRenderer.gameObject.SetActive(true);
+		_currentRenderer.material = _haloAnimationsInfo.animatoins[0].material;
+
+		Vector3 vec = this.transform.localPosition;
+		vec.y = minYvalue;
+		this.transform.localPosition = vec;
+
+		sequence = DOTween.Sequence();
+		sequence.Append(this.transform.DOLocalMoveY(maxYvalue, yTimer).SetEase(Ease.InOutSine));
+		sequence.SetLoops(-1,LoopType.Yoyo);
+		sequence.Play();
+	}
+
+	public void DelTexture()
+	{
+		sequence.Kill();
+		_currentRenderer.gameObject.SetActive(false);
+	}
 }

@@ -111,7 +111,6 @@ namespace Core
 
         public static void SetActorOnBlock(Actor actor)
         {
-            Debug.Log(actor.Position);
             var currentBlock = GetBlock(actor.Position);
             currentBlock.SetActorOnBlock(actor);
         }

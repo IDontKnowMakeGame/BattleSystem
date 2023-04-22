@@ -107,4 +107,16 @@ public class HaloRenderer : MonoBehaviour
 		_haloAnimators[index].AnimatorStop();
 	}
 	#endregion
+
+	public void SetHalo(ItemID id)
+	{
+		_haloAnimators[0].animationsInfo = _animations[id];
+		Debug.Log("?");
+		_haloAnimators[0].SetTexture();
+	}
+
+	public void DelHalo()
+	{
+		_haloAnimators[0].DelTexture();
+	}
 }
