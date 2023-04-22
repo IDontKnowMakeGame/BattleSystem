@@ -85,14 +85,17 @@ namespace Acts.Characters.Player
             {
                 enemy.GetAct<CharacterStatAct>().Damage(character.ChangeStat.atk, ThisActor);
 
-                GameObject spark = Define.GetManager<ResourceManager>().Instantiate("Spark");
-                
-                Vector3 particleRot = spark.transform.localEulerAngles;
-                particleRot.y = degree;
+                if (enemy.Alive)
+                {
+                    GameObject spark = Define.GetManager<ResourceManager>().Instantiate("Spark");
 
-                spark.transform.localPosition = enemy.transform.position.SetY(0.7f) + offset;
-                spark.transform.localRotation = Quaternion.Euler(particleRot);
-                spark.GetComponent<ParticleSystem>().Play();
+                    Vector3 particleRot = spark.transform.localEulerAngles;
+                    particleRot.y = degree;
+
+                    spark.transform.localPosition = enemy.transform.position.SetY(0.7f) + offset;
+                    spark.transform.localRotation = Quaternion.Euler(particleRot);
+                    spark.GetComponent<ParticleSystem>().Play();
+                }
             }
             _playerActor.GetAct<PlayerBuff>().ChangeAdneraline(1);
 		}

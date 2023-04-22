@@ -14,6 +14,9 @@ namespace Actors.Characters.Enemy
         [SerializeField] protected CharacterEquipmentAct _characterEquipment;
 		[SerializeField] private EnemyStatAct _characterStat;
         [SerializeField] protected EnemyAnimation _enemyAnimation;
+        [SerializeField] private bool alive = true;
+
+        public bool Alive => alive;
 
 		protected override void Init()
         {
