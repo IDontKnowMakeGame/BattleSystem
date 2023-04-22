@@ -101,7 +101,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 move.Jump(Position, dir, 3);
                 jumpClip.OnExit += () =>
                 {
-                    Attack(Vector3.zero,"SoulAttack", () => { attack.SoulAttack(playerPos); });
+                    Attack(Vector3.zero,"SoulAttack", () => { attack.SoulAttack(playerPos); }, false);
                 };
             };
 
@@ -109,7 +109,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
             {
                 AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
-                Attack(Vector3.zero, "AreaAttack", () => { attack.AreaAttack(playerPos); });
+                Attack(Vector3.zero, "AreaAttack", () => { attack.AreaAttack(playerPos); }, false);
             };
         }
     }

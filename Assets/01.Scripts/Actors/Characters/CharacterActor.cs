@@ -29,11 +29,13 @@ namespace Actors.Characters
 		[SerializeField] private CharacterRender _characterRender;
 		[SerializeField] private CharacterState _characterState;
 		[SerializeField] private bool _isBlocking = false;
+		public Action<int> OnKnockBack = null;
 		public Weapon currentWeapon;
 		protected override void Init()
 		{
 			base.Init();
 			AddAct(_characterRender);
+			AddAct<CharacterCC>();
 		}
 
 		protected override void Start()
@@ -102,8 +104,12 @@ namespace Actors.Characters
 			{
 				var target = map.GetBlock(Position).ActorOnBlock;
 				if (target)
-					if(this != target)
-						target.GetAct<CharacterMove>()?.KnockBack(2);
+					if (this != target)
+					{
+						var targetCharacter = target as CharacterActor;
+
+						if (targetCharacter != null) targetCharacter.OnKnockBack?.Invoke(1);
+					}
 			}
 			InGame.SetActorOnBlock(this);
 		}
