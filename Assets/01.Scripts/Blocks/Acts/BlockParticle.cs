@@ -5,19 +5,30 @@ namespace Blocks.Acts
 {
     public class BlockParticle : Act
     {
-        private Transform _particleTransform; 
-        private ParticleSystem _particleSystem;
+        private ParticleSystem _explosionParticleSystem;
+        private ParticleSystem _smokeParticleSystem;
         public override void Awake()
         {
             base.Awake();
-            _particleTransform = Resources.Load<Transform>("Prefabs/BlockExplosion");
-            var particle = GameObject.Instantiate(_particleTransform, ThisActor.transform);
-            _particleSystem = particle.GetComponent<ParticleSystem>();
+            _explosionParticleSystem = CreateParticle("BlockExplosion");
+            _smokeParticleSystem = CreateParticle("BlockSmoke");
         }
         
-        public void Play()
+        public void PlayExplosionParticle()
         {
-            _particleSystem.Play();
+            _explosionParticleSystem.Play();
+        }
+
+        public void PlaySmokeParticle()
+        {
+            _smokeParticleSystem.Play();
+        }
+        
+        public ParticleSystem CreateParticle(string name)
+        {
+            var particleTrm = Resources.Load<Transform>("Prefabs/" + name);
+            var particle = GameObject.Instantiate(particleTrm, ThisActor.transform);
+            return particle.GetComponent<ParticleSystem>();
         }
     }
 }

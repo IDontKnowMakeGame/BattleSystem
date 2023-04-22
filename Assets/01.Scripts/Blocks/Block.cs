@@ -182,7 +182,7 @@ namespace Blocks
                 case MovementType.Shake:
                 {
                     _blockMovement.Shake(durantion, strength, vibrato, randomness);
-                    _blockParticle.Play();
+                    _blockParticle.PlayExplosionParticle();
                     break;
                 }
                 case MovementType.Bounce:
@@ -193,7 +193,7 @@ namespace Blocks
                 case MovementType.Roll:
                 {
                     _blockMovement.Roll(durantion, strength);
-                    _blockParticle.Play();
+                    _blockParticle.PlaySmokeParticle();
                     break;
                 }
                 case MovementType.None:

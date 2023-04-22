@@ -25,14 +25,14 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                 }
             }
         }
-        public void AreaAttack(Vector3 pos)
+        public void AreaAttack(Vector3 pos, bool isLast = true)
         {
             Attack();
             ThisActor.GetAct<EnemyParticle>().PlayLandingParticle();
-            ThisActor.StartCoroutine(AreaAttackCoroutine(pos));
+            ThisActor.StartCoroutine(AreaAttackCoroutine(pos, isLast));
         }
 
-        private IEnumerator AreaAttackCoroutine(Vector3 pos)
+        private IEnumerator AreaAttackCoroutine(Vector3 pos, bool isLast = true)
         {
             var area = new List<Vector3>();
             var distance = 1;
@@ -55,19 +55,19 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                 distance++;
             }
             
-            Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.None, true);
+            Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.None, isLast);
         }
 
-        public void SoulAttack(Vector3 pos)
+        public void SoulAttack(Vector3 pos, bool isLast = true)
         {
             Attack();
-            ThisActor.StartCoroutine(SoulAttackCoroutine(pos));
+            ThisActor.StartCoroutine(SoulAttackCoroutine(pos, isLast));
         }
-        
-        private IEnumerator SoulAttackCoroutine(Vector3 pos)
+
+        private IEnumerator SoulAttackCoroutine(Vector3 pos, bool isLast = true)
         {
             var degree = ThisActor.Position.GetDegree(pos).GetRotation().GetDirection();
-            var range = new Vector3[] { new (-2, 0, 1), new (-1, 0, 1), new (0, 0, 1), new (1, 0, 1), new (2, 0, 1) };
+            var range = new Vector3[] { new(-2, 0, 1), new(-1, 0, 1), new(0, 0, 1), new(1, 0, 1), new(2, 0, 1) };
             var distance = 0;
             var block = Define.GetManager<MapManager>().GetBlock(ThisActor.Position);
             while (distance <= 20)
@@ -76,10 +76,11 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                 for (var i = 0; i < 5; i++)
                 {
                     var attackPos = CharacterActor.Position + (degree * (range[i] + Vector3.forward * distance));
-                    Define.GetManager<MapManager>().AttackBlock(attackPos, DefaultStat.Atk * 2f, DefaultStat.Ats, CharacterActor, MovementType.Roll);
+                    Define.GetManager<MapManager>().AttackBlock(attackPos, DefaultStat.Atk * 2f, DefaultStat.Ats,
+                        CharacterActor, MovementType.Shake);
                     block = Define.GetManager<MapManager>().GetBlock(attackPos);
                     if (block != null)
-                        if(block.isWalkable)
+                        if (block.isWalkable)
                             count++;
                 }
 
@@ -88,8 +89,9 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                 yield return new WaitForSeconds(0.05f);
                 distance++;
             }
-            
-            Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.None, true);
+
+            Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position, DefaultStat.Atk, DefaultStat.Ats,
+                CharacterActor, MovementType.None, isLast);
         }
     }
 }
