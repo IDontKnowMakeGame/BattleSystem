@@ -53,6 +53,7 @@ namespace Acts.Characters.Player
 
         public override void Translate(Vector3 direction)
         {
+            Debug.Log(direction);
             if (_playerActor.HasAnyState()) return;
             playerDir = direction;
             direction = InGame.CamDirCheck(direction);
@@ -61,6 +62,7 @@ namespace Acts.Characters.Player
 
         public override void Move(Vector3 position)
         {
+            Debug.Log(position);
             if (isSkill)
                 _isMoving = false;
             base.Move(position);
