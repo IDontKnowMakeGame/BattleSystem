@@ -27,10 +27,7 @@ public class OldStraightSword : StraightSword
 		_characterActor.RemoveState(CharacterState.Skill);
 		PlayerMove move = _characterActor.GetAct<PlayerMove>();
 		move.IsSKill = true;
-		//if (_characterActor.HasState(CharacterState.Move)
-			
 		move.Move(_characterActor.Position + InGame.CamDirCheck(vec) * 2);
-
 	}
 
 	protected override void SkillInputEnd(int i, Vector3 vec)
