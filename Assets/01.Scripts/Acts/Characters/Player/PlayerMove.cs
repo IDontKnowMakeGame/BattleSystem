@@ -26,15 +26,12 @@ namespace Acts.Characters.Player
             set => isSkill = value;
         }
 
-        public bool test = false;
-
         private Queue<Vector3> moveDir = new Queue<Vector3>();
 
         public override void Awake()
         {         
             base.Awake();
-            if(!test)
-                InputManager<Weapon>.OnMovePress += EnqueMove;
+            InputManager<Weapon>.OnMovePress += EnqueMove;
             Debug.Log("?");
         }
 

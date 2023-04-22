@@ -21,11 +21,9 @@ namespace Acts.Characters.Player
         private List<EnemyActor> enemys = new List<EnemyActor>();
 
         private Vector3 currentDir;
-        
+        private float degree;
+        private Vector3 offset;
         private CharacterActor ThisCharacter => ThisActor as CharacterActor;
-
-        [SerializeField]
-        private ParticleSystem attackParticle;
 
         public override void Awake()
         {
@@ -70,6 +68,7 @@ namespace Acts.Characters.Player
 
             if(enemys.Count > 0)
             {
+                ParticleRot(attackInfo.PressInput);
                 _playerAnimation.curClip.SetEventOnFrame(attackInfo.ReachFrame, Attack);
             }
 
@@ -85,10 +84,45 @@ namespace Acts.Characters.Player
 			foreach (EnemyActor enemy in enemys)
             {
                 enemy.GetAct<CharacterStatAct>().Damage(character.ChangeStat.atk, ThisActor);
+
+                if (enemy.Alive)
+                {
+                    GameObject spark = Define.GetManager<ResourceManager>().Instantiate("Spark");
+
+                    Vector3 particleRot = spark.transform.localEulerAngles;
+                    particleRot.y = degree;
+
+                    spark.transform.localPosition = enemy.transform.position.SetY(0.7f) + offset;
+                    spark.transform.localRotation = Quaternion.Euler(particleRot);
+                    spark.GetComponent<ParticleSystem>().Play();
+                }
             }
-            //attackParticle.Play();
             _playerActor.GetAct<PlayerBuff>().ChangeAdneraline(1);
 		}
+
+        private void ParticleRot(Vector3 pressInput)
+        {
+            if (pressInput == Vector3.forward)
+            {
+                degree = 180;
+                offset = new Vector3(0, 0, 0.3f);
+            }
+            else if (pressInput == Vector3.back)
+            {
+                degree = 0;
+                offset = new Vector3(0, 0, -0.3f);
+            }
+            else if (pressInput == Vector3.left)
+            {
+                degree = 90;
+                offset = new Vector3(-0.3f, 0, 0);
+            }
+            else if (pressInput == Vector3.right)
+            {
+                degree = -90;
+                offset = new Vector3(0.3f, 0, 0);
+            }
+        }
         
         public override void ReadyAttackAnimation(AttackInfo attackInfo)
         {

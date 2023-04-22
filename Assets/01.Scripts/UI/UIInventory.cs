@@ -46,6 +46,7 @@ public class UIInventory : UIBase
     #region UseableItemPanel
     private VisualElement _useableItemScrollPanel;
     private VisualElement _useableEquipPanel;
+    private VisualElement _unmountBtn;
 
     private VisualTreeAsset _useableItemCardTemp;
     #endregion
@@ -124,6 +125,13 @@ public class UIInventory : UIBase
 
         _useableItemScrollPanel = _useableItemPanel.Q<VisualElement>("UseableItemScrollPanel");
         _useableEquipPanel = _useableItemPanel.Q<VisualElement>("UseableEquipPanel");
+        _unmountBtn = _useableEquipPanel.Q<VisualElement>("UnmountBtn");
+        _unmountBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            UnmountItem(selectNumber);
+            UIManager.Instance.InGame.ChangeItemPanelImage();
+        });
+        _useableEquipPanel = _useableItemPanel.Q<VisualElement>("UseableEquipPanel").Q<VisualElement>("ItemBoxs");
         _useableItemCardTemp = Resources.Load<VisualTreeAsset>("UIDoc/InventoryUseableItemCardTemp");
 
         _questItemScrollPanel = _questItemPanel.Q<VisualElement>("QuestItemScrollPanel");
@@ -167,7 +175,6 @@ public class UIInventory : UIBase
     }
     public void EquipUseableItemBoxImage(VisualElement card, int i)
     {
-        Debug.Log($"{card.name} + {i}");
         List<ItemID> list = Define.GetManager<DataManager>().LoadUsableItemList();
         card.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)list[i-1]}"));
 
@@ -240,31 +247,15 @@ public class UIInventory : UIBase
     {
         foreach(VisualElement card in _useableEquipPanel.Children())
         {
-            EquipUseableItemBoxImage(card, UseableEquipBoxSetNunber(card.name));
+            Debug.Log(card.name);
+            EquipUseableItemBoxImage(card, Int32.Parse(card.name));
             card.RegisterCallback<ClickEvent>(e =>
             {
-                int i = UseableEquipBoxSetNunber(card.name);
+                int i = Int32.Parse(card.name);
                 EquipItemBox(card, i);
                 EquipUseableItemBoxImage(card,i);
             });
         }
-    }
-    public int UseableEquipBoxSetNunber(string num)
-    {
-        switch(num)
-        {
-            case "first":
-                return 1;
-            case "second":
-                return 2;
-            case "third":
-                return 3;
-            case "fourth":
-                return 4;
-            case "fifth":
-                return 5;
-        }
-        return 0;
     }
     public void EquipItem(ItemID id,int equipNum)
     {
@@ -280,11 +271,14 @@ public class UIInventory : UIBase
             Define.GetManager<DataManager>().EquipUsableItem(id, equipNum);
             EquipUseableItemBoxImage(selectCard, equipNum);
             CreateCardList(_useableItemScrollPanel, _useableItemCardTemp, Define.GetManager<DataManager>().LoadUsableItemFromInventory(), SelectCard);
-        }
-            
-
-        
-        
+            UIManager.Instance.InGame.ChangeItemPanelImage();
+        } 
+    }
+    public void UnmountItem(int equipNum)
+    {
+        Define.GetManager<DataManager>().UnmountItem(equipNum);
+        EquipUseableItemBoxImage(selectCard, int.Parse(selectCard.name));
+        CreateCardList(_useableItemScrollPanel, _useableItemCardTemp, Define.GetManager<DataManager>().LoadUsableItemFromInventory(), SelectCard);
     }
     public void EquipItemBox(VisualElement card,int equipNum)
     {

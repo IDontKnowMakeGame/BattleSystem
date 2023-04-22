@@ -144,18 +144,6 @@ public class DataManager : Manager
             case 5:
                 UserData_.equipUseableItem.fifth = ItemID.None;
                 break;
-            case 6:
-                UserData_.equipUseableItem.sixth = ItemID.None;
-                break;
-            case 7:
-                UserData_.equipUseableItem.seventh = ItemID.None;
-                break;
-            case 8:
-                UserData_.equipUseableItem.eighth = ItemID.None;
-                break;
-            case 9:
-                UserData_.equipUseableItem.ninth = ItemID.None;
-                break;
             default:
                 Debug.LogError($"Over Input Equip Number : {number} -> 1 ~ 9 ");
                 break;
