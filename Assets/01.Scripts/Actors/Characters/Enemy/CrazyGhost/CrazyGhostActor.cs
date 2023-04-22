@@ -35,6 +35,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
             var soulAttack = _enemyAi.GetState<SoulAttackState>();
             var jump = _enemyAi.GetState<JumpState>();
             var triple = _enemyAi.GetState<TripleState>();
+            var area = _enemyAi.GetState<AreaState>();
             chase.OnStay += () => { move.Chase(InGame.Player); };
             pattern.RandomActions.Add(() =>
             {
@@ -97,11 +98,18 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 _enemyAnimation.Play("SoulAttackJump");
                 var dir = (Position - InGame.Player.Position).GetDirection();
                 var playerPos = InGame.Player.Position;
-                move.Jump(playerPos, dir, 3);
+                move.Jump(Position, dir, 3);
                 jumpClip.OnExit += () =>
                 {
                     Attack(Vector3.zero,"SoulAttack", () => { attack.SoulAttack(playerPos); });
                 };
+            };
+
+            area.OnEnter = () =>
+            {
+                AddState(CharacterState.Attack);
+                var playerPos = InGame.Player.Position;
+                Attack(Vector3.zero, "AreaAttack", () => { attack.AreaAttack(playerPos); });
             };
         }
     }

@@ -209,14 +209,12 @@ namespace Acts.Characters
         public void Chase(Actor target)
         {
             if(_character.HasState(CharacterState.Move)) return;
-            if (isChasing) return;
             ThisActor.StartCoroutine(AstarCoroutine(target.Position));
         }
 
         Astar astar = new Astar();
         private IEnumerator AstarCoroutine(Vector3 end)
         {
-            isChasing = true;
             if (InGame.GetBlock(end).isWalkable == false)
             {
                 yield break;
@@ -259,10 +257,10 @@ namespace Acts.Characters
             }
         }
 
-        public void KnockBack()
+        public void KnockBack(int power)
         {
             var map = Define.GetManager<MapManager>();
-            var dirs = new[] { Vector3.forward, Vector3.back, Vector3.left, Vector3.right };
+            var dirs = new[] { Vector3.forward * power, Vector3.back * power, Vector3.left * power, Vector3.right * power };
             dirs.Where((v) =>
             {
                 var pos = ThisActor.Position + v;

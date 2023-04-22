@@ -43,8 +43,12 @@ namespace Acts.Characters.Player
 
         private void CheckItem(int itemKey)
         {
-            List<SaveItemData> allItems = Define.GetManager<DataManager>().LoadUsableItemFromInventory();
-            ItemID currentID = allItems[itemKey].id;
+            List<ItemID> allItems = Define.GetManager<DataManager>().LoadUsableItemList();
+
+            if (allItems.Count < itemKey)
+                return;
+
+            ItemID currentID = allItems[itemKey - 1];
 
             if(currentID != ItemID.None)
             {

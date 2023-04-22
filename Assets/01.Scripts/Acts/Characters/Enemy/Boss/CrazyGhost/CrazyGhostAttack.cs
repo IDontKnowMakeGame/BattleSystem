@@ -28,6 +28,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
         public void AreaAttack(Vector3 pos)
         {
             Attack();
+            ThisActor.GetAct<EnemyParticle>().PlayLandingParticle();
             ThisActor.StartCoroutine(AreaAttackCoroutine(pos));
         }
 
@@ -43,7 +44,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                     {
                         var attackPos = new Vector3(i, 0, j);
                         if (area.Contains(attackPos)) continue;
-                        Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position + attackPos, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.None);
+                        Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position + attackPos, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.Roll);
                         if(distance == 1)
                             area.Add(attackPos);
                     }

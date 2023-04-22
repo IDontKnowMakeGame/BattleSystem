@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Diagnostics;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 public class UIInGame : UIBase
 {
@@ -15,7 +16,7 @@ public class UIInGame : UIBase
 
     private VisualElement _firstWaepon;
     private VisualElement _secondWeapon;
-    private VisualElement _itembox;
+    private VisualElement _itemList;
 
     private Label _feather;
 
@@ -29,7 +30,7 @@ public class UIInGame : UIBase
 
         _firstWaepon = _root.Q<VisualElement>("weaponbox_first");
         _secondWeapon = _root.Q<VisualElement>("weaponbox_second");
-        _itembox = _root.Q<VisualElement>("itembox");
+        _itemList = _root.Q<VisualElement>("area_item");
 
         _feather = _root.Q<Label>("featherCnt");
 
@@ -37,6 +38,7 @@ public class UIInGame : UIBase
 
         ChangeFirstWeaponImage(DataManager.UserData_.firstWeapon);
         ChangeSecondWeaponImage(DataManager.UserData_.secondWeapon);
+        ChangeItemPanelImage();
     }
 
     public void ChanageMaxHP(int value)
@@ -87,9 +89,15 @@ public class UIInGame : UIBase
         Sprite sprite = Define.GetManager<ResourceManager>().Load<Sprite>("Item/" + (int)itemID);
         _secondWeapon.style.backgroundImage = new StyleBackground(sprite);
     }
-    public void ChangeItemPanelImage(Sprite sprite)
+    public void ChangeItemPanelImage()
     {
-        _itembox.style.backgroundImage = new StyleBackground(sprite);
+        List<ItemID> item = Define.GetManager<DataManager>().LoadUsableItemList();
+        int index = 0;
+        foreach(VisualElement card in _itemList.Children())
+        {
+            card.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>("Item/" + (int)item[index]));
+            index++;
+        }
     }
     public void WriteFeatherValue(int value)
     {

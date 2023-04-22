@@ -24,7 +24,7 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Panel" style="flex-basis: 85%; flex-direction: row; overflow: hidden;">
-                <ui:VisualElement name="ItemPanel" style="translate: 0 0; overflow: visible; flex-basis: 100%;">
+                <ui:VisualElement name="ItemPanel" style="translate: -3010px 0; overflow: visible; flex-basis: 100%;">
                     <ui:VisualElement name="WeaponPanel" class="ItemPanel" style="flex-direction: row; display: flex; left: 0;">
                         <ui:VisualElement name="CharacterView" style="flex-basis: 30%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-1221198161&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_0&apos;);">
                             <ui:VisualElement name="CharacterImage" style="flex-basis: 75%; justify-content: center; align-items: center;">
@@ -72,20 +72,27 @@
                             <ui:VisualElement name="UseableItemScrollPanel" style="width: 100%; flex-wrap: wrap; flex-direction: row;" />
                         </ui:ScrollView>
                         <ui:VisualElement name="UseableEquipPanel" style="flex-basis: 20%; flex-direction: row; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; border-left-color: rgb(236, 236, 236); border-right-color: rgb(236, 236, 236); border-top-color: rgb(236, 236, 236); border-bottom-color: rgb(236, 236, 236); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px;">
-                            <ui:VisualElement name="first" class="UseableEquipBox">
-                                <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Case_Empty_UI.png?fileID=548808370&amp;guid=8d14667a022af2940949b1ab8780e0d4&amp;type=3#Case_Empty_UI_0&apos;);" />
+                            <ui:VisualElement name="ItemBoxs" style="width: 1105px; flex-direction: row;">
+                                <ui:VisualElement name="1" class="UseableEquipBox">
+                                    <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Case_Empty_UI.png?fileID=548808370&amp;guid=8d14667a022af2940949b1ab8780e0d4&amp;type=3#Case_Empty_UI_0&apos;);" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="2" class="UseableEquipBox">
+                                    <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Case_Empty_UI.png?fileID=548808370&amp;guid=8d14667a022af2940949b1ab8780e0d4&amp;type=3#Case_Empty_UI_0&apos;);" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="3" class="UseableEquipBox">
+                                    <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Case_Empty_UI.png?fileID=548808370&amp;guid=8d14667a022af2940949b1ab8780e0d4&amp;type=3#Case_Empty_UI_0&apos;);" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="4" class="UseableEquipBox">
+                                    <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Case_Empty_UI.png?fileID=548808370&amp;guid=8d14667a022af2940949b1ab8780e0d4&amp;type=3#Case_Empty_UI_0&apos;);" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="5" class="UseableEquipBox">
+                                    <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Case_Empty_UI.png?fileID=548808370&amp;guid=8d14667a022af2940949b1ab8780e0d4&amp;type=3#Case_Empty_UI_0&apos;);" />
+                                </ui:VisualElement>
                             </ui:VisualElement>
-                            <ui:VisualElement name="second" class="UseableEquipBox">
-                                <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Case_Empty_UI.png?fileID=548808370&amp;guid=8d14667a022af2940949b1ab8780e0d4&amp;type=3#Case_Empty_UI_0&apos;);" />
-                            </ui:VisualElement>
-                            <ui:VisualElement name="third" class="UseableEquipBox">
-                                <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Case_Empty_UI.png?fileID=548808370&amp;guid=8d14667a022af2940949b1ab8780e0d4&amp;type=3#Case_Empty_UI_0&apos;);" />
-                            </ui:VisualElement>
-                            <ui:VisualElement name="fourth" class="UseableEquipBox">
-                                <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Case_Empty_UI.png?fileID=548808370&amp;guid=8d14667a022af2940949b1ab8780e0d4&amp;type=3#Case_Empty_UI_0&apos;);" />
-                            </ui:VisualElement>
-                            <ui:VisualElement name="fifth" class="UseableEquipBox">
-                                <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Case_Empty_UI.png?fileID=548808370&amp;guid=8d14667a022af2940949b1ab8780e0d4&amp;type=3#Case_Empty_UI_0&apos;);" />
+                            <ui:VisualElement name="OptionBox" style="width: 867px; align-items: flex-end; height: 100%;">
+                                <ui:VisualElement name="UnmountBtn" style="height: 100%; width: 127px; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Card.png?fileID=738687179&amp;guid=f8d86aaee61368341922d38dda1585f6&amp;type=3#UI_Card_1&apos;); background-color: rgb(137, 32, 32); justify-content: center; align-items: center;">
+                                    <ui:Label text="해제" display-tooltip-when-elided="true" style="font-size: 28px; color: rgb(0, 0, 0);" />
+                                </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:VisualElement>
                     </ui:VisualElement>
