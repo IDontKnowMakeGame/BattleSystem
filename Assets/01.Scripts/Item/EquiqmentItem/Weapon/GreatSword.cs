@@ -11,8 +11,21 @@ public class GreatSword : Weapon
 	
 	public float timer;
 	private float _half = 0;
+	private int halftime = 10;
+	private int addDamage = 0;
+	private float addTime = 0;
+	private float Damage = 0;
 
 	private SliderObject _sliderObject;
+
+	public override void Init()
+	{
+		base.Init();
+		addDamage = (int)info.Atk / halftime;
+		addTime = info.Ats / halftime;
+		Damage = info.Atk;
+	}
+
 	public override void LoadWeaponClassLevel()
 	{
 		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("GreatSword");
@@ -86,7 +99,7 @@ public class GreatSword : Weapon
 		if (!_characterActor.HasState(CharacterState.Hold))
 			return;
 
-		if (timer >= info.Ats)
+		if (timer >= addTime)
 		{
 			_attackInfo.UpStat = new ColliderStat(1, 1, InGame.None, InGame.None);
 			_attackInfo.DownStat = new ColliderStat(1, 1, InGame.None, InGame.None);
@@ -98,7 +111,9 @@ public class GreatSword : Weapon
 			_attackInfo.AddDir(_attackInfo.DirTypes(_currrentVector));
 
 			_eventParam.attackParam = _attackInfo;
+			info.Atk = addDamage * (int)(timer / addTime);
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
+			//PlayerAttack.OnAttackEnd += AttackEnd;
 		}
 		else
         {
@@ -112,6 +127,12 @@ public class GreatSword : Weapon
 
 		_sliderObject.PullSlider(0f, false, Color.white);
 		_sliderObject.SliderActive(false);
+	}
+
+	private void AttackEnd(int id)
+	{
+		info.Atk = Damage;
+		PlayerAttack.OnAttackEnd -= AttackEnd;
 	}
 
 	private void ChargeAnimation(Vector3 dir)

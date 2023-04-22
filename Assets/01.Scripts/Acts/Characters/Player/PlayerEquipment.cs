@@ -69,7 +69,6 @@ public class PlayerEquipment : CharacterEquipmentAct
 
 	public override void Update()
 	{
-		Debug.Log("Updating");
 		if (Input.GetKeyDown(KeyCode.N))
 		{
 			if (_halos[count - 1] != ItemID.None)
