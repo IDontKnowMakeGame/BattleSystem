@@ -176,7 +176,7 @@ namespace Acts.Characters
             var seq = DOTween.Sequence();
             int i = distance;
             var nextPos = targetPos + dir * distance;
-            while (i > 0)
+            while (i >= 0)
             {
                 nextPos = targetPos + dir * i;
                 var nextBlock = InGame.GetBlock(nextPos.SetY(0));
@@ -195,6 +195,7 @@ namespace Acts.Characters
             else if (!map.IsStayable(nextPos.SetY(0)))
             {
                 Debug.Log(1);
+                MoveStop();
                 return;
             }
 
