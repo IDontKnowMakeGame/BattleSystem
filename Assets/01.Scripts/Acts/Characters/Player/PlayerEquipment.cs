@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using JetBrains.Annotations;
 using UnityEngine.TextCore.Text;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 
 [Serializable]
 public class PlayerEquipment : CharacterEquipmentAct
@@ -20,6 +21,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 	protected PlayerActor _playerActor;
 	private PlayerAnimation _playerAnimation;
 
+	private int haloCount = 2;
 	private bool _haveinHand = true;
 
 	public override Weapon CurrentWeapon
@@ -35,6 +37,14 @@ public class PlayerEquipment : CharacterEquipmentAct
 	private EventParam _eventParam = new EventParam();
 
 	#region Life Cycle
+	public override void Awake()
+	{
+		base.Awake();
+		for(int i = 0; i < 3; i++)
+		{
+			_halos.Add(ItemID.None);
+		}
+	}
 	public override void Start()
 	{
 		_firstWeapon = DataManager.UserData_.firstWeapon;
@@ -53,14 +63,23 @@ public class PlayerEquipment : CharacterEquipmentAct
 		_useHalo.Add(ItemID.HaloOfPollution, new HaloOfPollution());
 		_useHalo.Add(ItemID.HaloOfEreshkigal, new HaloOfEreshkigal());
 	}
-	private int count = 0;
+
+	private int count = 1;
+	private ItemID halo = ItemID.HaloOfGhost;
+
 	public override void Update()
 	{
-		base.Update();
-		if (Input.GetKeyDown(KeyCode.P))
+		if (Input.GetKeyDown(KeyCode.N))
 		{
-			AddHalo(ItemID.HaloOfEreshkigal);
+			if (_halos[count - 1] != ItemID.None)
+				RemoveHalo(count);
+			AddHalo(halo++, count++);
 		}
+		else if(Input.GetKeyDown(KeyCode.M))
+		{
+			count = 1;
+		}
+		base.Update();
 	}
 	public override void OnDisable()
 	{
@@ -167,29 +186,41 @@ public class PlayerEquipment : CharacterEquipmentAct
 	}
 	#endregion
 
-	private int index = 0;
+	//private int index = 0;
 	#region Halo
-	public void AddHalo(ItemID haloID)
-    {
-		_halos.Add(haloID);
-		_haloRanderer?.Equipment(haloID, index++);
+	public void AddHalo(ItemID haloID, int index)
+	{
+		if (index > haloCount)
+			return;
+
+		_halos[index-1] = haloID;
+		if (index == 1)
+		{
+			_haloRanderer?.SetHalo(haloID);
+		}
 		_useHalo[haloID].Equiqment(_characterController);
-    }
+	}
 
-	public void RemoveHalo(ItemID haloID)
-    {
-		if(_halos.Contains(haloID))
-        {
-			_useHalo[haloID].UnEquipment(_characterController);
-			_halos.Remove(haloID);
-        }
+	public void RemoveHalo(int index)
+	{
+		if (index > haloCount)
+			return;
 
-    }
+		if (_halos[index-1] != ItemID.None)
+		{
+			_useHalo[_halos[index-1]].UnEquipment(_characterController);
+			_halos[index-1] = ItemID.None;
+
+			if(index == 1)
+			{
+				_haloRanderer.DelHalo();
+			}
+		}
+	}
 	#endregion
 	#region HaloEquipment
 	protected override void EquipmentHalo()
 	{
-		base.EquipmentHalo();
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.ChangeStat, _eventParam);
 	}
 	#endregion

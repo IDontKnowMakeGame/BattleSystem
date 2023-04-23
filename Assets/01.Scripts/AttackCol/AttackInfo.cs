@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Core;
+using Actors.Characters;
 
 public class ColliderStat
 {
@@ -42,8 +43,9 @@ public class AttackInfo
     private DirType wantDir;
     private int reachFrame;
     private Vector3 pressInput;
+    private CharacterState _state = CharacterState.None;
 
-    private ColliderStat leftStat = new ColliderStat();
+	private ColliderStat leftStat = new ColliderStat();
     private ColliderStat rightStat = new ColliderStat();
     private ColliderStat upStat = new ColliderStat();
     private ColliderStat downStat = new ColliderStat();
@@ -86,6 +88,11 @@ public class AttackInfo
         set => downStat = value;
     }
 
+    public CharacterState State
+    {
+        get => _state;
+        set => _state = value;
+    }
 
     public void AddDir(DirType getDir)
     {

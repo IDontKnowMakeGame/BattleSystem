@@ -123,6 +123,13 @@ namespace Acts.Characters
                 enableQ = false;
                 return;
             }
+            
+            var ccState = CharacterState.Stun | CharacterState.KnockBack;
+            if (_character.HasState(ccState))
+            {
+                enableQ = false;
+                return;
+            }
             var seq = DOTween.Sequence();
             var currentPos = ThisActor.Position;
             var nextPos = position;
@@ -169,7 +176,7 @@ namespace Acts.Characters
             var seq = DOTween.Sequence();
             int i = distance;
             var nextPos = targetPos + dir * distance;
-            while (i > 0)
+            while (i >= 0)
             {
                 nextPos = targetPos + dir * i;
                 var nextBlock = InGame.GetBlock(nextPos.SetY(0));
@@ -188,6 +195,7 @@ namespace Acts.Characters
             else if (!map.IsStayable(nextPos.SetY(0)))
             {
                 Debug.Log(1);
+                MoveStop();
                 return;
             }
 
@@ -255,30 +263,6 @@ namespace Acts.Characters
                 ThisActor.SpriteTransform.localScale = new Vector3(-3, 3, 3);
                 animation.Play("HorizontalMove");   
             }
-        }
-
-        public void KnockBack(int power)
-        {
-            var map = Define.GetManager<MapManager>();
-            var dirs = new[] { Vector3.forward * power, Vector3.back * power, Vector3.left * power, Vector3.right * power };
-            dirs.Where((v) =>
-            {
-                var pos = ThisActor.Position + v;
-                return map.IsStayable(pos);
-            });
-            var dir = dirs[Random.Range(0, dirs.Length)];
-            _character.AddState(CharacterState.KnockBack);
-            var originPos = ThisActor.Position;
-            var nextPos = originPos + dir;
-            nextPos.y = 1;
-            var seq = DOTween.Sequence();
-            seq.Append(_thisTransform.DOMove(nextPos, 0.1f).SetEase(Ease.Flash));
-            seq.AppendCallback(() =>
-            {
-                _character.RemoveState(CharacterState.KnockBack);
-                map.GetBlock(nextPos.SetY(0)).SetActorOnBlock(ThisActor);
-                seq.Kill();
-            });
         }
 
         protected virtual void MoveStop()

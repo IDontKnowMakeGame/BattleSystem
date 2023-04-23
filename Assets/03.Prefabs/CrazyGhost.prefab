@@ -20,6 +20,8 @@ GameObject:
   - component: {fileID: 6350170632472056017}
   - component: {fileID: 6350170632472056026}
   - component: {fileID: 6350170632472056027}
+  - component: {fileID: 6350170632472056039}
+  - component: {fileID: 6350170632472056040}
   m_Layer: 0
   m_Name: CrazyGhost
   m_TagString: Enemy
@@ -101,6 +103,7 @@ MonoBehaviour:
     index: 0
     isFinished: 0
     curClips: {fileID: 11400000, guid: 07fddb310a2a38143a388d70d230d20f, type: 2}
+  alive: 1
   particle:
     landingParticle: {fileID: 7310023798986098773}
 --- !u!114 &2602499903621569671
@@ -427,6 +430,90 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 4755812609343619078
+      type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 3
+        IsNegative: 0
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        BaseActor: {fileID: 2602499903621569664}
+--- !u!114 &6350170632472056039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2602499903621569667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c99c7c212654c5bb59e9b251e4c5d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: Chase
+  To: Area
+  _conditions:
+  - rid: 4755812668502704131
+  - rid: 4755812668502704128
+  - rid: 4755812668502704129
+  - rid: 4755812668502704130
+  references:
+    version: 2
+    RefIds:
+    - rid: 4755812668502704128
+      type: {class: BlockCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 5
+        IsNegative: 1
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        Area: 1
+        TargetActor: {fileID: 0}
+    - rid: 4755812668502704129
+      type: {class: LineCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 6
+        IsNegative: 1
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        TargetActor: {fileID: 0}
+        Distance: -1
+    - rid: 4755812668502704130
+      type: {class: CircleCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 7
+        IsNegative: 0
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        TargetActor: {fileID: 0}
+        Radius: 3
+    - rid: 4755812668502704131
+      type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 3
+        IsNegative: 0
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        BaseActor: {fileID: 2602499903621569664}
+--- !u!114 &6350170632472056040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2602499903621569667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c99c7c212654c5bb59e9b251e4c5d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: Area
+  To: Chase
+  _conditions:
+  - rid: 4755812668502704132
+  references:
+    version: 2
+    RefIds:
+    - rid: 4755812668502704132
       type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
       data:
         Type: 3

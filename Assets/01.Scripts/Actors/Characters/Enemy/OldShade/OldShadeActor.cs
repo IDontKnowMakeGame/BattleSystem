@@ -30,9 +30,17 @@ namespace Actors.Characters.Enemy.OldShade
             };
             pattern.RandomActions.Add(() =>
             {
+                AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
                 var dir = (Position - playerPos).GetDirection();
-                attack.HorizontalAttack(playerPos, true);
+                AttackWithNoReturn("", () =>
+                {
+                    attack.HorizontalAttack(playerPos, true);
+                },
+                () =>
+                {
+                    RemoveState(CharacterState.Attack);
+                });
             });
             
         }

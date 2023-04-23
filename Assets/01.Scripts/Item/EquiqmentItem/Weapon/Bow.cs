@@ -129,7 +129,6 @@ public class Bow : Weapon
 
 		_sliderObject.SliderInit(_stat.ChangeStat.ats);
 		_sliderObject.SliderActive(true);
-		Debug.Log("Shoot");
 	}
 
 	private void Charge()
@@ -145,7 +144,7 @@ public class Bow : Weapon
 			_isCharge = false;
 			_characterActor.RemoveState(CharacterState.StopMove);
 			_characterActor.RemoveState(CharacterState.Hold);
-			_characterActor.AddState(CharacterState.Attack);
+			//_characterActor.AddState(CharacterState.Attack);
 			if (_playerActor != null)
 				ShootAnimation(_orginVec);
 			Arrow.ShootArrow(_currentVec, _characterActor.Position, _characterActor, info.Afs, info.Atk, 6);

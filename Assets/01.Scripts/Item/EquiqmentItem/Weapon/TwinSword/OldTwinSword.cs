@@ -16,17 +16,15 @@ public class OldTwinSword : TwinSword
 		if (_isCoolTime)
 			return;
 		_characterActor.AddState(CharacterState.Skill);
-		InputManager<TwinSword>.OnMovePress += Skill;
+		_characterActor.StartCoroutine(SameTimeInput());
 	}
 
-	private void Skill(Vector3 vec)
+	protected override void STimeInputSkill(Vector3 vec)
 	{
-		InputManager<TwinSword>.OnMovePress -= Skill;
-		_isCoolTime = true;
 		Vector3 vector = InGame.CamDirCheck(vec);
-		for(int i = 0; i<6; i++)
+		for (int i = 0; i < 6; i++)
 		{
-			Define.GetManager<MapManager>().AttackBlock(_characterActor.Position+vector, info.Atk, i * 0.2f, _characterActor, MovementType.None, true);
+			Define.GetManager<MapManager>().AttackBlock(_characterActor.Position + vector, info.Atk, i * 0.2f, _characterActor, MovementType.None, true);
 			_characterActor.GetAct<PlayerAnimation>().Play("Skill");
 		}
 		_characterActor.StartCoroutine(SkillCorutine());
