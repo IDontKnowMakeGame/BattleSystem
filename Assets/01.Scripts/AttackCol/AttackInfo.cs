@@ -33,6 +33,11 @@ public class ColliderStat
     }
 }
 
+public partial class CCInfo
+{
+    public int knockRange;
+}
+
 public class AttackInfo
 {
     public AttackInfo()
@@ -49,8 +54,9 @@ public class AttackInfo
     private ColliderStat rightStat = new ColliderStat();
     private ColliderStat upStat = new ColliderStat();
     private ColliderStat downStat = new ColliderStat();
+    private CCInfo ccInfo;
 
-    public DirType WantDir => wantDir;
+	public DirType WantDir => wantDir;
 
     public int ReachFrame
     {
@@ -88,7 +94,13 @@ public class AttackInfo
         set => downStat = value;
     }
 
-    public CharacterState State
+	public CCInfo CCInfo
+	{
+		get => ccInfo;
+		set => ccInfo = value;
+	}
+
+	public CharacterState State
     {
         get => _state;
         set => _state = value;
