@@ -13,7 +13,6 @@ namespace Acts.Characters.Player
     {
         private Torch _torchItem;
         private Shield _shieldItem;
-        [SerializeField]
         private HPPotion _hpPotion;
 
         public HPPotion HPPotion => _hpPotion;
@@ -21,6 +20,8 @@ namespace Acts.Characters.Player
 
         private Dictionary<ItemID, UseAbleItem> useAbleItems = new Dictionary<ItemID, UseAbleItem>();
 
+        [SerializeField]
+        private ParticleSystem holyParticle;
 
         public override void Start()
         {
@@ -29,6 +30,8 @@ namespace Acts.Characters.Player
             _torchItem = new Torch();
             _shieldItem = new Shield();
             _hpPotion = new HPPotion();
+
+            _hpPotion.HolyParticle = holyParticle;
 
             useAbleItems.Add(ItemID.Torch, _torchItem);
             useAbleItems.Add(ItemID.Shield, _shieldItem);
