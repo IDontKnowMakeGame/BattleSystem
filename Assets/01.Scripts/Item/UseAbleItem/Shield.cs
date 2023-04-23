@@ -9,6 +9,8 @@ public class Shield : UseAbleItem
 {
     private bool use = false;
 
+    private HashSet<Vector3> ShieldPos = new HashSet<Vector3>();
+
     public override void UseItem()
     {
         // πÊ«‚
@@ -22,13 +24,30 @@ public class Shield : UseAbleItem
 
     private void SpawnShield(Vector3 dir)
     {
-        Debug.Log("!!");
-        Vector3 spawnPos = (InGame.Player.transform.position - dir).SetY(1);
+        if (InGame.Player.HasState(Actors.Characters.CharacterState.Everything & ~Actors.Characters.CharacterState.Attack)) return;
+        if (ShieldPos.Contains(InGame.Player.transform.position)) return;
+
+        Vector3 spawnPos = (InGame.Player.transform.position - dir).SetY(0.5f);
 
         GameObject shield = Define.GetManager<ResourceManager>().Instantiate("Shield");
         shield.transform.position = spawnPos;
+        shield.transform.rotation = Quaternion.Euler(RotateShield(dir));
 
         use = false;
         InputManager<Weapon>.OnAttackPress -= SpawnShield;
+
+        ShieldPos.Add(spawnPos);
+    }
+
+    private Vector3 RotateShield(Vector3 dir)
+    {
+        Vector3 rotate = Vector3.zero;
+        if (dir == Vector3.right)
+            rotate = new Vector3(0, 90, 0);
+        else if (dir == Vector3.left)
+            rotate = new Vector3(0, -90, 0);
+        else if (dir == Vector3.back)
+            rotate = new Vector3(0, 180, 0);
+        return rotate;
     }
 }
