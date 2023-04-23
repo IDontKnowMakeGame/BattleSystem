@@ -40,7 +40,10 @@ public class UIInventory : UIBase
     #endregion
 
     #region HaloPanel
+    private VisualElement _haloSelectPanel;
 
+    float width = 100;
+    float height = 100;
     #endregion
 
     #region UseableItemPanel
@@ -107,6 +110,7 @@ public class UIInventory : UIBase
         _useableItemPanel = _itemPanel.Q<VisualElement>("UseblePanel");
         _questItemPanel = _itemPanel.Q<VisualElement>("QuestPanel");
 
+        //WeaponPanel===================================================================================
         _weaponChacraterViewImage = _weaponPanel.Q<VisualElement>("Character");
         _weaponInfoPanel = _weaponPanel.Q<VisualElement>("WeaponInfoPanel");
         _weaponStatusPanel = _weaponInfoPanel.Q<VisualElement>("StatusPanel");
@@ -122,12 +126,16 @@ public class UIInventory : UIBase
         });
         _weaponScrollPanel = _weaponPanel.Q<VisualElement>("WeaponScrollPanel");
         _weaponCardTemp = Resources.Load<VisualTreeAsset>("UIDoc/InventoryWeaponItemCard");
-
+        //HaloPanel===================================================================================
+        _haloSelectPanel = _haloPanel.Q<VisualElement>("HaloSelectPanel");
+        //UseablePanel===================================================================================
         _useableItemScrollPanel = _useableItemPanel.Q<VisualElement>("UseableItemScrollPanel");
         _useableEquipPanel = _useableItemPanel.Q<VisualElement>("UseableEquipPanel");
         _unmountBtn = _useableEquipPanel.Q<VisualElement>("UnmountBtn");
         _unmountBtn.RegisterCallback<ClickEvent>(e =>
         {
+            if (selectCard == null) return;
+
             UnmountItem(selectNumber);
             UIManager.Instance.InGame.ChangeItemPanelImage();
         });
