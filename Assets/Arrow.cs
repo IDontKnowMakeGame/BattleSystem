@@ -128,9 +128,11 @@ public class Arrow : MonoBehaviour
 	private void OnTriggerEnter(Collider other)
 	{
 		CharacterActor actor = other.GetComponent<CharacterActor>();
+		Debug.Log(actor);
 		if (actor == null)
 			return;
 
+		Debug.Log("Enter");
 		if (_shootActor.UUID != actor.UUID && !_isStick)
 		{
 			StickActor(other);

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class OldBowShadeActor : EnemyActor
+public class BowShadeActor : EnemyActor
 {
 	protected override void Init()
 	{
@@ -24,8 +24,7 @@ public class OldBowShadeActor : EnemyActor
 		Debug.Log(":");
 		state.OnEnter += () =>
 		{
-			_enemyAnimation.Play("JumpAttack");
-			_enemyAnimation.curClip.SetEventOnFrame(_enemyAnimation.curClip.fps - 1, Shoot);
+			Shoot();
 		};
 	}
 
@@ -33,6 +32,7 @@ public class OldBowShadeActor : EnemyActor
 	{
 		var dir = InGame.Player.Position - Position;
 		Bow bow = _characterEquipment.CurrentWeapon as Bow;
+		dir.y = 0;
 		bow.Shoot(InGame.CamDirCheck(dir));
 	}
 }
