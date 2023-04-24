@@ -95,6 +95,7 @@ namespace Acts.Characters.Player
                     if (_tempState.HasFlag(CharacterState.KnockBack))
                     {
 						enemy.OnKnockBack.Invoke(_ccInfo.knockRange, ThisActor);
+                        _tempState = CharacterState.None;
                     }
 
 					GameObject spark = Define.GetManager<ResourceManager>().Instantiate("Spark");
