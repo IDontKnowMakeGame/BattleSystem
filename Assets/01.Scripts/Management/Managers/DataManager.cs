@@ -191,6 +191,15 @@ public class DataManager : Manager
 
         SaveToUserData();
     }
+
+    public List<ItemID> LoadHaloListInUserData()
+    {
+        List<ItemID> list = new List<ItemID>();
+        list.Add(UserData_.firstHalo);
+        list.Add(UserData_.secondHalo);
+        list.Add(UserData_.thirdHalo);
+        return list;
+    }
     #endregion
 
     #region SavePointData
