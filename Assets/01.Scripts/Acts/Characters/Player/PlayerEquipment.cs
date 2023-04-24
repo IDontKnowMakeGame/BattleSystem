@@ -11,6 +11,7 @@ using UnityEngine;
 using JetBrains.Annotations;
 using UnityEngine.TextCore.Text;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
+using static UnityEditor.Progress;
 
 [Serializable]
 public class PlayerEquipment : CharacterEquipmentAct
@@ -65,9 +66,9 @@ public class PlayerEquipment : CharacterEquipmentAct
 		_useHalo.Add(ItemID.HaloOfPollution, new HaloOfPollution());
 		_useHalo.Add(ItemID.HaloOfEreshkigal, new HaloOfEreshkigal());
 
-		//_halos[0] = DataManager.UserData_.firstHalo;
-		//_halos[1] = DataManager.UserData_.secondHalo;
-		//_halos[2] = DataManager.UserData_.thirdHalo;
+		_halos = Define.GetManager<DataManager>().LoadHaloListInUserData();
+		if (_halos[0] != ItemID.None)
+			_haloRanderer?.SetHalo(_halos[0]);
 	}
 	public override void OnDisable()
 	{
@@ -177,20 +178,22 @@ public class PlayerEquipment : CharacterEquipmentAct
 	//private int index = 0;
 	#region Halo
 	public void AddHalo(EventParam param)
-	{
+	{//int = num , float = Itemid;
 		int index = param.intParam;
+		int id = (int)param.floatParam;
+		ItemID itemId = (ItemID)id;
 		if (index > haloCount)
 			return;
 
-		//if (_halos[index - 1] = haloID)
-		//	RemoveHalo(param);
+		if (_halos[index - 1] == itemId)
+			RemoveHalo(param);
 
-		//_halos[index-1] = haloID;
+		_halos[index-1] = itemId;
 		if (index == 1)
 		{
-			//_haloRanderer?.SetHalo(haloID);
+			_haloRanderer?.SetHalo(itemId);
 		}
-		//_useHalo[haloID].Equiqment(_characterController);
+		_useHalo[itemId].Equiqment(_characterController);
 	}
 
 	public void RemoveHalo(EventParam param)
