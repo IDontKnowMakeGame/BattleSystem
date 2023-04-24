@@ -34,16 +34,11 @@ namespace Actors.Characters.Enemy.OldShade
                 AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
                 var dir = (Position - playerPos).GetDirection();
-                AttackWithNoReturn(Vector3.zero, "", () =>
+                Attack(dir, "", () =>
                 {
                     attack.HorizontalAttack(playerPos, true);
-                },
-                () =>
-                {
-                    RemoveState(CharacterState.Attack);
                 });
             });
-            
         }
     }
 }

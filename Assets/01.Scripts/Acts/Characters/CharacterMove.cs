@@ -104,7 +104,7 @@ namespace Acts.Characters
             if (dir == Vector3.right)
             {
                 ThisActor.SpriteTransform.localScale = new Vector3(3, 3,3);
-                animation.Play("HorizontalBackStep");   
+                animation.Play("HorizontalBackStep");      
             }
         }
 
@@ -254,14 +254,14 @@ namespace Acts.Characters
 
             if (dir == Vector3.left)
             {
-                ThisActor.SpriteTransform.localScale = new Vector3(3, 3,3);
                 animation.Play("HorizontalMove");
+                ThisActor.OnDirectionUpdate?.Invoke(dir.x);
             }
 
             if (dir == Vector3.right)
             {
-                ThisActor.SpriteTransform.localScale = new Vector3(-3, 3, 3);
                 animation.Play("HorizontalMove");   
+                ThisActor.OnDirectionUpdate?.Invoke(dir.x);
             }
         }
 

@@ -2,10 +2,9 @@
 
 namespace AI.Conditions
 {
-    public class  BlockCondition : AiCondition
+    public class  BlockCondition : TargetCondition
     {
         public int Area;
-        public Actor TargetActor;
         public override bool IsSatisfied()
         {
             for (var i = -Area; i <= Area; i++)

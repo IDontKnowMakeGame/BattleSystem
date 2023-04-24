@@ -3,9 +3,8 @@ using UnityEngine;
 
 namespace AI.Conditions
 {
-    public class LineCondition : AiCondition
+    public class LineCondition : TargetCondition
     {
-        public Actor TargetActor;
         public int Distance = 0;
 
         public override bool IsSatisfied()

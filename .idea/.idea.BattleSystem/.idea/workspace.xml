@@ -2,9 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/TargetCondition.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/TargetCondition.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/CrazyGhost/CrazyGhostActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/CrazyGhost/CrazyGhostActor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/Boss/CrazyGhost/CrazyGhostAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/Boss/CrazyGhost/CrazyGhostAttack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/BesideCondition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/BesideCondition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/BlockCondition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/BlockCondition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/CircleCondition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/CircleCondition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/EdgeCondition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/EdgeCondition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/LineCondition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/LineCondition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Bases/Actor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Bases/Actor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/EnemyActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/EnemyActor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/OldShade/OldShadeActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/OldShade/OldShadeActor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterMove.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterRender.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterRender.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/Boss/BossClips.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/Boss/BossClips.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/OldShade/OldShadeClips.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/OldShade/OldShadeClips.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,5 +165,24 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/EnemyActor.cs</url>
+          <line>96</line>
+          <properties documentPath="D:\Github\BattleSystem\Assets\01.Scripts\Actors\Characters\Enemy\EnemyActor.cs" initialLine="96" containingFunctionPresentation="method 'AttackWithNoReady'">
+            <startOffsets>
+              <option value="3557" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3617" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
