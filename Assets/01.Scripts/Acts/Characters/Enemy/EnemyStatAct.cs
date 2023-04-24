@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using Actors.Bases;
 using Actors.Characters;
 using Actors.Characters.Enemy;
@@ -28,6 +29,13 @@ namespace Acts.Characters.Enemy
                 Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam);
             }
             DamageEffect();
+        }
+
+        public override void Die()
+        {
+            base.Die();
+			//ThisActor.gameObject.AddComponent()
+			this.IsEnabled = false;
         }
 
         private void DamageEffect()

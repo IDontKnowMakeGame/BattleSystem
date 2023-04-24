@@ -58,28 +58,16 @@ public class PlayerEquipment : CharacterEquipmentAct
 		InputManager<Weapon>.OnOffPress += WeaponOnOff;
 		Define.GetManager<EventManager>().StartListening(EventFlag.WeaponEquip, EquipmentWeapon);
 		Define.GetManager<EventManager>().StartListening(EventFlag.WeaponUpgrade, Upgrade);
+		Define.GetManager<EventManager>().StartListening(EventFlag.HaloAdd, AddHalo);
+		Define.GetManager<EventManager>().StartListening(EventFlag.HaloDel, RemoveHalo);
 
 		_useHalo.Add(ItemID.HaloOfGhost, new HaloOfGhost());
 		_useHalo.Add(ItemID.HaloOfPollution, new HaloOfPollution());
 		_useHalo.Add(ItemID.HaloOfEreshkigal, new HaloOfEreshkigal());
-	}
 
-	private int count = 1;
-	private ItemID halo = ItemID.HaloOfGhost;
-
-	public override void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.N))
-		{
-			if (_halos[count - 1] != ItemID.None)
-				RemoveHalo(count);
-			AddHalo(halo++, count++);
-		}
-		else if(Input.GetKeyDown(KeyCode.M))
-		{
-			count = 1;
-		}
-		base.Update();
+		//_halos[0] = DataManager.UserData_.firstHalo;
+		//_halos[1] = DataManager.UserData_.secondHalo;
+		//_halos[2] = DataManager.UserData_.thirdHalo;
 	}
 	public override void OnDisable()
 	{
@@ -188,21 +176,27 @@ public class PlayerEquipment : CharacterEquipmentAct
 
 	//private int index = 0;
 	#region Halo
-	public void AddHalo(ItemID haloID, int index)
+	public void AddHalo(EventParam param)
 	{
+		int index = param.intParam;
 		if (index > haloCount)
 			return;
 
-		_halos[index-1] = haloID;
+		//if (_halos[index - 1] = haloID)
+		//	RemoveHalo(param);
+
+		//_halos[index-1] = haloID;
 		if (index == 1)
 		{
-			_haloRanderer?.SetHalo(haloID);
+			//_haloRanderer?.SetHalo(haloID);
 		}
-		_useHalo[haloID].Equiqment(_characterController);
+		//_useHalo[haloID].Equiqment(_characterController);
 	}
 
-	public void RemoveHalo(int index)
+	public void RemoveHalo(EventParam param)
 	{
+		int index = param.intParam;
+
 		if (index > haloCount)
 			return;
 

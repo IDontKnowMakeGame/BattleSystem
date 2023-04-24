@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 3378178}
   - component: {fileID: 2320666}
   - component: {fileID: 6414090}
+  - component: {fileID: 5030175931980197197}
   m_Layer: 0
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,3 +99,77 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: b3cc05387ce31f24eb66bda23e007c99, type: 3}
+--- !u!114 &5030175931980197197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c9fde28e87ce74d82ce8b231399d19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {x: 0, y: 0, z: 0}
+  _characterRender:
+    _defaultTexture: {fileID: 0}
+    _frame: 0
+    _blinkCnt: 1
+    _blinkTime: 0.1
+    _blinkDelay: 0.1
+  _characterState: 0
+  _isBlocking: 1
+  _secondPhaseHpPercent: 0
+  _enemyAi:
+    CurrentState:
+      Name: 
+  _characterEquipment:
+    _firstWeapon: 0
+    _secondWeapon: 0
+    _halos: 
+    _isPlayer: 0
+  _characterStat:
+    _basicStat:
+      maxHP: 0
+      hp: 0
+      atk: 0
+      ats: 0
+      afs: 0
+      speed: 0
+    _changeStat:
+      maxHP: 0
+      hp: 0
+      atk: 0
+      ats: 0
+      afs: 0
+      speed: 0
+  _enemyAnimation:
+    curClip:
+      name: 
+      nextIdx: -1
+      texture: {fileID: 0}
+      fps: 0
+      isLoop: 0
+      delay: 0
+    renderer: {fileID: 0}
+    index: 0
+    isFinished: 0
+    curClips: {fileID: 0}
+  alive: 0
+  _brokenStat:
+    _basicStat:
+      maxHP: 100
+      hp: 0
+      atk: 0
+      ats: 0
+      afs: 0
+      speed: 0
+    _changeStat:
+      maxHP: 0
+      hp: 0
+      atk: 0
+      ats: 0
+      afs: 0
+      speed: 0
+    _brokenObject: {fileID: 937534623520568080, guid: 34ee7571c1b0fd0479270bbcada7cf2d, type: 3}

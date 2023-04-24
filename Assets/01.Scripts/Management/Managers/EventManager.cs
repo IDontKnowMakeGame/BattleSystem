@@ -32,6 +32,8 @@ public enum EventFlag
 	NoneAniAttack,
 	FureAttack,
 	ChangeStat,
+	HaloAdd,
+	HaloDel,
 
 	// Halo
 	PollutionHalo,
