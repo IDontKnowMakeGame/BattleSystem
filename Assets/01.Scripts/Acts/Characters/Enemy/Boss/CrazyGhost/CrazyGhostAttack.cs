@@ -58,13 +58,13 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
             Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.None, isLast);
         }
 
-        public void SoulAttack(Vector3 pos, bool isLast = true)
+        public void SoulAttack(Vector3 pos, float delay, bool isLast = true)
         {
             Attack();
-            ThisActor.StartCoroutine(SoulAttackCoroutine(pos, isLast));
+            ThisActor.StartCoroutine(SoulAttackCoroutine(pos, delay, isLast));
         }
 
-        private IEnumerator SoulAttackCoroutine(Vector3 pos, bool isLast = true)
+        private IEnumerator SoulAttackCoroutine(Vector3 pos, float delay, bool isLast = true)
         {
             var degree = ThisActor.Position.GetDegree(pos).GetRotation().GetDirection();
             var range = new Vector3[] { new(-2, 0, 1), new(-1, 0, 1), new(0, 0, 1), new(1, 0, 1), new(2, 0, 1) };
@@ -86,7 +86,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
 
                 if (count == 0)
                     break;
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(delay);
                 distance++;
             }
 

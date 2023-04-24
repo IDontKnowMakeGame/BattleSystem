@@ -1,8 +1,8 @@
 {
     "maxHp": 100,
     "feather": 0,
-    "firstWeapon": 4,
-    "secondWeapon": 1,
+    "firstWeapon": 1,
+    "secondWeapon": 4,
     "firstHalo": 0,
     "secondHalo": 0,
     "thirdHalo": 0,

@@ -40,7 +40,16 @@ public class UIInventory : UIBase
     #endregion
 
     #region HaloPanel
+    private VisualElement _haloSelectPanel;
+    private VisualElement _equipHaloPanel;
 
+    private VisualElement _selectHaloCard = null;
+    private ItemID _selectHaloID = ItemID.None;
+    private int _selectHaloEquipNum = 0;
+    private bool _selectIsHaloCard = false;
+    private bool _selectIsEquipHaloCard = false;
+    float width = 100;
+    float height = 100;
     #endregion
 
     #region UseableItemPanel
@@ -107,6 +116,7 @@ public class UIInventory : UIBase
         _useableItemPanel = _itemPanel.Q<VisualElement>("UseblePanel");
         _questItemPanel = _itemPanel.Q<VisualElement>("QuestPanel");
 
+        //WeaponPanel===================================================================================
         _weaponChacraterViewImage = _weaponPanel.Q<VisualElement>("Character");
         _weaponInfoPanel = _weaponPanel.Q<VisualElement>("WeaponInfoPanel");
         _weaponStatusPanel = _weaponInfoPanel.Q<VisualElement>("StatusPanel");
@@ -122,12 +132,17 @@ public class UIInventory : UIBase
         });
         _weaponScrollPanel = _weaponPanel.Q<VisualElement>("WeaponScrollPanel");
         _weaponCardTemp = Resources.Load<VisualTreeAsset>("UIDoc/InventoryWeaponItemCard");
-
+        //HaloPanel===================================================================================
+        _haloSelectPanel = _haloPanel.Q<VisualElement>("HaloSelectPanel");
+        _equipHaloPanel = _haloPanel.Q<VisualElement>("EquipHalo");
+        //UseablePanel===================================================================================
         _useableItemScrollPanel = _useableItemPanel.Q<VisualElement>("UseableItemScrollPanel");
         _useableEquipPanel = _useableItemPanel.Q<VisualElement>("UseableEquipPanel");
         _unmountBtn = _useableEquipPanel.Q<VisualElement>("UnmountBtn");
         _unmountBtn.RegisterCallback<ClickEvent>(e =>
         {
+            if (selectCard == null) return;
+
             UnmountItem(selectNumber);
             UIManager.Instance.InGame.ChangeItemPanelImage();
         });
@@ -141,6 +156,7 @@ public class UIInventory : UIBase
         CreateCardList(_weaponScrollPanel, _weaponCardTemp, Define.GetManager<DataManager>().LoadWeaponDataFromInventory(), SelectCard);
         CreateCardList(_useableItemScrollPanel, _useableItemCardTemp, Define.GetManager<DataManager>().LoadUsableItemFromInventory(), SelectCard);
         CreateCardList(_questItemScrollPanel, _questItemCardTemp, Define.GetManager<DataManager>().LoadQuestFromInventory(), SelectCard);
+        InitHaloSelectCard();
     }
     public void ShowInventory()
     {
@@ -180,7 +196,9 @@ public class UIInventory : UIBase
 
     }
     public void UpdateWeaponIcon()
-    { }
+    { 
+
+    }
     public void SelectItemBtn(int pageNum,VisualElement chageBox)
     {
         _selectBtnBox.style.height = new Length(80, LengthUnit.Percent);
@@ -247,7 +265,6 @@ public class UIInventory : UIBase
     {
         foreach(VisualElement card in _useableEquipPanel.Children())
         {
-            Debug.Log(card.name);
             EquipUseableItemBoxImage(card, Int32.Parse(card.name));
             card.RegisterCallback<ClickEvent>(e =>
             {
@@ -276,7 +293,7 @@ public class UIInventory : UIBase
     }
     public void UnmountItem(int equipNum)
     {
-        Define.GetManager<DataManager>().UnmountItem(equipNum);
+        Define.GetManager<DataManager>().UnmountUseableItem(equipNum);
         EquipUseableItemBoxImage(selectCard, int.Parse(selectCard.name));
         CreateCardList(_useableItemScrollPanel, _useableItemCardTemp, Define.GetManager<DataManager>().LoadUsableItemFromInventory(), SelectCard);
     }
@@ -349,6 +366,92 @@ public class UIInventory : UIBase
         isSelectEquipBox = false;
 
         HideWeaponInfoPanel();
+    }
+    public void InitHaloSelectCard()
+    {
+        foreach(VisualElement card in _haloSelectPanel.Children())
+        {
+            Debug.Log(card.name);
+            card.RegisterCallback<ClickEvent>(e =>
+            {
+                HaloSelectCard(card, Int32.Parse(card.name));
+            });
+        }
+
+        foreach(VisualElement card in _equipHaloPanel.Children())
+        {
+            Debug.Log(card.name);
+            card.RegisterCallback<ClickEvent>(e =>
+            {
+                HaloEquipSelectCard(card,Int32.Parse(card.name));
+            });
+        }
+    }
+    public void HaloSelectCard(VisualElement card, int id)
+    {
+        if (card == null) return;
+        if (_selectIsHaloCard)
+        {
+            InitSelectHaloSetting();
+            return;
+        }
+
+        if (_selectIsEquipHaloCard)
+        {
+            EquipHalo(_selectHaloCard, (ItemID)id, _selectHaloEquipNum);
+        }
+        else
+        {
+            _selectIsHaloCard = true;
+            _selectHaloCard = card;
+            _selectHaloID = (ItemID)id;
+
+            CardBorderWidth(card, 1, Color.green);
+        }
+        
+    }
+    public void HaloEquipSelectCard(VisualElement card,int equipNum)
+    {
+        if (card == null) return;
+        if(_selectIsEquipHaloCard)
+        {
+            EquipHalo(card, ItemID.None, equipNum);
+            return;
+        }
+
+        if(_selectIsHaloCard)
+        {
+            EquipHalo(card,_selectHaloID, equipNum);
+        }
+        else
+        {
+            _selectIsEquipHaloCard = true;
+            _selectHaloCard = card;
+            _selectHaloEquipNum = equipNum;
+
+            CardBorderWidth(card, 1, Color.green);
+        }
+    }
+    public void EquipHalo(VisualElement card,ItemID id, int equipNum)
+    {
+        Define.GetManager<DataManager>().EquipHalo(id, equipNum);
+        ChangeHaloImage(card, id);
+        InitSelectHaloSetting();
+    }
+    public void InitSelectHaloSetting()
+    {
+        CardBorderWidth(_selectHaloCard,0,Color.green);
+
+        _selectHaloCard = null;
+        _selectHaloID = ItemID.None;
+        _selectHaloEquipNum = 0;
+
+        _selectIsHaloCard = false;
+        _selectIsEquipHaloCard = false;
+    }
+    public void ChangeHaloImage(VisualElement card,ItemID id)
+    {
+        card.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
     }
     public void CardBorderWidth(VisualElement card,float value,Color color)
     {

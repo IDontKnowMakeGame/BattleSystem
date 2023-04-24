@@ -35,9 +35,9 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.Torch, 3);
-        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.Shield ,3);
-        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.HPPotion, 3);
+        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.HaloOfEreshkigal);
+        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.HaloOfGhost);
+        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.HaloOfPollution);
     }
 
     private void Init()

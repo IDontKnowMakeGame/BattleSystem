@@ -125,7 +125,7 @@ public class DataManager : Manager
 
         SaveToUserData();
     }
-    public void UnmountItem(int number)
+    public void UnmountUseableItem(int number)
     {
         switch (number)
         {
@@ -163,6 +163,41 @@ public class DataManager : Manager
         list.Add(UserData_.equipUseableItem.third);
         list.Add(UserData_.equipUseableItem.fourth);
         list.Add(UserData_.equipUseableItem.fifth);
+        return list;
+    }
+    public void EquipHalo(ItemID id,int equipNum)
+    {
+        if (!HaveHalo(id) && id != ItemID.None)
+        {
+            Debug.LogError($"Not  Have Halo : {id} + {(int)id}");
+            return;
+        }
+
+        switch (equipNum)
+        {
+            case 1:
+                UserData_.firstHalo = id;
+                break;
+            case 2:
+                UserData_.secondHalo = id;
+                break;
+            case 3:
+                UserData_.thirdHalo = id;
+                break;
+            default:
+                Debug.LogError($"Not Equip Halo is Number : {equipNum}");
+                break;
+        }
+
+        SaveToUserData();
+    }
+
+    public List<ItemID> LoadHaloListInUserData()
+    {
+        List<ItemID> list = new List<ItemID>();
+        list.Add(UserData_.firstHalo);
+        list.Add(UserData_.secondHalo);
+        list.Add(UserData_.thirdHalo);
         return list;
     }
     #endregion
