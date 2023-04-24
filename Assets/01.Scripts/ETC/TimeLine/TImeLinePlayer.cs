@@ -46,6 +46,7 @@ public class TImeLinePlayer : MonoBehaviour
 		"TwinSword" => 3,
 		"Spear" => 4,
 		"Bow" => 5, 
+        "gf" => 6,
         _ => 0
 	};
 
