@@ -10,7 +10,7 @@ public class HaloOfPollution : Halo
 
     public override void Equiqment(CharacterActor actor)
     {
-        percent = 5;
+        percent = 50;
         damage = 50;
         Define.GetManager<EventManager>().StartListening(EventFlag.PollutionHalo, Using);
     }
