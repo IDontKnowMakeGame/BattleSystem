@@ -3,9 +3,8 @@ using UnityEngine;
 
 namespace AI.Conditions
 {
-    public class CircleCondition : AiCondition
+    public class CircleCondition : TargetCondition
     {
-        public Actor TargetActor;
         public int Radius = 0;
         public override bool IsSatisfied()
         {

@@ -77,6 +77,24 @@ MonoBehaviour:
     fps: 6
     isLoop: 0
     delay: 0.1
+  - name: HorizontalPierceReady
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 18776a07bcff2eb4eb1fe50e0d9dbf94, type: 3}
+    fps: 10
+    isLoop: 0
+    delay: 0.1
+  - name: HorizontalPierceAttack
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: c069eab694e9df54781106cbe8d10e69, type: 3}
+    fps: 4
+    isLoop: 0
+    delay: 0.1
+  - name: HorizontalPierceReturn
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 9188cbbe5120f7341aacd4ff1b6adceb, type: 3}
+    fps: 6
+    isLoop: 0
+    delay: 0.1
   - name: LowerPierceReady
     nextIdx: 0
     texture: {fileID: 2800000, guid: 7019dd13fa6aae54fa3c0eb2869a63f2, type: 3}
@@ -95,28 +113,22 @@ MonoBehaviour:
     fps: 6
     isLoop: 0
     delay: 0.1
-  - name: SoulAttackJump
+  - name: UpperPierceReady
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 9054267fb75654340807238b849c978a, type: 3}
-    fps: 11
-    isLoop: 0
-    delay: 0.03272727
-  - name: SoulAttackReady
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 8786bf591173ad04389ffd42af62c923, type: 3}
-    fps: 23
-    isLoop: 0
-    delay: 0.03
-  - name: SoulAttackAttack
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 5b03c030eff7c354e87bc00090acd41c, type: 3}
-    fps: 9
+    texture: {fileID: 2800000, guid: 6ab843e61d581154a9d8a336fa4d7bb4, type: 3}
+    fps: 10
     isLoop: 0
     delay: 0.1
-  - name: SoulAttackReturn
+  - name: UpperPierceAttack
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 54e4aed3b12ee6745b489c09013ade7f, type: 3}
-    fps: 10
+    texture: {fileID: 2800000, guid: b91ae89932c7a0645b70fd50df5302dd, type: 3}
+    fps: 4
+    isLoop: 0
+    delay: 0.1
+  - name: UpperPierceReturn
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 6288e0143b7af8d4bad2c743ffbf3b58, type: 3}
+    fps: 6
     isLoop: 0
     delay: 0.1
   - name: LowerCombo1Ready
@@ -158,84 +170,6 @@ MonoBehaviour:
   - name: LowerCombo3Return
     nextIdx: 0
     texture: {fileID: 2800000, guid: e09b8e0176919e64bb1188d71437a6a2, type: 3}
-    fps: 6
-    isLoop: 0
-    delay: 0.1
-  - name: JumpAttackJump
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 38817b2d753184a4383a39c82dd172e2, type: 3}
-    fps: 6
-    isLoop: 0
-    delay: 0.059999995
-  - name: JumpAttackReady
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 6cad3dcb7a042a5408baa099cdb48857, type: 3}
-    fps: 5
-    isLoop: 0
-    delay: 0.1
-  - name: JumpAttackAttack
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 751cfdc468646a846bc327fb293450e6, type: 3}
-    fps: 3
-    isLoop: 0
-    delay: 0.1
-  - name: JumpAttackReturn
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 8e35d7af061a4fb43a71863c83bc1195, type: 3}
-    fps: 5
-    isLoop: 0
-    delay: 0.1
-  - name: HorizontalPierceReady
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 18776a07bcff2eb4eb1fe50e0d9dbf94, type: 3}
-    fps: 10
-    isLoop: 0
-    delay: 0.1
-  - name: HorizontalPierceAttack
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: c069eab694e9df54781106cbe8d10e69, type: 3}
-    fps: 4
-    isLoop: 0
-    delay: 0.1
-  - name: HorizontalPierceReturn
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 9188cbbe5120f7341aacd4ff1b6adceb, type: 3}
-    fps: 6
-    isLoop: 0
-    delay: 0.1
-  - name: AreaAttackReady
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 8f43b42eb94606748ade8f2ebdc3dbab, type: 3}
-    fps: 10
-    isLoop: 0
-    delay: 0.1
-  - name: AreaAttackAttack
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 95d818e94c9b3664c9454f164c8178d5, type: 3}
-    fps: 4
-    isLoop: 0
-    delay: 0.1
-  - name: AreaAttackReturn
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 0e639e0874dd0b243ad06c83242bfae8, type: 3}
-    fps: 5
-    isLoop: 0
-    delay: 0.1
-  - name: UpperPierceReady
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 6ab843e61d581154a9d8a336fa4d7bb4, type: 3}
-    fps: 10
-    isLoop: 0
-    delay: 0.1
-  - name: UpperPierceAttack
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: b91ae89932c7a0645b70fd50df5302dd, type: 3}
-    fps: 4
-    isLoop: 0
-    delay: 0.1
-  - name: UpperPierceReturn
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 6288e0143b7af8d4bad2c743ffbf3b58, type: 3}
     fps: 6
     isLoop: 0
     delay: 0.1
@@ -321,5 +255,71 @@ MonoBehaviour:
     nextIdx: 0
     texture: {fileID: 2800000, guid: c951dc26a973f1c4bab86218f78cbb09, type: 3}
     fps: 6
+    isLoop: 0
+    delay: 0.1
+  - name: JumpAttackReady
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 6cad3dcb7a042a5408baa099cdb48857, type: 3}
+    fps: 5
+    isLoop: 0
+    delay: 0.1
+  - name: JumpAttackReturn
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 8e35d7af061a4fb43a71863c83bc1195, type: 3}
+    fps: 5
+    isLoop: 0
+    delay: 0.1
+  - name: JumpAttackJump
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 38817b2d753184a4383a39c82dd172e2, type: 3}
+    fps: 6
+    isLoop: 0
+    delay: 0.059999995
+  - name: JumpAttackAttack
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 751cfdc468646a846bc327fb293450e6, type: 3}
+    fps: 3
+    isLoop: 0
+    delay: 0.1
+  - name: SoulAttackJump
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 9054267fb75654340807238b849c978a, type: 3}
+    fps: 11
+    isLoop: 0
+    delay: 0.03272727
+  - name: SoulAttackReady
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 8786bf591173ad04389ffd42af62c923, type: 3}
+    fps: 23
+    isLoop: 0
+    delay: 0.03
+  - name: SoulAttackAttack
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 5b03c030eff7c354e87bc00090acd41c, type: 3}
+    fps: 9
+    isLoop: 0
+    delay: 0.1
+  - name: SoulAttackReturn
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 54e4aed3b12ee6745b489c09013ade7f, type: 3}
+    fps: 10
+    isLoop: 0
+    delay: 0.1
+  - name: AreaAttackReady
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 8f43b42eb94606748ade8f2ebdc3dbab, type: 3}
+    fps: 10
+    isLoop: 0
+    delay: 0.1
+  - name: AreaAttackAttack
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 95d818e94c9b3664c9454f164c8178d5, type: 3}
+    fps: 4
+    isLoop: 0
+    delay: 0.1
+  - name: AreaAttackReturn
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 0e639e0874dd0b243ad06c83242bfae8, type: 3}
+    fps: 5
     isLoop: 0
     delay: 0.1

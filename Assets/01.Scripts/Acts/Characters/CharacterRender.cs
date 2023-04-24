@@ -10,6 +10,7 @@ namespace Acts.Characters
     {
         [SerializeField] private Texture2D _defaultTexture;
         [SerializeField] private int _frame;
+        [SerializeField] private Vector3 size;
         [Space]
         [SerializeField] private int _blinkCnt = 1;
         [SerializeField] private float _blinkTime = 0.1f;
@@ -21,6 +22,7 @@ namespace Acts.Characters
         {
             _renderer = ThisActor.GetComponentInChildren<Renderer>();
             currentMat = _renderer.material;
+            ThisActor.OnDirectionUpdate += SetDirection;
             // if (_defaultTexture != null)
             // {
             //     _renderer.material.SetTexture("_MainTex", _defaultTexture);
@@ -63,6 +65,11 @@ namespace Acts.Characters
                 currentMat.SetInt(_blinkOn, 0);
                 yield return new WaitForSeconds(_blinkDelay);
             }
+        }
+        
+        public void SetDirection(float direction)
+        {
+            ThisActor.SpriteTransform.localScale = new Vector3(size.x * direction, size.y, size.z);
         }
     }
 }

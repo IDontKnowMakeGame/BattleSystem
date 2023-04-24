@@ -15,7 +15,7 @@ namespace Actors.Characters.Enemy
 		[SerializeField] private EnemyStatAct _characterStat;
         [SerializeField] protected EnemyAnimation _enemyAnimation;
         [SerializeField] private bool alive = true;
-
+        [SerializeField] private int spriteSize = 1;
         public bool Alive => alive;
 
 		protected override void Init()
@@ -45,7 +45,7 @@ namespace Actors.Characters.Enemy
             else if (dir.x != 0)
             {
                 result = "Horizontal";
-                SpriteTransform.localScale = new Vector3(3 * -dir.x, 3, 3);
+                OnDirectionUpdate?.Invoke(dir.x);
             }
             return result;
         }
