@@ -3,9 +3,9 @@
     "feather": 0,
     "firstWeapon": 4,
     "secondWeapon": 2,
-    "firstHalo": 100,
-    "secondHalo": 101,
-    "thirdHalo": 102,
+    "firstHalo": 0,
+    "secondHalo": 0,
+    "thirdHalo": 0,
     "equipUseableItem": {
         "first": 200,
         "second": 201,
