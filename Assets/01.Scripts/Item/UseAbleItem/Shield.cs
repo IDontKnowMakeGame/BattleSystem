@@ -9,7 +9,7 @@ public class Shield : UseAbleItem
 {
     private bool use = false;
 
-    private HashSet<Vector3> ShieldPos = new HashSet<Vector3>();
+    private Dictionary<Vector3, GameObject> ShieldPos = new Dictionary<Vector3, GameObject>();
 
     public override void UseItem()
     {
@@ -25,9 +25,16 @@ public class Shield : UseAbleItem
     private void SpawnShield(Vector3 dir)
     {
         if (InGame.Player.HasState(Actors.Characters.CharacterState.Everything & ~Actors.Characters.CharacterState.Attack)) return;
-        if (ShieldPos.Contains(InGame.Player.transform.position)) return;
-
         Vector3 spawnPos = (InGame.Player.transform.position - dir).SetY(0.5f);
+
+        if (ShieldPos.ContainsKey(spawnPos))
+        {
+            if (ShieldPos[spawnPos] == null)
+                ShieldPos.Remove(spawnPos);
+            else
+                return;
+        }
+
 
         GameObject shield = Define.GetManager<ResourceManager>().Instantiate("Shield");
         shield.transform.position = spawnPos;
@@ -36,7 +43,7 @@ public class Shield : UseAbleItem
         use = false;
         InputManager<Weapon>.OnAttackPress -= SpawnShield;
 
-        ShieldPos.Add(spawnPos);
+        ShieldPos.Add(spawnPos, shield);
     }
 
     private Vector3 RotateShield(Vector3 dir)
