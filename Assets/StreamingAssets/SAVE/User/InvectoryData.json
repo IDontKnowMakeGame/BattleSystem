@@ -31,7 +31,26 @@
             "maxCnt": 0
         }
     ],
-    "inventoryInHaloList": [],
+    "inventoryInHaloList": [
+        {
+            "id": 102,
+            "name": "HaloOfEreshkigal",
+            "currentCnt": 0,
+            "maxCnt": 0
+        },
+        {
+            "id": 100,
+            "name": "HaloOfGhost",
+            "currentCnt": 0,
+            "maxCnt": 0
+        },
+        {
+            "id": 101,
+            "name": "HaloOfPollution",
+            "currentCnt": 0,
+            "maxCnt": 0
+        }
+    ],
     "inventoryInUsableItemList": [
         {
             "id": 200,
