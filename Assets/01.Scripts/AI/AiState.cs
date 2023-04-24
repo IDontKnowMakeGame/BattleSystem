@@ -9,6 +9,7 @@ namespace AI
     {
         public string Name;
         public Dictionary<Type, AiTransition> Transitions = new();
+        public bool HasPlayed { get; set; }
 
         public virtual void Init()
         {

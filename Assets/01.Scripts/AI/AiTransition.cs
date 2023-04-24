@@ -21,6 +21,7 @@ namespace AI
         [ContextMenuItem("Add Circle Condition", "AddCircleCondition")]
         [ContextMenuItem("Add Move Condition", "AddMoveCondition")]
         [ContextMenuItem("Add Edge Condition", "AddEdgeCondition")]
+        [ContextMenuItem("Add Entered Condition", "AddEnteredCondition")]
         [SerializeReference]
         public List<AiCondition> _conditions = new();
         private Type _nextState;
@@ -119,6 +120,13 @@ namespace AI
         {
             var condition = new EdgeCondition();
             condition.Type = Condition.EdgeCondition;
+            _conditions.Add(condition);
+        }
+        
+        public void AddEnteredCondition()
+        {
+            var condition = new EnteredCondition();
+            condition.Type = Condition.EnteredCondition;
             _conditions.Add(condition);
         }
     }

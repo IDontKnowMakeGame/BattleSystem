@@ -19,9 +19,12 @@ namespace Acts.Characters.Enemy
         private bool _hasFinished = false;
         public override void Update()
         {
+            
             if(_hasEntered == false)
             {
                 CurrentState?.OnEnter?.Invoke();
+                if(CurrentState != null)
+                    CurrentState.HasPlayed = true;
                 _hasEntered = true;
             }
             
@@ -120,6 +123,17 @@ namespace Acts.Characters.Enemy
             var type = typeof(T);
             AiState nextState = LoadState(type);
             return nextState as T;
+        }
+
+        public AiState GetState(string stateName)
+        {
+            var type = Type.GetType("AI.States." + stateName + "State");
+            if (_states.ContainsKey(type))
+            {
+                return _states[type];
+            }
+
+            return null;
         }
 
         public void MoveNextState(AiTransition moveTransition)
