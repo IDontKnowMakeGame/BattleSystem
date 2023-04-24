@@ -36,6 +36,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
             var jump = _enemyAi.GetState<JumpState>();
             var triple = _enemyAi.GetState<TripleState>();
             var area = _enemyAi.GetState<AreaState>();
+            var secondPhase = _enemyAi.GetState<SecondPhaseState>();
             chase.OnStay += () => { move.Chase(InGame.Player); };
             pattern.RandomActions.Add(() =>
             {
