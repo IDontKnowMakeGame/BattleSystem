@@ -175,6 +175,7 @@ public class UIInventory : UIBase
         isOpen = false;
         _root.style.display = DisplayStyle.None;
         HideWeaponInfoPanel();
+        InitSelectHaloSetting();
         SelectOptionInit(true);
     }
 
@@ -474,6 +475,8 @@ public class UIInventory : UIBase
     }
     public void CardBorderWidth(VisualElement card,float value,Color color)
     {
+        if (card == null) return;
+
         card.style.borderLeftWidth = new StyleFloat(value);
         card.style.borderRightWidth = new StyleFloat(value);
         card.style.borderTopWidth = new StyleFloat(value);
