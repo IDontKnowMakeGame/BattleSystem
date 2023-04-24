@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Lobby.unity
     guid: 7b912dd4db5f2144b9873c870c3b296c
   - enabled: 1
+    path: Assets/Scenes/Ready.unity
+    guid: e4d7e6fa3ec534a4fa5a96e12efb6ea5
+  - enabled: 1
     path: Assets/Scenes/KHJScene 1.unity
     guid: 6bed73217993b4f4498f375415558278
+  - enabled: 1
+    path: Assets/Scenes/LoadingScene.unity
+    guid: 551cfee4670e90d43a8c4d1b5ed381de
   m_configObjects: {}

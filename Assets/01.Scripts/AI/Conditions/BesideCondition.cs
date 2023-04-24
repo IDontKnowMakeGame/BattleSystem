@@ -6,9 +6,8 @@ using UnityEngine;
 
 namespace AI.Conditions
 {
-    public class BesideCondition : AiCondition
+    public class BesideCondition : TargetCondition
     {
-        public Actor TargetActor;
         public override bool IsSatisfied()
         {
             var dirs = new Vector3[] { Vector3.forward, Vector3.back, Vector3.left, Vector3.right };

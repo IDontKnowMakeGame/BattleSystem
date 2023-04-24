@@ -175,6 +175,7 @@ public class UIInventory : UIBase
         isOpen = false;
         _root.style.display = DisplayStyle.None;
         HideWeaponInfoPanel();
+        InitSelectHaloSetting();
         SelectOptionInit(true);
     }
 
@@ -378,14 +379,19 @@ public class UIInventory : UIBase
             });
         }
 
+        List<ItemID> list = Define.GetManager<DataManager>().LoadHaloListInUserData();
+        int index = 0;
         foreach(VisualElement card in _equipHaloPanel.Children())
         {
             Debug.Log(card.name);
+            ChangeHaloImage(card,list[index++]);
             card.RegisterCallback<ClickEvent>(e =>
             {
                 HaloEquipSelectCard(card,Int32.Parse(card.name));
             });
         }
+        
+
     }
     public void HaloSelectCard(VisualElement card, int id)
     {
@@ -435,6 +441,20 @@ public class UIInventory : UIBase
     public void EquipHalo(VisualElement card,ItemID id, int equipNum)
     {
         Define.GetManager<DataManager>().EquipHalo(id, equipNum);
+
+        EventParam eventParam = new EventParam();
+        if(id != ItemID.None)
+        {
+            eventParam.floatParam = (float)id;
+            eventParam.intParam = equipNum;
+            Define.GetManager<EventManager>().TriggerEvent(EventFlag.HaloAdd, eventParam);
+        }
+        else
+        {
+            eventParam.intParam = equipNum;
+            Define.GetManager<EventManager>().TriggerEvent(EventFlag.HaloDel, eventParam);
+        }
+            
         ChangeHaloImage(card, id);
         InitSelectHaloSetting();
     }
@@ -455,6 +475,8 @@ public class UIInventory : UIBase
     }
     public void CardBorderWidth(VisualElement card,float value,Color color)
     {
+        if (card == null) return;
+
         card.style.borderLeftWidth = new StyleFloat(value);
         card.style.borderRightWidth = new StyleFloat(value);
         card.style.borderTopWidth = new StyleFloat(value);

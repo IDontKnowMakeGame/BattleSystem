@@ -13,6 +13,7 @@ namespace Actors.Bases
     {
         public int UUID => gameObject.GetInstanceID();
         private Dictionary<Type, Act> _behaviours = new();
+        public Action<float> OnDirectionUpdate = null;
         [SerializeField] private Vector3 position = Vector3.zero;
         protected Transform spriteTransform;
 

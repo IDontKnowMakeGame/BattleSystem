@@ -69,7 +69,6 @@ public class DataManager : Manager
 
         SaveToUserData();
     }
-
     public void SwapWeaponData()
     {
         ItemID temp = UserData_.firstWeapon;
