@@ -25,6 +25,9 @@ namespace Acts.Characters.Player
         private Vector3 offset;
         private CharacterActor ThisCharacter => ThisActor as CharacterActor;
 
+        private CharacterState _tempState;
+        private CCInfo _ccInfo;
+
         public override void Awake()
         {
             base.Awake();
@@ -68,7 +71,9 @@ namespace Acts.Characters.Player
 
             if(enemys.Count > 0)
             {
-                ParticleRot(attackInfo.PressInput);
+                _tempState = attackInfo.State;
+                _ccInfo = attackInfo.CCInfo;
+				ParticleRot(attackInfo.PressInput);
                 _playerAnimation.curClip.SetEventOnFrame(attackInfo.ReachFrame, Attack);
             }
 
@@ -85,9 +90,12 @@ namespace Acts.Characters.Player
             {
                 enemy.GetAct<CharacterStatAct>().Damage(character.ChangeStat.atk, ThisActor);
 
-                if (enemy.Alive)
+				if (enemy.Alive)
                 {
-                    GameObject spark = Define.GetManager<ResourceManager>().Instantiate("Spark");
+                    if (_tempState.HasFlag(CharacterState.KnockBack))
+                        enemy.OnKnockBack.Invoke(_ccInfo.knockRange);
+
+					GameObject spark = Define.GetManager<ResourceManager>().Instantiate("Spark");
 
                     Vector3 particleRot = spark.transform.localEulerAngles;
                     particleRot.y = degree;

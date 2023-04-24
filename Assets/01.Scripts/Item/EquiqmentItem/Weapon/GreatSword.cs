@@ -110,6 +110,13 @@ public class GreatSword : Weapon
 			_attackInfo.PressInput = vec;
 			_attackInfo.AddDir(_attackInfo.DirTypes(_currrentVector));
 
+			if(timer >= info.Ats)
+			{
+				Debug.Log("?");
+				_attackInfo.State = CharacterState.KnockBack;
+				_attackInfo.CCInfo = new CCInfo() { knockRange = 1 };
+			}
+
 			_eventParam.attackParam = _attackInfo;
 			info.Atk = addDamage * (int)(timer / addTime);
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);

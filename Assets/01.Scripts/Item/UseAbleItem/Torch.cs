@@ -6,9 +6,14 @@ using Core;
 
 public class Torch : UseAbleItem
 {
+    private HashSet<Vector3> torchPos = new HashSet<Vector3>();
+
     public override void UseItem()
     {
-        GameObject torch = Define.GetManager<ResourceManager>().Instantiate("Torch");
-        torch.transform.position = InGame.Player.transform.position;
+        if (InGame.Player.HasState(Actors.Characters.CharacterState.Everything)) return;
+        if (torchPos.Contains(InGame.Player.transform.position)) return;
+        GameObject torch = Define.GetManager<ResourceManager>().Instantiate("TorchModel");
+        torch.transform.position = InGame.Player.transform.position.SetY(0.5f);
+        torchPos.Add(InGame.Player.transform.position);
     }
 }

@@ -17,13 +17,16 @@ public class HPPotion : UseAbleItem
     private bool _useHP = false;
     public bool UsePortion => _useHP;
 
-    [SerializeField]
     private ParticleSystem holyParticle;
+
+    public ParticleSystem HolyParticle
+    {
+        set => holyParticle = value;
+    }
 
     private PlayerStatAct _playerStatAct;
 
     private float timer = 0f;
-
 
     public override void SettingItem()
     {
@@ -37,7 +40,7 @@ public class HPPotion : UseAbleItem
         {
             //InGame.Player.AddState(CharacterState.StopMove);
             _useHP = true;
-            //holyParticle.Play();
+            holyParticle.Play();
         }
     }
 
