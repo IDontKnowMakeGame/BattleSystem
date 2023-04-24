@@ -16,6 +16,7 @@ namespace Acts.Characters.Player
         private HPPotion _hpPotion;
 
         public HPPotion HPPotion => _hpPotion;
+        public Shield Shield => _shieldItem;
 
 
         private Dictionary<ItemID, UseAbleItem> useAbleItems = new Dictionary<ItemID, UseAbleItem>();
