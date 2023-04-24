@@ -184,6 +184,7 @@ MonoBehaviour:
   _characterRender:
     _defaultTexture: {fileID: 0}
     _frame: 0
+    size: {x: 1, y: 1, z: 1}
     _blinkCnt: 1
     _blinkTime: 0.1
     _blinkDelay: 0.1
@@ -194,7 +195,7 @@ MonoBehaviour:
     CurrentState:
       Name: 
   _characterEquipment:
-    _firstWeapon: 0
+    _firstWeapon: 7
     _secondWeapon: 0
     _halos: 
     _isPlayer: 0
@@ -226,6 +227,7 @@ MonoBehaviour:
     isFinished: 0
     curClips: {fileID: 11400000, guid: 9eac4b9f506b8ff4da916d3414664b01, type: 2}
   alive: 1
+  spriteSize: 1
 --- !u!114 &6861387177648206924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,8 +254,9 @@ MonoBehaviour:
         IsNegative: 0
         IsNeeded: 1
         _thisActor: {fileID: 6861387177648206927}
+        targetActor: {fileID: 0}
+        IsPlayer: 1
         Area: 1
-        TargetActor: {fileID: 0}
 --- !u!114 &6861387177648206921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,6 +285,7 @@ MonoBehaviour:
         IsNeeded: 1
         _thisActor: {fileID: 6861387177648206927}
         targetActor: {fileID: 0}
+        IsPlayer: 1
         distance: 3
     - rid: 4755812611868852234
       type: {class: BlockCondition, ns: AI.Conditions, asm: Assembly-CSharp}
@@ -290,8 +294,9 @@ MonoBehaviour:
         IsNegative: 1
         IsNeeded: 0
         _thisActor: {fileID: 6861387177648206927}
+        targetActor: {fileID: 0}
+        IsPlayer: 1
         Area: 3
-        TargetActor: {fileID: 0}
 --- !u!114 &6861387177648206930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,7 +324,8 @@ MonoBehaviour:
         IsNegative: 0
         IsNeeded: 1
         _thisActor: {fileID: 6861387177648206927}
-        TargetActor: {fileID: 0}
+        targetActor: {fileID: 0}
+        IsPlayer: 1
     - rid: 4755812611868852235
       type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
       data:
@@ -352,7 +358,7 @@ MonoBehaviour:
       data:
         Type: 3
         IsNegative: 0
-        IsNeeded: 0
+        IsNeeded: 1
         _thisActor: {fileID: 6861387177648206927}
         BaseActor: {fileID: 6861387177648206927}
 --- !u!65 &6861387177648206925

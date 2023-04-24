@@ -62,6 +62,7 @@ MonoBehaviour:
   _characterRender:
     _defaultTexture: {fileID: 2800000, guid: 3f004c9320d8a834eaaa5f94d4ff7cb7, type: 3}
     _frame: 17
+    size: {x: 3, y: 3, z: 3}
     _blinkCnt: 1
     _blinkTime: 0.1
     _blinkDelay: 0.1
@@ -104,6 +105,7 @@ MonoBehaviour:
     isFinished: 0
     curClips: {fileID: 11400000, guid: 07fddb310a2a38143a388d70d230d20f, type: 2}
   alive: 1
+  spriteSize: 3
   particle:
     landingParticle: {fileID: 7310023798986098773}
 --- !u!114 &2602499903621569671
@@ -168,7 +170,8 @@ MonoBehaviour:
         IsNegative: 0
         IsNeeded: 1
         _thisActor: {fileID: 2602499903621569664}
-        TargetActor: {fileID: 0}
+        targetActor: {fileID: 0}
+        IsPlayer: 1
 --- !u!114 &2602499903621569716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +238,8 @@ MonoBehaviour:
         IsNegative: 0
         IsNeeded: 1
         _thisActor: {fileID: 2602499903621569664}
-        TargetActor: {fileID: 0}
+        targetActor: {fileID: 0}
+        IsPlayer: 1
         Distance: -1
     - rid: 4755812595378421764
       type: {class: BlockCondition, ns: AI.Conditions, asm: Assembly-CSharp}
@@ -244,8 +248,9 @@ MonoBehaviour:
         IsNegative: 1
         IsNeeded: 1
         _thisActor: {fileID: 2602499903621569664}
+        targetActor: {fileID: 0}
+        IsPlayer: 1
         Area: 1
-        TargetActor: {fileID: 0}
     - rid: 4755812596873953280
       type: {class: MoveCondition, ns: AI.Conditions, asm: Assembly-CSharp}
       data:
@@ -336,7 +341,8 @@ MonoBehaviour:
         IsNegative: 1
         IsNeeded: 1
         _thisActor: {fileID: 2602499903621569664}
-        TargetActor: {fileID: 0}
+        targetActor: {fileID: 0}
+        IsPlayer: 1
 --- !u!114 &6350170632472056017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,8 +378,9 @@ MonoBehaviour:
         IsNegative: 1
         IsNeeded: 1
         _thisActor: {fileID: 2602499903621569664}
+        targetActor: {fileID: 0}
+        IsPlayer: 1
         Area: 5
-        TargetActor: {fileID: 0}
 --- !u!114 &6350170632472056026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,7 +416,8 @@ MonoBehaviour:
         IsNegative: 0
         IsNeeded: 1
         _thisActor: {fileID: 2602499903621569664}
-        TargetActor: {fileID: 0}
+        targetActor: {fileID: 0}
+        IsPlayer: 1
 --- !u!114 &6350170632472056027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,8 +474,9 @@ MonoBehaviour:
         IsNegative: 1
         IsNeeded: 1
         _thisActor: {fileID: 2602499903621569664}
+        targetActor: {fileID: 0}
+        IsPlayer: 1
         Area: 1
-        TargetActor: {fileID: 0}
     - rid: 4755812668502704129
       type: {class: LineCondition, ns: AI.Conditions, asm: Assembly-CSharp}
       data:
@@ -475,7 +484,8 @@ MonoBehaviour:
         IsNegative: 1
         IsNeeded: 1
         _thisActor: {fileID: 2602499903621569664}
-        TargetActor: {fileID: 0}
+        targetActor: {fileID: 0}
+        IsPlayer: 1
         Distance: -1
     - rid: 4755812668502704130
       type: {class: CircleCondition, ns: AI.Conditions, asm: Assembly-CSharp}
@@ -484,7 +494,8 @@ MonoBehaviour:
         IsNegative: 0
         IsNeeded: 1
         _thisActor: {fileID: 2602499903621569664}
-        TargetActor: {fileID: 0}
+        targetActor: {fileID: 0}
+        IsPlayer: 1
         Radius: 3
     - rid: 4755812668502704131
       type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
