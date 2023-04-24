@@ -45,7 +45,7 @@ namespace Actors.Characters.Enemy
             else if (dir.x != 0)
             {
                 result = "Horizontal";
-                OnDirectionUpdate?.Invoke(dir.x);
+                OnDirectionUpdate?.Invoke(-dir.x);
             }
             return result;
         }
