@@ -69,6 +69,12 @@ public class PlayerEquipment : CharacterEquipmentAct
 		_halos = Define.GetManager<DataManager>().LoadHaloListInUserData();
 		if (_halos[0] != ItemID.None)
 			_haloRanderer?.SetHalo(_halos[0]);
+
+		foreach(ItemID haloID in _halos)
+        {
+			if (haloID == ItemID.None) return;
+			_useHalo[haloID].Equiqment(_characterController);
+		}
 	}
 	public override void OnDisable()
 	{
