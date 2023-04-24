@@ -2,15 +2,17 @@ using Actors.Bases;
 using Actors.Characters.Player;
 using Acts.Base;
 using Acts.Characters;
+using Acts.Characters.Enemy;
 using Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class DieAction : InteractionActor
 {
 	[SerializeField]
-	private UnitAnimation _unitAnimation;
+	private EnemyAnimation _unitAnimation;
 
 	[SerializeField]  
 	private float speed = 0f;
@@ -24,6 +26,7 @@ public class DieAction : InteractionActor
 	public override void Interact()
 	{
 		base.Interact();
+		Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, new EventParam() { stringParam = "gf" });
 		_unitAnimation.Play("DiePull");
 		_unitAnimation.curClip.SetEventOnFrame(_unitAnimation.curClip.fps - 1, Die);
 		InGame.Player.gameObject.SetActive(false);

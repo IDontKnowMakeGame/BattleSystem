@@ -100,6 +100,16 @@ public class Arrow : MonoBehaviour
 		_isStick = true;
 	}
 
+	public void StickReBlock()
+	{
+		_isStick = true;
+		_stickActor = null;
+		Quaternion quater = this.transform.localRotation;
+		Vector3 vec = quater.eulerAngles;
+		vec.x = 150;
+		this.transform.rotation = Quaternion.Euler(vec);
+	}
+
 	protected virtual void Pull()
 	{
 		if (!_canPull)

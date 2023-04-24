@@ -28,6 +28,8 @@ public class BrokenObjectStatAct : CharacterStatAct
 
 	public override void Die()
 	{
+		ThisActor.GetComponentInChildren<Arrow>().StickReBlock();
+		ThisActor.transform.DetachChildren();
 		GameObject obj = GameObject.Instantiate(_brokenObject);
 		obj.transform.position = ThisActor.transform.position + Vector3.up;
 		GameManagement.Instance.GetManager<ResourceManager>().Destroy(ThisActor.gameObject);

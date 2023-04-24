@@ -93,7 +93,9 @@ namespace Acts.Characters.Player
 				if (enemy.Alive)
                 {
                     if (_tempState.HasFlag(CharacterState.KnockBack))
-                        enemy.OnKnockBack.Invoke(_ccInfo.knockRange, ThisActor);
+                    {
+						enemy.OnKnockBack.Invoke(_ccInfo.knockRange, ThisActor);
+                    }
 
 					GameObject spark = Define.GetManager<ResourceManager>().Instantiate("Spark");
 
