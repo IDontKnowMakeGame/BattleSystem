@@ -24,15 +24,19 @@ namespace Acts.Characters
         public void KnockBack(int power, Actor attacker)
         {
             var map = Define.GetManager<MapManager>();
-            var dirs = new[] { Vector3.forward * power, Vector3.back * power, Vector3.left * power, Vector3.right * power };
-            dirs.Where((v) =>
+            
+            var dir = (ThisActor.Position - attacker.Position).GetDirection() * power;
+            if(!map.IsStayable(ThisActor.Position + dir))
             {
-                var pos = ThisActor.Position + v;
-                return map.IsStayable(pos);
-            });
-            var dir = (ThisActor.Position - attacker.Position).GetDirection();
-            if (dir == Vector3.zero)
+                var dirs = new[] { Vector3.forward * power, Vector3.back * power, Vector3.left * power, Vector3.right * power };
+                dirs = dirs.Where((v) =>
+                {
+                    var pos = ThisActor.Position + v;
+                    return map.IsStayable(pos);
+                }).ToArray();
                 dir = dirs[Random.Range(0, dirs.Length)];
+            }
+            
             _character.AddState(CharacterState.KnockBack);
             var originPos = ThisActor.Position;
             var nextPos = originPos + dir;
