@@ -3,6 +3,7 @@ using Acts.Characters;
 using Acts.Characters.Enemy;
 using AI.States;
 using Core;
+using UnityEngine;
 
 namespace Actors.Characters.Enemy.OldShade
 {
@@ -33,7 +34,7 @@ namespace Actors.Characters.Enemy.OldShade
                 AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
                 var dir = (Position - playerPos).GetDirection();
-                AttackWithNoReturn("", () =>
+                AttackWithNoReturn(Vector3.zero, "", () =>
                 {
                     attack.HorizontalAttack(playerPos, true);
                 },
