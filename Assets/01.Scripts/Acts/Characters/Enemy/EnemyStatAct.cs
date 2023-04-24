@@ -33,9 +33,9 @@ namespace Acts.Characters.Enemy
 
         public override void Die()
         {
-            base.Die();
-			//ThisActor.gameObject.AddComponent()
+            ThisActor.gameObject.AddComponent(typeof(DieAction));
 			this.IsEnabled = false;
+            base.Die();
         }
 
         private void DamageEffect()

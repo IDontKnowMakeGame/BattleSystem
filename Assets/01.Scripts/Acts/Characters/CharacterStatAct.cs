@@ -148,7 +148,7 @@ public class CharacterStatAct : Act
 	{
 		ItemInfo info = _eqipment.CurrentWeapon.WeaponInfo;
 		_changeStat.ChangeStat(info);
-		_changeStat.maxHP = _basicStat.maxHP + info.Hp;
+		_changeStat.maxHP = _changeStat.maxHP + info.Hp;
 	}
 	public virtual void Heal(int hp)
 	{

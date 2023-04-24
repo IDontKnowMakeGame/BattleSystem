@@ -37,32 +37,17 @@ public class TImeLinePlayer : MonoBehaviour
         _playable.Play();
     }
 
-    private int TimeLineNumber(string lineName)
+    //±è´ëÇöÀÌ Â«
+    private int TimeLineNumber(string lineName) => lineName switch
     {
-        int result = 0;
-        switch(lineName)
-        {
-            case "Damaged":
-                result = 0;
-                break;
-            case "StraightSword":
-                result = 1;
-                break;
-            case "GreatSword":
-                result = 2;
-                break;
-            case "TwinSword":
-                result = 3;
-                break;
-            case "Spear":
-                result = 4;
-                break;
-            case "Bow":
-                result = 5;
-                break;
-        }
-        return result;
-    }
+        "Damaged" => 0,
+		"StraightSword" => 1,
+		"GreatSword" => 2,
+		"TwinSword" => 3,
+		"Spear" => 4,
+		"Bow" => 5, 
+        _ => 0
+	};
 
     private void ChangeTimeLine(int number)
     {
