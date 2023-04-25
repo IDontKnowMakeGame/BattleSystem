@@ -8,7 +8,7 @@ public class TestScene : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            LoadingSceneController.LoadScene("KHJScene 1");
+            LoadingSceneController.Instnace.LoadScene("InGame");
         }
     }
 }
