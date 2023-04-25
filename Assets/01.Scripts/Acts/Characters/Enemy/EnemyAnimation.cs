@@ -10,9 +10,9 @@ namespace Acts.Characters.Enemy
     public class EnemyAnimation : UnitAnimation
     {
         [SerializeField]
-        private WeaponClips curClips;
+        protected WeaponClips curClips;
 
-        private Dictionary<string, ClipBase> weaponClipDic = new Dictionary<string, ClipBase>();
+		protected Dictionary<string, ClipBase> weaponClipDic = new Dictionary<string, ClipBase>();
 
         public override void Start()
         {
