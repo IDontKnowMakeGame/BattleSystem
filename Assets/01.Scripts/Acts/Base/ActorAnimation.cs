@@ -4,6 +4,7 @@ using Tools;
 using UnityEngine;
 using System.Collections;
 using Acts.Base;
+using UnityEngine.Rendering;
 
 namespace Acts.Characters
 {
@@ -21,9 +22,9 @@ namespace Acts.Characters
 
 		protected Coroutine currentCoroutine;
 
-		public override void Awake()
+		public override void Start()
 		{
-			base.Awake();
+			base.Start();
 			baseMaterial = renderer.materials[0];
 		}
 
@@ -56,6 +57,7 @@ namespace Acts.Characters
 				}
 
 				var offset = ((float)curClip.texture.width / curClip.fps) / curClip.texture.width;
+
 				baseMaterial.SetTexture("_BaseMap", curClip.texture);
 				baseMaterial.SetTextureOffset("_BaseMap", Vector2.right * (offset * index));
 				baseMaterial.SetTextureScale("_BaseMap", new Vector2(offset, 1f));

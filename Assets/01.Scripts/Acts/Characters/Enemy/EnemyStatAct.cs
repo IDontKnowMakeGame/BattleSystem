@@ -42,9 +42,11 @@ namespace Acts.Characters.Enemy
         public override void Die()
         {
             //action.enabled = true;
-            ThisActor.gameObject.SetActive(false);
+            ///isActor.gameObject.SetActive(false);
+            ThisActor.GetAct<EnemyAI>().ResetAllConditions();
+			action.enabled = true;
 			ThisActor.enabled = false;
-        }
+		}
 
         private void DamageEffect()
         {

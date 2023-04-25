@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Tools;
-
+using System;
 
 namespace Acts.Characters.Enemy
 {
@@ -14,18 +14,17 @@ namespace Acts.Characters.Enemy
 
         private Dictionary<string, ClipBase> weaponClipDic = new Dictionary<string, ClipBase>();
 
-        public override void Awake()
+        public override void Start()
         {
-            base.Awake();
-
-            if (curClips.Clips.Count == 0)
-                return;
-            foreach (ClipBase clip in curClips.Clips)
-            {
-                weaponClipDic.Add(clip.name, clip);
-            }
-            Play("Idle");
-        }
+            base.Start();
+			if (curClips.Clips.Count == 0)
+				return;
+			foreach (ClipBase clip in curClips.Clips)
+			{
+				weaponClipDic.Add(clip.name, clip);
+			}
+			Play("Idle");
+		}
 
         public override void Play(string name)
         {
