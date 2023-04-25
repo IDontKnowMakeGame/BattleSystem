@@ -45,6 +45,8 @@ namespace Acts.Characters.Enemy
             ///isActor.gameObject.SetActive(false);
             ThisActor.GetAct<EnemyAI>().ResetAllConditions();
 			action.enabled = true;
+            var enemy = ThisActor as EnemyActor;
+            if (enemy != null) enemy.Alive = false;
 			ThisActor.enabled = false;
 		}
 
