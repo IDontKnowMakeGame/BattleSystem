@@ -8,6 +8,7 @@ public enum QuestName
     none = 0,
     WeaponGift,
     FirstFloorBossKill,
+    S10AreaEnter,
     FallenAngel,
 }
 [Serializable]
