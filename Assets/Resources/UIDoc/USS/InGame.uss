@@ -5,3 +5,7 @@
 .OnAdrenaline {
     background-image: url('project://database/Assets/02.Sprites/UI/UI_StateBar.png?fileID=2075657235&guid=67b35f00fafdd3746990d37f72c555cd&type=3#UI_StateBar_1');
 }
+
+.ItemBox {
+    height: 26%;
+}
