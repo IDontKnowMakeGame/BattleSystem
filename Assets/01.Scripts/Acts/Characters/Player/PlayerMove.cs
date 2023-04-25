@@ -28,6 +28,9 @@ namespace Acts.Characters.Player
 
         private Queue<Vector3> moveDir = new Queue<Vector3>();
 
+        [SerializeField]
+        private ParticleSystem dust;
+
         public override void Awake()
         {         
             base.Awake();
@@ -75,6 +78,7 @@ namespace Acts.Characters.Player
                 enableQ = true;
                 playerDir = moveDir.Dequeue();
                 Vector3 dir = InGame.CamDirCheck(playerDir);
+                dust.Play();
                 base.Translate(dir * distance);
             }
         }
@@ -158,6 +162,8 @@ namespace Acts.Characters.Player
             }
             else
                 _playerAnimation.Play("Idle");
+
+            dust.Stop();
             base.MoveStop();
         }
     }
