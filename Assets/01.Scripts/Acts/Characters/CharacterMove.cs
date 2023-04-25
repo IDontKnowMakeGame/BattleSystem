@@ -160,12 +160,14 @@ namespace Acts.Characters
             AnimationCheck();
 
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
+            block.isWalkable = false;
             seq.Append(_thisTransform.DOMove(nextPos, speed - defaultSpeed).SetEase(Ease.Linear));
             seq.InsertCallback((speed - defaultSpeed) / 2, () => enableQ = false);
             seq.AppendCallback(() =>
             {
 				OnMoveEnd?.Invoke(ThisActor.UUID, position - _character.Position);
                 MoveStop(); 
+                block.isWalkable = true;
 				seq.Kill();
             });
         }
@@ -204,11 +206,13 @@ namespace Acts.Characters
             _character.AddState(Actors.Characters.CharacterState.Move);
 
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
+            block.isWalkable = false;
             seq.Append(_thisTransform.DOJump(nextPos, 1, 1, speed));
             seq.AppendCallback(() =>
             {
                 map.GetBlock(nextPos.SetY(0)).SetActorOnBlock(ThisActor);
                 MoveStop();
+                block.isWalkable = true;
                 seq.Kill();
             });
         }
