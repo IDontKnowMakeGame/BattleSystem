@@ -25,18 +25,18 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                 }
             }
         }
-        public void AreaAttack(Vector3 pos, bool isLast = true)
+        public void AreaAttack(int distance, bool singleLayer, bool isLast = true)
         {
             Attack();
             ThisActor.GetAct<EnemyParticle>().PlayLandingParticle();
-            ThisActor.StartCoroutine(AreaAttackCoroutine(pos, isLast));
+            ThisActor.StartCoroutine(AreaAttackCoroutine(distance, singleLayer, isLast));
         }
 
-        private IEnumerator AreaAttackCoroutine(Vector3 pos, bool isLast = true)
+        private IEnumerator AreaAttackCoroutine(int _distance, bool singleLayer, bool isLast = true)
         {
             var area = new List<Vector3>();
             var distance = 1;
-            while (distance <= 5)
+            while (distance <= _distance)
             {
                 for (var i = -distance; i <= distance; i++)
                 {
@@ -45,7 +45,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                         var attackPos = new Vector3(i, 0, j);
                         if (area.Contains(attackPos)) continue;
                         Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position + attackPos, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.Roll);
-                        if(distance == 1)
+                        if(distance == 1 || singleLayer)
                             area.Add(attackPos);
                     }
 
@@ -57,6 +57,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
             
             Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.None, isLast);
         }
+
 
         public void SoulAttack(Vector3 pos, float delay, bool isLast = true)
         {

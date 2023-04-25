@@ -8,10 +8,16 @@ namespace Acts.Characters.Enemy
     public class EnemyParticle : Act
     {
         [SerializeField] private ParticleSystem landingParticle;
-        
+        [SerializeField] private ParticleSystem secondPhaseParticle;
+
         public void PlayLandingParticle()
         {
             landingParticle.Play();
+        }
+
+        public void PlaySecondPhaseParticle()
+        {
+            secondPhaseParticle.Play();
         }
     }
 }
