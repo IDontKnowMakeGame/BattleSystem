@@ -12,12 +12,11 @@ namespace Acts.Characters.Enemy
     [Serializable]
     public class EnemyStatAct : CharacterStatAct
     {
-        public DieAction action;
+        public GameObject action;
 
         public override void Awake()
         {
             base.Awake();
-            action = ThisActor.GetComponent<DieAction>();
 		}
 
         public override void Damage(float damage, Actor actor)
@@ -41,12 +40,19 @@ namespace Acts.Characters.Enemy
 
         public override void Die()
         {
-            //action.enabled = true;
+            if (!ThisActor.gameObject.activeSelf)
+                return;
+
+            ThisActor.GetAct<EnemyAI>()?.ResetAllConditions();
+
+			GameObject obj = GameObject.Instantiate(action);
+            obj.GetComponent<DieAction>().InitDieObj(ThisActor.gameObject.name);
+            obj.transform.position = ThisActor.Position + Vector3.up;
+
             var enemy = ThisActor as EnemyActor;
             if (enemy != null) enemy.Alive = false;
-            ThisActor.gameObject.SetActive(false);
-			ThisActor.enabled = false;
-        }
+			ThisActor.gameObject.SetActive(false);
+		}
 
         private void DamageEffect()
         {

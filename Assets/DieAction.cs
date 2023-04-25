@@ -8,14 +8,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.UIElements;
 
 public class DieAction : InteractionActor
 {
 	[SerializeField]
-	private EnemyAnimation _unitAnimation;
+	private EnemyAnimation _unitAnimation = new EnemyAnimation();
 
-	[SerializeField]  
+	[SerializeField]
 	private float speed = 0f;
+
+	private string objName;
 
 	protected override void Awake()
 	{
@@ -23,15 +26,19 @@ public class DieAction : InteractionActor
 		AddAct(_unitAnimation);
 	}
 
+	public void InitDieObj(string name)
+	{
+		objName = name;
+	}
+
 	public override void Interact()
 	{
 		base.Interact();
+		Debug.Log(objName);
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, new EventParam() { stringParam = "gf" });
-		//_unitAnimation.Play("DiePull");
-		_unitAnimation.Play("LowerAttack");
-		Debug.Log(_unitAnimation.curClip);
-		Debug.Log(_unitAnimation.curClip.fps);
-		_unitAnimation.curClip.SetEventOnFrame(_unitAnimation.curClip.fps - 3, Die);
+		Debug.Log(_unitAnimation.GetClip(objName));
+		_unitAnimation.Play(objName);
+		_unitAnimation.GetClip(objName).SetEventOnFrame(3, Die);
 		InGame.Player.gameObject.SetActive(false);
 	}
 

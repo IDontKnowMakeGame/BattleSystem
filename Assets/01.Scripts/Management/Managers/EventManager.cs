@@ -26,8 +26,6 @@ public enum EventFlag
 	DirtyHalo,
 	HPWidth,
 	WeaponUpgrade,
-	SetWeapon,
-	UnsetWeapon,
 	Attack,
 	NoneAniAttack,
 	FureAttack,
