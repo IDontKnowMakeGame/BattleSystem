@@ -17,7 +17,7 @@ public class FallenAngel : NPCActor
     {
         base.Init();
 
-        questData = JsonManager.LoadJsonFile<QuestData>(Application.streamingAssetsPath+"/NPC/Quest",GetType().Name);
+        questData = JsonManager.LoadJsonFile<QuestData>(Application.streamingAssetsPath+"/SAVE/NPC/Quest",GetType().Name);
     }
 
     public override void Interact()

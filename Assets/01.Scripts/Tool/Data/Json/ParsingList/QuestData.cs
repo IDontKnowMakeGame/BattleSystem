@@ -21,5 +21,5 @@ public class QuestInfo
 public class QuestData
 {
     public int currentQuestLine = 0;
-    public List<QuestData> quests = new List<QuestData>();
+    public List<QuestInfo> quests = new List<QuestInfo>();
 }

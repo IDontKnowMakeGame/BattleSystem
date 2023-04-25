@@ -2,6 +2,7 @@ using Actors.Characters.NPC;
 using Core;
 using System.Collections;
 using System.Collections.Generic;
+using Tool.Data.Json;
 using UnityEngine;
 
 public class AbandonedAngel : NPCActor
@@ -11,6 +12,21 @@ public class AbandonedAngel : NPCActor
     [SerializeField]
     private DialogueData[] dialogueList;
 
+    private QuestData questData;
+
+    protected override void Init()
+    {
+        base.Init();
+
+        questData = JsonManager.LoadJsonFile<QuestData>(Application.streamingAssetsPath + "/SAVE/NPC/Quest", GetType().Name);
+        SaveQuestData();
+    }
+
+    public void SaveQuestData()
+    {
+        string json = JsonManager.ObjectToJson(questData);
+        JsonManager.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/NPC/Quest", GetType().Name,json);
+    }
     public override void Interact()
     {
         if (InGame.Player.Position.IsNeighbor(Position) == false) return;
