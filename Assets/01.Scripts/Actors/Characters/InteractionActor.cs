@@ -4,6 +4,7 @@ using UnityEngine;
 using Core;
 using Managements.Managers;
 using Actors.Characters;
+using System;
 
 public class InteractionActor : CharacterActor
 {
@@ -17,7 +18,6 @@ public class InteractionActor : CharacterActor
     public virtual void Interact()
     {
         if (InGame.Player.Position.IsNeighbor(Position) == false) return;
-
 
         //TODO : 상호작용
     }
