@@ -11,13 +11,9 @@ public class BloodController : MonoBehaviour
     [SerializeField]
     private Image blood;
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.O))
-            StartBlood();
-    }
     public void StartBlood()
     {
+        DOTween.Kill(blood);
         blood.DOFade(0.5f, 0.1f).OnComplete(() =>
         {
             blood.gameObject.SetActive(true);
