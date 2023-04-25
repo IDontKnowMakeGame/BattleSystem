@@ -4,10 +4,12 @@
         {
             "questName": 1,
             "IsComplate": false,
+            "rewardfeather": 0,
             "rewords": [
                 1,
                 3
-            ]
+            ],
+            "openQuest": []
         }
     ]
 }
