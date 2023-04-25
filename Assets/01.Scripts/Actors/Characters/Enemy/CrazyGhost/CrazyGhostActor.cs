@@ -7,6 +7,7 @@ using AI.Conditions;
 using AI.States;                                                                                                                                                
 using Blocks.Acts;
 using Core;
+using Tool.Map.Room;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
     {
         private PatternState patternState;
         [SerializeField] private EnemyParticle particle;
+        [SerializeField] Room bossRoom;
         protected override void Init()
         {
             base.Init(); 
@@ -36,6 +38,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
             var jump = _enemyAi.GetState<JumpState>();
             var triple = _enemyAi.GetState<TripleState>();
             var area = _enemyAi.GetState<AreaState>();
+            var screaming = _enemyAi.GetState<ScreamingState>();
             var secondPhase = _enemyAi.GetState<SecondPhaseState>();
             chase.OnStay += () => { move.Chase(InGame.Player); };
             pattern.RandomActions.Add(() =>
@@ -55,6 +58,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
             jump.OnEnter = () =>
             {
                 AddState(CharacterState.Attack);
+                canKnockBack = true;
                 var jumpClip = _enemyAnimation.GetClip("JumpAttackJump");
                 var readyClip = _enemyAnimation.GetClip("JumpAttackReady");
                 _enemyAnimation.Play("JumpAttackReady");
@@ -66,6 +70,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                     move.Jump(playerPos, dir, 0);
                     jumpClip.OnExit = () =>
                     {
+                        canKnockBack = false;
                         AttackWithNoReady(Vector3.zero, "JumpAttack", () => { attack.RoundAttack(1, false); });
                     };
                 };
@@ -96,6 +101,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
             {
                 AddState(CharacterState.Attack);
                 var jumpClip = _enemyAnimation.GetClip("SoulAttackJump");
+                jumpClip.OnExit = null;
                 _enemyAnimation.Play("SoulAttackJump");
                 var dir = (Position - InGame.Player.Position).GetDirection();
                 var playerPos = InGame.Player.Position;
@@ -105,7 +111,19 @@ namespace Actors.Characters.Enemy.CrazyGhost
                     Attack(Vector3.zero,"SoulAttack", () => { attack.SoulAttack(playerPos, 0.15f); }, false);
                 };
             };
-            
+            screaming.OnEnter = () =>
+            {
+                AddState(CharacterState.Attack);
+                var jumpClip = _enemyAnimation.GetClip("SoulAttackJump");
+                jumpClip.OnExit = null;
+                _enemyAnimation.Play("SoulAttackJump");
+                var centerPos = (bossRoom.EndPos + bossRoom.StartPos) * 0.5f;
+                move.Jump(centerPos, Vector3.zero, 0);
+                jumpClip.OnExit += () =>
+                {
+                    Attack(Vector3.zero,"SoulAttack", () => { attack.AreaAttack(10, true); }, false);
+                };
+            };
             secondPhase.OnEnter = () =>
             {
                 AddState(CharacterState.Attack);
@@ -116,6 +134,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 move.Jump(Position, dir, 3);
                 jumpClip.OnExit += () =>
                 {
+                    GetAct<EnemyParticle>().PlaySecondPhaseParticle();
                     Attack(Vector3.zero,"SoulAttack", () => { attack.SoulAttack(playerPos, 0f); }, false);
                 };
             };
@@ -124,7 +143,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
             {
                 AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
-                Attack(Vector3.zero, "AreaAttack", () => { attack.AreaAttack(playerPos); }, false);
+                Attack(Vector3.zero, "AreaAttack", () => { attack.AreaAttack(5, false); }, false);
             };
         }
     }
