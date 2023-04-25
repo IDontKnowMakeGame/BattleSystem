@@ -211,7 +211,7 @@ MonoBehaviour:
     m_InputAxisValue: 0
     m_InvertInput: 1
     m_MinValue: 20
-    m_MaxValue: 40
+    m_MaxValue: 20
     m_Wrap: 0
     m_Recentering:
       m_enabled: 0
@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf95052231df9d04fa187a9425532fba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeForce: 0.7
+  shakeForce: 0.5
 --- !u!1 &3577013144753390074
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +378,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3577013144753390074}
-  m_LocalRotation: {x: -0.000000007590404, y: 0.9848078, z: -0.1736482, w: -0.000000043047315}
+  m_LocalRotation: {x: 0, y: 0.9848078, z: -0.17364816, w: 0}
   m_LocalPosition: {x: 58.999985, y: 3.0521226, z: -44.361835}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -389,7 +389,7 @@ Transform:
   - {fileID: 3577013145075598591}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0.11, z: 0}
+  m_LocalEulerAnglesHint: {x: 20, y: 180, z: 0}
 --- !u!114 &3577013144753390077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,6 +463,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0069e2179c32349aed01b2817cc024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Mask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!320 &3577013144753390065
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -472,7 +475,7 @@ PlayableDirector:
   m_GameObject: {fileID: 3577013144753390074}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 2979209d5cd23dd4a8dc0e5d39cc7de9, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 012f19aadb8b67b4691d610824b27167, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -481,6 +484,16 @@ PlayableDirector:
   - key: {fileID: 21954259252054231, guid: 9461c4f6326ddab4a9c1882af2a9cf77, type: 2}
     value: {fileID: 3577013144753390064}
   - key: {fileID: -4216266828427359169, guid: 2979209d5cd23dd4a8dc0e5d39cc7de9, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: 5179538661318899961, guid: fe9f6e2c81b8b534092b2c7df51f8450, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: 0}
+    value: {fileID: 0}
+  - key: {fileID: 0}
+    value: {fileID: 0}
+  - key: {fileID: 4099231955123992283, guid: 012f19aadb8b67b4691d610824b27167, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: 7100257736995311818, guid: 012f19aadb8b67b4691d610824b27167, type: 2}
     value: {fileID: 3577013144753390064}
   m_ExposedReferences:
     m_References: []
@@ -499,6 +512,11 @@ MonoBehaviour:
   _timelines:
   - {fileID: 11400000, guid: 2979209d5cd23dd4a8dc0e5d39cc7de9, type: 2}
   - {fileID: 11400000, guid: 9461c4f6326ddab4a9c1882af2a9cf77, type: 2}
+  - {fileID: 11400000, guid: fe9f6e2c81b8b534092b2c7df51f8450, type: 2}
+  - {fileID: 11400000, guid: 9461c4f6326ddab4a9c1882af2a9cf77, type: 2}
+  - {fileID: 11400000, guid: 9461c4f6326ddab4a9c1882af2a9cf77, type: 2}
+  - {fileID: 11400000, guid: 9461c4f6326ddab4a9c1882af2a9cf77, type: 2}
+  - {fileID: 11400000, guid: 012f19aadb8b67b4691d610824b27167, type: 2}
 --- !u!114 &3577013144753390064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,6 +537,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 93a009acd8544124d9ea40d5c14bfeb3, type: 2}
     - {fileID: 11400000, guid: 255ef3e220ff8de4783fe3ff2c9db0ef, type: 2}
     - {fileID: 11400000, guid: 1523d339fcad12f4c94e7ab220533592, type: 2}
+    - {fileID: 11400000, guid: 14e1199c95a88a34eb3944250fe0ae92, type: 2}
+    - {fileID: 11400000, guid: 6daf4f198ae45684fb72eaadbfd56d53, type: 2}
+    - {fileID: 11400000, guid: ca55414037e40ce40b5dc0cfed647717, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -595,6 +616,48 @@ MonoBehaviour:
         - m_Target: {fileID: 3577013144753390079}
           m_TargetAssemblyTypeName: CameraEffecter, Assembly-CSharp
           m_MethodName: DamagedShake
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3577013144753390078}
+          m_TargetAssemblyTypeName: TImeLinePlayer, Assembly-CSharp
+          m_MethodName: StartTimeLine
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3577013144753390078}
+          m_TargetAssemblyTypeName: TImeLinePlayer, Assembly-CSharp
+          m_MethodName: EndTimeLine
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3577013144753390079}
+          m_TargetAssemblyTypeName: CameraEffecter, Assembly-CSharp
+          m_MethodName: GreateSwordAttackShake
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

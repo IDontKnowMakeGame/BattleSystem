@@ -27,8 +27,11 @@ public class DieAction : InteractionActor
 	{
 		base.Interact();
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, new EventParam() { stringParam = "gf" });
-		_unitAnimation.Play("DiePull");
-		_unitAnimation.curClip.SetEventOnFrame(_unitAnimation.curClip.fps - 1, Die);
+		//_unitAnimation.Play("DiePull");
+		_unitAnimation.Play("LowerAttack");
+		Debug.Log(_unitAnimation.curClip);
+		Debug.Log(_unitAnimation.curClip.fps);
+		_unitAnimation.curClip.SetEventOnFrame(_unitAnimation.curClip.fps - 3, Die);
 		InGame.Player.gameObject.SetActive(false);
 	}
 

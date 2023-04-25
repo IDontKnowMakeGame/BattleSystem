@@ -14,8 +14,6 @@ public class BrokenObjectStatAct : CharacterStatAct
 {
 	[SerializeField]
 	private GameObject _brokenObject;
-	//[SerializeField]
-	//private ParticleSystem _particle;
 
 	public override void Damage(float damage, Actor actor)
 	{
@@ -28,7 +26,7 @@ public class BrokenObjectStatAct : CharacterStatAct
 
 	public override void Die()
 	{
-		ThisActor.GetComponentInChildren<Arrow>().StickReBlock();
+		ThisActor.GetComponentInChildren<Arrow>()?.StickReBlock();
 		ThisActor.transform.DetachChildren();
 		GameObject obj = GameObject.Instantiate(_brokenObject);
 		obj.transform.position = ThisActor.transform.position + Vector3.up;

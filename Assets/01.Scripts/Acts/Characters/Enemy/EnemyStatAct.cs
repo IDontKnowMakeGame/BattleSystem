@@ -12,6 +12,14 @@ namespace Acts.Characters.Enemy
     [Serializable]
     public class EnemyStatAct : CharacterStatAct
     {
+        public DieAction action;
+
+        public override void Awake()
+        {
+            base.Awake();
+            action = ThisActor.GetComponent<DieAction>();
+		}
+
         public override void Damage(float damage, Actor actor)
         {
             base.Damage(damage, actor);
@@ -33,9 +41,8 @@ namespace Acts.Characters.Enemy
 
         public override void Die()
         {
-            ThisActor.gameObject.AddComponent(typeof(DieAction));
-			this.IsEnabled = false;
-            base.Die();
+            action.enabled = true;
+			ThisActor.enabled = false;
         }
 
         private void DamageEffect()
