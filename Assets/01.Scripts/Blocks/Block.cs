@@ -153,7 +153,7 @@ namespace Blocks
                 yield break;
 
             var stat = _actorOnBlock.GetAct<CharacterStatAct>();
-            stat.Damage(damage, attacker);
+            stat?.Damage(damage, attacker);
         }
         
         public bool CheckActorOnBlock(Actor actor)

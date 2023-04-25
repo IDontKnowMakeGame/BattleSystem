@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 6861387177648206925}
   m_Layer: 0
   m_Name: OldShade
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -190,6 +190,7 @@ MonoBehaviour:
     _blinkDelay: 0.1
   _characterState: 0
   _isBlocking: 0
+  canKnockBack: 0
   _secondPhaseHpPercent: 0
   _enemyAi:
     CurrentState:
@@ -201,19 +202,20 @@ MonoBehaviour:
     _isPlayer: 0
   _characterStat:
     _basicStat:
-      maxHP: 0
-      hp: 0
+      maxHP: 100
+      hp: 100
       atk: 0
       ats: 0
       afs: 0
       speed: 0
     _changeStat:
-      maxHP: 0
-      hp: 0
+      maxHP: 100
+      hp: 100
       atk: 0
       ats: 0
       afs: 0
       speed: 0
+    action: {fileID: 0}
   _enemyAnimation:
     curClip:
       name: 
@@ -372,5 +374,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.8924329, y: 0.8924329, z: 0.8924329}
+  m_Center: {x: 0, y: 0, z: -0}
