@@ -12,6 +12,9 @@ public class PlayerStatAct : CharacterStatAct
 {
 	private EventParam statParam;
 
+	[SerializeField]
+	private BloodController bloodController;
+
 	public override void Start()
 	{
 		base.Start();
@@ -34,6 +37,7 @@ public class PlayerStatAct : CharacterStatAct
 			statParam.unit = actor;
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.PollutionHalo, statParam);
 
+			bloodController.StartBlood();
 			ThisActor.GetAct<PlayerBuff>().ChangeAnger(1);
 
 			if (ThisActor.GetAct<PlayerUseAbleItem>().HPPotion.UsePortion)
