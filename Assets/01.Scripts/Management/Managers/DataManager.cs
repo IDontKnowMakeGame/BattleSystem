@@ -17,6 +17,7 @@ public class DataManager : Manager
     public static WeaponClassLevelDataList WeaponClassLevelListData_;
     public static WeaponLevelDataList WeaponLevelListData_;
     public static ItemTable ItemTableData;
+    public static PlayerQuestData PlayerOpenQuestData_;
     public Dictionary<ItemID, ItemInfo> weaponDictionary = new Dictionary<ItemID, ItemInfo>();
 
     public override void Awake()
@@ -27,6 +28,7 @@ public class DataManager : Manager
         WeaponClassLevelListData_ = JsonManager.LoadJsonFile<WeaponClassLevelDataList>(Application.streamingAssetsPath + "/SAVE/Weapon", "ClassLevelData");
         WeaponLevelListData_ = JsonManager.LoadJsonFile<WeaponLevelDataList>(Application.streamingAssetsPath + "/SAVE/Weapon", "WeaponLevelData");
         ItemTableData = JsonManager.LoadJsonFile<ItemTable>(Application.streamingAssetsPath + "/Save/Json/" + typeof(ItemTable), typeof(ItemTable).ToString());
+        PlayerOpenQuestData_ = JsonManager.LoadJsonFile<PlayerQuestData>(Application.streamingAssetsPath + "/SAVE/User", "OpenQuest");
 
         if (WeaponClassLevelListData_.weaponClassLevelDataList.Count <= 0)
         {
@@ -529,5 +531,52 @@ public class DataManager : Manager
         return false;
     }
 
+    #endregion
+
+    #region PlayerOpenQuest
+    public void SaveToOpenQuestData()
+    {
+        string json = JsonManager.ObjectToJson(PlayerOpenQuestData_);
+        JsonManager.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/User", "OpenQuest", json);
+    }
+    public void OpenQuest(QuestName name)
+    {
+        if(IsOpenQuest(name))
+        {
+            Debug.LogError($"Already Open Quest Number : {(int)name} Name : {name}");
+        }
+        Debug.Log($"Open Quest Number : {(int)name} Name : {name}");
+        PlayerOpenQuestData_.openQuestList.Add(name);
+
+        SaveToOpenQuestData();
+    }
+
+    public void ClearQuest(QuestName name)
+    {
+        if (!IsOpenQuest(name)) return;
+
+        PlayerOpenQuestData_.clearQuestList.Add(name);
+        PlayerOpenQuestData_.openQuestList.Remove(name);
+
+        SaveToOpenQuestData();
+    }
+    public bool IsOpenQuest(QuestName name)
+    {
+        foreach(QuestName quest in PlayerOpenQuestData_.openQuestList)
+        {
+            if(quest == name)
+                return true;
+        }
+        return false;
+    }
+    public bool IsClearQuest(QuestName name)
+    {
+        foreach (QuestName quest in PlayerOpenQuestData_.clearQuestList)
+        {
+            if (quest == name)
+                return true;
+        }
+        return false;
+    }
     #endregion
 }

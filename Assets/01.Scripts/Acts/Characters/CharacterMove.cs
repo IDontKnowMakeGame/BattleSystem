@@ -166,7 +166,7 @@ namespace Acts.Characters
             seq.AppendCallback(() =>
             {
 				OnMoveEnd?.Invoke(ThisActor.UUID, position - _character.Position);
-                MoveStop(); 
+                MoveStop();
                 block.isWalkable = true;
                 isChasing = false;
 				seq.Kill(true);

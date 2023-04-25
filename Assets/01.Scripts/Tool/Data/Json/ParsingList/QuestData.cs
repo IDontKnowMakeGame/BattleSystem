@@ -6,15 +6,19 @@ using UnityEngine;
 public enum QuestName
 {
     none = 0,
-    FirstFloorBossKill = 1,
-    FallenAngel = 2,
+    WeaponGift,
+    FirstFloorBossKill,
+    S10AreaEnter,
+    FallenAngel,
 }
 [Serializable]
 public class QuestInfo
 {
     public QuestName questName = QuestName.none;
     public bool IsComplate = false;
+    public int rewardfeather = 0;
     public List<ItemID> rewords = new List<ItemID>();
+    public List<QuestName> openQuest = new List<QuestName>();
 }
 
 [Serializable]

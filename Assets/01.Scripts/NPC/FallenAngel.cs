@@ -17,6 +17,8 @@ public class FallenAngel : NPCActor
     {
         base.Init();
 
+        Define.GetManager<DataManager>().ClearQuest(QuestName.FirstFloorBossKill);
+
         questData = JsonManager.LoadJsonFile<QuestData>(Application.streamingAssetsPath+"/SAVE/NPC/Quest",GetType().Name);
     }
 
