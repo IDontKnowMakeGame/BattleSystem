@@ -168,6 +168,7 @@ namespace Acts.Characters
 				OnMoveEnd?.Invoke(ThisActor.UUID, position - _character.Position);
                 MoveStop(); 
                 block.isWalkable = true;
+                isChasing = false;
 				seq.Kill();
             });
         }
@@ -229,6 +230,7 @@ namespace Acts.Characters
         {
             if (InGame.GetBlock(end).isWalkable == false)
             {
+                isChasing = false;
                 yield break;
             }
             astar.SetPath(ThisActor.Position, end);
@@ -237,9 +239,12 @@ namespace Acts.Characters
             var nextBlock = astar.GetNextPath();
             if (nextBlock == null)
             {
+                isChasing = false;
                 yield break;
             }
             var nextPos = nextBlock.Position;
+            if(isChasing) yield break;
+            isChasing = true;
             Move(nextPos);
         }
         protected virtual void AnimationCheck()
