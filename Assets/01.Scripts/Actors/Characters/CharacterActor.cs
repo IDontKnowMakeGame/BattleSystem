@@ -30,6 +30,7 @@ namespace Actors.Characters
 		[SerializeField] private CharacterState _characterState;
 		[SerializeField] private bool _isBlocking = false;
 		public Action<int, Actor> OnKnockBack = null;
+		public bool canKnockBack = false;
 		public Weapon currentWeapon;
 		protected override void Init()
 		{
@@ -50,6 +51,8 @@ namespace Actors.Characters
 
 		protected override void Update()
 		{
+			base.UpdatePosition();
+			
 			if (HasCCState()) return;
 			base.Update();
 		}
@@ -100,16 +103,19 @@ namespace Actors.Characters
 			base.UpdatePosition();
 			var map = Define.GetManager<MapManager>();
 			var block = map.GetBlock(Position);
-			if (block != null)
+			if (canKnockBack)
 			{
-				var target = map.GetBlock(Position).ActorOnBlock;
-				if (target)
-					if (this != target)
-					{
-						var targetCharacter = target as CharacterActor;
+				if (block != null)
+				{
+					var target = map.GetBlock(Position).ActorOnBlock;
+					if (target)
+						if (this != target)
+						{
+							var targetCharacter = target as CharacterActor;
 
-						if (targetCharacter != null) targetCharacter.OnKnockBack?.Invoke(1, this);
-					}
+							if (targetCharacter != null) targetCharacter.OnKnockBack?.Invoke(1, this);
+						}
+				}
 			}
 			InGame.SetActorOnBlock(this);
 		}

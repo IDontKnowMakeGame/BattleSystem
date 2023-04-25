@@ -58,6 +58,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
             jump.OnEnter = () =>
             {
                 AddState(CharacterState.Attack);
+                canKnockBack = true;
                 var jumpClip = _enemyAnimation.GetClip("JumpAttackJump");
                 var readyClip = _enemyAnimation.GetClip("JumpAttackReady");
                 _enemyAnimation.Play("JumpAttackReady");
@@ -69,6 +70,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                     move.Jump(playerPos, dir, 0);
                     jumpClip.OnExit = () =>
                     {
+                        canKnockBack = false;
                         AttackWithNoReady(Vector3.zero, "JumpAttack", () => { attack.RoundAttack(1, false); });
                     };
                 };
