@@ -12,12 +12,10 @@ GameObject:
   - component: {fileID: 5429280582108950631}
   - component: {fileID: 5429280582108950618}
   - component: {fileID: 5429280582108950623}
-  - component: {fileID: 5429280582108950596}
-  - component: {fileID: 5429280582108950597}
   - component: {fileID: 5429280582108950619}
   m_Layer: 0
   m_Name: OldSpearShade
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,18 +45,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 5429280582108950598}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e97b3481c7e5481da61e6417330cbc2e, type: 3}
+  m_Script: {fileID: 11500000, guid: e1480c7c7f745e445828a78964774520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0, z: 0}
   _characterRender:
     _defaultTexture: {fileID: 0}
     _frame: 0
+    size: {x: 1, y: 1, z: 1}
     _blinkCnt: 1
     _blinkTime: 0.1
     _blinkDelay: 0.1
   _characterState: 0
   _isBlocking: 0
+  canKnockBack: 0
   _secondPhaseHpPercent: 0
   _enemyAi:
     CurrentState:
@@ -83,6 +83,7 @@ MonoBehaviour:
       ats: 0
       afs: 0
       speed: 0
+    action: {fileID: 0}
   _enemyAnimation:
     curClip:
       name: 
@@ -94,7 +95,10 @@ MonoBehaviour:
     renderer: {fileID: 5429280583162560444}
     index: 0
     isFinished: 0
-    curClips: {fileID: 11400000, guid: 9eac4b9f506b8ff4da916d3414664b01, type: 2}
+    curClips: {fileID: 11400000, guid: 2750493bfe7c19c4e9ca177aafa944fe, type: 2}
+  alive: 1
+  spriteSize: 1
+  toIdle: {fileID: 5429280582108950623}
 --- !u!114 &5429280582108950618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,28 +114,19 @@ MonoBehaviour:
   From: Idle
   To: Chase
   _conditions:
-  - rid: 4755812611868852233
   - rid: 4755812611868852236
   references:
     version: 2
     RefIds:
-    - rid: 4755812611868852233
-      type: {class: BlockCondition, ns: AI.Conditions, asm: Assembly-CSharp}
-      data:
-        Type: 5
-        IsNegative: 0
-        IsNeeded: 1
-        _thisActor: {fileID: 5429280582108950631}
-        Area: 3
-        TargetActor: {fileID: 0}
     - rid: 4755812611868852236
       type: {class: LineCondition, ns: AI.Conditions, asm: Assembly-CSharp}
       data:
         Type: 6
         IsNegative: 0
-        IsNeeded: 0
+        IsNeeded: 1
         _thisActor: {fileID: 5429280582108950631}
-        TargetActor: {fileID: 0}
+        targetActor: {fileID: 0}
+        IsPlayer: 1
         Distance: 3
 --- !u!114 &5429280582108950623
 MonoBehaviour:
@@ -148,92 +143,38 @@ MonoBehaviour:
   From: Chase
   To: Idle
   _conditions:
-  - rid: 4755812611868852234
-  - rid: 4755812611868852237
+  - rid: 4755812781568557057
+  - rid: 4755812781568557058
+  - rid: 4755812781568557056
   references:
     version: 2
     RefIds:
-    - rid: 4755812611868852234
-      type: {class: BlockCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+    - rid: 4755812781568557056
+      type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
       data:
-        Type: 5
+        Type: 3
+        IsNegative: 0
+        IsNeeded: 1
+        _thisActor: {fileID: 5429280582108950631}
+        BaseActor: {fileID: 5429280582108950631}
+    - rid: 4755812781568557057
+      type: {class: MovableCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 11
         IsNegative: 1
         IsNeeded: 1
         _thisActor: {fileID: 5429280582108950631}
-        Area: 3
-        TargetActor: {fileID: 0}
-    - rid: 4755812611868852237
+        nextDir: {x: 0, y: 0, z: 0}
+    - rid: 4755812781568557058
       type: {class: LineCondition, ns: AI.Conditions, asm: Assembly-CSharp}
       data:
         Type: 6
-        IsNegative: 1
-        IsNeeded: 1
-        _thisActor: {fileID: 5429280582108950631}
-        TargetActor: {fileID: 0}
-        Distance: 3
---- !u!114 &5429280582108950596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5429280582108950598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c99c7c212654c5bb59e9b251e4c5d7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  From: Chase
-  To: Pattern
-  _conditions:
-  - rid: 4755812611868852235
-  - rid: 4755812611868852225
-  references:
-    version: 2
-    RefIds:
-    - rid: 4755812611868852225
-      type: {class: BesideCondition, ns: AI.Conditions, asm: Assembly-CSharp}
-      data:
-        Type: 2
-        IsNegative: 0
-        IsNeeded: 1
-        _thisActor: {fileID: 5429280582108950631}
-        TargetActor: {fileID: 0}
-    - rid: 4755812611868852235
-      type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
-      data:
-        Type: 3
-        IsNegative: 0
-        IsNeeded: 1
-        _thisActor: {fileID: 5429280582108950631}
-        BaseActor: {fileID: 5429280582108950631}
---- !u!114 &5429280582108950597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5429280582108950598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c99c7c212654c5bb59e9b251e4c5d7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  From: Pattern
-  To: Chase
-  _conditions:
-  - rid: 4755812611868852226
-  references:
-    version: 2
-    RefIds:
-    - rid: 4755812611868852226
-      type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
-      data:
-        Type: 3
         IsNegative: 0
         IsNeeded: 0
         _thisActor: {fileID: 5429280582108950631}
-        BaseActor: {fileID: 5429280582108950631}
+        targetActor: {fileID: 0}
+        IsPlayer: 1
+        Distance: 3
 --- !u!65 &5429280582108950619
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,11 @@ public class BloodController : MonoBehaviour
     private float fadeTime;
     [SerializeField]
     private Image blood;
+
+    private void Awake()
+    {
+        blood.gameObject.SetActive(false);
+    }
 
     public void StartBlood()
     {

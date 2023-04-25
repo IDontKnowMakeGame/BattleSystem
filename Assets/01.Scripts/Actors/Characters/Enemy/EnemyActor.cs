@@ -39,7 +39,7 @@ namespace Actors.Characters.Enemy
             return result;
         }
 
-        private string GetDirName(Vector3 dir)
+        protected string GetDirName(Vector3 dir)
         {
             var result = string.Empty;
             if (dir.z > 0)
@@ -49,7 +49,7 @@ namespace Actors.Characters.Enemy
             else if (dir.x != 0)
             {
                 result = "Horizontal";
-                OnDirectionUpdate?.Invoke(-dir.x);
+                OnDirectionUpdate?.Invoke(dir.x);
             }
             return result;
         }
