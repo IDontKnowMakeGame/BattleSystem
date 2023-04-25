@@ -33,7 +33,7 @@ namespace Actors.Characters.Enemy.OldShade
             {
                 AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
-                var dir = (Position - playerPos).GetDirection();
+                var dir = (playerPos - Position).GetDirection();
                 Attack(dir, "", () =>
                 {
                     attack.HorizontalAttack(playerPos, true);

@@ -110,9 +110,15 @@ namespace Blocks
         protected override void Update()
         {
             base.Update();
-            if(IsActorOnBlock)
+            if (IsActorOnBlock)
+            {
                 if (_actorOnBlock.Position != Position)
                     _actorOnBlock = null;
+                if (_actorOnBlock == null)
+                    return;
+                if (ActorOnBlock.gameObject.activeSelf != true)
+                    _actorOnBlock = null;
+            }
         }
 
         public void SetActorOnBlock(Actor actor)

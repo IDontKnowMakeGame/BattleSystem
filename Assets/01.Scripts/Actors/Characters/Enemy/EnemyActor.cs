@@ -16,9 +16,13 @@ namespace Actors.Characters.Enemy
         [SerializeField] protected EnemyAnimation _enemyAnimation;
         [SerializeField] private bool alive = true;
         [SerializeField] private int spriteSize = 1;
-        public bool Alive => alive;
+        public bool Alive
+        {
+            get => alive;
+            set => alive = value;
+        }
 
-		protected override void Init()
+        protected override void Init()
         {
             AddAct(_characterEquipment);
             AddAct(_characterStat);
