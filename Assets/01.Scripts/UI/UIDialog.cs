@@ -20,7 +20,7 @@ public class UIDialog : UIBase
     public override void Init()
     {
         _root = UIManager.Instance._document.rootVisualElement.Q<VisualElement>("UI_Dialog");
-        choiceBoxTmep = Define.GetManager<ResourceManager>().Load<VisualTreeAsset>("DialogChoiceBox");
+        choiceBoxTmep = Define.GetManager<ResourceManager>().Load<VisualTreeAsset>("UIDoc/DialogChoiceBox");
         
         visualImage = _root.Q<VisualElement>("Visual");
         choicePanel = _root.Q<VisualElement>("ChoicePanel");
@@ -40,34 +40,38 @@ public class UIDialog : UIBase
         else
             _root.style.display = DisplayStyle.None;
     }
-    public void FlagMessageBox(bool value)
+    public void FlagChoicePanel(bool value)
     {
         if (value)
-            messageBox.style.display = DisplayStyle.Flex;
+            choicePanel.style.display = DisplayStyle.Flex;
         else
-            messageBox.style.display = DisplayStyle.None;
+            choicePanel.style.display = DisplayStyle.None;
     }
     public void StartListeningDialog(DialogueData dialogue)
     {
         FlagDialogue(true);
-        FlagMessageBox(false);
+        FlagChoicePanel(false);
+        choicePanel.Clear();
 
         nameText.text = dialogue.name;
-        ChangeVisualImage(dialogue.name);
+        //ChangeVisualImage(dialogue.name);
 
+        this.msgLine.Clear();
         foreach (string msg in dialogue.sentence)
             this.msgLine.Enqueue(msg);
+
+        NextMessage();
     }
     public void NextMessage()
     {
         SetMessageBoxText(msgLine.Dequeue());
 
-        if (msgLine.Count < 0)
+        if (msgLine.Count <= 0)
             EndMessage();
     }
     public void EndMessage()
     {
-        FlagMessageBox(true);
+        FlagChoicePanel(true);
     }
     public void SetMessageBoxText(string message)
     {
@@ -85,6 +89,7 @@ public class UIDialog : UIBase
         choiceBox.RegisterCallback<ClickEvent>(e =>
         {
             action();
+            FlagDialogue(false);
         });
 
         choicePanel.Add(choiceBox);

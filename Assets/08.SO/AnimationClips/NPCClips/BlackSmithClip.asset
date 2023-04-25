@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca2b332a7b5e5447adcd7343094485c, type: 3}
   m_Name: BlackSmithClip
   m_EditorClassIdentifier: 
+  type: 
+  actorName: 
   weaponID: 0
+  weaponName: 
   clips:
   - name: Idle
     nextIdx: -1
-    texture: {fileID: 2800000, guid: d0d957b4d6111bf4bb743b0c89d0d687, type: 3}
+    texture: {fileID: 2800000, guid: 8a66c64f868d82646a5aac11c0fb7f00, type: 3}
     fps: 20
     isLoop: 1
     delay: 0.1
