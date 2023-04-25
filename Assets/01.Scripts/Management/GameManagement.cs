@@ -124,7 +124,7 @@ namespace Managements
             Instance.AddManager<ItemManager>();
             Instance.AddManager<EventManager>();
             Define.MainCamera = Camera.main;
-            DOTween.SetTweensCapacity(400,400);
+            DOTween.Init(true, true, LogBehaviour.Verbose).SetCapacity(10,1000);
         }
 
         public void Awake()

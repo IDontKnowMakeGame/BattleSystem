@@ -49,7 +49,6 @@ namespace Acts.Characters
         public virtual void BackStep(Vector3 direction)
         {
             if (_isMoving) return;
-            var seq = DOTween.Sequence();
             var currentPos = ThisActor.Position;
             var nextPos = ThisActor.Position + direction;
             nextPos.y = 1;
@@ -70,13 +69,14 @@ namespace Acts.Characters
             dir = (currentPos - nextPos).SetY(0);
             MoveBackAnimation();
 
+            var seq = DOTween.Sequence();
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
             seq.Append(_thisTransform.DOMove(nextPos, speed - defaultSpeed).SetEase(Ease.Linear));
             seq.AppendCallback(() =>
             {
                 OnMoveEnd?.Invoke(ThisActor.UUID, nextPos - _character.Position);
                 MoveStop(); 
-                seq.Kill();
+                seq.Kill(true);
             });
         }
 
@@ -130,7 +130,6 @@ namespace Acts.Characters
                 enableQ = false;
                 return;
             }
-            var seq = DOTween.Sequence();
             var currentPos = ThisActor.Position;
             var nextPos = position;
             nextPos.y = 1;
@@ -161,6 +160,7 @@ namespace Acts.Characters
 
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
             block.isWalkable = false;
+            var seq = DOTween.Sequence();
             seq.Append(_thisTransform.DOMove(nextPos, speed - defaultSpeed).SetEase(Ease.Linear));
             seq.InsertCallback((speed - defaultSpeed) / 2, () => enableQ = false);
             seq.AppendCallback(() =>
@@ -169,14 +169,13 @@ namespace Acts.Characters
                 MoveStop(); 
                 block.isWalkable = true;
                 isChasing = false;
-				seq.Kill();
+				seq.Kill(true);
             });
         }
 
         public virtual void Jump(Vector3 targetPos, Vector3 dir, int distance)
         {
             if (_isMoving) return;
-            var seq = DOTween.Sequence();
             int i = distance;
             var nextPos = targetPos + dir * distance;
             while (i >= 0)
@@ -207,6 +206,7 @@ namespace Acts.Characters
             _character.AddState(Actors.Characters.CharacterState.Move);
 
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
+            var seq = DOTween.Sequence();
             block.isWalkable = false;
             seq.Append(_thisTransform.DOJump(nextPos, 1, 1, speed));
             seq.AppendCallback(() =>
@@ -214,7 +214,7 @@ namespace Acts.Characters
                 map.GetBlock(nextPos.SetY(0)).SetActorOnBlock(ThisActor);
                 MoveStop();
                 block.isWalkable = true;
-                seq.Kill();
+                seq.Kill(true);
             });
         }
 

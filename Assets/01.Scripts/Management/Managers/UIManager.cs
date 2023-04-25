@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public UIItemStore ItemStore = new UIItemStore();
     public UISmithy Smithy = new UISmithy();
     public UIBossBar BossBar = new UIBossBar();
+    public UIDialog Dialog = new UIDialog();
 
     public ItemStoreTableSO itemStoreTable;
 
@@ -47,6 +48,7 @@ public class UIManager : MonoBehaviour
         ItemStore.Init();
         Smithy.Init();
         BossBar.Init();
+        Dialog.Init();
     }
 
     private void Update()

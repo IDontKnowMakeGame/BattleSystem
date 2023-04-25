@@ -42,6 +42,8 @@ namespace Acts.Characters.Enemy
         public override void Die()
         {
             //action.enabled = true;
+            var enemy = ThisActor as EnemyActor;
+            if (enemy != null) enemy.Alive = false;
             ThisActor.gameObject.SetActive(false);
 			ThisActor.enabled = false;
         }
