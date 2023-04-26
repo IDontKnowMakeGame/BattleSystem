@@ -38,15 +38,17 @@ namespace Actors.Characters.Enemy.OldSpearShade
             chase.OnEnter = ()=>
             {
                 AddState(CharacterState.Attack);
-                dir = (InGame.Player.Position - Position).GetDirection();
+                var playerPos = InGame.Player.Position;
+                dir = (playerPos - Position).GetDirection();
+                dir = InGame.CamDirCheck(dir);
                 movableCondition.nextDir = dir;
-                var dirName = GetDirName(-dir);
+                var dirName = GetDirName(dir);
                 var readyClip = _enemyAnimation.GetClip(dirName + "Ready");
                 var moveClip = _enemyAnimation.GetClip(dirName + "Move");
                 _enemyAnimation.Play(dirName + "Ready");
                 readyClip.SetEventOnFrame(0, () =>
                 {
-                    attack.DefaultAttack(-dir, false);
+                    attack.DefaultAttack(dir, false);
                 });
                 readyClip.OnExit = () =>
                 {
