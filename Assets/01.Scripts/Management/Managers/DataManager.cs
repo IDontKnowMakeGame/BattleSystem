@@ -575,21 +575,49 @@ public class DataManager : Manager
         string json = JsonManager.ObjectToJson(PlayerOpenQuestData_);
         JsonManager.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/User", "OpenQuest", json);
     }
+    public void ReadyQuest(QuestName name)
+    {
+        if (IsReadyQuest(name))
+        {
+            Debug.LogError($"Already Ready Quest Number : {(int)name} Name : {name}");
+            return;
+        }
+        Debug.Log($"Ready Quest Number : {(int)name} Name : {name}");
+        PlayerOpenQuestData_.readyQuestList.Add(name);
+
+        SaveToOpenQuestData();
+    }
     public void OpenQuest(QuestName name)
     {
         if(IsOpenQuest(name))
         {
             Debug.LogError($"Already Open Quest Number : {(int)name} Name : {name}");
+            return;
         }
         Debug.Log($"Open Quest Number : {(int)name} Name : {name}");
         PlayerOpenQuestData_.openQuestList.Add(name);
+        PlayerOpenQuestData_.readyQuestList.Remove(name);
 
         SaveToOpenQuestData();
     }
+    public void ReadyClearQuest(QuestName name)
+    {
+        if (IsReadyClearQuest(name))
+        {
+            Debug.LogError($"Already IsReadyClear Quest Number : {(int)name} Name : {name}");
+        }
+        Debug.Log($"IsReadyClear Quest Number : {(int)name} Name : {name}");
+        PlayerOpenQuestData_.readyClearQuestList.Add(name);
 
+        SaveToOpenQuestData();
+    }
     public void ClearQuest(QuestName name)
     {
-        if (!IsOpenQuest(name)) return;
+        if (IsClearQuest(name))
+        {
+            Debug.LogError($"Already Clear Quest Number : {(int)name} Name : {name}");
+        }
+        Debug.Log($"Clear Quest Number : {(int)name} Name : {name}");
 
         PlayerOpenQuestData_.clearQuestList.Add(name);
         PlayerOpenQuestData_.readyClearQuestList.Remove(name);
