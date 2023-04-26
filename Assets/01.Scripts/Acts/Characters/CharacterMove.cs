@@ -76,7 +76,7 @@ namespace Acts.Characters
             {
                 OnMoveEnd?.Invoke(ThisActor.UUID, nextPos - _character.Position);
                 MoveStop(); 
-                seq.Kill(true);
+                seq.Kill();
             });
         }
 
@@ -169,7 +169,7 @@ namespace Acts.Characters
                 MoveStop();
                 block.isWalkable = true;
                 isChasing = false;
-				seq.Kill(true);
+				seq.Kill();
             });
         }
 
@@ -214,7 +214,7 @@ namespace Acts.Characters
                 map.GetBlock(nextPos.SetY(0)).SetActorOnBlock(ThisActor);
                 MoveStop();
                 block.isWalkable = true;
-                seq.Kill(true);
+                seq.Kill();
             });
         }
 

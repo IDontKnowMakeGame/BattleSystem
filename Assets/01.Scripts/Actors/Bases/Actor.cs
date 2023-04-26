@@ -16,6 +16,7 @@ namespace Actors.Bases
         public Action<float> OnDirectionUpdate = null;
         [SerializeField] private Vector3 position = Vector3.zero;
         protected Transform spriteTransform;
+        public bool IsUpdatingPosition { get; protected set; } = true;
 
         public Vector3 Position => position;
 
@@ -49,7 +50,8 @@ namespace Actors.Bases
 
         protected virtual void Update()
         {
-            UpdatePosition();
+            if(IsUpdatingPosition)
+                UpdatePosition();
             foreach (var behaviour in _behaviours.Values)
             {
                 behaviour.Update();

@@ -1,0 +1,36 @@
+{
+    "currentFloor": 1,
+    "mapData": [
+        {
+            "floor": 0,
+            "isBossKill": false,
+            "onCristalList": [],
+            "openChestList": [],
+            "killUniqueEnemy": []
+        },
+        {
+            "floor": 1,
+            "isBossKill": false,
+            "onCristalList": [
+                1,
+                0
+            ],
+            "openChestList": [],
+            "killUniqueEnemy": []
+        },
+        {
+            "floor": 2,
+            "isBossKill": false,
+            "onCristalList": [],
+            "openChestList": [],
+            "killUniqueEnemy": []
+        },
+        {
+            "floor": 3,
+            "isBossKill": false,
+            "onCristalList": [],
+            "openChestList": [],
+            "killUniqueEnemy": []
+        }
+    ]
+}

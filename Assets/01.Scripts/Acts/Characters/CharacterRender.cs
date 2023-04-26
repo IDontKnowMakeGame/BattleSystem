@@ -1,13 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Acts.Base;
 using Core;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Acts.Characters
 {
     [System.Serializable]
     public class CharacterRender : Act
     {
+        [SerializeField] private bool isBillBoard = true;
+        [Space]
         [SerializeField] private Texture2D _defaultTexture;
         [SerializeField] private int _frame;
         [SerializeField] private Vector3 size;
@@ -34,7 +38,8 @@ namespace Acts.Characters
 
         public override void LateUpdate()
         {
-            BillBoard();
+            if(isBillBoard)
+                BillBoard();
             base.LateUpdate();
         }
 

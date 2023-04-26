@@ -11,6 +11,9 @@ namespace Actors.Characters.Enemy
     public enum EnemyType
     {
         None,
+        OldShade,
+        OldBowShade,
+        OldSpearShade,
         CrazyGhostActor,
         All,
     }

@@ -71,5 +71,12 @@
             "maxCnt": 0
         }
     ],
-    "inventoryInQuestItemList": []
+    "inventoryInQuestItemList": [
+        {
+            "id": 300,
+            "name": "TEST",
+            "currentCnt": 0,
+            "maxCnt": 0
+        }
+    ]
 }

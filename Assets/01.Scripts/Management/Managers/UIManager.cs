@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     public UISmithy Smithy = new UISmithy();
     public UIBossBar BossBar = new UIBossBar();
     public UIDialog Dialog = new UIDialog();
+    public UIFirstFloorMap UIFirstFloorMap = new UIFirstFloorMap();
 
     public ItemStoreTableSO itemStoreTable;
 
@@ -49,6 +50,7 @@ public class UIManager : MonoBehaviour
         Smithy.Init();
         BossBar.Init();
         Dialog.Init();
+        UIFirstFloorMap.Init();
     }
 
     private void Update()
@@ -64,6 +66,10 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             Smithy.ShowSmithy();
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            UIFirstFloorMap.ShowFirstFloorMap();
         }
     }
     public void UpdateInGameUI()
