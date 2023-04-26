@@ -1,20 +1,20 @@
 {
-    "currentFloor": 0,
+    "currentFloor": 1,
     "mapData": [
         {
             "floor": 0,
             "isBossKill": false,
-            "onCristalList": [
-                1,
-                0
-            ],
+            "onCristalList": [],
             "openChestList": [],
             "killUniqueEnemy": []
         },
         {
             "floor": 1,
             "isBossKill": false,
-            "onCristalList": [],
+            "onCristalList": [
+                1,
+                0
+            ],
             "openChestList": [],
             "killUniqueEnemy": []
         },
