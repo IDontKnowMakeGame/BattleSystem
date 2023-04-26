@@ -113,6 +113,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
             };
             screaming.OnEnter = () =>
             {
+                GetAct<EnemyParticle>().PlaySecondPhaseParticle();
                 AddState(CharacterState.Attack);
                 var jumpClip = _enemyAnimation.GetClip("SoulAttackJump");
                 jumpClip.OnExit = null;
@@ -134,7 +135,6 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 move.Jump(Position, dir, 3);
                 jumpClip.OnExit += () =>
                 {
-                    GetAct<EnemyParticle>().PlaySecondPhaseParticle();
                     Attack(Vector3.zero,"SoulAttack", () => { attack.SoulAttack(playerPos, 0f); }, false);
                 };
             };
