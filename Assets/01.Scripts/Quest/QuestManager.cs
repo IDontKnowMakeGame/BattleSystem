@@ -24,17 +24,42 @@ public class QuestManager : MonoBehaviour
         RoomSet();
     }
 
-    private void Start()
-    {
-        AddMonsterKillMission(EnemyType.CrazyGhostActor, 1);
-        AddRoomMission("S10");
-    }
-
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log(roomData[InGame.Player.Position.SetY(0)]);
+        }
+    }
+
+    public void StartOpenQuestCheck()
+    {
+        List<QuestName> openQuestList = DataManager.PlayerOpenQuestData_.openQuestList;
+
+        foreach(QuestName currentQuest in openQuestList)
+        {
+            QuestCheck(currentQuest);
+        }
+    }
+
+    public void AddQuestCheck()
+    {
+        List<QuestName> openQuestList = DataManager.PlayerOpenQuestData_.openQuestList;
+        QuestName currentQuest = openQuestList[openQuestList.Count - 1];
+
+        QuestCheck(currentQuest);
+    }
+
+    private void QuestCheck(QuestName currentQuest)
+    {
+        switch (currentQuest)
+        {
+            case QuestName.FirstFloorBossKill:
+                AddMonsterKillMission(EnemyType.CrazyGhostActor, 1);
+                break;
+            case QuestName.S10AreaEnter:
+                AddRoomMission("S10");
+                break;
         }
     }
 
