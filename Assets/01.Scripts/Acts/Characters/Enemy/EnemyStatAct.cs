@@ -47,7 +47,7 @@ namespace Acts.Characters.Enemy
             obj.GetComponent<DieAction>().InitDieObj(ThisActor.gameObject.name);
             obj.transform.position = ThisActor.Position + Vector3.up;
 
-            //QuestManager.Instance.CheckKillMission((ThisActor as EnemyActor).CurrentType);
+            QuestManager.Instance.CheckKillMission((ThisActor as EnemyActor).CurrentType);
 
             var enemy = ThisActor as EnemyActor;
             if (enemy != null) enemy.Alive = false;
