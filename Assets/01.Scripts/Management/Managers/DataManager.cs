@@ -401,8 +401,10 @@ public class DataManager : Manager
         }
         else if ((int)item.id < 400)
         { //QuestItem
+            Debug.Log(InventoryData_.inventoryInQuestItemList.Count);
             if (HaveQuestItem(item.id)) return;
             InventoryData_.inventoryInQuestItemList.Add(item);
+            Debug.Log(item.id);
         }
 
         SaveToInventoryData();
@@ -549,7 +551,8 @@ public class DataManager : Manager
         }
         return null;
     }
-    public bool HaveQuestItem(ItemID id)
+
+    public static bool HaveQuestItem(ItemID id)
     {
         foreach (SaveItemData item in InventoryData_.inventoryInQuestItemList)
         {
@@ -558,8 +561,11 @@ public class DataManager : Manager
                 return true;
             }
         }
+
         return false;
     }
+
+
 
     #endregion
 
