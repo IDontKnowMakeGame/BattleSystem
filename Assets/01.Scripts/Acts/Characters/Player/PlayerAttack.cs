@@ -85,7 +85,6 @@ namespace Acts.Characters.Player
         {
             var character = ThisActor.GetAct<CharacterStatAct>();
 
-            Debug.Log(character);
 			foreach (EnemyActor enemy in enemys)
             {
                 enemy.GetAct<CharacterStatAct>().Damage(character.ChangeStat.atk, ThisActor);

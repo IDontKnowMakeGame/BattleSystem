@@ -165,6 +165,7 @@ namespace Acts.Characters.Player
 
             dust.Stop();
             base.MoveStop();
+            QuestManager.Instance.CheckRoomMission(ThisActor.Position);
         }
     }
 }

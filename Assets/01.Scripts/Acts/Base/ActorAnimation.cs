@@ -33,15 +33,12 @@ namespace Acts.Characters
 		{
 			index = -1;
 			isFinished = false;
-			Debug.Log(curClip.name);
+			//Debug.Log(curClip.name);
 			while (true)
 			{
 				yield return new WaitForSeconds(curClip.delay);
 
 				index++;
-
-				if (curClip.name == "UpperMove")
-					Debug.Log(index);
 
 				if (index == curClip.fps)
 				{
