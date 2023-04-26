@@ -42,7 +42,7 @@ public class UIFirstFloorMap : UIBase
         {23,new List<int>{38}},
         {24,new List<int>{39}},
         {25,new List<int>{40}},
-        {26,new List<int>{}}
+        {26,new List<int>{41}}
     };
 
     public override void Init()
@@ -78,16 +78,14 @@ public class UIFirstFloorMap : UIBase
     }
     public void CristalInit()
     {
-        for(int i = 0;i<41;i++)
+        for(int i = 0;i<42;i++)
         {
             cristalDictionary.Add(i, false);
         }
     }
-
     public void MapCast()
     {
         List<int> list = Define.GetManager<DataManager>().OnCristalData(Floor.First);
-
         foreach (int i in list)
         {
                 cristalDictionary[i] = true;
@@ -95,7 +93,6 @@ public class UIFirstFloorMap : UIBase
 
         CastOnMap();
     }
-
     public void CastOnMap()
     {
         bool isCast = true;
@@ -103,7 +100,7 @@ public class UIFirstFloorMap : UIBase
         {
             foreach(int k in castMap[i])
             {
-                if (cristalDictionary[i] == false)
+                if (cristalDictionary[k] == false)
                     isCast = false;
             }
 
