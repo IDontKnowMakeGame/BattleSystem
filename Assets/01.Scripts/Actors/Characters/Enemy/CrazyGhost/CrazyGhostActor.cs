@@ -45,14 +45,16 @@ namespace Actors.Characters.Enemy.CrazyGhost
             {
                 AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
-                var dir = (Position - playerPos).GetDirection();
+                var dir = (playerPos - Position).GetDirection();
+                dir = InGame.CamDirCheck(dir);
                 Attack(dir, "Slash", () => { attack.HorizontalAttack(playerPos, false); });
             });
             pattern.RandomActions.Add(() =>
             {
                 AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
-                var dir = (Position - playerPos).GetDirection();
+                var dir = (playerPos - Position).GetDirection();
+                dir = InGame.CamDirCheck(dir);
                 Attack(dir,"Pierce", () => { attack.VerticalAttack(playerPos, false); });
             });
             jump.OnEnter = () =>
@@ -65,7 +67,8 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 readyClip.OnExit = () =>
                 {
                     var playerPos = InGame.Player.Position;
-                    var dir = (Position - playerPos).GetDirection();
+                    var dir = (playerPos - Position).GetDirection();
+                    dir = InGame.CamDirCheck(dir);
                     _enemyAnimation.Play("JumpAttackJump");
                     move.Jump(playerPos, dir, 0);
                     jumpClip.OnExit = () =>
@@ -78,7 +81,8 @@ namespace Actors.Characters.Enemy.CrazyGhost
             triple.OnEnter = () =>
             {
                 var playerPos = InGame.Player.Position;
-                var dir = (Position - playerPos).GetDirection();
+                var dir = (playerPos - Position).GetDirection();
+                dir = InGame.CamDirCheck(dir);
                 AddState(CharacterState.Attack);
                 AttackWithNoReturn(dir,"Combo1", () =>
                 {
@@ -103,8 +107,9 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 var jumpClip = _enemyAnimation.GetClip("SoulAttackJump");
                 jumpClip.OnExit = null;
                 _enemyAnimation.Play("SoulAttackJump");
-                var dir = (Position - InGame.Player.Position).GetDirection();
-                var playerPos = InGame.Player.Position;
+                var playerPos = InGame.Player.Position; 
+                var dir = (playerPos - Position).GetDirection();
+                dir = InGame.CamDirCheck(dir);
                 move.Jump(Position, dir, 3);
                 jumpClip.OnExit += () =>
                 {
@@ -130,8 +135,9 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 AddState(CharacterState.Attack);
                 var jumpClip = _enemyAnimation.GetClip("SoulAttackJump");
                 _enemyAnimation.Play("SoulAttackJump");
-                var dir = (Position - InGame.Player.Position).GetDirection();
                 var playerPos = InGame.Player.Position;
+                var dir = (playerPos - Position).GetDirection();
+                dir = InGame.CamDirCheck(dir);
                 move.Jump(Position, dir, 3);
                 jumpClip.OnExit += () =>
                 {
