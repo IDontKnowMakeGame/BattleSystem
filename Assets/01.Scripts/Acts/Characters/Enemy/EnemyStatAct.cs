@@ -12,8 +12,6 @@ namespace Acts.Characters.Enemy
     [Serializable]
     public class EnemyStatAct : CharacterStatAct
     {
-        public GameObject action;
-
         public override void Awake()
         {
             base.Awake();
@@ -45,7 +43,7 @@ namespace Acts.Characters.Enemy
 
             ThisActor.GetAct<EnemyAI>()?.ResetAllConditions();
 
-			GameObject obj = GameObject.Instantiate(action);
+			GameObject obj = Define.GetManager<ResourceManager>().Instantiate("DieObject");
             obj.GetComponent<DieAction>().InitDieObj(ThisActor.gameObject.name);
             obj.transform.position = ThisActor.Position + Vector3.up;
 
