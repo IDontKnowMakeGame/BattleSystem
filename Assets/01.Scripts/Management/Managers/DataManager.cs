@@ -592,15 +592,34 @@ public class DataManager : Manager
         if (!IsOpenQuest(name)) return;
 
         PlayerOpenQuestData_.clearQuestList.Add(name);
+        PlayerOpenQuestData_.readyClearQuestList.Remove(name);
         PlayerOpenQuestData_.openQuestList.Remove(name);
 
         SaveToOpenQuestData();
+    }
+    public bool IsReadyQuest(QuestName name)
+    {
+        foreach (QuestName quest in PlayerOpenQuestData_.readyQuestList)
+        {
+            if (quest == name)
+                return true;
+        }
+        return false;
     }
     public bool IsOpenQuest(QuestName name)
     {
         foreach(QuestName quest in PlayerOpenQuestData_.openQuestList)
         {
             if(quest == name)
+                return true;
+        }
+        return false;
+    }
+    public bool IsReadyClearQuest(QuestName name)
+    {
+        foreach (QuestName quest in PlayerOpenQuestData_.readyClearQuestList)
+        {
+            if (quest == name)
                 return true;
         }
         return false;
