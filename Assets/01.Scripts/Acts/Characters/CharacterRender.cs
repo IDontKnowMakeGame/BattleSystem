@@ -69,7 +69,7 @@ namespace Acts.Characters
         
         public void SetDirection(float direction)
         {
-            ThisActor.SpriteTransform.localScale = new Vector3(size.x * direction, size.y, size.z);
+            ThisActor.SpriteTransform.localScale = new Vector3(size.x * -direction, size.y, size.z);
         }
     }
 }

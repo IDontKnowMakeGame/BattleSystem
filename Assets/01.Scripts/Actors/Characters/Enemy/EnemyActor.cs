@@ -4,11 +4,19 @@ using AI;
 using Core;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using System.Reflection;
 
 namespace Actors.Characters.Enemy
 {
-    public class EnemyActor : CharacterActor
+    public enum EnemyType
     {
+        None,
+        CrazyGhostActor,
+        All,
+    }
+
+    public class EnemyActor : CharacterActor
+    {  
         [SerializeField] protected float _secondPhaseHpPercent;
         [SerializeField] protected EnemyAI _enemyAi;
         [SerializeField] protected CharacterEquipmentAct _characterEquipment;
@@ -16,6 +24,9 @@ namespace Actors.Characters.Enemy
         [SerializeField] protected EnemyAnimation _enemyAnimation;
         [SerializeField] private bool alive = true;
         [SerializeField] private int spriteSize = 1;
+        [SerializeField] private EnemyType currentType = EnemyType.None;
+        public EnemyType CurrentType => currentType;
+
         public bool Alive
         {
             get => alive;
@@ -39,7 +50,7 @@ namespace Actors.Characters.Enemy
             return result;
         }
 
-        private string GetDirName(Vector3 dir)
+        protected string GetDirName(Vector3 dir)
         {
             var result = string.Empty;
             if (dir.z > 0)
@@ -49,7 +60,7 @@ namespace Actors.Characters.Enemy
             else if (dir.x != 0)
             {
                 result = "Horizontal";
-                OnDirectionUpdate?.Invoke(-dir.x);
+                OnDirectionUpdate?.Invoke(dir.x);
             }
             return result;
         }
