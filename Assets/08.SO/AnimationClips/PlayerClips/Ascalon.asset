@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca2b332a7b5e5447adcd7343094485c, type: 3}
+  m_Name: Ascalon
+  m_EditorClassIdentifier: 
+  type: Player
+  actorName: Weapon
+  weaponID: 10
+  weaponName: Ascalon
+  clips:
+  - name: Idle
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: a984ccc6abadea1429935f4aeb36215c, type: 3}
+    fps: 11
+    isLoop: 1
+    delay: 0.1
+  - name: HorizontalMove
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 5c324758e278e3a41b0361d58a4f69d6, type: 3}
+    fps: 7
+    isLoop: 1
+    delay: 0.1
+  - name: UpperMove
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 596206cb01e607649b579ed50206bfda, type: 3}
+    fps: 7
+    isLoop: 1
+    delay: 0.1
+  - name: LowerMove
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 7040f6d2968a93a4e81446cc1fe659dd, type: 3}
+    fps: 7
+    isLoop: 1
+    delay: 0.1
+  - name: HorizontalCharge
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 4db1e0a459d7bd34abc149f25bade168, type: 3}
+    fps: 11
+    isLoop: 0
+    delay: 0.06
+  - name: UpperCharge
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 19702f5c771b9cb449fde4aaae04291e, type: 3}
+    fps: 12
+    isLoop: 0
+    delay: 0.06
+  - name: LowerCharge
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 0ecb6757e434b42408126d4eb44f6ce6, type: 3}
+    fps: 12
+    isLoop: 0
+    delay: 0.06
+  - name: HorizontalAttack
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 104dd7f07f53a3147813b341c93c9bc4, type: 3}
+    fps: 7
+    isLoop: 0
+    delay: 0.1
+  - name: UpperAttack
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 286cc3558c6d9c3498a2ffc6353c510d, type: 3}
+    fps: 7
+    isLoop: 0
+    delay: 0.1
+  - name: LowerAttack
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 6df4b72473089924989b7121df524e8f, type: 3}
+    fps: 7
+    isLoop: 0
+    delay: 0.1
+  - name: Equip
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 0dbf0bb87197a834cb4fb707cdb0a219, type: 3}
+    fps: 11
+    isLoop: 0
+    delay: 0.1
