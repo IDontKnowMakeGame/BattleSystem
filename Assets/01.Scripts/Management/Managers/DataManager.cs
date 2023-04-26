@@ -12,8 +12,8 @@ using static UnityEngine.Rendering.DebugUI;
 public class DataManager : Manager
 {
     public static User UserData_;
-    public static SavePointData SavePointData_;
     public static InventoryData InventoryData_;
+    public static MapData MapData_;
     public static WeaponClassLevelDataList WeaponClassLevelListData_;
     public static WeaponLevelDataList WeaponLevelListData_;
     public static ItemTable ItemTableData;
@@ -24,16 +24,17 @@ public class DataManager : Manager
     {
         InventoryData_ = JsonManager.LoadJsonFile<InventoryData>(Application.streamingAssetsPath + "/SAVE/User", "InvectoryData");
         UserData_ = JsonManager.LoadJsonFile<User>(Application.streamingAssetsPath + "/SAVE/User", "UserData");
-        SavePointData_ = JsonManager.LoadJsonFile<SavePointData>(Application.streamingAssetsPath + "/SAVE/User", "SavePointData");
+        MapData_ = JsonManager.LoadJsonFile<MapData>(Application.streamingAssetsPath + "/SAVE/User", "MapData");
         WeaponClassLevelListData_ = JsonManager.LoadJsonFile<WeaponClassLevelDataList>(Application.streamingAssetsPath + "/SAVE/Weapon", "ClassLevelData");
         WeaponLevelListData_ = JsonManager.LoadJsonFile<WeaponLevelDataList>(Application.streamingAssetsPath + "/SAVE/Weapon", "WeaponLevelData");
         ItemTableData = JsonManager.LoadJsonFile<ItemTable>(Application.streamingAssetsPath + "/Save/Json/" + typeof(ItemTable), typeof(ItemTable).ToString());
         PlayerOpenQuestData_ = JsonManager.LoadJsonFile<PlayerQuestData>(Application.streamingAssetsPath + "/SAVE/User", "OpenQuest");
 
-        if (WeaponClassLevelListData_.weaponClassLevelDataList.Count <= 0)
-        {
+        if(MapData_.mapData.Count == 0)
+            InitMapData();
+
+        if (WeaponClassLevelListData_.weaponClassLevelDataList.Count == 0)
             CreateWeaponClassListData();
-        }
 
         WeaponInfoSerialize();
     }
@@ -203,22 +204,51 @@ public class DataManager : Manager
     }
     #endregion
 
-    #region SavePointData
-    public void SaveToSavePointData()
+    #region MapData
+    public void SaveToMapData()
     {
-        string json = JsonManager.ObjectToJson(SavePointData_);
-        JsonManager.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/User", "SavePointData", json);
+        string json = JsonManager.ObjectToJson(MapData_);
+        JsonManager.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/User", "MapData", json);
     }
-    public void ChangeCurrentFloor(Floor floor)
+    public void InitMapData()
     {
-        SavePointData_.currentFloor = floor;
+        MapData_.mapData.Clear();
+        MapData_.mapData.Add(new MapInfo() { floor = Floor.Lobby});
+        MapData_.mapData.Add(new MapInfo() { floor = Floor.First });
+        MapData_.mapData.Add(new MapInfo() { floor = Floor.Second });
+        MapData_.mapData.Add(new MapInfo() { floor = Floor.Third });
 
-        SaveToSavePointData();
+        SaveToMapData();
     }
-    public void OpenFloor(Floor floor)
+    public MapInfo CurrentMapData()
     {
-        SaveToSavePointData();
+        return MapData_.mapData[(int)MapData_.currentFloor];
     }
+    public List<int> OnCristalData(Floor floor)
+    {
+        MapInfo map = MapData_.mapData[(int)floor];
+        return map.onCristalList;
+    }
+    public void OnCrital(int num)
+    {
+        MapData_.mapData[(int)MapData_.currentFloor].onCristalList.Add(num);
+
+        SaveToMapData();
+    }
+    public bool IsOnCrital(int num,Floor floor)
+    {
+
+        foreach(int number in OnCristalData(floor))
+        {
+            if(number == num) return true;
+        }
+        return false;
+    }
+    public void EnterFloor(Floor floor)
+    {
+        MapData_.currentFloor = floor;
+    }
+
     #endregion
 
     #region WeaponLevel
