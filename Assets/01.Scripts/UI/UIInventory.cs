@@ -219,7 +219,7 @@ public class UIInventory : UIBase
         parent.Clear();
         foreach (SaveItemData item in list)
         {
-            if (HaveToItem(item.id)) continue;
+            if (EquipToItem(item.id)) continue;
 
             VisualElement card = temp.Instantiate().Q<VisualElement>("card");
             card.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)item.id}"));
@@ -231,7 +231,7 @@ public class UIInventory : UIBase
             parent.Add(card);
         }
     }
-    public bool HaveToItem(ItemID id)
+    public bool EquipToItem(ItemID id)
     {
         EquipUesableItemSetting setting = DataManager.UserData_.equipUseableItem;
         if (DataManager.UserData_.firstWeapon == id || DataManager.UserData_.secondWeapon == id) return true;
