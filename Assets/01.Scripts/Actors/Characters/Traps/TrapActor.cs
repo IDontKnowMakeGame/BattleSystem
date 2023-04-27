@@ -3,7 +3,7 @@ using Actors.Bases;
 
 namespace Actors.Characters.Traps
 {
-    public class TrapActor : Actor
+    public class TrapActor : CharacterActor
     {
         public Func<bool> OnTrapActiveCondition = null;
         public event Action OnTrapTrigger = null;
@@ -14,12 +14,23 @@ namespace Actors.Characters.Traps
             base.Update();
         }
 
+        protected override void Init()
+        {
+            IsUpdatingPosition = false;
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+        }
+
         public void TrapTrigger()
         {
             if (OnTrapActiveCondition?.Invoke() == true)
             {
+                if(IsTrapInput == false)
+                    OnTrapTrigger?.Invoke();
                 IsTrapInput = true;
-                OnTrapTrigger?.Invoke();
             }
             else
             {
