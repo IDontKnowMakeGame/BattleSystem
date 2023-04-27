@@ -68,7 +68,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
         private IEnumerator SoulAttackCoroutine(Vector3 pos, float delay, bool isLast = true)
         {
             var degree = ThisActor.Position.GetDegree(pos).GetRotation().GetDirection();
-            var range = new Vector3[] { new(-2, 0, 1), new(-1, 0, 1), new(0, 0, 1), new(1, 0, 1), new(2, 0, 1) };
+            var range = new Vector3[] { new(1, 0, -2), new(1, 0, -1), new(1, 0, 0), new(1, 0, 1), new(1, 0, 2) };
             var distance = 0;
             var block = Define.GetManager<MapManager>().GetBlock(ThisActor.Position);
             while (distance <= 20)
@@ -76,7 +76,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                 var count = 0;
                 for (var i = 0; i < 5; i++)
                 {
-                    var attackPos = CharacterActor.Position + (degree * (range[i] + Vector3.forward * distance));
+                    var attackPos = CharacterActor.Position + (degree * (range[i] + Vector3.right * distance));
                     Define.GetManager<MapManager>().AttackBlock(attackPos, DefaultStat.Atk * 2f, DefaultStat.Ats,
                         CharacterActor, MovementType.Shake);
                     block = Define.GetManager<MapManager>().GetBlock(attackPos);

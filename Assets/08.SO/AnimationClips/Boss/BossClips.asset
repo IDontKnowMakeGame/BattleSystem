@@ -323,3 +323,21 @@ MonoBehaviour:
     fps: 5
     isLoop: 0
     delay: 0.1
+  - name: ScreamReady
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 85840e88eb9e7b14091fd3d7919f3a92, type: 3}
+    fps: 8
+    isLoop: 0
+    delay: 0.1
+  - name: ScreamAttack
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 315aed0bd2c3ce74fb3d2856cc72b7c9, type: 3}
+    fps: 7
+    isLoop: 0
+    delay: 0.1
+  - name: ScreamReturn
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: f432686688c6db446ad82a7b793ce6ee, type: 3}
+    fps: 4
+    isLoop: 0
+    delay: 0.1

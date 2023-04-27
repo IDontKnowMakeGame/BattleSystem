@@ -38,15 +38,15 @@ namespace Actors.Characters.Enemy.CrazyGhost
             var jump = _enemyAi.GetState<JumpState>();
             var triple = _enemyAi.GetState<TripleState>();
             var area = _enemyAi.GetState<AreaState>();
+            var secondArea = _enemyAi.GetState<SecondAreaAttackState>();
             var screaming = _enemyAi.GetState<ScreamingState>();
-            var secondPhase = _enemyAi.GetState<SecondPhaseState>();
+            var secondSoul = _enemyAi.GetState<SecondSoulAttackState>();
             chase.OnStay += () => { move.Chase(InGame.Player); };
             pattern.RandomActions.Add(() =>
             {
                 AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
                 var dir = (playerPos - Position).GetDirection();
-                dir = InGame.CamDirCheck(dir);
                 Attack(dir, "Slash", () => { attack.HorizontalAttack(playerPos, false); });
             });
             pattern.RandomActions.Add(() =>
@@ -54,8 +54,11 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
                 var dir = (playerPos - Position).GetDirection();
-                dir = InGame.CamDirCheck(dir);
-                Attack(dir,"Pierce", () => { attack.VerticalAttack(playerPos, false); });
+                Attack(dir,"Pierce", () =>
+                {
+                    move.Jump(Position, dir, 6, 0f);
+                    attack.VerticalAttack(playerPos, false);
+                });
             });
             jump.OnEnter = () =>
             {
@@ -68,7 +71,6 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 {
                     var playerPos = InGame.Player.Position;
                     var dir = (playerPos - Position).GetDirection();
-                    dir = InGame.CamDirCheck(dir);
                     _enemyAnimation.Play("JumpAttackJump");
                     move.Jump(playerPos, dir, 0);
                     jumpClip.OnExit = () =>
@@ -82,7 +84,6 @@ namespace Actors.Characters.Enemy.CrazyGhost
             {
                 var playerPos = InGame.Player.Position;
                 var dir = (playerPos - Position).GetDirection();
-                dir = InGame.CamDirCheck(dir);
                 AddState(CharacterState.Attack);
                 AttackWithNoReturn(dir,"Combo1", () =>
                 {
@@ -109,8 +110,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 _enemyAnimation.Play("SoulAttackJump");
                 var playerPos = InGame.Player.Position; 
                 var dir = (playerPos - Position).GetDirection();
-                dir = InGame.CamDirCheck(dir);
-                move.Jump(Position, dir, 3);
+                move.Jump(Position, -dir, 3);
                 jumpClip.OnExit += () =>
                 {
                     Attack(Vector3.zero,"SoulAttack", () => { attack.SoulAttack(playerPos, 0.15f); }, false);
@@ -127,17 +127,16 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 move.Jump(centerPos, Vector3.zero, 0);
                 jumpClip.OnExit += () =>
                 {
-                    Attack(Vector3.zero,"SoulAttack", () => { attack.AreaAttack(10, true); }, false);
+                    Attack(Vector3.zero,"Scream", () => { attack.AreaAttack(10, true); }, false);
                 };
             };
-            secondPhase.OnEnter = () =>
+            secondSoul.OnEnter = () =>
             {
                 AddState(CharacterState.Attack);
                 var jumpClip = _enemyAnimation.GetClip("SoulAttackJump");
                 _enemyAnimation.Play("SoulAttackJump");
                 var playerPos = InGame.Player.Position;
                 var dir = (playerPos - Position).GetDirection();
-                dir = InGame.CamDirCheck(dir);
                 move.Jump(Position, dir, 3);
                 jumpClip.OnExit += () =>
                 {
@@ -149,8 +148,16 @@ namespace Actors.Characters.Enemy.CrazyGhost
             {
                 AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
+                Attack(Vector3.zero, "AreaAttack", () => { attack.AreaAttack(5, true); }, false);
+            };
+            
+            secondArea.OnEnter = () =>
+            {
+                AddState(CharacterState.Attack);
+                var playerPos = InGame.Player.Position;
                 Attack(Vector3.zero, "AreaAttack", () => { attack.AreaAttack(5, false); }, false);
             };
+            
         }
     }
 }

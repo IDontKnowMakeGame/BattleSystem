@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using Actors.Bases;
 using Actors.Characters;
 using Actors.Characters.Enemy;
+using Blocks;
 using Core;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -23,6 +24,11 @@ namespace Acts.Characters.Enemy
         {
             attackActor = actor;
             base.Damage(damage, actor);
+            if (actor is EmptyBlock)
+            {
+                Die();
+                return;
+            }
 
             GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Damage");
             obj.GetComponent<DamagePopUp>().DamageText((int)damage, ThisActor.transform.position);

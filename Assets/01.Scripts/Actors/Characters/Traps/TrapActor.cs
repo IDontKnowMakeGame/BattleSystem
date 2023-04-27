@@ -5,7 +5,7 @@ namespace Actors.Characters.Traps
 {
     public class TrapActor : Actor
     {
-        public event Func<bool> OnTrapAtive = null;
+        public Func<bool> OnTrapActiveCondition = null;
         public event Action OnTrapTrigger = null;
         public bool IsTrapInput { get; private set; }
         protected override void Update()
@@ -16,7 +16,7 @@ namespace Actors.Characters.Traps
 
         public void TrapTrigger()
         {
-            if (OnTrapAtive?.Invoke() == true)
+            if (OnTrapActiveCondition?.Invoke() == true)
             {
                 IsTrapInput = true;
                 OnTrapTrigger?.Invoke();

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Actors.Bases;
 using Actors.Characters.Player;
 using Acts.Characters.Player;
+using Blocks;
 using ETC;
 using UnityEngine;
 
@@ -31,6 +32,12 @@ public class PlayerStatAct : CharacterStatAct
 	public override void Damage(float damage, Actor actor)
 	{
 		base.Damage(damage, actor);
+		
+		if (actor is EmptyBlock)
+		{
+			Die();
+			return;
+		}
 		
 		if (ThisActor is PlayerActor)
 		{
