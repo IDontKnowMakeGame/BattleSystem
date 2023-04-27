@@ -34,7 +34,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2602499903621569665
 Transform:
   m_ObjectHideFlags: 0
@@ -199,19 +199,19 @@ MonoBehaviour:
   From: Chase
   To: Pattern
   _conditions:
-  - rid: 4755812596873953281
+  - rid: 4755812827418066944
   - rid: 4818217760064536586
   references:
     version: 2
     RefIds:
-    - rid: 4755812596873953281
-      type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+    - rid: 4755812827418066944
+      type: {class: StateCondition, ns: AI.Conditions, asm: Assembly-CSharp}
       data:
-        Type: 3
-        IsNegative: 0
+        Type: 12
+        IsNegative: 1
         IsNeeded: 1
         _thisActor: {fileID: 2602499903621569664}
-        BaseActor: {fileID: 2602499903621569664}
+        State: 3
     - rid: 4818217760064536586
       type: {class: BesideCondition, ns: AI.Conditions, asm: Assembly-CSharp}
       data:
@@ -263,7 +263,7 @@ MonoBehaviour:
   From: Chase
   To: SoulAttack
   _conditions:
-  - rid: 4755812596873953282
+  - rid: 4755812827418066945
   - rid: 4755812596873953280
   - rid: 4755812595378421762
   - rid: 4755812595378421764
@@ -307,14 +307,14 @@ MonoBehaviour:
         IsNegative: 1
         IsNeeded: 1
         _thisActor: {fileID: 2602499903621569664}
-    - rid: 4755812596873953282
-      type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+    - rid: 4755812827418066945
+      type: {class: StateCondition, ns: AI.Conditions, asm: Assembly-CSharp}
       data:
-        Type: 3
-        IsNegative: 0
+        Type: 12
+        IsNegative: 1
         IsNeeded: 1
         _thisActor: {fileID: 2602499903621569664}
-        BaseActor: {fileID: 2602499903621569664}
+        State: 3
 --- !u!114 &2602499903621569718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,19 +407,11 @@ MonoBehaviour:
   From: Chase
   To: Jump
   _conditions:
-  - rid: 4755812609343619072
+  - rid: 4755812827418066946
   - rid: 4755812609343619074
   references:
     version: 2
     RefIds:
-    - rid: 4755812609343619072
-      type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
-      data:
-        Type: 3
-        IsNegative: 0
-        IsNeeded: 1
-        _thisActor: {fileID: 2602499903621569664}
-        BaseActor: {fileID: 2602499903621569664}
     - rid: 4755812609343619074
       type: {class: BlockCondition, ns: AI.Conditions, asm: Assembly-CSharp}
       data:
@@ -430,6 +422,14 @@ MonoBehaviour:
         targetActor: {fileID: 0}
         IsPlayer: 1
         Area: 5
+    - rid: 4755812827418066946
+      type: {class: StateCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 12
+        IsNegative: 1
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        State: 3
 --- !u!114 &6350170632472056026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,7 +509,7 @@ MonoBehaviour:
   From: Chase
   To: Area
   _conditions:
-  - rid: 4755812668502704131
+  - rid: 4755812827418066947
   - rid: 4755812668502704128
   - rid: 4755812668502704129
   - rid: 4755812668502704130
@@ -547,14 +547,6 @@ MonoBehaviour:
         targetActor: {fileID: 0}
         IsPlayer: 1
         Radius: 3
-    - rid: 4755812668502704131
-      type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
-      data:
-        Type: 3
-        IsNegative: 0
-        IsNeeded: 1
-        _thisActor: {fileID: 2602499903621569664}
-        BaseActor: {fileID: 2602499903621569664}
     - rid: 4755812814727675904
       type: {class: LifeCondition, ns: AI.Conditions, asm: Assembly-CSharp}
       data:
@@ -564,6 +556,14 @@ MonoBehaviour:
         _thisActor: {fileID: 2602499903621569664}
         BaseActor: {fileID: 2602499903621569664}
         TargetLife: 35
+    - rid: 4755812827418066947
+      type: {class: StateCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 12
+        IsNegative: 1
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        State: 3
 --- !u!114 &6350170632472056040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -660,7 +660,7 @@ MonoBehaviour:
   From: Chase
   To: SecondSoulAttack
   _conditions:
-  - rid: 4755812596873953282
+  - rid: 4755812827418066948
   - rid: 4755812596873953280
   - rid: 4755812595378421762
   - rid: 4755812595378421764
@@ -704,14 +704,14 @@ MonoBehaviour:
         IsNegative: 1
         IsNeeded: 1
         _thisActor: {fileID: 2602499903621569664}
-    - rid: 4755812596873953282
-      type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+    - rid: 4755812827418066948
+      type: {class: StateCondition, ns: AI.Conditions, asm: Assembly-CSharp}
       data:
-        Type: 3
-        IsNegative: 0
+        Type: 12
+        IsNegative: 1
         IsNeeded: 1
         _thisActor: {fileID: 2602499903621569664}
-        BaseActor: {fileID: 2602499903621569664}
+        State: 3
 --- !u!114 &1373124742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -754,7 +754,7 @@ MonoBehaviour:
   From: Chase
   To: SecondAreaAttack
   _conditions:
-  - rid: 4755812668502704131
+  - rid: 4755812827418066949
   - rid: 4755812668502704128
   - rid: 4755812668502704129
   - rid: 4755812668502704130
@@ -792,14 +792,6 @@ MonoBehaviour:
         targetActor: {fileID: 0}
         IsPlayer: 1
         Radius: 3
-    - rid: 4755812668502704131
-      type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
-      data:
-        Type: 3
-        IsNegative: 0
-        IsNeeded: 1
-        _thisActor: {fileID: 2602499903621569664}
-        BaseActor: {fileID: 2602499903621569664}
     - rid: 4755812814727675904
       type: {class: LifeCondition, ns: AI.Conditions, asm: Assembly-CSharp}
       data:
@@ -809,6 +801,14 @@ MonoBehaviour:
         _thisActor: {fileID: 2602499903621569664}
         BaseActor: {fileID: 2602499903621569664}
         TargetLife: 35
+    - rid: 4755812827418066949
+      type: {class: StateCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 12
+        IsNegative: 1
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        State: 3
 --- !u!1 &2602499904033520471
 GameObject:
   m_ObjectHideFlags: 0
