@@ -44,7 +44,7 @@ namespace Acts.Characters.Enemy
             currentCoroutine = ThisActor.StartCoroutine(AnimationPlay());
         }
         
-        public ClipBase GetClip(string name)
+        public override ClipBase GetClip(string name)
         {
             var clips = curClips.Clips;
             

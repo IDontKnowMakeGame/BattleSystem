@@ -10,6 +10,7 @@ using System.Collections;
 using UnityEngine.Windows;
 using Input = UnityEngine.Input;
 using Managements.Managers;
+using Acts.Characters;
 
 public class Weapon : EquiqmentItem
 {
@@ -37,6 +38,7 @@ public class Weapon : EquiqmentItem
 
 	protected CharacterActor _characterActor;
 	protected PlayerActor _playerActor = null;
+	protected UnitAnimation _unitAnimation;
 	protected PlayerAnimation _playerAnimation;
 	protected CharacterStatAct _stat;
 
@@ -52,10 +54,11 @@ public class Weapon : EquiqmentItem
 	{
 		_characterActor = actor;
 		_stat = _characterActor.GetAct<CharacterStatAct>();
+		_unitAnimation = _characterActor.GetAct<UnitAnimation>();
 		if (actor is PlayerActor)
 		{
 			_playerActor = _characterActor as PlayerActor;
-			_playerAnimation = _characterActor.GetAct<PlayerAnimation>();
+			_playerAnimation = _unitAnimation as PlayerAnimation;
 			LoadWeaponClassLevel();
 			LoadWeaponLevel();
 		}

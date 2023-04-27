@@ -19,12 +19,17 @@ public class BowShadeActor : EnemyActor
 	{
 		base.Start();
 		ShootState state = _enemyAi.GetState<ShootState>();
+		WaitState idlestate = _enemyAi.GetState<WaitState>();
 		Debug.Log(_characterEquipment.CurrentWeapon);
 		_characterEquipment.CurrentWeapon.Equiqment(this);
 		Debug.Log(":");
 		state.OnEnter += () =>
 		{
 			Shoot();
+		};
+		idlestate.OnEnter += () =>
+		{
+			_enemyAnimation.Play("Idle");
 		};
 	}
 
@@ -33,6 +38,7 @@ public class BowShadeActor : EnemyActor
 		var dir = InGame.Player.Position - Position;
 		Bow bow = _characterEquipment.CurrentWeapon as Bow;
 		dir.y = 0;
-		bow.Shoot(InGame.CamDirCheck(dir));
+		bow.Shoot(InGame.CamDirCheck(dir.normalized
+			));
 	}
 }

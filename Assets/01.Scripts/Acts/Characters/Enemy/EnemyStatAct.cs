@@ -62,7 +62,7 @@ namespace Acts.Characters.Enemy
             //if(attackActor != null)
             addObject.transform.position = ThisActor.Position + Vector3.up;
 			addObject.GetComponent<EatEffect>().Init(attackActor.gameObject);
-            QuestManager.Instance.CheckKillMission((ThisActor as EnemyActor).CurrentType);
+            //QuestManager.Instance.CheckKillMission((ThisActor as EnemyActor).CurrentType);
 
 			var enemy = ThisActor as EnemyActor;
             if (enemy != null) enemy.Alive = false;

@@ -46,7 +46,7 @@ public class Bow : Weapon
 		base.Equiqment(actor);
 		if (_sliderObject == null)
 		{
-			_sliderObject = _characterActor.transform.Find("Anchor").Find("Model").Find("SliderObject").GetComponent<SliderObject>();
+		_sliderObject = _characterActor.transform.Find("Anchor").Find("Model").Find("SliderObject").GetComponent<SliderObject>();
 		}
 
 		if (isEnemy)
@@ -55,31 +55,30 @@ public class Bow : Weapon
 
 		InputManager<Bow>.OnAttackPress += Shoot;
 
-		if (actor is PlayerActor)
-		{
-			_playerAnimation.GetClip("HorizontalPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
-			_playerAnimation.GetClip("UpperPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
-			_playerAnimation.GetClip("LowerPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
-			_playerAnimation.GetClip("GroundPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
-			_playerAnimation.GetClip("HorizontalPull")?.SetEventOnFrame(_playerAnimation.GetClip("HorizontalPull").fps - 1, SetAnimation);
-			_playerAnimation.GetClip("UpperPull")?.SetEventOnFrame(_playerAnimation.GetClip("UpperPull").fps - 1, SetAnimation);
-			_playerAnimation.GetClip("LowerPull")?.SetEventOnFrame(_playerAnimation.GetClip("LowerPull").fps - 1, SetAnimation);
-			_playerAnimation.GetClip("GroundPull")?.SetEventOnFrame(_playerAnimation.GetClip("GroundPull").fps - 1, SetAnimation);
-			SetAnimation();
-		}
+		_unitAnimation.GetClip("HorizontalPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
+		_unitAnimation.GetClip("UpperPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
+		_unitAnimation.GetClip("LowerPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
+		_unitAnimation.GetClip("GroundPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
+		_unitAnimation.GetClip("HorizontalPull")?.SetEventOnFrame(_playerAnimation.GetClip("HorizontalPull").fps - 1, SetAnimation);
+		_unitAnimation.GetClip("UpperPull")?.SetEventOnFrame(_playerAnimation.GetClip("UpperPull").fps - 1, SetAnimation);
+		_unitAnimation.GetClip("LowerPull")?.SetEventOnFrame(_playerAnimation.GetClip("LowerPull").fps - 1, SetAnimation);
+		_unitAnimation.GetClip("GroundPull")?.SetEventOnFrame(_playerAnimation.GetClip("GroundPull").fps - 1, SetAnimation);
+		SetAnimation();
 	}
 
 	private void SetAnimation()
 	{
 		string str = isShoot ? "None" : "Use";
 
-		_playerAnimation.GetClip("Idle").ChangeClip(_playerAnimation.GetClip(str + "Idle"));
-		_playerAnimation.GetClip("HorizontalMove").ChangeClip(_playerAnimation.GetClip(str + "HorizontalMove"));
-		_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip(str + "UpperMove"));
-		_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip(str + "LowerMove"));
-		_playerAnimation.GetClip("HorizontalCharge").ChangeClip(_playerAnimation.GetClip(str + "HorizontalCharge"));
-		_playerAnimation.GetClip("UpperCharge").ChangeClip(_playerAnimation.GetClip(str + "UpperCharge"));
-		_playerAnimation.GetClip("LowerCharge").ChangeClip(_playerAnimation.GetClip(str + "LowerCharge"));
+		Debug.Log(_unitAnimation.GetClip("Idle"));
+		Debug.Log(_unitAnimation.GetClip(str + "Idle"));
+		_unitAnimation.GetClip("Idle").ChangeClip(_unitAnimation.GetClip(str + "Idle"));
+		_unitAnimation.GetClip("HorizontalMove")?.ChangeClip(_unitAnimation.GetClip(str + "HorizontalMove"));
+		_unitAnimation.GetClip("UpperMove")?.ChangeClip(_unitAnimation.GetClip(str + "UpperMove"));
+		_unitAnimation.GetClip("LowerMove")?.ChangeClip(_unitAnimation.GetClip(str + "LowerMove"));
+		_unitAnimation.GetClip("HorizontalCharge").ChangeClip(_unitAnimation.GetClip(str + "HorizontalCharge"));
+		_unitAnimation.GetClip("UpperCharge").ChangeClip(_unitAnimation.GetClip(str + "UpperCharge"));
+		_unitAnimation.GetClip("LowerCharge").ChangeClip(_unitAnimation.GetClip(str + "LowerCharge"));
 
 		_characterActor.RemoveState(CharacterState.StopMove);
 		_characterActor.RemoveState(CharacterState.Attack);
@@ -121,11 +120,8 @@ public class Bow : Weapon
 		_characterActor.AddState(CharacterState.Hold);
 
 		// Player Animation
-		if (_characterActor is PlayerActor)
-		{
-			ChargeAnimation(_orginVec);
-			//SetAnimation();
-		}
+		ChargeAnimation(_orginVec);
+		//SetAnimation();
 
 		_sliderObject.SliderInit(_stat.ChangeStat.ats);
 		_sliderObject.SliderActive(true);
@@ -144,9 +140,9 @@ public class Bow : Weapon
 			_isCharge = false;
 			_characterActor.RemoveState(CharacterState.StopMove);
 			_characterActor.RemoveState(CharacterState.Hold);
-			//_characterActor.AddState(CharacterState.Attack);
-			if (_playerActor != null)
-				ShootAnimation(_orginVec);
+			_characterActor.AddState(CharacterState.Attack);
+			//if (_playerActor != null)
+			ShootAnimation(_orginVec);
 			Arrow.ShootArrow(_currentVec, _characterActor.Position, _characterActor, info.Afs, info.Atk, 6);
 			_sliderObject.SliderActive(false);
 		}
@@ -157,20 +153,20 @@ public class Bow : Weapon
 		if (dir == Vector3.left)
 		{
 			_characterActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
-			_playerAnimation.Play("HorizontalCharge");
+			_unitAnimation.Play("HorizontalCharge");
 		}
 		else if (dir == Vector3.right)
 		{
 			_characterActor.SpriteTransform.localScale = new Vector3(2, 1, 1);
-			_playerAnimation.Play("HorizontalCharge");
+			_unitAnimation.Play("HorizontalCharge");
 		}
 		else if (dir == Vector3.forward)
 		{
-			_playerAnimation.Play("UpperCharge");
+			_unitAnimation.Play("UpperCharge");
 		}
 		else if (dir == Vector3.back)
 		{
-			_playerAnimation.Play("LowerCharge");
+			_unitAnimation.Play("LowerCharge");
 		}
 
 	}
@@ -180,22 +176,22 @@ public class Bow : Weapon
 		if (dir == Vector3.left)
 		{
 			_characterActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
-			_playerAnimation.Play("HorizontalShoot");
+			_unitAnimation.Play("HorizontalShoot");
 		}
 		else if (dir == Vector3.right)
 		{
 			_characterActor.SpriteTransform.localScale = new Vector3(2, 1, 1);
-			_playerAnimation.Play("HorizontalShoot");
+			_unitAnimation.Play("HorizontalShoot");
 		}
 		else if (dir == Vector3.forward)
 		{
-			_playerAnimation.Play("UpperShoot");
+			_unitAnimation.Play("UpperShoot");
 		}
 		else if (dir == Vector3.back)
 		{
-			_playerAnimation.Play("LowerShoot");
+			_unitAnimation.Play("LowerShoot");
 		}
 
-		_playerAnimation.CurrentClip().SetEventOnFrame(_playerAnimation.CurrentClip().fps - 1, SetAnimation);
+		_unitAnimation.curClip.SetEventOnFrame(_unitAnimation.curClip.fps - 1, SetAnimation);
 	}
 }

@@ -61,7 +61,7 @@ namespace Acts.Characters.Player
             currentCoroutine = ThisActor.StartCoroutine(AnimationPlay());
         }
 
-        public ClipBase GetClip(string name)
+        public override ClipBase GetClip(string name)
         {
             if (!weaponClipDic.ContainsKey(name)) return null;
             return weaponClipDic[name];

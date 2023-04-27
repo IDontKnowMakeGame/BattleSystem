@@ -36,18 +36,19 @@ public class Arrow : MonoBehaviour
 	public static void ShootArrow(Vector3 vec, Vector3 position, CharacterActor actor, float speed, float damage, int distance)
 	{
 		Arrow obj = Define.GetManager<ResourceManager>().Instantiate("Arrow").GetComponent<Arrow>();
+		Debug.Log(vec);
 		obj.transform.rotation = Quaternion.Euler(VecToRotation(vec));
 		obj.Shoot(vec, position, actor, speed, damage, distance);
 	}
 	private static Vector3 VecToRotation(Vector3 vec)
 	{
-		if (vec == Vector3.forward)
+		if (vec.z >= Vector3.forward.z)
 			return new Vector3(90, 0, 0);
-		else if (vec == Vector3.back)
+		else if (vec.z <= Vector3.back.z)
 			return new Vector3(90, 180f, 0);
-		else if (vec == Vector3.left)
+		else if (vec.x <= Vector3.left.x)
 			return new Vector3(90, -90f, 0);
-		else if (vec == Vector3.right)
+		else if (vec.x >= Vector3.right.x)
 			return new Vector3(90, 90f, 0);
 		else
 			return Vector3.zero;
@@ -93,10 +94,12 @@ public class Arrow : MonoBehaviour
 	{
 		this.transform.DOKill();
 		this.transform.parent = other.transform;
+		if(_shootActor is PlayerActor)
 		this.transform.localPosition = -_shootVec;
+		else
+			this.transform.localPosition = _shootVec;
 		_stickActor = InGame.GetActor(other.gameObject.GetInstanceID()) as CharacterActor;
 
-		Debug.Log(_shootActor);
 		_stickActor.GetAct<CharacterStatAct>().Damage(_damage, _shootActor);
 		_isStick = true;
 	}
