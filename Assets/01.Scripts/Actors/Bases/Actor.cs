@@ -50,8 +50,6 @@ namespace Actors.Bases
 
         protected virtual void Update()
         {
-            if(IsUpdatingPosition)
-                UpdatePosition();
             foreach (var behaviour in _behaviours.Values)
             {
                 behaviour.Update();

@@ -842,6 +842,13 @@ public static class ExtensionMethods
         return new Vector3(x, 0, z);
     }
     
+    public static Vector3 Euler2Dir(this Vector3 euler)
+    {
+        var x = Mathf.RoundToInt(Mathf.Sin(euler.y * Mathf.Deg2Rad));
+        var z = Mathf.RoundToInt(Mathf.Cos(euler.y * Mathf.Deg2Rad));
+        return new Vector3(x, 0, z);
+    }
+    
     public static Quaternion GetRotation(this float degree)
     {
         return Quaternion.Euler(0, degree, 0);
