@@ -29,7 +29,7 @@ namespace Acts.Characters.Enemy
         {
             Attack();
             var degree = ThisActor.Position.GetDegree(pos).GetRotation().GetDirection();
-            var range = new Vector3[] { new (-1, 0, 1), new (0, 0, 1), new (1, 0, 1) };
+            var range = new Vector3[] { new (1, 0, -1), new (1, 0, 0), new (1, 0, 1) };
             for (var r = 0; r < 3; r++)
             {
                 var attackPos = CharacterActor.Position + (degree * range[r]);
@@ -45,10 +45,10 @@ namespace Acts.Characters.Enemy
         {
             Attack();
             var degree = ThisActor.Position.GetDegree(pos).GetRotation().GetDirection();
-            var range = new Vector3[] { new (0, 0, 1), new (0, 0, 2), new (0, 0, 3) };
-            for (var r = 0; r < 3; r++)
+            var range = Vector3.right;
+            for (var r = 1; r <= 5; r++)
             {
-                var attackPos = CharacterActor.Position + (degree * range[r]);
+                var attackPos = CharacterActor.Position + (degree * range * r);
                 Define.GetManager<MapManager>().AttackBlock(attackPos, DefaultStat.Atk, DefaultStat.Ats, CharacterActor);
             }
             

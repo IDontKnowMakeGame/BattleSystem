@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2602499903621569665}
   - component: {fileID: 2602499903621569664}
   - component: {fileID: 2602499903621569671}
+  - component: {fileID: 6350170632472056031}
   - component: {fileID: 2602499903621569670}
   - component: {fileID: 2602499903621569716}
   - component: {fileID: 2602499903621569717}
@@ -23,7 +24,6 @@ GameObject:
   - component: {fileID: 6350170632472056039}
   - component: {fileID: 6350170632472056040}
   - component: {fileID: 6350170632472056030}
-  - component: {fileID: 6350170632472056031}
   - component: {fileID: 6350170632472056032}
   - component: {fileID: 6350170632472056033}
   m_Layer: 0
@@ -65,6 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0, z: 0}
   _characterRender:
+    isBillBoard: 1
     _defaultTexture: {fileID: 2800000, guid: 3f004c9320d8a834eaaa5f94d4ff7cb7, type: 3}
     _frame: 17
     size: {x: 3, y: 3, z: 3}
@@ -98,7 +99,6 @@ MonoBehaviour:
       ats: 0
       afs: 0
       speed: 0
-    action: {fileID: 0}
   _enemyAnimation:
     curClip:
       name: 
@@ -113,6 +113,7 @@ MonoBehaviour:
     curClips: {fileID: 11400000, guid: 07fddb310a2a38143a388d70d230d20f, type: 2}
   alive: 1
   spriteSize: 3
+  currentType: 0
   particle:
     landingParticle: {fileID: 7310023798986098773}
     secondPhaseParticle: {fileID: 7751943641532557491}
@@ -144,6 +145,43 @@ MonoBehaviour:
         IsNeeded: 1
         _thisActor: {fileID: 2602499903621569664}
         TargetTime: 2
+--- !u!114 &6350170632472056031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2602499903621569667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c99c7c212654c5bb59e9b251e4c5d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: Chase
+  To: Screaming
+  _conditions:
+  - rid: 4755812758723756036
+  - rid: 4755812758723756038
+  references:
+    version: 2
+    RefIds:
+    - rid: 4755812758723756036
+      type: {class: LifeCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 4
+        IsNegative: 1
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        BaseActor: {fileID: 2602499903621569664}
+        TargetLife: 35
+    - rid: 4755812758723756038
+      type: {class: EnteredCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 10
+        IsNegative: 1
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        StateName: Screaming
 --- !u!114 &2602499903621569670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -568,43 +606,6 @@ MonoBehaviour:
         IsNeeded: 1
         _thisActor: {fileID: 2602499903621569664}
         BaseActor: {fileID: 2602499903621569664}
---- !u!114 &6350170632472056031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2602499903621569667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c99c7c212654c5bb59e9b251e4c5d7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  From: Chase
-  To: Screaming
-  _conditions:
-  - rid: 4755812758723756036
-  - rid: 4755812758723756038
-  references:
-    version: 2
-    RefIds:
-    - rid: 4755812758723756036
-      type: {class: LifeCondition, ns: AI.Conditions, asm: Assembly-CSharp}
-      data:
-        Type: 4
-        IsNegative: 1
-        IsNeeded: 1
-        _thisActor: {fileID: 2602499903621569664}
-        BaseActor: {fileID: 2602499903621569664}
-        TargetLife: 35
-    - rid: 4755812758723756038
-      type: {class: EnteredCondition, ns: AI.Conditions, asm: Assembly-CSharp}
-      data:
-        Type: 10
-        IsNegative: 1
-        IsNeeded: 1
-        _thisActor: {fileID: 2602499903621569664}
-        StateName: Screaming
 --- !u!114 &6350170632472056032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -962,11 +963,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5112416485400013810, guid: c81afdc70c6e4a147b33749104acc05d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -78.525
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5112416485400013810, guid: c81afdc70c6e4a147b33749104acc05d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5112416485400013810, guid: c81afdc70c6e4a147b33749104acc05d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -978,15 +979,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5112416485400013810, guid: c81afdc70c6e4a147b33749104acc05d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5112416485400013810, guid: c81afdc70c6e4a147b33749104acc05d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5112416485400013810, guid: c81afdc70c6e4a147b33749104acc05d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5112416485400013810, guid: c81afdc70c6e4a147b33749104acc05d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
