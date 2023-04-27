@@ -24,9 +24,7 @@ public class AbandonedAngel : NPCActor
 
         questData = JsonManager.LoadJsonFile<QuestData>(Application.streamingAssetsPath + "/SAVE/NPC/Quest", GetType().Name);
 
-        castReadyQuestActions.Add(QuestName.FirstFloorBossKill, AcceptBossKillQuestBtn);
-
-        castClearQuestActions.Add(QuestName.FirstFloorBossKill, ClearBossKillQuestBtn);
+        SaveQuestData();
     }
 
     public void SaveQuestData()
@@ -54,27 +52,29 @@ public class AbandonedAngel : NPCActor
     }
     private void ReadyBtnQuest()
     {
-        //clear Quest
+        
         foreach (QuestInfo info in questData.quests)
         {
-            if (Define.GetManager<DataManager>().IsReadyClearQuest(info.questName) == false)
-                continue;
+            Debug.Log($"Quest Name {info.questName}");
+            //clear Quest
+            if (Define.GetManager<DataManager>().IsReadyClearQuest(info.questName) == true)
+            {
+                Debug.Log($"Clear Quest Name {info.questName}");
+                if (castClearQuestActions.ContainsKey(info.questName))
+                    Debug.LogError($"Not Have Dictionary info QuestInfo : {info.questName}");
 
-            if (castClearQuestActions.ContainsKey(info.questName))
-                Debug.LogError($"Not Have Dictionary info QuestInfo : {info.questName}");
+                UIManager.Instance.Dialog.AddChoiceBox(info.btnName, castClearQuestActions[info.questName]);
+            }
+            //ready Quest
+            if (Define.GetManager<DataManager>().IsReadyQuest(info.questName) == true)
+            {
+                Debug.Log($"ready Quest Name {info.questName}");
+                if (castReadyQuestActions.ContainsKey(info.questName))
+                    Debug.LogError($"Not Have Dictionary info QuestInfo : {info.questName}");
 
-            UIManager.Instance.Dialog.AddChoiceBox(info.btnName, castClearQuestActions[info.questName]);
-        }
-        //ready Quest
-        foreach (QuestInfo info in questData.quests)
-        {
-            if (Define.GetManager<DataManager>().IsReadyQuest(info.questName) == false)
-                continue;
+                UIManager.Instance.Dialog.AddChoiceBox(info.btnName, castReadyQuestActions[info.questName]);
+            }
 
-            if (castReadyQuestActions.ContainsKey(info.questName))
-                Debug.LogError($"Not Have Dictionary info QuestInfo : {info.questName}");
-
-            UIManager.Instance.Dialog.AddChoiceBox(info.btnName, castReadyQuestActions[info.questName]);
         }
     }
 
@@ -88,27 +88,6 @@ public class AbandonedAngel : NPCActor
     {
         UIManager.Instance.Dialog.FlagDialogue(false);
     }
-    public void AcceptBossKillQuestBtn()
-    {
-        UIManager.Instance.Dialog.ClearChoiceBox();
 
-        UIManager.Instance.Dialog.StartListeningDialog(dialogueList[1]);
-        Define.GetManager<DataManager>().OpenQuest(QuestName.FirstFloorBossKill);
-    }
-
-    public void ClearBossKillQuestBtn()
-    {
-        UIManager.Instance.Dialog.ClearChoiceBox();
-
-        UIManager.Instance.Dialog.StartListeningDialog(dialogueList[2]);
-        Define.GetManager<DataManager>().ClearQuest(QuestName.FirstFloorBossKill);
-    }
-
-    #endregion
-
-    #region ReadyQuest
-    #endregion
-
-    #region ClearQuest
     #endregion
 }

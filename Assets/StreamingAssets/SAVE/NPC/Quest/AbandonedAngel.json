@@ -2,13 +2,22 @@
     "currentQuestLine": 0,
     "quests": [
         {
-            "questName": 1,
+            "btnName": "BossKillQuest",
+            "questName": 2,
             "IsComplate": false,
             "rewardfeather": 0,
             "rewords": [
                 1,
                 3
             ],
+            "openQuest": []
+        },
+        {
+            "btnName": "",
+            "questName": 0,
+            "IsComplate": false,
+            "rewardfeather": 0,
+            "rewords": [],
             "openQuest": []
         }
     ]
