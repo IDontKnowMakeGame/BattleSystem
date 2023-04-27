@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/StateCondition.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/StateCondition.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VEG/Fog.vfx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/VEG/Fog.vfx.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/AiCondition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/AiCondition.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AI/AiTransition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/AiTransition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterMove.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/Weapon/ClassLevelData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/Weapon/ClassLevelData.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +172,7 @@
       <workItem from="1682555342683" duration="10414000" />
       <workItem from="1682587213943" duration="1500000" />
       <workItem from="1682588759798" duration="3874000" />
-      <workItem from="1682605069311" duration="3220000" />
+      <workItem from="1682605069311" duration="4293000" />
     </task>
     <servers />
   </component>
