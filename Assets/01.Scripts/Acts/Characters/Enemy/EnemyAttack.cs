@@ -64,7 +64,7 @@ namespace Acts.Characters.Enemy
                 for (int j = 0; j <= 2; j++)
                 {
                     if(i == 0 && j == 0) continue;
-                    var attackPos = CharacterActor.Position + (degree * new Vector3(i, 0, j));
+                    var attackPos = CharacterActor.Position + (degree * new Vector3(j, 0, i));
                     Define.GetManager<MapManager>().AttackBlock(attackPos, DefaultStat.Atk, DefaultStat.Ats, CharacterActor);   
                 }
             }
