@@ -16,7 +16,7 @@ namespace Actors.Characters.Traps
         private bool isActive = false;
         protected override void Awake()
         {
-            OnTrapAtive += () =>
+            OnTrapActiveCondition = () =>
             {
                 var block = InGame.GetBlock(Position);
                 if (block == null)

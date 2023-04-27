@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Traps/PlateActor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Traps/PlateActor.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterStatAct.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterStatAct.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/OpenQuest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/OpenQuest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Traps/SpikeTrapActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Traps/SpikeTrapActor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Traps/TrapActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Traps/TrapActor.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +167,7 @@
       <workItem from="1682432754877" duration="4700000" />
       <workItem from="1682501895380" duration="7845000" />
       <workItem from="1682521978208" duration="4689000" />
-      <workItem from="1682555342683" duration="5720000" />
+      <workItem from="1682555342683" duration="10414000" />
     </task>
     <servers />
   </component>
