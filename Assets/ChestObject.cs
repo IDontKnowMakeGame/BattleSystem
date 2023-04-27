@@ -12,6 +12,11 @@ public class ChestObject : InteractionActor
 	[SerializeField]
 	private GetItemObject _itemObject;
 
+	protected override void Init()
+	{
+		
+	}
+
 	protected override void Start()
 	{
 		_itemObject.canInteraction = false;

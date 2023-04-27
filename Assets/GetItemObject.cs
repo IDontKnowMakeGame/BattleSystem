@@ -17,6 +17,11 @@ public class GetItemObject : InteractionActor
 
 	public bool canInteraction = true;
 
+	protected override void Init()
+	{
+
+	}
+
 	public void Init(ItemID id, int count, bool weapon)
 	{
 		_id = id;

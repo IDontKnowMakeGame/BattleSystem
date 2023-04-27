@@ -129,7 +129,7 @@ MonoBehaviour:
   _characterState: 0
   _isBlocking: 0
   canKnockBack: 0
-  _itemObject: {fileID: 0}
+  _itemObject: {fileID: 1085409376}
 --- !u!320 &329202428
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -359,6 +359,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0949c3f5451fe1d4ebebf1dac2e4e639, type: 3}
+--- !u!114 &1085409376 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1519516336078644366, guid: 0949c3f5451fe1d4ebebf1dac2e4e639, type: 3}
+  m_PrefabInstance: {fileID: 1519516337161694446}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9acb3c9c2eb85eb448683d9264953235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1085409377 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1519516336078644367, guid: 0949c3f5451fe1d4ebebf1dac2e4e639, type: 3}
