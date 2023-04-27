@@ -18,6 +18,7 @@ public class DataManager : Manager
     public static WeaponLevelDataList WeaponLevelListData_;
     public static ItemTable ItemTableData;
     public static PlayerQuestData PlayerOpenQuestData_;
+    
     public Dictionary<ItemID, ItemInfo> weaponDictionary = new Dictionary<ItemID, ItemInfo>();
 
     public override void Awake()
