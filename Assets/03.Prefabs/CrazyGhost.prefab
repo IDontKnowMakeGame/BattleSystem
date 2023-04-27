@@ -26,6 +26,8 @@ GameObject:
   - component: {fileID: 6350170632472056030}
   - component: {fileID: 6350170632472056032}
   - component: {fileID: 6350170632472056033}
+  - component: {fileID: 1373124742}
+  - component: {fileID: 1373124743}
   m_Layer: 0
   m_Name: CrazyGhost
   m_TagString: Enemy
@@ -511,6 +513,7 @@ MonoBehaviour:
   - rid: 4755812668502704128
   - rid: 4755812668502704129
   - rid: 4755812668502704130
+  - rid: 4755812814727675904
   references:
     version: 2
     RefIds:
@@ -552,6 +555,15 @@ MonoBehaviour:
         IsNeeded: 1
         _thisActor: {fileID: 2602499903621569664}
         BaseActor: {fileID: 2602499903621569664}
+    - rid: 4755812814727675904
+      type: {class: LifeCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 4
+        IsNegative: 0
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        BaseActor: {fileID: 2602499903621569664}
+        TargetLife: 35
 --- !u!114 &6350170632472056040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,7 +630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c99c7c212654c5bb59e9b251e4c5d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  From: SecondPhase
+  From: SecondSoulAttack
   To: Chase
   _conditions:
   - rid: 4755812758723756035
@@ -646,7 +658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   From: Chase
-  To: SecondPhase
+  To: SecondSoulAttack
   _conditions:
   - rid: 4755812596873953282
   - rid: 4755812596873953280
@@ -700,6 +712,103 @@ MonoBehaviour:
         IsNeeded: 1
         _thisActor: {fileID: 2602499903621569664}
         BaseActor: {fileID: 2602499903621569664}
+--- !u!114 &1373124742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2602499903621569667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c99c7c212654c5bb59e9b251e4c5d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: SecondAreaAttack
+  To: Chase
+  _conditions:
+  - rid: 4755812814727675905
+  references:
+    version: 2
+    RefIds:
+    - rid: 4755812814727675905
+      type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 3
+        IsNegative: 0
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        BaseActor: {fileID: 2602499903621569664}
+--- !u!114 &1373124743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2602499903621569667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c99c7c212654c5bb59e9b251e4c5d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: Chase
+  To: SecondAreaAttack
+  _conditions:
+  - rid: 4755812668502704131
+  - rid: 4755812668502704128
+  - rid: 4755812668502704129
+  - rid: 4755812668502704130
+  - rid: 4755812814727675904
+  references:
+    version: 2
+    RefIds:
+    - rid: 4755812668502704128
+      type: {class: BlockCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 5
+        IsNegative: 1
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        targetActor: {fileID: 0}
+        IsPlayer: 1
+        Area: 1
+    - rid: 4755812668502704129
+      type: {class: LineCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 6
+        IsNegative: 1
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        targetActor: {fileID: 0}
+        IsPlayer: 1
+        Distance: -1
+    - rid: 4755812668502704130
+      type: {class: CircleCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 7
+        IsNegative: 0
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        targetActor: {fileID: 0}
+        IsPlayer: 1
+        Radius: 3
+    - rid: 4755812668502704131
+      type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 3
+        IsNegative: 0
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        BaseActor: {fileID: 2602499903621569664}
+    - rid: 4755812814727675904
+      type: {class: LifeCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 4
+        IsNegative: 1
+        IsNeeded: 1
+        _thisActor: {fileID: 2602499903621569664}
+        BaseActor: {fileID: 2602499903621569664}
+        TargetLife: 35
 --- !u!1 &2602499904033520471
 GameObject:
   m_ObjectHideFlags: 0
