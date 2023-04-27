@@ -9,6 +9,7 @@ using UnityEngine;
 using Acts.Characters;
 using static UnityEngine.CullingGroup;
 using System.Collections.Generic;
+using Blocks;
 using Unity.VisualScripting;
 
 [Serializable]
@@ -162,8 +163,13 @@ public class CharacterStatAct : Act
 	public virtual void Damage(float damage, Actor actor)
 	{
 		ChangeStat.hp -= damage - (damage * (Half / 100));
-		_render.Blink();
 
+		if (actor is EmptyBlock)
+		{
+			Die();
+			return;
+		}
+		_render.Blink();
 		GameObject blood = Define.GetManager<ResourceManager>().Instantiate("Blood");
 		blood.transform.position = ThisActor.transform.position;
 		blood.GetComponent<ParticleSystem>().Play();
@@ -190,6 +196,7 @@ public class CharacterStatAct : Act
 	{
 		var particle = Define.GetManager<ResourceManager>().Instantiate("DeathParticle", ThisActor.transform);
 		particle.transform.localPosition = Vector3.zero;
+		
 		var anchorTrm = ThisActor.transform.Find("Anchor");
 		var modelTrm = anchorTrm.Find("Model");
 		var scale = modelTrm.localScale;
@@ -199,7 +206,6 @@ public class CharacterStatAct : Act
 		particleAnchorTrm.rotation = rotation;
 		particleModelTrm.localScale = scale;
 		particle.transform.SetParent(null);
-
 		ThisActor.gameObject.SetActive(false);
 	}
 
