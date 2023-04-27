@@ -51,8 +51,10 @@ namespace Actors.Characters
 
 		protected override void Update()
 		{
-			if(IsUpdatingPosition)
+			if(IsUpdatingPosition == false)
 				base.UpdatePosition();
+			else
+				UpdatePosition();
 			
 			if (HasCCState()) return;
 			base.Update();
