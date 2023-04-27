@@ -173,7 +173,7 @@ namespace Acts.Characters
             });
         }
 
-        public virtual void Jump(Vector3 targetPos, Vector3 dir, int distance)
+        public virtual void Jump(Vector3 targetPos, Vector3 dir, int distance, float power = 1)
         {
             if (_isMoving) return;
             int i = distance;
@@ -208,7 +208,7 @@ namespace Acts.Characters
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
             var seq = DOTween.Sequence();
             block.isWalkable = false;
-            seq.Append(_thisTransform.DOJump(nextPos, 1, 1, speed));
+            seq.Append(_thisTransform.DOJump(nextPos, power, 1, speed));
             seq.AppendCallback(() =>
             {
                 map.GetBlock(nextPos.SetY(0)).SetActorOnBlock(ThisActor);

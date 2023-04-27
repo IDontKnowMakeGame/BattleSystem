@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 
 //Copyright (c) 2022 khjtoy
@@ -796,9 +797,8 @@ public static class ExtensionMethods
     
     public static float GetDegree(this Vector3 vector, Vector3 other)
     {
-        var delta = other - vector;
-        delta = delta.normalized;
-        var degree = Mathf.Atan2(delta.x, delta.z) * Mathf.Rad2Deg;
+        var delta = (other - vector).GetDirection();
+        var degree = Mathf.Atan2(delta.x, delta.z) * Mathf.Rad2Deg - 90;
         Debug.Log(degree);
         return degree;
     }

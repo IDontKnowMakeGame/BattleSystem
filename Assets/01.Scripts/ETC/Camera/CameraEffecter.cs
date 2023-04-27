@@ -10,6 +10,7 @@ public class CameraEffecter : MonoBehaviour
 {
     private CinemachineVirtualCamera _cvCam;
 
+    private float originalFOV = 40;
     private bool _isCameraAction;
 
     private Shake _damagedShake;
@@ -47,12 +48,13 @@ public class CameraEffecter : MonoBehaviour
     public void ZoomIn(float value)
     {
         StopAllCoroutines();
+        originalFOV = _cvCam.m_Lens.FieldOfView;
         StartCoroutine(ZoomInOut(value, 0.002f));
     }
     public void ZoomOut()
     {
         StopAllCoroutines();
-        StartCoroutine(ZoomInOut(40, 0.002f));
+        StartCoroutine(ZoomInOut(originalFOV, 0.002f));
     }
     private IEnumerator ZoomInOut(float value, float smoothTime)
     {
