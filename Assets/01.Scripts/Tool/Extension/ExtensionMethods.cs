@@ -826,6 +826,8 @@ public static class ExtensionMethods
     {
         if(vector.x == other.x || vector.z == other.z)
         {
+            if(other.x == 0 && other.z == 0)
+                return false;
             return true;
         }
 

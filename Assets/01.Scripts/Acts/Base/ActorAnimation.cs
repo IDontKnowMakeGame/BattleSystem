@@ -94,5 +94,10 @@ namespace Acts.Characters
 		{
 
 		}
+
+		public virtual ClipBase GetClip(string name)
+		{
+			return curClip;
+		}
 	}
 }

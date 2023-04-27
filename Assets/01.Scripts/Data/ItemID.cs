@@ -26,6 +26,9 @@ namespace Data
         Torch = 200,
         Shield = 201,
         HPPotion = 202,
+        FirstMap = 203,
+        SecondMap = 204,
+        ThirdMap = 205,
         //300~399 QuestItem
         TEST = 300
 
