@@ -88,7 +88,7 @@ namespace Acts.Characters.Enemy
             particle.rotation = particle.randomProperties.RandomRot;
             particle.quadSize = particle.randomProperties.RandomQuadSize;
             particle.skewed = true;
-            particle.uvIndex = Random.Range(0, 4);
+            particle.uvIndex = Random.Range(0, 8);
             MeshParticle.Instance.AddParticle("Blood", particle);
         }
     }

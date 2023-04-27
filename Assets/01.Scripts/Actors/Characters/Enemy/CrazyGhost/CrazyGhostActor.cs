@@ -47,7 +47,11 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
                 var dir = (playerPos - Position).GetDirection();
-                Attack(dir, "Slash", () => { attack.HorizontalAttack(playerPos, false); });
+                Attack(dir, "Slash", () =>
+                {
+                    attack.HorizontalAttack(playerPos, false);
+                    attack.SliceEffect(dir);
+                });
             });
             pattern.RandomActions.Add(() =>
             {
@@ -88,6 +92,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 AttackWithNoReturn(dir,"Combo1", () =>
                 {
                     attack.HorizontalAttack(playerPos, false);
+                    attack.SliceEffect(dir);
                 }, () =>
                 {
                     AttackWithNoReturn(dir,"Combo2", () =>

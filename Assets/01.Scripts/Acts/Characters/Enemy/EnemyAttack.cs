@@ -70,5 +70,29 @@ namespace Acts.Characters.Enemy
             }
             Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.None, isLast);
         }
+        
+        public void SliceEffect(Vector3 dir)
+        {
+            var particle = new MeshParticle.Particle
+            {
+                randomProperties = new MeshParticle.ParticleRandomProperties()
+                {
+                    minPosition = new Vector3(-0.3f, -0.3f),
+                    maxPosition = new Vector3(0.3f, 0.3f),
+                    minRotation = 0,
+                    maxRotation = 0,
+                    minQuadSize = new Vector3(1.5f, 1.5f),
+                    maxQuadSize = new Vector3(2f, 2f),
+                }
+            };
+            var pos = ThisActor.transform.position + dir;
+            var rot = ThisActor.Position.GetDegree(pos) + 45;
+            particle.position = new Vector3(pos.x, pos.z) + particle.randomProperties.RandomPos;
+            particle.rotation = particle.randomProperties.RandomRot + rot;
+            particle.quadSize = particle.randomProperties.RandomQuadSize;
+            particle.skewed = true;
+            particle.uvIndex = Random.Range(0, 2);
+            MeshParticle.Instance.AddParticle("Slice", particle);
+        }
     }
 }
