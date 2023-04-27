@@ -69,6 +69,24 @@
             "name": "HPPotion",
             "currentCnt": 3,
             "maxCnt": 0
+        },
+        {
+            "id": 203,
+            "name": "FirstMap",
+            "currentCnt": 0,
+            "maxCnt": 0
+        },
+        {
+            "id": 204,
+            "name": "SecondMap",
+            "currentCnt": 0,
+            "maxCnt": 0
+        },
+        {
+            "id": 205,
+            "name": "ThirdMap",
+            "currentCnt": 0,
+            "maxCnt": 0
         }
     ],
     "inventoryInQuestItemList": [

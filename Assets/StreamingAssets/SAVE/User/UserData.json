@@ -2,7 +2,7 @@
     "maxHp": 100,
     "feather": 0,
     "firstWeapon": 3,
-    "secondWeapon": 1,
+    "secondWeapon": 2,
     "firstHalo": 100,
     "secondHalo": 0,
     "thirdHalo": 0,
@@ -10,7 +10,7 @@
         "first": 200,
         "second": 201,
         "third": 202,
-        "fourth": 0,
+        "fourth": 203,
         "fifth": 0
     }
 }

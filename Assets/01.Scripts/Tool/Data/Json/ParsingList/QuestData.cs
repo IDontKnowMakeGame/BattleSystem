@@ -14,6 +14,7 @@ public enum QuestName
 [Serializable]
 public class QuestInfo
 {
+    public string btnName = "";
     public QuestName questName = QuestName.none;
     public bool IsComplate = false;
     public int rewardfeather = 0;
