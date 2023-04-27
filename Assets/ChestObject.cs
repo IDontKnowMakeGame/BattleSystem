@@ -2,8 +2,8 @@ using Core;
 using Data;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class ChestObject : InteractionActor
 {
@@ -12,21 +12,22 @@ public class ChestObject : InteractionActor
 	[SerializeField]
 	private GetItemObject _itemObject;
 
-	protected override void Init()
-	{
-		
-	}
+	private PlayableDirector direction;
 
 	protected override void Start()
 	{
 		_itemObject.canInteraction = false;
+		direction = GetComponent<PlayableDirector>();
 	}
 
 	public override void Interact()
 	{
+		base.Interact();
 		if (isOpen)
 			return;
 
+		Debug.Log("open");
+		direction.Play();
 		isOpen = true;
 	}
 

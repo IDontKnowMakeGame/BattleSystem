@@ -119,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0, z: 0}
   _characterRender:
-    isBillBoard: 1
+    isBillBoard: 0
     _defaultTexture: {fileID: 0}
     _frame: 0
     size: {x: 0, y: 0, z: 0}
@@ -140,7 +140,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 6540281dd7479c342b2f37f504771558, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -313,6 +313,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GetItemObject
       objectReference: {fileID: 0}
+    - target: {fileID: 1519516336078644366, guid: 0949c3f5451fe1d4ebebf1dac2e4e639, type: 3}
+      propertyPath: _characterRender.isBillBoard
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1519516336078644367, guid: 0949c3f5451fe1d4ebebf1dac2e4e639, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -323,11 +327,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1519516336078644367, guid: 0949c3f5451fe1d4ebebf1dac2e4e639, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.307
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1519516336078644367, guid: 0949c3f5451fe1d4ebebf1dac2e4e639, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.03492114
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1519516336078644367, guid: 0949c3f5451fe1d4ebebf1dac2e4e639, type: 3}
       propertyPath: m_LocalRotation.w

@@ -60,6 +60,14 @@ public class HaloRenderer : MonoBehaviour
 		}
 	}
 
+	private void Update()
+	{
+		//float x =;
+		//float z = ;
+		//this.transform.position = new Vector3(x,0,z);
+		//this.transform.localRotation = new Vector3(x,0,z);
+	}
+
 	#region Stack으로 계속 추가
 	public void EquipmentHalo(ItemID id)
 	{

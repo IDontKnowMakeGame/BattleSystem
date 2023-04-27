@@ -27,7 +27,7 @@ namespace Actors.Bases
         protected virtual void Init()
         {
             //Add or Init Acts
-            spriteTransform = this.GetComponentInChildren<MeshRenderer>().transform;
+            spriteTransform = this.GetComponentInChildren<MeshRenderer>()?.transform;
         }
 
         protected virtual void Awake()
