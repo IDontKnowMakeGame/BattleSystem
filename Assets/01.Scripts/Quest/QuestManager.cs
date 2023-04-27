@@ -5,15 +5,23 @@ using Actors.Characters.Enemy;
 using System;
 using Core;
 
+struct QuestValue
+{
+    public RoomSO roomSO;
+    public List<int> intList;
+    public List<QuestName> myQuest;
+}
+
 public class QuestManager : MonoBehaviour
 {
     [SerializeField]
     private List<RoomSO> allRoomSo;
 
-    private Dictionary<string, RoomSO> allRoomSODic = new Dictionary<string, RoomSO>();
+    private Dictionary<string, QuestValue> allRoomSODic = new Dictionary<string, QuestValue>();
+    private Dictionary<EnemyType, QuestValue> checkMonsterDic = new Dictionary<EnemyType, QuestValue>();
+
     private Dictionary<Vector3, string> roomData = new Dictionary<Vector3, string>(); 
     
-    private Dictionary<EnemyType, List<int>> checkMonsterDic = new Dictionary<EnemyType, List<int>>();
     private HashSet<RoomSO> checkRoom = new HashSet<RoomSO>();
 
     public static QuestManager Instance { get; private set; }
@@ -22,6 +30,12 @@ public class QuestManager : MonoBehaviour
     {
         Instance = this;
         RoomSet();
+    }
+
+    private void Start()
+    {
+        QuestCheck(QuestName.FirstFloorBossKill);
+        QuestCheck(QuestName.S10AreaEnter);
     }
 
     private void Update()
@@ -55,10 +69,10 @@ public class QuestManager : MonoBehaviour
         switch (currentQuest)
         {
             case QuestName.FirstFloorBossKill:
-                AddMonsterKillMission(EnemyType.CrazyGhostActor, 1);
+                AddMonsterKillMission(currentQuest, EnemyType.CrazyGhostActor, 1);
                 break;
             case QuestName.S10AreaEnter:
-                AddRoomMission("S10");
+                AddRoomMission(currentQuest, "S10");
                 break;
         }
     }
@@ -67,7 +81,9 @@ public class QuestManager : MonoBehaviour
     {
         foreach (RoomSO currentSO in allRoomSo)
         {
-            allRoomSODic.Add(currentSO.name, currentSO);
+            QuestValue newValue = new QuestValue();
+            newValue.roomSO = currentSO;
+            allRoomSODic.Add(currentSO.name, newValue);
 
             Debug.Log(currentSO.startPos.z);
             for (var z = currentSO.startPos.z; z <= currentSO.endPos.z; z += 1)
@@ -82,22 +98,29 @@ public class QuestManager : MonoBehaviour
     }
 
     #region Add Mission
-    public void AddMonsterKillMission(EnemyType type, int cnt)
+    public void AddMonsterKillMission(QuestName currentQuest, EnemyType type, int cnt)
     { 
         if(checkMonsterDic.ContainsKey(type))
         {
-            checkMonsterDic[type].Add(cnt);
+            checkMonsterDic[type].intList.Add(cnt);
+            checkMonsterDic[type].myQuest.Add(currentQuest);
         }
         else
         {
-            checkMonsterDic[type] = new List<int>() { cnt };
+            QuestValue quest = new QuestValue();
+            quest.intList = new List<int>() { cnt };
+            quest.myQuest = new List<QuestName> { currentQuest };
+            checkMonsterDic.Add(type, quest);
         }
 
     }
 
-    public void AddRoomMission(string roomCode)
+    public void AddRoomMission(QuestName currentQuest, string roomCode)
     {
-        checkRoom.Add(allRoomSODic[roomCode]);
+        QuestValue quest = allRoomSODic[roomCode];
+        quest.myQuest = new List<QuestName> { currentQuest };
+        allRoomSODic[roomCode] = quest;
+        checkRoom.Add(allRoomSODic[roomCode].roomSO);
     }
     #endregion
 
@@ -106,7 +129,9 @@ public class QuestManager : MonoBehaviour
     {
         if(checkMonsterDic.ContainsKey(type))
         {
-            List<int> check = checkMonsterDic[type];
+            QuestValue quest = checkMonsterDic[type];
+            List<int> check = quest.intList;
+            List<QuestName> questList = quest.myQuest;
 
             for(int i = 0; i < check.Count; i++)
             {
@@ -114,7 +139,9 @@ public class QuestManager : MonoBehaviour
 
                 if(check[i] == 0)
                 {
-                    check.Remove(i);
+                    check.RemoveAt(i);
+                    Define.GetManager<DataManager>().ReadyClearQuest(questList[i]);
+                    questList.RemoveAt(i);
                     Debug.Log("미션 클리어!");
                     i--;
                 }
@@ -123,7 +150,10 @@ public class QuestManager : MonoBehaviour
             if (check.Count == 0)
                 checkMonsterDic.Remove(type);
             else
-                checkMonsterDic[type] = check;
+            {
+                quest.intList = check;
+                checkMonsterDic[type] = quest;
+            }
         }
     }
 
@@ -132,10 +162,11 @@ public class QuestManager : MonoBehaviour
         string result = string.Empty;
         if (roomData.TryGetValue(pos.SetY(0), out result))
         {
-            if(checkRoom.Contains(allRoomSODic[result]))
+            if(checkRoom.Contains(allRoomSODic[result].roomSO))
             {
-                Debug.Log("Mission 성공");
-                checkRoom.Remove(allRoomSODic[result]);
+                Debug.Log("미션 클리어!");
+                Define.GetManager<DataManager>().ReadyClearQuest(allRoomSODic[result].myQuest[0]);
+                checkRoom.Remove(allRoomSODic[result].roomSO);
             }
         }
     }
