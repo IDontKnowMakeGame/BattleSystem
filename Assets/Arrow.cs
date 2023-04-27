@@ -96,6 +96,7 @@ public class Arrow : MonoBehaviour
 		this.transform.localPosition = -_shootVec;
 		_stickActor = InGame.GetActor(other.gameObject.GetInstanceID()) as CharacterActor;
 
+		Debug.Log(_shootActor);
 		_stickActor.GetAct<CharacterStatAct>().Damage(_damage, _shootActor);
 		_isStick = true;
 	}
@@ -138,7 +139,7 @@ public class Arrow : MonoBehaviour
 	private void OnTriggerEnter(Collider other)
 	{
 		CharacterActor actor = other.GetComponent<CharacterActor>();
-		Debug.Log(actor);
+
 		if (actor == null)
 			return;
 

@@ -55,6 +55,7 @@ namespace Actors.Characters.Enemy
 
         protected string GetDirName(Vector3 dir)
         {
+            dir = InGame.CamDirCheck(dir);
             var result = string.Empty;
             if (dir.z > 0)
                 result = "Upper";

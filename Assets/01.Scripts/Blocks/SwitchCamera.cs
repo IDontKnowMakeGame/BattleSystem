@@ -7,32 +7,46 @@ using Managements.Managers;
 
 public class SwitchCamera : MonoBehaviour
 {
+    private static SwitchCamera CurrentOnSwitchCamera;
+
     [SerializeField]
     private CinemachineVirtualCamera virtualCamera;
     [SerializeField]
-    private float targetValue = 45;
+    private float verticalTagetAngle = 45;
+    [SerializeField]
+    private float horizontalTargetAngle = 0;
     [SerializeField]
     private float targetFov = 50;
     [SerializeField]
     private float duration = 3f;
 
-    private float originalValue;
+    private float originalVerticalValue;
+    private float originalHorizontalValue;
     private float originFov;
-    private bool trigger = false;
+
+    public bool trigger = false;
 
     private float timer;
 
     private void Start()
     {
-        originalValue = virtualCamera.transform.rotation.eulerAngles.x;
+        timer = 0;
+        originalVerticalValue = virtualCamera.transform.rotation.eulerAngles.x;
+        originalHorizontalValue = virtualCamera.transform.rotation.eulerAngles.y;
         originFov = virtualCamera.m_Lens.FieldOfView;
     }
     private void Update()
     {
         if(transform.position == InGame.Player.Position && !trigger)
         {
-            timer = 0;
-            trigger = true;
+            Init();
+            if(CurrentOnSwitchCamera!=this && CurrentOnSwitchCamera != null)
+            {
+                Debug.Log(CurrentOnSwitchCamera.name);
+                CurrentOnSwitchCamera.trigger = false;
+            }
+                
+            CurrentOnSwitchCamera = this;
         }
 
         if (trigger)
@@ -40,12 +54,27 @@ public class SwitchCamera : MonoBehaviour
             timer += Time.deltaTime;
             float t = Mathf.Clamp01(timer / duration);
             // 카메라 회전
-            float angle = Mathf.Lerp(originalValue, targetValue, t);
-            virtualCamera.transform.rotation = Quaternion.Euler(angle, 180, 0);
+            float angleX = Mathf.Lerp(originalVerticalValue, verticalTagetAngle, t);
+            float angleY = Mathf.Lerp(originalHorizontalValue, horizontalTargetAngle, t);
+            virtualCamera.transform.rotation = Quaternion.Euler(angleX, angleY, 0);
 
             // 카메라 FOV
             float currentFov = Mathf.Lerp(originFov, targetFov, t);
             virtualCamera.m_Lens.FieldOfView = currentFov;
         }
+
+        if(timer >= duration)
+        {
+            trigger = false;
+        }
+    }
+
+    public void Init()
+    {
+        timer = 0;
+        trigger = true;
+        originalVerticalValue = virtualCamera.transform.rotation.eulerAngles.x;
+        originalHorizontalValue = virtualCamera.transform.rotation.eulerAngles.y;
+        originFov = virtualCamera.m_Lens.FieldOfView;
     }
 }
