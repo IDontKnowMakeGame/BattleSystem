@@ -13,7 +13,8 @@
             "isBossKill": false,
             "onCristalList": [
                 1,
-                0
+                0,
+                19
             ],
             "openChestList": [],
             "killUniqueEnemy": []
