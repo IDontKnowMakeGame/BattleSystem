@@ -803,6 +803,12 @@ public static class ExtensionMethods
         return degree;
     }
     
+    public static float ToDegree(this Vector3 vector)
+    {
+        var degree = Mathf.Atan2(vector.x, vector.z) * Mathf.Rad2Deg - 90;
+        return degree;
+    }
+    
     public static Vector3 Rotate(this Vector3 vector, float degree)
     {
         var result = Quaternion.Euler(0, degree, 0) * vector;

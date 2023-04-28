@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/NPC/TouchActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/NPC/TouchActor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/CrazyGhost/CrazyGhostActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/CrazyGhost/CrazyGhostActor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAttack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Tool/Extension/ExtensionMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Tool/Extension/ExtensionMethods.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +172,7 @@
       <workItem from="1682587213943" duration="1500000" />
       <workItem from="1682588759798" duration="3874000" />
       <workItem from="1682605069311" duration="4930000" />
-      <workItem from="1682658510513" duration="2104000" />
+      <workItem from="1682658510513" duration="3447000" />
     </task>
     <servers />
   </component>

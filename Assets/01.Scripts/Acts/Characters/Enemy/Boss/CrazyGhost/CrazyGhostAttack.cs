@@ -59,15 +59,15 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
         }
 
 
-        public void SoulAttack(Vector3 pos, float delay, bool isLast = true)
+        public void SoulAttack(Vector3 dir, float delay, bool isLast = true)
         {
             Attack();
-            ThisActor.StartCoroutine(SoulAttackCoroutine(pos, delay, isLast));
+            ThisActor.StartCoroutine(SoulAttackCoroutine(dir, delay, isLast));
         }
 
-        private IEnumerator SoulAttackCoroutine(Vector3 pos, float delay, bool isLast = true)
+        private IEnumerator SoulAttackCoroutine(Vector3 dir, float delay, bool isLast = true)
         {
-            var degree = ThisActor.Position.GetDegree(pos).GetRotation().GetDirection();
+            var degree = dir.ToDegree().GetRotation();
             var range = new Vector3[] { new(1, 0, -2), new(1, 0, -1), new(1, 0, 0), new(1, 0, 1), new(1, 0, 2) };
             var distance = 0;
             var block = Define.GetManager<MapManager>().GetBlock(ThisActor.Position);
