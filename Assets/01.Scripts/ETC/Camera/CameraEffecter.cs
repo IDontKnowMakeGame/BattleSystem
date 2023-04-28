@@ -56,22 +56,22 @@ public class CameraEffecter : MonoBehaviour
     {
         _greateSwordShake.ScreenShake();
     }
-    public void ZoomIn(float value)
+    public void ZoomIn(float time)
     {
         Debug.Log("ZoomIn");
         originFov = _cvCam.m_Lens.FieldOfView;
-        targetFov = value;
+        targetFov = 20;
         timer = 0;
-        duration = 0.5f;
+        duration = time;
         trigger = true;
     }
     public void ZoomOut()
     {
-        Debug.Log("ZoomOut");
+        Debug.Log($"ZoomOut : {SwitchCamera.FOV}");
         originFov = _cvCam.m_Lens.FieldOfView;
         targetFov = SwitchCamera.FOV;
         timer = 0;
-        duration = 0.1f;
+        duration = 2f;
         trigger = true;
     }
     private void Update()

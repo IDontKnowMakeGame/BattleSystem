@@ -65,7 +65,7 @@ public class SwitchCamera : MonoBehaviour
             virtualCamera.m_Lens.FieldOfView = currentFov;
         }
 
-        if(timer >= duration)
+        if(timer >= duration && trigger == true)
         {
             FOV = virtualCamera.m_Lens.FieldOfView;
             trigger = false;
