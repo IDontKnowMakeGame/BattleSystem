@@ -16,7 +16,8 @@ namespace AI
         MoveCondition,
         EdgeCondition,
         EnteredCondition,
-        MovableCondition
+        MovableCondition,
+        StateCondition,
     }
     
     [System.Serializable]

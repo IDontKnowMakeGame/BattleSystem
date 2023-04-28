@@ -214,6 +214,7 @@ namespace Acts.Characters
                 map.GetBlock(nextPos.SetY(0)).SetActorOnBlock(ThisActor);
                 MoveStop();
                 block.isWalkable = true;
+                isChasing = false;
                 seq.Kill();
             });
         }
