@@ -23,6 +23,7 @@ namespace Actors.Characters.NPC
                 }
             }
             base.Update();
+            UpdatePosition();
         }
 
         private void OnDrawGizmos()
