@@ -278,6 +278,7 @@ namespace Acts.Characters
         protected virtual void MoveStop()
         {
             _character.RemoveState(CharacterState.Move);
+            isChasing = false;
         }
     }
 }
