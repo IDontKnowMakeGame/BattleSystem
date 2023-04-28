@@ -465,6 +465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0, z: 0}
   _characterRender:
+    isBillBoard: 1
     _defaultTexture: {fileID: 2800000, guid: b8dcdc1f31fdb4c459bc678fcee5f96b, type: 3}
     _frame: 11
     size: {x: 2, y: 1, z: 1}
@@ -717,7 +718,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2755650914466401373, guid: 4b2ef8a7f622c2347ae45852f58b3159, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4656177935829726777, guid: 4b2ef8a7f622c2347ae45852f58b3159, type: 3}
       propertyPath: yTimer
@@ -749,7 +750,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8441543394442963672, guid: 4b2ef8a7f622c2347ae45852f58b3159, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8441543394442963672, guid: 4b2ef8a7f622c2347ae45852f58b3159, type: 3}
       propertyPath: m_LocalPosition.z

@@ -9,6 +9,7 @@ public class EffectRotate : MonoBehaviour
 
 	void Update()
     {
+		//-90ÇØ¶ó
 		//Vector3 vec = effect.targetObject.transform.position - this.transform.position;
 		//
 		//this.transform.localRotation = Quaternion.LookRotation(vec);
