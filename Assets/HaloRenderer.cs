@@ -1,3 +1,4 @@
+using Core;
 using Data;
 using System;
 using System.Collections;
@@ -43,12 +44,15 @@ public class HaloRenderer : MonoBehaviour
 	private int maxCount = 0;
 	private int count = 0;
 
+	private Vector3 vec = new Vector3(0, 0.2f, 0);
+
 	private void Awake()
 	{
 		foreach (HaloAnimationContainor halo in _haloAnimationInfos)
 		{
 			_animations.Add(halo.id, halo);
 		}
+		vec = this.transform.localPosition;
 	}
 
 	private void Start()
@@ -58,6 +62,20 @@ public class HaloRenderer : MonoBehaviour
 			if (halo.State == HaloAnimationState.None)
 				halo.AnimatorStop();
 		}
+	}
+
+	private void Update()
+	{
+		//float x =;
+		//float z = ;
+
+		Vector3 camDic = InGame.CamDirCheck(Vector3.back) / 5;
+		this.transform.localPosition = vec + camDic;
+		if(camDic.x >= 0.2 || camDic.x <= -0.2)
+		this.transform.localRotation = Quaternion.Euler(new Vector3(0, camDic.x > 0.2f ? 90 : -90, 0));
+		else
+			this.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+
 	}
 
 	#region Stack으로 계속 추가
