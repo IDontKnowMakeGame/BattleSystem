@@ -10,7 +10,7 @@
 
             var bullet = bulletObj.GetComponent<Arrow>();
             var dir = transform.rotation.eulerAngles.Euler2Dir();
-            bullet.Shoot(dir, Position, this, 2, 25, 10);
+            bullet.Shoot(dir, Position, this, 2, 25, 10,true);
         }
     }
 }

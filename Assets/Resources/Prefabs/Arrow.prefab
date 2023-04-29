@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 9178626096104075764}
   - component: {fileID: 6378768897947534654}
   - component: {fileID: 2704036303461568516}
-  - component: {fileID: 8401156109603033622}
   - component: {fileID: 5159332078612601956}
   - component: {fileID: 6760551342030637214}
   - component: {fileID: 1143996470894243719}
+  - component: {fileID: 8952606367286323832}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -104,20 +104,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &8401156109603033622
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4865309214770636011}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 568036627037906997, guid: 0f040f3db76b800499ad6100a14fa43d, type: 3}
 --- !u!114 &5159332078612601956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,3 +199,16 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!65 &8952606367286323832
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4865309214770636011}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.038960695, y: 0.21770144, z: 0.038960703}
+  m_Center: {x: 0, y: 0.10885068, z: 4.10807e-16}

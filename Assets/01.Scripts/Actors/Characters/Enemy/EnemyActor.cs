@@ -72,7 +72,6 @@ namespace Actors.Characters.Enemy
         protected void Attack(Vector3 dir, string stateName, Action onAttack = null, bool isLast = true, Action onEnd = null)
         {
             var dirName = GetDirName(dir);
-            Debug.Log(dirName);
             var nextState = dirName + stateName;
             var readyClip =  _enemyAnimation.GetClip( nextState + "Ready");
             var attackClip = _enemyAnimation.GetClip( nextState + "Attack");

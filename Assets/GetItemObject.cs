@@ -28,7 +28,8 @@ public class GetItemObject : InteractionActor
 	{
 		if (!canInteraction)
 			return;
-		//여기다가 추가
+
+		Define.GetManager<DataManager>().AddItemInInventory(_id, _count);
 		Define.GetManager<ResourceManager>().Destroy(this.gameObject);
 	}
 }
