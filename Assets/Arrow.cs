@@ -21,7 +21,7 @@ public class Arrow : MonoBehaviour
 	private bool _isStick = false;
 	private bool _canPull = false;
 
-
+	private bool _isDestroy = false;
 
 	private PlayerAnimation _playerAnimation;
 
@@ -33,12 +33,11 @@ public class Arrow : MonoBehaviour
 		if (_shootActor is PlayerActor)
 			_playerAnimation = InGame.Player.GetAct<PlayerAnimation>();
 	}
-	public static void ShootArrow(Vector3 vec, Vector3 position, CharacterActor actor, float speed, float damage, int distance)
+	public static void ShootArrow(Vector3 vec, Vector3 position, CharacterActor actor, float speed, float damage, int distance, bool destroy = false)
 	{
 		Arrow obj = Define.GetManager<ResourceManager>().Instantiate("Arrow").GetComponent<Arrow>();
-		Debug.Log(vec);
 		obj.transform.rotation = Quaternion.Euler(VecToRotation(vec));
-		obj.Shoot(vec, position, actor, speed, damage, distance);
+		obj.Shoot(vec, position, actor, speed, damage, distance, destroy);
 	}
 	private static Vector3 VecToRotation(Vector3 vec)
 	{
@@ -53,11 +52,10 @@ public class Arrow : MonoBehaviour
 		else
 			return Vector3.zero;
 	}
-	public virtual void Shoot(Vector3 vec, Vector3 position, CharacterActor actor, float speed, float damage, int distance)
+	public virtual void Shoot(Vector3 vec, Vector3 position, CharacterActor actor, float speed, float damage, int distance, bool destroy = false)
 	{
 		var map = Define.GetManager<MapManager>();
 		int count = 0;
-		Debug.Log(position);
 		for (count = 0; count < distance; count++)
 		{
 			if (map.GetBlock(position + (vec * count)) == null || (!map.GetBlock(position + (vec * count)).isWalkable && map.GetBlock(position + (vec * count)).ActorOnBlock == null))
@@ -76,6 +74,7 @@ public class Arrow : MonoBehaviour
 		_shootVec = vec;
 		_shootActor = actor;
 		_damage = damage;
+		_isDestroy = destroy;
 
 		if (_shootActor is PlayerActor)
 			InputManager<Bow>.OnSubPress += Pull;
@@ -102,6 +101,9 @@ public class Arrow : MonoBehaviour
 
 		_stickActor.GetAct<CharacterStatAct>().Damage(_damage, _shootActor);
 		_isStick = true;
+
+		if (_isDestroy)
+			Define.GetManager<ResourceManager>().Destroy(this.gameObject);
 	}
 
 	public void StickReBlock()
