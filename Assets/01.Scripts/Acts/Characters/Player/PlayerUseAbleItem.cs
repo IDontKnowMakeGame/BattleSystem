@@ -72,7 +72,15 @@ namespace Acts.Characters.Player
 
             if(currentID != ItemID.None)
             {
+
+                SaveItemData currentData = Define.GetManager<DataManager>().LoadItemFromInventory(currentID);
+                int cnt = currentData.currentCnt;
+
+                if (cnt <= 0) return;
+
                 useAbleItems[currentID].UseItem();
+                currentData.currentCnt--;
+                Define.GetManager<DataManager>().ChangeItemInfo(currentData);
             }
         }
 
