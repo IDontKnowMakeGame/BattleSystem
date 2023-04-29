@@ -90,12 +90,13 @@ namespace Acts.Characters.Enemy
                 }
             };
             var pos = ThisActor.transform.position + dir;
-            var rot = dir.ToDegree();
+            var rot = InGame.CamDirCheck(-dir).ToDegree();
             particle.position = new Vector3(pos.x, pos.z) + particle.randomProperties.RandomPos;
-            particle.rotation = particle.randomProperties.RandomRot + rot;
+            Debug.Log(rot);
+            particle.rotation = rot + 30;
             particle.quadSize = particle.randomProperties.RandomQuadSize;
             particle.skewed = true;
-            particle.uvIndex = Random.Range(0, 2);
+            particle.uvIndex = Random.Range(1, 2);
             MeshParticle.Instance.AddParticle("Slice", particle);
         }
     }

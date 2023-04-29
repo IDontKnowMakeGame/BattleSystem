@@ -210,25 +210,25 @@ public class MeshParticle : MonoBehaviour
 
                 if (particle.skewed)
                 {
-                    pData.Vertices[vIndex0] = particle.position + Quaternion.Euler(0, 0, particle.rotation) *
+                    pData.Vertices[vIndex0] = particle.position + Quaternion.Euler(0, 0, 90 - particle.rotation) *
                         new Vector3(-particle.quadSize.x, -particle.quadSize.y);
-                    pData.Vertices[vIndex1] = particle.position + Quaternion.Euler(0, 0, particle.rotation) *
+                    pData.Vertices[vIndex1] = particle.position + Quaternion.Euler(0, 0, 90 - particle.rotation) *
                         new Vector3(-particle.quadSize.x, +particle.quadSize.y);
-                    pData.Vertices[vIndex2] = particle.position + Quaternion.Euler(0, 0, particle.rotation) *
+                    pData.Vertices[vIndex2] = particle.position + Quaternion.Euler(0, 0, 90 - particle.rotation) *
                         new Vector3(+particle.quadSize.x, +particle.quadSize.y);
-                    pData.Vertices[vIndex3] = particle.position + Quaternion.Euler(0, 0, particle.rotation) *
+                    pData.Vertices[vIndex3] = particle.position + Quaternion.Euler(0, 0, 90 - particle.rotation) *
                         new Vector3(+particle.quadSize.x, -particle.quadSize.y);
                 }
                 else
                 {
                     pData.Vertices[vIndex0] = particle.position +
-                                              Quaternion.Euler(0, 0, particle.rotation - 180) * particle.quadSize;
+                                              Quaternion.Euler(0, 0, 90 - particle.rotation - 180) * particle.quadSize;
                     pData.Vertices[vIndex1] = particle.position +
-                                              Quaternion.Euler(0, 0, particle.rotation - 270) * particle.quadSize;
+                                              Quaternion.Euler(0, 0, 90 - particle.rotation - 270) * particle.quadSize;
                     pData.Vertices[vIndex2] = particle.position +
-                                              Quaternion.Euler(0, 0, particle.rotation - 0) * particle.quadSize;
+                                              Quaternion.Euler(0, 0, 90 - particle.rotation - 0) * particle.quadSize;
                     pData.Vertices[vIndex3] = particle.position +
-                                              Quaternion.Euler(0, 0, particle.rotation - 90) * particle.quadSize;
+                                              Quaternion.Euler(0, 0, 90 - particle.rotation - 90) * particle.quadSize;
                 }
 
                 var uvCoords = pData.UVCoordsList[particle.uvIndex];
