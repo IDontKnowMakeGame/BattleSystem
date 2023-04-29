@@ -4,10 +4,12 @@ using UnityEngine;
 using Cinemachine;
 using Core;
 using Managements.Managers;
+using Unity.VisualScripting;
 
 public class SwitchCamera : MonoBehaviour
 {
     private static SwitchCamera CurrentOnSwitchCamera;
+    public static float FOV = 40;
 
     [SerializeField]
     private CinemachineVirtualCamera virtualCamera;
@@ -63,8 +65,9 @@ public class SwitchCamera : MonoBehaviour
             virtualCamera.m_Lens.FieldOfView = currentFov;
         }
 
-        if(timer >= duration)
+        if(timer >= duration && trigger == true)
         {
+            FOV = virtualCamera.m_Lens.FieldOfView;
             trigger = false;
         }
     }

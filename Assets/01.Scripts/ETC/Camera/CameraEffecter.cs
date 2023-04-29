@@ -5,13 +5,24 @@ using System.Linq;
 using Core;
 using UnityEngine;
 using Walls.Acts;
+using static UnityEngine.Rendering.DebugUI;
+using Unity.VisualScripting;
 
 public class CameraEffecter : MonoBehaviour
 {
+    [SerializeField]
+    private float duration = 0.5f;
+
     private CinemachineVirtualCamera _cvCam;
 
     private float originalFOV = 40;
     private bool _isCameraAction;
+
+    public bool trigger = false;
+
+    private float timer;
+    private float originFov;
+    private float targetFov;
 
     private Shake _damagedShake;
     private Shake _basicShake;
@@ -27,11 +38,11 @@ public class CameraEffecter : MonoBehaviour
     }
     public void StartCameraAction()
     {
-
+        _isCameraAction = true;
     }
     public void EndCameraAction()
     {
-
+        _isCameraAction = false;
     }
     public void DamagedShake()
     {
@@ -45,37 +56,41 @@ public class CameraEffecter : MonoBehaviour
     {
         _greateSwordShake.ScreenShake();
     }
-    public void ZoomIn(float value)
+    public void ZoomIn(float time)
     {
-        StopAllCoroutines();
-        originalFOV = _cvCam.m_Lens.FieldOfView;
-        StartCoroutine(ZoomInOut(value, 0.002f));
+        Debug.Log("ZoomIn");
+        originFov = _cvCam.m_Lens.FieldOfView;
+        targetFov = 20;
+        timer = 0;
+        duration = time;
+        trigger = true;
     }
     public void ZoomOut()
     {
-        StopAllCoroutines();
-        StartCoroutine(ZoomInOut(originalFOV, 0.002f));
+        Debug.Log($"ZoomOut : {SwitchCamera.FOV}");
+        originFov = _cvCam.m_Lens.FieldOfView;
+        targetFov = SwitchCamera.FOV;
+        timer = 0;
+        duration = 2f;
+        trigger = true;
     }
-    private IEnumerator ZoomInOut(float value, float smoothTime)
+    private void Update()
     {
+        if(trigger)
+        {
+            timer += Time.deltaTime;
+            float t = Mathf.Clamp01(timer / duration);
 
-        if (_cvCam.m_Lens.FieldOfView > value)
-        {
-            while (_cvCam.m_Lens.FieldOfView >= value)
-            {
-                _cvCam.m_Lens.FieldOfView -= 1;
-                yield return new WaitForSeconds(smoothTime);
-            }
-        }
-        else
-        {
-            while (_cvCam.m_Lens.FieldOfView <= value)
-            {
-                _cvCam.m_Lens.FieldOfView += 1;
-                yield return new WaitForSeconds(smoothTime);
-            }
+            // Ä«¸Þ¶ó FOV
+            float currentFov = Mathf.Lerp(originFov, targetFov, t);
+            _cvCam.m_Lens.FieldOfView = currentFov;
         }
 
+        if (timer >= duration)
+        {
+            timer = 0;
+            trigger = false;
+        }
     }
     public void TimeSlow()
     {
@@ -87,6 +102,7 @@ public class CameraEffecter : MonoBehaviour
     }
     
     public LayerMask Mask;
+
 
     private void LateUpdate()
     {

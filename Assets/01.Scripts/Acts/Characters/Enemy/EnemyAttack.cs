@@ -1,4 +1,5 @@
-﻿using Actors.Characters;
+﻿using System.Numerics;
+using Actors.Characters;
 using Acts.Base;
 using Blocks.Acts;
 using Core;
@@ -6,6 +7,7 @@ using Data;
 using Managements.Managers;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.RenderGraphModule;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Acts.Characters.Enemy
 {
@@ -25,10 +27,11 @@ namespace Acts.Characters.Enemy
             Define.GetManager<MapManager>().AttackBlock(ThisActor.Position - dir, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.None, isLast);
         }
         
-        public void HorizontalAttack(Vector3 pos, bool isLast = true)
+        public void HorizontalAttack(Vector3 dir, bool isLast = true)
         {
             Attack();
-            var degree = ThisActor.Position.GetDegree(pos).GetRotation().GetDirection();
+            var degree = dir.ToDegree().GetRotation();
+            Debug.Log(degree);
             var range = new Vector3[] { new (1, 0, -1), new (1, 0, 0), new (1, 0, 1) };
             for (var r = 0; r < 3; r++)
             {
@@ -41,10 +44,11 @@ namespace Acts.Characters.Enemy
             }
         }
 
-        public void VerticalAttack(Vector3 pos, bool isLast = true)
+        public void VerticalAttack(Vector3 dir, bool isLast = true)
         {
             Attack();
-            var degree = ThisActor.Position.GetDegree(pos).GetRotation().GetDirection();
+            var degree = dir.ToDegree().GetRotation();
+            Debug.Log(degree);
             var range = Vector3.right;
             for (var r = 1; r <= 5; r++)
             {
@@ -55,10 +59,10 @@ namespace Acts.Characters.Enemy
             Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.None, isLast);
         }
 
-        public void ForwardAttack(Vector3 pos, bool isLast = true)
+        public void ForwardAttack(Vector3 dir, bool isLast = true)
         {
             Attack();
-            var degree = ThisActor.Position.GetDegree(pos).GetRotation().GetDirection();
+            var degree = dir.ToDegree().GetRotation();
             for(var i = -1; i <= 1; i++)
             {
                 for (int j = 0; j <= 2; j++)
@@ -69,6 +73,30 @@ namespace Acts.Characters.Enemy
                 }
             }
             Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.None, isLast);
+        }
+        
+        public void SliceEffect(Vector3 dir)
+        {
+            var particle = new MeshParticle.Particle
+            {
+                randomProperties = new MeshParticle.ParticleRandomProperties()
+                {
+                    minPosition = new Vector3(-0.3f, -0.3f),
+                    maxPosition = new Vector3(0.3f, 0.3f),
+                    minRotation = 0,
+                    maxRotation = 0,
+                    minQuadSize = new Vector3(1.5f, 1.5f),
+                    maxQuadSize = new Vector3(2f, 2f),
+                }
+            };
+            var pos = ThisActor.transform.position + dir;
+            var rot = dir.ToDegree();
+            particle.position = new Vector3(pos.x, pos.z) + particle.randomProperties.RandomPos;
+            particle.rotation = particle.randomProperties.RandomRot + rot;
+            particle.quadSize = particle.randomProperties.RandomQuadSize;
+            particle.skewed = true;
+            particle.uvIndex = Random.Range(0, 2);
+            MeshParticle.Instance.AddParticle("Slice", particle);
         }
     }
 }

@@ -214,6 +214,7 @@ namespace Acts.Characters
                 map.GetBlock(nextPos.SetY(0)).SetActorOnBlock(ThisActor);
                 MoveStop();
                 block.isWalkable = true;
+                isChasing = false;
                 seq.Kill();
             });
         }
@@ -277,6 +278,7 @@ namespace Acts.Characters
         protected virtual void MoveStop()
         {
             _character.RemoveState(CharacterState.Move);
+            isChasing = false;
         }
     }
 }

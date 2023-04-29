@@ -47,7 +47,11 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
                 var dir = (playerPos - Position).GetDirection();
-                Attack(dir, "Slash", () => { attack.HorizontalAttack(playerPos, false); });
+                Attack(dir, "Slash", () =>
+                {
+                    attack.HorizontalAttack(dir, false);
+                    attack.SliceEffect(dir);
+                });
             });
             pattern.RandomActions.Add(() =>
             {
@@ -57,7 +61,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 Attack(dir,"Pierce", () =>
                 {
                     move.Jump(Position, dir, 6, 0f);
-                    attack.VerticalAttack(playerPos, false);
+                    attack.VerticalAttack(dir, false);
                 });
             });
             jump.OnEnter = () =>
@@ -87,17 +91,18 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 AddState(CharacterState.Attack);
                 AttackWithNoReturn(dir,"Combo1", () =>
                 {
-                    attack.HorizontalAttack(playerPos, false);
+                    attack.HorizontalAttack(dir, false);
+                    attack.SliceEffect(dir);
                 }, () =>
                 {
                     AttackWithNoReturn(dir,"Combo2", () =>
                     {
-                        attack.VerticalAttack(playerPos, false);
+                        attack.VerticalAttack(dir, false);
                     }, () =>
                     {
                         Attack(dir,"Combo3", () =>
                         {
-                            attack.ForwardAttack(playerPos, false);
+                            attack.ForwardAttack(dir, false);
                         });
                     });
                 });
@@ -113,7 +118,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 move.Jump(Position, -dir, 3);
                 jumpClip.OnExit += () =>
                 {
-                    Attack(Vector3.zero,"SoulAttack", () => { attack.SoulAttack(playerPos, 0.15f); }, false);
+                    Attack(Vector3.zero,"SoulAttack", () => { attack.SoulAttack(dir, 0.15f); }, false);
                 };
             };
             screaming.OnEnter = () =>
@@ -140,7 +145,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 move.Jump(Position, dir, 3);
                 jumpClip.OnExit += () =>
                 {
-                    Attack(Vector3.zero,"SoulAttack", () => { attack.SoulAttack(playerPos, 0f); }, false);
+                    Attack(Vector3.zero,"SoulAttack", () => { attack.SoulAttack(dir, 0f); }, false);
                 };
             };
 

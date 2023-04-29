@@ -69,7 +69,7 @@ namespace Actors.Characters.Enemy
             return result;
         }
 
-        protected void Attack(Vector3 dir, string stateName, Action onAttack = null, bool isLast = true)
+        protected void Attack(Vector3 dir, string stateName, Action onAttack = null, bool isLast = true, Action onEnd = null)
         {
             var dirName = GetDirName(dir);
             Debug.Log(dirName);
@@ -99,6 +99,7 @@ namespace Actors.Characters.Enemy
                     {
                         if(isLast)
                             RemoveState(CharacterState.Attack);
+                        onEnd?.Invoke();
                     };
                 };
             };

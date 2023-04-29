@@ -1,4 +1,15 @@
 {
     "currentQuestLine": 0,
-    "quests": []
+    "quests": [
+        {
+            "btnName": "BossKillQuest",
+            "questName": 2,
+            "IsComplate": false,
+            "rewardfeather": 0,
+            "rewords": [
+                200
+            ],
+            "openQuest": []
+        }
+    ]
 }

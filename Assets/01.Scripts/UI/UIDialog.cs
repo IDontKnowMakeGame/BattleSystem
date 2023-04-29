@@ -64,8 +64,13 @@ public class UIDialog : UIBase
     }
     public void NextMessage()
     {
-        SetMessageBoxText(msgLine.Dequeue());
+        if (msgLine.Count <= 0)
+        {
+            FlagDialogue(false);
+            return;
+        }
 
+        SetMessageBoxText(msgLine.Dequeue());
         if (msgLine.Count <= 0)
             EndMessage();
     }
@@ -88,8 +93,8 @@ public class UIDialog : UIBase
 
         choiceBox.RegisterCallback<ClickEvent>(e =>
         {
-            action();
             FlagDialogue(false);
+            action();
         });
 
         choicePanel.Add(choiceBox);
