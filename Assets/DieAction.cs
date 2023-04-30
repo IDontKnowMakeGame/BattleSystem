@@ -26,9 +26,18 @@ public class DieAction : InteractionActor
 		AddAct(_unitAnimation);
 	}
 
+	protected override void Start()
+	{
+		base.Start();
+		_unitAnimation.Play("CrazyGhostIdle");
+	}
+
 	public void InitDieObj(string name)
 	{
 		objName = name;
+
+		_unitAnimation.Play("CrazyGhostIdle");
+		Debug.Log(_unitAnimation.GetClip("CrazyGhostIdle").name);
 	}
 
 	public override void Interact()
@@ -38,7 +47,7 @@ public class DieAction : InteractionActor
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, new EventParam() { stringParam = "gf" });
 		Debug.Log(_unitAnimation.GetClip(objName));
 		_unitAnimation.Play(objName);
-		_unitAnimation.GetClip(objName)?.SetEventOnFrame(3, Die);
+		_unitAnimation.GetClip(objName)?.SetEventOnFrame(_unitAnimation.GetClip(objName).fps -1, Die);
 		if (_unitAnimation.GetClip(objName) == null)
 			return;
 
