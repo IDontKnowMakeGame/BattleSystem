@@ -7,6 +7,10 @@ using UnityEngine.Playables;
 public class TImeLinePlayer : MonoBehaviour
 {
     private PlayableDirector _playable;
+    [SerializeField]
+    private BloodController _obj;
+    [SerializeField]
+    private BloodController _obj2;
 
     private bool _isPlaying;
 
@@ -28,6 +32,26 @@ public class TImeLinePlayer : MonoBehaviour
     {
         _isPlaying = false;
     }
+    
+    private int count = 0;
+    public void SpreadBlood()
+    {
+        if (count == 0)
+        {
+            _obj.BloodSpread(0.2f);
+		}
+        else if(count == 1)
+        {
+			_obj2.BloodSpread(0.5f);
+		}
+        count++;
+	}
+
+    public void EndSpreadBlood()
+    {
+        _obj.EndBlood();
+        _obj2.EndBlood();
+	}
 
     private void PlayTimeLine(EventParam eventParam)
     {

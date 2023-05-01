@@ -28,7 +28,24 @@ public class Weapon : EquiqmentItem
 	}
 
 	#region 타이머 관련 변수
-	protected bool _isCoolTime = false;
+	protected bool _isCoolTime
+	{
+		get
+		{
+			return _coolTime;
+		}
+		set
+		{
+			if(value == true)
+			{
+				//함수실행
+			}
+
+			_coolTime = _isCoolTime;
+		}
+	}
+
+	private bool _coolTime;
 	protected float _currentTimerSecound = 0f;
 	#endregion
 

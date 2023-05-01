@@ -65,8 +65,8 @@ namespace Acts.Characters.Enemy
 
             UnitAnimation unit = ThisActor.GetAct<UnitAnimation>();
 			ClipBase clip = unit.GetClip("Die");
-            clip.SetEventOnFrame(clip.fps - 1, ObjectCreate);
-			unit.Play("Die");
+            clip?.SetEventOnFrame(clip.fps - 1, ObjectCreate);
+			unit?.Play("Die");
 
 			var enemy = ThisActor as EnemyActor;
             if (enemy != null) enemy.Alive = false;

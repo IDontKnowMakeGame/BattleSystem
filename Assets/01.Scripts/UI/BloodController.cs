@@ -30,4 +30,20 @@ public class BloodController : MonoBehaviour
             });
         });
     }
+
+    public void BloodSpread(float t)
+    {
+		blood.DOFade(t, fadeTime).OnComplete(() =>
+		{
+			blood.gameObject.SetActive(true);
+		});
+	}
+
+    public void EndBlood()
+    {
+        blood.DOFade(0f, fadeTime).OnComplete(() =>
+        {
+            blood.gameObject.SetActive(false);
+        });
+    }
 }
