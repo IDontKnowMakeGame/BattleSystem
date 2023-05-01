@@ -150,8 +150,8 @@ namespace Blocks
             _blockRender.SetMainColor(originalColor);
             Shake(delay / 2, shakeType, strength);
             var dir = (attacker.Position - Position).GetDirection();
-            dir.y = 2f;
-            var power = Vector3.Distance(attacker.Position, Position) * 1000;
+            dir.y = 3f;
+            var power = Vector3.Distance(attacker.Position, Position) * 10000;
 
             InGame.Actors.Values.Where(a => a is FlyableActor).Where(f => f.Position == Position).ToList().ForEach(o => ((FlyableActor)o).Fly(-dir, power));
             
