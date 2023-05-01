@@ -29,6 +29,12 @@
             "name": "OldBow",
             "currentCnt": 0,
             "maxCnt": 0
+        },
+        {
+            "id": 0,
+            "name": "None",
+            "currentCnt": 0,
+            "maxCnt": 0
         }
     ],
     "inventoryInHaloList": [
@@ -56,19 +62,19 @@
             "id": 200,
             "name": "Torch",
             "currentCnt": 0,
-            "maxCnt": 99
+            "maxCnt": 0
         },
         {
             "id": 201,
             "name": "Shield",
-            "currentCnt": 0,
-            "maxCnt": 99
+            "currentCnt": 1,
+            "maxCnt": 0
         },
         {
             "id": 202,
             "name": "HPPotion",
             "currentCnt": 0,
-            "maxCnt": 5
+            "maxCnt": 0
         },
         {
             "id": 203,

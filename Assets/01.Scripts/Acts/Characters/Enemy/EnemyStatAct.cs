@@ -53,7 +53,7 @@ namespace Acts.Characters.Enemy
                 return;
 
             ThisActor.GetAct<EnemyAI>()?.ResetAllConditions();
-
+            ThisActor.gameObject.tag = "Untagged";
 
             //QuestManager.Instance.CheckKillMission((ThisActor as EnemyActor).CurrentType);
             //if(attackActor != null)

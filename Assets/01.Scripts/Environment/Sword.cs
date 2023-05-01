@@ -1,27 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Actors;
 using UnityEngine;
 
-public class Sword : MonoBehaviour
+public class Sword : FlyableActor
 {
-    [SerializeField]
-    private float power = 200f;
-
-    private Rigidbody rigidbody;
-
-    private void Start()
-    {
-        rigidbody = GetComponent<Rigidbody>();
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            //rigidbody.constraints = ~(RigidbodyConstraints.FreezeAll);
-
-
-            rigidbody.AddExplosionForce(power, transform.position, 20f, 20f);
-        }
-    }
+     
 }
