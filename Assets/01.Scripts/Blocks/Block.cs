@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Linq;
+using Actors;
 using Actors.Bases;
 using Actors.Characters;
 using Actors.Characters.Enemy;
@@ -88,6 +91,7 @@ namespace Blocks
         private BlockRender _blockRender;
         private BlockMovement _blockMovement;
         private BlockParticle _blockParticle;
+        public Action<Vector3, float> OnHit = null;
 
 		protected override void Init()
         {
@@ -145,6 +149,11 @@ namespace Blocks
             yield return new WaitForSeconds(delay);
             _blockRender.SetMainColor(originalColor);
             Shake(delay / 2, shakeType, strength);
+            var dir = (attacker.Position - Position).GetDirection();
+            dir.y = 2f;
+            var power = Vector3.Distance(attacker.Position, Position) * 1000;
+
+            InGame.Actors.Values.Where(a => a is FlyableActor).Where(f => f.Position == Position).ToList().ForEach(o => ((FlyableActor)o).Fly(-dir, power));
             
             if(isLast)
                 character.RemoveState(CharacterState.Attack);
