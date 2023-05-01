@@ -29,6 +29,12 @@
             "name": "OldBow",
             "currentCnt": 0,
             "maxCnt": 0
+        },
+        {
+            "id": 0,
+            "name": "None",
+            "currentCnt": 0,
+            "maxCnt": 0
         }
     ],
     "inventoryInHaloList": [

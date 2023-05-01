@@ -341,3 +341,9 @@ MonoBehaviour:
     fps: 4
     isLoop: 0
     delay: 0.1
+  - name: Die
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 19d507de17e43fb4e8250a7ad5a06f8d, type: 3}
+    fps: 12
+    isLoop: 0
+    delay: 0.1
