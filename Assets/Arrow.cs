@@ -91,7 +91,11 @@ public class Arrow : MonoBehaviour
 		_damage = damage;
 		_isDestroy = destroy;
 
-		StartCoroutine(Rotate());
+		
+		var rotX = transform.eulerAngles.x;
+		var rotY = transform.eulerAngles.y;
+		var rotZ = transform.eulerAngles.z;
+		DOTween.To(x => rotX = x, rotX, 150, time).SetEase(Ease.InOutCirc).OnUpdate(() => transform.eulerAngles = new Vector3(rotX, rotY, rotZ));
 
 		if (_shootActor is PlayerActor)
 			InputManager<Bow>.OnSubPress += Pull;
@@ -235,20 +239,6 @@ public class Arrow : MonoBehaviour
 		else if (-_shootVec == Vector3.back)
 		{
 			_playerAnimation.Play("LowerPull");
-		}
-	}
-
-	private IEnumerator Rotate()
-	{
-		while(!_isStick)
-		{
-			yield return new WaitForEndOfFrame();
-			//Vector3 vec = this.transform.eulerAngles;
-			//vec.x = Mathf.Lerp(vec.x, 150, Time.deltaTime * 5);
-
-			//this.transform.eulerAngles = vec;
-
-			//ToDo 150도 각도로 돌리면 됨
 		}
 	}
 }
