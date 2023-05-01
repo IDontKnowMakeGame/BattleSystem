@@ -5,6 +5,7 @@ using Actors.Characters;
 using Actors.Characters.Enemy;
 using Blocks;
 using Core;
+using Tools;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -53,19 +54,32 @@ namespace Acts.Characters.Enemy
 
             ThisActor.GetAct<EnemyAI>()?.ResetAllConditions();
 
-			GameObject obj = Define.GetManager<ResourceManager>().Instantiate("DieObject");
-            obj.GetComponent<DieAction>().InitDieObj(ThisActor.gameObject.name);
-            obj.transform.position = ThisActor.Position + Vector3.up;
 
             //QuestManager.Instance.CheckKillMission((ThisActor as EnemyActor).CurrentType);
-            GameObject addObject = Define.GetManager<ResourceManager>().Instantiate("EatEffect");
             //if(attackActor != null)
+            //QuestManager.Instance.CheckKillMission((ThisActor as EnemyActor).CurrentType);
+
+            GameObject addObject = Define.GetManager<ResourceManager>().Instantiate("EatEffect");
             addObject.transform.position = ThisActor.Position + Vector3.up;
 			addObject.GetComponent<EatEffect>().Init(attackActor.gameObject);
-            //QuestManager.Instance.CheckKillMission((ThisActor as EnemyActor).CurrentType);
+
+            UnitAnimation unit = ThisActor.GetAct<UnitAnimation>();
+			ClipBase clip = unit.GetClip("Die");
+            clip.SetEventOnFrame(clip.fps - 1, ObjectCreate);
+			unit.Play("Die");
 
 			var enemy = ThisActor as EnemyActor;
             if (enemy != null) enemy.Alive = false;
+		}
+
+        private void ObjectCreate()
+        {
+			GameObject obj = Define.GetManager<ResourceManager>().Instantiate("DieObject");
+			obj.GetComponent<DieAction>().InitDieObj(ThisActor.gameObject.name);
+            obj.transform.gameObject.transform.GetChild(0).GetChild(0).localScale = ThisActor.gameObject.transform.GetChild(0).GetChild(0).localScale;
+            obj.transform.gameObject.transform.GetChild(0).GetChild(0).localPosition = Vector3.up;
+			obj.transform.position = ThisActor.Position + Vector3.up;
+
 			ThisActor.gameObject.SetActive(false);
 		}
 

@@ -17,9 +17,15 @@ MonoBehaviour:
   weaponID: -1
   weaponName: 
   clips:
+  - name: CrazyGhostIdle
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 08ca083b300231e4da6fda9cf247549b, type: 3}
+    fps: 1
+    isLoop: 1
+    delay: 0.1
   - name: CrazyGhost
     nextIdx: 0
-    texture: {fileID: 2800000, guid: d169bbacbd028c74fa793009793fc0da, type: 3}
-    fps: 4
+    texture: {fileID: 2800000, guid: e6e17125269313243980789902189add, type: 3}
+    fps: 29
     isLoop: 0
     delay: 0.1
