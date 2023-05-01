@@ -1,8 +1,8 @@
 {
-    "readyQuestList": [],
+  "readyQuestList": [ 2 ],
     "openQuestList": [],
     "readyClearQuestList": [],
     "clearQuestList": [
-        2
+        
     ]
 }

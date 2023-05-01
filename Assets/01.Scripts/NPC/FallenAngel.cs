@@ -27,6 +27,13 @@ public class FallenAngel : NPCActor
 
         castClearQuestActions.Add(QuestName.FirstFloorBossKill, ClearBossKillQuestBtn);
 
+        //QuestInfo info = new QuestInfo();
+        //info.btnName = "BossKillQuest";
+        //info.rewardfeather = 100;
+        //info.questName = QuestName.FirstFloorBossKill;
+        //info.rewords.Add(Data.ItemID.Torch);
+        //questData.quests.Add(info);
+
         SaveQuestData();
     }
     public void SaveQuestData()
@@ -100,6 +107,6 @@ public class FallenAngel : NPCActor
         UIManager.Instance.Dialog.StartListeningDialog(dialogueList[2]);
         Define.GetManager<DataManager>().ClearQuest(QuestName.FirstFloorBossKill);
 
-        Define.GetManager<DataManager>().AddItemInInventory(questData.quests[0].rewords[0]);
+        Define.GetManager<DataManager>().AddItemInInventory(questData.quests[0].rewords[0],1);
     }
 }

@@ -10,4 +10,9 @@ public class UIBase
     {
 
     }
+
+    public virtual void Update()
+    {
+
+    }
 }
