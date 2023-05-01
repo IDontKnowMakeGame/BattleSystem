@@ -18,6 +18,7 @@ public class ChestObject : InteractionActor
 	{
 		_itemObject.canInteraction = false;
 		direction = GetComponent<PlayableDirector>();
+		//Define.GetManager<DataManager>()
 	}
 
 	public override void Interact()

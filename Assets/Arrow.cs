@@ -22,8 +22,11 @@ public class Arrow : MonoBehaviour
 	private bool _canPull = false;
 
 	private bool _isDestroy = false;
+	private bool _isEnd = false;
 
 	private PlayerAnimation _playerAnimation;
+
+	private Sequence _seq;
 
 	public void Start()
 	{
@@ -58,11 +61,21 @@ public class Arrow : MonoBehaviour
 		int count = 0;
 		for (count = 0; count < distance; count++)
 		{
-			if (map.GetBlock(position + (vec * count)) == null || (!map.GetBlock(position + (vec * count)).isWalkable && map.GetBlock(position + (vec * count)).ActorOnBlock == null))
+			if (map.GetBlock(position + (vec * count)) != null)
 			{
-				count -= 1;
+				if (!map.GetBlock(position + (vec * count)).isWalkable && map.GetBlock(position + (vec * count)).ActorOnBlock == null)
+				{
+					_isEnd = true;
+					//count -= 1;
+					break;
+				}
+			}
+			else
+			{
+				_isEnd = true;
 				break;
 			}
+
 		}
 		position.y = 1;
 
@@ -70,11 +83,19 @@ public class Arrow : MonoBehaviour
 
 		float time = count / speed;
 
-		this.transform.DOMove(position + (vec * count), time).OnComplete(StickOnBlock);
+		Vector3 ve = new Vector3(-150, 0, 0);
+		_seq = DOTween.Sequence();
+		_seq.Append(this.transform.DOMove(position + (vec * count), time).OnComplete(StickOnBlock));
 		_shootVec = vec;
 		_shootActor = actor;
 		_damage = damage;
 		_isDestroy = destroy;
+
+		
+		var rotX = transform.eulerAngles.x;
+		var rotY = transform.eulerAngles.y;
+		var rotZ = transform.eulerAngles.z;
+		DOTween.To(x => rotX = x, rotX, 150, time).SetEase(Ease.InOutCirc).OnUpdate(() => transform.eulerAngles = new Vector3(rotX, rotY, rotZ));
 
 		if (_shootActor is PlayerActor)
 			InputManager<Bow>.OnSubPress += Pull;
@@ -88,13 +109,18 @@ public class Arrow : MonoBehaviour
 		vec.x = 150;
 		this.transform.rotation = Quaternion.Euler(vec);
 	}
+	private void StickOnWall()
+	{
+		_isStick = true;
+		_seq.Kill();
+	}
 
 	protected virtual void StickActor(Collider other)
 	{
-		this.transform.DOKill();
+		_seq.Kill();
 		this.transform.parent = other.transform;
-		if(_shootActor is PlayerActor)
-		this.transform.localPosition = -_shootVec;
+		if (_shootActor is PlayerActor)
+			this.transform.localPosition = -_shootVec;
 		else
 			this.transform.localPosition = _shootVec;
 		_stickActor = InGame.GetActor(other.gameObject.GetInstanceID()) as CharacterActor;
@@ -115,6 +141,7 @@ public class Arrow : MonoBehaviour
 		vec.x = 150;
 		this.transform.rotation = Quaternion.Euler(vec);
 	}
+
 
 	protected virtual void Pull()
 	{
@@ -144,6 +171,14 @@ public class Arrow : MonoBehaviour
 	private void OnTriggerEnter(Collider other)
 	{
 		CharacterActor actor = other.GetComponent<CharacterActor>();
+
+		if (1 << other.gameObject.layer == LayerMask.GetMask("Wall") && _isEnd)
+		{
+			if (_isDestroy)
+				Define.GetManager<ResourceManager>().Destroy(this.gameObject);
+			else
+				StickOnWall();
+		}
 
 		if (actor == null)
 			return;
@@ -183,8 +218,8 @@ public class Arrow : MonoBehaviour
 
 	private void PullAnimation()
 	{
-		if(transform.parent == null)
-        {
+		if (transform.parent == null)
+		{
 			_playerAnimation.Play("GroundPull");
 		}
 		else if (-_shootVec == Vector3.left)
@@ -201,7 +236,7 @@ public class Arrow : MonoBehaviour
 		{
 			_playerAnimation.Play("UpperPull");
 		}
-		else if(-_shootVec == Vector3.back)	
+		else if (-_shootVec == Vector3.back)
 		{
 			_playerAnimation.Play("LowerPull");
 		}
