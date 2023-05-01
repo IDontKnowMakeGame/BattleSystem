@@ -53,6 +53,17 @@ public class TImeLinePlayer : MonoBehaviour
         _obj2.EndBlood();
 	}
 
+    private float _timer = 0;
+    public void Fade(float value)
+    {
+        ScreenEffect.Fade.Invoke(_timer, value);
+    }
+
+    public void FadeTime(float timer)
+    {
+        _timer = timer;
+	}
+
     private void PlayTimeLine(EventParam eventParam)
     {
         if (_isPlaying) return;

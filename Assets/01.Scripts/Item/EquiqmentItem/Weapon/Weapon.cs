@@ -36,16 +36,16 @@ public class Weapon : EquiqmentItem
 		}
 		set
 		{
-			if(value == true)
+			if(value == true && !_coolTime)
 			{
-				//함수실행
+				UIManager.Instance.InGame.FirstWeaponCoolTime(info.CoolTime);
 			}
 
-			_coolTime = _isCoolTime;
+			_coolTime = value;
 		}
 	}
 
-	private bool _coolTime;
+	private bool _coolTime = false;
 	protected float _currentTimerSecound = 0f;
 	#endregion
 
