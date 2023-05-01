@@ -116,6 +116,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 		if (!_haveinHand)
 			return;
 		CurrentWeapon?.Skill();
+		
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.ChangeStat, _eventParam);
 	}
 	private void Upgrade(EventParam eventParam)

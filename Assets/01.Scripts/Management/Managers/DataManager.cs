@@ -412,6 +412,8 @@ public class DataManager : Manager
     }
     public SaveItemData LoadItemFromInventory(ItemID id)
     {
+        if(id == ItemID.None) return null;
+
         if ((int)id < 100)
         { //Weapon
             return LoadWeaponDataFromInventory(id);
