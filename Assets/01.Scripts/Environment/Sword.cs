@@ -5,7 +5,7 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
     [SerializeField]
-    private float power = 100f;
+    private float power = 200f;
 
     private Rigidbody rigidbody;
 
@@ -18,7 +18,10 @@ public class Sword : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.X))
         {
-            rigidbody.AddExplosionForce(200f, transform.position, 20f, 20f);
+            //rigidbody.constraints = ~(RigidbodyConstraints.FreezeAll);
+
+
+            rigidbody.AddExplosionForce(power, transform.position, 20f, 20f);
         }
     }
 }

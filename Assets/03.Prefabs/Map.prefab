@@ -3818,6 +3818,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (7)
@@ -3880,6 +3884,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (15)
@@ -3942,6 +3950,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (21)
@@ -4004,6 +4016,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword
@@ -4066,6 +4082,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (13)
@@ -4128,6 +4148,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (20)
@@ -4190,6 +4214,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (14)
@@ -4252,6 +4280,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (11)
@@ -4314,6 +4346,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (8)
@@ -4376,6 +4412,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (2)
@@ -4438,6 +4478,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (10)
@@ -4500,6 +4544,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (1)
@@ -4562,6 +4610,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (12)
@@ -4624,6 +4676,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (3)
@@ -4686,6 +4742,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (17)
@@ -4748,6 +4808,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (5)
@@ -4810,6 +4874,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (16)
@@ -4872,6 +4940,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (19)
@@ -4934,6 +5006,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (6)
@@ -4996,6 +5072,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (18)
@@ -21899,6 +21979,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (22)
@@ -21961,6 +22045,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (9)
@@ -22023,6 +22111,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314070409343}
     m_Modifications:
+    - target: {fileID: 2021362599, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
+      propertyPath: power
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7318842979449906602, guid: 04df2f4e38a36ce4991c4514b692712b, type: 3}
       propertyPath: m_Name
       value: Sword (4)
