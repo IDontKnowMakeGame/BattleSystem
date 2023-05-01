@@ -55,6 +55,8 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
+        InGame.Update();
+
         if (Input.GetKeyDown(KeyCode.Z))
         {
             ItemStore.ShowItemStore(itemStoreTable);
@@ -71,11 +73,14 @@ public class UIManager : MonoBehaviour
         {
             UIFirstFloorMap.ShowFirstFloorMap();
         }
+
+
     }
     public void UpdateInGameUI()
     {
         InGame.ChangeFirstWeaponImage(DataManager.UserData_.firstWeapon);
         InGame.ChangeSecondWeaponImage(DataManager.UserData_.secondWeapon);
+        InGame.ChangeWeaponCoolTime();
     }
     public  void show(string name)
     {
