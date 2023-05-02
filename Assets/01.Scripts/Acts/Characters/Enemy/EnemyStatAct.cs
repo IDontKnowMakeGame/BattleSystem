@@ -77,8 +77,20 @@ namespace Acts.Characters.Enemy
 			var enemy = ThisActor as EnemyActor;
             if (enemy != null) enemy.Alive = false;
 
-            if(!isBoss)
+            if (!isBoss)
+            {
+	            var particle = Define.GetManager<ResourceManager>().Instantiate("DeathParticle", ThisActor.transform);
+	            particle.transform.position = ThisActor.transform.position;
+		
+	            var anchorTrm = ThisActor.transform.Find("Anchor");
+	            var modelTrm = anchorTrm.Find("Model");
+	            var scale = modelTrm.localScale;
+	            var particleAnchorTrm = particle.transform.Find("Anchor");
+	            var particleModelTrm = particleAnchorTrm.Find("Model");
+	            particleModelTrm.localScale = scale;
+	            particle.transform.SetParent(null);
 				ThisActor.gameObject.SetActive(false);
+            }
 		}
 
         private void ObjectCreate()
