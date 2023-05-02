@@ -51,7 +51,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
 
                 }
 
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.25f);
                 distance++;
             }
             

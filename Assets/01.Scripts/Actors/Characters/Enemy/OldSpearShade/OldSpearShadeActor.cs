@@ -40,7 +40,6 @@ namespace Actors.Characters.Enemy.OldSpearShade
                 AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
                 dir = (playerPos - Position).GetDirection();
-                dir = InGame.CamDirCheck(dir);
                 movableCondition.nextDir = dir;
                 var dirName = GetDirName(dir);
                 var readyClip = _enemyAnimation.GetClip(dirName + "Ready");
