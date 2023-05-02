@@ -42,7 +42,9 @@ public class DieAction : InteractionActor
 
 	public override void Interact()
 	{
+		if (InGame.Player.Position.IsNeighbor(Position) == false) return;
 		base.Interact();
+
 		Debug.Log(objName);
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, new EventParam() { stringParam = "gf" });
 		Debug.Log(_unitAnimation.GetClip(objName));
