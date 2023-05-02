@@ -28,10 +28,12 @@ public class HaloOfPollution : Halo
 
     protected override void Using(EventParam eventParam)
     {
+
         if (ConditionCheck())
         {
             Debug.Log(eventParam.unit);
-            eventParam.unit.GetAct<CharacterStatAct>().Damage(damage, InGame.Player);
+            
+            eventParam.unit.GetAct<CharacterStatAct>()?.Damage(damage, InGame.Player);
         }
     }
 }
