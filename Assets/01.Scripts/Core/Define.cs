@@ -30,7 +30,7 @@ namespace Core
 
     public static class InGame
     {
-        private static Dictionary<int, Actor> Actors = new();
+        public static Dictionary<int, Actor> Actors { get; private set; } = new();
 
         private static Camera mainCam = null;
         public static Camera MainCam

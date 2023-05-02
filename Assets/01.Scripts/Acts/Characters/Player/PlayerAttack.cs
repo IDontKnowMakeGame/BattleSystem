@@ -248,5 +248,9 @@ namespace Acts.Characters.Player
             Define.GetManager<EventManager>()?.StopListening(EventFlag.NoneAniAttack, NoneAniAttack);
         }
 
+        public void RangeReset()
+        {
+            attackCol.AllReset();
+        }
     }
 }

@@ -80,6 +80,7 @@ namespace Acts.Characters.Player
 
                 useAbleItems[currentID].UseItem();
                 currentData.currentCnt--;
+                UIManager.Instance.InGame.SetItemPanelCnt(currentID);
                 Define.GetManager<DataManager>().ChangeItemInfo(currentData);
             }
         }

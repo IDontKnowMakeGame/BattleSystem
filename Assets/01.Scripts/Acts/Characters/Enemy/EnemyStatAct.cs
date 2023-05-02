@@ -7,6 +7,7 @@ using Blocks;
 using Core;
 using Tools;
 using UnityEngine;
+using Acts.Characters.Player;
 using Random = UnityEngine.Random;
 
 namespace Acts.Characters.Enemy
@@ -55,7 +56,7 @@ namespace Acts.Characters.Enemy
                 return;
 
             ThisActor.GetAct<EnemyAI>()?.ResetAllConditions();
-
+            ThisActor.gameObject.tag = "Untagged";
 
             //QuestManager.Instance.CheckKillMission((ThisActor as EnemyActor).CurrentType);
             //if(attackActor != null)
@@ -88,6 +89,7 @@ namespace Acts.Characters.Enemy
             obj.transform.gameObject.transform.GetChild(0).GetChild(0).localPosition = Vector3.up;
 			obj.transform.position = ThisActor.Position + Vector3.up;
 
+            InGame.Player.GetAct<PlayerAttack>().RangeReset();
 			ThisActor.gameObject.SetActive(false);
 		}
 

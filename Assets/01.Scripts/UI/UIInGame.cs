@@ -39,7 +39,7 @@ public class UIInGame : UIBase
     private bool IsSecondWeaponCool = false;
     #endregion
 
-    private Dictionary<VisualElement, ItemID> _invenInItems = new Dictionary<VisualElement, ItemID>();
+    private Dictionary<ItemID, VisualElement> _invenInItems = new Dictionary<ItemID, VisualElement>();
 
     private Label _feather;
 
@@ -174,10 +174,21 @@ public class UIInGame : UIBase
         int index = 0;
         foreach(VisualElement card in _itemList.Children())
         {
-            _invenInItems[card] = item[index];
+            _invenInItems[item[index]] = card;
             card.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>("Item/" + (int)item[index]));
+            SetItemPanelCnt(item[index]);
             index++;
         }
+    }
+    public void SetItemPanelCnt(ItemID itemID)
+    {
+        SaveItemData saveData = Define.GetManager<DataManager>().LoadItemFromInventory(itemID);
+        if (saveData == null) return;
+        if (_invenInItems.ContainsKey(itemID) == false) return;
+
+        Label cntText = _invenInItems[itemID].Q<Label>("ItemCntText");
+        cntText.text = saveData.currentCnt.ToString();
+
     }
     public void UseItemCool(ItemID itemID,int cooltime)
     {
