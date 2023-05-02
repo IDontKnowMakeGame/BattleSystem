@@ -57,7 +57,14 @@ namespace Acts.Characters.Enemy
             if (!ThisActor.gameObject.activeSelf)
                 return;
 
-            ThisActor.GetAct<EnemyAI>()?.ResetAllConditions();
+			Arrow arrow = ThisActor.GetComponentInChildren<Arrow>();
+            if(arrow != null)
+            {
+				arrow.StickReBlock();
+				arrow.transform.parent = null;
+			}
+
+			ThisActor.GetAct<EnemyAI>()?.ResetAllConditions();
             ThisActor.gameObject.tag = "Untagged";
 
             //QuestManager.Instance.CheckKillMission((ThisActor as EnemyActor).CurrentType);
