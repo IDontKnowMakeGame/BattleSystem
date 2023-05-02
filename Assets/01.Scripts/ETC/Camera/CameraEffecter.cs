@@ -81,7 +81,7 @@ public class CameraEffecter : MonoBehaviour
             timer += Time.deltaTime;
             float t = Mathf.Clamp01(timer / duration);
 
-            // ī�޶� FOV
+            // ī�޶� FOV
             float currentFov = Mathf.Lerp(originFov, targetFov, t);
             _cvCam.m_Lens.FieldOfView = currentFov;
         }
@@ -119,17 +119,17 @@ public class CameraEffecter : MonoBehaviour
         for (var i = 0; i < size0; i++)
         {
             var actor = InGame.GetActor(hit0[i].collider.gameObject.GetInstanceID());
-            actor.GetAct<WallRender>().Invisible();
+            actor.GetAct<WallRender>()?.Invisible();
         }
         for (var i = 0; i < size1; i++)
         {
             var actor = InGame.GetActor(hit1[i].collider.gameObject.GetInstanceID());
-            actor.GetAct<WallRender>().Invisible();
+            actor.GetAct<WallRender>()?.Invisible();
         }
         for (var i = 0; i < size2; i++)
         {
             var actor = InGame.GetActor(hit2[i].collider.gameObject.GetInstanceID());
-            actor.GetAct<WallRender>().Invisible();
+            actor.GetAct<WallRender>()?.Invisible();
         }
     }
 }
