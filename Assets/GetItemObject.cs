@@ -28,6 +28,9 @@ public class GetItemObject : InteractionActor
 	{
 		if (!canInteraction)
 			return;
+		if (InGame.Player.Position.IsNeighbor(Position) == false) return;
+
+		base.Interact();
 
 		Define.GetManager<DataManager>().AddItemInInventory(_id, _count);
 		Define.GetManager<ResourceManager>().Destroy(this.gameObject);

@@ -27,7 +27,7 @@ public class ChestObject : InteractionActor
 		if (isOpen)
 			return;
 
-		Debug.Log("open");
+		base.Interact();
 		direction.Play();
 		isOpen = true;
 	}

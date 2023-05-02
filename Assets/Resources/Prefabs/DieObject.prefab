@@ -208,6 +208,7 @@ MonoBehaviour:
       name: 
       nextIdx: -1
       texture: {fileID: 0}
+      normal: {fileID: 0}
       fps: 0
       isLoop: 0
       delay: 0
@@ -216,6 +217,9 @@ MonoBehaviour:
     isFinished: 0
     curClips: {fileID: 11400000, guid: 250b29dd465518543a36da556c001988, type: 2}
   speed: 0
+  tx:
+  - name: CrazyGhost
+    tex: {fileID: 2800000, guid: 08ca083b300231e4da6fda9cf247549b, type: 3}
 --- !u!1 &5102826491513950781
 GameObject:
   m_ObjectHideFlags: 0

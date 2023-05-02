@@ -15,7 +15,10 @@ namespace Acts.Characters.Enemy
     [Serializable]
     public class EnemyStatAct : CharacterStatAct
     {
-        private Actor attackActor;
+        [SerializeField]
+        private int _feahter;
+
+		private Actor attackActor;
 
         public bool isBoss = false;
         public override void Awake()
@@ -44,10 +47,9 @@ namespace Acts.Characters.Enemy
                 eventParam.intParam = 1;
                 eventParam.stringParam = (actor as CharacterActor).currentWeapon.info.Class;
                 Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam);
-				Debug.Log("BossActorDamage?");
 			}
-            DamageEffect();
 
+            DamageEffect();
 		}
 
         public override void Die()
@@ -74,23 +76,13 @@ namespace Acts.Characters.Enemy
 				unit?.Play("Die");
 			}
 
+            Define.GetManager<DataManager>().AddFeahter(_feahter);
+
 			var enemy = ThisActor as EnemyActor;
             if (enemy != null) enemy.Alive = false;
 
-            if (!isBoss)
-            {
-	            var particle = Define.GetManager<ResourceManager>().Instantiate("DeathParticle", ThisActor.transform);
-	            particle.transform.position = ThisActor.transform.position;
-		
-	            var anchorTrm = ThisActor.transform.Find("Anchor");
-	            var modelTrm = anchorTrm.Find("Model");
-	            var scale = modelTrm.localScale;
-	            var particleAnchorTrm = particle.transform.Find("Anchor");
-	            var particleModelTrm = particleAnchorTrm.Find("Model");
-	            particleModelTrm.localScale = scale;
-	            particle.transform.SetParent(null);
+            if(!isBoss)
 				ThisActor.gameObject.SetActive(false);
-            }
 		}
 
         private void ObjectCreate()

@@ -3,49 +3,68 @@ using Actors.Characters.Player;
 using Acts.Base;
 using Acts.Characters;
 using Acts.Characters.Enemy;
+using ArrayExtensions;
 using Core;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UIElements;
 
+[Serializable]
+public class TextureSprite
+{
+	public string name;
+	public Texture tex;
+}
+
 public class DieAction : InteractionActor
 {
 	[SerializeField]
 	private EnemyAnimation _unitAnimation = new EnemyAnimation();
 
+
 	[SerializeField]
 	private float speed = 0f;
 
 	private string objName;
+	private CharacterRender _render;
 
-	protected override void Awake()
+	[SerializeField]
+	private TextureSprite[] tx;
+
+	protected override void Init()
 	{
-		base.Awake();
+		base.Init();
 		AddAct(_unitAnimation);
-	}
-
-	protected override void Start()
-	{
-		base.Start();
-		_unitAnimation.Play("CrazyGhostIdle");
+		_render = this.GetAct<CharacterRender>();
 	}
 
 	public void InitDieObj(string name)
 	{
 		objName = name;
 
-		_unitAnimation.Play("CrazyGhostIdle");
-		Debug.Log(_unitAnimation.GetClip("CrazyGhostIdle").name);
+		Material me = _render.Renderer.material;
+		foreach(TextureSprite sprite in tx)
+		{
+			if(sprite.name == name)
+			{
+				me.SetTexture("_MainTex", sprite.tex);
+				me.SetVector("_Tiling", new Vector2(1, 1f));
+				break;
+			}
+		}
+		Debug.Log(me.GetTexture("_MainTex").name);
+		//_unitAnimation.Play(objName+"Idle");
+		Debug.Log(_unitAnimation.GetClip(objName + "Idle").name);
 	}
 
 	public override void Interact()
 	{
+		if (InGame.Player.Position.IsNeighbor(Position) == false) return;
 		base.Interact();
-		Debug.Log(objName);
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, new EventParam() { stringParam = "gf" });
-		Debug.Log(_unitAnimation.GetClip(objName));
 		_unitAnimation.Play(objName);
 		_unitAnimation.GetClip(objName)?.SetEventOnFrame(_unitAnimation.GetClip(objName).fps -1, Die);
 		if (_unitAnimation.GetClip(objName) == null)

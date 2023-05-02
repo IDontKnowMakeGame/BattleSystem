@@ -194,22 +194,19 @@ public class CharacterStatAct : Act
 
 	public virtual void Die()
 	{
-		PlayDeathParticle();
-		ThisActor.gameObject.SetActive(false);
-	}
-	
-	protected void PlayDeathParticle()
-	{
 		var particle = Define.GetManager<ResourceManager>().Instantiate("DeathParticle", ThisActor.transform);
-		particle.transform.position = ThisActor.transform.position;
+		particle.transform.localPosition = Vector3.zero;
 		
 		var anchorTrm = ThisActor.transform.Find("Anchor");
 		var modelTrm = anchorTrm.Find("Model");
 		var scale = modelTrm.localScale;
+		var rotation = anchorTrm.transform.rotation;
 		var particleAnchorTrm = particle.transform.Find("Anchor");
 		var particleModelTrm = particleAnchorTrm.Find("Model");
+		particleAnchorTrm.rotation = rotation;
 		particleModelTrm.localScale = scale;
 		particle.transform.SetParent(null);
+		ThisActor.gameObject.SetActive(false);
 	}
 
 	#region FAO
