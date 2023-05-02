@@ -200,8 +200,8 @@ namespace Managements
             }
             _managers.Clear();
             DOTween.KillAll();
-            //LoadingSceneController.Instnace.LoadScene(sceneName);
-            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+            LoadingSceneController.Instnace.LoadScene(sceneName);
+            //UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
         }
     }
 }
