@@ -91,6 +91,7 @@ namespace Acts.Characters.Enemy
 	            particle.transform.SetParent(null);
 				ThisActor.gameObject.SetActive(false);
             }
+            InGame.Player.GetAct<PlayerAttack>().RangeReset();
 		}
 
         private void ObjectCreate()
