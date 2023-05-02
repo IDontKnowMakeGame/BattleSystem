@@ -25,7 +25,7 @@ MonoBehaviour:
     delay: 0.1
   - name: CrazyGhost
     nextIdx: 0
-    texture: {fileID: 2800000, guid: e6e17125269313243980789902189add, type: 3}
+    texture: {fileID: 2800000, guid: 82acef2799194bb478697c2cde64e9c3, type: 3}
     fps: 29
     isLoop: 0
     delay: 0.1
