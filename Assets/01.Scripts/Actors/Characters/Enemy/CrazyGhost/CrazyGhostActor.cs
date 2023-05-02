@@ -142,7 +142,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 _enemyAnimation.Play("SoulAttackJump");
                 var playerPos = InGame.Player.Position;
                 var dir = (playerPos - Position).GetDirection();
-                move.Jump(Position, dir, 3);
+                move.Jump(Position, -dir, 3);
                 jumpClip.OnExit += () =>
                 {
                     Attack(Vector3.zero,"SoulAttack", () => { attack.SoulAttack(dir, 0f); }, false);

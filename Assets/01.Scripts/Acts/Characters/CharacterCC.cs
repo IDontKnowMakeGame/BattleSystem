@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿ using System.Linq;
 using Actors.Bases;
 using Actors.Characters;
 using Acts.Base;
