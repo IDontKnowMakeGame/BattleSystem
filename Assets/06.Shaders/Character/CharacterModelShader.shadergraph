@@ -269,6 +269,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "96daebc1c2eb4caf951c22170ce9f4ad"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "3e4b3225179145c5bca39c231ccc2a5e"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "a1e02e2ce31b4c6ca561e83d1882aa7a"
                 },
                 "m_SlotId": 0
@@ -2423,7 +2437,7 @@
     "m_DefaultRefNameVersion": 1,
     "m_RefNameGeneratedByDisplayName": "NormalTex",
     "m_DefaultReferenceName": "_NormalTex",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_NormalMap",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",

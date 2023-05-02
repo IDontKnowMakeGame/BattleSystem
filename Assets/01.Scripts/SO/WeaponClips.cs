@@ -20,15 +20,20 @@ public class WeaponClips : ScriptableObject
     [ContextMenuItem("Add Sprite", "AddSprite")]
     [SerializeField]
     private List<ClipBase> clips;
+
     private void AddSprite()
     {
         foreach (var clip in clips)
         {
-            if(weaponID != -1)
+            if (weaponID != -1)
+            {
                 clip.texture = Resources.Load<Texture2D>($"Sprites/{type}/{actorName}/{weaponName}/{clip.name}");
+                clip.normal = Resources.Load<Texture2D>($"Sprites/{type}/{actorName}/{weaponName}/{clip.name}_n");
+            }
             else
             {
                 clip.texture = Resources.Load<Texture2D>($"Sprites/{type}/{actorName}/{clip.name}");
+                clip.normal = Resources.Load<Texture2D>($"Sprites/{type}/{actorName}/{clip.name}_n");
             }
         }
         EditorUtility.SetDirty(this);

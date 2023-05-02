@@ -57,6 +57,8 @@ namespace Acts.Characters
 				var offset = ((float)curClip.texture.width / curClip.fps) / curClip.texture.width;
 
 				baseMaterial.SetTexture("_BaseMap", curClip.texture);
+				if(curClip.normal != null)
+					baseMaterial.SetTexture("_NormalMap", curClip.normal);
 				baseMaterial.SetTextureOffset("_BaseMap", Vector2.right * (offset * index));
 				baseMaterial.SetTextureScale("_BaseMap", new Vector2(offset, 1f));
 				baseMaterial.SetTexture("_MainTex", curClip.texture);
