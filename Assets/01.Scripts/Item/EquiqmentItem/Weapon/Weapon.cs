@@ -38,7 +38,7 @@ public class Weapon : EquiqmentItem
 		{
 			if(value == true && !_coolTime)
 			{
-				UIManager.Instance.InGame.FirstWeaponCoolTime(info.CoolTime);
+				UIManager.Instance.InGame.FlagCoolTimePanel(info.CoolTime);
 			}
 
 			_coolTime = value;
