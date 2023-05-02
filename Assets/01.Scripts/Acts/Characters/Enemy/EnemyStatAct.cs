@@ -79,6 +79,8 @@ namespace Acts.Characters.Enemy
 
             if(!isBoss)
 				ThisActor.gameObject.SetActive(false);
+
+            InGame.Player.GetAct<PlayerAttack>().RangeReset();
 		}
 
         private void ObjectCreate()

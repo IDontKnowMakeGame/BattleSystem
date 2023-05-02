@@ -90,12 +90,22 @@ public class AttackCollider : MonoBehaviour
         }
     }
 
+
     public void AllDisable()
     {
         for (int i = 0; i < 4; i++)
         {
             DirType curType = (DirType)(1 << i);
             attackCol[curType].enabled = false;
+            attackRanges[curType].EnemysClear();
+        }
+    }
+
+    public void AllEnemysClear()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            DirType curType = (DirType)(1 << i);
             attackRanges[curType].EnemysClear();
         }
     }
