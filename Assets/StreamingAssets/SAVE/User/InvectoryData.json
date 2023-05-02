@@ -61,19 +61,19 @@
         {
             "id": 200,
             "name": "Torch",
-            "currentCnt": 54,
+            "currentCnt": 19,
             "maxCnt": 99
         },
         {
             "id": 201,
             "name": "Shield",
-            "currentCnt": 0,
+            "currentCnt": 9,
             "maxCnt": 99
         },
         {
             "id": 202,
             "name": "HPPotion",
-            "currentCnt": 5,
+            "currentCnt": 49,
             "maxCnt": 5
         },
         {
