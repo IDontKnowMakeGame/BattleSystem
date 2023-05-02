@@ -115,11 +115,14 @@ MonoBehaviour:
       ats: 0
       afs: 0
       speed: 0
+    _feahter: 52
+    isBoss: 0
   _enemyAnimation:
     curClip:
       name: 
       nextIdx: -1
       texture: {fileID: 0}
+      normal: {fileID: 0}
       fps: 0
       isLoop: 0
       delay: 0
