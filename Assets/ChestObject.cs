@@ -28,7 +28,7 @@ public class ChestObject : InteractionActor
 		if (InGame.Player.Position.IsNeighbor(Position) == false) return;
 		base.Interact();
 
-		Debug.Log("open");
+		base.Interact();
 		direction.Play();
 		isOpen = true;
 	}

@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0, z: 0}
   _characterRender:
+    isBillBoard: 1
     _defaultTexture: {fileID: 0}
     _frame: 0
     size: {x: 1, y: 1, z: 1}
@@ -83,12 +84,14 @@ MonoBehaviour:
       ats: 0
       afs: 0
       speed: 0
-    action: {fileID: 0}
+    _feahter: 52
+    isBoss: 0
   _enemyAnimation:
     curClip:
       name: 
       nextIdx: -1
       texture: {fileID: 0}
+      normal: {fileID: 0}
       fps: 0
       isLoop: 0
       delay: 0
@@ -98,6 +101,7 @@ MonoBehaviour:
     curClips: {fileID: 11400000, guid: 2750493bfe7c19c4e9ca177aafa944fe, type: 2}
   alive: 1
   spriteSize: 1
+  currentType: 0
   toIdle: {fileID: 5429280582108950623}
 --- !u!114 &5429280582108950618
 MonoBehaviour:

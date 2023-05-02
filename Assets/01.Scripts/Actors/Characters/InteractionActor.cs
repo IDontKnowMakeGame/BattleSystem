@@ -19,7 +19,7 @@ public class InteractionActor : CharacterActor
     {
         if (InGame.Player.Position.IsNeighbor(Position) == false) return;
 
-		//TODO : 상호작용
-		InputManager<Weapon>.OnInteractionPress -= Interact;
+        //TODO : 상호작용
+        InputManager<Weapon>.OnInteractionPress -= Interact;
 	}
 }

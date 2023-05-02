@@ -22,6 +22,8 @@ namespace Acts.Characters
         private readonly int _blinkOn = Shader.PropertyToID("_IsBlink");
         private Renderer _renderer;
         private Material currentMat;
+
+        public Renderer Renderer => _renderer;
         public override void Awake()
         {
             _renderer = ThisActor.GetComponentInChildren<Renderer>();

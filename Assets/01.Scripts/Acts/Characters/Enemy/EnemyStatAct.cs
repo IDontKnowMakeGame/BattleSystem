@@ -15,7 +15,10 @@ namespace Acts.Characters.Enemy
     [Serializable]
     public class EnemyStatAct : CharacterStatAct
     {
-        private Actor attackActor;
+        [SerializeField]
+        private int _feahter;
+
+		private Actor attackActor;
 
         public bool isBoss = false;
         public override void Awake()
@@ -44,10 +47,9 @@ namespace Acts.Characters.Enemy
                 eventParam.intParam = 1;
                 eventParam.stringParam = (actor as CharacterActor).currentWeapon.info.Class;
                 Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam);
-				Debug.Log("BossActorDamage?");
 			}
-            DamageEffect();
 
+            DamageEffect();
 		}
 
         public override void Die()
@@ -55,7 +57,14 @@ namespace Acts.Characters.Enemy
             if (!ThisActor.gameObject.activeSelf)
                 return;
 
-            ThisActor.GetAct<EnemyAI>()?.ResetAllConditions();
+			Arrow arrow = ThisActor.GetComponentInChildren<Arrow>();
+            if(arrow != null)
+            {
+				arrow.StickReBlock();
+				arrow.transform.parent = null;
+			}
+
+			ThisActor.GetAct<EnemyAI>()?.ResetAllConditions();
             ThisActor.gameObject.tag = "Untagged";
 
             //QuestManager.Instance.CheckKillMission((ThisActor as EnemyActor).CurrentType);
@@ -73,6 +82,8 @@ namespace Acts.Characters.Enemy
 				clip?.SetEventOnFrame(clip.fps - 1, ObjectCreate);
 				unit?.Play("Die");
 			}
+
+            Define.GetManager<DataManager>().AddFeahter(_feahter);
 
 			var enemy = ThisActor as EnemyActor;
             if (enemy != null) enemy.Alive = false;
