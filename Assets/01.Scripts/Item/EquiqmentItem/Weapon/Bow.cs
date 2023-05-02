@@ -69,9 +69,6 @@ public class Bow : Weapon
 	private void SetAnimation()
 	{
 		string str = isShoot ? "None" : "Use";
-
-		Debug.Log(_unitAnimation.GetClip("Idle"));
-		Debug.Log(_unitAnimation.GetClip(str + "Idle"));
 		_unitAnimation.GetClip("Idle").ChangeClip(_unitAnimation.GetClip(str + "Idle"));
 		_unitAnimation.GetClip("HorizontalMove")?.ChangeClip(_unitAnimation.GetClip(str + "HorizontalMove"));
 		_unitAnimation.GetClip("UpperMove")?.ChangeClip(_unitAnimation.GetClip(str + "UpperMove"));
@@ -96,7 +93,6 @@ public class Bow : Weapon
 	{
 		base.Update();
 		Charge();
-		//Debug.Log("Charge");
 	}
 
 	public virtual void Shoot(Vector3 vec)

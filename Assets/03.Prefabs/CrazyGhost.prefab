@@ -34,7 +34,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2602499903621569665
 Transform:
   m_ObjectHideFlags: 0
@@ -101,6 +101,7 @@ MonoBehaviour:
       ats: 0
       afs: 0
       speed: 0
+    isBoss: 1
   _enemyAnimation:
     curClip:
       name: 
@@ -115,7 +116,7 @@ MonoBehaviour:
     curClips: {fileID: 11400000, guid: 07fddb310a2a38143a388d70d230d20f, type: 2}
   alive: 1
   spriteSize: 3
-  currentType: 0
+  currentType: 4
   particle:
     landingParticle: {fileID: 7310023798986098773}
     secondPhaseParticle: {fileID: 7751943641532557491}
@@ -826,7 +827,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!4 &2602499904033520470
 Transform:

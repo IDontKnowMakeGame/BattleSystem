@@ -16,6 +16,7 @@ namespace Acts.Characters.Enemy
     {
         private Actor attackActor;
 
+        public bool isBoss = false;
         public override void Awake()
         {
             base.Awake();
@@ -42,7 +43,8 @@ namespace Acts.Characters.Enemy
                 eventParam.intParam = 1;
                 eventParam.stringParam = (actor as CharacterActor).currentWeapon.info.Class;
                 Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam);
-            }
+				Debug.Log("BossActorDamage?");
+			}
             DamageEffect();
 
 		}
@@ -63,13 +65,19 @@ namespace Acts.Characters.Enemy
             addObject.transform.position = ThisActor.Position + Vector3.up;
 			addObject.GetComponent<EatEffect>().Init(attackActor.gameObject);
 
-            UnitAnimation unit = ThisActor.GetAct<UnitAnimation>();
-			ClipBase clip = unit.GetClip("Die");
-            clip?.SetEventOnFrame(clip.fps - 1, ObjectCreate);
-			unit?.Play("Die");
+            if(isBoss)
+            {
+				UnitAnimation unit = ThisActor.GetAct<UnitAnimation>();
+				ClipBase clip = unit.GetClip("Die");
+				clip?.SetEventOnFrame(clip.fps - 1, ObjectCreate);
+				unit?.Play("Die");
+			}
 
 			var enemy = ThisActor as EnemyActor;
             if (enemy != null) enemy.Alive = false;
+
+            if(!isBoss)
+				ThisActor.gameObject.SetActive(false);
 		}
 
         private void ObjectCreate()

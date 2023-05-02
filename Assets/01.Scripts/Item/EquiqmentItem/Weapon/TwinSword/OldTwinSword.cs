@@ -15,13 +15,17 @@ public class OldTwinSword : TwinSword
 			return;
 		if (_isCoolTime)
 			return;
+
 		_characterActor.AddState(CharacterState.Skill);
 		_characterActor.StartCoroutine(SameTimeInput());
 	}
 
 	protected override void STimeInputSkill(Vector3 vec)
 	{
+		if (_isCoolTime)
+			return;
 		Vector3 vector = InGame.CamDirCheck(vec);
+		_isCoolTime = true;
 		GameObject obj = Define.GetManager<ResourceManager>().Instantiate("TwinSword-Slash");
 		obj.transform.position = _characterActor.Position + vector + Vector3.up;
 		for (int i = 0; i < 6; i++)

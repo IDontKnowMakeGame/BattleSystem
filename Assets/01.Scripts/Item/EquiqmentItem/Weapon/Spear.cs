@@ -206,6 +206,7 @@ public class Spear : Weapon
 		{
 			if (_mapManager.GetBlock(_characterActor.Position + vector * i)?.ActorOnBlock)
 			{
+				Debug.Log("¾Ó ¶§¸± ¼ö ÀÖ¶ì");
 				_isCurrentVec = true;
 				return;
 			}

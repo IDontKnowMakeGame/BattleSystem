@@ -95,7 +95,7 @@ public class Arrow : MonoBehaviour
 		var rotX = transform.eulerAngles.x;
 		var rotY = transform.eulerAngles.y;
 		var rotZ = transform.eulerAngles.z;
-		DOTween.To(x => rotX = x, rotX, 150, time).SetEase(Ease.InOutCirc).OnUpdate(() => transform.eulerAngles = new Vector3(rotX, rotY, rotZ));
+		_seq.Append(DOTween.To(x => rotX = x, rotX, 150, time).SetEase(Ease.Linear).OnUpdate(() => transform.eulerAngles = new Vector3(rotX, rotY, rotZ)));
 
 		if (_shootActor is PlayerActor)
 			InputManager<Bow>.OnSubPress += Pull;
@@ -119,10 +119,8 @@ public class Arrow : MonoBehaviour
 	{
 		_seq.Kill();
 		this.transform.parent = other.transform;
-		if (_shootActor is PlayerActor)
-			this.transform.localPosition = -_shootVec;
-		else
-			this.transform.localPosition = _shootVec;
+		this.transform.localPosition = -_shootVec;
+
 		_stickActor = InGame.GetActor(other.gameObject.GetInstanceID()) as CharacterActor;
 
 		_stickActor.GetAct<CharacterStatAct>().Damage(_damage, _shootActor);
