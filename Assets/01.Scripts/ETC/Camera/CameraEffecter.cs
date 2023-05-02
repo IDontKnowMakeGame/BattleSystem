@@ -15,6 +15,8 @@ public class CameraEffecter : MonoBehaviour
 
     private CinemachineVirtualCamera _cvCam;
 
+    private Transform _originalCamTarget;
+
     private float originalFOV = 40;
     private bool _isCameraAction;
 
@@ -31,6 +33,7 @@ public class CameraEffecter : MonoBehaviour
     {
         Time.timeScale = 1;
         _cvCam = GetComponent<CinemachineVirtualCamera>();
+        _originalCamTarget = _cvCam.Follow;
 
         _damagedShake = transform.Find("DamagedShake").GetComponent<Shake>();
         _basicShake = transform.Find("BasicShake").GetComponent<Shake>();
@@ -56,13 +59,20 @@ public class CameraEffecter : MonoBehaviour
     {
         _greateSwordShake.ScreenShake();
     }
-    public void ZoomIn(float time)
+    public void ZoomInTime(float time)
     {
         Debug.Log("ZoomIn");
         originFov = _cvCam.m_Lens.FieldOfView;
-        targetFov = 20;
-        timer = 0;
         duration = time;
+        //timer = 0;
+        //trigger = true;
+    }
+    public void ZoomInValue(float value)
+    {
+        Debug.Log("ZoomIn");
+        originFov = _cvCam.m_Lens.FieldOfView;
+        targetFov = value;
+        timer = 0;
         trigger = true;
     }
     public void ZoomOut()
@@ -71,8 +81,16 @@ public class CameraEffecter : MonoBehaviour
         originFov = _cvCam.m_Lens.FieldOfView;
         targetFov = SwitchCamera.FOV;
         timer = 0;
-        duration = 2f;
+        duration = 1.2f;
         trigger = true;
+    }
+    public void ChangeFollowCamTarget(Transform target)
+    {
+        _cvCam.Follow = target.transform;
+    }
+    public void FollowCamTargetInit()
+    {
+        _cvCam.Follow = _originalCamTarget;
     }
     private void Update()
     {
@@ -92,9 +110,9 @@ public class CameraEffecter : MonoBehaviour
             trigger = false;
         }
     }
-    public void TimeSlow()
+    public void TimeSlow(float time)
     {
-        Time.timeScale = 0.1f;
+        Time.timeScale = time;
     }
     public void TimeSet()
     {

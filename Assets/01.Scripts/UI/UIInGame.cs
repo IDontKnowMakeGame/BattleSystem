@@ -22,6 +22,8 @@ public class UIInGame : UIBase
     private VisualElement _secondWeaponHide;
     private VisualElement _itemList;
 
+    private bool flagCool = true;
+
     #region HP
     private float _currentHpValue = 100;
     private float _targetHpValue = 100;
@@ -72,7 +74,12 @@ public class UIInGame : UIBase
         FirstWeaponCoolTime();
         SecondWeaponCoolTime();
     }
-
+    public void ChangeWeaponPanel()
+    {
+        ChangeFirstWeaponImage(DataManager.UserData_.firstWeapon);
+        ChangeSecondWeaponImage(DataManager.UserData_.secondWeapon);
+        ChangeWeaponCoolTime();
+    }
     public void ChanageMaxHP(int value)
     {
         VisualElement bar = _hpSlider.Q<VisualElement>("bar_hpbackgroud");
@@ -127,6 +134,13 @@ public class UIInGame : UIBase
             back.RemoveFromClassList("OnAdrenalin");
     }
 
+    public void FlagCoolTimePanel(float coolTime)
+    {
+        if(flagCool)
+            FirstWeaponCoolTime(coolTime);
+        else
+            SecondWeaponCoolTime(coolTime);
+    }
     public void ChangeFirstWeaponImage(ItemID itemID)
     {
         Sprite sprite = Define.GetManager<ResourceManager>().Load<Sprite>("Item/" + (int)itemID);
@@ -167,6 +181,7 @@ public class UIInGame : UIBase
         VisualElement temp = _firstWeaponHide;
         _firstWeaponHide = _secondWeaponHide;
         _secondWeaponHide = temp;
+        flagCool = !flagCool;
     }
     public void ChangeItemPanelImage()
     {

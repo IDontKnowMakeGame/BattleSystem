@@ -485,12 +485,16 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 0eff4e364974886418a2fc91b5c06e82, type: 2}
     - {fileID: 11400000, guid: 29182e4f51918664e90b00d497e37187, type: 2}
     - {fileID: 11400000, guid: 31998a32748ac164ea17c1687fed2b52, type: 2}
+    - {fileID: 11400000, guid: b7882ea58fc39674d8c6b9645bddedd5, type: 2}
+    - {fileID: 11400000, guid: c1e5469b21c3a114890622f07ba0a73d, type: 2}
+    - {fileID: 11400000, guid: 57b125ff50b5a984494532149436eaac, type: 2}
+    - {fileID: 11400000, guid: fea8d711d6f12f64e8918b586dd681fa, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 3577013144753390079}
           m_TargetAssemblyTypeName: CameraEffecter, Assembly-CSharp
-          m_MethodName: ZoomIn
+          m_MethodName: ZoomInTime
           m_Mode: 4
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -500,17 +504,29 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 3577013144753390079}
+          m_TargetAssemblyTypeName: CameraEffecter, Assembly-CSharp
+          m_MethodName: ZoomInValue
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 20
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 3577013144753390079}
           m_TargetAssemblyTypeName: CameraEffecter, Assembly-CSharp
           m_MethodName: TimeSlow
-          m_Mode: 1
+          m_Mode: 4
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
-            m_FloatArgument: 0
+            m_FloatArgument: 0.1
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -602,13 +618,25 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 3577013144753390079}
           m_TargetAssemblyTypeName: CameraEffecter, Assembly-CSharp
-          m_MethodName: ZoomIn
+          m_MethodName: ZoomInTime
           m_Mode: 4
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0.1
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 3577013144753390079}
+          m_TargetAssemblyTypeName: CameraEffecter, Assembly-CSharp
+          m_MethodName: ZoomInValue
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 20
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -662,7 +690,7 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
-            m_FloatArgument: 0.2
+            m_FloatArgument: 0.1
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -684,6 +712,74 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: TImeLinePlayer, Assembly-CSharp
           m_MethodName: Fade
           m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3577013144753390079}
+          m_TargetAssemblyTypeName: CameraEffecter, Assembly-CSharp
+          m_MethodName: ZoomInTime
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 1
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 3577013144753390079}
+          m_TargetAssemblyTypeName: CameraEffecter, Assembly-CSharp
+          m_MethodName: ZoomInValue
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 30
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3577013144753390079}
+          m_TargetAssemblyTypeName: CameraEffecter, Assembly-CSharp
+          m_MethodName: TimeSlow
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3577013144753390079}
+          m_TargetAssemblyTypeName: CameraEffecter, Assembly-CSharp
+          m_MethodName: ChangeFollowCamTarget
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3577013144753390079}
+          m_TargetAssemblyTypeName: CameraEffecter, Assembly-CSharp
+          m_MethodName: FollowCamTargetInit
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

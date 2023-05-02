@@ -109,7 +109,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 		base.Change();
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.ChangeStat, _eventParam);
 		Define.GetManager<DataManager>().SwapWeaponData();
-		UIManager.Instance.UpdateInGameUI();
+		UIManager.Instance.InGame.ChangeWeaponPanel();
 	}
 	private void Skill()
 	{

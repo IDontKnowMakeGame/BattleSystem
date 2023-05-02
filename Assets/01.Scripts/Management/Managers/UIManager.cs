@@ -80,7 +80,6 @@ public class UIManager : MonoBehaviour
     {
         InGame.ChangeFirstWeaponImage(DataManager.UserData_.firstWeapon);
         InGame.ChangeSecondWeaponImage(DataManager.UserData_.secondWeapon);
-        InGame.ChangeWeaponCoolTime();
     }
     public  void show(string name)
     {
