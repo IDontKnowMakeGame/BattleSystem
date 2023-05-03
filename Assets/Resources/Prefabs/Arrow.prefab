@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5159332078612601956}
   - component: {fileID: 6760551342030637214}
   - component: {fileID: 1143996470894243719}
-  - component: {fileID: 8952606367286323832}
+  - component: {fileID: 7737597599650558374}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
---- !u!65 &8952606367286323832
+--- !u!65 &7737597599650558374
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,5 +210,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.038960695, y: 0.21770144, z: 0.038960703}
-  m_Center: {x: 0, y: 0.10885068, z: 4.10807e-16}
+  m_Size: {x: 0.038960695, y: 0.60000014, z: 0.038960703}
+  m_Center: {x: 0, y: 0.30000007, z: 0}

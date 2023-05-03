@@ -83,19 +83,22 @@ public class Arrow : MonoBehaviour
 
 		float time = count / speed;
 
-		Vector3 ve = new Vector3(-150, 0, 0);
+		 transform.rotation = Quaternion.Euler(VecToRotation(vec));
+		Debug.Log(transform.rotation);
+
+		//Vector3 ve = new Vector3(-150, 0, 0);
 		_seq = DOTween.Sequence();
 		_seq.Append(this.transform.DOMove(position + (vec * count), time).OnComplete(StickOnBlock));
-		_shootVec = vec;
-		_shootActor = actor;
-		_damage = damage;
-		_isDestroy = destroy;
 
-		
 		var rotX = transform.eulerAngles.x;
 		var rotY = transform.eulerAngles.y;
 		var rotZ = transform.eulerAngles.z;
 		_seq.Append(DOTween.To(x => rotX = x, rotX, 150, time).SetEase(Ease.Linear).OnUpdate(() => transform.eulerAngles = new Vector3(rotX, rotY, rotZ)));
+		_shootVec = vec;
+		_shootActor = actor;
+		_damage = damage;
+		_isDestroy = destroy;
+		_seq.Play();
 
 		if (_shootActor is PlayerActor)
 			InputManager<Bow>.OnSubPress += Pull;
@@ -103,6 +106,8 @@ public class Arrow : MonoBehaviour
 
 	protected virtual void StickOnBlock()
 	{
+		Debug.Log("block");
+		_seq.Kill();
 		_isStick = true;
 		Quaternion quater = this.transform.localRotation;
 		Vector3 vec = quater.eulerAngles;
@@ -111,12 +116,15 @@ public class Arrow : MonoBehaviour
 	}
 	private void StickOnWall()
 	{
+		Debug.Log("wall");
 		_isStick = true;
 		_seq.Kill();
 	}
 
 	protected virtual void StickActor(Collider other)
 	{
+		Debug.Log("stickActor");
+		Debug.Log(_seq);
 		_seq.Kill();
 		this.transform.parent = other.transform;
 		this.transform.localPosition = -_shootVec;
@@ -164,6 +172,7 @@ public class Arrow : MonoBehaviour
 	private IEnumerator Destroy()
 	{
 		yield return new WaitForSeconds(DestroyTime);
+		_isStick = false;
 		Define.GetManager<ResourceManager>().Destroy(this.gameObject);
 	}
 	private void OnTriggerEnter(Collider other)
@@ -181,7 +190,8 @@ public class Arrow : MonoBehaviour
 		if (actor == null)
 			return;
 
-		Debug.Log("Enter");
+		Debug.Log(other.gameObject.name);
+		Debug.Log(_isStick);
 		if (_shootActor.UUID != actor.UUID && !_isStick)
 		{
 			StickActor(other);
@@ -238,5 +248,10 @@ public class Arrow : MonoBehaviour
 		{
 			_playerAnimation.Play("LowerPull");
 		}
+	}
+
+	public void OnDisable()
+	{
+		_isStick = false;
 	}
 }

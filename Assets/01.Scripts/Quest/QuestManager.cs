@@ -90,7 +90,6 @@ public class QuestManager : MonoBehaviour
             {
                 for (var x = currentSO.startPos.x; x <= currentSO.endPos.x; x += 1)
                 {
-                    Debug.Log(new Vector3(x, 0, z));
                     roomData.Add(new Vector3(x, 0, z), currentSO.name);
                 }
             }
