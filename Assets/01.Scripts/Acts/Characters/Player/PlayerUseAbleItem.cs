@@ -78,11 +78,18 @@ namespace Acts.Characters.Player
 
                 if (cnt <= 0) return;
 
-                useAbleItems[currentID].UseItem();
-                currentData.currentCnt--;
-                UIManager.Instance.InGame.SetItemPanelCnt(currentID);
-                Define.GetManager<DataManager>().ChangeItemInfo(currentData);
+                bool check = useAbleItems[currentID].UseItem();
+                if (check)
+                {
+                    DecreaseDataCnt(currentData, currentID);
+                }
             }
+        }
+        public void DecreaseDataCnt(SaveItemData currentData, ItemID currentID)
+        {
+            currentData.currentCnt--;
+            UIManager.Instance.InGame.SetItemPanelCnt(currentID);
+            Define.GetManager<DataManager>().ChangeItemInfo(currentData);
         }
 
         public override void Update()
