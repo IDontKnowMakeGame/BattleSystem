@@ -6,15 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterStatAct.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterStatAct.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyStatAct.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyStatAct.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/06.Shaders/Character/CharacterModelShader.shadergraph" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/06.Shaders/Character/CharacterModelShader.shadergraph" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/06.Shaders/Character/Shader Graphs_CharacterModelShader.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/06.Shaders/Character/Shader Graphs_CharacterModelShader.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/CrazyGhost/CrazyGhostActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/CrazyGhost/CrazyGhostActor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/OldShade/OldShadeClips.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/OldShade/OldShadeClips.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/DeathParticle.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/DeathParticle.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/Weapon/ClassLevelData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/Weapon/ClassLevelData.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VEG/Disappear.vfx" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VEG/Disappear.vfx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +178,8 @@
       <workItem from="1682765264371" duration="3667000" />
       <workItem from="1682987552376" duration="2189000" />
       <workItem from="1683109252355" duration="167000" />
-      <workItem from="1683109436744" duration="3111000" />
+      <workItem from="1683109436744" duration="3345000" />
+      <workItem from="1683124434737" duration="2281000" />
     </task>
     <servers />
   </component>
