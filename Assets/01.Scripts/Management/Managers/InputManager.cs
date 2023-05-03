@@ -112,7 +112,12 @@ namespace Managements.Managers
 			AllActionClear();			
 		}
 
-		private void InputPress()
+        public override void OnDestroy()
+        {
+			AllActionClear();
+        }
+
+        private void InputPress()
 		{
 			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.AttackForward)))
 			{

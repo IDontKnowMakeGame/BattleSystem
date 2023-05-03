@@ -23,9 +23,10 @@ public class ChestObject : InteractionActor
 
 	public override void Interact()
 	{
-		if (InGame.Player.Position.IsNeighbor(Position) == false) return;
 		if (isOpen)
 			return;
+		if (InGame.Player.Position.IsNeighbor(Position) == false) return;
+		base.Interact();
 
 		base.Interact();
 		direction.Play();

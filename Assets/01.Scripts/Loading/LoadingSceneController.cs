@@ -51,8 +51,12 @@ public class LoadingSceneController : MonoBehaviour
 
     private string loadSceneName;
 
+    private bool isLoading = false;
+
     public void LoadScene(string sceneName)
     {
+        if (isLoading) return;
+
         gameObject.SetActive(true);
         SceneManager.sceneLoaded += OnSceneLoaded;
         loadSceneName = sceneName;
@@ -61,6 +65,7 @@ public class LoadingSceneController : MonoBehaviour
 
     private IEnumerator LoadSceneProcess()
     {
+        isLoading = true;
         progressBar.fillAmount = 0f;
         yield return StartCoroutine(Fade(true));
 
@@ -82,6 +87,7 @@ public class LoadingSceneController : MonoBehaviour
                 if (progressBar.fillAmount >= 1f)
                 {
                     op.allowSceneActivation = true;
+                    isLoading = false;
                     yield break;
                 }
             }

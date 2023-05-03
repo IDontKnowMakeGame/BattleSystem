@@ -194,13 +194,13 @@ namespace Managements
         
         public void MoveScene(string sceneName)
         {
+            DOTween.KillAll();
             foreach (var manager in _managers.Values)
             {
                 manager.OnDestroy();
             }
             _managers.Clear();
-            DOTween.KillAll();
-            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+            LoadingSceneController.Instnace.LoadScene(sceneName);
         }
     }
 }
