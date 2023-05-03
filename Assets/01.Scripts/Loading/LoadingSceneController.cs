@@ -51,12 +51,13 @@ public class LoadingSceneController : MonoBehaviour
 
     private string loadSceneName;
 
-    private bool isLoading = false;
+    public bool isLoading = false;
 
     public void LoadScene(string sceneName)
     {
         if (isLoading) return;
-
+        Debug.Log("접근하지마!");
+        isLoading = true;
         gameObject.SetActive(true);
         SceneManager.sceneLoaded += OnSceneLoaded;
         loadSceneName = sceneName;
@@ -65,7 +66,6 @@ public class LoadingSceneController : MonoBehaviour
 
     private IEnumerator LoadSceneProcess()
     {
-        isLoading = true;
         progressBar.fillAmount = 0f;
         yield return StartCoroutine(Fade(true));
 
@@ -88,10 +88,13 @@ public class LoadingSceneController : MonoBehaviour
                 {
                     op.allowSceneActivation = true;
                     isLoading = false;
+                    Debug.Log("접근해!!");
                     yield break;
                 }
             }
         }
+
+        isLoading = false;
     }
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
