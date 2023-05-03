@@ -250,7 +250,7 @@ namespace Acts.Characters.Player
 
         public void RangeReset()
         {
-            attackCol.AllReset();
+            attackCol.AllEnemysClear();
         }
     }
 }
