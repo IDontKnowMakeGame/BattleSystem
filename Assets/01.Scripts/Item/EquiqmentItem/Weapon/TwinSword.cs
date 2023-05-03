@@ -72,6 +72,8 @@ public class TwinSword : Weapon
 
 	public void OnAttack(int id, Vector3 vec)
 	{
+		if (_characterActor == null) return;
+
 		if (id != _characterActor.UUID)
 			return;
 

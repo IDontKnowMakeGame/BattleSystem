@@ -105,22 +105,26 @@ namespace Actors.Characters
 		{
 			base.UpdatePosition();
 			var map = Define.GetManager<MapManager>();
-			var block = map.GetBlock(Position);
-			if (canKnockBack)
-			{
-				if (block != null)
-				{
-					var target = map.GetBlock(Position).ActorOnBlock;
-					if (target)
-						if (this != target)
-						{
-							var targetCharacter = target as CharacterActor;
 
-							if (targetCharacter != null) targetCharacter.OnKnockBack?.Invoke(1, this);
-						}
+			if (map != null)
+			{
+				var block = map.GetBlock(Position);
+				if (canKnockBack)
+				{
+					if (block != null)
+					{
+						var target = map.GetBlock(Position).ActorOnBlock;
+						if (target)
+							if (this != target)
+							{
+								var targetCharacter = target as CharacterActor;
+
+								if (targetCharacter != null) targetCharacter.OnKnockBack?.Invoke(1, this);
+							}
+					}
 				}
+				InGame.SetActorOnBlock(this);
 			}
-			InGame.SetActorOnBlock(this);
 		}
 	}
 }
