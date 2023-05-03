@@ -31,7 +31,7 @@ namespace Actors.Characters.Furnitures
 
         public void Open()
         {
-            anchorTrm.DORotate(new Vector3(0, -90, 0), 1f).OnComplete(() =>
+            anchorTrm.DOLocalRotate(new Vector3(0, -90, 0), 1f).OnComplete(() =>
             {
                 IsUpdatingPosition = false;
                 var block = InGame.GetBlock(Position);
@@ -43,7 +43,7 @@ namespace Actors.Characters.Furnitures
         {
             IsUpdatingPosition = true;
             InGame.SetActorOnBlock(this);
-            anchorTrm.DORotate(new Vector3(0, 0, 0), 1f);
+            anchorTrm.DOLocalRotate(new Vector3(0, 0, 0), 1f);
         }
     }
 }
