@@ -34,14 +34,17 @@ public class HPPotion : UseAbleItem
         _playerStatAct = InGame.Player.GetAct<PlayerStatAct>();
     }
 
-    public override void UseItem()
+    public override bool UseItem()
     {
-        if(!_useHP)
+        Debug.Log("hello world");
+        if (!_useHP && _playerStatAct.ChangeStat.hp < _playerStatAct.ChangeStat.maxHP)
         {
             //InGame.Player.AddState(CharacterState.StopMove);
             _useHP = true;
             holyParticle.Play();
+            return true;
         }
+        return false;
     }
 
     public override void UpdateItem()

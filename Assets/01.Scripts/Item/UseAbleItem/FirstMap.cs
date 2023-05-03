@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class FirstMap : Map
 {
-    public override void UseItem()
+    public override bool UseItem()
     {
         UIManager.Instance.UIFirstFloorMap.ShowFirstFloorMap();
+        return true;
     }
 }

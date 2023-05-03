@@ -8,6 +8,7 @@ using Core;
 using Tools;
 using UnityEngine;
 using Acts.Characters.Player;
+using DG.Tweening;
 using Random = UnityEngine.Random;
 
 namespace Acts.Characters.Enemy
@@ -88,8 +89,22 @@ namespace Acts.Characters.Enemy
 			var enemy = ThisActor as EnemyActor;
             if (enemy != null) enemy.Alive = false;
 
-            if(!isBoss)
-				ThisActor.gameObject.SetActive(false);
+            if (!isBoss)
+            {
+	            UnitAnimation unit = ThisActor.GetAct<UnitAnimation>();
+	            CharacterRender render = ThisActor.GetAct<CharacterRender>();
+	            var mat = render.Renderer.material;
+	            ClipBase clip = unit.GetClip("Die");
+	            clip.OnExit = () =>
+	            {
+		            ThisActor.RemoveAct<EnemyAI>();
+		            ThisActor.gameObject.SetActive(false);
+	            };
+	            var deathParticle = Define.GetManager<ResourceManager>().Instantiate("DeathParticle");
+	            DOTween.To(() => 2, x => mat.SetFloat("_Cutoff_Height", x), 0, 0.8f);
+	            deathParticle.transform.position = ThisActor.Position;
+	            unit.Play("Die");
+            }
 
             InGame.Player.GetAct<PlayerAttack>().RangeReset();
 		}

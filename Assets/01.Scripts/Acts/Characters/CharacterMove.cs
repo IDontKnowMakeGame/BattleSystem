@@ -121,6 +121,7 @@ namespace Acts.Characters
             if (_isMoving)
             {
                 enableQ = false;
+                MoveStop();
                 return;
             }
             
@@ -128,6 +129,7 @@ namespace Acts.Characters
             if (_character.HasState(ccState))
             {
                 enableQ = false;
+                MoveStop();
                 return;
             }
             var currentPos = ThisActor.Position;
@@ -148,12 +150,17 @@ namespace Acts.Characters
             if(block.CheckActorOnBlock(ThisActor) == false)
             {
                 enableQ = false;
+                MoveStop();
                 return;
             }
 
             if (_character.HasState(CharacterState.Move) == false)
                 _character.AddState(Actors.Characters.CharacterState.Move);
-            else return;
+            else
+            {
+                MoveStop();
+                return;
+            }
 
             dir = (currentPos - nextPos).SetY(0);
             AnimationCheck();

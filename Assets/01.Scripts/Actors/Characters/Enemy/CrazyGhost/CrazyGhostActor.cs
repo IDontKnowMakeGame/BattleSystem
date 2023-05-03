@@ -47,6 +47,11 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
                 var dir = (playerPos - Position).GetDirection();
+                if (dir.magnitude > 1)
+                {
+                    RemoveState(CharacterState.Attack);
+                    return;
+                }
                 Attack(dir, "Slash", () =>
                 {
                     attack.HorizontalAttack(dir, false);
@@ -58,6 +63,11 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
                 var dir = (playerPos - Position).GetDirection();
+                if (dir.magnitude > 1)
+                {
+                    RemoveState(CharacterState.Attack);
+                    return;
+                }
                 Attack(dir,"Pierce", () =>
                 {
                     move.Jump(Position, dir, 6, 0f);

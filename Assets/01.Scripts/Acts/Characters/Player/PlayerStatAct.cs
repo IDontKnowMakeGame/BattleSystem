@@ -61,5 +61,11 @@ public class PlayerStatAct : CharacterStatAct
 	{
 		base.Die();
 		PlayerDeath.Instance.FocusCenter();
+
+		// HP 포션 5개로 초기화
+		SaveItemData currentData = Define.GetManager<DataManager>().LoadItemFromInventory(Data.ItemID.HPPotion);
+		currentData.currentCnt = 5;
+		UIManager.Instance.InGame.SetItemPanelCnt(Data.ItemID.HPPotion);
+		Define.GetManager<DataManager>().ChangeItemInfo(currentData);
 	}
 }
