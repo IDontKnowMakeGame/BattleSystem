@@ -99,10 +99,9 @@ public class Spear : Weapon
 			if (_mapManager.GetBlock(_characterActor.Position + _currentVec * i)?.ActorOnBlock != null)
 				isEnemy = true;
 		}
-		if (_isDown && _isEnterEnemy && isEnemy && (_isCurrentVec || (!_isClick && !_characterActor.HasState(CharacterState.Move))))
+		if (_isDown && _isEnterEnemy && isEnemy && _isCurrentVec)
 		{
 			_eventParam.attackParam = _attackInfo;
-			_isCurrentVec = false;
 			_isEnterEnemy = false;
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.FureAttack, _eventParam);
 		}
@@ -192,27 +191,9 @@ public class Spear : Weapon
 		_isClick = true;
 
 		if (!(vec == _attackInfo.PressInput && _isDown))
-			return;
-
-		Vector3 vector = InGame.CamDirCheck(vec);
-
-		if (vector != _currentVec)
-		{
 			_isCurrentVec = false;
-			return;
-		}
-
-		for (int i =range; i<range+2; i++)
-		{
-			if (_mapManager.GetBlock(_characterActor.Position + vector * i)?.ActorOnBlock)
-			{
-				Debug.Log("¾Ó ¶§¸± ¼ö ÀÖ¶ì");
-				_isCurrentVec = true;
-				return;
-			}
-		}
-
-		_isCurrentVec = false;
+		else
+			_isCurrentVec = true;
 	}
 
 	private void MoveEnd(int id, Vector3 vec)
@@ -220,10 +201,6 @@ public class Spear : Weapon
 		if (id != _characterActor.UUID)
 			return;
 
-		if (_isDown && _isEnterEnemy)
-			_isEnterEnemy = false;
-
 		_isClick = false;
-		_isCurrentVec = false;
 	}
 }
