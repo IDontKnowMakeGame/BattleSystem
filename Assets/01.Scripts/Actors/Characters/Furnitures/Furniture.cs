@@ -13,7 +13,7 @@ namespace Actors.Characters.Furnitures
     {
         [SerializeField] private List<Vector3> interactDirections = null;
         public List<ItemID> NeedItems = new ();
-        private bool IsInteracting = false; 
+        protected bool IsInteracting = false; 
         protected Action OnInteract = null;
         protected Action DeInteract = null;
         
