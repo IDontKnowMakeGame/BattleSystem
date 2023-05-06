@@ -12,6 +12,10 @@ namespace Actors.Characters.NPC
         public List<Vector3> _touchPosArea = new List<Vector3>();
         public UnityEvent _onTouch = new UnityEvent();
 
+        [SerializeField]
+        private bool OneShot = false;
+
+        private bool check = false;
 
         protected override void Update()
         {
@@ -19,7 +23,11 @@ namespace Actors.Characters.NPC
             {
                 if(InGame.Player.Position == Position + pos)
                 {
-                    _onTouch?.Invoke();
+                    if (!OneShot || !check)
+                    {
+                        _onTouch?.Invoke();
+                        check = true;
+                    }
                 }
             }
             base.Update();

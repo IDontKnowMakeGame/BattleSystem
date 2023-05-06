@@ -39,6 +39,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: a620aad94a3b1ac419c3c3990be7bc49, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _NormalTex:
         m_Texture: {fileID: 2800000, guid: 25c6993ee9a2a8d4fab6cb733833018b, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -61,8 +65,12 @@ Material:
     - _Blend: 0
     - _CastShadows: 1
     - _Cull: 0
+    - _Cutoff_Height: 2
     - _DstBlend: 0
+    - _Edge_Width: 0.1
     - _IsBlink: 0
+    - _Noise_Scale: 50
+    - _Noise_Strength: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -74,6 +82,7 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Edge_Color: {r: 2.670157, g: 2.670157, b: 2.670157, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Tiling: {r: 0.09090909, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

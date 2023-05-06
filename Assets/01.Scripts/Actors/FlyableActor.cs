@@ -23,6 +23,7 @@ namespace Actors
 
         public void Fly(Vector3 dir, float power)
         {
+            if (_rigidbody == null) return;
             _rigidbody.AddForce(dir * power, ForceMode.Force);
         }
         

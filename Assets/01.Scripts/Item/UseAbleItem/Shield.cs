@@ -11,7 +11,7 @@ public class Shield : UseAbleItem
 
     private Dictionary<Vector3, GameObject> ShieldPos = new Dictionary<Vector3, GameObject>();
 
-    public override void UseItem()
+    public override bool UseItem()
     {
         // πÊ«‚
         use = !use;
@@ -20,6 +20,8 @@ public class Shield : UseAbleItem
             InputManager<Weapon>.OnAttackPress += SpawnShield;
         else
             InputManager<Weapon>.OnAttackPress -= SpawnShield;
+
+        return false;
     }
 
     private void SpawnShield(Vector3 dir)
@@ -44,6 +46,9 @@ public class Shield : UseAbleItem
         InputManager<Weapon>.OnAttackPress -= SpawnShield;
 
         ShieldPos.Add(spawnPos, shield);
+
+        SaveItemData currentData = Define.GetManager<DataManager>().LoadItemFromInventory(Data.ItemID.Shield);
+        InGame.Player.GetAct<PlayerUseAbleItem>().DecreaseDataCnt(currentData, Data.ItemID.Shield);
     }
 
     private Vector3 RotateShield(Vector3 dir)

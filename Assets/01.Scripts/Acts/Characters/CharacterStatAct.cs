@@ -169,11 +169,7 @@ public class CharacterStatAct : Act
 			Die();
 			return;
 		}
-		_render.Blink();
-		GameObject blood = Define.GetManager<ResourceManager>().Instantiate("Blood");
-		blood.transform.position = ThisActor.transform.position;
-		blood.GetComponent<ParticleSystem>().Play();
-
+		
 		if (ChangeStat.hp <= 0)
 		{
 			if (actor is PlayerActor)
@@ -185,6 +181,11 @@ public class CharacterStatAct : Act
 
 			Die();
 		}
+		
+		_render.Blink();
+		GameObject blood = Define.GetManager<ResourceManager>().Instantiate("Blood");
+		blood.transform.position = ThisActor.transform.position;
+		blood.GetComponent<ParticleSystem>().Play();
 	}
 
 	public int PercentHP()
