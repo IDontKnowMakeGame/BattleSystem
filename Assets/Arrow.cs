@@ -180,7 +180,8 @@ public class Arrow : MonoBehaviour
 	{
 		CharacterActor actor = other.GetComponent<CharacterActor>();
 
-		if (1 << other.gameObject.layer == LayerMask.GetMask("Wall") && _isEnd)
+		Debug.Log(other.gameObject.name);
+		if ((1 << other.gameObject.layer == LayerMask.GetMask("Wall") && _isEnd) || (1 << other.gameObject.layer == LayerMask.GetMask("InteractionWall")))
 		{
 			if (_isDestroy)
 				Define.GetManager<ResourceManager>().Destroy(this.gameObject);

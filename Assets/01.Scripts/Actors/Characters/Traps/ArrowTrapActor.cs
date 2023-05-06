@@ -6,7 +6,13 @@ namespace Actors.Characters.Traps
 {
     public class ArrowTrapActor : DispenserTrapActor
     {
-        public int speed = 2;
+        [SerializeField]
+        private int _speed = 2;
+		[SerializeField]
+		private int _damage = 25;
+		[SerializeField]
+		private int _range = 10;
+
         protected override void Shoot()
         {
             var bulletObj = pool.Pop(bulletPrefab).gameObject;
@@ -15,8 +21,7 @@ namespace Actors.Characters.Traps
 
             var bullet = bulletObj.GetComponent<Arrow>();
             var dir = transform.rotation.eulerAngles.Euler2Dir();
-            Debug.Log(dir);
-            bullet.Shoot(dir, Position, this, speed, 25, 10,true);
+            bullet.Shoot(dir, Position, this, _speed, _damage, _range, true);
         }
     }
 }

@@ -136,18 +136,24 @@ public class CameraEffecter : MonoBehaviour
         var size2 = Physics.RaycastNonAlloc(playerPos + Vector3.left, dir.normalized, hit2, 3000, Mask);
         for (var i = 0; i < size0; i++)
         {
+            if (hit0[i].collider == null)
+                continue;
             var actor = InGame.GetActor(hit0[i].collider.gameObject.GetInstanceID());
-            actor.GetAct<WallRender>()?.Invisible();
+            actor?.GetAct<WallRender>()?.Invisible();
         }
         for (var i = 0; i < size1; i++)
         {
-            var actor = InGame.GetActor(hit1[i].collider.gameObject.GetInstanceID());
-            actor.GetAct<WallRender>()?.Invisible();
+			if (hit1[i].collider == null)
+				continue;
+			var actor = InGame.GetActor(hit1[i].collider.gameObject.GetInstanceID());
+            actor?.GetAct<WallRender>()?.Invisible();
         }
         for (var i = 0; i < size2; i++)
         {
-            var actor = InGame.GetActor(hit2[i].collider.gameObject.GetInstanceID());
-            actor.GetAct<WallRender>()?.Invisible();
+			if (hit2[i].collider == null)
+				continue;
+			var actor = InGame.GetActor(hit2[i].collider.gameObject.GetInstanceID());
+            actor?.GetAct<WallRender>()?.Invisible();
         }
     }
 }

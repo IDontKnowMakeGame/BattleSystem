@@ -6,8 +6,10 @@ public class WallObject : InteractionActor
     public override void Interact()
     {
         if (!InGame.Player.Position.IsNeighbor(Position)) return;
+        if (!Define.GetManager<DataManager>().HaveUseableItem(Data.ItemID.Pick))
+            return;
 
-        this.gameObject.SetActive(false);
+		this.gameObject.SetActive(false);
 
         GameObject obj = Define.GetManager<ResourceManager>().Instantiate("WallBrokenObject");
         obj.transform.position = this.transform.position;

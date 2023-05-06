@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 7483935641004979575}
   - component: {fileID: 7483935641004979574}
   - component: {fileID: 7483935641004979578}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: BrokenWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
