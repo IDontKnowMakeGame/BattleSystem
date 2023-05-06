@@ -1,8 +1,9 @@
 using UnityEngine;
 using Core;
 using Actors.Bases;
+using Actors.Characters;
 
-public class WallObject : Actor,IPickable
+public class WallObject : CharacterActor,IPickable
 {
 	public void Mining()
 	{

@@ -14,6 +14,7 @@ namespace Acts.Characters.Player
         private Torch _torchItem;
         private Shield _shieldItem;
         private HPPotion _hpPotion;
+        private Pick _pick;
 
         private FirstMap _fristMap;
         private SecondMap _secondMap;
@@ -35,6 +36,7 @@ namespace Acts.Characters.Player
             _torchItem = new Torch();
             _shieldItem = new Shield();
             _hpPotion = new HPPotion();
+			_pick = new Pick();
 
             _fristMap = new FirstMap();
             _secondMap = new SecondMap();
@@ -45,6 +47,7 @@ namespace Acts.Characters.Player
             useAbleItems.Add(ItemID.Torch, _torchItem);
             useAbleItems.Add(ItemID.Shield, _shieldItem);
             useAbleItems.Add(ItemID.HPPotion, _hpPotion);
+            useAbleItems.Add(ItemID.Pick, _pick);
 
             useAbleItems.Add(ItemID.FirstMap, _fristMap);
             useAbleItems.Add(ItemID.SecondMap, _secondMap);
@@ -55,6 +58,7 @@ namespace Acts.Characters.Player
             _hpPotion.SettingItem();
             _shieldItem.SettingItem();
             _torchItem.SettingItem();
+            _pick.SettingItem();
 
             _fristMap.SettingItem();
             _secondMap.SettingItem();

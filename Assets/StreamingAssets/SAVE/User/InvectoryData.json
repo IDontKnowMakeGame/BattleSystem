@@ -61,7 +61,7 @@
         {
             "id": 200,
             "name": "Torch",
-            "currentCnt": 51,
+            "currentCnt": 50,
             "maxCnt": 99
         },
         {
@@ -93,6 +93,12 @@
             "name": "ThirdMap",
             "currentCnt": 0,
             "maxCnt": 0
+        },
+        {
+            "id": 206,
+            "name": "Pick",
+            "currentCnt": 98,
+            "maxCnt": 99
         }
     ],
     "inventoryInQuestItemList": [

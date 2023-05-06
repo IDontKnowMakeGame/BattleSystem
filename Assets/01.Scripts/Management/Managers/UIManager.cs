@@ -39,7 +39,7 @@ public class UIManager : MonoBehaviour
     {
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.FirstMap);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.SecondMap);
-        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.ThirdMap);
+        Define.GetManager<DataManager>().AddItemInInventory(ItemID.Pick,1);
     }
 
     private void Init()
