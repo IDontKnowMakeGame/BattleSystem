@@ -77,13 +77,14 @@ public class Arrow : MonoBehaviour
 			}
 
 		}
+
 		position.y = 1;
 
 		this.transform.position = position;
 
 		float time = count / speed;
 
-		 transform.rotation = Quaternion.Euler(VecToRotation(vec));
+		transform.rotation = Quaternion.Euler(VecToRotation(vec));
 		Debug.Log(transform.rotation);
 
 		//Vector3 ve = new Vector3(-150, 0, 0);
@@ -131,7 +132,7 @@ public class Arrow : MonoBehaviour
 
 		_stickActor = InGame.GetActor(other.gameObject.GetInstanceID()) as CharacterActor;
 
-		_stickActor.GetAct<CharacterStatAct>().Damage(_damage, _shootActor);
+		_stickActor.GetAct<CharacterStatAct>()?.Damage(_damage, _shootActor);
 		_isStick = true;
 
 		if (_isDestroy)
@@ -190,8 +191,12 @@ public class Arrow : MonoBehaviour
 		if (actor == null)
 			return;
 
-		Debug.Log(other.gameObject.name);
-		Debug.Log(_isStick);
+		if(actor is WallObject)
+		{
+			StickOnWall();
+			return;
+		}
+
 		if (_shootActor.UUID != actor.UUID && !_isStick)
 		{
 			StickActor(other);
