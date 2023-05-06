@@ -56,6 +56,7 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         InGame.Update();
+        UIFirstFloorMap.Update();
 
         if (Input.GetKeyDown(KeyCode.Z))
         {

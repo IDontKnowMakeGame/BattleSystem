@@ -146,6 +146,15 @@ namespace Acts.Characters
                 return;
             }
             
+            var direction = (nextPos - currentPos).SetY(0).GetDirection();
+            
+            if (map.IsBlocking(currentPos + direction))
+            {
+                enableQ = false;
+                MoveStop();
+                return;
+            }
+            
             var block = map.GetBlock(nextPos.SetY(0));
             if(block.CheckActorOnBlock(ThisActor) == false)
             {
@@ -161,8 +170,6 @@ namespace Acts.Characters
                 MoveStop();
                 return;
             }
-
-            dir = (currentPos - nextPos).SetY(0);
             AnimationCheck();
 
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;

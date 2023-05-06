@@ -11,6 +11,7 @@ public class UIFirstFloorMap : UIBase
     private bool isOpen = false;
 
     private VisualElement _mapCast;
+    private VisualElement _playerPos;
 
     private Dictionary<int,bool> cristalDictionary = new Dictionary<int,bool>();
 
@@ -45,12 +46,22 @@ public class UIFirstFloorMap : UIBase
         {26,new List<int>{41}}
     };
 
+    private int pixel = 13;
+
     public override void Init()
     {
         _root = UIManager.Instance._document.rootVisualElement.Q<VisualElement>("UI_FirstFloorMap");
 
         _mapCast = _root.Q<VisualElement>("Cast");
+        _playerPos = _root.Q<VisualElement>("PlayerPosition");
+
         CristalInit();
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        PlayerPositionMark();
     }
 
     public void FlagDisplay(bool flag)
@@ -70,6 +81,7 @@ public class UIFirstFloorMap : UIBase
         {
             isOpen = true;
             MapCast();
+            PlayerPositionMark();
         }
         else
             isOpen = false;
@@ -109,5 +121,14 @@ public class UIFirstFloorMap : UIBase
 
             isCast = true;
         }
+    }
+    public void PlayerPositionMark()
+    {
+        Vector3 pos = InGame.Player.transform.position;
+        float xPos = pos.x * pixel;
+        float yPos = -(pos.z) * pixel;
+
+        _playerPos.style.left = xPos;
+        _playerPos.style.top = yPos;
     }
 }

@@ -141,7 +141,7 @@ public class QuestManager : MonoBehaviour
                     check.RemoveAt(i);
                     Define.GetManager<DataManager>().ReadyClearQuest(questList[i]);
                     questList.RemoveAt(i);
-                    Debug.Log("¹Ì¼Ç Å¬¸®¾î!");
+                    Debug.Log("ï¿½Ì¼ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½!");
                     i--;
                 }
             }
@@ -163,7 +163,7 @@ public class QuestManager : MonoBehaviour
         {
             if(checkRoom.Contains(allRoomSODic[result].roomSO))
             {
-                Debug.Log("¹Ì¼Ç Å¬¸®¾î!");
+                Debug.Log("ï¿½Ì¼ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½!");
                 Define.GetManager<DataManager>().ReadyClearQuest(allRoomSODic[result].myQuest[0]);
                 checkRoom.Remove(allRoomSODic[result].roomSO);
             }
