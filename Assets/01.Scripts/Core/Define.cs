@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Actors.Bases;
+using Actors.Characters;
 using Blocks;
 using Managements;
 using Managements.Managers;
@@ -109,6 +111,15 @@ namespace Core
 
         public static Actor GetActor(Vector3 pos) => GetBlock(pos).ActorOnBlock;
 
+        public static CharacterActor[] GetNearCharacterActors(Vector3 pos)
+        {
+            var map = Define.GetManager<MapManager>();
+            var block = map.GetBlock(pos);
+            var blocks = map.GetNeighbors(block);
+            var actors = from b in blocks select b.ActorOnBlock as CharacterActor; 
+            return actors.ToArray();
+        }
+        
         public static void SetActorOnBlock(Actor actor)
         {
             //Debug.Log(actor.Position);

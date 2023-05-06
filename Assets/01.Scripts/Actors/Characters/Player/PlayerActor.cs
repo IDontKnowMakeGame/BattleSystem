@@ -27,5 +27,19 @@ namespace Actors.Characters.Player
             AddAct(_playerBuff);
             InGame.Player = this;
         }
+
+        protected override void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                var actors = InGame.GetNearCharacterActors(Position);
+                foreach (var actor in actors)
+                {
+                    if(actor == null) Debug.Log(null);
+                    else Debug.Log(actor.name);
+                }
+            }
+            base.Update();
+        }
     }
 }
