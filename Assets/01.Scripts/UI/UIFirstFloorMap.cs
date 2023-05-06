@@ -125,7 +125,6 @@ public class UIFirstFloorMap : UIBase
     public void PlayerPositionMark()
     {
         Vector3 pos = InGame.Player.transform.position;
-        Debug.Log(pos);
         float xPos = pos.x * pixel;
         float yPos = -(pos.z) * pixel;
 
