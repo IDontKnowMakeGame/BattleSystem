@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Actors.Bases;
 using Actors.Characters;
 using Actors.Characters.Furnitures;
 using Blocks;
 using Blocks.Acts;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using Walls;
 
@@ -95,7 +97,7 @@ namespace Managements.Managers
                 return true;
             return _mapDict[pos].ActorOnBlock is Wall or Furniture;
         }
-        
+
         public bool IsStayable(Block tile)
         {
             if(tile == null)
