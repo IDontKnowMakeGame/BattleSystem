@@ -41,24 +41,25 @@ public class PlayerEquipment : CharacterEquipmentAct
 		{
 			_halos.Add(ItemID.None);
 		}
+		_firstWeapon = DataManager.UserData_.firstWeapon;
+		_secondWeapon = DataManager.UserData_.secondWeapon;
+		_playerActor = _characterController as PlayerActor;
+		_playerAnimation = ThisActor.GetAct<PlayerAnimation>();
 	}
 
 	public override void OnEnable()
 	{
 		base.OnEnable();
-		EquipAnimation();
 		Define.GetManager<EventManager>().StartListening(EventFlag.WeaponEquip, EquipmentWeapon);
 		Define.GetManager<EventManager>().StartListening(EventFlag.WeaponUpgrade, Upgrade);
 		Define.GetManager<EventManager>().StartListening(EventFlag.HaloAdd, AddHalo);
 		Define.GetManager<EventManager>().StartListening(EventFlag.HaloDel, RemoveHalo);
+		if(_playerAnimation != null)
+		EquipAnimation();
 	}
 
 	public override void Start()
 	{
-		_firstWeapon = DataManager.UserData_.firstWeapon;
-		_secondWeapon = DataManager.UserData_.secondWeapon;
-		_playerActor = _characterController as PlayerActor;
-		_playerAnimation = ThisActor.GetAct<PlayerAnimation>();
 		EquipAnimation();
 		base.Start();
 		InputManager<Weapon>.OnChangePress += Change;

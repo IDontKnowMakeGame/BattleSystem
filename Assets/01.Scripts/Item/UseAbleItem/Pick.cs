@@ -1,3 +1,4 @@
+using Actors.Characters;
 using Core;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +10,9 @@ public class Pick : UseAbleItem
 	public override bool UseItem()
 	{
 		if (InGame.Player.HasState(Actors.Characters.CharacterState.Everything)) return false;
-		///if (InGame.Player.Position.IsNeighbor(InGame.Player.Position) == false) return;
+
+		CharacterActor[] actor = InGame.GetNearCharacterActors(InGame.Player.Position);
+		//if () return;
 		
 		return true;
 	}
