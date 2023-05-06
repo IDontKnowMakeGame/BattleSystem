@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Player/PlayerActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Player/PlayerActor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Core/Define.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Core/Define.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Management/Managers/MapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Management/Managers/MapManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/06.Shaders/Character/CharacterModelShader.shadergraph" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/06.Shaders/Character/CharacterModelShader.shadergraph" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/Weapon/ClassLevelData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/Weapon/ClassLevelData.json" afterDir="false" />
     </list>
@@ -181,7 +179,7 @@
       <workItem from="1683109252355" duration="167000" />
       <workItem from="1683109436744" duration="3345000" />
       <workItem from="1683124434737" duration="2281000" />
-      <workItem from="1683373527377" duration="5127000" />
+      <workItem from="1683373527377" duration="6378000" />
     </task>
     <servers />
   </component>

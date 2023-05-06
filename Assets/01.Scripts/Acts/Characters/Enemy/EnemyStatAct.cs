@@ -101,7 +101,7 @@ namespace Acts.Characters.Enemy
 		            ThisActor.gameObject.SetActive(false);
 	            };
 	            var deathParticle = Define.GetManager<ResourceManager>().Instantiate("DeathParticle");
-	            DOTween.To(() => 2, x => mat.SetFloat("_Cutoff_Height", x), 0, 0.8f);
+	            DOTween.To(() => 4, x => mat.SetFloat("_Cutoff_Height", x), 0, 0.8f);
 	            deathParticle.transform.position = ThisActor.Position;
 	            unit.Play("Die");
             }
