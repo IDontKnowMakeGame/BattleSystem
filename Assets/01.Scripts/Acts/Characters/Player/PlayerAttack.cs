@@ -35,12 +35,17 @@ namespace Acts.Characters.Player
             OnAttackEnd = null;
         }
 
+        public override void OnEnable()
+        {
+            base.OnEnable();
+			Define.GetManager<EventManager>().StartListening(EventFlag.Attack, Attack);
+			Define.GetManager<EventManager>().StartListening(EventFlag.NoneAniAttack, NoneAniAttack);
+			Define.GetManager<EventManager>().StartListening(EventFlag.FureAttack, FureAttack);
+		}
+
         public override void Start()
         {
             base.Start();
-            Define.GetManager<EventManager>().StartListening(EventFlag.Attack, Attack);
-            Define.GetManager<EventManager>().StartListening(EventFlag.NoneAniAttack, NoneAniAttack);
-            Define.GetManager<EventManager>().StartListening(EventFlag.FureAttack, FureAttack);
             _playerAnimation = ThisActor.GetAct<PlayerAnimation>();
             _playerActor = InGame.Player.GetComponent<PlayerActor>();
             _playerEquipment = _playerActor.GetAct<PlayerEquipment>();
@@ -246,7 +251,8 @@ namespace Acts.Characters.Player
         {
 			Define.GetManager<EventManager>()?.StopListening(EventFlag.Attack, Attack);
             Define.GetManager<EventManager>()?.StopListening(EventFlag.NoneAniAttack, NoneAniAttack);
-        }
+			Define.GetManager<EventManager>()?.StartListening(EventFlag.FureAttack, FureAttack);
+		}
 
         public void RangeReset()
         {

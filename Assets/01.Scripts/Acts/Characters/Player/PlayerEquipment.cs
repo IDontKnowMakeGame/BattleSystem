@@ -8,10 +8,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using JetBrains.Annotations;
-using UnityEngine.TextCore.Text;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
-using static UnityEditor.Progress;
 
 [Serializable]
 public class PlayerEquipment : CharacterEquipmentAct
@@ -46,6 +42,17 @@ public class PlayerEquipment : CharacterEquipmentAct
 			_halos.Add(ItemID.None);
 		}
 	}
+
+	public override void OnEnable()
+	{
+		base.OnEnable();
+		EquipAnimation();
+		Define.GetManager<EventManager>().StartListening(EventFlag.WeaponEquip, EquipmentWeapon);
+		Define.GetManager<EventManager>().StartListening(EventFlag.WeaponUpgrade, Upgrade);
+		Define.GetManager<EventManager>().StartListening(EventFlag.HaloAdd, AddHalo);
+		Define.GetManager<EventManager>().StartListening(EventFlag.HaloDel, RemoveHalo);
+	}
+
 	public override void Start()
 	{
 		_firstWeapon = DataManager.UserData_.firstWeapon;
@@ -57,19 +64,12 @@ public class PlayerEquipment : CharacterEquipmentAct
 		InputManager<Weapon>.OnChangePress += Change;
 		InputManager<Weapon>.OnSkillPress += Skill;
 		InputManager<Weapon>.OnOffPress += WeaponOnOff;
-		Define.GetManager<EventManager>().StartListening(EventFlag.WeaponEquip, EquipmentWeapon);
-		Define.GetManager<EventManager>().StartListening(EventFlag.WeaponUpgrade, Upgrade);
-		Define.GetManager<EventManager>().StartListening(EventFlag.HaloAdd, AddHalo);
-		Define.GetManager<EventManager>().StartListening(EventFlag.HaloDel, RemoveHalo);
-
 		_useHalo.Add(ItemID.HaloOfGhost, new HaloOfGhost());
 		_useHalo.Add(ItemID.HaloOfPollution, new HaloOfPollution());
 		_useHalo.Add(ItemID.HaloOfEreshkigal, new HaloOfEreshkigal());
-
 		_halos = Define.GetManager<DataManager>().LoadHaloListInUserData();
 		if (_halos[0] != ItemID.None)
 			_haloRanderer?.SetHalo(_halos[0]);
-
 		foreach(ItemID haloID in _halos)
         {
 			if (haloID == ItemID.None) return;
@@ -78,17 +78,18 @@ public class PlayerEquipment : CharacterEquipmentAct
 	}
 	public override void OnDisable()
 	{
-		Define.GetManager<EventManager>()?.StopListening(EventFlag.WeaponEquip, EquipmentWeapon);
 		base.OnDisable();
+		Define.GetManager<EventManager>()?.StopListening(EventFlag.WeaponEquip, EquipmentWeapon);
+		Define.GetManager<EventManager>()?.StopListening(EventFlag.WeaponUpgrade, Upgrade);
+		Define.GetManager<EventManager>()?.StopListening(EventFlag.HaloAdd, EquipmentWeapon);
+		Define.GetManager<EventManager>()?.StopListening(EventFlag.HaloDel, EquipmentWeapon);
 	}
 	#endregion
 	#region Weapon
 	public void WeaponOnOff()
 	{
-		Debug.Log("?");
 		if (_haveinHand)
 		{
-			Debug.Log("UnEquipment");
 			CurrentWeapon?.UnEquipment(_characterController);
 			Debug.Log(CurrentWeapon);
 			_characterController.currentWeapon = null;

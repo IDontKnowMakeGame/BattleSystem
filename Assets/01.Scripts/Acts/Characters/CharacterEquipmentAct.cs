@@ -77,6 +77,10 @@ public class CharacterEquipmentAct : Act
 		_characterController = ThisActor as CharacterActor;
 	}
 
+	public override void OnEnable()
+	{
+		CurrentWeapon?.Equiqment(_characterController);
+	}
 	public override void Start()
 	{
 		CurrentWeapon?.Equiqment(_characterController);
