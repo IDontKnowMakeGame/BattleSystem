@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using Actors.Bases;
 using Actors.Characters;
+using Actors.Characters.Furnitures;
 using Blocks;
 using Blocks.Acts;
 using UnityEngine;
+using Walls;
 
 namespace Managements.Managers
 {
@@ -86,6 +88,14 @@ namespace Managements.Managers
                 return false;
             return IsStayable(_mapDict[pos]);
         }
+
+        public bool IsBlocking(Vector3 pos)
+        {
+            if(!_mapDict.ContainsKey(pos))
+                return true;
+            return _mapDict[pos].ActorOnBlock is Wall or Furniture;
+        }
+        
         public bool IsStayable(Block tile)
         {
             if(tile == null)
