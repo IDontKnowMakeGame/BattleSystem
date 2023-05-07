@@ -11,6 +11,8 @@ public class ChestObject : InteractionActor
 
 	[SerializeField]
 	private GetItemObject _itemObject;
+	[SerializeField]
+	private ParticleSystem _particle;
 
 	private PlayableDirector direction;
 
@@ -18,6 +20,8 @@ public class ChestObject : InteractionActor
 	{
 		_itemObject.canInteraction = false;
 		direction = GetComponent<PlayableDirector>();
+		var particle = _particle.main;
+		particle.loop = true;
 		//Define.GetManager<DataManager>()
 	}
 
@@ -27,8 +31,9 @@ public class ChestObject : InteractionActor
 			return;
 		if (InGame.Player.Position.IsNeighbor(Position) == false) return;
 		base.Interact();
-
-		base.Interact();
+		var particle = _particle.main;
+		particle.loop = false;
+		//_particle.gameObject.SetActive(false);
 		direction.Play();
 		isOpen = true;
 	}

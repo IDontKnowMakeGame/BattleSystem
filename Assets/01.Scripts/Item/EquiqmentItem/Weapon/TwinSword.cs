@@ -53,8 +53,11 @@ public class TwinSword : Weapon
 		base.Equiqment(actor);
 		if (isEnemy)
 			return;
+		Debug.Log("Equiqment");
+
 		InputManager<Weapon>.OnMovePress += AttackVec;
 		PlayerMove.OnMoveEnd += OnAttack;
+
 		if (_playerAnimation == null)
 			_playerAnimation = _characterActor.GetAct<PlayerAnimation>();
 	}
@@ -104,11 +107,12 @@ public class TwinSword : Weapon
 		}
 		_eventParam.attackParam = _attackInfo;
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.FureAttack, _eventParam);
-		//Attack(vec);
+		Debug.Log("Attack");
 	}
 
 	public virtual void Attack(Vector3 vec)
 	{
+		Debug.Log("¿¨");
 		if (_characterActor.HasState(CharacterState.Move) || _characterActor.HasState(CharacterState.Attack)) return;
 		int z = (int)vec.z;
 		int x = (int)vec.x;
