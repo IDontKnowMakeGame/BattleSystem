@@ -68,6 +68,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 		_useHalo.Add(ItemID.HaloOfGhost, new HaloOfGhost());
 		_useHalo.Add(ItemID.HaloOfPollution, new HaloOfPollution());
 		_useHalo.Add(ItemID.HaloOfEreshkigal, new HaloOfEreshkigal());
+		_useHalo.Add(ItemID.HaloOfDismantle, new HaloOfDismantle());
 		_halos = Define.GetManager<DataManager>().LoadHaloListInUserData();
 		if (_halos[0] != ItemID.None)
 			_haloRanderer?.SetHalo(_halos[0]);
@@ -77,7 +78,16 @@ public class PlayerEquipment : CharacterEquipmentAct
 			_useHalo[haloID].Equiqment(_characterController);
 		}
 	}
-	public override void OnDisable()
+
+    public override void Update()
+    {
+        base.Update();
+		// TO DO Test ÈÄ »èÁ¦
+		if (Input.GetKeyDown(KeyCode.V))
+			_useHalo[ItemID.HaloOfDismantle].Equiqment(_characterController);
+	}
+
+    public override void OnDisable()
 	{
 		base.OnDisable();
 		Define.GetManager<EventManager>()?.StopListening(EventFlag.WeaponEquip, EquipmentWeapon);
