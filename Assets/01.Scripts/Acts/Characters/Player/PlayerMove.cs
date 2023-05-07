@@ -56,6 +56,8 @@ namespace Acts.Characters.Player
             if (_playerActor.HasAnyState()) return;
             playerDir = direction;
             direction = InGame.CamDirCheck(direction);
+
+           Debug.Log(distance);
             base.Translate(direction * distance);
         }
 
@@ -134,21 +136,22 @@ namespace Acts.Characters.Player
 
        private void SkillAnimation()
         {
-            if (playerDir == Vector3.left)
+            Vector3 attackDir = ThisActor.GetAct<PlayerAttack>().AttackDir;
+            if (attackDir == Vector3.left)
             {
                 ThisActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
                 _playerAnimation.Play("HorizontalSkill");
             }
-            else if (playerDir == Vector3.right)
+            else if (attackDir == Vector3.right)
             {
                 ThisActor.SpriteTransform.localScale = new Vector3(2, 1, 1);
                 _playerAnimation.Play("HorizontalSkill");
             }
-            else if (playerDir == Vector3.forward)
+            else if (attackDir == Vector3.forward)
             {
                 _playerAnimation.Play("UpperSkill");
             }
-            else if (playerDir == Vector3.back)
+            else if (attackDir == Vector3.back)
             {
                 _playerAnimation.Play("LowerSkill");
             }

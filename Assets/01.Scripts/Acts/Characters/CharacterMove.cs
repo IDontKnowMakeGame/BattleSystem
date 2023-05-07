@@ -139,6 +139,14 @@ namespace Acts.Characters
             
 
             var map = Define.GetManager<MapManager>();
+            var direction = (nextPos - currentPos).SetY(0).GetDirection();
+            int dirMagnitude = (int)Vector3Int.RoundToInt((nextPos - currentPos).SetY(0)).magnitude;
+
+            for(int i = dirMagnitude; i > 1; i--)
+            {
+                if (map.IsStayable(nextPos.SetY(0))) break;
+                nextPos -= direction;
+            }
 
             if (!map.IsStayable(nextPos.SetY(0)))
             {
@@ -147,7 +155,6 @@ namespace Acts.Characters
                 return;
             }
             
-            var direction = (nextPos - currentPos).SetY(0).GetDirection();
             
             if (map.IsBlocking(currentPos + direction))
             {
