@@ -94,12 +94,12 @@ namespace Acts.Characters.Enemy
 	            UnitAnimation unit = ThisActor.GetAct<UnitAnimation>();
 	            CharacterRender render = ThisActor.GetAct<CharacterRender>();
 	            var mat = render.Renderer.material;
+		        ThisActor.RemoveAct<EnemyAI>();
 	            ClipBase clip = unit.GetClip("Die");
 	            clip.OnExit = () =>
 	            {
-		            ThisActor.RemoveAct<EnemyAI>();
 		            ThisActor.gameObject.SetActive(false);
-	            };
+                };
 	            var deathParticle = Define.GetManager<ResourceManager>().Instantiate("DeathParticle");
 	            DOTween.To(() => 4, x => mat.SetFloat("_Cutoff_Height", x), 0, 0.8f);
 	            deathParticle.transform.position = ThisActor.Position;
