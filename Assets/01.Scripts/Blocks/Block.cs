@@ -129,6 +129,11 @@ namespace Blocks
         {
             _actorOnBlock = actor;
         }
+
+        public void ToggleIsWalkable()
+        {
+            isWalkable = !isWalkable;
+        }
         
         public void RemoveActorOnBlock()
         {
