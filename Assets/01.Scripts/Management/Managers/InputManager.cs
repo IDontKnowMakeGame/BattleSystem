@@ -109,7 +109,6 @@ namespace Managements.Managers
 
 		public override void OnDisable()
 		{
-			Debug.Log(">");
 			AllActionClear();			
 		}
 

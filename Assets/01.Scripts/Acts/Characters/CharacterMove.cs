@@ -74,6 +74,7 @@ namespace Acts.Characters
             seq.Append(_thisTransform.DOMove(nextPos, speed - defaultSpeed).SetEase(Ease.Linear));
             seq.AppendCallback(() =>
             {
+                Debug.Log("MoveEnd");
                 OnMoveEnd?.Invoke(ThisActor.UUID, nextPos - _character.Position);
                 MoveStop(); 
                 seq.Kill();

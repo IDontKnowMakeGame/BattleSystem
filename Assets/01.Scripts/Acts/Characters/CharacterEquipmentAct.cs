@@ -81,10 +81,14 @@ public class CharacterEquipmentAct : Act
 	{
 		CurrentWeapon?.Equiqment(_characterController);
 	}
-	public override void Start()
+	public override void OnDisable()
 	{
-		CurrentWeapon?.Equiqment(_characterController);
+		CurrentWeapon?.UnEquipment(_characterController);
 	}
+	//public override void Start()
+	//{
+	//	CurrentWeapon?.Equiqment(_characterController);
+	//}
 	public override void Update()
 	{
 		CurrentWeapon?.Update();
