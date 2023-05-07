@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Actors.Characters;
 using Core;
+using Acts.Characters.Enemy;
 
 public class HaloOfPollution : Halo
 {
@@ -33,7 +34,7 @@ public class HaloOfPollution : Halo
         {
             Debug.Log(eventParam.unit);
             
-            eventParam.unit.GetAct<CharacterStatAct>()?.Damage(damage, InGame.Player);
+            eventParam.unit.GetAct<EnemyStatAct>()?.Damage(damage, InGame.Player);
         }
     }
 }
