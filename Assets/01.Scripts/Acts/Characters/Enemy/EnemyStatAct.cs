@@ -87,9 +87,10 @@ namespace Acts.Characters.Enemy
 			}
 
             Define.GetManager<DataManager>().AddFeahter(_feahter);
-            
+            UIManager.Instance?.InGame.AddFeatherValue(_feahter);
 
-			var enemy = ThisActor as EnemyActor;
+
+            var enemy = ThisActor as EnemyActor;
             if (enemy != null) enemy.Alive = false;
 
             if (!isBoss)
