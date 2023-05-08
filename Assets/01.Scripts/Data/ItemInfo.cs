@@ -20,7 +20,9 @@ namespace Data
 
         public static float WeightToSpeed(int weight)
         {
-           var speed = (Mathf.Pow(weight, 2) + 20) * 0.01f;
+            if(weight <= 0)
+				return (Mathf.Pow(1, 2) + 20) * 0.01f;
+			var speed = (Mathf.Pow(weight, 2) + 20) * 0.01f;
            return speed;
         }
 

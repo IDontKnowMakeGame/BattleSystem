@@ -51,6 +51,7 @@ public enum StatType
 	ATK,
 	ATS,
 	AFS,
+	Weight,
 	SPEED
 }
 
@@ -81,7 +82,7 @@ public class CharacterStatAct : Act
 				_changeStat.atk = (_changeStat.atk * _drainageStat) + ((_changeStat.atk * _drainageStat) * (_percentStat / 100));
 			else
 				_changeStat.atk = (_changeStat.atk * 1) + ((_changeStat.atk * 1) * (_percentStat / 100));
-
+			_changeStat.atk += _changeStats[StatType.ATK];
 			return _changeStat;
 		}
 	}
@@ -108,6 +109,16 @@ public class CharacterStatAct : Act
 	private CharacterEquipmentAct _eqipment;
 
 	private Dictionary<string, float> _drainageAtk = new Dictionary<string, float>();
+	private Dictionary<StatType, float> _changeStats = new Dictionary<StatType, float>();
+
+	public override void Awake()
+	{
+		base.Awake();
+		foreach(StatType stat in Enum.GetValues(typeof(StatType)))
+		{
+			_changeStats.Add(stat, 0);
+		}
+	}
 
 	public override void Start()
 	{
@@ -149,7 +160,15 @@ public class CharacterStatAct : Act
 	{
 		ItemInfo info = _eqipment.CurrentWeapon.WeaponInfo;
 		_changeStat.ChangeStat(info);
-		_changeStat.maxHP = _changeStat.maxHP + info.Hp;
+		_changeStat.maxHP = _basicStat.maxHP + _changeStats[StatType.MAXHP];
+		_changeStat.ats = _changeStat.ats + _changeStats[StatType.ATS];
+		_changeStat.afs = _changeStat.ats + _changeStats[StatType.AFS];
+		Debug.Log((int)(ItemInfo.SpeedToWeight(_changeStat.speed) + _changeStats[StatType.Weight]));
+		Debug.Log(ItemInfo.WeightToSpeed((int)(ItemInfo.SpeedToWeight(_changeStat.speed) + _changeStats[StatType.Weight])));
+		Debug.Log(ItemInfo.SpeedToWeight(_changeStat.speed));
+		Debug.Log(_changeStats[StatType.Weight]);
+		Debug.Log(_changeStats[StatType.SPEED]);
+		_changeStat.speed = ItemInfo.WeightToSpeed((int)(ItemInfo.SpeedToWeight(_changeStat.speed) + _changeStats[StatType.Weight])) + _changeStats[StatType.SPEED];
 	}
 	public virtual void Heal(int hp)
 	{
@@ -211,100 +230,43 @@ public class CharacterStatAct : Act
 	}
 
 	#region FAO
-	public void Dev(StatType type, float times)
-	{
-		switch (type)
-		{
-			case StatType.MAXHP:
-				_changeStat.maxHP /= times;
-				break;
-			case StatType.ATK:
-				_changeStat.atk /= times;
-				break;
-			case StatType.ATS:
-				_changeStat.ats /= times;
-				break;
-			case StatType.AFS:
-				_changeStat.afs /= times;
-				break;
-			case StatType.SPEED:
-				_changeStat.speed /= times;
-				break;
-		}
-	}
+	public void Dev(StatType type, float times) => _changeStats[type] /= times;
 
-	public void Multi(StatType type, float times)
-	{
-		switch (type)
-		{
-			case StatType.MAXHP:
-				_changeStat.maxHP *= times;
-				break;
-			case StatType.ATK:
-				_changeStat.atk *= times;
-				break;
-			case StatType.ATS:
-				_changeStat.ats *= times;
-				break;
-			case StatType.AFS:
-				_changeStat.afs *= times;
-				break;
-			case StatType.SPEED:
-				_changeStat.speed *= times;
-				break;
-		}
-	}
+	public void Multi(StatType type, float times)=>_changeStats[type] *= times;
 
 	public void Plus(StatType type, float add)
 	{
-		switch (type)
+		if (StatType.Weight == type)
 		{
-			case StatType.MAXHP:
-				_changeStat.maxHP += add;
-				break;
-			case StatType.ATK:
-				_changeStat.atk += add;
-				break;
-			case StatType.ATS:
-				_changeStat.ats += add;
-				break;
-			case StatType.AFS:
-				_changeStat.afs += add;
-				break;
-			case StatType.SPEED:
-				int weight = ItemInfo.SpeedToWeight(ChangeStat.speed);
-				if (weight - add < 9)
-					_changeStat.speed = ItemInfo.WeightToSpeed(weight - (int)add);
-				else
-					_changeStat.speed = ItemInfo.WeightToSpeed(1);
-				break;
+			ItemInfo info = _eqipment.CurrentWeapon.WeaponInfo;
+			if (info.Weight + add + _changeStats[type] < 9 && info.Weight + add + _changeStats[type] > 0)
+				_changeStats[type] = _changeStats[type] + add;
+
+			return;
 		}
+		else if(StatType.SPEED == type)
+			if(ChangeStat.speed + add > ItemInfo.WeightToSpeed(9))
+				return;
+
+		_changeStats[type] += add;
 	}
 
 	public void Sub(StatType type, float min)
 	{
-		switch (type)
+		if (StatType.Weight == type)
 		{
-			case StatType.MAXHP:
-				_changeStat.maxHP -= min;
-				break;
-			case StatType.ATK:
-				_changeStat.atk -= min;
-				break;
-			case StatType.ATS:
-				_changeStat.ats -= min;
-				break;
-			case StatType.AFS:
-				_changeStat.afs -= min;
-				break;
-			case StatType.SPEED:
-				int weight = ItemInfo.SpeedToWeight(ChangeStat.speed);
-				if (weight - min > 0)
-					_changeStat.speed = ItemInfo.WeightToSpeed(weight - (int)min);
-				else
-					_changeStat.speed = ItemInfo.WeightToSpeed(1);
-				break;
+			int weight = _eqipment.CurrentWeapon.WeaponInfo.Weight;
+			if (weight - (min + _changeStats[type]) < 9 && weight - (min + _changeStats[type]) > 0)
+				_changeStats[type] = _changeStats[type] - min;
+
+			return;
 		}
+		else if (StatType.SPEED == type)
+		{
+			if (ChangeStat.speed - min < ItemInfo.WeightToSpeed(1))
+				return;
+		}
+		_changeStats[type] -= min;
 	}
 	#endregion
 }
