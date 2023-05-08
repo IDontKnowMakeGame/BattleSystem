@@ -216,6 +216,10 @@ public class UIInGame : UIBase
             }
         }
     }
+    public void UpdateFeatherValue()
+    {
+        _feather.text = Define.GetManager<DataManager>().GetFeather().ToString();
+    }
     public void WriteFeatherValue(int value)
     {
         _feather.text = value.ToString();
