@@ -13,7 +13,7 @@ namespace AI
 
         public virtual void Init()
         {
-            Debug.Log($"Init {Name} State");
+            //Debug.Log($"Init {Name} State");
         }
         
         public Action OnEnter;

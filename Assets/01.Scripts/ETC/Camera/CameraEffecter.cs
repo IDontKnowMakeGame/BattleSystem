@@ -61,7 +61,6 @@ public class CameraEffecter : MonoBehaviour
     }
     public void ZoomInTime(float time)
     {
-        Debug.Log("ZoomIn");
         originFov = _cvCam.m_Lens.FieldOfView;
         duration = time;
         //timer = 0;
@@ -69,7 +68,6 @@ public class CameraEffecter : MonoBehaviour
     }
     public void ZoomInValue(float value)
     {
-        Debug.Log("ZoomIn");
         originFov = _cvCam.m_Lens.FieldOfView;
         targetFov = value;
         timer = 0;
@@ -77,7 +75,6 @@ public class CameraEffecter : MonoBehaviour
     }
     public void ZoomOut()
     {
-        Debug.Log($"ZoomOut : {SwitchCamera.FOV}");
         originFov = _cvCam.m_Lens.FieldOfView;
         targetFov = SwitchCamera.FOV;
         timer = 0;

@@ -242,7 +242,6 @@ public class UIInGame : UIBase
         float currentFov = Mathf.Lerp(1, 0, t);
         
         _addFeatherCnt.style.opacity = new StyleFloat(currentFov);
-        Debug.Log($"oppacity : {currentFov} {_addFeatherCnt.style.opacity}");
 
         if (currentFov <= 0)
             _IsFeatherEffect = true;
