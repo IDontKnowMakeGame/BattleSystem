@@ -225,7 +225,8 @@ public class DataManager : Manager
     {
         return MapData_.mapData[(int)MapData_.currentFloor];
     }
-    public List<int> OnCristalData(Floor floor)
+
+    public List<int> LoadOnCristalData(Floor floor)
     {
         MapInfo map = MapData_.mapData[(int)floor];
         return map.onCristalList;
@@ -239,12 +240,76 @@ public class DataManager : Manager
     public bool IsOnCrital(int num,Floor floor)
     {
 
-        foreach(int number in OnCristalData(floor))
+        foreach(int number in LoadOnCristalData(floor))
         {
             if(number == num) return true;
         }
         return false;
     }
+
+    public List<int> LoadOpenChestData(Floor floor)
+    {
+        MapInfo map = MapData_.mapData[(int)floor];
+        return map.openChestList;
+    }
+    public void OpenChest(int num)
+    {
+        MapData_.mapData[(int)MapData_.currentFloor].openChestList.Add(num);
+
+        SaveToMapData();
+    }
+    public bool IsOpenChestl(int num, Floor floor)
+    {
+
+        foreach (int number in LoadOpenChestData(floor))
+        {
+            if (number == num) return true;
+        }
+        return false;
+    }
+
+    public List<int> LoadOpenDoorList(Floor floor)
+    {
+        MapInfo map = MapData_.mapData[(int)floor];
+        return map.openDoorList;
+    }
+    public void OpenDoor(int num)
+    {
+        MapData_.mapData[(int)MapData_.currentFloor].openDoorList.Add(num);
+
+        SaveToMapData();
+    }
+    public bool IsOpenDoorl(int num, Floor floor)
+    {
+
+        foreach (int number in LoadOpenDoorList(floor))
+        {
+            if (number == num) return true;
+        }
+        return false;
+    }
+
+    public List<int> LoadBrokenWallList(Floor floor)
+    {
+        MapInfo map = MapData_.mapData[(int)floor];
+        return map.brokenWallList;
+    }
+    public void BrokenWall(int num)
+    {
+        MapData_.mapData[(int)MapData_.currentFloor].brokenWallList.Add(num);
+
+        SaveToMapData();
+    }
+    public bool IsBrokenWall(int num, Floor floor)
+    {
+
+        foreach (int number in LoadBrokenWallList(floor))
+        {
+            if (number == num) return true;
+        }
+        return false;
+    }
+
     public void EnterFloor(Floor floor)
     {
         MapData_.currentFloor = floor;

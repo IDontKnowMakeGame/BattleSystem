@@ -97,7 +97,7 @@ public class UIFirstFloorMap : UIBase
     }
     public void MapCast()
     {
-        List<int> list = Define.GetManager<DataManager>().OnCristalData(Floor.First);
+        List<int> list = Define.GetManager<DataManager>().LoadOnCristalData(Floor.First);
         foreach (int i in list)
         {
                 cristalDictionary[i] = true;

@@ -19,6 +19,8 @@ public class MapInfo
     public bool isBossKill = false;
     public List<int> onCristalList = new List<int>();
     public List<int> openChestList = new List<int>();
+    public List<int> openDoorList = new List<int>();
+    public List<int> brokenWallList = new List<int>();
     public List<EnemyType> killUniqueEnemy = new List<EnemyType>();
 }
 
