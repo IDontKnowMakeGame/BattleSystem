@@ -46,6 +46,16 @@ namespace Tool.Map.Controll
                 }
                 GUI.backgroundColor = oldColor;
             }
+
+            
+            var allSelectBtnRect = new Rect((areas[1].x) * width + 50, height * 3, 100, 70);
+            if (GUI.Button(allSelectBtnRect, "All"))
+            {
+                foreach (var block in blocks)
+                {
+                    block.ToggleIsWalkable();
+                }
+            }
         }
     }
 }

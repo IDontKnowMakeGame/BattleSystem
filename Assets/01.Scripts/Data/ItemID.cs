@@ -22,6 +22,7 @@ namespace Data
         HaloOfGhost = 100,
         HaloOfPollution = 101,
         HaloOfEreshkigal = 102,
+        HaloOfDismantle = 103,
         ////200~299 UseableItem
         Torch = 200,
         Shield = 201,
