@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!4 &6861387176571567016
 Transform:
@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 6861387177648206930}
   - component: {fileID: 6861387177648206931}
   - component: {fileID: 6861387177648206925}
+  - component: {fileID: 5393716357709905754}
   m_Layer: 0
   m_Name: OldShade
   m_TagString: Enemy
@@ -203,8 +204,8 @@ MonoBehaviour:
     _isPlayer: 0
   _characterStat:
     _basicStat:
-      maxHP: 100
-      hp: 100
+      maxHP: 1
+      hp: 1
       atk: 0
       ats: 0
       afs: 0
@@ -233,7 +234,7 @@ MonoBehaviour:
     curClips: {fileID: 11400000, guid: 9eac4b9f506b8ff4da916d3414664b01, type: 2}
   alive: 1
   spriteSize: 1
-  currentType: 0
+  currentType: 1
 --- !u!114 &6861387177648206924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,3 +381,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8924329, y: 0.8924329, z: 0.8924329}
   m_Center: {x: 0, y: 0, z: -0}
+--- !u!114 &5393716357709905754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6861387177648206928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da98b277d1f6f994bbf224d6b515c747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsing: 0
