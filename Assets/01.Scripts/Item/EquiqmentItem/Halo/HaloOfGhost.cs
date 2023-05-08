@@ -15,6 +15,7 @@ public class HaloOfGhost : Halo
 
     public override void UnEquipment(CharacterActor actor)
     {
+        Debug.Log("UnEquipement");
         InGame.Player.GetAct<PlayerStatAct>().Sub(StatType.MAXHP, 100);
         UIManager.Instance.InGame.ChanageMaxHP((int)InGame.Player.GetAct<PlayerStatAct>().ChangeStat.maxHP / 10);
         UIManager.Instance.InGame.ChangeCurrentHP(InGame.Player.GetAct<PlayerStatAct>().PercentHP());
