@@ -163,11 +163,11 @@ public class CharacterStatAct : Act
 		_changeStat.maxHP = _basicStat.maxHP + _changeStats[StatType.MAXHP];
 		_changeStat.ats = _changeStat.ats + _changeStats[StatType.ATS];
 		_changeStat.afs = _changeStat.ats + _changeStats[StatType.AFS];
-		Debug.Log((int)(ItemInfo.SpeedToWeight(_changeStat.speed) + _changeStats[StatType.Weight]));
-		Debug.Log(ItemInfo.WeightToSpeed((int)(ItemInfo.SpeedToWeight(_changeStat.speed) + _changeStats[StatType.Weight])));
-		Debug.Log(ItemInfo.SpeedToWeight(_changeStat.speed));
-		Debug.Log(_changeStats[StatType.Weight]);
-		Debug.Log(_changeStats[StatType.SPEED]);
+		//Debug.Log((int)(ItemInfo.SpeedToWeight(_changeStat.speed) + _changeStats[StatType.Weight]));
+		//Debug.Log(ItemInfo.WeightToSpeed((int)(ItemInfo.SpeedToWeight(_changeStat.speed) + _changeStats[StatType.Weight])));
+		//Debug.Log(ItemInfo.SpeedToWeight(_changeStat.speed));
+		//Debug.Log(_changeStats[StatType.Weight]);
+		//Debug.Log(_changeStats[StatType.SPEED]);
 		_changeStat.speed = ItemInfo.WeightToSpeed((int)(ItemInfo.SpeedToWeight(_changeStat.speed) + _changeStats[StatType.Weight])) + _changeStats[StatType.SPEED];
 	}
 	public virtual void Heal(int hp)
