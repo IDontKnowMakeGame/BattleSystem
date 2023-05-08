@@ -79,14 +79,6 @@ public class PlayerEquipment : CharacterEquipmentAct
 		}
 	}
 
-    public override void Update()
-    {
-        base.Update();
-		// TO DO Test ÈÄ »èÁ¦
-		if (Input.GetKeyDown(KeyCode.V))
-			_useHalo[ItemID.HaloOfDismantle].Equiqment(_characterController);
-	}
-
     public override void OnDisable()
 	{
 		base.OnDisable();

@@ -182,7 +182,9 @@ namespace Tool.Map
                 for (int j = 0; j < columnSize; j++)
                 {
                     if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
+                    {
                         SpawnTile(num, changeX, changeZ);
+                    }
                     changeX += gridObjects.offsetX;
                 }
                 changeX = posX;

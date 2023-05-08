@@ -33,7 +33,7 @@ namespace Tools
 
         public void ClearEvent()
         {
-			Debug.Log("Clear");
+			//Debug.Log("Clear");
 			events = new();
         }
 
