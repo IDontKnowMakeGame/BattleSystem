@@ -3,7 +3,11 @@
         {
             "name": "StraightSword",
             "level": 0,
+<<<<<<< HEAD
             "killedCount": 144
+=======
+            "killedCount": 145
+>>>>>>> DevFromKHJ
         },
         {
             "name": "GreatSword",

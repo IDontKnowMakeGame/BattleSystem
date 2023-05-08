@@ -29,13 +29,11 @@ namespace Tools
                 events = new List<Action>(new Action[fps]);
             }
             events[frame] = action;
-
-            Debug.Log(frame);
         }
 
         public void ClearEvent()
         {
-			Debug.Log("Clear");
+			//Debug.Log("Clear");
 			events = new();
         }
 
