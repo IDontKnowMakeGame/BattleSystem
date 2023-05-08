@@ -175,14 +175,18 @@ namespace Tool.Map
 
         void SearchStartModeTile(string[] row, int rowSize, int columnSize)
         {
-            int num;
             for (int i = 0; i < rowSize; i++)
             {
                 string[] column = row[i].Split('\t');
                 for (int j = 0; j < columnSize; j++)
                 {
-                    if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
+                    if (column[j] != string.Empty)
+                    {
+                        var values = column[j].Split(';');
+                        var num = int.Parse(values[0]);
+                        var type = int.Parse(values[1]);
                         SpawnTile(num, changeX, changeZ);
+                    }
                     changeX += gridObjects.offsetX;
                 }
                 changeX = posX;
