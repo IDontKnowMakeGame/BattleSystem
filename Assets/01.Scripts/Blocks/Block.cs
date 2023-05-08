@@ -222,5 +222,18 @@ namespace Blocks
                 }
             }
         }
+
+        private void OnDrawGizmos()
+        {
+            if (isWalkable)
+            {
+                
+            }
+            else
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawCube(transform.position, Vector3.one);
+            }
+        }
     }
 }
