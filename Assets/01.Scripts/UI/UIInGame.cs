@@ -41,9 +41,16 @@ public class UIInGame : UIBase
     private bool IsSecondWeaponCool = false;
     #endregion
 
+    #region FeatherEffect;
+    private float _featherEffectTime = 0;
+    private float _featherEffectDuration = 3f;
+    private bool _IsFeatherEffect = false;
+    #endregion
+
     private Dictionary<ItemID, VisualElement> _invenInItems = new Dictionary<ItemID, VisualElement>();
 
     private Label _feather;
+    private Label _addFeatherCnt;
 
     public override void Init()
     {
@@ -61,6 +68,7 @@ public class UIInGame : UIBase
         _itemList = _root.Q<VisualElement>("area_item");
 
         _feather = _root.Q<Label>("featherCnt");
+        _addFeatherCnt = _root.Q<Label>("AddFeatherCnt");
 
         _feather.text = Define.GetManager<DataManager>().GetFeather().ToString();
 
@@ -73,6 +81,7 @@ public class UIInGame : UIBase
         ChangeCurrentHP();
         FirstWeaponCoolTime();
         SecondWeaponCoolTime();
+        AddFeatherEffect();
     }
     public void ChangeWeaponPanel()
     {
@@ -216,9 +225,27 @@ public class UIInGame : UIBase
             }
         }
     }
-    public void UpdateFeatherValue()
+    public void AddFeatherValue(int value)
     {
+        _addFeatherCnt.text = string.Format("+{0}", value);
+        _featherEffectTime = 0;
+        _IsFeatherEffect = false;
+
         _feather.text = Define.GetManager<DataManager>().GetFeather().ToString();
+    }
+    public void AddFeatherEffect()
+    {
+        if (_IsFeatherEffect) return;
+
+        _featherEffectTime += Time.deltaTime;
+        float t = Mathf.Clamp01(_featherEffectTime / _featherEffectDuration);
+        float currentFov = Mathf.Lerp(1, 0, t);
+        
+        _addFeatherCnt.style.opacity = new StyleFloat(currentFov);
+        Debug.Log($"oppacity : {currentFov} {_addFeatherCnt.style.opacity}");
+
+        if (currentFov <= 0)
+            _IsFeatherEffect = true;
     }
     public void WriteFeatherValue(int value)
     {
