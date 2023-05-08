@@ -220,6 +220,7 @@ public class UIInventory : UIBase
         foreach (SaveItemData item in list)
         {
             if (EquipToItem(item.id)) continue;
+            if (item.id == 0) continue;
 
             VisualElement card = temp.Instantiate().Q<VisualElement>("card");
             card.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)item.id}"));
@@ -345,7 +346,7 @@ public class UIInventory : UIBase
             if (selectCard != null)
                 CardBorderWidth(selectCard, 0, Color.white);
 
-            if((int)id < 101 )
+            if((int)id < 101&&(int)id !=0 )
                 ShowWeaponInfoPanel(id);
 
             selectCard = card;
