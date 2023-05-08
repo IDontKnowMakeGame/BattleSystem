@@ -17,12 +17,12 @@ namespace Actors.Characters.Player
 
 		protected override void Init()
         { 
-            AddAct(_playerStat);
-			AddAct(_playerEquipment);
             base.Init();
+            AddAct(_playerStat);
+            AddAct(_plyerAnimation);
+			AddAct(_playerEquipment);
             AddAct(_playerMove);
             AddAct(_playerAttack);
-            AddAct(_plyerAnimation);
             AddAct(_playerUseAbleItem);
             AddAct(_playerBuff);
             InGame.Player = this;
