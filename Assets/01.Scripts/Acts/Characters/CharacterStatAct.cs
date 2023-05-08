@@ -69,11 +69,11 @@ public class CharacterStatAct : Act
 	{
 		get
 		{
-			if (_actor.currentWeapon == null)
-			{
-				_changeStat.speed = _basicStat.speed;
-				return _changeStat;
-			}
+			//if (_actor.currentWeapon == null)
+			//{
+			//	_changeStat.speed = _basicStat.speed;
+			//	return _changeStat;
+			//}
 
 			StatChange();
 

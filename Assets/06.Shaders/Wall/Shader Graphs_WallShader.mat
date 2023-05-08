@@ -33,6 +33,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _HeightMap:
+        m_Texture: {fileID: 2800000, guid: c2d480cfeca8d5e418965feb1ec15754, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: e0151d2c7bc1bfc4a82177d0298dd56e, type: 3}
         m_Scale: {x: 1, y: 1}
