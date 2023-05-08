@@ -29,6 +29,11 @@ public class UIBossBar : UIBase
         _bossIcon.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Image/Boss/{name}"));
     }
 
+    public void HideBossBar()
+    {
+        _root.style.display = DisplayStyle.None;
+    }
+
     public void ChangeBossBarValue(int value)
     {
         VisualElement fill = _bossBar.Q<VisualElement>("Fill");

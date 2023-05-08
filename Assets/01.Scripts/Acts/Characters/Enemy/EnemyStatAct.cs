@@ -82,9 +82,12 @@ namespace Acts.Characters.Enemy
 				ClipBase clip = unit.GetClip("Die");
 				clip?.SetEventOnFrame(clip.fps - 1, ObjectCreate);
 				unit?.Play("Die");
+
+                UIManager.Instance.BossBar.HideBossBar();
 			}
 
             Define.GetManager<DataManager>().AddFeahter(_feahter);
+            
 
 			var enemy = ThisActor as EnemyActor;
             if (enemy != null) enemy.Alive = false;

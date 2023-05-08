@@ -71,6 +71,9 @@ public class DataManager : Manager
     {
         UserData_.feather = Math.Clamp(UserData_.feather + value, 0, int.MaxValue);
 
+        if(UIManager.Instance != null)
+            UIManager.Instance?.InGame.UpdateFeatherValue();
+
         SaveToUserData();
     }
     public void SwapWeaponData()
