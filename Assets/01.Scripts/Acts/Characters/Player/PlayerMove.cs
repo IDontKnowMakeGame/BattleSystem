@@ -36,7 +36,6 @@ namespace Acts.Characters.Player
         {         
             base.Awake();
             InputManager<Weapon>.OnMovePress += EnqueMove;
-            Debug.Log("?");
         }
 
         public override void Start()
