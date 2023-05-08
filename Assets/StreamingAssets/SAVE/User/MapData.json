@@ -6,6 +6,8 @@
             "isBossKill": false,
             "onCristalList": [],
             "openChestList": [],
+            "openDoorList": [],
+            "brokenWallList": [],
             "killUniqueEnemy": []
         },
         {
@@ -13,9 +15,27 @@
             "isBossKill": false,
             "onCristalList": [
                 15,
-                0
+                0,
+<<<<<<< HEAD
+                1,
+                2,
+                5,
+                6,
+                24,
+                23,
+                39
+=======
+                18,
+                1,
+                2,
+                4,
+                32,
+                25
+>>>>>>> DevFromKHJ
             ],
             "openChestList": [],
+            "openDoorList": [],
+            "brokenWallList": [],
             "killUniqueEnemy": []
         },
         {
@@ -23,6 +43,8 @@
             "isBossKill": false,
             "onCristalList": [],
             "openChestList": [],
+            "openDoorList": [],
+            "brokenWallList": [],
             "killUniqueEnemy": []
         },
         {
@@ -30,6 +52,8 @@
             "isBossKill": false,
             "onCristalList": [],
             "openChestList": [],
+            "openDoorList": [],
+            "brokenWallList": [],
             "killUniqueEnemy": []
         }
     ]

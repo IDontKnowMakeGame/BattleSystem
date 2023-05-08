@@ -139,6 +139,7 @@ public class Spear : Weapon
 
 	private void DefaultAnimation()
 	{
+		_playerAnimation.ChangeWeaponClips((int)info.Id);
 		_playerAnimation.GetClip("HorizontalMove").ChangeClip(_playerAnimation.GetClip("DefaultHorizontalMove"));
 		_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip("DefaultUpperMove"));
 		_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip("DefaultLowerMove"));

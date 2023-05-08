@@ -7,10 +7,8 @@ using Data;
 using System;
 using UnityEngine;
 using Acts.Characters;
-using static UnityEngine.CullingGroup;
 using System.Collections.Generic;
 using Blocks;
-using Unity.VisualScripting;
 
 [Serializable]
 public class CharacterStat
@@ -70,11 +68,11 @@ public class CharacterStatAct : Act
 	{
 		get
 		{
-			//if (_actor.currentWeapon == null)
-			//{
-			//	_changeStat.speed = _basicStat.speed;
-			//	return _changeStat;
-			//}
+			if (_actor.currentWeapon == null)
+			{
+				_changeStat.speed = _basicStat.speed;
+				return _changeStat;
+			}
 
 			StatChange();
 
@@ -163,11 +161,6 @@ public class CharacterStatAct : Act
 		_changeStat.maxHP = _basicStat.maxHP + _changeStats[StatType.MAXHP];
 		_changeStat.ats = _changeStat.ats + _changeStats[StatType.ATS];
 		_changeStat.afs = _changeStat.ats + _changeStats[StatType.AFS];
-		Debug.Log((int)(ItemInfo.SpeedToWeight(_changeStat.speed) + _changeStats[StatType.Weight]));
-		Debug.Log(ItemInfo.WeightToSpeed((int)(ItemInfo.SpeedToWeight(_changeStat.speed) + _changeStats[StatType.Weight])));
-		Debug.Log(ItemInfo.SpeedToWeight(_changeStat.speed));
-		Debug.Log(_changeStats[StatType.Weight]);
-		Debug.Log(_changeStats[StatType.SPEED]);
 		_changeStat.speed = ItemInfo.WeightToSpeed((int)(ItemInfo.SpeedToWeight(_changeStat.speed) + _changeStats[StatType.Weight])) + _changeStats[StatType.SPEED];
 	}
 	public virtual void Heal(int hp)
