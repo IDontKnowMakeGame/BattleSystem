@@ -35,7 +35,6 @@ public class AbandonedAngel : NPCActor
     public override void Interact()
     {
         if (InGame.Player.Position.IsNeighbor(Position) == false) return;
-        base.Interact();
        
         Talking();
     }
