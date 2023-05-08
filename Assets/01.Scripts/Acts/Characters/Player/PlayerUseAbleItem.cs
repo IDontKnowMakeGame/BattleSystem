@@ -76,16 +76,20 @@ namespace Acts.Characters.Player
 
             if(currentID != ItemID.None)
             {
-
-                SaveItemData currentData = Define.GetManager<DataManager>().LoadItemFromInventory(currentID);
-                int cnt = currentData.currentCnt;
-
-                if (cnt <= 0) return;
-
-                bool check = useAbleItems[currentID].UseItem();
-                if (check)
+                if (currentID == ItemID.FirstMap || currentID == ItemID.SecondMap || currentID == ItemID.ThirdMap)
+                    useAbleItems[currentID].UseItem();
+                else
                 {
-                    DecreaseDataCnt(currentData, currentID);
+                    SaveItemData currentData = Define.GetManager<DataManager>().LoadItemFromInventory(currentID);
+                    int cnt = currentData.currentCnt;
+
+                    if (cnt <= 0) return;
+
+                    bool check = useAbleItems[currentID].UseItem();
+                    if (check)
+                    {
+                        DecreaseDataCnt(currentData, currentID);
+                    }
                 }
             }
         }

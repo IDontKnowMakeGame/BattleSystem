@@ -19,7 +19,8 @@ public class PlayerStatAct : CharacterStatAct
 	public override void Start()
 	{
 		base.Start();
-		UIManager.Instance.InGame.ChanageMaxHP((int)_changeStat.maxHP / 10);
+		UIManager.Instance.InGame.ChanageMaxHP((int)ChangeStat.maxHP / 10);
+		UIManager.Instance.InGame.ChangeCurrentHP(PercentHP());
 		Define.GetManager<EventManager>().StartListening(EventFlag.ChangeStat, StatChange);
 	}
 
