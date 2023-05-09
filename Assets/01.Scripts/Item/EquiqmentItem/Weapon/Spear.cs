@@ -69,8 +69,6 @@ public class Spear : Weapon
 
 		_playerAnimation = _characterActor?.GetAct<PlayerAnimation>();
 
-		Debug.Log(info.Weight);
-
 		InputManager<Spear>.OnAttackPress += Attack;
 		InputManager<Spear>.OnMovePress += CurrentBool;
 		CharacterMove.OnMoveEnd += MoveEnd;
@@ -92,8 +90,8 @@ public class Spear : Weapon
 	}
     public override void Update()
 	{
-		if (_isDown)
-			Debug.DrawLine(_characterActor.transform.position, _characterActor.transform.position + _currentVec * range);
+		if (!_isDown)
+			return;
 
 		bool isEnemy = false;
 		for (int i = 1; i <= range; i++)
@@ -134,7 +132,7 @@ public class Spear : Weapon
 		_currentVec = InGame.CamDirCheck(vec);
 		_attackInfo.PressInput = vec;
 		_nonDir = true;
-		ReadyAnimation(_currentVec);
+		ReadyAnimation(vec);
 		yield return new WaitForSeconds(info.Ats);
 		_isDown = true;
 	}
@@ -152,8 +150,8 @@ public class Spear : Weapon
 	{
 		if (vec == Vector3.left || vec == Vector3.right)
 		{
-			InGame.Player.SpriteTransform.localScale = vec == Vector3.left ? new Vector3(2, 1, 1)
-				: new Vector3(-2, 1, 1);
+			InGame.Player.SpriteTransform.localScale = vec == Vector3.left ? new Vector3(-2, 1, 1)
+				: new Vector3(2, 1, 1);
 			_playerAnimation.GetClip("HorizontalMove").ChangeClip(_playerAnimation.GetClip("HorizontalReadyHorizontalMove"));
 			_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip("HorizontalReadyUpperMove"));
 			_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip("HorizontalReadyLowerMove"));
@@ -162,19 +160,19 @@ public class Spear : Weapon
 		}
 		else if (vec == Vector3.back)
 		{
-			_playerAnimation.GetClip("HorizontalMove").ChangeClip(_playerAnimation.GetClip("UpperReadyHorizontalMove"));
-			_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip("UpperReadyUpperMove"));
-			_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip("UpperReadyLowerMove"));
-			_playerAnimation.GetClip("Idle").ChangeClip(_playerAnimation.GetClip("UpperReadyIdle"));
-			_playerAnimation.Play("UpperReady");
-		}
-		else if (vec == Vector3.forward)
-		{
 			_playerAnimation.GetClip("HorizontalMove").ChangeClip(_playerAnimation.GetClip("LowerReadyHorizontalMove"));
 			_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip("LowerReadyUpperMove"));
 			_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip("LowerReadyLowerMove"));
 			_playerAnimation.GetClip("Idle").ChangeClip(_playerAnimation.GetClip("LowerReadyIdle"));
 			_playerAnimation.Play("LowerReady");
+		}
+		else if (vec == Vector3.forward)
+		{
+			_playerAnimation.GetClip("HorizontalMove").ChangeClip(_playerAnimation.GetClip("UpperReadyHorizontalMove"));
+			_playerAnimation.GetClip("UpperMove").ChangeClip(_playerAnimation.GetClip("UpperReadyUpperMove"));
+			_playerAnimation.GetClip("LowerMove").ChangeClip(_playerAnimation.GetClip("UpperReadyLowerMove"));
+			_playerAnimation.GetClip("Idle").ChangeClip(_playerAnimation.GetClip("UpperReadyIdle"));
+			_playerAnimation.Play("UpperReady");
 		}
 	}
 
