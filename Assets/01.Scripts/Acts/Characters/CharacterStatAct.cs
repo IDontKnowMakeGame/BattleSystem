@@ -161,7 +161,12 @@ public class CharacterStatAct : Act
 		_changeStat.maxHP = _basicStat.maxHP + _changeStats[StatType.MAXHP];
 		_changeStat.ats = _changeStat.ats + _changeStats[StatType.ATS];
 		_changeStat.afs = _changeStat.ats + _changeStats[StatType.AFS];
-		_changeStat.speed = ItemInfo.WeightToSpeed((int)(ItemInfo.SpeedToWeight(_changeStat.speed) + _changeStats[StatType.Weight])) + _changeStats[StatType.SPEED];
+		Debug.Log(_changeStats[StatType.SPEED]);
+		Debug.Log(info.Weight);
+		Debug.Log(_changeStats[StatType.Weight]);
+		Debug.Log(ItemInfo.WeightToSpeed((int)(info.Weight + _changeStats[StatType.Weight])));
+		Debug.Log((int)(info.Weight + _changeStats[StatType.Weight]));
+		_changeStat.speed = ItemInfo.WeightToSpeed((int)(info.Weight + _changeStats[StatType.Weight])) + _changeStats[StatType.SPEED];
 	}
 	public virtual void Heal(int hp)
 	{
@@ -232,13 +237,12 @@ public class CharacterStatAct : Act
 		if (StatType.Weight == type)
 		{
 			ItemInfo info = _eqipment.CurrentWeapon.WeaponInfo;
-			if (info.Weight + add + _changeStats[type] < 9 && info.Weight + add + _changeStats[type] > 0)
+			if (info.Weight + add + _changeStats[type] <= 9)
 				_changeStats[type] = _changeStats[type] + add;
-
 			return;
 		}
-		else if(StatType.SPEED == type)
-			if(ChangeStat.speed + add > ItemInfo.WeightToSpeed(9))
+		else if (StatType.SPEED == type)
+			if (ChangeStat.speed + add > ItemInfo.WeightToSpeed(9))
 				return;
 
 		_changeStats[type] += add;
@@ -249,7 +253,7 @@ public class CharacterStatAct : Act
 		if (StatType.Weight == type)
 		{
 			int weight = _eqipment.CurrentWeapon.WeaponInfo.Weight;
-			if (weight - (min + _changeStats[type]) < 9 && weight - (min + _changeStats[type]) > 0)
+			if (weight + (_changeStats[type]-min) > 0)
 				_changeStats[type] = _changeStats[type] - min;
 
 			return;

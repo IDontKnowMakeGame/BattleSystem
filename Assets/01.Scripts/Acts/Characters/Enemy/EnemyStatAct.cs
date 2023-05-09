@@ -93,12 +93,12 @@ namespace Acts.Characters.Enemy
             var enemy = ThisActor as EnemyActor;
             if (enemy != null) enemy.Alive = false;
 
+		        ThisActor.RemoveAct<EnemyAI>();
             if (!isBoss)
             {
 	            UnitAnimation unit = ThisActor.GetAct<UnitAnimation>();
 	            CharacterRender render = ThisActor.GetAct<CharacterRender>();
 	            var mat = render.Renderer.material;
-		        ThisActor.RemoveAct<EnemyAI>();
 	            ClipBase clip = unit.GetClip("Die");
 	            clip.OnExit = () =>
 	            {

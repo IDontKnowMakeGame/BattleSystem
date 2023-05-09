@@ -48,7 +48,6 @@ namespace Acts.Characters.Enemy
         {
             Attack();
             var degree = dir.ToDegree().GetRotation();
-            Debug.Log(degree);
             var range = Vector3.right;
             for (var r = 1; r <= 5; r++)
             {
@@ -92,7 +91,6 @@ namespace Acts.Characters.Enemy
             var pos = ThisActor.transform.position + dir;
             var rot = InGame.CamDirCheck(-dir).ToDegree();
             particle.position = new Vector3(pos.x, pos.z) + particle.randomProperties.RandomPos;
-            Debug.Log(rot);
             particle.rotation = rot + 30;
             particle.quadSize = particle.randomProperties.RandomQuadSize;
             particle.skewed = true;

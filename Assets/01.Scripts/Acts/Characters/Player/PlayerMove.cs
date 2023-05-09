@@ -16,6 +16,7 @@ namespace Acts.Characters.Player
 
         private Vector3 cameraDir;
         private Vector3 playerDir;
+        public Vector3 SkillDir { get; set; }
 
         public float distance = 1;
 
@@ -35,7 +36,6 @@ namespace Acts.Characters.Player
         {         
             base.Awake();
             InputManager<Weapon>.OnMovePress += EnqueMove;
-            Debug.Log("?");
         }
 
         public override void Start()
@@ -136,22 +136,21 @@ namespace Acts.Characters.Player
 
        private void SkillAnimation()
         {
-            Vector3 attackDir = ThisActor.GetAct<PlayerAttack>().AttackDir;
-            if (attackDir == Vector3.left)
+            if (SkillDir == Vector3.left)
             {
                 ThisActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
                 _playerAnimation.Play("HorizontalSkill");
             }
-            else if (attackDir == Vector3.right)
+            else if (SkillDir == Vector3.right)
             {
                 ThisActor.SpriteTransform.localScale = new Vector3(2, 1, 1);
                 _playerAnimation.Play("HorizontalSkill");
             }
-            else if (attackDir == Vector3.forward)
+            else if (SkillDir == Vector3.forward)
             {
                 _playerAnimation.Play("UpperSkill");
             }
-            else if (attackDir == Vector3.back)
+            else if (SkillDir == Vector3.back)
             {
                 _playerAnimation.Play("LowerSkill");
             }

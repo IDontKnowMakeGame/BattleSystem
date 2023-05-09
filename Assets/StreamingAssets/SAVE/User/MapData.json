@@ -6,23 +6,19 @@
             "isBossKill": false,
             "onCristalList": [],
             "openChestList": [],
+            "openDoorList": [],
+            "brokenWallList": [],
             "killUniqueEnemy": []
         },
         {
             "floor": 1,
             "isBossKill": false,
             "onCristalList": [
-                15,
-                0,
-                1,
-                2,
-                5,
-                6,
-                24,
-                23,
-                39
+
             ],
             "openChestList": [],
+            "openDoorList": [],
+            "brokenWallList": [],
             "killUniqueEnemy": []
         },
         {
@@ -30,6 +26,8 @@
             "isBossKill": false,
             "onCristalList": [],
             "openChestList": [],
+            "openDoorList": [],
+            "brokenWallList": [],
             "killUniqueEnemy": []
         },
         {
@@ -37,6 +35,8 @@
             "isBossKill": false,
             "onCristalList": [],
             "openChestList": [],
+            "openDoorList": [],
+            "brokenWallList": [],
             "killUniqueEnemy": []
         }
     ]

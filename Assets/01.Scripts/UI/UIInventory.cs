@@ -373,7 +373,6 @@ public class UIInventory : UIBase
     {
         foreach(VisualElement card in _haloSelectPanel.Children())
         {
-            Debug.Log(card.name);
             card.RegisterCallback<ClickEvent>(e =>
             {
                 HaloSelectCard(card, Int32.Parse(card.name));
@@ -384,7 +383,6 @@ public class UIInventory : UIBase
         int index = 0;
         foreach(VisualElement card in _equipHaloPanel.Children())
         {
-            Debug.Log(card.name);
             ChangeHaloImage(card,list[index++]);
             card.RegisterCallback<ClickEvent>(e =>
             {

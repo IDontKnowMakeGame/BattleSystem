@@ -21,7 +21,6 @@ namespace Acts.Characters.Player
         private List<EnemyActor> enemys = new List<EnemyActor>();
 
         private Vector3 currentDir;
-        public Vector3 AttackDir { get; private set; }
         private float degree;
         private Vector3 offset;
         private CharacterActor ThisCharacter => ThisActor as CharacterActor;
@@ -144,24 +143,23 @@ namespace Acts.Characters.Player
         {
             if (_playerActor.HasState(CharacterState.Everything & ~CharacterState.Hold)) return;
 
-            AttackDir = attackInfo.PressInput;
             _playerActor.AddState(CharacterState.Attack);
 
-            if (AttackDir == Vector3.left)
+            if (attackInfo.PressInput == Vector3.left)
             {
                 ThisActor.SpriteTransform.localScale =  new Vector3(-2, 1, 1);
                 _playerAnimation.Play("HorizontalAttack");
             }
-            else if (AttackDir == Vector3.right)
+            else if (attackInfo.PressInput == Vector3.right)
             {
                 ThisActor.SpriteTransform.localScale = new Vector3(2, 1, 1);
                 _playerAnimation.Play("HorizontalAttack");
             }
-            else if (AttackDir == Vector3.forward)
+            else if (attackInfo.PressInput == Vector3.forward)
             {
                 _playerAnimation.Play("UpperAttack");
             }
-            else if (AttackDir == Vector3.back)
+            else if (attackInfo.PressInput == Vector3.back)
             {
                 _playerAnimation.Play("LowerAttack");
             }
