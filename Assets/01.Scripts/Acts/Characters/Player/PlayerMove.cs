@@ -136,6 +136,7 @@ namespace Acts.Characters.Player
 
        private void SkillAnimation()
         {
+            Debug.Log(SkillDir);
             if (SkillDir == Vector3.left)
             {
                 ThisActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
