@@ -163,8 +163,8 @@ namespace Acts.Characters.Player
             {
                 isSkill = false;
             }
-            else
-                _playerAnimation.Play("Idle");
+            //else
+            //    _playerAnimation.Play("Idle");
 
             dust.Stop();
             base.MoveStop();
