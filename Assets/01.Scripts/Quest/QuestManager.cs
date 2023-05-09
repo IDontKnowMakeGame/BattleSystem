@@ -84,8 +84,6 @@ public class QuestManager : MonoBehaviour
             QuestValue newValue = new QuestValue();
             newValue.roomSO = currentSO;
             allRoomSODic.Add(currentSO.name, newValue);
-
-            Debug.Log(currentSO.startPos.z);
             for (var z = currentSO.startPos.z; z <= currentSO.endPos.z; z += 1)
             {
                 for (var x = currentSO.startPos.x; x <= currentSO.endPos.x; x += 1)

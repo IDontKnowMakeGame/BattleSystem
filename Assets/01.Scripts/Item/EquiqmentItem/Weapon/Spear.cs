@@ -69,6 +69,8 @@ public class Spear : Weapon
 
 		_playerAnimation = _characterActor?.GetAct<PlayerAnimation>();
 
+		Debug.Log(info.Weight);
+
 		InputManager<Spear>.OnAttackPress += Attack;
 		InputManager<Spear>.OnMovePress += CurrentBool;
 		CharacterMove.OnMoveEnd += MoveEnd;

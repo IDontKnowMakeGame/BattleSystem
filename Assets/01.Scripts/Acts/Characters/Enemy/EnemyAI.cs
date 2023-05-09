@@ -78,7 +78,7 @@ namespace Acts.Characters.Enemy
                 }
                 transition.SetNextState(toType);
                 instance.Transitions.Add(toType, transition);
-                Debug.Log(instance.GetType());
+                //Debug.Log(instance.GetType());
             }
             CurrentState = LoadState(typeof(IdleState));
         }
