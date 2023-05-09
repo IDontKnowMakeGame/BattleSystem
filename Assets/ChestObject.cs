@@ -22,8 +22,16 @@ public class ChestObject : InteractionActor
 		direction = GetComponent<PlayableDirector>();
 		var particle = _particle.main;
 		particle.loop = true;
-		//Define.GetManager<DataManager>()
-	}
+        //Define.GetManager<DataManager>()
+
+        if (Define.GetManager<DataManager>().IsOpenChest(int.Parse(gameObject.name), DataManager.MapData_.currentFloor))
+        {
+            _itemObject.gameObject.SetActive(false);
+            _particle.gameObject.SetActive(false);
+            direction.Play();
+            isOpen = true;
+        }
+    }
 
 	public override void Interact()
 	{
@@ -36,7 +44,9 @@ public class ChestObject : InteractionActor
 		//_particle.gameObject.SetActive(false);
 		direction.Play();
 		isOpen = true;
-	}
+		Define.GetManager<DataManager>().OpenChest(int.Parse(gameObject.name));
+
+    }
 
 	public void ChestEnd()
 	{

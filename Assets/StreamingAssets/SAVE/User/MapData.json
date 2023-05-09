@@ -13,13 +13,11 @@
         {
             "floor": 1,
             "isBossKill": false,
-            "onCristalList": [],
+            "onCristalList": [
+                15
+            ],
             "openChestList": [],
             "openDoorList": [
-                3,
-                3,
-                3,
-                3,
                 3,
                 3,
                 3
