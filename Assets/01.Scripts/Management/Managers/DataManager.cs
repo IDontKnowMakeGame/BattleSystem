@@ -258,7 +258,7 @@ public class DataManager : Manager
 
         SaveToMapData();
     }
-    public bool IsOpenChestl(int num, Floor floor)
+    public bool IsOpenChest(int num, Floor floor)
     {
 
         foreach (int number in LoadOpenChestData(floor))
