@@ -28,7 +28,12 @@ public class Arrow : MonoBehaviour
 
 	private Sequence _seq;
 
-	public void Start()
+    private void OnEnable()
+    {
+		this.transform.GetComponent<BoxCollider>().enabled = true;
+	}
+
+    public void Start()
 	{
 		if (_shootActor is EnemyActor)
 			StartCoroutine(Destroy());
@@ -127,6 +132,8 @@ public class Arrow : MonoBehaviour
 		Debug.Log("stickActor");
 		Debug.Log(_seq);
 		_seq.Kill();
+
+		this.transform.GetComponent<BoxCollider>().enabled = false;
 		this.transform.parent = other.transform;
 		this.transform.localPosition = -_shootVec;
 
