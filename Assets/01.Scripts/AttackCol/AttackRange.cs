@@ -72,4 +72,12 @@ public class AttackRange : MonoBehaviour
         if (enemys.Count > 0)
             enemys.Clear();
     }
+
+    public void DeleteEnemy(GameObject enemy)
+    {
+        if(enemys.Count > 0)
+        {
+            enemys.Remove(enemy);
+        }
+    }
 }

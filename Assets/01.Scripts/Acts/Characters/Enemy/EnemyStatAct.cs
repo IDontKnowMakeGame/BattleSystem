@@ -122,6 +122,7 @@ namespace Acts.Characters.Enemy
 			}
 
             InGame.Player.GetAct<PlayerAttack>().RangeReset();
+            InGame.Player.GetAct<PlayerAttack>().DeleteEnemy(ThisActor.gameObject);
 		}
 
         private void ObjectCreate()

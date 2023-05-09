@@ -116,10 +116,6 @@ namespace Managements.Managers
         public static Block[] GetBlockOnMap()
         {
             var blocks = GameObject.FindObjectsOfType<Block>();
-            foreach (var block in blocks)
-            {
-                Debug.Log(block.name);
-            }
             return blocks;
         }
         #endif

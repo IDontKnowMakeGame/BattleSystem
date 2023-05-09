@@ -259,5 +259,10 @@ namespace Acts.Characters.Player
         {
             attackCol.AllEnemysClear();
         }
+
+        public void DeleteEnemy(GameObject enemy)
+        {
+            attackCol.AllDeleteEnemy(enemy);
+        }
     }
 }
