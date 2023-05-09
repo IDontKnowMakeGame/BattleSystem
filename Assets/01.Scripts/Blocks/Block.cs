@@ -8,7 +8,9 @@ using Actors.Characters.Enemy;
 using Actors.Characters.Player;
 using Blocks.Acts;
 using Core;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Blocks
 {
@@ -21,6 +23,23 @@ namespace Blocks
 
         public bool isWalkable = false;
         public bool isMoving = false;
+
+        public bool HasSwitchCamera
+        {
+            get {
+                if (switchCamera == null)
+                {
+                    switchCamera = gameObject.GetComponent<SwitchCamera>();
+                    if (switchCamera == null)
+                    {
+                        switchCamera = gameObject.AddComponent<SwitchCamera>();
+                        switchCamera.enabled = false;
+                    }
+                }
+                return switchCamera.enabled;
+            }
+        }
+
         public void SetWalkable(bool value)
         {
             isWalkable = value;
@@ -133,6 +152,19 @@ namespace Blocks
         public void ToggleIsWalkable()
         {
             isWalkable = !isWalkable;
+        }
+        
+        public SwitchCamera switchCamera;
+        public void ToggleHasSwitchCamera()
+        {
+            if (switchCamera.enabled)
+            {
+                switchCamera.enabled = false;
+            }
+            else
+            {
+                switchCamera.enabled = true;
+            }
         }
         
         public void RemoveActorOnBlock()
