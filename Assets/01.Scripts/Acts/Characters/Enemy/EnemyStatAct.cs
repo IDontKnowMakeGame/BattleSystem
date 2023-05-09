@@ -110,7 +110,7 @@ namespace Acts.Characters.Enemy
 	            unit.Play("Die");
             }
 
-            InGame.Player.GetAct<PlayerAttack>().RangeReset();
+            InGame.Player.GetAct<PlayerAttack>().DeleteEnemy(ThisActor.gameObject);
 		}
 
         private void ObjectCreate()
