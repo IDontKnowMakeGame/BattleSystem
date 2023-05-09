@@ -100,6 +100,16 @@ public class AttackCollider : MonoBehaviour
         }
     }
 
+    public void AllDeleteEnemy(GameObject enemy)
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            DirType curType = (DirType)(1 << i);
+            attackRanges[curType].DeleteEnemy(enemy);
+        }
+    }
+
+
     public void AllEnemysClear()
     {
         for (int i = 0; i < 4; i++)
