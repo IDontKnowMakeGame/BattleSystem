@@ -254,6 +254,8 @@ public class DataManager : Manager
     }
     public void OpenChest(int num)
     {
+        if (IsOpenChest(num, MapData_.currentFloor)) return;
+
         MapData_.mapData[(int)MapData_.currentFloor].openChestList.Add(num);
 
         SaveToMapData();
@@ -275,6 +277,8 @@ public class DataManager : Manager
     }
     public void OpenDoor(int num)
     {
+        if (IsOpenDoorl(num, MapData_.currentFloor)) return;
+
         MapData_.mapData[(int)MapData_.currentFloor].openDoorList.Add(num);
 
         SaveToMapData();
@@ -296,6 +300,8 @@ public class DataManager : Manager
     }
     public void BrokenWall(int num)
     {
+        if (IsBrokenWall(num, MapData_.currentFloor)) return;
+
         MapData_.mapData[(int)MapData_.currentFloor].brokenWallList.Add(num);
 
         SaveToMapData();
