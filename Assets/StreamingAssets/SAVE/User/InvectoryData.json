@@ -35,6 +35,12 @@
             "name": "None",
             "currentCnt": 0,
             "maxCnt": 0
+        },
+        {
+            "id": 8,
+            "name": "OutwornBow",
+            "currentCnt": 1,
+            "maxCnt": 0
         }
     ],
     "inventoryInHaloList": [
@@ -73,7 +79,7 @@
         {
             "id": 202,
             "name": "HPPotion",
-            "currentCnt": 5,
+            "currentCnt": 0,
             "maxCnt": 5
         },
         {

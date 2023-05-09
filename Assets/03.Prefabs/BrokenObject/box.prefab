@@ -131,13 +131,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0, z: 0}
   _characterRender:
+    isBillBoard: 1
     _defaultTexture: {fileID: 0}
     _frame: 0
+    size: {x: 0, y: 0, z: 0}
     _blinkCnt: 1
     _blinkTime: 0.1
     _blinkDelay: 0.1
   _characterState: 0
   _isBlocking: 0
+  canKnockBack: 0
   _secondPhaseHpPercent: 0
   _enemyAi:
     CurrentState:
@@ -162,11 +165,14 @@ MonoBehaviour:
       ats: 0
       afs: 0
       speed: 0
+    _feahter: 0
+    isBoss: 0
   _enemyAnimation:
     curClip:
       name: 
       nextIdx: -1
       texture: {fileID: 0}
+      normal: {fileID: 0}
       fps: 0
       isLoop: 0
       delay: 0
@@ -174,6 +180,9 @@ MonoBehaviour:
     index: 0
     isFinished: 0
     curClips: {fileID: 0}
+  alive: 0
+  spriteSize: 1
+  currentType: 0
   _brokenStat:
     _basicStat:
       maxHP: 0

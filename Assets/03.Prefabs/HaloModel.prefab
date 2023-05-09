@@ -78,6 +78,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e8411d9f7c558419cf182e726fb9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxYvalue: 0
+  minYvalue: 0
+  yTimer: 0
+  waitTimer: 0
 --- !u!1 &1615608046938638961
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,6 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e8411d9f7c558419cf182e726fb9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxYvalue: 0
+  minYvalue: 0
+  yTimer: 0
+  waitTimer: 0
 --- !u!1 &7344623734468666991
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,6 +176,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e8411d9f7c558419cf182e726fb9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxYvalue: 0
+  minYvalue: 0
+  yTimer: 0
+  waitTimer: 0
 --- !u!1 &8441543392758995232
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +229,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8441543392758995232}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -470,7 +482,9 @@ MonoBehaviour:
     animatoins:
     - state: 2
       texture: {fileID: 2800000, guid: 5943226198a40be40b05ee2d9be58923, type: 3}
-      material: {fileID: 2100000, guid: d5c86892abaab924dbadeb555fa0235f, type: 2}
+      materials:
+      - {fileID: 2100000, guid: d5c86892abaab924dbadeb555fa0235f, type: 2}
+      - {fileID: 2100000, guid: 5ac315f9cbf16b84cbe149648f79de8a, type: 2}
       delay:
       - 0.1
       isLoop: 0
@@ -478,7 +492,9 @@ MonoBehaviour:
     animatoins:
     - state: 2
       texture: {fileID: 2800000, guid: fd049261caaad4d44a9bcae0ba223a26, type: 3}
-      material: {fileID: 2100000, guid: d9b8539ddd3ecc946917bc80b401dc42, type: 2}
+      materials:
+      - {fileID: 2100000, guid: d9b8539ddd3ecc946917bc80b401dc42, type: 2}
+      - {fileID: 2100000, guid: 0a9cb6b9c1c85e54aabc751277cbd980, type: 2}
       delay:
       - 0.1
       isLoop: 0
@@ -486,7 +502,9 @@ MonoBehaviour:
     animatoins:
     - state: 2
       texture: {fileID: 2800000, guid: 5088b2e715943f64a984879e20886e1d, type: 3}
-      material: {fileID: 2100000, guid: abd30272a10e15d42be05407edac70be, type: 2}
+      materials:
+      - {fileID: 2100000, guid: abd30272a10e15d42be05407edac70be, type: 2}
+      - {fileID: 2100000, guid: c66fecd378116ed44b790968ac669780, type: 2}
       delay:
       - 0.1
       - 0.1

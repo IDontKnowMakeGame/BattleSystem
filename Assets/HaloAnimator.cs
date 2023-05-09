@@ -112,19 +112,17 @@ public class HaloAnimator : MonoBehaviour
 			}
 
 			var offset = ((float)_currentAnimation.texture.width / _currentAnimation.fps) / _currentAnimation.texture.width;
-			_currentAnimation.material.SetTexture("_BaseMap", _currentAnimation.texture);
-			_currentAnimation.material.SetTextureOffset("_BaseMap", Vector2.right * (offset * index));
-			_currentAnimation.material.SetTextureScale("_BaseMap", new Vector2(offset, 1f));
-			_currentAnimation.material.SetTexture("_MainTex", _currentAnimation.texture);
-			_currentAnimation.material.SetTextureOffset("_MainTex", Vector2.right * (offset * index));
-			_currentAnimation.material.SetTextureScale("_MainTex", new Vector2(offset, 1f));
+			_currentAnimation.materials[0].SetTexture("_BaseMap", _currentAnimation.texture);
+			_currentAnimation.materials[0].SetTextureOffset("_BaseMap", Vector2.right * (offset * index));
+			_currentAnimation.materials[0].SetTextureScale("_BaseMap", new Vector2(offset, 1f));
+			_currentAnimation.materials[0].SetTexture("_MainTex", _currentAnimation.texture);
+			_currentAnimation.materials[0].SetTextureOffset("_MainTex", Vector2.right * (offset * index));
+			_currentAnimation.materials[0].SetTextureScale("_MainTex", new Vector2(offset, 1f));
+			_currentAnimation.materials[0].SetTexture("_MainTex", _currentAnimation.texture);
+			_currentAnimation.materials[0].SetVector("_Offset", Vector2.right * (offset * index));
+			_currentAnimation.materials[0].SetVector("_Tiling", new Vector2(offset, 1f));
 
-
-			_currentAnimation.material.SetTexture("_MainTex", _currentAnimation.texture);
-			_currentAnimation.material.SetVector("_Offset", Vector2.right * (offset * index));
-			_currentAnimation.material.SetVector("_Tiling", new Vector2(offset, 1f));
-
-			_currentRenderer.material = _currentAnimation.material;
+			_currentRenderer.materials = _currentAnimation.materials;
 		}
 
 		if (isFinished)
@@ -171,7 +169,8 @@ public class HaloAnimator : MonoBehaviour
 	public void SetTexture()
 	{
 		_currentRenderer.gameObject.SetActive(true);
-		_currentRenderer.material = _haloAnimationsInfo.animatoins[0].material;
+		_currentRenderer.materials = _haloAnimationsInfo.animatoins[0].materials;
+		//_currentRenderer.
 
 		Vector3 vec = this.transform.localPosition;
 		vec.y = minYvalue;
