@@ -11,6 +11,7 @@ using UnityEngine.Rendering;
 
 namespace Tool.Map.Controll
 {
+    #if UNITY_EDITOR
     public class MapController : EditorWindow
     {
         private Vector3[] areas;
@@ -24,10 +25,12 @@ namespace Tool.Map.Controll
         private static Block[] blocks;
         private static List<Block> selectedBlocks = new List<Block>();
         private static Dictionary<Block, Vector2> blockPosDic = new ();
+        private static Rooms.Room[] rooms;
         [MenuItem("Tools/MapController")]
         public static void ShowWindow()
         {
             blocks = MapManager.GetBlockOnMap();
+            rooms = MapManager.GetRoomsOnMap();
             MapController window = (MapController)EditorWindow.GetWindow(typeof(MapController));
             window.Show();
         }
@@ -53,6 +56,7 @@ namespace Tool.Map.Controll
             
             UpdateButtons();
             UpdateInputField();
+            UpdateList();
             InputHandle();  
         }
         
@@ -165,6 +169,7 @@ namespace Tool.Map.Controll
             if (GUI.Button(roomBtnRect, "Create Room"))
             {
                 var parentTrm = new GameObject(roomText).transform;
+                parentTrm.AddComponent<Rooms.Room>();
                 var rootTrm = GameObject.Find("MapTiled").transform;
                 parentTrm.SetParent(rootTrm);
                 foreach (var block in selectedBlocks)
@@ -172,6 +177,7 @@ namespace Tool.Map.Controll
                     block.transform.SetParent(parentTrm);
                 }
                 selectedBlocks.Clear();
+                rooms = MapManager.GetRoomsOnMap();
             }
             
             var cameraBtnRect = new Rect((areas[1].x) * width + 50, height * 22, 300, height * 7);
@@ -214,5 +220,28 @@ namespace Tool.Map.Controll
                 }
             }
         }
+
+        private void UpdateList()
+        {
+            var listRect = new Rect((areas[1].x) * width + 375, height * 3, 150, position.height);
+            GUI.Box(listRect, "");
+            Vector2 scrollPos = Vector2.zero;
+            scrollPos = GUI.BeginScrollView(listRect, scrollPos, new Rect(0, 0, 150, position.height));
+            var roomList = rooms.ToList();
+            foreach (var room in roomList)
+            {
+                var roomRect = new Rect(0, roomList.IndexOf(room) * height * 2, 150, height * 2);
+                if (GUI.Button(roomRect, room.name))
+                {
+                    selectedBlocks.Clear();
+                    foreach (Transform child in room.transform)
+                    {
+                        selectedBlocks.Add(child.GetComponent<Block>());
+                    }
+                }
+            }
+            GUI.EndScrollView();
+        }
     }
+    #endif
 }

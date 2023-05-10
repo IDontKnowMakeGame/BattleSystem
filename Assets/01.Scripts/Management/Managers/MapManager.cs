@@ -5,6 +5,7 @@ using Actors.Characters;
 using Actors.Characters.Furnitures;
 using Blocks;
 using Blocks.Acts;
+using Tool.Map.Rooms;
 using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using Walls;
@@ -117,6 +118,12 @@ namespace Managements.Managers
         {
             var blocks = GameObject.FindObjectsOfType<Block>();
             return blocks;
+        }
+        
+        public static Room[] GetRoomsOnMap()
+        {
+            var rooms = GameObject.FindObjectsOfType<Room>();
+            return rooms;
         }
         #endif
     }
