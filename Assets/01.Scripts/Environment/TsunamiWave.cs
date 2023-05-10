@@ -5,8 +5,9 @@ using UnityEngine.VFX;
 using Actors.Characters.Player;
 using Actors.Characters;
 using System.Linq;
+using Actors.Bases;
 
-public class TsunamiWave : MonoBehaviour
+public class TsunamiWave : Actor
 {
     [SerializeField]
     private float lifeTime = 1f;
@@ -52,8 +53,15 @@ public class TsunamiWave : MonoBehaviour
             {
                 foreach(CharacterActor unit in inSideUnits)
                 {
-                    if(unit != null)
+                    if (unit != null)
+                    {
                         unit.transform.position = unit.Position.SetY(1);
+                        if (inSideUnits.Count > 1 && !(unit is PlayerActor))
+                        {
+                            Debug.Log(unit.name + "ÀÌ¿ה");
+                            unit.OnKnockBack?.Invoke(1, this);
+                        }
+                    }
                 }
                 playTsunami = false;
                 return;
@@ -61,13 +69,16 @@ public class TsunamiWave : MonoBehaviour
             timer += Time.deltaTime;
             moveCharacter.transform.localPosition = moveCharacter.transform.localPosition.SetZ((timer / lifeTime) * velocity.x);
 
-            foreach (CharacterActor unit in currentUnits)
+
+            for(int i = 0; i < currentUnits.Count; i++)
             {
-                if(unit != null)
+                if (currentUnits[i] != null)
                 {
-                    if(Vector3.Distance(unit.transform.position.Flattened(), moveCharacter.transform.position.Flattened()) <= 0.5f)
+                    if (Vector3.Distance(currentUnits[i].transform.position.Flattened(), moveCharacter.transform.position.Flattened()) <= 0.5f)
                     {
-                        inSideUnits.Add(unit);
+                        inSideUnits.Add(currentUnits[i]);
+                        currentUnits.Remove(currentUnits[i]);
+                        i--;
                     }
                 }
             }
