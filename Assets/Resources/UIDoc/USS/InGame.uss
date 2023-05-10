@@ -9,3 +9,11 @@
 .ItemBox {
     height: 26%;
 }
+
+.ShowItemPanel {
+    left: 0;
+}
+
+.HideItemPanel {
+    left: 12%;
+}
