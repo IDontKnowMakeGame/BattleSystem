@@ -195,7 +195,6 @@ public class CharacterStatAct : Act
 				Define.GetManager<DataManager>().AddWeaponClassKillData(player.currentWeapon.info.Class);
 				player.GetAct<PlayerEquipment>().CurrentWeapon.LoadWeaponClassLevel();
 			}
-
 			Die();
 		}
 		
@@ -213,8 +212,7 @@ public class CharacterStatAct : Act
 	public virtual void Die()
 	{
 		var particle = Define.GetManager<ResourceManager>().Instantiate("DeathParticle", ThisActor.transform);
-		particle.transform.localPosition = Vector3.zero;
-		
+		particle.transform.position = ThisActor.transform.position;
 		var anchorTrm = ThisActor.transform.Find("Anchor");
 		var modelTrm = anchorTrm.Find("Model");
 		var scale = modelTrm.localScale;

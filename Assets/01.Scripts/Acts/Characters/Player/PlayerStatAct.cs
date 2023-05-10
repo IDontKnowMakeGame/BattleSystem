@@ -7,6 +7,9 @@ using Acts.Characters.Player;
 using Blocks;
 using ETC;
 using UnityEngine;
+using Data;
+using Acts.Characters;
+using DG.Tweening;
 
 [System.Serializable]
 public class PlayerStatAct : CharacterStatAct
@@ -16,7 +19,15 @@ public class PlayerStatAct : CharacterStatAct
 	[SerializeField]
 	private BloodController bloodController;
 
-	public override void Start()
+	private PlayerAnimation _playerAnimation;
+
+    public override void Awake()
+    {
+        base.Awake();
+		_playerAnimation = ThisActor.GetAct<PlayerAnimation>();
+	}
+
+    public override void Start()
 	{
 		base.Start();
 		UIManager.Instance.InGame.ChanageMaxHP((int)ChangeStat.maxHP / 10);
@@ -60,13 +71,18 @@ public class PlayerStatAct : CharacterStatAct
 
 	public override void Die()
 	{
-		base.Die();
-		PlayerDeath.Instance.FocusCenter();
+		ThisActor.RemoveAct<CharacterMove>();
+		_playerAnimation.ChangeWeaponClips((int)ItemID.None);
+		_playerAnimation.Play("Die");
+		var dieClip = _playerAnimation.GetClip("Die");
+		dieClip.OnExit += base.Die;
+		dieClip.OnExit += PlayerDeath.Instance.FocusCenter;
 
 		// HP 포션 5개로 초기화
 		SaveItemData currentData = Define.GetManager<DataManager>().LoadItemFromInventory(Data.ItemID.HPPotion);
 		currentData.currentCnt = 5;
 		UIManager.Instance.InGame.SetItemPanelCnt(Data.ItemID.HPPotion);
 		Define.GetManager<DataManager>().ChangeItemInfo(currentData);
+		ThisActor.RemoveAct<CharacterStatAct>();
 	}
 }

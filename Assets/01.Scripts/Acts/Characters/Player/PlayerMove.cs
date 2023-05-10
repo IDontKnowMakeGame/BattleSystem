@@ -159,12 +159,16 @@ namespace Acts.Characters.Player
 
         protected override void MoveStop()
         {
+            if (ThisActor.GetAct<CharacterStatAct>().ChangeStat.hp <= 0) return;
+
             if(isSkill)
             {
                 isSkill = false;
             }
-            //else
-            //    _playerAnimation.Play("Idle");
+            else 
+            {
+                _playerAnimation.Play("Idle");
+            }
 
             dust.Stop();
             base.MoveStop();
