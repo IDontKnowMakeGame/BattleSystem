@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Blocks;
 using Managements.Managers;
@@ -51,6 +52,7 @@ namespace Tool.Map.Controll
             GUILayout.Label("Base Settings", EditorStyles.boldLabel);
             
             UpdateButtons();
+            UpdateInputField();
             InputHandle();  
         }
         
@@ -148,7 +150,7 @@ namespace Tool.Map.Controll
 
         private void UpdateButtons()
         {
-            var toggleBtnRect = new Rect((areas[1].x) * width + 50, height * 3, 100, 70);
+            var toggleBtnRect = new Rect((areas[1].x) * width + 50, height * 3, 300, height * 7);
             if (GUI.Button(toggleBtnRect, "Toggle"))
             {
                 foreach (var block in selectedBlocks)
@@ -157,9 +159,9 @@ namespace Tool.Map.Controll
                 }
                 selectedBlocks.Clear();
             }
-            var roomTextRect = new Rect((areas[1].x) * width + 50, height * 11, 100, 20);
+            var roomTextRect = new Rect((areas[1].x) * width + 50, height * 12, 300, height * 2);
             roomText = GUI.TextField(roomTextRect, roomText);
-            var roomBtnRect = new Rect((areas[1].x) * width + 50, height * 13, 100, 50);
+            var roomBtnRect = new Rect((areas[1].x) * width + 50, height * 14, 300, height * 5);
             if (GUI.Button(roomBtnRect, "Create Room"))
             {
                 var parentTrm = new GameObject(roomText).transform;
@@ -172,8 +174,8 @@ namespace Tool.Map.Controll
                 selectedBlocks.Clear();
             }
             
-            var cameraBtnRect = new Rect((areas[1].x) * width + 50, height * 19, 100, 70);
-            if (GUI.Button(cameraBtnRect, "Toggle\n Switch\n Camera"))
+            var cameraBtnRect = new Rect((areas[1].x) * width + 50, height * 22, 300, height * 7);
+            if (GUI.Button(cameraBtnRect, "Toggle Switch Camera"))
             {
                 foreach (var block in selectedBlocks)
                 {
@@ -181,6 +183,35 @@ namespace Tool.Map.Controll
                     block.isWalkable = block.HasSwitchCamera;
                 }
                 selectedBlocks.Clear();
+            }
+        }
+
+        private void UpdateInputField()
+        {
+            if (selectedBlocks.Count > 0)
+            {
+                if (selectedBlocks[0].HasSwitchCamera)
+                {
+                    var switchTitleVerticalRect = new Rect((areas[1].x) * width + 50, height * 30, 150, height * 2);
+                    var switchInputVerticalRect = new Rect((areas[1].x) * width + 200, height * 30, 150, height * 2);
+                    GUI.Label(switchTitleVerticalRect, "Vertical Target Angle", EditorStyles.wordWrappedMiniLabel);
+                    selectedBlocks[0].switchCamera.VerticalTargetAngle = EditorGUI.FloatField(switchInputVerticalRect, selectedBlocks[0].switchCamera.VerticalTargetAngle);
+                    
+                    var switchTitleHorizontalRect = new Rect((areas[1].x) * width + 50, height * 32, 150, height * 2);
+                    var switchInputHorizontalRect = new Rect((areas[1].x) * width + 200, height * 32, 150, height * 2);
+                    GUI.Label(switchTitleHorizontalRect, "Horizontal Target Angle", EditorStyles.wordWrappedMiniLabel);
+                    selectedBlocks[0].switchCamera.HorizontalTargetAngle = EditorGUI.FloatField(switchInputHorizontalRect, selectedBlocks[0].switchCamera.HorizontalTargetAngle);
+            
+                    var switchTitleTargetFovRect = new Rect((areas[1].x) * width + 50, height * 34, 150, height * 2);
+                    var switchInputTargetFovRect = new Rect((areas[1].x) * width + 200, height * 34, 150, height * 2);
+                    GUI.Label(switchTitleTargetFovRect, "Target Fov", EditorStyles.wordWrappedMiniLabel);
+                    selectedBlocks[0].switchCamera.TargetFov = EditorGUI.FloatField(switchInputTargetFovRect, selectedBlocks[0].switchCamera.TargetFov);
+            
+                    var switchTitleDurationRect = new Rect((areas[1].x) * width + 50, height * 36, 150, height * 2);
+                    var switchInputDurationRect = new Rect((areas[1].x) * width + 200, height * 36, 150, height * 2);
+                    GUI.Label(switchTitleDurationRect, "Duration", EditorStyles.wordWrappedMiniLabel);
+                    selectedBlocks[0].switchCamera.Duration = EditorGUI.FloatField(switchInputDurationRect, selectedBlocks[0].switchCamera.Duration);
+                }
             }
         }
     }
