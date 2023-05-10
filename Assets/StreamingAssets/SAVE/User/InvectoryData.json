@@ -79,7 +79,7 @@
         {
             "id": 202,
             "name": "HPPotion",
-            "currentCnt": 0,
+            "currentCnt": 5,
             "maxCnt": 5
         },
         {
