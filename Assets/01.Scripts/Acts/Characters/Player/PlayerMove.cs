@@ -76,7 +76,8 @@ namespace Acts.Characters.Player
         }
         private void PopMove()
         {
-            if(moveDir.Count > 0 && !_playerActor.HasAnyState() && !_isMoving)
+            if (ThisActor.GetAct<CharacterStatAct>().ChangeStat.hp <= 0) return;
+            if (moveDir.Count > 0 && !_playerActor.HasAnyState() && !_isMoving)
             {
                 enableQ = true;
                 playerDir = moveDir.Dequeue();
