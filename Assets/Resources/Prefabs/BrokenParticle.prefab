@@ -4902,6 +4902,7 @@ GameObject:
   - component: {fileID: 8936690387250976537}
   - component: {fileID: 9127128780610938495}
   - component: {fileID: 9138205450852068623}
+  - component: {fileID: 5875768444956468580}
   m_Layer: 0
   m_Name: BrokenParticle
   m_TagString: Untagged
@@ -9796,6 +9797,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &5875768444956468580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8939778587315667347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05da530cd46904549a1ebb8582593221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8939781750186522329
 GameObject:
   m_ObjectHideFlags: 0

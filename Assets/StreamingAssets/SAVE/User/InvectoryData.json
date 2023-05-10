@@ -73,7 +73,7 @@
         {
             "id": 200,
             "name": "Torch",
-            "currentCnt": 5,
+            "currentCnt": 9,
             "maxCnt": 99
         },
         {
@@ -85,7 +85,7 @@
         {
             "id": 202,
             "name": "HPPotion",
-            "currentCnt": 5,
+            "currentCnt": 4,
             "maxCnt": 5
         },
         {
@@ -109,7 +109,7 @@
         {
             "id": 206,
             "name": "Pick",
-            "currentCnt": 99,
+            "currentCnt": 98,
             "maxCnt": 99
         }
     ],

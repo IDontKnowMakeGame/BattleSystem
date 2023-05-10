@@ -61,13 +61,6 @@ namespace Acts.Characters.Enemy
             if (!ThisActor.gameObject.activeSelf)
                 return;
 
-			Arrow arrow = ThisActor.GetComponentInChildren<Arrow>();
-            if(arrow != null)
-            {
-				arrow.StickReBlock();
-				arrow.transform.parent = null;
-			}
-
 			ThisActor.GetAct<EnemyAI>()?.ResetAllConditions();
             ThisActor.gameObject.tag = "Untagged";
 
@@ -103,9 +96,21 @@ namespace Acts.Characters.Enemy
 	            CharacterRender render = ThisActor.GetAct<CharacterRender>();
 	            var mat = render.Renderer.material;
 	            ClipBase clip = unit.GetClip("Die");
-	            clip.OnExit = () =>
+				Arrow arrow = ThisActor.GetComponentInChildren<Arrow>();
+				if (arrow != null)
+				{
+					arrow.StickReBlock();
+					arrow.transform.parent = null;
+				}
+				clip.OnExit = () =>
 	            {
-		            ThisActor.gameObject.SetActive(false);
+					Arrow arrow = ThisActor.GetComponentInChildren<Arrow>();
+					if (arrow != null)
+					{
+						arrow.StickReBlock();
+						arrow.transform.parent = null;
+					}
+					ThisActor.gameObject.SetActive(false);
                 };
 	            var deathParticle = Define.GetManager<ResourceManager>().Instantiate("DeathParticle");
 	            DOTween.To(() => 4, x => mat.SetFloat("_Cutoff_Height", x), 0, 0.8f);

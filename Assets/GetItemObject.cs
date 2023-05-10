@@ -64,7 +64,7 @@ public class GetItemObject : InteractionActor
 		if (!canInteraction)
 			return;
 
-		if (InGame.Player.Position.IsNeighbor(Position) == false && Define.GetManager<MapManager>().GetBlock(Position).ActorOnBlock != InGame.Player) return;
+		if (InGame.Player.Position.IsNeighbor(Position) == false && Define.GetManager<MapManager>().GetBlock(Position)?.ActorOnBlock != InGame.Player) return;
 
 		count++;
 		canInteraction = false;

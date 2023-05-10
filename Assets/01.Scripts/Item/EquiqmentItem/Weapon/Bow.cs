@@ -18,6 +18,8 @@ public class Bow : Weapon
 
 	private SliderObject _sliderObject = null;
 
+	public bool isDestroy = false;
+
 	public override void LoadWeaponClassLevel()
 	{
 		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("Bow");
@@ -69,13 +71,13 @@ public class Bow : Weapon
 	private void SetAnimation()
 	{
 		string str = isShoot ? "None" : "Use";
-		_unitAnimation.GetClip("Idle").ChangeClip(_unitAnimation.GetClip(str + "Idle"));
+		_unitAnimation.GetClip("Idle")?.ChangeClip(_unitAnimation.GetClip(str + "Idle"));
 		_unitAnimation.GetClip("HorizontalMove")?.ChangeClip(_unitAnimation.GetClip(str + "HorizontalMove"));
 		_unitAnimation.GetClip("UpperMove")?.ChangeClip(_unitAnimation.GetClip(str + "UpperMove"));
 		_unitAnimation.GetClip("LowerMove")?.ChangeClip(_unitAnimation.GetClip(str + "LowerMove"));
-		_unitAnimation.GetClip("HorizontalCharge").ChangeClip(_unitAnimation.GetClip(str + "HorizontalCharge"));
-		_unitAnimation.GetClip("UpperCharge").ChangeClip(_unitAnimation.GetClip(str + "UpperCharge"));
-		_unitAnimation.GetClip("LowerCharge").ChangeClip(_unitAnimation.GetClip(str + "LowerCharge"));
+		_unitAnimation.GetClip("HorizontalCharge")?.ChangeClip(_unitAnimation.GetClip(str + "HorizontalCharge"));
+		_unitAnimation.GetClip("UpperCharge")?.ChangeClip(_unitAnimation.GetClip(str + "UpperCharge"));
+		_unitAnimation.GetClip("LowerCharge")?.ChangeClip(_unitAnimation.GetClip(str + "LowerCharge"));
 
 		_characterActor.RemoveState(CharacterState.StopMove);
 		_characterActor.RemoveState(CharacterState.Attack);
@@ -139,7 +141,8 @@ public class Bow : Weapon
 			_characterActor.AddState(CharacterState.Attack);
 			//if (_playerActor != null)
 			ShootAnimation(_orginVec);
-			Arrow.ShootArrow(_currentVec, _characterActor.Position, _characterActor, info.Afs, info.Atk, 6);
+			Debug.Log(isDestroy);
+			Arrow.ShootArrow(_currentVec, _characterActor.Position, _characterActor, info.Afs, info.Atk, 6, isDestroy);
 			_sliderObject.SliderActive(false);
 		}
 	}

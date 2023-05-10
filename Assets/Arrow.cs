@@ -91,14 +91,13 @@ public class Arrow : MonoBehaviour
 
 		transform.rotation = Quaternion.Euler(VecToRotation(vec));
 
-		//Vector3 ve = new Vector3(-150, 0, 0);
 		_seq = DOTween.Sequence();
 		_seq.Append(this.transform.DOMove(position + (vec * count), time).OnComplete(StickOnBlock));
 
 		var rotX = transform.eulerAngles.x;
 		var rotY = transform.eulerAngles.y;
 		var rotZ = transform.eulerAngles.z;
-		_seq.Append(DOTween.To(x => rotX = x, rotX, 150, time).SetEase(Ease.Linear).OnUpdate(() => transform.eulerAngles = new Vector3(rotX, rotY, rotZ)));
+		_seq.Append(DOTween.To(x => rotX = x, rotX, 150, 3).SetEase(Ease.Linear).OnUpdate(() => transform.eulerAngles = new Vector3(rotX, rotY, rotZ)));
 		_shootVec = vec;
 		_shootActor = actor;
 		_damage = damage;
@@ -112,6 +111,7 @@ public class Arrow : MonoBehaviour
 	protected virtual void StickOnBlock()
 	{
 		_seq.Kill();
+		_stickActor = null;
 		_isStick = true;
 		Quaternion quater = this.transform.localRotation;
 		Vector3 vec = quater.eulerAngles;
@@ -120,6 +120,7 @@ public class Arrow : MonoBehaviour
 	}
 	private void StickOnWall()
 	{
+		this.transform.position = new Vector3(this.transform.position.x, 1, this.transform.position.z);
 		_isStick = true;
 		_seq.Kill();
 	}
@@ -128,17 +129,19 @@ public class Arrow : MonoBehaviour
 	{
 		_seq.Kill();
 
-		this.transform.GetComponent<BoxCollider>().enabled = false;
-		this.transform.parent = other.transform;
-		this.transform.localPosition = -_shootVec;
-
+		//this.transform.GetComponent<BoxCollider>().enabled = false;
 		_stickActor = InGame.GetActor(other.gameObject.GetInstanceID()) as CharacterActor;
 
+		Vector3 vec = _stickActor.transform.position + (this.transform.position - _stickActor.transform.position).GetDirection();
+		vec.y = 1;
+		this.transform.position = vec;
+		this.transform.parent = other.transform;
 		_stickActor.GetAct<CharacterStatAct>()?.Damage(_damage, _shootActor);
 		_isStick = true;
 
 		if (_isDestroy)
 			Define.GetManager<ResourceManager>().Destroy(this.gameObject);
+
 	}
 
 	public void StickReBlock()
@@ -149,6 +152,7 @@ public class Arrow : MonoBehaviour
 		Vector3 vec = quater.eulerAngles;
 		vec.x = 150;
 		this.transform.rotation = Quaternion.Euler(vec);
+		this.transform.position = new Vector3(this.transform.position.x, 1, this.transform.position.z);
 	}
 
 
