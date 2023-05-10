@@ -1,6 +1,7 @@
 ﻿using System;
 using Core;
 using DG.Tweening;
+using Managements;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -24,8 +25,8 @@ namespace ETC
 
         public void FocusCenter()
         {
-            InGame.Player.StopAllCoroutines();
-            Destroy(InGame.Player.gameObject);
+            //InGame.Player.StopAllCoroutines();
+            //Destroy(InGame.Player.gameObject);
             Sequence seq = DOTween.Sequence();
             vignette.intensity.value = 0;
             vignette.rounded.value = true;

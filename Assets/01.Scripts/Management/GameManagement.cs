@@ -22,6 +22,7 @@ namespace Managements
         }
 
         private Dictionary<Type, Manager> _managers = new();
+        public Dictionary<Type, Manager> Manager => _managers;
 
 
         #region Control_Managers
@@ -201,6 +202,16 @@ namespace Managements
             }
             _managers.Clear();
             LoadingSceneController.Instnace.LoadScene(sceneName);
+        }
+
+        public void RemoveInputManagers()
+        {
+            Instance.RemoveManager<InputManager<GreatSword>>();
+            Instance.RemoveManager<InputManager<StraightSword>>();
+            Instance.RemoveManager<InputManager<TwinSword>>();
+            Instance.RemoveManager<InputManager<Spear>>();
+            Instance.RemoveManager<InputManager<Bow>>();
+            Instance.RemoveManager<InputManager<Weapon>>();
         }
     }
 }

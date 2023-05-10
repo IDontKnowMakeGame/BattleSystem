@@ -63,6 +63,7 @@ namespace Acts.Characters.Player
 
         public override void Move(Vector3 position)
         {
+
             if (isSkill)
                 _isMoving = false;
             base.Move(position);
