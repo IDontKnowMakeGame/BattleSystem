@@ -112,6 +112,7 @@ public class Arrow : MonoBehaviour
 	{
 		_seq.Kill();
 		_stickActor = null;
+		if(!_isDestroy)
 		_isStick = true;
 		Quaternion quater = this.transform.localRotation;
 		Vector3 vec = quater.eulerAngles;
@@ -121,7 +122,8 @@ public class Arrow : MonoBehaviour
 	private void StickOnWall()
 	{
 		this.transform.position = new Vector3(this.transform.position.x, 1, this.transform.position.z);
-		_isStick = true;
+		if (!_isDestroy)
+			_isStick = true;
 		_seq.Kill();
 	}
 
@@ -129,7 +131,6 @@ public class Arrow : MonoBehaviour
 	{
 		_seq.Kill();
 
-		//this.transform.GetComponent<BoxCollider>().enabled = false;
 		_stickActor = InGame.GetActor(other.gameObject.GetInstanceID()) as CharacterActor;
 
 		Vector3 vec = _stickActor.transform.position + (this.transform.position - _stickActor.transform.position).GetDirection();
@@ -137,7 +138,8 @@ public class Arrow : MonoBehaviour
 		this.transform.position = vec;
 		this.transform.parent = other.transform;
 		_stickActor.GetAct<CharacterStatAct>()?.Damage(_damage, _shootActor);
-		_isStick = true;
+		if (!_isDestroy)
+			_isStick = true;
 
 		if (_isDestroy)
 			Define.GetManager<ResourceManager>().Destroy(this.gameObject);
@@ -146,6 +148,7 @@ public class Arrow : MonoBehaviour
 
 	public void StickReBlock()
 	{
+		if (!_isDestroy)
 		_isStick = true;
 		_stickActor = null;
 		Quaternion quater = this.transform.localRotation;

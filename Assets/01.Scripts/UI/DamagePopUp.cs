@@ -41,7 +41,7 @@ public class DamagePopUp : Actor
 		AddAct(_textRenderer);
 	}
 
-	public void DamageText(int text, Vector3 pos,Vector3 dir = new())
+	public void DamageText(int text, Vector3 pos, Vector3 dir, bool isDir = false)
 	{
 		num.alpha = 1;
 		Vector2 vec = Random.insideUnitCircle;
@@ -54,9 +54,29 @@ public class DamagePopUp : Actor
 
 		num.text = string.Format(text.ToString());
 		Sequence mySequence = DOTween.Sequence();
-		int a = vec.x > 0 ? 1 : -1;
-		mySequence.Append(transform.DOMoveX((a * xPower/*vec.x*/) + transform.position.x, HoriSpeed).SetEase(Ease.Linear));
-		mySequence.Join(transform.DOMoveY(Mathf.Abs(transform.position.y) + yPower, PowerSpeed).SetEase(Ease.Linear)).AppendCallback(() => {
+
+		int a = 0;
+		if (isDir)
+		{
+			if (dir.x != 0)
+			{
+				a = dir.x > 0 ? -1 : 1;
+				mySequence.Append(transform.DOMoveX((a * xPower) + transform.position.x, HoriSpeed).SetEase(Ease.Linear));
+			}
+			else
+			{
+				a = dir.z > 0 ? -1 : 1;
+				mySequence.Append(transform.DOMoveZ((a * xPower) + transform.position.z, HoriSpeed).SetEase(Ease.Linear));
+			}
+		}
+		else
+		{
+			a = vec.x > 0 ? 1 : -1;
+			mySequence.Append(transform.DOMoveX((a * xPower + vec.x) + transform.position.x, HoriSpeed).SetEase(Ease.Linear));
+		}
+
+		mySequence.Join(transform.DOMoveY(Mathf.Abs(transform.position.y) + yPower, PowerSpeed).SetEase(Ease.Linear)).AppendCallback(() =>
+		{
 			num.DOFade(0, 0.35f);
 		});
 		mySequence.Append(transform.DOMoveY(Down, DownSpeed).SetEase(Ease.Linear)).AppendCallback(() => { Define.GetManager<ResourceManager>().Destroy(this.gameObject); });
