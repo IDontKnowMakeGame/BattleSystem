@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Blocks;
 using Managements.Managers;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Tool.Map.Controll
 {
@@ -24,6 +26,7 @@ namespace Tool.Map.Controll
         [MenuItem("Tools/MapController")]
         public static void ShowWindow()
         {
+            blocks = MapManager.GetBlockOnMap();
             MapController window = (MapController)EditorWindow.GetWindow(typeof(MapController));
             window.Show();
         }
@@ -43,34 +46,11 @@ namespace Tool.Map.Controll
             
             areas = blocks.GetMaxMinVector3s();
             GetArea();
-            UpdateWindow();
+            UpdateMap();
 
             GUILayout.Label("Base Settings", EditorStyles.boldLabel);
             
-            
-            var toggleBtnRect = new Rect((areas[1].x) * width + 50, height * 3, 100, 70);
-            if (GUI.Button(toggleBtnRect, "Toggle"))
-            {
-                foreach (var block in selectedBlocks)
-                {
-                    block.ToggleIsWalkable();
-                }
-                selectedBlocks.Clear();
-            }
-            var roomTextRect = new Rect((areas[1].x) * width + 50, height * 12, 100, 20);
-            roomText = GUI.TextField(roomTextRect, roomText);
-            var roomBtnRect = new Rect((areas[1].x) * width + 50, height * 15, 100, 40);
-            if (GUI.Button(roomBtnRect, "Create Room"))
-            {
-                var parentTrm = new GameObject(roomText).transform;
-                var rootTrm = GameObject.Find("MapTiled").transform;
-                parentTrm.SetParent(rootTrm);
-                foreach (var block in selectedBlocks)
-                {
-                    block.transform.SetParent(parentTrm);
-                }
-                selectedBlocks.Clear();
-            }
+            UpdateButtons();
             InputHandle();  
         }
         
@@ -91,6 +71,9 @@ namespace Tool.Map.Controll
                 var widths = mouseEndPos.x - mouseStartPos.x;
                 var heights = mouseEndPos.y - mouseStartPos.y;
                 rect = new Rect(mouseStartPos.x, mouseStartPos.y, widths, heights);
+                isMouseDrag = true;
+                
+                
                 foreach (var block in blocks)
                 {
                     if (selectedBlocks.Contains(block))
@@ -101,20 +84,19 @@ namespace Tool.Map.Controll
                     var y = mouseStartPos.y < mouseEndPos.y ? mouseStartPos.y : mouseEndPos.y;
                     var y2 = mouseStartPos.y < mouseEndPos.y ? mouseEndPos.y : mouseStartPos.y;
                     
-                    if(x < blockPos.x && x2 > blockPos.x && y < blockPos.y && y2 > blockPos.y)
+                    if(x < blockPos.x + 10 && x2 > blockPos.x - 10 && y < blockPos.y + 10 && y2 > blockPos.y - 10)
                         selectedBlocks.Add(block);
                 }
-                isMouseDrag = true;
             }
 
             if (Event.current.type == EventType.MouseUp && Event.current.button == 0)
-            { 
+            {
                 Debug.Log(rect);
                 mouseStartPos = Vector3.zero;
                 mouseEndPos = Vector3.zero;
                 rect = new Rect();
                 isMouseDrag = false;
-                UpdateWindow();
+                UpdateMap();
             }
 
             var color = GUI.backgroundColor;
@@ -133,13 +115,15 @@ namespace Tool.Map.Controll
                 (areas[1].x) * width,
                 (-areas[1].z) * height);
         }
-        private void UpdateWindow()
+        private void UpdateMap()
         {
             GUI.Box(areaRect, "");
             foreach (var block in blocks)
             {
                 var oldColor = GUI.backgroundColor;
                 var color = block.isWalkable ? Color.green : Color.red;
+                if(block.HasSwitchCamera)
+                    color = Color.magenta;
                 if(selectedBlocks.Contains(block))
                     color = Color.yellow;
                 GUI.backgroundColor = color;
@@ -159,6 +143,44 @@ namespace Tool.Map.Controll
                 GUI.backgroundColor = oldColor;
 
                 blockPosDic[block] = new Vector2(x, y);
+            }
+        }
+
+        private void UpdateButtons()
+        {
+            var toggleBtnRect = new Rect((areas[1].x) * width + 50, height * 3, 100, 70);
+            if (GUI.Button(toggleBtnRect, "Toggle"))
+            {
+                foreach (var block in selectedBlocks)
+                {
+                    block.ToggleIsWalkable();
+                }
+                selectedBlocks.Clear();
+            }
+            var roomTextRect = new Rect((areas[1].x) * width + 50, height * 11, 100, 20);
+            roomText = GUI.TextField(roomTextRect, roomText);
+            var roomBtnRect = new Rect((areas[1].x) * width + 50, height * 13, 100, 50);
+            if (GUI.Button(roomBtnRect, "Create Room"))
+            {
+                var parentTrm = new GameObject(roomText).transform;
+                var rootTrm = GameObject.Find("MapTiled").transform;
+                parentTrm.SetParent(rootTrm);
+                foreach (var block in selectedBlocks)
+                {
+                    block.transform.SetParent(parentTrm);
+                }
+                selectedBlocks.Clear();
+            }
+            
+            var cameraBtnRect = new Rect((areas[1].x) * width + 50, height * 19, 100, 70);
+            if (GUI.Button(cameraBtnRect, "Toggle\n Switch\n Camera"))
+            {
+                foreach (var block in selectedBlocks)
+                {
+                    block.ToggleHasSwitchCamera();
+                    block.isWalkable = block.HasSwitchCamera;
+                }
+                selectedBlocks.Clear();
             }
         }
     }

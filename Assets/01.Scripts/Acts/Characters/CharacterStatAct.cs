@@ -161,11 +161,6 @@ public class CharacterStatAct : Act
 		_changeStat.maxHP = _basicStat.maxHP + _changeStats[StatType.MAXHP];
 		_changeStat.ats = _changeStat.ats + _changeStats[StatType.ATS];
 		_changeStat.afs = _changeStat.ats + _changeStats[StatType.AFS];
-		Debug.Log(_changeStats[StatType.SPEED]);
-		Debug.Log(info.Weight);
-		Debug.Log(_changeStats[StatType.Weight]);
-		Debug.Log(ItemInfo.WeightToSpeed((int)(info.Weight + _changeStats[StatType.Weight])));
-		Debug.Log((int)(info.Weight + _changeStats[StatType.Weight]));
 		_changeStat.speed = ItemInfo.WeightToSpeed((int)(info.Weight + _changeStats[StatType.Weight])) + _changeStats[StatType.SPEED];
 	}
 	public virtual void Heal(int hp)
@@ -195,7 +190,6 @@ public class CharacterStatAct : Act
 				Define.GetManager<DataManager>().AddWeaponClassKillData(player.currentWeapon.info.Class);
 				player.GetAct<PlayerEquipment>().CurrentWeapon.LoadWeaponClassLevel();
 			}
-
 			Die();
 		}
 		
@@ -213,8 +207,7 @@ public class CharacterStatAct : Act
 	public virtual void Die()
 	{
 		var particle = Define.GetManager<ResourceManager>().Instantiate("DeathParticle", ThisActor.transform);
-		particle.transform.localPosition = Vector3.zero;
-		
+		particle.transform.position = ThisActor.transform.position;
 		var anchorTrm = ThisActor.transform.Find("Anchor");
 		var modelTrm = anchorTrm.Find("Model");
 		var scale = modelTrm.localScale;

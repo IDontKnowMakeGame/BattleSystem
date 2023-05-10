@@ -16,7 +16,9 @@
             "onCristalList": [
                 15
             ],
-            "openChestList": [],
+            "openChestList": [
+                3
+            ],
             "openDoorList": [
                 3
             ],

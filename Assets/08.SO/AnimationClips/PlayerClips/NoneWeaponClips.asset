@@ -20,30 +20,42 @@ MonoBehaviour:
   - name: Idle
     nextIdx: -1
     texture: {fileID: 2800000, guid: 8c580b421ec143440a28fd390111c0e7, type: 3}
+    normal: {fileID: 0}
     fps: 11
     isLoop: 1
     delay: 0.1
   - name: HorizontalMove
     nextIdx: 0
     texture: {fileID: 2800000, guid: 21d4b0344b8819d4ca643a69f4b5ad89, type: 3}
+    normal: {fileID: 0}
     fps: 9
     isLoop: 0
     delay: 0.1
   - name: UpperMove
     nextIdx: 0
     texture: {fileID: 2800000, guid: 7f911e98fa6580b4a8cb5a2654a052c9, type: 3}
+    normal: {fileID: 0}
     fps: 9
     isLoop: 0
     delay: 0.1
   - name: LowerMove
     nextIdx: 0
     texture: {fileID: 2800000, guid: 97227538dfc286f408e94d96a2412518, type: 3}
+    normal: {fileID: 0}
     fps: 9
     isLoop: 0
     delay: 0.1
   - name: Equip
     nextIdx: 0
     texture: {fileID: 2800000, guid: 4608c8eb25faa5341a45474947b6dc56, type: 3}
+    normal: {fileID: 0}
     fps: 9
+    isLoop: 0
+    delay: 0.1
+  - name: Die
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 61cc0fd7baf0e2c45856855508bb70bf, type: 3}
+    normal: {fileID: 0}
+    fps: 7
     isLoop: 0
     delay: 0.1

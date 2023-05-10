@@ -20,7 +20,7 @@ public struct HaloAnimation
 {
 	public HaloAnimationState state;
 	public Texture texture;
-	public Material material;
+	public Material[] materials;
 	
 	public float[] delay;
 	public int fps => delay.Length;

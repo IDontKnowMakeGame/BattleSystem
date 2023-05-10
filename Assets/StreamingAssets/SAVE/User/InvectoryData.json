@@ -35,6 +35,18 @@
             "name": "None",
             "currentCnt": 0,
             "maxCnt": 0
+        },
+        {
+            "id": 8,
+            "name": "OutwornBow",
+            "currentCnt": 1,
+            "maxCnt": 0
+        },
+        {
+            "id": 7,
+            "name": "BrokenSword",
+            "currentCnt": 1,
+            "maxCnt": 0
         }
     ],
     "inventoryInHaloList": [
@@ -61,7 +73,7 @@
         {
             "id": 200,
             "name": "Torch",
-            "currentCnt": 0,
+            "currentCnt": 5,
             "maxCnt": 99
         },
         {

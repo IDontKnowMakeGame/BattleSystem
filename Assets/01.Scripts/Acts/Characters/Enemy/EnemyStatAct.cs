@@ -10,6 +10,7 @@ using UnityEngine;
 using Acts.Characters.Player;
 using DG.Tweening;
 using Random = UnityEngine.Random;
+using Data;
 
 namespace Acts.Characters.Enemy
 {
@@ -18,6 +19,8 @@ namespace Acts.Characters.Enemy
     {
         [SerializeField]
         private int _feahter;
+        [SerializeField]
+        private GetItemInfo info;
 
 		private Actor attackActor;
 
@@ -68,9 +71,9 @@ namespace Acts.Characters.Enemy
 			ThisActor.GetAct<EnemyAI>()?.ResetAllConditions();
             ThisActor.gameObject.tag = "Untagged";
 
-            //QuestManager.Instance.CheckKillMission((ThisActor as EnemyActor).CurrentType);
-            //if(attackActor != null)
-            //QuestManager.Instance.CheckKillMission((ThisActor as EnemyActor).CurrentType);
+            QuestManager.Instance.CheckKillMission((ThisActor as EnemyActor).CurrentType);
+            if (attackActor != null)
+            QuestManager.Instance.CheckKillMission((ThisActor as EnemyActor).CurrentType);
 
             GameObject addObject = Define.GetManager<ResourceManager>().Instantiate("EatEffect");
             addObject.transform.position = ThisActor.Position + Vector3.up;
@@ -93,7 +96,7 @@ namespace Acts.Characters.Enemy
             var enemy = ThisActor as EnemyActor;
             if (enemy != null) enemy.Alive = false;
 
-		        ThisActor.RemoveAct<EnemyAI>();
+		    ThisActor.RemoveAct<EnemyAI>();
             if (!isBoss)
             {
 	            UnitAnimation unit = ThisActor.GetAct<UnitAnimation>();
@@ -110,7 +113,16 @@ namespace Acts.Characters.Enemy
 	            unit.Play("Die");
             }
 
+            if(info._id != ItemID.None)
+            {
+                GameObject obj = Define.GetManager<ResourceManager>().Instantiate("GetItemObject");
+                obj.GetComponent<GetItemObject>().Init(info);
+                obj.transform.position = this.ThisActor.Position + Vector3.up/2;
+
+			}
+
             InGame.Player.GetAct<PlayerAttack>().RangeReset();
+            InGame.Player.GetAct<PlayerAttack>().DeleteEnemy(ThisActor.gameObject);
 		}
 
         private void ObjectCreate()

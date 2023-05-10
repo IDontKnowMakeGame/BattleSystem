@@ -55,12 +55,12 @@ public class SwitchCamera : MonoBehaviour
         {
             timer += Time.deltaTime;
             float t = Mathf.Clamp01(timer / duration);
-            // ī�޶� ȸ��
+            // 카메라 회전
             float angleX = Mathf.Lerp(originalVerticalValue, verticalTagetAngle, t);
             float angleY = Mathf.Lerp(originalHorizontalValue, horizontalTargetAngle, t);
             virtualCamera.transform.rotation = Quaternion.Euler(angleX, angleY, 0);
 
-            // ī�޶� FOV
+            // 카메라 FOV
             float currentFov = Mathf.Lerp(originFov, targetFov, t);
             virtualCamera.m_Lens.FieldOfView = currentFov;
         }

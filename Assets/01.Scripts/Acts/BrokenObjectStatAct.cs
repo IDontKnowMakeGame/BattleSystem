@@ -21,7 +21,11 @@ public class BrokenObjectStatAct : CharacterStatAct
 		if (ChangeStat.hp <= 0)
 		{
 			Die();
+			return;
 		}
+		GameObject obj = GameManagement.Instance.GetManager<ResourceManager>().Instantiate("BrokenObjectAttackParticle");
+		obj.transform.position = ThisActor.transform.position;
+		obj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
 	}
 
 	public override void Die()
@@ -29,7 +33,7 @@ public class BrokenObjectStatAct : CharacterStatAct
 		ThisActor.GetComponentInChildren<Arrow>()?.StickReBlock();
 		ThisActor.transform.DetachChildren();
 		GameObject obj = GameObject.Instantiate(_brokenObject);
-		obj.transform.position = ThisActor.transform.position + Vector3.up;
+		obj.transform.position = ThisActor.transform.position;
 		GameManagement.Instance.GetManager<ResourceManager>().Destroy(ThisActor.gameObject);
 	}
 }
