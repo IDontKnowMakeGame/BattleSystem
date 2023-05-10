@@ -22,6 +22,15 @@ public class UIInGame : UIBase
     private VisualElement _secondWeaponHide;
     private VisualElement _itemList;
 
+    private VisualElement _itemPanel;
+    private Queue<Pair> _itemQueue = new Queue<Pair>();
+    private class Pair
+    {
+        public ItemID id;
+        public int cnt;
+    }
+    private bool _showItemPanel = false;
+
     private bool flagCool = true;
 
     #region HP
@@ -66,6 +75,7 @@ public class UIInGame : UIBase
         _secondWeapon = _root.Q<VisualElement>("weaponbox_second");
         _secondWeaponHide = _secondWeapon.Q<VisualElement>("Hide");
         _itemList = _root.Q<VisualElement>("area_item");
+        _itemPanel = _root.Q<VisualElement>("ItemPanel");
 
         _feather = _root.Q<Label>("featherCnt");
         _addFeatherCnt = _root.Q<Label>("AddFeatherCnt");
@@ -183,6 +193,30 @@ public class UIInGame : UIBase
         float t = Mathf.Clamp01(secondWeaponTimer / secondWeaponDuration);
         float currentFov = Mathf.Lerp(100, 0, t);
         _secondWeaponHide.style.height = new Length(currentFov, LengthUnit.Percent);
+    }
+
+    public void AddShowItemPanel()
+    {
+        if (_showItemPanel || _itemQueue.Count <= 0) return;
+
+
+        _showItemPanel = true;
+        Pair pair = _itemQueue.Dequeue();
+        _itemPanel.Q<VisualElement>("Image").style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)pair.id}"));
+        _itemPanel.Q<Label>("ItemName").text = pair.id.ToString();
+        _itemPanel.Q<Label>("ItemCntText").text = string.Format("x{0}", pair.cnt);
+        _itemPanel.RemoveFromClassList("HideItemPanel");
+    }
+    public void AddShowItemPanel(ItemID id, int cnt = 1)
+    {
+        _itemQueue.Enqueue(new Pair() { id = id, cnt = cnt });
+        AddShowItemPanel();
+    }
+    public void HideItemPanel()
+    {
+        _showItemPanel = false;
+        _itemPanel.AddToClassList("HideItemPanel");
+        AddShowItemPanel();
     }
 
     public void ChangeWeaponCoolTime()

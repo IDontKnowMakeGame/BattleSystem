@@ -39,7 +39,7 @@ public class UIManager : MonoBehaviour
     {
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.FirstMap);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.SecondMap);
-        Define.GetManager<DataManager>().AddItemInInventory(ItemID.Pick,1);
+        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.Pick,1);
     }
 
     private void Init()
@@ -60,7 +60,7 @@ public class UIManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            ItemStore.ShowItemStore(itemStoreTable);
+            
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -68,11 +68,11 @@ public class UIManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            Smithy.ShowSmithy();
+            InGame.HideItemPanel();
         }
         if (Input.GetKeyDown(KeyCode.B))
         {
-            UIFirstFloorMap.ShowFirstFloorMap();
+ 
         }
 
 
