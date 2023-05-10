@@ -14,6 +14,7 @@ public class BrokenObjectStatAct : CharacterStatAct
 {
 	[SerializeField]
 	private GameObject _brokenObject;
+	private Vector3 dir = Vector3.zero;
 
 	public override void Damage(float damage, Actor actor)
 	{
@@ -26,6 +27,7 @@ public class BrokenObjectStatAct : CharacterStatAct
 		GameObject obj = GameManagement.Instance.GetManager<ResourceManager>().Instantiate("BrokenObjectAttackParticle");
 		obj.transform.position = ThisActor.transform.position;
 		obj.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+		dir = (actor.transform.position - obj.transform.position).GetDirection();
 	}
 
 	public override void Die()
@@ -34,6 +36,7 @@ public class BrokenObjectStatAct : CharacterStatAct
 		ThisActor.transform.DetachChildren();
 		GameObject obj = GameObject.Instantiate(_brokenObject);
 		obj.transform.position = ThisActor.transform.position;
+		obj.GetComponent<Broken>().Brokens(dir);
 		GameManagement.Instance.GetManager<ResourceManager>().Destroy(ThisActor.gameObject);
 	}
 }

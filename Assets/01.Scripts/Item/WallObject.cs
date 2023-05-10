@@ -11,12 +11,11 @@ public class WallObject : CharacterActor,IPickable
 		if (!Define.GetManager<DataManager>().HaveUseableItem(Data.ItemID.Pick))
 			return;
 
-		this.gameObject.SetActive(false);
-
 		GameObject obj = Define.GetManager<ResourceManager>().Instantiate("WallBrokenObject");
 		obj.transform.position = this.transform.position;
+		obj.GetComponent<Broken>().Brokens(Vector3.zero, 0);
 
-		GameObject objs = Define.GetManager<ResourceManager>().Instantiate("BrokenParticle");
-		objs.transform.position = this.transform.position;
+		this.gameObject.SetActive(false);
+
 	}
 }

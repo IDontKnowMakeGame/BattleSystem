@@ -41,6 +41,7 @@ public class BowShadeActor : EnemyActor
 		}
 		Bow bow = _characterEquipment.CurrentWeapon as Bow;
 		dir.y = 0;
+		bow.isDestroy = true;
 		bow.Shoot(InGame.CamDirCheck(dir.normalized));
 
 		Vector3 vec = dir.x < 0 ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);

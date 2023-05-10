@@ -41,7 +41,7 @@ public class DamagePopUp : Actor
 		AddAct(_textRenderer);
 	}
 
-	public void DamageText(int text, Vector3 pos)
+	public void DamageText(int text, Vector3 pos,Vector3 dir = new())
 	{
 		num.alpha = 1;
 		Vector2 vec = Random.insideUnitCircle;
@@ -55,7 +55,7 @@ public class DamagePopUp : Actor
 		num.text = string.Format(text.ToString());
 		Sequence mySequence = DOTween.Sequence();
 		int a = vec.x > 0 ? 1 : -1;
-		mySequence.Append(transform.DOMoveX((a * xPower + vec.x) + transform.position.x, HoriSpeed).SetEase(Ease.Linear));
+		mySequence.Append(transform.DOMoveX((a * xPower/*vec.x*/) + transform.position.x, HoriSpeed).SetEase(Ease.Linear));
 		mySequence.Join(transform.DOMoveY(Mathf.Abs(transform.position.y) + yPower, PowerSpeed).SetEase(Ease.Linear)).AppendCallback(() => {
 			num.DOFade(0, 0.35f);
 		});

@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5429280582108950616
 Transform:
   m_ObjectHideFlags: 0
@@ -85,6 +85,10 @@ MonoBehaviour:
       afs: 0
       speed: 0
     _feahter: 52
+    info:
+      _id: 7
+      _count: 1
+      _isWeapon: 1
     isBoss: 0
   _enemyAnimation:
     curClip:

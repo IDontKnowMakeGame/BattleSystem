@@ -77,6 +77,9 @@ public class PlayerEquipment : CharacterEquipmentAct
 			if (haloID == ItemID.None) return;
 			_useHalo[haloID].Equiqment(_characterController);
 		}
+
+		CurrentWeapon?.UnEquipment(_characterController);
+		CurrentWeapon?.Equiqment(_characterController);
 	}
 
     public override void OnDisable()

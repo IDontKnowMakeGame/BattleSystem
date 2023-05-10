@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7082799638287064}
   - component: {fileID: 957543478816412254}
-  - component: {fileID: 957543478816412253}
   - component: {fileID: 7082799638287047}
   - component: {fileID: 7082799638287044}
   - component: {fileID: 7082799638287045}
   - component: {fileID: 7082799638287042}
+  - component: {fileID: 8860356921998992550}
   m_Layer: 0
   m_Name: OldBowShade
   m_TagString: Enemy
@@ -54,19 +54,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &957543478816412253
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7082799638287046}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5175133, y: 0.80695117, z: 0.10205841}
-  m_Center: {x: 0.0864315, y: -0.09652442, z: -0.030628204}
 --- !u!114 &7082799638287047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +103,10 @@ MonoBehaviour:
       afs: 0
       speed: 0
     _feahter: 52
+    info:
+      _id: 8
+      _count: 1
+      _isWeapon: 1
     isBoss: 0
   _enemyAnimation:
     curClip:
@@ -216,6 +207,19 @@ MonoBehaviour:
         IsNeeded: 1
         _thisActor: {fileID: 7082799638287047}
         TargetTime: 5
+--- !u!65 &8860356921998992550
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7082799638287046}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8924329, y: 0.8924329, z: 0.8924329}
+  m_Center: {x: 0, y: 0, z: -0}
 --- !u!1 &7082799946386409
 GameObject:
   m_ObjectHideFlags: 0

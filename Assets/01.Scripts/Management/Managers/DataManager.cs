@@ -439,7 +439,7 @@ public class DataManager : Manager
     }
 
     //All
-    public void AddItemInInventory(ItemID id, int count = 0)
+    public void AddItemInInventory(ItemID id, int count = 1)
     {
         SaveItemData item = new SaveItemData();
         item.id = id;
@@ -478,6 +478,13 @@ public class DataManager : Manager
             InventoryData_.inventoryInQuestItemList.Add(item);
             Debug.Log(item.id);
         }
+
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.InGame.AddShowItemPanel(id, count);
+            UIManager.Instance.InGame.ChangeItemPanelImage();
+        }
+            
 
         SaveToInventoryData();
     }

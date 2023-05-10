@@ -119,8 +119,8 @@ namespace Core
             var actors = from b in blocks select b.ActorOnBlock as CharacterActor; 
             return actors.ToArray();
         }
-        
-        public static void SetActorOnBlock(Actor actor)
+
+		public static void SetActorOnBlock(Actor actor)
         {
             //Debug.Log(actor.Position);
             var currentBlock = GetBlock(actor.Position);
