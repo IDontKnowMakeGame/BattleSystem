@@ -85,7 +85,6 @@ public class Arrow : MonoBehaviour
 		float time = count / speed;
 
 		transform.rotation = Quaternion.Euler(VecToRotation(vec));
-		Debug.Log(transform.rotation);
 
 		//Vector3 ve = new Vector3(-150, 0, 0);
 		_seq = DOTween.Sequence();
@@ -107,7 +106,6 @@ public class Arrow : MonoBehaviour
 
 	protected virtual void StickOnBlock()
 	{
-		Debug.Log("block");
 		_seq.Kill();
 		_isStick = true;
 		Quaternion quater = this.transform.localRotation;
@@ -117,15 +115,12 @@ public class Arrow : MonoBehaviour
 	}
 	private void StickOnWall()
 	{
-		Debug.Log("wall");
 		_isStick = true;
 		_seq.Kill();
 	}
 
 	protected virtual void StickActor(Collider other)
 	{
-		Debug.Log("stickActor");
-		Debug.Log(_seq);
 		_seq.Kill();
 		this.transform.parent = other.transform;
 		this.transform.localPosition = -_shootVec;
@@ -179,8 +174,6 @@ public class Arrow : MonoBehaviour
 	private void OnTriggerEnter(Collider other)
 	{
 		CharacterActor actor = other.GetComponent<CharacterActor>();
-
-		Debug.Log(other.gameObject.name);
 		if ((1 << other.gameObject.layer == LayerMask.GetMask("Wall") && _isEnd) || (1 << other.gameObject.layer == LayerMask.GetMask("InteractionWall")))
 		{
 			if (_isDestroy)

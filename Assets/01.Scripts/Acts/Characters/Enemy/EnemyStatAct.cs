@@ -96,7 +96,7 @@ namespace Acts.Characters.Enemy
             var enemy = ThisActor as EnemyActor;
             if (enemy != null) enemy.Alive = false;
 
-		        ThisActor.RemoveAct<EnemyAI>();
+		    ThisActor.RemoveAct<EnemyAI>();
             if (!isBoss)
             {
 	            UnitAnimation unit = ThisActor.GetAct<UnitAnimation>();
@@ -117,7 +117,7 @@ namespace Acts.Characters.Enemy
             {
                 GameObject obj = Define.GetManager<ResourceManager>().Instantiate("GetItemObject");
                 obj.GetComponent<GetItemObject>().Init(info);
-                obj.transform.position = this.ThisActor.transform.position;
+                obj.transform.position = this.ThisActor.Position + Vector3.up/2;
 
 			}
 
