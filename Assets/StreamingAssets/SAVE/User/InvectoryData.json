@@ -73,7 +73,7 @@
         {
             "id": 200,
             "name": "Torch",
-            "currentCnt": 0,
+            "currentCnt": 5,
             "maxCnt": 99
         },
         {

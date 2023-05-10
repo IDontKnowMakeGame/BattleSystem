@@ -302,5 +302,7 @@ namespace Acts.Characters
             _character.RemoveState(CharacterState.Move);
             isChasing = false;
         }
+
+
     }
 }
