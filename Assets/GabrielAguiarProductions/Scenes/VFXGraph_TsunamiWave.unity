@@ -1079,6 +1079,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1572838787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1572838788}
+  m_Layer: 0
+  m_Name: MoveCharacter
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1572838788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572838787}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1695429796}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1695429796 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5920349903317587874, guid: 6b999d5a51acd6a49933cdadb1af7e71, type: 3}
+  m_PrefabInstance: {fileID: 7159596313887804988}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1856035899
 GameObject:
   m_ObjectHideFlags: 0
@@ -1988,6 +2024,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1863775216621135887, guid: 6b999d5a51acd6a49933cdadb1af7e71, type: 3}
+      propertyPath: moveCharacter
+      value: 
+      objectReference: {fileID: 1572838787}
     - target: {fileID: 2267755636713246667, guid: 6b999d5a51acd6a49933cdadb1af7e71, type: 3}
       propertyPath: m_Name
       value: vfx_TsunamiWave_v2_blue

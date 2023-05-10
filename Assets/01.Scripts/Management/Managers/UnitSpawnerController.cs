@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Core;
 using Actors.Characters.Enemy;
+using Actors.Characters;
 
 [System.Serializable]
 public class SpawnerType
@@ -11,23 +12,25 @@ public class SpawnerType
     public Vector3 startPos;
 }
 
-public class EnemySpawnerController : MonoBehaviour
+public class UnitSpawnerController : MonoBehaviour
 {
     [SerializeField]
-    private List<SpawnerType> spawnEnemys;
+    private List<SpawnerType> spawnUnits;
 
-    private HashSet<GameObject> enemys = new HashSet<GameObject>();
+    private HashSet<CharacterActor> units = new HashSet<CharacterActor>();
 
-    public HashSet<GameObject> Enemys => enemys;
+    public HashSet<CharacterActor> Units => units;
 
     private void Start()
     {
         SpawnEnemys();
+
+        units.Add(InGame.Player);
     }
 
     private void SpawnEnemys()
     {
-        foreach (SpawnerType enemy in spawnEnemys)
+        foreach (SpawnerType enemy in spawnUnits)
         {
             GameObject enemyObj = null;
             switch (enemy.type)
@@ -39,7 +42,7 @@ public class EnemySpawnerController : MonoBehaviour
             if (enemyObj != null)
             {
                 enemyObj.transform.position = enemy.startPos;
-                enemys.Add(enemyObj);
+                units.Add(enemyObj.GetComponent<CharacterActor>());
             }
         }
     }
