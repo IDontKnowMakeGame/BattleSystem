@@ -27,8 +27,8 @@
             </ui:VisualElement>
             <ui:VisualElement name="area_playerstatus" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-basis: 10%;" />
         </ui:VisualElement>
-        <ui:VisualElement name="area_Void" style="flex-basis: 30%; align-items: flex-end; justify-content: flex-end;">
-            <ui:VisualElement name="ItemPanel" class="ShowItemPanel HideItemPanel a" style="height: 80%; width: 10%; background-color: rgb(94, 94, 94); justify-content: center; align-items: center; margin-right: 1%; transition-property: left; transition-duration: 1s; transition-delay: 0.2s; transition-timing-function: ease-in;">
+        <ui:VisualElement name="area_Void" style="flex-basis: 50%; align-items: flex-end; justify-content: flex-end;">
+            <ui:VisualElement name="ItemPanel" class="ShowItemPanel HideItemPanel a" style="height: 50%; width: 10%; background-color: rgb(94, 94, 94); justify-content: center; align-items: center; margin-right: 1%; transition-property: left; transition-duration: 1s; transition-delay: 0.2s; transition-timing-function: ease-in;">
                 <ui:VisualElement name="Image" style="height: 80%; width: 80%; background-image: resource(&apos;Item/1&apos;); -unity-background-scale-mode: scale-to-fit; justify-content: flex-end; align-items: flex-end;">
                     <ui:Label text="x3" display-tooltip-when-elided="true" name="ItemCntText" style="margin-bottom: 5px; margin-right: 5px; font-size: 30%;" />
                 </ui:VisualElement>
@@ -36,7 +36,13 @@
                     <ui:Label text="Label" display-tooltip-when-elided="true" name="ItemName" style="color: rgb(0, 0, 0); font-size: 15%;" />
                 </ui:VisualElement>
             </ui:VisualElement>
+            <ui:VisualElement name="Interaction" style="width: 100%; height: 42px; align-items: center; display: flex;">
+                <ui:VisualElement name="InteractionBox" style="height: 100%; width: 20%; background-color: rgb(197, 197, 197); justify-content: center; align-items: center; display: none;">
+                    <ui:Label text="E : Click" display-tooltip-when-elided="true" style="color: rgb(0, 0, 0); font-size: 30%;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
         </ui:VisualElement>
+        <ui:VisualElement style="flex-basis: 53px;" />
         <ui:VisualElement name="area_equipment" style="flex-basis: 20%; left: 0; bottom: 0; flex-direction: row; justify-content: flex-start; align-items: flex-end; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
             <ui:VisualElement name="area_weapon" style="flex-basis: 12%; height: 100%; flex-direction: row; align-items: flex-end; margin-right: 10px;">
                 <ui:VisualElement name="weaponbox_first" style="background-color: rgb(60, 60, 60); height: 100%; margin-right: 10px; background-image: resource(&apos;Item/6&apos;); flex-basis: 60%;">
