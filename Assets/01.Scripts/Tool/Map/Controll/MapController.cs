@@ -258,9 +258,11 @@ namespace Tool.Map.Controll
             Vector2 scrollPos2 = Vector2.zero;
             scrollPos2 = GUI.BeginScrollView(enemyListRect, scrollPos2, new Rect(0, 0, 300, height * 43));
             var enemyList = enemies.ToList();
+            var listHeight = 0f;
             foreach (var enemy in enemyList)
             {
-                var enemyRect = new Rect(0, enemyList.IndexOf(enemy) * height * 2, 300, height * 2);
+                listHeight = enemyList.IndexOf(enemy) * height * 2;
+                var enemyRect = new Rect(0, listHeight, 300, height * 2);
                 if (GUI.Button(enemyRect, enemy.name))
                 {
                     foreach (var block in selectedBlocks)
@@ -271,6 +273,17 @@ namespace Tool.Map.Controll
                     }
                     selectedBlocks.Clear();
                 }
+            }
+            listHeight += height * 2;
+            var enemyRect2 = new Rect(0, listHeight, 300, height * 2);
+            if (GUI.Button(enemyRect2, "Clear"))
+            {
+                foreach (var block in selectedBlocks)
+                {
+                    GameObject.DestroyImmediate(block.ActorOnBlock.gameObject);
+                    block.SetActorOnBlock(null);
+                }
+                selectedBlocks.Clear();
             }
             GUI.EndScrollView();
         }
