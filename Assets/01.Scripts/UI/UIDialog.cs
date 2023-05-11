@@ -16,6 +16,10 @@ public class UIDialog : UIBase
     private Label message;
     private Label nameText;
 
+    private Coroutine textLineCoroutine = null;
+    private string currentTextLine = "";
+    private bool isPlayLineText = false;
+
     private Queue<string> msgLine = new Queue<string>();
     public override void Init()
     {
@@ -62,15 +66,35 @@ public class UIDialog : UIBase
 
         NextMessage();
     }
+    public IEnumerator SetTextLine(string textline)
+    {
+        SetMessageBoxText("");
+        char[] texts = textline.ToCharArray();
+        isPlayLineText = true;
+        for (int i =0;i< texts.Length;i++)
+        {
+            this.message.text += texts[i];
+            yield return new WaitForSeconds(0.05f);
+        }
+        isPlayLineText = false;
+    }
     public void NextMessage()
     {
+        if(isPlayLineText)
+        {
+            UIManager.Instance.StopCoroutine(textLineCoroutine);
+            SetMessageBoxText(currentTextLine);
+            isPlayLineText = false;
+            return;
+        }
         if (msgLine.Count <= 0)
         {
             FlagDialogue(false);
             return;
         }
 
-        SetMessageBoxText(msgLine.Dequeue());
+        currentTextLine = this.msgLine.Dequeue();
+        textLineCoroutine = UIManager.Instance.StartCoroutine(SetTextLine(currentTextLine));
         if (msgLine.Count <= 0)
             EndMessage();
     }
