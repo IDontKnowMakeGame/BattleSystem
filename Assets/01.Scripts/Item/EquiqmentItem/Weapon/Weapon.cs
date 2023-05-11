@@ -151,6 +151,7 @@ public class Weapon : EquiqmentItem
 
 	public override void Update()
 	{
+
 		Timer();
 		if(_input)
 		{

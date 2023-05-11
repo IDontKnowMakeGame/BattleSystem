@@ -21,6 +21,7 @@ public class UIInGame : UIBase
     private VisualElement _secondWeapon;
     private VisualElement _secondWeaponHide;
     private VisualElement _itemList;
+    private VisualElement _interactionBox;
 
     private VisualElement _itemPanel;
     private Queue<Pair> _itemQueue = new Queue<Pair>();
@@ -76,6 +77,7 @@ public class UIInGame : UIBase
         _secondWeaponHide = _secondWeapon.Q<VisualElement>("Hide");
         _itemList = _root.Q<VisualElement>("area_item");
         _itemPanel = _root.Q<VisualElement>("ItemPanel");
+        _interactionBox = _root.Q<VisualElement>("InteractionBox");
 
         _feather = _root.Q<Label>("featherCnt");
         _addFeatherCnt = _root.Q<Label>("AddFeatherCnt");
@@ -193,6 +195,15 @@ public class UIInGame : UIBase
         float t = Mathf.Clamp01(secondWeaponTimer / secondWeaponDuration);
         float currentFov = Mathf.Lerp(100, 0, t);
         _secondWeaponHide.style.height = new Length(currentFov, LengthUnit.Percent);
+    }
+
+    public void ShowInteraction()
+    {
+        _interactionBox.style.display = DisplayStyle.Flex;
+    }
+    public void HideInteraction()
+    {
+        _interactionBox.style.display = DisplayStyle.None;
     }
 
     public void AddShowItemPanel()

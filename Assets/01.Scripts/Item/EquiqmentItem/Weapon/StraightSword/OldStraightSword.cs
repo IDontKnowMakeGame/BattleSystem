@@ -36,6 +36,7 @@ public class OldStraightSword : StraightSword
 		if (i != _characterActor.UUID)
 			return;
 
+
 		base.SkillInputEnd(i, vec);
 		_characterActor.GetAct<PlayerMove>().IsSKill = false;
 		CharacterMove.OnMoveEnd -= SkillInputEnd;

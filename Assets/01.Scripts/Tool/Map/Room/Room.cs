@@ -2,7 +2,7 @@
 using Core;
 using UnityEngine;
 
-namespace Tool.Map.Room
+namespace Tool.Map.Rooms
 {
     [Serializable]
     public class Room : MonoBehaviour, IRoom

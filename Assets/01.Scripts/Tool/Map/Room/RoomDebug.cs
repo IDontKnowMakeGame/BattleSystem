@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tool.Map.Room
+namespace Tool.Map.Rooms
 {
     public class RoomDebug : MonoBehaviour
     {

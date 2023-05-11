@@ -10,6 +10,7 @@ using UnityEngine;
 using Data;
 using Acts.Characters;
 using DG.Tweening;
+using Managements;
 
 [System.Serializable]
 public class PlayerStatAct : CharacterStatAct
@@ -21,15 +22,10 @@ public class PlayerStatAct : CharacterStatAct
 
 	private PlayerAnimation _playerAnimation;
 
-    public override void Awake()
-    {
-        base.Awake();
-		_playerAnimation = ThisActor.GetAct<PlayerAnimation>();
-	}
-
     public override void Start()
 	{
 		base.Start();
+		_playerAnimation = ThisActor.GetAct<PlayerAnimation>();
 		UIManager.Instance.InGame.ChanageMaxHP((int)ChangeStat.maxHP / 10);
 		UIManager.Instance.InGame.ChangeCurrentHP(PercentHP());
 		Define.GetManager<EventManager>().StartListening(EventFlag.ChangeStat, StatChange);
@@ -43,6 +39,8 @@ public class PlayerStatAct : CharacterStatAct
 
 	public override void Damage(float damage, Actor actor)
 	{
+		if (ThisActor.GetAct<CharacterStatAct>().ChangeStat.hp <= 0) return;
+
 		base.Damage(damage, actor);
 		
 		if (actor is EmptyBlock)
@@ -71,18 +69,21 @@ public class PlayerStatAct : CharacterStatAct
 
 	public override void Die()
 	{
-		ThisActor.RemoveAct<CharacterMove>();
+		GameManagement.Instance.RemoveInputManagers(); 
+
 		_playerAnimation.ChangeWeaponClips((int)ItemID.None);
 		_playerAnimation.Play("Die");
+
 		var dieClip = _playerAnimation.GetClip("Die");
-		dieClip.OnExit += base.Die;
-		dieClip.OnExit += PlayerDeath.Instance.FocusCenter;
+		dieClip.SetEventOnFrame(dieClip.fps - 2, () =>
+		LoadingSceneController.Instnace.LoadScene("Lobby"));
+		dieClip.SetEventOnFrame(dieClip.fps - 1, base.Die);
 
 		// HP 포션 5개로 초기화
 		SaveItemData currentData = Define.GetManager<DataManager>().LoadItemFromInventory(Data.ItemID.HPPotion);
 		currentData.currentCnt = 5;
 		UIManager.Instance.InGame.SetItemPanelCnt(Data.ItemID.HPPotion);
 		Define.GetManager<DataManager>().ChangeItemInfo(currentData);
-		ThisActor.RemoveAct<CharacterStatAct>();
+		Debug.Log(ThisActor);
 	}
 }

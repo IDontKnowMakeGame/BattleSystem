@@ -216,7 +216,7 @@ public class CharacterStatAct : Act
 		var particleModelTrm = particleAnchorTrm.Find("Model");
 		particleAnchorTrm.rotation = rotation;
 		particleModelTrm.localScale = scale;
-		particle.transform.SetParent(null);
+        particle.transform.SetParent(null);
 		ThisActor.gameObject.SetActive(false);
 	}
 
