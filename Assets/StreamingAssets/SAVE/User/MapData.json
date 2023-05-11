@@ -21,7 +21,8 @@
                 1
             ],
             "openDoorList": [
-                3
+                3,
+                1
             ],
             "brokenWallList": [],
             "killUniqueEnemy": []
