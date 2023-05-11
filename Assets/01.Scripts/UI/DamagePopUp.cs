@@ -36,6 +36,8 @@ public class DamagePopUp : Actor
 	[SerializeField]
 	private float HoriSpeed;
 
+	private Sequence _mySequence;
+
 	protected override void Init()
 	{
 		AddAct(_textRenderer);
@@ -53,7 +55,7 @@ public class DamagePopUp : Actor
 			num.color = _basiccolor;
 
 		num.text = string.Format(text.ToString());
-		Sequence mySequence = DOTween.Sequence();
+		_mySequence = DOTween.Sequence();
 
 		int a = 0;
 		if (isDir)
@@ -61,25 +63,25 @@ public class DamagePopUp : Actor
 			if (dir.x != 0)
 			{
 				a = dir.x > 0 ? -1 : 1;
-				mySequence.Append(transform.DOMoveX((a * xPower) + transform.position.x, HoriSpeed).SetEase(Ease.Linear));
+				_mySequence.Append(transform.DOMoveX((a * xPower) + transform.position.x, HoriSpeed).SetEase(Ease.Linear));
 			}
 			else
 			{
 				a = dir.z > 0 ? -1 : 1;
-				mySequence.Append(transform.DOMoveZ((a * xPower) + transform.position.z, HoriSpeed).SetEase(Ease.Linear));
+				_mySequence.Append(transform.DOMoveZ((a * xPower) + transform.position.z, HoriSpeed).SetEase(Ease.Linear));
 			}
 		}
 		else
 		{
 			a = vec.x > 0 ? 1 : -1;
-			mySequence.Append(transform.DOMoveX((a * xPower + vec.x) + transform.position.x, HoriSpeed).SetEase(Ease.Linear));
+			_mySequence.Append(transform.DOMoveX((a * xPower + vec.x) + transform.position.x, HoriSpeed).SetEase(Ease.Linear));
 		}
 
-		mySequence.Join(transform.DOMoveY(Mathf.Abs(transform.position.y) + yPower, PowerSpeed).SetEase(Ease.Linear)).AppendCallback(() =>
+		_mySequence.Join(transform.DOMoveY(Mathf.Abs(transform.position.y) + yPower, PowerSpeed).SetEase(Ease.Linear)).AppendCallback(() =>
 		{
 			num.DOFade(0, 0.35f);
 		});
-		mySequence.Append(transform.DOMoveY(Down, DownSpeed).SetEase(Ease.Linear)).AppendCallback(() => { Define.GetManager<ResourceManager>().Destroy(this.gameObject); });
+		_mySequence.Append(transform.DOMoveY(Down, DownSpeed).SetEase(Ease.Linear)).AppendCallback(() => { Define.GetManager<ResourceManager>().Destroy(this.gameObject); });
 	}
 
 }

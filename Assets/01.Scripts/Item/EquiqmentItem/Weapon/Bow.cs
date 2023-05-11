@@ -141,7 +141,6 @@ public class Bow : Weapon
 			_characterActor.AddState(CharacterState.Attack);
 			//if (_playerActor != null)
 			ShootAnimation(_orginVec);
-			Debug.Log(isDestroy);
 			Arrow.ShootArrow(_currentVec, _characterActor.Position, _characterActor, info.Afs, info.Atk, 6, isDestroy);
 			_sliderObject.SliderActive(false);
 		}

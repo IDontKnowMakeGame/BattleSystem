@@ -97,7 +97,7 @@ public class Arrow : MonoBehaviour
 		var rotX = transform.eulerAngles.x;
 		var rotY = transform.eulerAngles.y;
 		var rotZ = transform.eulerAngles.z;
-		_seq.Append(DOTween.To(x => rotX = x, rotX, 150, 3).SetEase(Ease.Linear).OnUpdate(() => transform.eulerAngles = new Vector3(rotX, rotY, rotZ)));
+		_seq.Join(DOTween.To(x => rotX = x, rotX, 150, time).SetEase(Ease.Linear).OnUpdate(() => transform.eulerAngles = new Vector3(rotX, rotY, rotZ)));
 		_shootVec = vec;
 		_shootActor = actor;
 		_damage = damage;
@@ -114,10 +114,10 @@ public class Arrow : MonoBehaviour
 		_stickActor = null;
 		if(!_isDestroy)
 		_isStick = true;
-		Quaternion quater = this.transform.localRotation;
-		Vector3 vec = quater.eulerAngles;
-		vec.x = 150;
-		this.transform.rotation = Quaternion.Euler(vec);
+		//Quaternion quater = this.transform.localRotation;
+		//Vector3 vec = quater.eulerAngles;
+		//vec.x = 150;
+		//this.transform.rotation = Quaternion.Euler(vec);
 	}
 	private void StickOnWall()
 	{
@@ -241,6 +241,8 @@ public class Arrow : MonoBehaviour
 	{
 		if (transform.parent == null)
 		{
+			Debug.Log(_playerAnimation);
+			Debug.Log(_playerAnimation.GetClip("GroundPull")); 
 			_playerAnimation.Play("GroundPull");
 		}
 		else if (-_shootVec == Vector3.left)

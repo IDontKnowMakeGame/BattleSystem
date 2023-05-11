@@ -40,8 +40,11 @@ namespace Acts.Characters.Enemy
                 return;
             }
 
-            GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Damage");
-            obj.GetComponent<DamagePopUp>().DamageText((int)damage, ThisActor.transform.position, (actor.transform.position - ThisActor.transform.position).GetDirection(), true);
+			//GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Damage");
+			//obj.GetComponent<DamagePopUp>().DamageText((int)damage, ThisActor.transform.position, (actor.transform.position - ThisActor.transform.position).GetDirection(), true);
+
+			GameObject obj = Define.GetManager<ResourceManager>().Instantiate("DamageText");
+			obj.GetComponent<DamageText>().PopUp((int)damage, ThisActor.transform.position);
 
 
 			if (ThisActor is BossActor)
