@@ -8,6 +8,7 @@ using System;
 using UnityEngine;
 using Acts.Characters;
 using System.Collections.Generic;
+using Acts.Characters.Player;
 using Blocks;
 
 [Serializable]
@@ -174,13 +175,15 @@ public class CharacterStatAct : Act
 	}
 	public virtual void Damage(float damage, Actor actor)
 	{
-		ChangeStat.hp -= damage - (damage * (Half / 100));
 
-		if (actor is EmptyBlock)
+		if (actor is EmptyBlock && ChangeStat.hp > 0)
 		{
-			Die();
+			ChangeStat.hp = 0;
+			Fall();
 			return;
 		}
+		
+		ChangeStat.hp -= damage - (damage * (Half / 100));
 		
 		if (ChangeStat.hp <= 0)
 		{
@@ -196,7 +199,7 @@ public class CharacterStatAct : Act
 		_render.Blink();
 		GameObject blood = Define.GetManager<ResourceManager>().Instantiate("Blood");
 		blood.transform.position = ThisActor.transform.position;
-		blood.GetComponent<ParticleSystem>().Play();
+		blood.GetComponent<ParticleSystem>().Play(); 
 	}
 
 	public int PercentHP()
@@ -204,8 +207,18 @@ public class CharacterStatAct : Act
 		return (int)((ChangeStat.hp / ChangeStat.maxHP) * 100);
 	}
 
+	protected virtual void Fall()
+	{
+		var anime = ThisActor.GetAct<PlayerAnimation>();
+			anime.ChangeWeaponClips((int)ItemID.None);
+		var clip = anime.GetClip("Fall");
+		clip.OnExit = Die;
+		anime.Play("Fall");
+	}
+
 	public virtual void Die()
 	{
+		ThisActor.RemoveAct<CharacterMove>();
 		var particle = Define.GetManager<ResourceManager>().Instantiate("DeathParticle", ThisActor.transform);
 		particle.transform.position = ThisActor.transform.position;
 		var anchorTrm = ThisActor.transform.Find("Anchor");
