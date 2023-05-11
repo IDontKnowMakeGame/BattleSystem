@@ -59,3 +59,10 @@ MonoBehaviour:
     fps: 7
     isLoop: 0
     delay: 0.1
+  - name: Fall
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: af1c12a25378e6142ac91aa715af740d, type: 3}
+    normal: {fileID: 0}
+    fps: 9
+    isLoop: 0
+    delay: 0.1

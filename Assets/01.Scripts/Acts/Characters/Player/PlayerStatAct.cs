@@ -45,7 +45,9 @@ public class PlayerStatAct : CharacterStatAct
 		
 		if (actor is EmptyBlock)
 		{
-			Die();
+			if (ChangeStat.hp <= 0)
+				return;
+			Fall();
 			return;
 		}
 		
@@ -67,6 +69,27 @@ public class PlayerStatAct : CharacterStatAct
 		}
 	}
 
+	protected override void Fall()
+	{
+		GameManagement.Instance.RemoveInputManagers(); 
+
+		_playerAnimation.ChangeWeaponClips((int)ItemID.None);
+		_playerAnimation.Play("Fall");
+
+		ThisActor.transform.GetChild(0).DOMoveY(-1f, 0.5f);
+
+		var dieClip = _playerAnimation.GetClip("Fall");
+		dieClip.SetEventOnFrame(dieClip.fps - 2, () =>
+			LoadingSceneController.Instnace.LoadScene("Lobby"));
+		dieClip.SetEventOnFrame(dieClip.fps - 1, base.Die);
+
+		// HP í¬ì…˜ 5ê°œë¡œ ì´ˆê¸°í™”
+		SaveItemData currentData = Define.GetManager<DataManager>().LoadItemFromInventory(Data.ItemID.HPPotion);
+		currentData.currentCnt = 5;
+		UIManager.Instance.InGame.SetItemPanelCnt(Data.ItemID.HPPotion);
+		Define.GetManager<DataManager>().ChangeItemInfo(currentData);
+	}
+
 	public override void Die()
 	{
 		GameManagement.Instance.RemoveInputManagers(); 
@@ -79,7 +102,7 @@ public class PlayerStatAct : CharacterStatAct
 		LoadingSceneController.Instnace.LoadScene("Lobby"));
 		dieClip.SetEventOnFrame(dieClip.fps - 1, base.Die);
 
-		// HP Æ÷¼Ç 5°³·Î ÃÊ±âÈ­
+		// HP í¬ì…˜ 5ê°œë¡œ ì´ˆê¸°í™”
 		SaveItemData currentData = Define.GetManager<DataManager>().LoadItemFromInventory(Data.ItemID.HPPotion);
 		currentData.currentCnt = 5;
 		UIManager.Instance.InGame.SetItemPanelCnt(Data.ItemID.HPPotion);
