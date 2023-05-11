@@ -27,6 +27,9 @@ public class SwitchCamera : MonoBehaviour
         get => horizontalTargetAngle;
         set => horizontalTargetAngle = value;
     }
+
+    private float setHorizontalTarget;
+
     [SerializeField]
     private float targetFov = 50;
     public float TargetFov
@@ -77,7 +80,7 @@ public class SwitchCamera : MonoBehaviour
             float t = Mathf.Clamp01(timer / duration);
             // 카메라 회전
             float angleX = Mathf.Lerp(originalVerticalValue, verticalTagetAngle, t);
-            float angleY = Mathf.Lerp(originalHorizontalValue, horizontalTargetAngle, t);
+            float angleY = Mathf.Lerp(originalHorizontalValue, setHorizontalTarget, t);
             virtualCamera.transform.rotation = Quaternion.Euler(angleX, angleY, 0);
 
             // 카메라 FOV
@@ -95,9 +98,38 @@ public class SwitchCamera : MonoBehaviour
     public void Init()
     {
         timer = 0;
-        trigger = true;
         originalVerticalValue = virtualCamera.transform.rotation.eulerAngles.x;
-        originalHorizontalValue = virtualCamera.transform.rotation.eulerAngles.y;
+        originalHorizontalValue =  virtualCamera.transform.rotation.eulerAngles.y;
+
+        setHorizontalTarget = horizontalTargetAngle;
+
+
+        bool isLeftFaster = IsLeftTurnFaster(originalHorizontalValue, horizontalTargetAngle);
+
+
+        if (isLeftFaster)
+        {
+            setHorizontalTarget = originalHorizontalValue + Mathf.DeltaAngle(originalHorizontalValue, horizontalTargetAngle);
+            Debug.Log("왼쪽");
+        }
+
+
         originFov = virtualCamera.m_Lens.FieldOfView;
+
+        trigger = true;
+    }
+
+    // A 각도에서 B 각도로 돌 때, 왼쪽이 더 빠른지 판단하는 함수
+    public bool IsLeftTurnFaster(float aAngle, float bAngle)
+    {
+        // 각도의 차이를 계산
+        float angleDifference = Mathf.DeltaAngle(aAngle, bAngle);
+
+        Debug.Log(angleDifference + "일거임");
+
+        Debug.Log(angleDifference);
+
+        // 왼쪽으로 도는 각도 차이가 작으면 더 빠른 방향으로 판단
+        return Mathf.Abs(angleDifference) < 180f;
     }
 }
