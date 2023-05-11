@@ -6,12 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/CrazyGhost/CrazyGhostActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/CrazyGhost/CrazyGhostActor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Management/Managers/MapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Management/Managers/MapManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Tool/Map/Controll/MapController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Tool/Map/Controll/MapController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Tool/Map/Room/BossRoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Tool/Map/Room/BossRoom.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Tool/Map/Room/Room.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Tool/Map/Room/Room.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Tool/Map/Room/RoomDebug.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Tool/Map/Room/RoomDebug.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefabs/CrazyGhost.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefabs/CrazyGhost.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefabs/OldBowShade.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefabs/OldBowShade.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefabs/OldSpearShade.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefabs/OldSpearShade.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/OldShade.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/OldShade.prefab.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +27,9 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/11d97693183d4a6bb35c29ae7882c66b81b600/62/47fe32e8/EditorStyles.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/44335255efcb428fb633c913db3eed7a29400/54/7e5f59c9/GUI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4746c126b0b54f3b834845974d1a9190159000/44/52612a81/ResourcesAPI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4746c126b0b54f3b834845974d1a9190159000/81/f367bf7d/ResourcesAPIInternal.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4746c126b0b54f3b834845974d1a9190159000/be/462e5699/Resources.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3ea01e77be99618395f448b16bd7cc2bd4248bd9e5d8474964b2d97f39c5d74/System.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/AI/AiConditionHolder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/BesideCondition.cs" root0="FORCE_HIGHLIGHTING" />
@@ -192,7 +198,8 @@
       <workItem from="1683560675088" duration="13304000" />
       <workItem from="1683631527835" duration="102000" />
       <workItem from="1683709347040" duration="2644000" />
-      <workItem from="1683729255369" duration="6286000" />
+      <workItem from="1683729255369" duration="6855000" />
+      <workItem from="1683764983002" duration="6012000" />
     </task>
     <servers />
   </component>

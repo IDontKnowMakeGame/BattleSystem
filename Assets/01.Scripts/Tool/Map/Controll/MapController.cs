@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Actors.Characters.Enemy;
 using Blocks;
+using Core;
 using Managements.Managers;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -26,11 +28,18 @@ namespace Tool.Map.Controll
         private static List<Block> selectedBlocks = new List<Block>();
         private static Dictionary<Block, Vector2> blockPosDic = new ();
         private static Rooms.Room[] rooms;
+        private static GameObject[] enemies;
         [MenuItem("Tools/MapController")]
         public static void ShowWindow()
         {
             blocks = MapManager.GetBlockOnMap();
             rooms = MapManager.GetRoomsOnMap();
+            var objcets = Resources.LoadAll("Prefabs/Enemies");
+            enemies = new GameObject[objcets.Length];
+            for (int i = 0; i < objcets.Length; i++)
+            {
+                enemies[i] = (GameObject)objcets[i];
+            }
             MapController window = (MapController)EditorWindow.GetWindow(typeof(MapController));
             window.Show();
         }
@@ -130,6 +139,8 @@ namespace Tool.Map.Controll
                 var color = block.isWalkable ? Color.green : Color.red;
                 if(block.HasSwitchCamera)
                     color = Color.magenta;
+                if (block.ActorOnBlock is EnemyActor)
+                    color = Color.white;
                 if(selectedBlocks.Contains(block))
                     color = Color.yellow;
                 GUI.backgroundColor = color;
@@ -223,10 +234,10 @@ namespace Tool.Map.Controll
 
         private void UpdateList()
         {
-            var listRect = new Rect((areas[1].x) * width + 375, height * 3, 150, position.height);
-            GUI.Box(listRect, "");
+            var roomListRect = new Rect((areas[1].x) * width + 375, height * 3, 150, height * 82);
+            GUI.Box(roomListRect, "");
             Vector2 scrollPos = Vector2.zero;
-            scrollPos = GUI.BeginScrollView(listRect, scrollPos, new Rect(0, 0, 150, position.height));
+            scrollPos = GUI.BeginScrollView(roomListRect, scrollPos, new Rect(0, 0, 150, height * 82));
             var roomList = rooms.ToList();
             foreach (var room in roomList)
             {
@@ -238,6 +249,27 @@ namespace Tool.Map.Controll
                     {
                         selectedBlocks.Add(child.GetComponent<Block>());
                     }
+                }
+            }
+            GUI.EndScrollView();
+            
+            var enemyListRect = new Rect((areas[1].x) * width + 50, height * 42, 300, height * 43);
+            GUI.Box(enemyListRect, "");
+            Vector2 scrollPos2 = Vector2.zero;
+            scrollPos2 = GUI.BeginScrollView(enemyListRect, scrollPos2, new Rect(0, 0, 300, height * 43));
+            var enemyList = enemies.ToList();
+            foreach (var enemy in enemyList)
+            {
+                var enemyRect = new Rect(0, enemyList.IndexOf(enemy) * height * 2, 300, height * 2);
+                if (GUI.Button(enemyRect, enemy.name))
+                {
+                    foreach (var block in selectedBlocks)
+                    {
+                        var enemyObj = Instantiate(enemy, block.transform.position.SetY(1), Quaternion.identity);
+                        var enemyActor = enemyObj.GetComponent<EnemyActor>();
+                        block.SetActorOnBlock(enemyActor);
+                    }
+                    selectedBlocks.Clear();
                 }
             }
             GUI.EndScrollView();
