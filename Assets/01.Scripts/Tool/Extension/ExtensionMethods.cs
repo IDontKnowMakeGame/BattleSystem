@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Blocks;
 using Core;
+using Managements.Managers;
 using UnityEngine;
 
 //Copyright (c) 2022 khjtoy
@@ -870,6 +871,8 @@ public static class ExtensionMethods
 
     public static Vector3[] GetMaxMinVector3s(this Block[] poses)
     {
+        if (poses[0] == null)
+            poses = MapManager.GetBlockOnMap();
         var maxX = poses[0].transform.position.x;
         var minX = poses[0].transform.position.x;
         var maxZ = poses[0].transform.position.z;
