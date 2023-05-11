@@ -60,7 +60,7 @@ public class UIManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            
+            UIManager.Instance.InGame.CristalInfoInRoom(10);
         }
         if (Input.GetKeyDown(KeyCode.C))
         {

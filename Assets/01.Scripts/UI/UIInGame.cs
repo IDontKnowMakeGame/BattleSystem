@@ -2,6 +2,8 @@ using Core;
 using Data;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Diagnostics;
@@ -22,6 +24,8 @@ public class UIInGame : UIBase
     private VisualElement _secondWeaponHide;
     private VisualElement _itemList;
     private VisualElement _interactionBox;
+
+    private VisualElement _crsitalPanel;
 
     private VisualElement _itemPanel;
     private Queue<Pair> _itemQueue = new Queue<Pair>();
@@ -78,6 +82,8 @@ public class UIInGame : UIBase
         _itemList = _root.Q<VisualElement>("area_item");
         _itemPanel = _root.Q<VisualElement>("ItemPanel");
         _interactionBox = _root.Q<VisualElement>("InteractionBox");
+
+        _crsitalPanel = _root.Q<VisualElement>("area_Cristal");
 
         _feather = _root.Q<Label>("featherCnt");
         _addFeatherCnt = _root.Q<Label>("AddFeatherCnt");
@@ -195,6 +201,15 @@ public class UIInGame : UIBase
         float t = Mathf.Clamp01(secondWeaponTimer / secondWeaponDuration);
         float currentFov = Mathf.Lerp(100, 0, t);
         _secondWeaponHide.style.height = new Length(currentFov, LengthUnit.Percent);
+    }
+
+    public void CristalInfoInRoom(int roomNum)
+    {
+        List<int> cristalInfo = UIFirstFloorMap.castMap[roomNum];
+        List<int> onCristalData = Define.GetManager<DataManager>().LoadOnCristalData(DataManager.MapData_.currentFloor);
+        int allCiristalCnt = cristalInfo.Count;
+        int onCristalCnt = cristalInfo.Intersect(onCristalData).Count();
+        _crsitalPanel.Q<Label>("cristalCnt").text = string.Format("{0}/{1}", allCiristalCnt, onCristalCnt);
     }
 
     public void ShowInteraction()
