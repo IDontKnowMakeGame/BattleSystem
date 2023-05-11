@@ -122,7 +122,7 @@ namespace Acts.Characters.Player
                 adneralineDecrease = true;
                 decreaseAdneralineTimer = decreaseTime;
                 _playerStat.AddDrainageAtk("Adneraline", 1.5f);
-                _playerStat.Sub(StatType.SPEED, 0.1f);
+                _playerStat.Sub(StatType.Weight, 1f);
                 _playerStat.Sub(StatType.ATS, 0.2f);
                 adneralineParticle.gameObject.SetActive(true);
             }
@@ -133,7 +133,7 @@ namespace Acts.Characters.Player
                     adneraline = 0;
                     adneralineDecrease = false;
 					_playerStat.DelDrainageAtk("Adneraline");
-					_playerStat.Plus(StatType.SPEED, 0.1f);
+					_playerStat.Plus(StatType.Weight, 1f);
                     _playerStat.Plus(StatType.ATS, 0.2f);
                     adneralineParticle.gameObject.SetActive(false);
                     return;

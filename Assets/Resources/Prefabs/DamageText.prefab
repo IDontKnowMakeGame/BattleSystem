@@ -218,14 +218,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2699b7993ff4484e9c02b0ae6d2ebeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  position: {x: 0, y: 0, z: 0}
   num: {fileID: 287274015983843320}
-  _basiccolor: {r: 1, g: 0.59229463, b: 0, a: 1}
+  ma: {fileID: 0}
+  _basiccolor: {r: 1, g: 1, b: 1, a: 1}
   _criticalColor: {r: 1, g: 0, b: 0, a: 1}
-  sizeUptime: 0.1
-  waitTime: 0.5
-  fadeTime: 0.3
-  upValue: 1.2
-  upTime: 0.3
+  sizeUptime: 0.2
+  sizeDowntime: 0.2
+  xTime: 0.35
+  fadeTime: 1
+  upValue: 0.2
+  upTime: 1
 --- !u!114 &5684876407529620824
 MonoBehaviour:
   m_ObjectHideFlags: 0

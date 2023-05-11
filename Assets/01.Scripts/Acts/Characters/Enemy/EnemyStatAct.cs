@@ -44,7 +44,7 @@ namespace Acts.Characters.Enemy
 			//obj.GetComponent<DamagePopUp>().DamageText((int)damage, ThisActor.transform.position, (actor.transform.position - ThisActor.transform.position).GetDirection(), true);
 
 			GameObject obj = Define.GetManager<ResourceManager>().Instantiate("DamageText");
-			obj.GetComponent<DamageText>().PopUp((int)damage, ThisActor.transform.position);
+			obj.GetComponent<DamageText>().PopUp((int)damage, ThisActor.transform.position, (actor.transform.position - ThisActor.transform.position).GetDirection());
 
 
 			if (ThisActor is BossActor)
