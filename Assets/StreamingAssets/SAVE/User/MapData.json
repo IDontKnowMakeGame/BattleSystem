@@ -15,7 +15,10 @@
             "isBossKill": false,
             "onCristalList": [
                 15,
-                20
+                20,
+                6,
+                8,
+                13
             ],
             "openChestList": [
                 3,

@@ -64,14 +64,14 @@ public class Arrow : MonoBehaviour
 	{
 		var map = Define.GetManager<MapManager>();
 		int count = 0;
-		for (count = 0; count < distance; count++)
+		for (count = 0; count <= distance; count++)
 		{
 			if (map.GetBlock(position + (vec * count)) != null)
 			{
 				if (!map.GetBlock(position + (vec * count)).isWalkable && map.GetBlock(position + (vec * count)).ActorOnBlock == null)
 				{
+					count--;
 					_isEnd = true;
-					//count -= 1;
 					break;
 				}
 			}
@@ -114,10 +114,6 @@ public class Arrow : MonoBehaviour
 		_stickActor = null;
 		if(!_isDestroy)
 		_isStick = true;
-		//Quaternion quater = this.transform.localRotation;
-		//Vector3 vec = quater.eulerAngles;
-		//vec.x = 150;
-		//this.transform.rotation = Quaternion.Euler(vec);
 	}
 	private void StickOnWall()
 	{
@@ -151,9 +147,7 @@ public class Arrow : MonoBehaviour
 		if (!_isDestroy)
 		_isStick = true;
 		_stickActor = null;
-		Quaternion quater = this.transform.localRotation;
-		Vector3 vec = quater.eulerAngles;
-		vec.x = 150;
+		Vector3 vec = new Vector3(-150,0,0);
 		this.transform.rotation = Quaternion.Euler(vec);
 		this.transform.position = new Vector3(this.transform.position.x, 1, this.transform.position.z);
 	}

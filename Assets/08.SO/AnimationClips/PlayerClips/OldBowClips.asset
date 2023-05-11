@@ -56,7 +56,7 @@ MonoBehaviour:
     nextIdx: -1
     texture: {fileID: 0}
     normal: {fileID: 0}
-    fps: 8
+    fps: 7
     isLoop: 0
     delay: 0.06
   - name: LowerCharge
