@@ -26,10 +26,12 @@ namespace Actors.Characters.Furnitures
 
         protected override void Start()
         {
+            IsUpdatingPosition = true;
             if (Define.GetManager<DataManager>().IsOpenDoorl(int.Parse(gameObject.name), DataManager.MapData_.currentFloor))
             {
                 Open();
             }
+
             base.Start();
         }
 
@@ -40,12 +42,13 @@ namespace Actors.Characters.Furnitures
 
             Define.GetManager<DataManager>().OpenDoor(int.Parse(gameObject.name));
 
-            anchorTrm.DOLocalRotate(new Vector3(0, -90, 0), 1f).OnComplete(() =>
+            anchorTrm.DOLocalMoveZ(1.5f, 1f).OnComplete(() =>
             {
                 IsUpdatingPosition = false;
                 isOpening = false;
                 var block = InGame.GetBlock(Position);
                 block.SetActorOnBlock(null);
+                gameObject.SetActive(false);
             });
 
         }
@@ -53,10 +56,11 @@ namespace Actors.Characters.Furnitures
         public void Close()
         {
             if (isOpening) return;
+            gameObject.SetActive(true);
             isOpening = true;
             IsUpdatingPosition = true;
             InGame.SetActorOnBlock(this);
-            anchorTrm.DOLocalRotate(new Vector3(0, 0, 0), 1f).OnComplete(() =>
+            anchorTrm.DOLocalMoveZ(0.5f, 1f).OnComplete(() =>
             {
                 isOpening = false;
             });
