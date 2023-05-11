@@ -1,7 +1,7 @@
 ﻿using Core;
 using UnityEngine;
 
-namespace Tool.Map.Room
+namespace Tool.Map.Rooms
 {
     public class BossRoom : Room
     {

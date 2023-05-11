@@ -39,6 +39,8 @@ public class PlayerStatAct : CharacterStatAct
 
 	public override void Damage(float damage, Actor actor)
 	{
+		if (ThisActor.GetAct<CharacterStatAct>().ChangeStat.hp <= 0) return;
+
 		base.Damage(damage, actor);
 		
 		if (actor is EmptyBlock)
@@ -68,8 +70,6 @@ public class PlayerStatAct : CharacterStatAct
 	public override void Die()
 	{
 		GameManagement.Instance.RemoveInputManagers(); 
-		ThisActor.RemoveAct<CharacterMove>();
-		ThisActor.RemoveAct<CharacterStatAct>();
 
 		_playerAnimation.ChangeWeaponClips((int)ItemID.None);
 		_playerAnimation.Play("Die");

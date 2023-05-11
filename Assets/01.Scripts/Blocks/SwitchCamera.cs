@@ -15,12 +15,32 @@ public class SwitchCamera : MonoBehaviour
     private CinemachineVirtualCamera virtualCamera;
     [SerializeField]
     private float verticalTagetAngle = 45;
+    public float VerticalTargetAngle
+    {
+        get => verticalTagetAngle;
+        set => verticalTagetAngle = value;
+    }
     [SerializeField]
     private float horizontalTargetAngle = 0;
+    public float HorizontalTargetAngle
+    {
+        get => horizontalTargetAngle;
+        set => horizontalTargetAngle = value;
+    }
     [SerializeField]
     private float targetFov = 50;
+    public float TargetFov
+    {
+        get => targetFov;
+        set => targetFov = value;
+    }
     [SerializeField]
     private float duration = 3f;
+    public float Duration
+    {
+        get => duration;
+        set => duration = value;
+    }
 
     private float originalVerticalValue;
     private float originalHorizontalValue;
