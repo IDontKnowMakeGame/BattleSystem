@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class LoadingSceneController : MonoBehaviour
@@ -49,6 +50,18 @@ public class LoadingSceneController : MonoBehaviour
     [SerializeField]
     private Image progressBar;
 
+    [SerializeField]
+    private TextMeshProUGUI titleTmp;
+
+    [SerializeField]
+    private TextMeshProUGUI writeTmp;
+
+    [SerializeField]
+    private ToolTipListSO titleToolTipList;
+
+    [SerializeField]
+    private ToolTipListSO writeToolTipList;
+
     private string loadSceneName;
 
     public bool isLoading = false;
@@ -56,7 +69,6 @@ public class LoadingSceneController : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         if (isLoading) return;
-        Debug.Log("접근하지마!");
         isLoading = true;
         gameObject.SetActive(true);
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -66,6 +78,11 @@ public class LoadingSceneController : MonoBehaviour
 
     private IEnumerator LoadSceneProcess()
     {
+        // Tooltip 설정
+        int idx = Random.Range(0, titleToolTipList.tooltipList.Count);
+        titleTmp.text = titleToolTipList.tooltipList[idx].Replace("\\r\\n", "\n");
+        writeTmp.text = writeToolTipList.tooltipList[idx].Replace("\\r\\n", "\n");
+
         progressBar.fillAmount = 0f;
         yield return StartCoroutine(Fade(true));
 
