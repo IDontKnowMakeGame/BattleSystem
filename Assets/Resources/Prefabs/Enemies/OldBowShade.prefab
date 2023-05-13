@@ -89,7 +89,7 @@ MonoBehaviour:
     _isPlayer: 0
   _characterStat:
     _basicStat:
-      maxHP: 10
+      maxHP: 95
       hp: 0
       atk: 0
       ats: 0
@@ -218,7 +218,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8924329, y: 0.8924329, z: 0.8924329}
+  m_Size: {x: 0.8, y: 0.8, z: 0.8}
   m_Center: {x: 0, y: 0, z: -0}
 --- !u!1 &7082799946386409
 GameObject:
