@@ -18,8 +18,8 @@ namespace Actors.Characters.Player
 		protected override void Init()
         { 
             base.Init();
-            AddAct(_playerStat);
             AddAct(_plyerAnimation);
+            AddAct(_playerStat);
 			AddAct(_playerEquipment);
             AddAct(_playerMove);
             AddAct(_playerAttack);

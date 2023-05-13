@@ -45,6 +45,8 @@ public class PlayerEquipment : CharacterEquipmentAct
 		_secondWeapon = DataManager.UserData_.secondWeapon;
 		_playerActor = _characterController as PlayerActor;
 		_playerAnimation = ThisActor.GetAct<PlayerAnimation>();
+
+		EquipAnimation();
 	}
 
 	public override void OnEnable()
@@ -55,12 +57,11 @@ public class PlayerEquipment : CharacterEquipmentAct
 		Define.GetManager<EventManager>().StartListening(EventFlag.HaloAdd, AddHalo);
 		Define.GetManager<EventManager>().StartListening(EventFlag.HaloDel, RemoveHalo);
 		if(_playerAnimation != null)
-		EquipAnimation();
+			EquipAnimation();
 	}
 
 	public override void Start()
 	{
-		EquipAnimation();
 		base.Start();
 		InputManager<Weapon>.OnChangePress += Change;
 		InputManager<Weapon>.OnSkillPress += Skill;
@@ -150,6 +151,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 		CurrentWeapon.UnEquipment(_characterController);
 		_firstWeapon = DataManager.UserData_.firstWeapon;
 		_secondWeapon = DataManager.UserData_.secondWeapon;
+		Debug.Log("야 싸우저");
 		EquipAnimation();
 		CurrentWeapon.Equiqment(_characterController);
 
@@ -172,6 +174,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 			//secoundWeapon = Datamanger.Instnace.firstWeapon;
 		}
 
+		Debug.Log("야 싸우저");
 		CurrentWeapon?.UnEquipment(_characterController);
 		//firstWeapon = DataManager.Instance.firstWeaopn;
 		//secondWeapon = DataManager.Instance.secoundWeaopn;
@@ -182,6 +185,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 		_playerActor.AddState(CharacterState.Equip);
 
 		_playerAnimation.ChangeWeaponClips((int)_firstWeapon);
+
 		_playerAnimation.Play("Equip");
 
 		// 마지막 프레임에 종료 넣기
