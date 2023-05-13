@@ -271,6 +271,10 @@ namespace Tool.Map.Controll
                 {
                     foreach (var block in selectedBlocks)
                     {
+                        if (GameManagement.Instance.SpawnCharacters.Any(x => x.Position == block.transform.position.SetY(0)))
+                        {
+                            continue;
+                        }
                         var spawnCharacter = new SpawnCharacter
                         {
                             Position = block.transform.position.SetY(0),
