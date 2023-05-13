@@ -1,3 +1,5 @@
+using Actors.Characters.Player;
+using Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,6 +31,7 @@ public class DragonRealm : MonoBehaviour
 		{
 			_currentTimer = 0;
 			_isCoolTime = false;
+			Define.GetManager<ResourceManager>().Destroy(this.gameObject);
 		}
 	}
 
@@ -36,7 +39,10 @@ public class DragonRealm : MonoBehaviour
 	{
 		if(other.CompareTag("Player"))
 		{
-			other.GetComponent<CharacterStatAct>().Half += _decrease;
+			if (!other.GetComponent<PlayerActor>())
+				return;
+
+			other.GetComponent<PlayerActor>().GetAct<PlayerStatAct>().Half += _decrease;
 		}
 	}
 
@@ -44,7 +50,10 @@ public class DragonRealm : MonoBehaviour
 	{
 		if (other.CompareTag("Player"))
 		{
-			other.GetComponent<CharacterStatAct>().Half -= _decrease;
+			if (!other.GetComponent<PlayerActor>())
+				return;
+
+			other.GetComponent<PlayerActor>().GetAct<PlayerStatAct>().Half -= _decrease;
 		}
 	}
 }
