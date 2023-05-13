@@ -11,7 +11,6 @@ public class SwitchCamera : MonoBehaviour
     private static SwitchCamera CurrentOnSwitchCamera;
     public static float FOV = 40;
 
-    [SerializeField]
     private CinemachineVirtualCamera virtualCamera;
     [SerializeField]
     private float verticalTagetAngle = 45;
@@ -52,6 +51,10 @@ public class SwitchCamera : MonoBehaviour
     public bool trigger = false;
 
     private float timer;
+    private void Awake()
+    {
+        virtualCamera = InGame.VirtualCamera;
+    }
 
     private void Start()
     {

@@ -7,6 +7,7 @@ using Managements;
 using Managements.Managers;
 using UnityEngine;
 using Actors.Characters.Player;
+using Cinemachine;
 
 namespace Core
 {
@@ -43,6 +44,18 @@ namespace Core
                     mainCam = Camera.main;
 
                 return mainCam;
+            }
+        }
+
+        private static CinemachineVirtualCamera virtualCamera = null;
+        public static CinemachineVirtualCamera VirtualCamera
+        {
+            get
+            {
+                if(virtualCamera == null)
+                    virtualCamera = GameObject.Find("PlayerCam").GetComponent<CinemachineVirtualCamera>();
+
+                return virtualCamera;
             }
         }
 
