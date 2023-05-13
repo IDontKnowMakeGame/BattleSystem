@@ -1,12 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using Actors.Bases;
+using Actors.Characters;
 using Core;
 using DG.Tweening;
 using Managements.Managers;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Managements
 {
+    [Serializable]
+    public class SpawnCharacter
+    {
+        public Vector3 Position;
+        public GameObject Prefab;
+    }
     public class GameManagement : MonoBehaviour
     {
         private static GameManagement instance = null;
@@ -23,6 +32,7 @@ namespace Managements
 
         private Dictionary<Type, Manager> _managers = new();
         public Dictionary<Type, Manager> Manager => _managers;
+        public  List<SpawnCharacter> SpawnCharacters = new();
 
 
         #region Control_Managers
@@ -171,6 +181,11 @@ namespace Managements
 
         public void OnEnable()
         {
+            foreach (var actor in SpawnCharacters)
+            {
+                var gmObj = GameObject.Instantiate(actor.Prefab);
+                gmObj.transform.position = actor.Position;
+            }
             foreach (var manager in _managers.Values)
             {
                 manager.OnEnable();

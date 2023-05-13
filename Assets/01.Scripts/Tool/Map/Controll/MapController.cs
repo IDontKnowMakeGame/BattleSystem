@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Actors.Bases;
 using Actors.Characters.Enemy;
 using Blocks;
 using Core;
+using Managements;
 using Managements.Managers;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -139,8 +141,8 @@ namespace Tool.Map.Controll
                 var color = block.isWalkable ? Color.green : Color.red;
                 if(block.HasSwitchCamera)
                     color = Color.magenta;
-                if (block.ActorOnBlock is EnemyActor)
-                    color = Color.white;
+                if(GameManagement.Instance.SpawnCharacters.Any(x => x.Position == block.transform.position.SetY(0)))
+                        color = Color.white;
                 if(selectedBlocks.Contains(block))
                     color = Color.yellow;
                 GUI.backgroundColor = color;
@@ -238,6 +240,8 @@ namespace Tool.Map.Controll
             GUI.Box(roomListRect, "");
             Vector2 scrollPos = Vector2.zero;
             scrollPos = GUI.BeginScrollView(roomListRect, scrollPos, new Rect(0, 0, 150, height * 82));
+            if(rooms == null)
+                rooms = MapManager.GetRoomsOnMap();
             var roomList = rooms.ToList();
             foreach (var room in roomList)
             {
@@ -267,9 +271,12 @@ namespace Tool.Map.Controll
                 {
                     foreach (var block in selectedBlocks)
                     {
-                        var enemyObj = Instantiate(enemy, block.transform.position.SetY(1), Quaternion.identity);
-                        var enemyActor = enemyObj.GetComponent<EnemyActor>();
-                        block.SetActorOnBlock(enemyActor);
+                        var spawnCharacter = new SpawnCharacter
+                        {
+                            Position = block.transform.position.SetY(0),
+                            Prefab = enemy
+                        };
+                        GameManagement.Instance.SpawnCharacters.Add(spawnCharacter);
                     }
                     selectedBlocks.Clear();
                 }
