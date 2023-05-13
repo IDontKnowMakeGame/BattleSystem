@@ -297,7 +297,7 @@ MonoBehaviour:
         _thisActor: {fileID: 6861387177648206927}
         targetActor: {fileID: 0}
         IsPlayer: 1
-        distance: 3
+        distance: 5
     - rid: 4755812611868852234
       type: {class: BlockCondition, ns: AI.Conditions, asm: Assembly-CSharp}
       data:
