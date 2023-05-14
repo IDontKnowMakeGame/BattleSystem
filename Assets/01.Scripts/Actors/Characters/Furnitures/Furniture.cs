@@ -9,7 +9,7 @@ using UnityEngine.Serialization;
 
 namespace Actors.Characters.Furnitures
 {
-    public class Furniture : CharacterActor
+    public class Furniture : InteractionActor
     {
         [SerializeField] private List<Vector3> interactDirections = null;
         public List<ItemID> NeedItems = new ();
@@ -17,7 +17,7 @@ namespace Actors.Characters.Furnitures
         protected Action OnInteract = null;
         protected Action DeInteract = null;
         
-        public void Interact()
+        public override void Interact()
         {
             if (InGame.Player.Position.IsNeighbor(Position) == false) return;
             Debug.Log("near");

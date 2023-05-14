@@ -15,7 +15,7 @@ public class UIFirstFloorMap : UIBase
 
     private Dictionary<int,bool> cristalDictionary = new Dictionary<int,bool>();
 
-    private Dictionary<int, List<int>> castMap = new Dictionary<int, List<int>>()
+    public static Dictionary<int, List<int>> castMap = new Dictionary<int, List<int>>()
     {
         {0,new List<int>{ 0} },
         {1,new List<int>{ 1,2} },

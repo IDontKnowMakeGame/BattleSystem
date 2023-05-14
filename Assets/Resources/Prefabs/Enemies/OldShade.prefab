@@ -204,7 +204,7 @@ MonoBehaviour:
     _isPlayer: 0
   _characterStat:
     _basicStat:
-      maxHP: 1
+      maxHP: 120
       hp: 1
       atk: 0
       ats: 0
@@ -267,7 +267,7 @@ MonoBehaviour:
         _thisActor: {fileID: 6861387177648206927}
         targetActor: {fileID: 0}
         IsPlayer: 1
-        Area: 1
+        Area: 2
 --- !u!114 &6861387177648206921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,7 +297,7 @@ MonoBehaviour:
         _thisActor: {fileID: 6861387177648206927}
         targetActor: {fileID: 0}
         IsPlayer: 1
-        distance: 3
+        distance: 5
     - rid: 4755812611868852234
       type: {class: BlockCondition, ns: AI.Conditions, asm: Assembly-CSharp}
       data:
@@ -383,7 +383,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8924329, y: 0.8924329, z: 0.8924329}
+  m_Size: {x: 0.8, y: 0.8, z: 0.8}
   m_Center: {x: 0, y: 0, z: -0}
 --- !u!114 &5393716357709905754
 MonoBehaviour:

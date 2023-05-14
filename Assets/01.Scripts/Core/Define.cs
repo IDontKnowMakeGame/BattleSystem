@@ -7,6 +7,7 @@ using Managements;
 using Managements.Managers;
 using UnityEngine;
 using Actors.Characters.Player;
+using Cinemachine;
 
 namespace Core
 {
@@ -43,6 +44,18 @@ namespace Core
                     mainCam = Camera.main;
 
                 return mainCam;
+            }
+        }
+
+        private static CinemachineVirtualCamera virtualCamera = null;
+        public static CinemachineVirtualCamera VirtualCamera
+        {
+            get
+            {
+                if(virtualCamera == null)
+                    virtualCamera = GameObject.Find("PlayerCam").GetComponent<CinemachineVirtualCamera>();
+
+                return virtualCamera;
             }
         }
 
@@ -109,7 +122,7 @@ namespace Core
             return block;
         }
 
-        public static Actor GetActor(Vector3 pos) => GetBlock(pos).ActorOnBlock;
+        public static Actor GetActor(Vector3 pos) => GetBlock(pos).ActorOnBlock ? GetBlock(pos).ActorOnBlock : null;
 
         public static CharacterActor[] GetNearCharacterActors(Vector3 pos)
         {

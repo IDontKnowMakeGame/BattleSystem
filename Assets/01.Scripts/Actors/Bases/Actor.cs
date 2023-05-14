@@ -19,6 +19,11 @@ namespace Actors.Bases
         public bool IsUpdatingPosition { get; protected set; } = true;
 
         public Vector3 Position => position;
+        public void SetPosition(Vector3 pos)
+        {
+            position = pos;
+            transform.position = pos;
+        }
 
         public Transform SpriteTransform => spriteTransform;
         
