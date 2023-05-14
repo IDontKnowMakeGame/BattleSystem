@@ -122,7 +122,7 @@ namespace Core
             return block;
         }
 
-        public static Actor GetActor(Vector3 pos) => GetBlock(pos).ActorOnBlock;
+        public static Actor GetActor(Vector3 pos) => GetBlock(pos) ? GetBlock(pos).ActorOnBlock : null;
 
         public static CharacterActor[] GetNearCharacterActors(Vector3 pos)
         {
