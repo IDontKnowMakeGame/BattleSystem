@@ -57,6 +57,9 @@ public class Bow : Weapon
 
 		InputManager<Bow>.OnAttackPress += Shoot;
 
+		if (_playerAnimation.GetClip("HorizontalPull") == null)
+			Debug.Log("»ª!!");
+
 		_unitAnimation.GetClip("HorizontalPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
 		_unitAnimation.GetClip("UpperPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
 		_unitAnimation.GetClip("LowerPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
