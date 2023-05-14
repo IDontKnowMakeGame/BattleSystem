@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Actors.Bases;
 using Actors.Characters;
 using Core;
@@ -227,6 +228,11 @@ namespace Managements
             Instance.RemoveManager<InputManager<Spear>>();
             Instance.RemoveManager<InputManager<Bow>>();
             Instance.RemoveManager<InputManager<Weapon>>();
+        }
+
+        public SpawnCharacter GetSpawnCharacter(Vector3 pos)
+        {
+            return SpawnCharacters.Where(x => x.Position == pos).FirstOrDefault();
         }
     }
 }
