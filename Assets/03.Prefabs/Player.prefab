@@ -481,8 +481,8 @@ MonoBehaviour:
     dust: {fileID: 6806287646911352019}
   _playerStat:
     _basicStat:
-      maxHP: 500
-      hp: 500
+      maxHP: 300
+      hp: 10
       atk: 0
       ats: 0
       afs: 0
@@ -520,6 +520,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: eb04cdf1f0d107b45981f8ccba80e5d0, type: 2}
     - {fileID: 11400000, guid: 899b69bc9b1473e4cb4f4acdc988e3a0, type: 2}
     - {fileID: 11400000, guid: 1cbf4ccb99f2cd643b9baf1d9c944210, type: 2}
+    - {fileID: 11400000, guid: 86685988caf165145b66176d5ce026ab, type: 2}
+    - {fileID: 11400000, guid: d8c447713deaed34bbcfad4b1a74aaa3, type: 2}
+    - {fileID: 11400000, guid: 646eef05f26487e4c9b1ddf362a4f7df, type: 2}
+    - {fileID: 11400000, guid: 294c15789af91904293c35dd14c7f3c8, type: 2}
+    - {fileID: 11400000, guid: 384e65aa1a2fdb9418a816d528cbe594, type: 2}
     curWeaponClips: {fileID: 0}
   _playerUseAbleItem:
     holyParticle: {fileID: 7164146495960079744}
