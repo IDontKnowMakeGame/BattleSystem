@@ -96,6 +96,7 @@ public class Spear : Weapon
 		bool isEnemy = false;
 		for (int i = 1; i <= range; i++)
 		{
+			if (_mapManager == null) return;
 			if (_mapManager.GetBlock(_characterActor.Position + _currentVec * i)?.ActorOnBlock != null)
 				isEnemy = true;
 		}
