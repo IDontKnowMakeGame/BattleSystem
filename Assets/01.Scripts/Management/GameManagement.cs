@@ -186,6 +186,7 @@ namespace Managements
                 var gmObj = GameObject.Instantiate(actor.Prefab);
                 gmObj.transform.position = actor.Position;
             }
+
             foreach (var manager in _managers.Values)
             {
                 manager.OnEnable();
