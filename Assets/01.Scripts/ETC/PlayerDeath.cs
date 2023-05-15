@@ -29,14 +29,11 @@ namespace ETC
             //Destroy(InGame.Player.gameObject);
             DOTween.KillAll();
             Sequence seq = DOTween.Sequence();
-            vignette.intensity.value = 0;
-            vignette.rounded.value = true;
-            seq.Append(DOTween.To(() => vignette.intensity.value, x => vignette.intensity.value = x, 1f, 1f));
-            seq.AppendInterval(2f);
+            seq.Append(DOTween.To(() => vignette.intensity.value, x => vignette.intensity.value = x, 0.8f, 1.5f).SetEase(Ease.Linear));
             seq.AppendCallback(() =>
             {
                 DOTween.CompleteAll();
-                SceneManager.LoadScene("Lobby");
+                LoadingSceneController.Instnace.LoadScene("Lobby");
                 DOTween.KillAll();
                 DOTween.Kill(seq);
             });

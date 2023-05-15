@@ -78,7 +78,7 @@ public class LoadingSceneController : MonoBehaviour
 
     private IEnumerator LoadSceneProcess()
     {
-        // Tooltip ¼³Á¤
+        // Tooltip ì„¤ì •
         int idx = Random.Range(0, titleToolTipList.tooltipList.Count);
         titleTmp.text = titleToolTipList.tooltipList[idx].Replace("\\r\\n", "\n");
         writeTmp.text = writeToolTipList.tooltipList[idx].Replace("\\r\\n", "\n");
@@ -105,7 +105,7 @@ public class LoadingSceneController : MonoBehaviour
                 {
                     op.allowSceneActivation = true;
                     isLoading = false;
-                    Debug.Log("Á¢±ÙÇØ!!");
+                    Debug.Log("ì ‘ê·¼í•´!!");
                     yield break;
                 }
             }
