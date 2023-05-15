@@ -4,7 +4,6 @@ using Core;
 using UnityEngine;
 using Tools;
 using UnityEditor;
-using UnityEditor.UIElements;
 
 // Character Clip
 [CreateAssetMenu(fileName = "ClipsData", menuName = "ScriptableObject/ClipsData")]
@@ -21,6 +20,7 @@ public class WeaponClips : ScriptableObject
     [SerializeField]
     private List<ClipBase> clips;
 
+#if UNITY_EDITOR
     private void AddSprite()
     {
         foreach (var clip in clips)
@@ -36,9 +36,12 @@ public class WeaponClips : ScriptableObject
                 clip.normal = Resources.Load<Texture2D>($"Sprites/{type}/{actorName}/{clip.name}_n");
             }
         }
+        
         EditorUtility.SetDirty(this);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
+    
     }
+#endif
     public List<ClipBase> Clips => clips;
 }
