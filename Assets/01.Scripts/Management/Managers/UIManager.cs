@@ -82,6 +82,10 @@ public class UIManager : MonoBehaviour
         InGame.ChangeFirstWeaponImage(DataManager.UserData_.firstWeapon);
         InGame.ChangeSecondWeaponImage(DataManager.UserData_.secondWeapon);
     }
+    public void RoomInCristal(int num)
+    {
+        InGame.CristalInfoInRoom(num);
+    }
     public  void show(string name)
     {
         BossBar.ShowBossBar(name);

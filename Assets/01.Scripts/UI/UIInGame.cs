@@ -36,6 +36,8 @@ public class UIInGame : UIBase
 
     private bool flagCool = true;
 
+    private int currentRoom = 0;
+
     #region HP
     private float _currentHpValue = 100;
     private float _targetHpValue = 100;
@@ -91,6 +93,8 @@ public class UIInGame : UIBase
         ChangeFirstWeaponImage(DataManager.UserData_.firstWeapon);
         ChangeSecondWeaponImage(DataManager.UserData_.secondWeapon);
         ChangeItemPanelImage();
+
+        CristalInfoInRoom(0);
     }
     public override void Update()
     {
@@ -203,11 +207,22 @@ public class UIInGame : UIBase
 
     public void CristalInfoInRoom(int roomNum)
     {
-        List<int> cristalInfo = UIFirstFloorMap.castMap[roomNum];
+        currentRoom = roomNum;
+        if (roomNum == 0)
+        {
+            _crsitalPanel.style.display = DisplayStyle.None;
+            return;
+        }
+        _crsitalPanel.style.display = DisplayStyle.Flex;
+        UpdateCristalText();
+    }
+    public void UpdateCristalText()
+    {
+        List<int> cristalInfo = UIFirstFloorMap.castMap[currentRoom];
         List<int> onCristalData = Define.GetManager<DataManager>().LoadOnCristalData(DataManager.MapData_.currentFloor);
         int allCiristalCnt = cristalInfo.Count;
         int onCristalCnt = cristalInfo.Intersect(onCristalData).Count();
-        _crsitalPanel.Q<Label>("cristalCnt").text = string.Format("{0}/{1}", allCiristalCnt, onCristalCnt);
+        _crsitalPanel.Q<Label>("cristalCnt").text = string.Format("{0}/{1}", onCristalCnt, allCiristalCnt);
     }
 
     public void ShowInteraction()
