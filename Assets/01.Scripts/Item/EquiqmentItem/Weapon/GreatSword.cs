@@ -112,10 +112,11 @@ public class GreatSword : Weapon
 
 			if(timer >= info.Ats)
 			{
-				Debug.Log("?");
 				_attackInfo.State = CharacterState.KnockBack;
 				_attackInfo.CCInfo = new CCInfo() { knockRange = 1 };
 			}
+			else
+				_attackInfo.CCInfo = new CCInfo() { knockRange = 0 };
 
 			_eventParam.attackParam = _attackInfo;
 			info.Atk = addDamage * (int)(timer / addTime);

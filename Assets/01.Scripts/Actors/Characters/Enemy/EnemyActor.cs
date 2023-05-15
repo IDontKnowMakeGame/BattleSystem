@@ -55,7 +55,17 @@ namespace Actors.Characters.Enemy
 
         protected string GetDirName(Vector3 dir)
         {
+            Vector3 cameraDir = InGame.CameraDir();
+
+            var degree = Mathf.Atan2(cameraDir.x, cameraDir.z) * Mathf.Rad2Deg;
+            degree = Mathf.Abs(Mathf.RoundToInt(degree));
             dir = InGame.CamDirCheck(dir);
+
+            if(degree == 90)
+            {
+                dir.x = -dir.x;
+                dir.z = -dir.z;
+            }
             var result = string.Empty;
             if (dir.z > 0)
                 result = "Upper";

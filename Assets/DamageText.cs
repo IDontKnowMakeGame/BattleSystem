@@ -5,11 +5,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class DamageText : Actor
 {
 	[SerializeField]
 	private TextRenderer _textRenderer;
+
+	[SerializeField]
+	private VisualEffect _effect;
 
 	[SerializeField]
 	private TextMeshPro num;
@@ -45,8 +49,10 @@ public class DamageText : Actor
 
 	public void PopUp(int text, Vector3 pos, Vector3 dir)
 	{
-		Vector3 vec = Random.insideUnitSphere/2 + pos;
-		vec.y = vec.y < 0.2f ? 1 : vec.y;
+		_effect.Play();
+
+		Vector3 vec = Random.insideUnitSphere/3 + pos;
+		vec.y = vec.y < 1 ? 1 : vec.y;
 		transform.position = new Vector3(vec.x, vec.y, vec.z);
 
 		if (text >= 50)
