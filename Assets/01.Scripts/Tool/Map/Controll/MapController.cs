@@ -141,7 +141,7 @@ namespace Tool.Map.Controll
                 var color = block.isWalkable ? Color.green : Color.red;
                 if(block.HasSwitchCamera)
                     color = Color.magenta;
-                if(GameManagement.Instance.SpawnCharacters.Any(x => x.Position == block.transform.position.SetY(0)))
+                if(GameManagement.Instance.SpawnCharacters.Any(x => x.Position == block.transform.position.SetY(1)))
                         color = Color.white;
                 if(selectedBlocks.Contains(block))
                     color = Color.yellow;
@@ -271,13 +271,13 @@ namespace Tool.Map.Controll
                 {
                     foreach (var block in selectedBlocks)
                     {
-                        if (GameManagement.Instance.SpawnCharacters.Any(x => x.Position == block.transform.position.SetY(0)))
+                        if (GameManagement.Instance.SpawnCharacters.Any(x => x.Position == block.transform.position.SetY(1)))
                         {
                             continue;
                         }
                         var spawnCharacter = new SpawnCharacter
                         {
-                            Position = block.transform.position.SetY(0),
+                            Position = block.transform.position.SetY(1),
                             Prefab = enemy
                         };
                         GameManagement.Instance.SpawnCharacters.Add(spawnCharacter);
@@ -291,8 +291,7 @@ namespace Tool.Map.Controll
             {
                 foreach (var block in selectedBlocks)
                 {
-                    GameObject.DestroyImmediate(block.ActorOnBlock.gameObject);
-                    block.SetActorOnBlock(null);
+                    GameManagement.Instance.SpawnCharacters.Remove(GameManagement.Instance.GetSpawnCharacter(block.transform.position.SetY(1)));
                 }
                 selectedBlocks.Clear();
             }

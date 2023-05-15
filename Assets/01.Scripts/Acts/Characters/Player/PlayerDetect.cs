@@ -11,6 +11,14 @@ namespace Acts.Characters.Player
         public event Action<Vector3> StayDetect;
         public event Action<Vector3> ExitDetect;
         private bool isDetecting = false;
+
+
+        public override void Start()
+        {
+            base.Start();
+            EnterDetect += EnterUIInteraction;
+            ExitDetect += EixtUIInteraction;
+        }
         public override void Update()
         {
             var dirs = new[] { Vector3.forward, Vector3.right, Vector3.back, Vector3.left };
@@ -29,6 +37,14 @@ namespace Acts.Characters.Player
             if (isDetecting == false)
                 ExitDetect?.Invoke(Vector3.zero);
             isDetecting = false;
+        }
+        private void EnterUIInteraction(Vector3 pos)
+        {
+            UIManager.Instance.InGame.ShowInteraction();
+        }
+        private void EixtUIInteraction(Vector3 pos)
+        {
+            UIManager.Instance.InGame.HideInteraction();
         }
     }
 }
