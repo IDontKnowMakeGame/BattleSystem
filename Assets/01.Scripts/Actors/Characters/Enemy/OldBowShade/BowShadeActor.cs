@@ -44,7 +44,9 @@ public class BowShadeActor : EnemyActor
 		bow.isDestroy = true;
 		bow.Shoot(InGame.CamDirCheck(dir.normalized));
 
-		Vector3 vec = dir.x < 0 ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+		Debug.Log(InGame.CamDirCheck(dir).x);
+		Vector3 vector = this.transform.localScale;
+		Vector3 vec = InGame.CamDirCheck(dir).x < 0 ? new Vector3(vector.x, vector.y, vector.z) : new Vector3(Mathf.Abs(vector.x) * -1, vector.y, vector.z);
 		this.transform.localScale = vec;
 	}
 }

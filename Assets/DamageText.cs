@@ -1,3 +1,4 @@
+using Actors.Bases;
 using Core;
 using DG.Tweening;
 using System.Collections;
@@ -5,10 +6,16 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class DamageText : MonoBehaviour
+public class DamageText : Actor
 {
 	[SerializeField]
+	private TextRenderer _textRenderer;
+
+	[SerializeField]
 	private TextMeshPro num;
+
+	[SerializeField]
+	private Material ma;
 
 	[SerializeField]
 	private Color _basiccolor;
@@ -18,7 +25,9 @@ public class DamageText : MonoBehaviour
 
 	public float sizeUptime;
 
-	public float waitTime;
+	public float sizeDowntime;
+
+	public float xTime;
 
 	public float fadeTime;
 
@@ -29,11 +38,15 @@ public class DamageText : MonoBehaviour
 
 	private Sequence _seq;
 
-	public void PopUp(int text, Vector3 pos)
+	protected override void Init()
 	{
-		//_seq.Append()
-		//num.alpha = 1;
-		Vector3 vec = Random.insideUnitSphere + pos;
+		AddAct(_textRenderer);
+	}
+
+	public void PopUp(int text, Vector3 pos, Vector3 dir)
+	{
+		Vector3 vec = Random.insideUnitSphere/2 + pos;
+		vec.y = vec.y < 0.2f ? 1 : vec.y;
 		transform.position = new Vector3(vec.x, vec.y, vec.z);
 
 		if (text >= 50)
@@ -45,9 +58,10 @@ public class DamageText : MonoBehaviour
 
 		_seq = DOTween.Sequence();
 		this.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-		_seq.Append(this.transform.DOScale(new Vector3(1, 1, 1), sizeUptime));
-		_seq.AppendInterval(waitTime);
-		_seq.Append(this.transform.DOMoveY(upValue, upTime)).OnComplete(() => Define.GetManager<ResourceManager>().Destroy(this.gameObject));
+		_seq.Append(this.transform.DOScale(new Vector3(1.5f, 1.5f, 1.5f), sizeUptime).SetEase(Ease.InQuint));
+		_seq.Join(this.transform.DOMove(vec - dir, xTime));
+		_seq.Append(this.transform.DOScale(new Vector3(1, 1, 1), sizeDowntime).SetEase(Ease.InQuint));
+		_seq.Append(this.transform.DOMoveY(vec.y + upValue, upTime)).OnComplete(() => Define.GetManager<ResourceManager>().Destroy(this.gameObject));
 		_seq.Join(num.DOFade(0, fadeTime));
 	}
 }

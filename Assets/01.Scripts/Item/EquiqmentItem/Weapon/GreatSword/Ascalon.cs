@@ -20,6 +20,12 @@ public class Ascalon : GreatSword
 		PlayerAttack.OnAttackEnd += SkillEnd;
 	}
 
+	public override void Update()
+	{
+		base.Update();
+		Debug.Log(_stat.Half);
+	}
+
 	private void SkillEnd(int id)
 	{
 		if (id != _characterActor.UUID)
@@ -29,5 +35,6 @@ public class Ascalon : GreatSword
 		GameObject obj = GameManagement.Instance.GetManager<ResourceManager>().Instantiate("Dragon Slayer's Realm");
 		obj.transform.position = _characterActor.Position + InGame.CamDirCheck(_currrentVector) + (Vector3.up / 2);
 		obj.GetComponent<DragonRealm>().Init(AscalonData.duration, AscalonData.decrease);
+		PlayerAttack.OnAttackEnd -= SkillEnd;
 	}
 }

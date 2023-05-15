@@ -101,7 +101,9 @@ public class CharacterStatAct : Act
 	}
 	private float _percentStat = 0;
 
-	public float Half { get; set; }
+	public float Half { get { return half; } set { half = value; } }
+
+	private float half = 0;
 
 	private CharacterActor _actor;
 	private CharacterRender _render;

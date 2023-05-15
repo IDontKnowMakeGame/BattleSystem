@@ -7,6 +7,7 @@ using Actors.Characters.Player;
 using Actors.Characters.Enemy;
 using System.Collections;
 using Acts.Characters.Player;
+using System;
 
 public class Arrow : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class Arrow : MonoBehaviour
 
 	private Sequence _seq;
 
+	private Type _type;
+
     private void OnEnable()
     {
 		this.transform.GetComponent<BoxCollider>().enabled = true;
@@ -44,6 +47,7 @@ public class Arrow : MonoBehaviour
 	public static void ShootArrow(Vector3 vec, Vector3 position, CharacterActor actor, float speed, float damage, int distance, bool destroy = false)
 	{
 		Arrow obj = Define.GetManager<ResourceManager>().Instantiate("Arrow").GetComponent<Arrow>();
+		obj.transform.position = position;
 		obj.transform.rotation = Quaternion.Euler(VecToRotation(vec));
 		obj.Shoot(vec, position, actor, speed, damage, distance, destroy);
 	}
@@ -64,14 +68,14 @@ public class Arrow : MonoBehaviour
 	{
 		var map = Define.GetManager<MapManager>();
 		int count = 0;
-		for (count = 0; count < distance; count++)
+		for (count = 0; count <= distance; count++)
 		{
 			if (map.GetBlock(position + (vec * count)) != null)
 			{
 				if (!map.GetBlock(position + (vec * count)).isWalkable && map.GetBlock(position + (vec * count)).ActorOnBlock == null)
 				{
+					count--;
 					_isEnd = true;
-					//count -= 1;
 					break;
 				}
 			}
@@ -102,6 +106,7 @@ public class Arrow : MonoBehaviour
 		_shootActor = actor;
 		_damage = damage;
 		_isDestroy = destroy;
+		_type = _shootActor.GetAct<CharacterEquipmentAct>().CurrentWeapon.GetType();
 		_seq.Play();
 
 		if (_shootActor is PlayerActor)
@@ -114,10 +119,6 @@ public class Arrow : MonoBehaviour
 		_stickActor = null;
 		if(!_isDestroy)
 		_isStick = true;
-		//Quaternion quater = this.transform.localRotation;
-		//Vector3 vec = quater.eulerAngles;
-		//vec.x = 150;
-		//this.transform.rotation = Quaternion.Euler(vec);
 	}
 	private void StickOnWall()
 	{
@@ -151,9 +152,7 @@ public class Arrow : MonoBehaviour
 		if (!_isDestroy)
 		_isStick = true;
 		_stickActor = null;
-		Quaternion quater = this.transform.localRotation;
-		Vector3 vec = quater.eulerAngles;
-		vec.x = 150;
+		Vector3 vec = new Vector3(-150,0,0);
 		this.transform.rotation = Quaternion.Euler(vec);
 		this.transform.position = new Vector3(this.transform.position.x, 1, this.transform.position.z);
 	}
@@ -166,6 +165,9 @@ public class Arrow : MonoBehaviour
 
 		if (_shootActor.HasAnyState()) return;
 
+		if (_type != _shootActor.GetAct<CharacterEquipmentAct>().CurrentWeapon.GetType())
+			return;
+
 		_isStick = false;
 		_canPull = false;
 		Bow bow = _shootActor.GetAct<PlayerEquipment>().CurrentWeapon as Bow;
@@ -176,6 +178,7 @@ public class Arrow : MonoBehaviour
 		PullAnimation();
 
 		InputManager<Bow>.OnSubPress -= Pull;
+
 		Define.GetManager<ResourceManager>().Destroy(this.gameObject);
 	}
 
@@ -191,7 +194,11 @@ public class Arrow : MonoBehaviour
 		if ((1 << other.gameObject.layer == LayerMask.GetMask("Wall") && _isEnd) || (1 << other.gameObject.layer == LayerMask.GetMask("InteractionWall")))
 		{
 			if (_isDestroy)
+			{
+				_isStick = false;
+				_seq.Kill();
 				Define.GetManager<ResourceManager>().Destroy(this.gameObject);
+			}
 			else
 				StickOnWall();
 		}
@@ -268,5 +275,7 @@ public class Arrow : MonoBehaviour
 	public void OnDisable()
 	{
 		_isStick = false;
+		//this.transform.SetParent(null);
+		//this.transform.position = Vector3.zero;
 	}
 }
