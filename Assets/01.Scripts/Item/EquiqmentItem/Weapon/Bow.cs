@@ -24,7 +24,7 @@ public class Bow : Weapon
 	{
 		get
 		{
-			if (!isEnemy) return _damage;
+			if (isEnemy) return _damage;
 			else return info.Atk;
 		}
 		set
@@ -36,14 +36,14 @@ public class Bow : Weapon
 		
 		get 
 		{ 
-			if (!isEnemy) return _speed;
-			else return info.Afs;
+			if (isEnemy) return _speed;
+			else return info.Ats;
 		} set { _speed = value; } }
 
 	public int Range { 
 		get 
 		{
-			if (!isEnemy)
+			if (isEnemy)
 				return _range;
 			else
 				return 6;
