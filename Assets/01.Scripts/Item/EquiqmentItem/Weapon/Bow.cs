@@ -36,8 +36,13 @@ public class Bow : Weapon
 		get 
 		{ 
 			if (isEnemy) return _speed;
-			else return info.Ats;
-		} set { _speed = value; } }
+			else return info.Afs;
+		} 
+		set 
+		{ 
+			_speed = value; 
+		} 
+	}
 
 	public int Range { 
 		get 
