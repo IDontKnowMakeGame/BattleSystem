@@ -27,6 +27,14 @@ public class TaintedSword : StraightSword
 	private IEnumerator SkillCorutine()
 	{
 		yield return new WaitForSeconds(1f);
+		Define.GetManager<ResourceManager>().Instantiate("TaintedEffect").transform.position = _characterActor.Position + Vector3.forward + Vector3.up;
+		Define.GetManager<ResourceManager>().Instantiate("TaintedEffect").transform.position = _characterActor.Position + Vector3.back+ Vector3.up;
+		Define.GetManager<ResourceManager>().Instantiate("TaintedEffect").transform.position = _characterActor.Position + Vector3.left + Vector3.up ;
+		Define.GetManager<ResourceManager>().Instantiate("TaintedEffect").transform.position = _characterActor.Position + Vector3.right + Vector3.up;
+		Define.GetManager<ResourceManager>().Instantiate("TaintedEffect").transform.position = _characterActor.Position + Vector3.right + Vector3.forward+ Vector3.up;
+		Define.GetManager<ResourceManager>().Instantiate("TaintedEffect").transform.position = _characterActor.Position + Vector3.left + Vector3.forward + Vector3.up;
+		Define.GetManager<ResourceManager>().Instantiate("TaintedEffect").transform.position = _characterActor.Position + Vector3.left + Vector3.back + Vector3.up;
+		Define.GetManager<ResourceManager>().Instantiate("TaintedEffect").transform.position = _characterActor.Position + Vector3.right + Vector3.back + Vector3.up;
 		_characterActor.RemoveState(CharacterState.Skill);
 	}
 }
