@@ -16,7 +16,7 @@ namespace Walls.Acts
 
         private Renderer renderer;
         private Material thisMaterial;
-        private float Size = 2.5f;
+        private float Size = 4f;
 
         public override void Awake()
         {

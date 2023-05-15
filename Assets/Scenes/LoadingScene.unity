@@ -123,25 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &568905306 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8332689336117115625, guid: 3f2d75b7a84647540a7a5731617235b8, type: 3}
-  m_PrefabInstance: {fileID: 8332689335582913715}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &568905313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 568905306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 131a64db368d685479c50ca15577ca2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 0}
-  progressBar: {fileID: 0}
 --- !u!1 &717869996
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +401,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8332689336117115625, guid: 3f2d75b7a84647540a7a5731617235b8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8332689336117115628, guid: 3f2d75b7a84647540a7a5731617235b8, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -504,5 +489,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 568905313, guid: 3f2d75b7a84647540a7a5731617235b8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3f2d75b7a84647540a7a5731617235b8, type: 3}

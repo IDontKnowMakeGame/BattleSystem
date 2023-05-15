@@ -124,6 +124,9 @@ MonoBehaviour:
   alive: 1
   spriteSize: 1
   currentType: 0
+  _dmage: 45
+  _speed: 8
+  _range: 12
 --- !u!114 &7082799638287044
 MonoBehaviour:
   m_ObjectHideFlags: 0
