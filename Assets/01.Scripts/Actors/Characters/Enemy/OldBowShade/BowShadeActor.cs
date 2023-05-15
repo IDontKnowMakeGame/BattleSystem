@@ -9,6 +9,16 @@ using UnityEngine;
 
 public class BowShadeActor : EnemyActor
 {
+	[SerializeField]
+	private float _dmage;
+
+	[SerializeField]
+	private float _speed;
+
+	[SerializeField]
+	private int _range;
+
+
 	protected override void Init()
 	{
 		base.Init();
@@ -42,9 +52,11 @@ public class BowShadeActor : EnemyActor
 		Bow bow = _characterEquipment.CurrentWeapon as Bow;
 		dir.y = 0;
 		bow.isDestroy = true;
+		bow.Damage = _dmage;
+		bow.Speed = _speed;
+		bow.Range = _range;
 		bow.Shoot(InGame.CamDirCheck(dir.normalized));
 
-		Debug.Log(InGame.CamDirCheck(dir).x);
 		Vector3 vector = this.transform.localScale;
 		Vector3 vec = InGame.CamDirCheck(dir).x < 0 ? new Vector3(vector.x, vector.y, vector.z) : new Vector3(Mathf.Abs(vector.x) * -1, vector.y, vector.z);
 		this.transform.localScale = vec;
