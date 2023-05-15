@@ -106,8 +106,7 @@ public class Arrow : MonoBehaviour
 		_shootActor = actor;
 		_damage = damage;
 		_isDestroy = destroy;
-		if(_shootActor.GetAct<CharacterEquipmentAct>() != null)
-			_type = _shootActor.GetAct<CharacterEquipmentAct>().CurrentWeapon.GetType();
+		_type = _shootActor.GetAct<CharacterEquipmentAct>().CurrentWeapon.GetType();
 		_seq.Play();
 
 		if (_shootActor is PlayerActor)

@@ -20,44 +20,6 @@ public class Bow : Weapon
 
 	public bool isDestroy = false;
 
-	public float Damage
-	{
-		get
-		{
-			if (!isEnemy) return _damage;
-			else return info.Atk;
-		}
-		set
-		{
-			_damage = value;
-		}
-	}
-	public float Speed {
-		
-		get 
-		{ 
-			if (!isEnemy) return _speed;
-			else return info.Afs;
-		} set { _speed = value; } }
-
-	public int Range { 
-		get 
-		{
-			if (!isEnemy)
-				return _range;
-			else
-				return 6;
-		} 
-		set 
-		{
-			_range = value;
-		} 
-	}
-
-	private float _damage = 0;
-	private float _speed = 0;
-	private int _range = 0;
-
 	public override void LoadWeaponClassLevel()
 	{
 		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("Bow");
@@ -96,7 +58,7 @@ public class Bow : Weapon
 		InputManager<Bow>.OnAttackPress += Shoot;
 
 		if (_playerAnimation.GetClip("HorizontalPull") == null)
-			Debug.Log("ë¹½!!");
+			Debug.Log("»ª!!");
 
 		_unitAnimation.GetClip("HorizontalPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
 		_unitAnimation.GetClip("UpperPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
@@ -182,7 +144,7 @@ public class Bow : Weapon
 			_characterActor.AddState(CharacterState.Attack);
 			
 			ShootAnimation(_orginVec);
-			Arrow.ShootArrow(_currentVec, _characterActor.Position, _characterActor, Speed, Damage, Range, isDestroy);
+			Arrow.ShootArrow(_currentVec, _characterActor.Position, _characterActor, info.Afs, info.Atk, 6, isDestroy);
 			_sliderObject.SliderActive(false);
 		}
 	}
