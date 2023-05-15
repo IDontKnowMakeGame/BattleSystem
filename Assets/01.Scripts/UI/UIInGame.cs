@@ -8,8 +8,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Diagnostics;
 using UnityEngine.UIElements;
-using static UnityEditor.Progress;
-using static UnityEngine.Rendering.DebugUI;
 
 public class UIInGame : UIBase
 {

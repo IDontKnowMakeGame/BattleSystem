@@ -4,7 +4,6 @@ using Managements.Managers;
 using UnityEngine;
 using Actors.Characters.Player;
 using Acts.Characters.Player;
-using UnityEditor.U2D.Path.GUIFramework;
 using Unity.VisualScripting;
 
 public class Bow : Weapon
