@@ -114,7 +114,10 @@ namespace Core
         
         public static Block GetBlock(Vector3 position)
         {
-            var block = Define.GetManager<MapManager>().GetBlock(position);
+            var map = Define.GetManager<MapManager>();
+            if (map == null)
+                return null;
+            var block = map?.GetBlock(position);
             if (block == null)
             {
                 return null;
