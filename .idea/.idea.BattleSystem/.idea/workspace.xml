@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Item/EquiqmentItem/Weapon/Bow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Item/EquiqmentItem/Weapon/Bow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldBowClips.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/AnimationClips/PlayerClips/OldBowClips.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/ETC/PlayerDeath.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/ETC/PlayerDeath.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Item/EquiqmentItem/Weapon/Spear.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Item/EquiqmentItem/Weapon/Spear.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/Arrow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/Arrow.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -190,7 +191,7 @@
       <workItem from="1683729255369" duration="6855000" />
       <workItem from="1683764983002" duration="7311000" />
       <workItem from="1683980326954" duration="1691000" />
-      <workItem from="1684142053284" duration="1845000" />
+      <workItem from="1684142053284" duration="3860000" />
     </task>
     <servers />
   </component>

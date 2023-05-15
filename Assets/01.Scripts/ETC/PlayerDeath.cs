@@ -27,6 +27,7 @@ namespace ETC
         {
             //InGame.Player.StopAllCoroutines();
             //Destroy(InGame.Player.gameObject);
+            DOTween.KillAll();
             Sequence seq = DOTween.Sequence();
             vignette.intensity.value = 0;
             vignette.rounded.value = true;
@@ -39,6 +40,7 @@ namespace ETC
                 DOTween.KillAll();
                 DOTween.Kill(seq);
             });
+            seq.Play();
         }
     }
 }
