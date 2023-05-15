@@ -193,6 +193,16 @@ public class Bow : Weapon
 
 	private void ChargeAnimation(Vector3 dir)
 	{
+		Vector3 cameraDir = InGame.CameraDir();
+
+		var degree = Mathf.Atan2(cameraDir.x, cameraDir.z) * Mathf.Rad2Deg;
+		degree = Mathf.Abs(Mathf.RoundToInt(degree));
+
+		if(degree == 90)
+		{
+			dir.x = -dir.x;
+			dir.z = -dir.z;
+		}
 		if (dir == Vector3.left)
 		{
 			_characterActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
@@ -216,6 +226,16 @@ public class Bow : Weapon
 
 	private void ShootAnimation(Vector3 dir)
 	{
+		Vector3 cameraDir = InGame.CameraDir();
+
+		var degree = Mathf.Atan2(cameraDir.x, cameraDir.z) * Mathf.Rad2Deg;
+		degree = Mathf.Abs(Mathf.RoundToInt(degree));
+
+		if(degree == 90)
+		{
+			dir.x = -dir.x;
+			dir.z = -dir.z;
+		}
 		if (dir == Vector3.left)
 		{
 			_characterActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);

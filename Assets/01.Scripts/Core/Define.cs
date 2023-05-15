@@ -178,7 +178,6 @@ namespace Core
                 direction.x = direction.x * cameraDir.z;
                 direction.z = direction.z * cameraDir.z;
             }
-
             return direction;
         }
     }
