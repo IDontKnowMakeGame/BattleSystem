@@ -33,18 +33,24 @@ public class TsunamiWave : Actor
     private void Start()
     {
         particle.Stop();
-    }
+    }                                                                                                    
 
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKeyDown(KeyCode.N))    
         {
             timer = 0f;
             playTsunami = true;
             inSideUnits.Clear();
             currentUnits = spawnerController.Units.ToList();
-            particle.Play();
+            particle.Play();   
+        }
+
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            Debug.Log("particle");
+            particle.Stop();
         }
 
         if (playTsunami)
