@@ -235,6 +235,8 @@ public class DataManager : Manager
     {
         MapData_.mapData[(int)MapData_.currentFloor].onCristalList.Add(num);
 
+        UIManager.Instance.InGame.UpdateCristalText();
+
         SaveToMapData();
     }
     public bool IsOnCrital(int num,Floor floor)
