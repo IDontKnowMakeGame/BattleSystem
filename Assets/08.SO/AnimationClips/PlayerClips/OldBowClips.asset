@@ -163,42 +163,42 @@ MonoBehaviour:
     normal: {fileID: 2800000, guid: b3ffcdc67d99b194b8700aa13dcb0111, type: 3}
     fps: 6
     isLoop: 1
-    delay: 0.03
+    delay: 0.1
   - name: NoneHorizontalMove
     nextIdx: -1
     texture: {fileID: 2800000, guid: a5e4d9f47f9495f4183be8b1365188a7, type: 3}
     normal: {fileID: 2800000, guid: 8420a97162601694ebb3e803c74d96ad, type: 3}
     fps: 6
     isLoop: 1
-    delay: 0.03
+    delay: 0.1
   - name: UseUpperMove
     nextIdx: -1
     texture: {fileID: 2800000, guid: 6b6ed6db9cf35014db195b4bc9a0d215, type: 3}
     normal: {fileID: 2800000, guid: 92ee2f4f2aa446e4b99db5b59a3bb481, type: 3}
     fps: 6
     isLoop: 1
-    delay: 0.03
+    delay: 0.1
   - name: NoneUpperMove
     nextIdx: -1
     texture: {fileID: 2800000, guid: 45b194aef0786db40b0c124936d22fd3, type: 3}
     normal: {fileID: 2800000, guid: fb547c9a7e9e69b4bb85a543181967dd, type: 3}
     fps: 6
     isLoop: 1
-    delay: 0.03
+    delay: 0.1
   - name: UseLowerMove
     nextIdx: -1
     texture: {fileID: 2800000, guid: 7b8395860f0dc504da627fc088e15759, type: 3}
     normal: {fileID: 2800000, guid: 626d7520b1810d141ba9e7f6706e5013, type: 3}
     fps: 6
     isLoop: 1
-    delay: 0.03
+    delay: 0.1
   - name: NoneLowerMove
     nextIdx: -1
     texture: {fileID: 2800000, guid: 23d9648adf646094a95143fc2d877b41, type: 3}
     normal: {fileID: 2800000, guid: 8b6dff9872fd0cc46bf4add9b555f348, type: 3}
     fps: 6
     isLoop: 1
-    delay: 0.03
+    delay: 0.1
   - name: UseHorizontalCharge
     nextIdx: -1
     texture: {fileID: 2800000, guid: ccac96adba9d5184385283c37ec9c778, type: 3}

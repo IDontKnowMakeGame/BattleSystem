@@ -1,5 +1,6 @@
 ﻿using Acts.Base;
 using DG.Tweening;
+using UnityEditor.ShortcutManagement;
 using UnityEngine;
 
 namespace Blocks.Acts
@@ -24,12 +25,20 @@ namespace Blocks.Acts
 
         public void Shake(float duration, float strength = 1f, int vibrato = 10, float randomness = 90f)
         {
+            if (_modelTransform == null)
+                return;
             if(isMoving) return;
             isMoving = true;
             var seq = DOTween.Sequence();
             seq.Append(_modelTransform.DOShakePosition(duration, strength, vibrato, randomness));
             seq.AppendCallback(() =>
             {
+                if (_modelTransform == null)
+                {
+                    isMoving = false;
+                    seq.Kill();
+                    return;
+                }
                 _modelTransform.localPosition = Vector3.zero;
                 isMoving = false;
                 seq.Kill(true);

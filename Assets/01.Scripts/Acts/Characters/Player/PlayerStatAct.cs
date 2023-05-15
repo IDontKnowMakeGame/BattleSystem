@@ -99,7 +99,7 @@ public class PlayerStatAct : CharacterStatAct
 
 		var dieClip = _playerAnimation.GetClip("Die");
 		dieClip.SetEventOnFrame(dieClip.fps - 2, () =>
-		LoadingSceneController.Instnace.LoadScene("Lobby"));
+			PlayerDeath.Instance.FocusCenter());
 		dieClip.SetEventOnFrame(dieClip.fps - 1, base.Die);
 
 		// HP 포션 5개로 초기화
