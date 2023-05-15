@@ -869,6 +869,7 @@ public static class ExtensionMethods
         return Quaternion.Euler(0, y, 0);
     }
 
+    #if UNITY_EDITOR
     public static Vector3[] GetMaxMinVector3s(this Block[] poses)
     {
         if (poses[0] == null)
@@ -891,6 +892,6 @@ public static class ExtensionMethods
         
         return new []{new Vector3(minX, 0, maxZ), new Vector3(maxX, 0, minZ)};
     }
-
-    #endregion
+    #endif
+#endregion
 }

@@ -8,7 +8,6 @@ using Actors.Characters.Enemy;
 using Actors.Characters.Player;
 using Blocks.Acts;
 using Core;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Rendering;
 
