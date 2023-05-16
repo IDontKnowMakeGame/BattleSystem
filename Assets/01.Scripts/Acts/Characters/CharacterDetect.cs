@@ -31,7 +31,7 @@ namespace Acts.Characters
                 StayDetect?.Invoke(dir);
             }
 
-            if (detect == false)
+            if (detect == false && isDetecting)
             {
                 isDetecting = false;
                 ExitDetect?.Invoke(Vector3.zero);
