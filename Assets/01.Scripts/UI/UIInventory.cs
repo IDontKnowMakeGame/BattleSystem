@@ -439,6 +439,10 @@ public class UIInventory : UIBase
     }
     public void EquipHalo(VisualElement card,ItemID id, int equipNum)
     {
+        List<ItemID> list = Define.GetManager<DataManager>().LoadHaloListInUserData();
+        if (list.Contains(id)&&id != ItemID.None)
+            return;
+
         Define.GetManager<DataManager>().EquipHalo(id, equipNum);
 
         EventParam eventParam = new EventParam();
