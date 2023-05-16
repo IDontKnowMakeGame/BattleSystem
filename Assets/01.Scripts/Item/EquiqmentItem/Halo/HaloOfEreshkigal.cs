@@ -22,17 +22,25 @@ public class HaloOfEreshkigal : Halo
 
     protected override void Using(EventParam eventParam)
     {
-        if(eventParam.boolParam)
+        if (eventParam.boolParam)
         {
             InGame.Player.GetAct<PlayerStatAct>().Plus(StatType.ATK, 5);
             cnt++;
         }
         else
         {
-            if(cnt > 0)
+            if (cnt > 0)
             {
-                InGame.Player.GetAct<PlayerStatAct>().Sub(StatType.ATK, 5);
-                cnt--;
+                if (eventParam.stringParam == "Die")
+                {
+                    InGame.Player.GetAct<PlayerStatAct>().Sub(StatType.ATK, 5 * cnt);
+                    cnt = 0;
+                }
+                else
+                {
+                    InGame.Player.GetAct<PlayerStatAct>().Sub(StatType.ATK, 5);
+                    cnt--;
+                }
             }
         }
     }

@@ -24,7 +24,7 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Panel" style="flex-basis: 85%; flex-direction: row; overflow: hidden;">
-                <ui:VisualElement name="ItemPanel" style="translate: 0 0; overflow: visible; flex-basis: 100%;">
+                <ui:VisualElement name="ItemPanel" style="translate: -100% 0; overflow: visible; flex-basis: 100%;">
                     <ui:VisualElement name="WeaponPanel" class="ItemPanel" style="flex-direction: row; display: flex; left: 0;">
                         <ui:VisualElement name="CharacterView" style="flex-basis: 30%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-1221198161&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_0&apos;);">
                             <ui:VisualElement name="CharacterImage" style="flex-basis: 75%; justify-content: center; align-items: center;">
@@ -74,11 +74,11 @@
                                 </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:ScrollView>
-                        <ui:VisualElement name="HaloCharacterView" style="background-color: rgb(79, 79, 79); width: 126px; height: 171px; background-image: url(&apos;project://database/Assets/02.Sprites/Ghost.png?fileID=2128063284&amp;guid=f3ba31022ba0a8046a76e645fdde2f38&amp;type=3#Ghost_0&apos;);" />
+                        <ui:VisualElement name="HaloCharacterView" style="background-color: rgb(79, 79, 79); width: 126px; height: 171px; background-image: url(&apos;project://database/Assets/02.Sprites/Ghost.png?fileID=2128063284&amp;guid=f3ba31022ba0a8046a76e645fdde2f38&amp;type=3#Ghost_0&apos;); display: none;" />
                         <ui:VisualElement name="EquipHalo">
-                            <ui:VisualElement name="1" style="width: 120px; height: 120px; background-color: rgba(0, 0, 0, 255); margin-bottom: 10px;" />
-                            <ui:VisualElement name="2" style="width: 120px; height: 120px; background-color: rgba(0, 0, 0, 255); margin-bottom: 10px;" />
-                            <ui:VisualElement name="3" style="width: 120px; height: 120px; background-color: rgba(0, 0, 0, 255);" />
+                            <ui:VisualElement name="1" style="width: 120px; height: 120px; margin-bottom: 10px;" />
+                            <ui:VisualElement name="2" style="width: 120px; height: 120px; margin-bottom: 10px;" />
+                            <ui:VisualElement name="3" style="width: 120px; height: 120px;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="UseblePanel" class="ItemPanel" style="display: flex; left: 200%;">

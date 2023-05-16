@@ -46,6 +46,18 @@ namespace Tool.Map.Controll
             window.Show();
         }
 
+        private void OnEnable()
+        {
+            blocks = MapManager.GetBlockOnMap();
+            rooms = MapManager.GetRoomsOnMap();
+            var objcets = Resources.LoadAll("Prefabs/Enemies");
+            enemies = new GameObject[objcets.Length];
+            for (int i = 0; i < objcets.Length; i++)
+            {
+                enemies[i] = (GameObject)objcets[i];
+            }
+        }
+
         private void Update()
         {
             Repaint();
@@ -68,9 +80,28 @@ namespace Tool.Map.Controll
             UpdateButtons();
             UpdateInputField();
             UpdateList();
+            CheckCharacter();
             InputHandle();  
         }
-        
+
+        private void CheckCharacter()
+        {
+            foreach (var block in blocks)
+            {
+                var thisRect = new Rect(blockPosDic[block], new Vector2(width, height));
+                if (thisRect.Contains(Event.current.mousePosition))
+                {
+                    var mousePos = Event.current.mousePosition;
+                    var characters = GameManagement.Instance.SpawnCharacters.Where(x => x.Position == block.transform.position.SetY(1));
+                    var character = characters.FirstOrDefault();
+                    if(character == null)
+                        continue;
+                    var name = character.Prefab.name;
+                    GUI.Box(new (mousePos.x, mousePos.y, name.Length * 10, 20), name);
+                }
+            }
+        }
+
         Rect rect = new Rect();
         private void InputHandle()
         {
@@ -101,8 +132,10 @@ namespace Tool.Map.Controll
                     var y = mouseStartPos.y < mouseEndPos.y ? mouseStartPos.y : mouseEndPos.y;
                     var y2 = mouseStartPos.y < mouseEndPos.y ? mouseEndPos.y : mouseStartPos.y;
                     
-                    if(x < blockPos.x + 10 && x2 > blockPos.x - 10 && y < blockPos.y + 10 && y2 > blockPos.y - 10)
+                    if(x < blockPos.x + width && x2 > blockPos.x - width && y < blockPos.y + height && y2 > blockPos.y - height)
                         selectedBlocks.Add(block);
+
+                    
                 }
             }
 
@@ -159,6 +192,8 @@ namespace Tool.Map.Controll
                     else
                         selectedBlocks.Add(block);
                 }
+
+                
                 GUI.backgroundColor = oldColor;
 
                 blockPosDic[block] = new Vector2(x, y);
