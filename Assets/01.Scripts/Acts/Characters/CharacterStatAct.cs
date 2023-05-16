@@ -160,6 +160,7 @@ public class CharacterStatAct : Act
 
 	public virtual void StatChange()
 	{
+		if (_eqipment == null) return;
 		ItemInfo info = _eqipment.CurrentWeapon.WeaponInfo;
 		_changeStat.ChangeStat(info);
 		_changeStat.maxHP = _basicStat.maxHP + _changeStats[StatType.MAXHP];
