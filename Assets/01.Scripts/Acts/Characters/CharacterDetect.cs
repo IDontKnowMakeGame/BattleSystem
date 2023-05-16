@@ -3,30 +3,23 @@ using Acts.Base;
 using Core;
 using UnityEngine;
 
-namespace Acts.Characters.Player
+namespace Acts.Characters
 {
-    public class PlayerDetect : Act
+    public class CharacterDetect : Act
     {
         public event Action<Vector3> EnterDetect;
         public event Action<Vector3> StayDetect;
         public event Action<Vector3> ExitDetect;
         private bool isDetecting = false;
 
-
-        public override void Start()
-        {
-            base.Start();
-            EnterDetect += EnterUIInteraction;
-            ExitDetect += EixtUIInteraction;
-        }
         public override void Update()
         {
+            if (InGame.Player == null) return;
             var dirs = new[] { Vector3.forward, Vector3.right, Vector3.back, Vector3.left };
 
             foreach (var dir in dirs)
             {
-                if (InGame.GetActor(ThisActor.Position + dir) == null) continue;
-                if (InGame.GetActor(ThisActor.Position + dir) as InteractionActor == null) continue;
+                if (ThisActor.Position + dir == InGame.Player.Position) continue;
 
                 if (!isDetecting)
                     EnterDetect?.Invoke(dir);
@@ -37,14 +30,6 @@ namespace Acts.Characters.Player
             if (isDetecting == false)
                 ExitDetect?.Invoke(Vector3.zero);
             isDetecting = false;
-        }
-        private void EnterUIInteraction(Vector3 pos)
-        {
-            UIManager.Instance.InGame.ShowInteraction();
-        }
-        private void EixtUIInteraction(Vector3 pos)
-        {
-            UIManager.Instance.InGame.HideInteraction();
         }
     }
 }

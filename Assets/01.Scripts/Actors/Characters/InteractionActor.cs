@@ -5,13 +5,14 @@ using Core;
 using Managements.Managers;
 using Actors.Characters;
 using System;
+using Acts.Characters;
 
 public class InteractionActor : CharacterActor
 {
     protected override void Init()
     {
         base.Init();
-
+        AddAct<CharacterDetect>();
         InputManager<Weapon>.OnInteractionPress += Interact;
     }
 

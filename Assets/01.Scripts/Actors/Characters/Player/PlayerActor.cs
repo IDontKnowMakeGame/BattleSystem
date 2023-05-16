@@ -25,7 +25,6 @@ namespace Actors.Characters.Player
             AddAct(_playerAttack);
             AddAct(_playerUseAbleItem);
             AddAct(_playerBuff);
-            var detect = AddAct<PlayerDetect>();
             InGame.Player = this;
         }
 
