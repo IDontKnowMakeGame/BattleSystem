@@ -29,6 +29,7 @@ namespace Managements.Managers
 		Slot04,
 		Slot05,
 		HPPotion,
+		Click
 	}
 
 	[Serializable]
@@ -59,6 +60,9 @@ namespace Managements.Managers
 		public static event Action OnTestChangePress;
 		public static event Action OnInteractionPress;
 
+		public static event Action<Vector3> OnClickPress;
+		public static event Action<Vector3> OnClickHold;
+		public static event Action<Vector3> OnClickRelease;
 
 		public static event Action<int> OnItemPress;
 		
@@ -81,6 +85,7 @@ namespace Managements.Managers
 			new KeyboardInputData() { keyboardInput = KeyboardInput.TestChangeKey, keyCode = KeyCode.T },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.Interaction, keyCode = KeyCode.E },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.OffKey, keyCode = KeyCode.Q },
+			new KeyboardInputData() { keyboardInput = KeyboardInput.Click, keyCode = KeyCode.Mouse0 },
 
 			new KeyboardInputData() { keyboardInput = KeyboardInput.Slot01, keyCode = KeyCode.Alpha1 },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.Slot02, keyCode = KeyCode.Alpha2 },
@@ -332,6 +337,9 @@ namespace Managements.Managers
 			OnInteractionPress = null;
 			OnItemPress = null;
 			OnPotionPress = null;
+			OnClickPress = null;
+			OnClickHold = null;
+			OnClickRelease = null;
 		}
 	}
 }
