@@ -24,7 +24,7 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Panel" style="flex-basis: 85%; flex-direction: row; overflow: hidden;">
-                <ui:VisualElement name="ItemPanel" style="translate: -100% 0; overflow: visible; flex-basis: 100%;">
+                <ui:VisualElement name="ItemPanel" style="translate: 0 0; overflow: visible; flex-basis: 100%;">
                     <ui:VisualElement name="WeaponPanel" class="ItemPanel" style="flex-direction: row; display: flex; left: 0;">
                         <ui:VisualElement name="CharacterView" style="flex-basis: 30%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-1221198161&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_0&apos;);">
                             <ui:VisualElement name="CharacterImage" style="flex-basis: 75%; justify-content: center; align-items: center;">
