@@ -94,7 +94,7 @@ public class BowShadeActor : EnemyActor
 		{
 			dir.x = -dir.x;
 			dir.z = -dir.z;
-		}
+		}  
 
 		Vector3 vector = this.transform.localScale;
 		Vector3 vec = dir.x < 0 ? new Vector3(vector.x, vector.y, vector.z) : new Vector3(Mathf.Abs(vector.x) * -1, vector.y, vector.z);

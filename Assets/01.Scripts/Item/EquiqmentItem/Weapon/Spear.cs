@@ -83,6 +83,7 @@ public class Spear : Weapon
 
 		InputManager<Spear>.OnAttackPress -= Attack;
 		InputManager<Spear>.OnMovePress -= CurrentBool;
+		CharacterMove.OnMoveEnd -= MoveEnd;
 		_isCurrentVec = false;
 		_isAttack = false;
         _isDown = false;
