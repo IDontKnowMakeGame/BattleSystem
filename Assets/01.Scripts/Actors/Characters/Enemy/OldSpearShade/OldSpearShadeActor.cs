@@ -33,7 +33,7 @@ namespace Actors.Characters.Enemy.OldSpearShade
             Vector3 dir = Vector3.zero;
             idle.OnEnter = () =>
             {
-                _enemyAnimation.Play("Idle");
+                _enemyAnimation?.Play("Idle");
             };
             chase.OnEnter = ()=>
             {
@@ -44,20 +44,20 @@ namespace Actors.Characters.Enemy.OldSpearShade
                 var dirName = GetDirName(dir);
                 var readyClip = _enemyAnimation.GetClip(dirName + "Ready");
                 var moveClip = _enemyAnimation.GetClip(dirName + "Move");
-                _enemyAnimation.Play(dirName + "Ready");
-                readyClip.SetEventOnFrame(0, () =>
+                _enemyAnimation?.Play(dirName + "Ready");
+                readyClip?.SetEventOnFrame(0, () =>
                 {
-                    attack.DefaultAttack(dir, false);
+                    attack?.DefaultAttack(dir, false);
                 });
                 readyClip.OnExit = () =>
                 {
                     AddState(CharacterState.Attack);
-                    _enemyAnimation.Play(dirName + "Move");
-                    move.Translate(dir);
+                    _enemyAnimation?.Play(dirName + "Move");
+                    move?.Translate(dir);
                     moveClip.OnExit = () =>
                     {
                         RemoveState(CharacterState.Attack);
-                        _enemyAnimation.Play(dirName + "Ready");
+                        _enemyAnimation?.Play(dirName + "Ready");
                     };
                 };
             };

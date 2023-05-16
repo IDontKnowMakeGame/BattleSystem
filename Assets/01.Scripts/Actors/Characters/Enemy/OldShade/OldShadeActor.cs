@@ -27,7 +27,7 @@ namespace Actors.Characters.Enemy.OldShade
             
             chase.OnStay += () =>
             {
-                move.Chase(InGame.Player);
+                move?.Chase(InGame.Player);
             };
             pattern.RandomActions.Add(() =>
             {
@@ -36,7 +36,7 @@ namespace Actors.Characters.Enemy.OldShade
                 var dir = (playerPos - Position).GetDirection();
                 Attack(dir, "", () =>
                 {
-                    attack.HorizontalAttack(dir, true);
+                    attack?.HorizontalAttack(dir, true);
                 });
             });
         }
