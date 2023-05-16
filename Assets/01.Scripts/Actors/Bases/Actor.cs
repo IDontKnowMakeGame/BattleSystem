@@ -154,10 +154,6 @@ namespace Actors.Bases
             {
                 _behaviours.Remove(thisType);
             }
-            else
-            {
-                Debug.LogError($"This unit doesn't have {thisType}.");
-            }
         }
 
         public T GetAct<T>() where T : Act
