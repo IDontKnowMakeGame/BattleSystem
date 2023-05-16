@@ -10,8 +10,6 @@ public class TorchObject : InteractionActor
 {
     [SerializeField] private GameObject torchLight;
 
-    CharacterDetect detect;
-
     private bool isOn = false;
     protected override void Start()
     {
@@ -23,9 +21,8 @@ public class TorchObject : InteractionActor
             return;
         }
 
-        detect = GetAct<CharacterDetect>();
-        detect.EnterDetect += ShowDetect;
-        detect.ExitDetect += HideDetect;
+        characterDetect.EnterDetect += ShowDetect;
+        characterDetect.ExitDetect += HideDetect;
     }
     public void ShowDetect(Vector3 vec)
     {
@@ -43,8 +40,8 @@ public class TorchObject : InteractionActor
         base.Interact();
         torchLight.SetActive(true);
         Define.GetManager<DataManager>().OnCrital(Int32.Parse(gameObject.name));
-        detect.EnterDetect -= ShowDetect;
-        detect.ExitDetect -= HideDetect;
+        characterDetect.EnterDetect -= ShowDetect;
+        characterDetect.ExitDetect -= HideDetect;
         HideDetect(Vector3.zero);
     }
 }

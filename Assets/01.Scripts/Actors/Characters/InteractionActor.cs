@@ -6,13 +6,15 @@ using Managements.Managers;
 using Actors.Characters;
 using System;
 using Acts.Characters;
+using UnityEngine.Serialization;
 
 public class InteractionActor : CharacterActor
 {
+    [SerializeField] protected CharacterDetect characterDetect;
     protected override void Init()
     {
         base.Init();
-        AddAct<CharacterDetect>();
+        characterDetect = AddAct<CharacterDetect>();
         InputManager<Weapon>.OnInteractionPress += Interact;
     }
 

@@ -5,12 +5,13 @@ using UnityEngine;
 
 namespace Acts.Characters
 {
+    [Serializable]
     public class CharacterDetect : Act
     {
         public event Action<Vector3> EnterDetect;
         public event Action<Vector3> StayDetect;
         public event Action<Vector3> ExitDetect;
-        private bool isDetecting = false;
+        public bool isDetecting = false;
 
         public override void Update()
         {
@@ -21,9 +22,10 @@ namespace Acts.Characters
             foreach (var dir in dirs)
             {
                 if (ThisActor.Position + dir != InGame.Player.Position) continue;
-
                 if (!isDetecting)
+                {
                     EnterDetect?.Invoke(dir);
+                }
                 isDetecting = true;
                 detect = true;
                 StayDetect?.Invoke(dir);
