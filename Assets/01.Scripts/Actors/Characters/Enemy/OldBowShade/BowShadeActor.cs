@@ -71,7 +71,7 @@ public class BowShadeActor : EnemyActor
 
 		if (dir == Vector3.left || dir == Vector3.right)
 		{
-		Debug.Log("charge");
+			Debug.Log("charge");
 			_unitAnimation.Play("HorizontalCharge");
 		}
 		else if (dir == Vector3.forward)
@@ -85,8 +85,19 @@ public class BowShadeActor : EnemyActor
 
 		dir.y = 0;
 
+		Vector3 cameraDir = InGame.CameraDir();
+
+		var degree = Mathf.Atan2(cameraDir.x, cameraDir.z) * Mathf.Rad2Deg;
+		degree = Mathf.Abs(Mathf.RoundToInt(degree));
+
+		if (degree == 90)
+		{
+			dir.x = -dir.x;
+			dir.z = -dir.z;
+		}
+
 		Vector3 vector = this.transform.localScale;
-		Vector3 vec = dir.x > 0 ? new Vector3(vector.x, vector.y, vector.z) : new Vector3(Mathf.Abs(vector.x) * -1, vector.y, vector.z);
+		Vector3 vec = dir.x < 0 ? new Vector3(vector.x, vector.y, vector.z) : new Vector3(Mathf.Abs(vector.x) * -1, vector.y, vector.z);
 		this.transform.localScale = vec;
 
 
