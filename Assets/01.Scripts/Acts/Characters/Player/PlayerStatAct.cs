@@ -59,6 +59,10 @@ public class PlayerStatAct : CharacterStatAct
 			bloodController.StartBlood();
 			ThisActor.GetAct<PlayerBuff>().ChangeAnger(1);
 
+			EventParam param = new EventParam();
+			param.boolParam = false;
+			Define.GetManager<EventManager>().TriggerEvent(EventFlag.HaloOfEreshkigal, param);
+
 			if (ThisActor.GetAct<PlayerUseAbleItem>().HPPotion.UsePortion)
 				ThisActor.GetAct<PlayerUseAbleItem>().HPPotion.ResetPotion();
 
@@ -83,6 +87,10 @@ public class PlayerStatAct : CharacterStatAct
 			LoadingSceneController.Instnace.LoadScene("Lobby"));
 		dieClip.SetEventOnFrame(dieClip.fps - 1, base.Die);
 
+		EventParam param = new EventParam();
+		param.boolParam = false;
+		param.stringParam = "Die";
+		Define.GetManager<EventManager>().TriggerEvent(EventFlag.HaloOfEreshkigal, param);
 		// HP 포션 5개로 초기화
 		SaveItemData currentData = Define.GetManager<DataManager>().LoadItemFromInventory(Data.ItemID.HPPotion);
 		currentData.currentCnt = 5;
@@ -102,6 +110,11 @@ public class PlayerStatAct : CharacterStatAct
 			PlayerDeath.Instance.FocusCenter());
 		dieClip.SetEventOnFrame(dieClip.fps - 1, base.Die);
 
+
+		EventParam param = new EventParam();
+		param.boolParam = false;
+		param.stringParam = "Die";
+		Define.GetManager<EventManager>().TriggerEvent(EventFlag.HaloOfEreshkigal, param);
 		// HP 포션 5개로 초기화
 		SaveItemData currentData = Define.GetManager<DataManager>().LoadItemFromInventory(Data.ItemID.HPPotion);
 		currentData.currentCnt = 5;

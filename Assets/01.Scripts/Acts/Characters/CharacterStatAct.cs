@@ -9,6 +9,7 @@ using UnityEngine;
 using Acts.Characters;
 using System.Collections.Generic;
 using Acts.Characters.Player;
+using Actors.Characters.Enemy;
 using Blocks;
 
 [Serializable]
@@ -192,6 +193,10 @@ public class CharacterStatAct : Act
 			if (actor is PlayerActor)
 			{
 				PlayerActor player = actor as PlayerActor;
+				Debug.Log("Àû Á×ÀÓ");
+				EventParam param = new EventParam();
+				param.boolParam = true;
+				Define.GetManager<EventManager>().TriggerEvent(EventFlag.HaloOfEreshkigal, param);
 				Define.GetManager<DataManager>().AddWeaponClassKillData(player.currentWeapon.info.Class);
 				player.GetAct<PlayerEquipment>().CurrentWeapon.LoadWeaponClassLevel();
 			}
