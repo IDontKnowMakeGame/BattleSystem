@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Player/PlayerDetect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Player/PlayerDetect.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/06.Shaders/Block/OutlineShader.shadergraph" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/06.Shaders/Block/OutlineShader.shadergraph" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/KHJScene 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/KHJScene 1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/Ultra_PipelineAsset_ForwardRenderer.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Ultra_PipelineAsset_ForwardRenderer.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,6 +192,7 @@
       <workItem from="1683764983002" duration="7311000" />
       <workItem from="1683980326954" duration="1691000" />
       <workItem from="1684142053284" duration="7558000" />
+      <workItem from="1684252989100" duration="594000" />
     </task>
     <servers />
   </component>
