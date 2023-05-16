@@ -22,6 +22,7 @@ public class Spear : Weapon
 
 	private MapManager _mapManager => Define.GetManager<MapManager>();
 	private Vector3 _currentVec = Vector3.zero;
+	private Vector3 _originVec = Vector3.zero;
 
 	private int range = 1;
 	public override void LoadWeaponClassLevel()
@@ -109,6 +110,8 @@ public class Spear : Weapon
 		}
 		else if (!_isEnterEnemy && !isEnemy)
 			_isEnterEnemy = true;
+
+		_currentVec = InGame.CamDirCheck(_originVec);
 	}
 
 	public virtual void Attack(Vector3 vec)
@@ -131,7 +134,8 @@ public class Spear : Weapon
 	public virtual IEnumerator AttackCorutine(Vector3 vec)
 	{
 		_attackInfo.AddDir(_attackInfo.DirTypes(vec));
-		_currentVec = InGame.CamDirCheck(vec);
+		_originVec = vec;
+		_currentVec = InGame.CamDirCheck(_originVec);
 		_attackInfo.PressInput = vec;
 		_nonDir = true;
 		ReadyAnimation(vec);
