@@ -13,7 +13,7 @@
         {
             "name": "TwinSword",
             "level": 0,
-            "killedCount": 0
+            "killedCount": 1
         },
         {
             "name": "Spear",
@@ -23,7 +23,7 @@
         {
             "name": "Bow",
             "level": 0,
-            "killedCount": 0
+            "killedCount": 2
         }
     ]
 }

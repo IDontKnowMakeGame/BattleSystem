@@ -12,6 +12,21 @@ public class Bow : Weapon
 	private bool _isCharge = false;
 	private float _currentTimer = 0;
 
+
+	private bool isScale = true;
+
+	public bool IsScale
+	{
+		get
+		{
+			return isScale;
+		}
+		set
+		{
+			isScale = value;
+		}
+	}
+
 	protected Vector3 _currentVec;
 	private Vector3 _orginVec;
 
@@ -163,7 +178,7 @@ public class Bow : Weapon
 		_characterActor.AddState(CharacterState.Hold);
 
 		// Player Animation
-		ChargeAnimation(_orginVec);
+		ChargeAnimation(_orginVec, IsScale);
 		//SetAnimation();
 
 		_sliderObject.SliderInit(_stat.ChangeStat.ats);
@@ -191,17 +206,17 @@ public class Bow : Weapon
 		}
 	}
 
-	private void ChargeAnimation(Vector3 dir)
+	private void ChargeAnimation(Vector3 dir, bool isScale = true)
 	{
 		if (dir == Vector3.left)
 		{
 			Debug.Log("Charge");
-			_characterActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
+			_characterActor.SpriteTransform.localScale = isScale ? new Vector3(-2, 1, 1) : new Vector3(2, 1, 1);
 			_unitAnimation.Play("HorizontalCharge");
 		}
 		else if (dir == Vector3.right)
 		{
-			_characterActor.SpriteTransform.localScale = new Vector3(2, 1, 1);
+			_characterActor.SpriteTransform.localScale = isScale ? new Vector3(2, 1, 1) : new Vector3(-2, 1, 1);
 			_unitAnimation.Play("HorizontalCharge");
 		}
 		else if (dir == Vector3.forward)

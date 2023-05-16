@@ -55,6 +55,7 @@ public class BowShadeActor : EnemyActor
 		bow.Damage = _dmage;
 		bow.Speed = _speed;
 		bow.Range = _range;
+		bow.IsScale = false;
 		Debug.Log(dir);
 		Debug.Log(InGame.CamDirCheck(dir.normalized));
 		bow.Shoot(InGame.CamDirCheck(dir.normalized));
