@@ -42,7 +42,7 @@ public class Arrow : MonoBehaviour
 			StartCoroutine(Destroy());
 
 		if (_shootActor is PlayerActor)
-			_playerAnimation = InGame.Player.GetAct<PlayerAnimation>();
+			_playerAnimation = _shootActor.GetAct<PlayerAnimation>();
 	}
 	public static void ShootArrow(Vector3 vec, Vector3 position, CharacterActor actor, float speed, float damage, int distance, bool destroy = false)
 	{
@@ -112,19 +112,20 @@ public class Arrow : MonoBehaviour
 
 		if (_shootActor is PlayerActor)
 			InputManager<Bow>.OnSubPress += Pull;
+
+		if (_shootActor is PlayerActor)
+			_playerAnimation = _shootActor.GetAct<PlayerAnimation>();
 	}
 
 	protected virtual void StickOnBlock()
 	{
 		_seq.Kill();
 		_stickActor = null;
-		if(!_isDestroy)
 		_isStick = true;
 	}
 	private void StickOnWall()
 	{
 		this.transform.position = new Vector3(this.transform.position.x, 1, this.transform.position.z);
-		if (!_isDestroy)
 			_isStick = true;
 		_seq.Kill();
 	}
@@ -140,7 +141,6 @@ public class Arrow : MonoBehaviour
 		this.transform.position = vec;
 		this.transform.parent = other.transform;
 		_stickActor.GetAct<CharacterStatAct>()?.Damage(_damage, _shootActor);
-		if (!_isDestroy)
 			_isStick = true;
 
 		if (_isDestroy)
@@ -150,7 +150,6 @@ public class Arrow : MonoBehaviour
 
 	public void StickReBlock()
 	{
-		if (!_isDestroy)
 		_isStick = true;
 		_stickActor = null;
 		Vector3 vec = new Vector3(-150,0,0);

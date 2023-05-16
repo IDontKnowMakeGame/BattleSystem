@@ -195,6 +195,7 @@ public class Bow : Weapon
 	{
 		if (dir == Vector3.left)
 		{
+			Debug.Log("Charge");
 			_characterActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
 			_unitAnimation.Play("HorizontalCharge");
 		}
