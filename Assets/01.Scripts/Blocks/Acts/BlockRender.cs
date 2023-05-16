@@ -22,7 +22,7 @@ namespace Blocks.Acts
 
         public override void LateUpdate()
         {
-            RenderOut();
+            //RenderOut();
         }
 
         
