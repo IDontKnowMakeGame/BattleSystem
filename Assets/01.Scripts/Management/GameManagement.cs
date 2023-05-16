@@ -35,7 +35,6 @@ namespace Managements
         public Dictionary<Type, Manager> Manager => _managers;
         public  List<SpawnCharacter> SpawnCharacters = new();
 
-
         #region Control_Managers
 
         public void AddManager<T>(T instance = null) where T : Manager, new()
