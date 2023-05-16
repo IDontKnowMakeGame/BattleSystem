@@ -44,6 +44,8 @@ namespace Actors.Characters.Enemy.OldSpearShade
                 var dirName = GetDirName(dir);
                 var readyClip = _enemyAnimation.GetClip(dirName + "Ready");
                 var moveClip = _enemyAnimation.GetClip(dirName + "Move");
+
+                if (readyClip == null || moveClip == null) return;
                 _enemyAnimation?.Play(dirName + "Ready");
                 readyClip?.SetEventOnFrame(0, () =>
                 {
