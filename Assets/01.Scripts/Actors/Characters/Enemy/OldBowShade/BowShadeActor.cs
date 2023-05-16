@@ -43,7 +43,7 @@ public class BowShadeActor : EnemyActor
 
 	private void Shoot(ShootState state)
 	{
-		var dir = this.transform.position-InGame.Player.transform.position;
+		var dir = InGame.Player.transform.position- this.transform.position;
 		if (dir.x != 0 && dir.z != 0)
 		{
 			state?.OnExit?.Invoke();
@@ -56,12 +56,12 @@ public class BowShadeActor : EnemyActor
 		bow.Speed = _speed;
 		bow.Range = _range;
 		bow.IsScale = false;
-		Debug.Log(dir);
-		Debug.Log(InGame.CamDirCheck(dir.normalized));
+
+		Debug.Log(dir.normalized);
 		bow.Shoot(InGame.CamDirCheck(dir.normalized));
 
-		Vector3 vector = this.transform.localScale;
-		Vector3 vec = InGame.CamDirCheck(dir).x < 0 ? new Vector3(vector.x, vector.y, vector.z) : new Vector3(Mathf.Abs(vector.x) * -1, vector.y, vector.z);
-		this.transform.localScale = vec;
+		//Vector3 vector = this.transform.localScale;
+		//Vector3 vec = InGame.CamDirCheck(dir).x < 0 ? new Vector3(vector.x, vector.y, vector.z) : new Vector3(Mathf.Abs(vector.x) * -1, vector.y, vector.z);
+		//this.transform.localScale = vec;
 	}
 }
