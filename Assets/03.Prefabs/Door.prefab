@@ -57,9 +57,15 @@ MonoBehaviour:
   _characterState: 0
   _isBlocking: 1
   canKnockBack: 0
+  characterDetect:
+    isDetecting: 0
   interactDirections:
   - {x: 1, y: 0, z: 0}
   NeedItems: 
+  dialogueData:
+    name: Door
+    sentence:
+    - "\uC774\uCABD\uC5D0\uC120 \uC5F4\uB9AC\uC9C0 \uC54A\uB294\uB2E4."
 --- !u!1 &2972935225692113500
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +187,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2972935226388348413}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -16,12 +16,17 @@ namespace Actors.Characters.Furnitures
         protected bool IsInteracting = false; 
         protected Action OnInteract = null;
         protected Action DeInteract = null;
+        protected Action FaildInteract = null;
         
         public override void Interact()
         {
             if (InGame.Player.Position.IsNeighbor(Position) == false) return;
             Debug.Log("near");
-            if(interactDirections.Where(d => Position + d == InGame.Player.Position).ToList().Count == 0) return;
+            if(interactDirections.Where(d => Position + d == InGame.Player.Position).ToList().Count == 0)
+            {
+                FaildInteract?.Invoke();
+                return;
+            }
             if (IsInteracting == false)
             {
                 var needItems = NeedItems.Where((x) => !DataManager.HaveQuestItem(x)).ToList();

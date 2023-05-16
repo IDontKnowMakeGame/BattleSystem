@@ -12,6 +12,7 @@ public class UIDialog : UIBase
     private VisualElement visualImage;
     private VisualElement choicePanel;
     private VisualElement messageBox;
+    private VisualElement nameBox;
 
     private Label message;
     private Label nameText;
@@ -19,6 +20,7 @@ public class UIDialog : UIBase
     private Coroutine textLineCoroutine = null;
     private string currentTextLine = "";
     private bool isPlayLineText = false;
+    private bool isPlayDialog = false;
 
     private Queue<string> msgLine = new Queue<string>();
     public override void Init()
@@ -28,6 +30,7 @@ public class UIDialog : UIBase
         
         visualImage = _root.Q<VisualElement>("Visual");
         choicePanel = _root.Q<VisualElement>("ChoicePanel");
+        nameBox = _root.Q<VisualElement>("NameBox");
         messageBox = _root.Q<VisualElement>("MessageBox");
         messageBox.RegisterCallback<ClickEvent>(e =>
         {
@@ -51,11 +54,21 @@ public class UIDialog : UIBase
         else
             choicePanel.style.display = DisplayStyle.None;
     }
-    public void StartListeningDialog(DialogueData dialogue)
+    public void StartListeningDialog(DialogueData dialogue,bool isObject = false)
     {
+        Debug.Log("StartListeningDialog");
+        if (isPlayDialog) return;
+
+        if (isObject)
+        {
+            visualImage.style.display = DisplayStyle.None;
+            nameBox.style.display= DisplayStyle.None;
+        }
+
         FlagDialogue(true);
         FlagChoicePanel(false);
         choicePanel.Clear();
+        isPlayDialog = true;
 
         nameText.text = dialogue.name;
         //ChangeVisualImage(dialogue.name);
@@ -90,16 +103,18 @@ public class UIDialog : UIBase
         if (msgLine.Count <= 0)
         {
             FlagDialogue(false);
+            EndMessage();
             return;
         }
 
         currentTextLine = this.msgLine.Dequeue();
         textLineCoroutine = UIManager.Instance.StartCoroutine(SetTextLine(currentTextLine));
-        if (msgLine.Count <= 0)
-            EndMessage();
+        //if (msgLine.Count <= 0)
+        //    EndMessage();
     }
     public void EndMessage()
     {
+        isPlayDialog = false;
         FlagChoicePanel(true);
     }
     public void SetMessageBoxText(string message)
