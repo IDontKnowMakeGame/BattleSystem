@@ -84,7 +84,7 @@ public class PlayerStatAct : CharacterStatAct
 
 		var dieClip = _playerAnimation.GetClip("Fall");
 		dieClip.SetEventOnFrame(dieClip.fps - 2, () =>
-			LoadingSceneController.Instnace.LoadScene("Lobby"));
+		LoadingSceneController.Instnace.LoadScene("Lobby"));
 		dieClip.SetEventOnFrame(dieClip.fps - 1, base.Die);
 
 		EventParam param = new EventParam();

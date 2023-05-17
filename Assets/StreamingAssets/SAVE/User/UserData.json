@@ -1,9 +1,16 @@
 {
     "maxHp": 100,
+<<<<<<< HEAD
     "feather": 15080,
     "firstWeapon": 3,
     "secondWeapon": 5,
     "firstHalo": 0,
+=======
+    "feather": 15496,
+    "firstWeapon": 5,
+    "secondWeapon": 4,
+    "firstHalo": 100,
+>>>>>>> DevFromKHJ
     "secondHalo": 0,
     "thirdHalo": 0,
     "equipUseableItem": {

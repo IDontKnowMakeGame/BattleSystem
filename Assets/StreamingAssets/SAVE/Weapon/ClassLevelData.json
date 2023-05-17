@@ -18,12 +18,16 @@
         {
             "name": "Spear",
             "level": 0,
+<<<<<<< HEAD
             "killedCount": 1
+=======
+            "killedCount": 4
+>>>>>>> DevFromKHJ
         },
         {
             "name": "Bow",
             "level": 0,
-            "killedCount": 18
+            "killedCount": 23
         }
     ]
 }

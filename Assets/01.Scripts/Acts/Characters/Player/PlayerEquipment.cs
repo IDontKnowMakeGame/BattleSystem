@@ -58,6 +58,9 @@ public class PlayerEquipment : CharacterEquipmentAct
 		Define.GetManager<EventManager>().StartListening(EventFlag.HaloDel, RemoveHalo);
 		if(_playerAnimation != null)
 			EquipAnimation();
+
+		if (_halos[0] != ItemID.None)
+			_haloRanderer.SetHalo(_halos[0]);
 	}
 
 	public override void Start()
@@ -71,8 +74,10 @@ public class PlayerEquipment : CharacterEquipmentAct
 		_useHalo.Add(ItemID.HaloOfEreshkigal, new HaloOfEreshkigal());
 		_useHalo.Add(ItemID.HaloOfDismantle, new HaloOfDismantle());
 		_halos = Define.GetManager<DataManager>().LoadHaloListInUserData();
+
 		if (_halos[0] != ItemID.None)
-			_haloRanderer?.SetHalo(_halos[0]);
+			_haloRanderer.SetHalo(_halos[0]);
+
 		foreach(ItemID haloID in _halos)
         {
 			if (haloID == ItemID.None) return;
