@@ -66,10 +66,11 @@ public class LoadingSceneController : MonoBehaviour
 
     public bool isLoading = false;
 
-    public void LoadScene(string sceneName)
+    public IEnumerator LoadScene(string sceneName, float timer = 0f)
     {
-        if (isLoading) return;
+        if (isLoading) yield break;
         isLoading = true;
+        yield return new WaitForSeconds(timer);
         gameObject.SetActive(true);
         SceneManager.sceneLoaded += OnSceneLoaded;
         loadSceneName = sceneName;
@@ -135,7 +136,7 @@ public class LoadingSceneController : MonoBehaviour
 
         if (!isFadeIn)
         {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
 }
