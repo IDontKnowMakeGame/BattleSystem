@@ -91,7 +91,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                     jumpClip.OnExit = () =>
                     {
                         canKnockBack = false;
-                        AttackWithNoReady(Vector3.zero, "JumpAttack", () => { attack.RoundAttack(1, false); });
+                        AttackWithNoReady(Vector3.zero, "JumpAttack", () => { attack.RoundAttack(3, false); });
                     };
                 };
             };

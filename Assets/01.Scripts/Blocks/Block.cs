@@ -171,11 +171,6 @@ namespace Blocks
             _actorOnBlock = null;
         }
 
-        public void Attack(float damage, Color color, float delay, Actor attacker, MovementType shakeType = MovementType.None, bool isLast = false, float strength = 0.5f)
-        {
-            StartCoroutine(AttackCoroutine(damage, color, delay, attacker, shakeType, isLast, strength));
-        }
-
         private IEnumerator AttackCoroutine(float damage, Color color, float delay, Actor attacker, MovementType shakeType = MovementType.None, bool isLast = false, float strength = 0.5f)
         {
             //Debug.Log("/");

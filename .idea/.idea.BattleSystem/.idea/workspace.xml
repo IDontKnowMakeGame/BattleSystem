@@ -5,10 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/AttackDecal.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/AttackDecal/AttackDecal.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/AttackDecal/AttackDecal.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/06.Shaders/Block/OutlineShader.shadergraph" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/06.Shaders/Block/OutlineShader.shadergraph" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/CrazyGhost/CrazyGhostActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/CrazyGhost/CrazyGhostActor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/Boss/CrazyGhost/CrazyGhostAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/Boss/CrazyGhost/CrazyGhostAttack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/EnemyAttack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Blocks/Block.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Blocks/Block.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Core/Define.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Core/Define.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Item/EquiqmentItem/Weapon/StraightSword/TaintedSword.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Item/EquiqmentItem/Weapon/StraightSword/TaintedSword.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Item/EquiqmentItem/Weapon/TwinSword/OldTwinSword.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Item/EquiqmentItem/Weapon/TwinSword/OldTwinSword.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Management/Managers/MapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Management/Managers/MapManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefabs/DecalProjector.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefabs/DecalProjector.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/KHJScene 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/KHJScene 1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/Ultra_PipelineAsset_ForwardRenderer.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Ultra_PipelineAsset_ForwardRenderer.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/Weapon/ClassLevelData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/Weapon/ClassLevelData.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +32,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/44335255efcb428fb633c913db3eed7a29400/79/0f2e0809/GUILayout.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/AI/AiConditionHolder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/BesideCondition.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Traps/ArrowTrapActor.cs" root0="FORCE_HIGHLIGHTING" />
@@ -27,6 +39,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/Tool/Data/Json/ParsingList/MapData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/Tool/Extension/ExtensionMethods.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@12.1.8/Runtime/Camera/CameraSwitcher.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@12.1.8/Runtime/Decal/DecalProjector.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@12.1.8/Editor/Data/Graphs/SerializableTexture.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.visualeffectgraph@12.1.8/Editor/GraphView/Elements/VFXFlowAnchor.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -193,6 +206,7 @@
       <workItem from="1683980326954" duration="1691000" />
       <workItem from="1684142053284" duration="7558000" />
       <workItem from="1684252989100" duration="594000" />
+      <workItem from="1684314665535" duration="6248000" />
     </task>
     <servers />
   </component>
