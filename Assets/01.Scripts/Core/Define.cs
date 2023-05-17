@@ -8,6 +8,7 @@ using Managements.Managers;
 using UnityEngine;
 using Actors.Characters.Player;
 using AttackDecals;
+using Blocks.Acts;
 using Cinemachine;
 
 namespace Core
@@ -193,6 +194,13 @@ namespace Core
 
             var decal = decalObj.GetComponent<AttackDecal>();
             decal.Attack(rect, attacker, damage, delay, isLast);
+        }
+
+        public static void ShakeBlock(Vector3 pos, float duration, MovementType type)
+        {
+            var block = GetBlock(pos);
+
+            block?.Shake(duration, type);
         }
     }
 
