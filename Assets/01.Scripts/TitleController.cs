@@ -25,7 +25,7 @@ public class TitleController : MonoBehaviour
             _sequence.Append(group.DOFade(0f, 0.5f));
             _sequence.AppendCallback(() =>
             {
-                LoadingSceneController.Instnace.LoadScene("Lobby");
+                LoadingSceneController.Instnace.StartCoroutine(LoadingSceneController.Instnace.LoadScene("Lobby"));
                 _sequence.Kill();
             });
         }
