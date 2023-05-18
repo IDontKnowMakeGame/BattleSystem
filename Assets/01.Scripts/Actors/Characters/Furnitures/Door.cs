@@ -7,6 +7,8 @@ namespace Actors.Characters.Furnitures
 {
     public class Door : Furniture
     {
+        [SerializeField]
+        private DialogueData dialogueData;
         private Transform anchorTrm;
         private bool isOpening = false;
         protected override void Awake()
@@ -19,6 +21,10 @@ namespace Actors.Characters.Furnitures
             {
                 Close();
             };
+            FaildInteract = () =>
+            {
+                Faild();
+            };
 
             anchorTrm = transform.GetChild(0);
             base.Awake();
@@ -30,9 +36,25 @@ namespace Actors.Characters.Furnitures
             if (Define.GetManager<DataManager>().IsOpenDoorl(int.Parse(gameObject.name), DataManager.MapData_.currentFloor))
             {
                 Open();
+                return;
             }
 
+            characterDetect.EnterDetect += ShowInteration;
+            characterDetect.ExitDetect += HideInteration;
+
             base.Start();
+        }
+        public void ShowInteration(Vector3 vec)
+        {
+            UIManager.Instance.InGame.ShowInteraction();
+        }
+        public void HideInteration(Vector3 vec)
+        {
+            UIManager.Instance.InGame.HideInteraction();
+        }
+        public void Faild()
+        {
+            UIManager.Instance.Dialog.StartListeningDialog(dialogueData,true);
         }
 
         public void Open()

@@ -60,7 +60,7 @@ public class UIManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            UIManager.Instance.InGame.CristalInfoInRoom(10);
+
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -68,7 +68,10 @@ public class UIManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            InGame.HideItemPanel();
+            InGame.AddShowItemPanel(ItemID.OldStraightSword);
+            InGame.AddShowItemPanel(ItemID.HaloOfPollution);
+            InGame.AddShowItemPanel(ItemID.Torch);
+            InGame.AddShowItemPanel(ItemID.Shield);
         }
         if (Input.GetKeyDown(KeyCode.B))
         {

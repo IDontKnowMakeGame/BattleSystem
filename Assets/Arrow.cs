@@ -151,10 +151,10 @@ public class Arrow : MonoBehaviour
 	public void StickReBlock()
 	{
 		_isStick = true;
+		this.transform.position = new Vector3(_stickActor.Position.x, 1, _stickActor.Position.z);
 		_stickActor = null;
 		Vector3 vec = new Vector3(-150,0,0);
-		this.transform.rotation = Quaternion.Euler(vec);
-		this.transform.position = new Vector3(this.transform.position.x, 1, this.transform.position.z);
+		this.transform.localRotation = Quaternion.Euler(vec);
 	}
 
 

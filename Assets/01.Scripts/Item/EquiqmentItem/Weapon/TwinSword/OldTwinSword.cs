@@ -1,9 +1,6 @@
 using Actors.Characters;
 using Core;
-using Managements.Managers;
 using System.Collections;
-using System.Collections.Generic;
-using Blocks.Acts;
 using Acts.Characters.Player;
 using UnityEngine;
 
@@ -24,13 +21,15 @@ public class OldTwinSword : TwinSword
 	{
 		if (_isCoolTime)
 			return;
-		Vector3 vector = InGame.CamDirCheck(vec);
+
+		Vector3 vector = InGame.CamDirCheck(DirReturn(vec));
 		_isCoolTime = true;
 		GameObject obj = Define.GetManager<ResourceManager>().Instantiate("TwinSword-Slash");
 		obj.transform.position = _characterActor.Position + vector + Vector3.up;
 		for (int i = 0; i < 6; i++)
 		{
-			Define.GetManager<MapManager>().AttackBlock(_characterActor.Position + vector, info.Atk, i * 0.2f, _characterActor, MovementType.None, true);
+			//Define.GetManager<MapManager>().AttackBlock(_characterActor.Position + vector, info.Atk, i * 0.2f, _characterActor, MovementType.None, true);
+			InGame.Attack(_characterActor.Position + vector, new Vector3(1, 0, 1), info.Atk, i * 0.2f, _characterActor, true);
 			_characterActor.GetAct<PlayerAnimation>().Play("Skill");
 		}
 		_characterActor.StartCoroutine(SkillCorutine());

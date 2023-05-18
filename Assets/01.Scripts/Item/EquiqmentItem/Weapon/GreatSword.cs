@@ -78,7 +78,7 @@ public class GreatSword : Weapon
 		_sliderObject.SliderActive(true);
 		_characterActor.AddState(CharacterState.Hold);
 		_attackInfo.ResetDir();
-		_currrentVector = vec;
+		_currrentVector = DirReturn(vec);
 		ChargeAnimation(_currrentVector);
         _characterActor.GetAct<CharacterStatAct>().Half += _half;
     }

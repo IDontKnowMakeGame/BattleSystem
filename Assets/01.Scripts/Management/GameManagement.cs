@@ -92,10 +92,6 @@ namespace Managements
             {
                 _managers.Remove(thisType);
             }
-            else
-            {
-                Debug.LogError($"This unit doesn't have {thisType}.");
-            }
         }
 
         public T GetManager<T>() where T : Manager
@@ -219,7 +215,7 @@ namespace Managements
                 manager.OnDestroy();
             }
             _managers.Clear();
-            LoadingSceneController.Instnace.LoadScene(sceneName);
+            LoadingSceneController.Instnace.StartCoroutine(LoadingSceneController.Instnace.LoadScene(sceneName));
         }
 
         public void RemoveInputManagers()

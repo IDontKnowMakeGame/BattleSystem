@@ -39,7 +39,6 @@ public class DamageText : Actor
 
 	public float upTime;
 
-
 	private Sequence _seq;
 
 	protected override void Init()
@@ -51,7 +50,7 @@ public class DamageText : Actor
 	{
 		_effect.Play();
 
-		Vector3 vec = Random.insideUnitSphere/3 + pos;
+		Vector3 vec = Random.insideUnitSphere/2 + pos;
 		vec.y = vec.y < 1 ? 1 : vec.y;
 		transform.position = new Vector3(vec.x, vec.y, vec.z);
 
@@ -65,7 +64,6 @@ public class DamageText : Actor
 		_seq = DOTween.Sequence();
 		this.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
 		_seq.Append(this.transform.DOScale(new Vector3(1.5f, 1.5f, 1.5f), sizeUptime).SetEase(Ease.InQuint));
-		_seq.Join(this.transform.DOMove(vec - dir, xTime));
 		_seq.Append(this.transform.DOScale(new Vector3(1, 1, 1), sizeDowntime).SetEase(Ease.InQuint));
 		_seq.Append(this.transform.DOMoveY(vec.y + upValue, upTime)).OnComplete(() => Define.GetManager<ResourceManager>().Destroy(this.gameObject));
 		_seq.Join(num.DOFade(0, fadeTime));

@@ -39,6 +39,10 @@ public class GetItemObject : InteractionActor
 		IsUpdatingPosition = false;
 		//weight = Random.Range(0, 1000);
 		obj.Add(this);
+
+		characterDetect.EnterDetect += ShowInteration;
+		characterDetect.ExitDetect += HideInteration;
+
 	}
 
 	public void Init(ItemID id, int count, bool weapon)
@@ -55,8 +59,15 @@ public class GetItemObject : InteractionActor
 		_isWeapon = info._isWeapon;
 		canInteraction = true;
 	}
-
-	public override void Interact()
+    public void ShowInteration(Vector3 vec)
+    {
+        UIManager.Instance.InGame.ShowInteraction();
+    }
+    public void HideInteration(Vector3 vec)
+    {
+        UIManager.Instance.InGame.HideInteraction();
+    }
+    public override void Interact()
 	{
 		if (count == 1)
 			return;
@@ -68,8 +79,11 @@ public class GetItemObject : InteractionActor
 
 		count++;
 		canInteraction = false;
+        characterDetect.EnterDetect -= ShowInteration;
+        characterDetect.ExitDetect -= HideInteration;
+		HideInteration(Vector2.zero);
 
-		StartCoroutine(GetObjectTime());
+        StartCoroutine(GetObjectTime());
 	}
 
 

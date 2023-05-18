@@ -47,10 +47,6 @@ namespace Actors.Characters.Enemy.OldSpearShade
 
                 if (readyClip == null || moveClip == null) return;
                 _enemyAnimation?.Play(dirName + "Ready");
-                readyClip?.SetEventOnFrame(0, () =>
-                {
-                    attack?.DefaultAttack(dir, false);
-                });
                 readyClip.OnExit = () =>
                 {
                     AddState(CharacterState.Attack);
@@ -58,7 +54,7 @@ namespace Actors.Characters.Enemy.OldSpearShade
                     move?.Translate(dir);
                     moveClip.OnExit = () =>
                     {
-                        RemoveState(CharacterState.Attack);
+                        attack?.DefaultAttack(dir, true);
                         _enemyAnimation?.Play(dirName + "Ready");
                     };
                 };

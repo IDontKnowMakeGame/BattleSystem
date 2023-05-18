@@ -11,6 +11,7 @@ using Acts.Characters.Player;
 using DG.Tweening;
 using Random = UnityEngine.Random;
 using Data;
+using Actors.Characters.Player;
 
 namespace Acts.Characters.Enemy
 {
@@ -50,10 +51,15 @@ namespace Acts.Characters.Enemy
 			if (ThisActor is BossActor)
             {
                 UIManager.Instance.BossBar.ChangeBossBarValue(PercentHP());
-                EventParam eventParam = new EventParam();
-                eventParam.intParam = 1;
-                eventParam.stringParam = (actor as CharacterActor).currentWeapon.info.Class;
-                Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam);
+			}
+
+            if(actor is PlayerActor)
+            {
+                Debug.Log(actor.gameObject.name);
+				EventParam eventParam = new EventParam();
+				eventParam.intParam = 1;
+				eventParam.stringParam = (actor as CharacterActor).currentWeapon.info.Class;
+				Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam);
 			}
 
             DamageEffect();

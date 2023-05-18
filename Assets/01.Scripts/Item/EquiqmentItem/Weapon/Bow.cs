@@ -5,6 +5,7 @@ using UnityEngine;
 using Actors.Characters.Player;
 using Acts.Characters.Player;
 using Unity.VisualScripting;
+using Acts.Characters;
 
 public class Bow : Weapon
 {
@@ -173,12 +174,12 @@ public class Bow : Weapon
 
 
 		_orginVec = vec;
-		_currentVec = InGame.CamDirCheck(vec);
+		_currentVec = InGame.CamDirCheck(DirReturn(vec));
 		_characterActor.AddState(CharacterState.StopMove);
 		_characterActor.AddState(CharacterState.Hold);
 
 		// Player Animation
-		ChargeAnimation(_orginVec, IsScale);
+		ChargeAnimation(_orginVec);
 		//SetAnimation();
 
 		_sliderObject.SliderInit(_stat.ChangeStat.ats);
@@ -206,27 +207,18 @@ public class Bow : Weapon
 		}
 	}
 
-	private void ChargeAnimation(Vector3 dir, bool isScale = true)
+	private void ChargeAnimation(Vector3 dir)
 	{
-		Vector3 cameraDir = InGame.CameraDir();
+		Debug.Log(InGame.CamDirCheck(dir));
 
-		var degree = Mathf.Atan2(cameraDir.x, cameraDir.z) * Mathf.Rad2Deg;
-		degree = Mathf.Abs(Mathf.RoundToInt(degree));
-
-		if(degree == 90)
-		{
-			dir.x = -dir.x;
-			dir.z = -dir.z;
-		}
 		if (dir == Vector3.left)
 		{
-			Debug.Log("Charge");
-			_characterActor.SpriteTransform.localScale = isScale ? new Vector3(-2, 1, 1) : new Vector3(2, 1, 1);
+			_characterActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
 			_unitAnimation.Play("HorizontalCharge");
 		}
 		else if (dir == Vector3.right)
 		{
-			_characterActor.SpriteTransform.localScale = isScale ? new Vector3(2, 1, 1) : new Vector3(-2, 1, 1);
+			_characterActor.SpriteTransform.localScale = new Vector3(2, 1, 1);
 			_unitAnimation.Play("HorizontalCharge");
 		}
 		else if (dir == Vector3.forward)
