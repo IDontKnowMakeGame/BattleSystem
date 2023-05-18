@@ -12,6 +12,10 @@ public class TitleController : MonoBehaviour
 
     Sequence _sequence;
 
+    private void Start()
+    {
+        SetResolution();
+    }
 
     void Update()
     {
@@ -34,5 +38,13 @@ public class TitleController : MonoBehaviour
     public void SetEnableLoad()
     {
         enableLoad = true;
+    }
+
+    public void SetResolution()
+    {
+        int setWidth = 1920;
+        int setHeight = 1080;
+
+        Screen.SetResolution(setWidth, setHeight, true);
     }
 }
