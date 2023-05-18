@@ -21,9 +21,12 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                 for (var j = -distance; j <= distance; j++)
                 {
                     var attackPos = new Vector3(i, 0, j);
-                    Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position + attackPos, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.Bounce, isLast);
+                    //Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position + attackPos, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.Bounce, isLast);
+                    //InGame.Attack(CharacterActor.Position + attackPos, new Vector3(1, 0, 1), DefaultStat.Atk, DefaultStat.Ats, CharacterActor, isLast);
+                    InGame.ShakeBlock(CharacterActor.Position + attackPos, DefaultStat.Ats, MovementType.Bounce);
                 }
             }
+            InGame.Attack(CharacterActor.Position , new Vector3(distance + 0.5f, 0, distance + 0.5f) * 2, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, isLast);
         }
         public void AreaAttack(int distance, bool singleLayer, bool isLast = true)
         {
@@ -44,7 +47,9 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                     {
                         var attackPos = new Vector3(i, 0, j);
                         if (area.Contains(attackPos)) continue;
-                        Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position + attackPos, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.Roll);
+                        //Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position + attackPos, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.Roll);
+                        InGame.Attack(CharacterActor.Position + attackPos, new Vector3(1, 0, 1), DefaultStat.Atk, DefaultStat.Ats, CharacterActor);
+                        InGame.ShakeBlock(CharacterActor.Position + attackPos, DefaultStat.Ats, MovementType.Roll);
                         if(distance == 1 || singleLayer)
                             area.Add(attackPos);
                     }
@@ -55,7 +60,8 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                 distance++;
             }
             
-            Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.None, isLast);
+            //Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.None, isLast);
+            InGame.Attack(CharacterActor.Position, new Vector3(1, 0, 1), DefaultStat.Atk, DefaultStat.Ats, CharacterActor, isLast);
         }
 
 
@@ -77,8 +83,10 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                 for (var i = 0; i < 5; i++)
                 {
                     var attackPos = CharacterActor.Position + (degree * (range[i] + Vector3.right * distance));
-                    Define.GetManager<MapManager>().AttackBlock(attackPos, DefaultStat.Atk * 2f, DefaultStat.Ats,
-                        CharacterActor, MovementType.Shake);
+                    //Define.GetManager<MapManager>().AttackBlock(attackPos, DefaultStat.Atk * 2f, DefaultStat.Ats,
+                    //CharacterActor, MovementType.Shake);
+                    InGame.Attack(attackPos, new Vector3(1, 0, 1), DefaultStat.Atk, DefaultStat.Ats, CharacterActor);
+                    InGame.ShakeBlock(attackPos, DefaultStat.Ats, MovementType.Shake);
                     block = Define.GetManager<MapManager>().GetBlock(attackPos);
                     if (block != null)
                         if (block.isWalkable)
@@ -91,8 +99,9 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                 distance++;
             }
 
-            Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position, DefaultStat.Atk, DefaultStat.Ats,
-                CharacterActor, MovementType.None, isLast);
+            //Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position, DefaultStat.Atk, DefaultStat.Ats,
+            //  CharacterActor, MovementType.None, isLast);
+            InGame.Attack(CharacterActor.Position, new Vector3(1, 0, 1), DefaultStat.Atk, DefaultStat.Ats, CharacterActor, isLast);
         }
     }
 }
