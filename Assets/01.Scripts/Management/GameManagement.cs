@@ -134,6 +134,7 @@ namespace Managements
             Instance.AddManager<InputManager<Weapon>>();
             Instance.AddManager<ItemManager>();
             Instance.AddManager<EventManager>();
+            Instance.AddManager<SoundManager>();
             Define.MainCamera = Camera.main;
             DOTween.KillAll();
             DOTween.Init(true, true, LogBehaviour.Verbose).SetCapacity(10,1000);

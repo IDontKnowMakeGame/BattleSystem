@@ -1,23 +1,42 @@
 using Core;
+using Managements.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : Manager
 {
-    [SerializeField] private GameObject soundObjs;
-    private List<GameObject> usingSounds = new List<GameObject>();
-    
-    PoolManager pool;
+    AudioSource[] audioSources = new AudioSource[(int)Define.Sound.MaxCount];
+    Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
 
-    private void Awake()
+    public override void Awake()
     {
-        pool = Define.GetManager<PoolManager>();
-        pool.CreatePool(soundObjs, 10);
+        GameObject root = GameObject.Find("@Sound");
+        if(root == null)
+        {
+            root = new GameObject("@Sound");
+        }
+        Object.DontDestroyOnLoad(root);
+
+        string[] soundName = System.Enum.GetNames(typeof(Define.Sound));
+        for(int i = 0; i < soundName.Length - 1; i++)
+        {
+            GameObject go = new GameObject { name = soundName[i] };
+            audioSources[i] = go.AddComponent<AudioSource>();
+            go.transform.parent = root.transform;
+        }
+
+        audioSources[(int)Define.Sound.Bgm].loop = true;
     }
 
-    public void CreateSoundEffect()
+    public void Clear()
     {
-
+       foreach(AudioSource audio in audioSources)
+       {
+            audio.clip = null;
+            audio.Stop();
+       }
+       _audioClips.Clear();
     }
+
 }
