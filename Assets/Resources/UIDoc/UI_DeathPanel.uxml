@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement focusable="false" style="height: 100%; width: 100%; background-color: rgba(0, 0, 0, 0.5); -unity-text-align: upper-center; transform-origin: left;">
+        <ui:Label text="死" display-tooltip-when-elided="true" style="left: 0; top: 25%; right: 0; bottom: 0; -unity-text-align: middle-center; font-size: 400px; -unity-font: url(&apos;project://database/Assets/Font/GabiaBombaram/gabia_bombaram.otf?fileID=12800000&amp;guid=42bb642905ac6ed448d8c60b58eee848&amp;type=3#gabia_bombaram&apos;); height: auto; width: 100%; color: rgb(183, 0, 0); transform-origin: center;" />
+    </ui:VisualElement>
+</ui:UXML>

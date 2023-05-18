@@ -57,13 +57,10 @@ namespace AttackDecals
                 stat.Damage(damage, attacker);
             }
 
+            attacker.RemoveState(CharacterState.Hold);
             if (isLast)
             {
                 attacker.RemoveState(CharacterState.Attack);
-            }
-            else
-            {
-                attacker.RemoveState(CharacterState.Hold);
             }
             Define.GetManager<ResourceManager>().Destroy(this.gameObject);
         }
