@@ -185,10 +185,13 @@ namespace Core
 
         public static void Attack(Vector3 pos, Vector3 size, float damage, float delay, CharacterActor attacker, bool isLast = false)
         {
+            var block = GetBlock(pos.SetY(0));
+            if (block == null)
+                return;
             var resourceManager = Define.GetManager<ResourceManager>();
             var decalObj = resourceManager.Instantiate("AttackDecal");
-            decalObj.transform.position = pos.SetY(0.5f);
-
+            decalObj.transform.position = pos.SetY(0f);
+            decalObj.transform.SetParent(block.transform.GetChild(0).GetChild(0));
             var rect = new Rect(new Vector2(pos.x - size.x / 2, pos.z - size.z / 2), new Vector2(size.x, size.z));
             
 

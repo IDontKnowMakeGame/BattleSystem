@@ -28,7 +28,7 @@ namespace AttackDecals
         public void Attack(Rect _rect, CharacterActor _attacker, float _damage, float delay, bool isLast = false)
         {
             rect = _rect;
-            decalProjector.size = new Vector3(rect.width, rect.height, 0.01f);
+            decalProjector.size = new Vector3(rect.width + 0.2f, rect.height + 0.2f, 1.2f);
             attacker = _attacker;
             damage = _damage;
             fill = 1f;
