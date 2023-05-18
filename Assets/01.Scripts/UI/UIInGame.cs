@@ -32,6 +32,8 @@ public class UIInGame : UIBase
         public ItemID id;
         public int cnt;
     }
+    private float _itemTime = 0;
+    private float _hideItemTime = 2.3f;
     private bool _showItemPanel = false;
 
     private bool flagCool = true;
@@ -102,6 +104,7 @@ public class UIInGame : UIBase
         FirstWeaponCoolTime();
         SecondWeaponCoolTime();
         AddFeatherEffect();
+        GetItemUpdate();
     }
     public void ChangeWeaponPanel()
     {
@@ -234,11 +237,21 @@ public class UIInGame : UIBase
         _interactionBox.style.display = DisplayStyle.None;
     }
 
+   public void GetItemUpdate()
+    {
+        _itemTime += Time.deltaTime;
+
+        if (_itemTime > _hideItemTime)
+            if (_showItemPanel)
+                HideItemPanel();
+            else
+                AddShowItemPanel();
+    }
     public void AddShowItemPanel()
     {
         if (_showItemPanel || _itemQueue.Count <= 0) return;
 
-
+        _itemTime = 0;
         _showItemPanel = true;
         Pair pair = _itemQueue.Dequeue();
         _itemPanel.Q<VisualElement>("Image").style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)pair.id}"));
@@ -253,9 +266,9 @@ public class UIInGame : UIBase
     }
     public void HideItemPanel()
     {
+        _itemTime = 0;
         _showItemPanel = false;
         _itemPanel.AddToClassList("HideItemPanel");
-        AddShowItemPanel();
     }
 
     public void ChangeWeaponCoolTime()
