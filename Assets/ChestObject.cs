@@ -30,22 +30,35 @@ public class ChestObject : InteractionActor
             _particle.gameObject.SetActive(false);
             direction.Play();
             isOpen = true;
-        }
-    }
-
-	public override void Interact()
-	{
-		if (isOpen)
 			return;
-		if (InGame.Player.Position.IsNeighbor(Position) == false) return;
+        }
+
+		characterDetect.EnterDetect += ShowInteration;
+		characterDetect.ExitDetect += HideInteration;
+    }
+    public void ShowInteration(Vector3 vec)
+    {
+        UIManager.Instance.InGame.ShowInteraction();
+    }
+    public void HideInteration(Vector3 vec)
+    {
+        UIManager.Instance.InGame.HideInteraction();
+    }
+    public override void Interact()
+	{
+		if (isOpen) return;
+        if (InGame.Player.Position.IsNeighbor(Position) == false) return;
 		base.Interact();
 		var particle = _particle.main;
 		particle.loop = false;
 		//_particle.gameObject.SetActive(false);
 		direction.Play();
 		isOpen = true;
-		Define.GetManager<DataManager>().OpenChest(int.Parse(gameObject.name));
 
+		Define.GetManager<DataManager>().OpenChest(int.Parse(gameObject.name));
+        characterDetect.EnterDetect -= ShowInteration;
+        characterDetect.ExitDetect -= HideInteration;
+		HideInteration(Vector2.zero);
     }
 
 	public void ChestEnd()
