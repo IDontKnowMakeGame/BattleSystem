@@ -227,7 +227,7 @@ MonoBehaviour:
   _criticalColor: {r: 1, g: 0, b: 0, a: 1}
   sizeUptime: 0.2
   sizeDowntime: 0.2
-  xTime: 0.35
+  xTime: 0.5
   fadeTime: 1
   upValue: 0.2
   upTime: 1
