@@ -24,7 +24,9 @@ public class OldTwinSword : TwinSword
 	{
 		if (_isCoolTime)
 			return;
-		Vector3 vector = InGame.CamDirCheck(vec);
+
+		Debug.Log("?");
+		Vector3 vector = InGame.CamDirCheck(DirReturn(vec));
 		_isCoolTime = true;
 		GameObject obj = Define.GetManager<ResourceManager>().Instantiate("TwinSword-Slash");
 		obj.transform.position = _characterActor.Position + vector + Vector3.up;
