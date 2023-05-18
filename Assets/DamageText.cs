@@ -39,7 +39,6 @@ public class DamageText : Actor
 
 	public float upTime;
 
-
 	private Sequence _seq;
 
 	protected override void Init()
@@ -51,7 +50,7 @@ public class DamageText : Actor
 	{
 		_effect.Play();
 
-		Vector3 vec = Random.insideUnitSphere/3 + pos;
+		Vector3 vec = Random.insideUnitSphere/2 + pos;
 		vec.y = vec.y < 1 ? 1 : vec.y;
 		transform.position = new Vector3(vec.x, vec.y, vec.z);
 

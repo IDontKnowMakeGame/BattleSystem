@@ -60,7 +60,10 @@ public class PlayerEquipment : CharacterEquipmentAct
 			EquipAnimation();
 
 		if (_halos[0] != ItemID.None)
+		{
+			Debug.Log("SetEnable");
 			_haloRanderer.SetHalo(_halos[0]);
+		}
 	}
 
 	public override void Start()
@@ -76,7 +79,11 @@ public class PlayerEquipment : CharacterEquipmentAct
 		_halos = Define.GetManager<DataManager>().LoadHaloListInUserData();
 
 		if (_halos[0] != ItemID.None)
+		{
+			Debug.Log("SetStat");
+			_haloRanderer.UnEqupmentHalo();
 			_haloRanderer.SetHalo(_halos[0]);
+		}
 
 		foreach(ItemID haloID in _halos)
         {
