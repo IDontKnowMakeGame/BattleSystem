@@ -14,6 +14,7 @@ namespace Actors.Characters.Player
         [SerializeField] private PlayerAttack _playerAttack;
         [SerializeField] private PlayerUseAbleItem _playerUseAbleItem;
         [SerializeField] private PlayerBuff _playerBuff;
+        [SerializeField] private PlayerFlooding _playerFlooding;
 
 		protected override void Init()
         { 
@@ -25,6 +26,7 @@ namespace Actors.Characters.Player
             AddAct(_playerAttack);
             AddAct(_playerUseAbleItem);
             AddAct(_playerBuff);
+            AddAct(_playerFlooding);
             InGame.Player = this;
         }
 

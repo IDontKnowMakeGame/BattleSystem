@@ -27,13 +27,13 @@ namespace ETC
         {
             //InGame.Player.StopAllCoroutines();
             //Destroy(InGame.Player.gameObject);
-            DOTween.KillAll();
+            //DOTween.KillAll();
             Sequence seq = DOTween.Sequence();
             seq.Append(DOTween.To(() => vignette.intensity.value, x => vignette.intensity.value = x, 0.8f, 1.5f).SetEase(Ease.Linear));
             seq.AppendCallback(() =>
             {
-                DOTween.CompleteAll();
                 LoadingSceneController.Instnace.StartCoroutine(LoadingSceneController.Instnace.LoadScene("Lobby", 1f));
+                DOTween.CompleteAll();
                 DOTween.KillAll();
                 DOTween.Kill(seq);
             });
