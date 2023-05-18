@@ -147,27 +147,7 @@ public class Weapon : EquiqmentItem
 
 	public override void Update()
 	{
-
 		Timer();
-		//if(_input)
-		//{
-		//	if(Input.GetKeyDown(KeyCode.W))
-		//	{
-		//		STimeInputSkill(Vector3.forward);
-		//	}
-		//	if (Input.GetKeyDown(KeyCode.S))
-		//	{
-		//		STimeInputSkill(Vector3.back);
-		//	}
-		//	if (Input.GetKeyDown(KeyCode.A))
-		//	{
-		//		STimeInputSkill(Vector3.left);
-		//	}
-		//	if (Input.GetKeyDown(KeyCode.D))
-		//	{
-		//		STimeInputSkill(Vector3.right);
-		//	}
-		//}
 	}
 	protected void Timer()
 	{
