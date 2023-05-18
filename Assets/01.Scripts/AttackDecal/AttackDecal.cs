@@ -54,7 +54,7 @@ namespace AttackDecals
                     continue;
                 var stat = actor.GetAct<CharacterStatAct>();
                 
-                stat.Damage(damage, attacker);
+                stat?.Damage(damage, attacker);
             }
 
             attacker.RemoveState(CharacterState.Hold);
