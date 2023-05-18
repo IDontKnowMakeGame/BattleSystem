@@ -81,7 +81,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 		if (_halos[0] != ItemID.None)
 		{
 			Debug.Log("SetStat");
-			_haloRanderer.UnEqupmentHalo();
+			_haloRanderer.DelHalo();
 			_haloRanderer.SetHalo(_halos[0]);
 		}
 

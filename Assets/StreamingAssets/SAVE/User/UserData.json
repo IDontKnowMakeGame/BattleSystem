@@ -3,7 +3,7 @@
     "feather": 15080,
     "firstWeapon": 3,
     "secondWeapon": 5,
-    "firstHalo": 0,
+    "firstHalo": 100,
     "secondHalo": 0,
     "thirdHalo": 0,
     "equipUseableItem": {

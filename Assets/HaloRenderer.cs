@@ -57,11 +57,11 @@ public class HaloRenderer : MonoBehaviour
 
 	private void Start()
 	{
-		foreach (HaloAnimator halo in _haloAnimators)
-		{
-			if (halo.State == HaloAnimationState.None)
-				halo.AnimatorStop();
-		}
+		//foreach (HaloAnimator halo in _haloAnimators)
+		//{
+		//	if (halo.State == HaloAnimationState.None)
+		//		halo.AnimatorStop();
+		//}
 	}
 
 	private void Update()
@@ -128,8 +128,7 @@ public class HaloRenderer : MonoBehaviour
 
 	public void SetHalo(ItemID id)
 	{
-		Debug.Log((ItemID)id);
-		Debug.Log(_haloAnimators[0].animationsInfo.animatoins[0].materials[0].name);
+		Debug.Log("SetHalo");
 		_haloAnimators[0].animationsInfo = _animations[id];
 		_haloAnimators[0].SetTexture();
 	}
