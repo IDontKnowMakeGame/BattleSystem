@@ -62,6 +62,9 @@ public class LoadingSceneController : MonoBehaviour
     [SerializeField]
     private ToolTipListSO writeToolTipList;
 
+    [SerializeField]
+    private GameObject ui;
+
     private string loadSceneName;
 
     public bool isLoading = false;
@@ -71,7 +74,7 @@ public class LoadingSceneController : MonoBehaviour
         if (isLoading) yield break;
         isLoading = true;
         yield return new WaitForSeconds(timer);
-        gameObject.SetActive(true);
+        ui.SetActive(true);
         SceneManager.sceneLoaded += OnSceneLoaded;
         loadSceneName = sceneName;
         StartCoroutine(LoadSceneProcess());
@@ -136,7 +139,7 @@ public class LoadingSceneController : MonoBehaviour
 
         if (!isFadeIn)
         {
-            //gameObject.SetActive(false);
+            ui.SetActive(false);
         }
     }
 }

@@ -93,10 +93,6 @@ namespace Managements
             {
                 _managers.Remove(thisType);
             }
-            else
-            {
-                Debug.LogError($"This unit doesn't have {thisType}.");
-            }
         }
 
         public T GetManager<T>() where T : Manager
