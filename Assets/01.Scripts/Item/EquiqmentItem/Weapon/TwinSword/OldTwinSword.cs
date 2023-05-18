@@ -30,7 +30,8 @@ public class OldTwinSword : TwinSword
 		obj.transform.position = _characterActor.Position + vector + Vector3.up;
 		for (int i = 0; i < 6; i++)
 		{
-			Define.GetManager<MapManager>().AttackBlock(_characterActor.Position + vector, info.Atk, i * 0.2f, _characterActor, MovementType.None, true);
+			//Define.GetManager<MapManager>().AttackBlock(_characterActor.Position + vector, info.Atk, i * 0.2f, _characterActor, MovementType.None, true);
+			InGame.Attack(_characterActor.Position + vector, new Vector3(1, 0, 1), info.Atk, i * 0.2f, _characterActor, true);
 			_characterActor.GetAct<PlayerAnimation>().Play("Skill");
 		}
 		_characterActor.StartCoroutine(SkillCorutine());

@@ -33,7 +33,7 @@ namespace ETC
             seq.AppendCallback(() =>
             {
                 DOTween.CompleteAll();
-                LoadingSceneController.Instnace.LoadScene("Lobby");
+                LoadingSceneController.Instnace.StartCoroutine(LoadingSceneController.Instnace.LoadScene("Lobby", 1f));
                 DOTween.KillAll();
                 DOTween.Kill(seq);
             });

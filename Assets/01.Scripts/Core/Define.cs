@@ -7,6 +7,8 @@ using Managements;
 using Managements.Managers;
 using UnityEngine;
 using Actors.Characters.Player;
+using AttackDecals;
+using Blocks.Acts;
 using Cinemachine;
 
 namespace Core
@@ -179,6 +181,26 @@ namespace Core
                 direction.z = direction.z * cameraDir.z;
             }
             return direction;
+        }
+
+        public static void Attack(Vector3 pos, Vector3 size, float damage, float delay, CharacterActor attacker, bool isLast = false)
+        {
+            var resourceManager = Define.GetManager<ResourceManager>();
+            var decalObj = resourceManager.Instantiate("AttackDecal");
+            decalObj.transform.position = pos.SetY(0.5f);
+
+            var rect = new Rect(new Vector2(pos.x - size.x / 2, pos.z - size.z / 2), new Vector2(size.x, size.z));
+            
+
+            var decal = decalObj.GetComponent<AttackDecal>();
+            decal.Attack(rect, attacker, damage, delay, isLast);
+        }
+
+        public static void ShakeBlock(Vector3 pos, float duration, MovementType type)
+        {
+            var block = GetBlock(pos);
+
+            block?.Shake(duration, type);
         }
     }
 

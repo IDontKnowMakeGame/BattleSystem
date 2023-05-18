@@ -18,12 +18,12 @@
         {
             "name": "Spear",
             "level": 0,
-            "killedCount": 5
+            "killedCount": 1
         },
         {
             "name": "Bow",
             "level": 0,
-            "killedCount": 24
+            "killedCount": 23
         }
     ]
 }
