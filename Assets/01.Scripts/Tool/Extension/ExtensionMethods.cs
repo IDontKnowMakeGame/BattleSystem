@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Blocks;
 using Core;
 using Managements.Managers;
@@ -889,6 +890,16 @@ public static class ExtensionMethods
             if (pose.transform.position.z < minZ)
                 minZ = pose.transform.position.z;
         }
+        
+        return new []{new Vector3(minX, 0, maxZ), new Vector3(maxX, 0, minZ)};
+    }
+    
+    public static Vector3[] GetMaxMinVector3s(this Dictionary<Vector3, Block> poses)
+    {
+        var maxX = poses.OrderByDescending(value => value.Key.x).First().Key.x;
+        var maxZ = poses.OrderByDescending(value => value.Key.z).First().Key.z;
+        var minX = poses.OrderBy(value => value.Key.x).First().Key.x;
+        var minZ = poses.OrderBy(value => value.Key.z).First().Key.z;
         
         return new []{new Vector3(minX, 0, maxZ), new Vector3(maxX, 0, minZ)};
     }
