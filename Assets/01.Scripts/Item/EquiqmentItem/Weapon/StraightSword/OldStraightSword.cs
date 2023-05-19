@@ -2,10 +2,6 @@ using Actors.Characters;
 using Acts.Characters;
 using Acts.Characters.Player;
 using Core;
-using Managements.Managers;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class OldStraightSword : StraightSword
@@ -27,8 +23,8 @@ public class OldStraightSword : StraightSword
 		_characterActor.RemoveState(CharacterState.Skill);
 		PlayerMove move = _characterActor.GetAct<PlayerMove>();
 		move.IsSKill = true;
-		move.SkillDir = vec;
-		move.Move(_characterActor.Position + InGame.CamDirCheck(vec) * 2);
+		move.SkillDir = DirReturn(vec);
+		move.Move(_characterActor.Position + InGame.CamDirCheck(DirReturn(vec)) * 2);
 	}
 
 	protected override void SkillInputEnd(int i, Vector3 vec)
@@ -36,8 +32,7 @@ public class OldStraightSword : StraightSword
 		if (i != _characterActor.UUID)
 			return;
 
-
-		base.SkillInputEnd(i, vec);
+		base.SkillInputEnd(i, DirReturn(vec));
 		_characterActor.GetAct<PlayerMove>().IsSKill = false;
 		CharacterMove.OnMoveEnd -= SkillInputEnd;
 	}

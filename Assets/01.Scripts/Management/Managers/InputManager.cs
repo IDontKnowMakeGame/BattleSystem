@@ -71,10 +71,10 @@ namespace Managements.Managers
 
 		private static List<KeyboardInputData> _keyboardInputDatas = new()
 		{
-			new KeyboardInputData() { keyboardInput = KeyboardInput.MoveForward, keyCode = KeyCode.UpArrow },
-			new KeyboardInputData() { keyboardInput = KeyboardInput.MoveBackward, keyCode = KeyCode.DownArrow },
-			new KeyboardInputData() { keyboardInput = KeyboardInput.MoveLeft, keyCode = KeyCode.LeftArrow },
-			new KeyboardInputData() { keyboardInput = KeyboardInput.MoveRight, keyCode = KeyCode.RightArrow },
+			new KeyboardInputData() { keyboardInput = KeyboardInput.MoveForward, keyCode = KeyCode.W },
+			new KeyboardInputData() { keyboardInput = KeyboardInput.MoveBackward, keyCode = KeyCode.S },
+			new KeyboardInputData() { keyboardInput = KeyboardInput.MoveLeft, keyCode = KeyCode.A },
+			new KeyboardInputData() { keyboardInput = KeyboardInput.MoveRight, keyCode = KeyCode.D },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.AttackForward, keyCode = KeyCode.W },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.AttackBackward, keyCode = KeyCode.S },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.AttackLeft, keyCode = KeyCode.A },
@@ -217,6 +217,12 @@ namespace Managements.Managers
             {
 				OnPotionPress?.Invoke();
             }
+
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.Click)))
+			{
+				Vector3 vec = Input.mousePosition;
+				OnClickPress?.Invoke(vec);
+			}
 		}
 
 		private void InputRelease()
@@ -260,6 +266,12 @@ namespace Managements.Managers
 			{
 				OnSkillRelease?.Invoke();
 			}
+
+			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.Click)))
+			{
+				Vector3 vec = Input.mousePosition;
+				OnClickRelease?.Invoke(vec);
+			}
 		}
 
 		private void InputHold()
@@ -299,6 +311,12 @@ namespace Managements.Managers
 			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.Skill)))
 			{
 				OnSkillHold?.Invoke();
+			}
+
+			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.Click)))
+			{
+				Vector3 vec = Input.mousePosition;
+				OnClickHold?.Invoke(vec);
 			}
 		}
 

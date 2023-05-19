@@ -174,7 +174,7 @@ public class Bow : Weapon
 
 
 		_orginVec = vec;
-		_currentVec = InGame.CamDirCheck(vec);
+		_currentVec = InGame.CamDirCheck(DirReturn(vec));
 		_characterActor.AddState(CharacterState.StopMove);
 		_characterActor.AddState(CharacterState.Hold);
 
