@@ -102,6 +102,12 @@ namespace Managements.Managers
             return blocks;
         }
         
+        public static Dictionary<Vector3, Block> GetDictWithBlocks()
+        {
+            var blocks = GameObject.FindObjectsOfType<Block>();
+            return blocks.ToDictionary(block => block.transform.position.SetY(0));
+        }
+        
         public static Room[] GetRoomsOnMap()
         {
             var rooms = GameObject.FindObjectsOfType<Room>();

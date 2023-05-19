@@ -1,9 +1,6 @@
 using Actors.Characters;
 using Core;
-using Managements.Managers;
 using System.Collections;
-using System.Collections.Generic;
-using Blocks.Acts;
 using Acts.Characters.Player;
 using UnityEngine;
 
@@ -24,7 +21,8 @@ public class OldTwinSword : TwinSword
 	{
 		if (_isCoolTime)
 			return;
-		Vector3 vector = InGame.CamDirCheck(vec);
+
+		Vector3 vector = InGame.CamDirCheck(DirReturn(vec));
 		_isCoolTime = true;
 		GameObject obj = Define.GetManager<ResourceManager>().Instantiate("TwinSword-Slash");
 		obj.transform.position = _characterActor.Position + vector + Vector3.up;

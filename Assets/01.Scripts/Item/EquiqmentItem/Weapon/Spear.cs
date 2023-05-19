@@ -122,12 +122,12 @@ public class Spear : Weapon
 		if (!_isAttack && !_isDown)
 		{
 			_isAttack = true;
-			_characterActor.StartCoroutine(AttackCorutine(vec));
+			_characterActor.StartCoroutine(AttackCorutine(DirReturn(vec)));
 		}
-		else if (_isAttack && _isDown && InGame.CamDirCheck(vec) == _currentVec)
+		else if (_isAttack && _isDown && InGame.CamDirCheck(DirReturn(vec)) == _currentVec)
 		{
 			_isAttack = false;
-			_characterActor.StartCoroutine(AttackUpCorutine(vec));
+			_characterActor.StartCoroutine(AttackUpCorutine(DirReturn(vec)));
 		}
 	}
 

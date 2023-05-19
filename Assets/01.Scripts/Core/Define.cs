@@ -187,7 +187,11 @@ namespace Core
         {
             var block = GetBlock(pos.SetY(0));
             if (block == null)
+            {
+                var state = CharacterState.Hold | CharacterState.Attack;
+                attacker.RemoveState(state);
                 return;
+            }
             var resourceManager = Define.GetManager<ResourceManager>();
             var decalObj = resourceManager.Instantiate("AttackDecal");
             decalObj.transform.position = pos.SetY(0f);
