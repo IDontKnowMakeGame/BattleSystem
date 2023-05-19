@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Blocks;
+using Managements;
 using Managements.Managers;
+using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 namespace Tool.Map.Controll
@@ -16,8 +20,10 @@ namespace Tool.Map.Controll
         private static Vector3[] mapPoses;
         private Dictionary<Vector3, Block> selectedBlocks = new();
         private Dictionary<Vector3, Vector2> blockPosDic = new();
+        private static Rooms.Room[] rooms;
 
-        private float space = 3f;
+        private float space;
+        private int spaceIdx = 2;
         private int idx = 1;
 
         private Vector3 mouseStartPos;
@@ -28,6 +34,7 @@ namespace Tool.Map.Controll
         public static void ShowWindow()
         {
             blocks = MapManager.GetDictWithBlocks();
+            rooms = MapManager.GetRoomsOnMap();
             mapPoses = blocks.GetMaxMinVector3s();
             
             MapControllers window = (MapControllers)EditorWindow.GetWindow(typeof(MapControllers));
@@ -44,14 +51,19 @@ namespace Tool.Map.Controll
             GetArea();
             ShowBlocks();
 
+            idx = 0;
             ShowToggleBtn(7);
+            ShowRoomCreator(7);
+            ShowSwitchCamera(7);
 
+            CheckCharacter();
             DragHandle();
         }
 
-        private void ShowToggleBtn(float _height)
+        private void ShowToggleBtn(int _height)
         {
-            var toggleBtnRect = new Rect((mapPoses[1].x) * width + 50, height * idx * space, 300, height * _height);
+            var index = idx * height;
+            var toggleBtnRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index, 300, height * _height);
             if (GUI.Button(toggleBtnRect, "Toggle"))
             {
                 foreach (var block in selectedBlocks)
@@ -59,6 +71,87 @@ namespace Tool.Map.Controll
                     block.Value.ToggleIsWalkable();
                 }
                 selectedBlocks.Clear();
+            }
+
+            idx += _height + spaceIdx;
+        }
+
+        private string roomText;
+        private void ShowRoomCreator(int _height)
+        {
+            var index = idx * height;
+            var roomTextRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index, 300, height * _height * 0.33f);
+            roomText = GUI.TextField(roomTextRect, roomText);
+            var roomBtnRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index + (height * _height * 0.33f), 300, height * _height * 0.66f);
+            if (GUI.Button(roomBtnRect, "Create Room"))
+            {
+                var parentTrm = new GameObject(roomText).transform;
+                parentTrm.AddComponent<Rooms.Room>();
+                var rootTrm = GameObject.Find("MapTiled").transform;
+                parentTrm.SetParent(rootTrm);
+                foreach (var block in selectedBlocks.Values)
+                {
+                    block.transform.SetParent(parentTrm);
+                }
+                selectedBlocks.Clear();
+                rooms = MapManager.GetRoomsOnMap();
+            }
+            idx += _height + spaceIdx;
+            
+            var roomListRect = new Rect((mapPoses[1].x) * width + 375, height * 3, 150, position.height);
+            GUI.Box(roomListRect, "");
+            Vector2 scrollPos = Vector2.zero;
+            scrollPos = GUI.BeginScrollView(roomListRect, scrollPos, new Rect(0, 0, 150, height * 82));
+            if(rooms == null)
+                rooms = MapManager.GetRoomsOnMap();
+            var roomList = rooms.ToList();
+            foreach (var room in roomList)
+            {
+                var roomRect = new Rect(0, roomList.IndexOf(room) * height * 2, 150, height * 2);
+                if (GUI.Button(roomRect, room.name))
+                {
+                    selectedBlocks.Clear();
+                    foreach (Transform child in room.transform)
+                    {
+                        selectedBlocks.Add(child.transform.position.SetY(0), child.GetComponent<Block>());
+                    }
+                }
+            }
+            GUI.EndScrollView();
+        }
+
+        private void ShowSwitchCamera(int _height)
+        {
+            var index = idx * height;
+            var cameraBtnRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index, 300, height * _height);
+            if (GUI.Button(cameraBtnRect, "Toggle Switch Camera"))
+            {
+                foreach (var block in selectedBlocks)
+                {
+                    block.Value.ToggleHasSwitchCamera();
+                    block.Value.isWalkable = block.Value.HasSwitchCamera;
+                }
+                selectedBlocks.Clear();
+            }
+        }
+
+        private void CheckCharacter()
+        {
+            foreach (var block in blocks)
+            {
+                var thisRect = new Rect(blockPosDic[block.Key], new Vector2(width, height));
+                if (thisRect.Contains(Event.current.mousePosition))
+                {
+                    var mousePos = Event.current.mousePosition;
+                    var characters =
+                        GameManagement.Instance.SpawnCharacters.Where(x =>
+                            x.Position == block.Value.transform.position.SetY(1));
+                    var character = characters.FirstOrDefault();
+                    if (character == null)
+                        continue;
+                    var name = character.Prefab.name;
+                    GUI.Box(new(mousePos.x, mousePos.y, name.Length * 10, 20), name);
+                }
             }
         }
 
@@ -97,7 +190,6 @@ namespace Tool.Map.Controll
                     {
                         selectedBlocks.Add(block.Key, block.Value);
                     }
-
                 }
             }
             if (Event.current.type == EventType.MouseUp && Event.current.button == 0)
@@ -124,6 +216,7 @@ namespace Tool.Map.Controll
             mapRect = new Rect(mapPoses[0].x * width, -mapPoses[0].z * height,
                 (mapPoses[1].x) * width,
                 (-mapPoses[1].z) * height);
+            space = spaceIdx * height;
         }
 
         private void ShowBlocks()
@@ -136,6 +229,10 @@ namespace Tool.Map.Controll
                 var color = Color.green;
                 if (block.Value.isWalkable == false)
                     color = Color.red;
+                if(block.Value.HasSwitchCamera)
+                    color = Color.magenta;
+                if(GameManagement.Instance.SpawnCharacters.Any(x => x.Position == block.Value.transform.position.SetY(1)))
+                    color = Color.white;
                 if(selectedBlocks.ContainsKey(block.Key))
                     color = Color.yellow;
                 GUI.backgroundColor = color;
