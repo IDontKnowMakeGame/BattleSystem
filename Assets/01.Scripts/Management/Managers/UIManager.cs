@@ -68,10 +68,10 @@ public class UIManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            InGame.AddShowItemPanel(ItemID.OldStraightSword);
+/*            InGame.AddShowItemPanel(ItemID.OldStraightSword);
             InGame.AddShowItemPanel(ItemID.HaloOfPollution);
             InGame.AddShowItemPanel(ItemID.Torch);
-            InGame.AddShowItemPanel(ItemID.Shield);
+            InGame.AddShowItemPanel(ItemID.Shield);*/
         }
         if (Input.GetKeyDown(KeyCode.B))
         {
