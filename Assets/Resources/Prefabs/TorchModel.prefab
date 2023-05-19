@@ -226,6 +226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6120501859065674873}
   - component: {fileID: -2287614329107487414}
+  - component: {fileID: 4352445390957698027}
   m_Layer: 0
   m_Name: TorchModel
   m_TagString: Untagged
@@ -263,6 +264,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isUsing: 0
+--- !u!114 &4352445390957698027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4957586451504964055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b666dafe82eddd74782e6b4577df85b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &130311852999035421
 PrefabInstance:
   m_ObjectHideFlags: 0
