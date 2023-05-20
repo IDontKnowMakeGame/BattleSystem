@@ -89,8 +89,12 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                     InGame.ShakeBlock(attackPos, DefaultStat.Ats, MovementType.Shake);
                     block = Define.GetManager<MapManager>().GetBlock(attackPos);
                     if (block != null)
+                    {
+                        Define.GetManager<SoundManager>().PlayAtPoint("Boss/explosion", block.transform, 1);
                         if (block.isWalkable)
                             count++;
+                    }
+
                 }
 
                 if (count == 0)

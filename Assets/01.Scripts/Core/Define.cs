@@ -15,6 +15,13 @@ namespace Core
 {
     public static class Define
     {
+        public enum Sound
+        {
+            Bgm,
+            Effect,
+            MaxCount,
+        }
+
         private static Camera _mainCamera;
 
         public static Camera MainCamera
@@ -198,6 +205,7 @@ namespace Core
             var resourceManager = Define.GetManager<ResourceManager>();
             var decalObj = resourceManager.Instantiate("AttackDecal");
             decalObj.transform.position = pos.SetY(0f);
+            decalObj.transform.rotation = Quaternion.identity;
             decalObj.transform.SetParent(block.transform.GetChild(0).GetChild(0));
             var rect = new Rect(new Vector2(pos.x - size.x / 2, pos.z - size.z / 2), new Vector2(size.x, size.z));
             
@@ -212,6 +220,8 @@ namespace Core
 
             block?.Shake(duration, type);
         }
+
+
     }
 
 }
