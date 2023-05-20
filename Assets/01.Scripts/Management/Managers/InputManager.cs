@@ -20,7 +20,6 @@ namespace Managements.Managers
 		Skill,
 		SubKey,
 		ChangeKey,
-		OffKey,
 		TestChangeKey,
 		Interaction,
 		Slot01,
@@ -56,7 +55,7 @@ namespace Managements.Managers
 
 		public static event Action OnSubPress;
 		public static event Action OnChangePress;
-		public static event Action OnOffPress;
+		//public static event Action OnOffPress;
 		public static event Action OnTestChangePress;
 		public static event Action OnInteractionPress;
 
@@ -84,7 +83,6 @@ namespace Managements.Managers
 			new KeyboardInputData() { keyboardInput = KeyboardInput.ChangeKey, keyCode = KeyCode.R },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.TestChangeKey, keyCode = KeyCode.T },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.Interaction, keyCode = KeyCode.E },
-			new KeyboardInputData() { keyboardInput = KeyboardInput.OffKey, keyCode = KeyCode.Q },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.Click, keyCode = KeyCode.Mouse0 },
 
 			new KeyboardInputData() { keyboardInput = KeyboardInput.Slot01, keyCode = KeyCode.Alpha1 },
@@ -172,11 +170,6 @@ namespace Managements.Managers
 			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.ChangeKey)))
 			{
 				OnChangePress?.Invoke();
-			}
-
-			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.OffKey)))
-			{
-				OnOffPress?.Invoke();
 			}
 
 			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.TestChangeKey)))
@@ -353,7 +346,6 @@ namespace Managements.Managers
 			OnSkillHold = null;
 			OnSubPress = null;
 			OnChangePress = null;
-			OnOffPress = null;
 			OnTestChangePress = null;
 			OnInteractionPress = null;
 			OnItemPress = null;
