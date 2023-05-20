@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class soundEffectobj : MonoBehaviour
 {
-    public void Play(AudioClip audioClip, float _pitch)
+    public void PlayEffect(AudioClip audioClip, float _pitch)
     {
         Debug.Log(audioClip);
         AudioSource audioSource = this.GetComponent<AudioSource>();
+        audioSource.clip = null;
         audioSource.pitch = _pitch;
         audioSource.PlayOneShot(audioClip);
         Invoke("EndClip", audioClip.length);

@@ -28,7 +28,6 @@ public class SoundManager : Manager
             go.transform.parent = root.transform;
         }
         audioSources[(int)Define.Sound.Bgm].loop = true;
-
         soundObj = Define.GetManager<ResourceManager>().Load<GameObject>("Prefabs/SoundEffectObj");
         Define.GetManager<PoolManager>().CreatePool(soundObj, 10);
     }
@@ -48,10 +47,8 @@ public class SoundManager : Manager
         if (audioClip == null) return;
 
         var go = Define.GetManager<PoolManager>().Pop(soundObj, _transform);
-        Debug.Log(go);
-        go.gameObject.GetComponent<soundEffectobj>().Play(audioClip, pitch);
+        go.gameObject.GetComponent<soundEffectobj>().PlayEffect(audioClip, pitch);
 
-        //Define.GetManager<PoolManager>().Push(go.GetComponent<Poolable>());
     }
 
     public void PlayAtPoint(string path, Transform _transform, float pitch = 1.0f)
@@ -92,7 +89,6 @@ public class SoundManager : Manager
             path = $"Sounds/{path}";
         }
         AudioClip clip = null;
-
         if(type == Define.Sound.Bgm)
         {
             clip = Define.GetManager<ResourceManager>().Load<AudioClip>(path);

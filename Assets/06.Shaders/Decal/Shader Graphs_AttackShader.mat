@@ -40,7 +40,7 @@ Material:
     - _DecalMeshViewBias: 0
     - _DrawOrder: 0
     - _FILLMETHOD: 0
-    - _Fill: 0
+    - _Fill: 0.436832
     - _PI: 3.141593
     - _Rotation: 0
     m_Colors:
