@@ -150,6 +150,12 @@ public class Bow : Weapon
 		if (isEnemy)
 			return;
 		InputManager<Bow>.OnClickPress -= Shoot;
+
+		_currentTimer = 0;
+		_isCharge = false;
+		_characterActor.RemoveState(CharacterState.StopMove);
+		_characterActor.RemoveState(CharacterState.Hold);
+		_sliderObject.SliderActive(false);
 	}
 
 	public override void Update()
