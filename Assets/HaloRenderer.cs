@@ -129,7 +129,7 @@ public class HaloRenderer : MonoBehaviour
 	public void SetHalo(ItemID id)
 	{
 		Debug.Log((ItemID)id);
-		Debug.Log(_haloAnimators[0].animationsInfo.animatoins[0].materials[0].name);
+		//Debug.Log(_haloAnimators[0].animationsInfo.animatoins[0].materials[0].name);
 		_haloAnimators[0].animationsInfo = _animations[id];
 		_haloAnimators[0].SetTexture();
 	}

@@ -93,6 +93,7 @@ public class UIDialog : UIBase
     }
     public void NextMessage()
     {
+        if (isPlayDialog == false) return;
         if(isPlayLineText)
         {
             UIManager.Instance.StopCoroutine(textLineCoroutine);
