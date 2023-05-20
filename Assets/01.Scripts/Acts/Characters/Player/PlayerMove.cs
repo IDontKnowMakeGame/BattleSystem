@@ -172,6 +172,9 @@ namespace Acts.Characters.Player
                 _playerAnimation.Play("Idle");
             }
 
+            MapManager _map = Define.GetManager<MapManager>();
+            bool mode = _map.GetBlock(ThisActor.Position).isWarm;
+            ThisActor.GetAct<PlayerFlooding>().ChangeWarmMode(mode);
             dust.Stop();
             base.MoveStop();
             //QuestManager.Instance.CheckRoomMission(ThisActor.Position);
