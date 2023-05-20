@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Actors.Characters;
 using Blocks;
 using Managements;
 using Managements.Managers;
@@ -20,7 +21,9 @@ namespace Tool.Map.Controll
         private static Vector3[] mapPoses;
         private Dictionary<Vector3, Block> selectedBlocks = new();
         private Dictionary<Vector3, Vector2> blockPosDic = new();
+        public static Dictionary<Vector3, GameObject> SpawnCharacters = new();
         private static Rooms.Room[] rooms;
+        private static GameObject[] enemies;
 
         private float space;
         private int spaceIdx = 2;
@@ -35,8 +38,15 @@ namespace Tool.Map.Controll
         {
             blocks = MapManager.GetDictWithBlocks();
             rooms = MapManager.GetRoomsOnMap();
-            mapPoses = blocks.GetMaxMinVector3s();
+            var objects = Resources.LoadAll("Prefabs/Enemies");
+            enemies = new GameObject[objects.Length];
+            for (int i = 0; i < objects.Length; i++)
+            {
+                enemies[i] = (GameObject)objects[i];
+            }
             
+            mapPoses = blocks.GetMaxMinVector3s();
+            SpawnCharacters = GameManagement.Instance.SpawnCharacters.ToDictionary(x => x.Position.SetY(0), y => y.Prefab);
             MapControllers window = (MapControllers)EditorWindow.GetWindow(typeof(MapControllers));
             window.Show();
         }
@@ -55,9 +65,57 @@ namespace Tool.Map.Controll
             ShowToggleBtn(7);
             ShowRoomCreator(7);
             ShowSwitchCamera(7);
+            ShowEnemyList();
 
             CheckCharacter();
             DragHandle();
+        }
+
+        Vector2 scrollPos2 = Vector2.zero;
+        private void ShowEnemyList()
+        {
+            var index = idx * height;
+            var enemyList = enemies.ToList();
+            var enemyListRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index + space, 300, height * 2 * (enemyList.Count + 1));
+            GUI.Box(enemyListRect, "");
+            scrollPos2 = GUI.BeginScrollView(enemyListRect, scrollPos2, new Rect(0, 0, 300, height * (enemyList.Count + 1)));
+            var listHeight = 0f;
+            foreach (var enemy in enemyList)
+            {
+                listHeight = enemyList.IndexOf(enemy) * height * 2;
+                var enemyRect = new Rect(0, listHeight, 300, height * 2);
+                if (GUI.Button(enemyRect, enemy.name))
+                {
+                    foreach (var block in selectedBlocks)
+                    {
+                        if (SpawnCharacters.ContainsKey(block.Key))
+                        {
+                            continue;
+                        }
+                        var spawnCharacter = new SpawnCharacter
+                        {
+                            Position = block.Value.transform.position.SetY(1),
+                            Prefab = enemy
+                        };
+                        GameManagement.Instance.SpawnCharacters.Add(spawnCharacter);
+                        SpawnCharacters = GameManagement.Instance.SpawnCharacters.ToDictionary(x => x.Position.SetY(0), y => y.Prefab);
+                    }
+                    selectedBlocks.Clear();
+                }
+            }
+            listHeight += height * 2;
+            var enemyRect2 = new Rect(0, listHeight, 300, height * 2);
+            if (GUI.Button(enemyRect2, "Clear"))
+            {
+                foreach (var block in selectedBlocks)
+                {
+                    GameManagement.Instance.SpawnCharacters.Remove(GameManagement.Instance.GetSpawnCharacter(block.Value.transform.position.SetY(1)));
+                }
+                selectedBlocks.Clear();
+                SpawnCharacters = GameManagement.Instance.SpawnCharacters.ToDictionary(x => x.Position.SetY(0), y => y.Prefab);
+            }
+            GUI.EndScrollView();
+            idx += (enemyList.Count + spaceIdx) * 2;
         }
 
         private void ShowToggleBtn(int _height)
@@ -133,6 +191,46 @@ namespace Tool.Map.Controll
                 }
                 selectedBlocks.Clear();
             }
+
+            idx += _height;
+            index = idx * height;
+            if (selectedBlocks.Count > 0)
+            {
+                var firstSelectedBlock = selectedBlocks.First().Value;
+                if (firstSelectedBlock.HasSwitchCamera)
+                {
+                    var switchTitleVerticalRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index, 150, height * 2);
+                    var switchInputVerticalRect = new Rect((mapPoses[1].x) * width + 200, mapRect.y + index, 150, height * 2);
+                    GUI.Label(switchTitleVerticalRect, "Vertical Target Angle", EditorStyles.wordWrappedMiniLabel);
+                    firstSelectedBlock.switchCamera.VerticalTargetAngle = EditorGUI.FloatField(switchInputVerticalRect, firstSelectedBlock.switchCamera.VerticalTargetAngle);
+
+                    idx += 2;
+                    index = idx * height;
+
+                    var switchTitleHorizontalRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index, 150, height * 2);
+                    var switchInputHorizontalRect = new Rect((mapPoses[1].x) * width + 200, mapRect.y + index, 150, height * 2);
+                    GUI.Label(switchTitleHorizontalRect, "Horizontal Target Angle", EditorStyles.wordWrappedMiniLabel);
+                    firstSelectedBlock.switchCamera.HorizontalTargetAngle = EditorGUI.FloatField(switchInputHorizontalRect, firstSelectedBlock.switchCamera.HorizontalTargetAngle);
+                    
+                    idx += 2;
+                    index = idx * height;
+            
+                    var switchTitleTargetFovRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index, 150, height * 2);
+                    var switchInputTargetFovRect = new Rect((mapPoses[1].x) * width + 200, mapRect.y + index, 150, height * 2);
+                    GUI.Label(switchTitleTargetFovRect, "Target Fov", EditorStyles.wordWrappedMiniLabel);
+                    firstSelectedBlock.switchCamera.TargetFov = EditorGUI.FloatField(switchInputTargetFovRect, firstSelectedBlock.switchCamera.TargetFov);
+            
+                    idx += 2;
+                    index = idx * height;
+                    
+                    var switchTitleDurationRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index, 150, height * 2);
+                    var switchInputDurationRect = new Rect((mapPoses[1].x) * width + 200, mapRect.y + index, 150, height * 2);
+                    GUI.Label(switchTitleDurationRect, "Duration", EditorStyles.wordWrappedMiniLabel);
+                    firstSelectedBlock.switchCamera.Duration = EditorGUI.FloatField(switchInputDurationRect, firstSelectedBlock.switchCamera.Duration);
+                    
+                    idx += 2;
+                }
+            }
         }
 
         private void CheckCharacter()
@@ -143,13 +241,10 @@ namespace Tool.Map.Controll
                 if (thisRect.Contains(Event.current.mousePosition))
                 {
                     var mousePos = Event.current.mousePosition;
-                    var characters =
-                        GameManagement.Instance.SpawnCharacters.Where(x =>
-                            x.Position == block.Value.transform.position.SetY(1));
-                    var character = characters.FirstOrDefault();
-                    if (character == null)
+                    if(SpawnCharacters.ContainsKey(block.Key) == false)
                         continue;
-                    var name = character.Prefab.name;
+                    var characters = SpawnCharacters[block.Key];
+                    var name = characters.name;
                     GUI.Box(new(mousePos.x, mousePos.y, name.Length * 10, 20), name);
                 }
             }
@@ -231,14 +326,14 @@ namespace Tool.Map.Controll
                     color = Color.red;
                 if(block.Value.HasSwitchCamera)
                     color = Color.magenta;
-                if(GameManagement.Instance.SpawnCharacters.Any(x => x.Position == block.Value.transform.position.SetY(1)))
+                if(SpawnCharacters.ContainsKey(block.Key))
                     color = Color.white;
                 if(selectedBlocks.ContainsKey(block.Key))
                     color = Color.yellow;
                 GUI.backgroundColor = color;
-                var rect = new Rect(block.Key.x * width, -block.Key.z * height, width, height);
+                var _rect = new Rect(block.Key.x * width, -block.Key.z * height, width, height);
 
-                if (GUI.Button(rect, ""))
+                if (GUI.Button(_rect, ""))
                 {
                     if(selectedBlocks.ContainsKey(block.Key))
                         selectedBlocks.Remove(block.Key);
@@ -249,7 +344,7 @@ namespace Tool.Map.Controll
                 }
                 
                 GUI.backgroundColor = oldColor;
-                blockPosDic[block.Key] = rect.position;
+                blockPosDic[block.Key] = _rect.position;
             }
         }
     }
