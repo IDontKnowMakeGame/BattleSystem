@@ -70,7 +70,7 @@ public class Spear : Weapon
 
 		_playerAnimation = _characterActor?.GetAct<PlayerAnimation>();
 
-		InputManager<Spear>.OnAttackPress += Attack;
+		InputManager<Spear>.OnClickPress += Attack;
 		InputManager<Spear>.OnMovePress += CurrentBool;
 		CharacterMove.OnMoveEnd += MoveEnd;
 
@@ -82,7 +82,7 @@ public class Spear : Weapon
 		if (isEnemy)
 			return;
 
-		InputManager<Spear>.OnAttackPress -= Attack;
+		InputManager<Spear>.OnClickPress -= Attack;
 		InputManager<Spear>.OnMovePress -= CurrentBool;
 		CharacterMove.OnMoveEnd -= MoveEnd;
 		_isCurrentVec = false;
@@ -122,12 +122,12 @@ public class Spear : Weapon
 		if (!_isAttack && !_isDown)
 		{
 			_isAttack = true;
-			_characterActor.StartCoroutine(AttackCorutine(vec));
+			_characterActor.StartCoroutine(AttackCorutine(DirReturn(vec)));
 		}
-		else if (_isAttack && _isDown && InGame.CamDirCheck(vec) == _currentVec)
+		else if (_isAttack && _isDown && InGame.CamDirCheck(DirReturn(vec)) == _currentVec)
 		{
 			_isAttack = false;
-			_characterActor.StartCoroutine(AttackUpCorutine(vec));
+			_characterActor.StartCoroutine(AttackUpCorutine(DirReturn(vec)));
 		}
 	}
 
@@ -138,6 +138,7 @@ public class Spear : Weapon
 		_currentVec = InGame.CamDirCheck(_originVec);
 		_attackInfo.PressInput = vec;
 		_nonDir = true;
+		Debug.Log(vec);
 		ReadyAnimation(vec);
 		yield return new WaitForSeconds(info.Ats);
 		_isDown = true;

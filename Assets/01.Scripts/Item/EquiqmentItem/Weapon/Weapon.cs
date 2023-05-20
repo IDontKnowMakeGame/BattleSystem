@@ -3,12 +3,8 @@ using Actors.Characters.Player;
 using Data;
 using Acts.Characters.Player;
 using UnityEngine;
-using TMPro;
 using Core;
-using System;
 using System.Collections;
-using UnityEngine.Windows;
-using Input = UnityEngine.Input;
 using Managements.Managers;
 using Acts.Characters;
 
@@ -143,7 +139,7 @@ public class Weapon : EquiqmentItem
 	/// <summary>
 	/// Weapon들의 기본 스킬
 	/// </summary>
-	public virtual void Skill()
+	public virtual void Skill(Vector3 vec)
 	{
 		if (_isCoolTime)
 			return;
@@ -151,27 +147,7 @@ public class Weapon : EquiqmentItem
 
 	public override void Update()
 	{
-
 		Timer();
-		if(_input)
-		{
-			if(Input.GetKeyDown(KeyCode.W))
-			{
-				STimeInputSkill(Vector3.forward);
-			}
-			if (Input.GetKeyDown(KeyCode.S))
-			{
-				STimeInputSkill(Vector3.back);
-			}
-			if (Input.GetKeyDown(KeyCode.A))
-			{
-				STimeInputSkill(Vector3.left);
-			}
-			if (Input.GetKeyDown(KeyCode.D))
-			{
-				STimeInputSkill(Vector3.right);
-			}
-		}
 	}
 	protected void Timer()
 	{
@@ -199,7 +175,7 @@ public class Weapon : EquiqmentItem
 	protected virtual void STFirstSkill()
 	{
 		_input = true;
-		//InputManager<Weapon>.OnAttackPress += STimeInputSkill;
+		InputManager<Weapon>.OnClickPress += STimeInputSkill;
 		_characterActor.AddState(CharacterState.Skill);
 	}
 
@@ -213,6 +189,7 @@ public class Weapon : EquiqmentItem
 		_input = false;
 		_isCoolTime = true;
 		_characterActor.RemoveState(CharacterState.Skill);
+		InputManager<Weapon>.OnClickPress -= STimeInputSkill;
 		//InputManager<Weapon>.OnAttackPress -= STimeInputSkill;
 	}
 
@@ -233,4 +210,38 @@ public class Weapon : EquiqmentItem
 		>= 80 => 5,
 		_ => 0
 	};
+
+	public static Vector3 DirReturn(Vector3 vec)
+	{
+		int i_width = Screen.width;
+		int i_height = Screen.height;
+
+		float heightDot = (float)i_height / 2;
+
+		Vector3 screen = new Vector3(i_width, i_height,0);
+		Vector3 screenDot = screen / 2;
+
+		Vector3 angleDir = screenDot - vec;
+
+		float angle = Mathf.Atan2(angleDir.x, angleDir.y) * Mathf.Rad2Deg;
+
+		//angle = angle < 0 ? Mathf.Abs(angle) + 180f : angle;
+		//Debug.Log(angle);
+
+		return AngleToDir(angle);
+	}
+
+	public static Vector3 AngleToDir(float angle)
+	{
+		if (angle > 135 || angle < -135)
+			return Vector3.forward;
+		else if (angle > 45 && angle < 135)
+			return Vector3.left;
+		else if (angle > -45 && angle < 45)
+			return Vector3.back;
+		else if (angle > -135 && angle < -45)
+			return Vector3.right;
+
+		return Vector3.zero;
+	}
 }

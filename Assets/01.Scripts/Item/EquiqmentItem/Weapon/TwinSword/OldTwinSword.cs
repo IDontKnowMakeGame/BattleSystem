@@ -1,15 +1,12 @@
 using Actors.Characters;
 using Core;
-using Managements.Managers;
 using System.Collections;
-using System.Collections.Generic;
-using Blocks.Acts;
 using Acts.Characters.Player;
 using UnityEngine;
 
 public class OldTwinSword : TwinSword
 {
-	public override void Skill()
+	public override void Skill(Vector3 vec)
 	{
 		if (_characterActor.HasState(CharacterState.Skill))
 			return;
@@ -17,13 +14,6 @@ public class OldTwinSword : TwinSword
 			return;
 
 		_characterActor.AddState(CharacterState.Skill);
-		_characterActor.StartCoroutine(SameTimeInput());
-	}
-
-	protected override void STimeInputSkill(Vector3 vec)
-	{
-		if (_isCoolTime)
-			return;
 		Vector3 vector = InGame.CamDirCheck(vec);
 		_isCoolTime = true;
 		GameObject obj = Define.GetManager<ResourceManager>().Instantiate("TwinSword-Slash");

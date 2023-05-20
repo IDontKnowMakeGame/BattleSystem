@@ -25,7 +25,7 @@ namespace Acts.Characters.Enemy
         {
             Attack();
             //Define.GetManager<MapManager>().AttackBlock(ThisActor.Position + dir, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.None, isLast);
-            InGame.Attack(ThisActor.Position, new Vector3(1, 0, 1), DefaultStat.Atk, DefaultStat.Ats, CharacterActor, isLast);
+            InGame.Attack(ThisActor.Position + dir, new Vector3(1, 0, 1), DefaultStat.Atk, DefaultStat.Ats, CharacterActor, isLast);
         }
         
         public void HorizontalAttack(Vector3 dir, bool isLast = true)

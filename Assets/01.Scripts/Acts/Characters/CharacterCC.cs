@@ -34,7 +34,9 @@ namespace Acts.Characters
                     var pos = ThisActor.Position + v;
                     return map.IsStayable(pos);
                 }).ToArray();
-                dir = dirs[Random.Range(0, dirs.Length)];
+
+                if(dirs.Length > 0)
+                    dir = dirs[Random.Range(0, dirs.Length)];
             }
             
             _character.AddState(CharacterState.KnockBack);

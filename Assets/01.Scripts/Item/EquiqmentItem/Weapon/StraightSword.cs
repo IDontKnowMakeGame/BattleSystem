@@ -42,7 +42,7 @@ public class StraightSword : Weapon
 		base.Equiqment(actor);
 		if (isEnemy)
 			return;
-		InputManager<StraightSword>.OnAttackPress += Attack;
+		InputManager<StraightSword>.OnClickPress += Attack;
 
 		PlayerAttack.OnAttackEnd += AttackEnd;
 	}
@@ -60,7 +60,7 @@ public class StraightSword : Weapon
 		base.UnEquipment(actor);
 		if (isEnemy)
 			return;
-		InputManager<StraightSword>.OnAttackPress -= Attack;
+		InputManager<StraightSword>.OnClickPress -= Attack;
 		PlayerAttack.OnAttackEnd -= AttackEnd;
 	}
 	public virtual void Attack(Vector3 vec)
@@ -73,10 +73,12 @@ public class StraightSword : Weapon
 		_attackInfo.LeftStat = new ColliderStat(1, 1, InGame.None, InGame.None);
 		_attackInfo.RightStat = new ColliderStat(1, 1, InGame.None, InGame.None);
 
+		Vector3 vector = DirReturn(vec);
+		Debug.Log(vector);
 		_attackInfo.ReachFrame = 5;
-		_attackInfo.PressInput = vec;
+		_attackInfo.PressInput = vector;
 		_attackInfo.ResetDir();
-		_attackInfo.AddDir(_attackInfo.DirTypes(vec));
+		_attackInfo.AddDir(_attackInfo.DirTypes(vector));
 		_eventParam.attackParam = _attackInfo;
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
 	}

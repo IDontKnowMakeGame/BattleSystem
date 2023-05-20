@@ -82,6 +82,7 @@ public class HaloAnimator : MonoBehaviour
 	public void Awake()
 	{
 		_currentRenderer = GetComponentInChildren<Renderer>();
+		_currentRenderer.gameObject.SetActive(false);
 	}
 
 	public void OnDisable()
@@ -129,10 +130,6 @@ public class HaloAnimator : MonoBehaviour
 		{
 			if (_currentAnimation.isLoop)
 				currentCoroutine = StartCoroutine(AnimationPlay());
-			//else if (curClip.nextIdx != -1)
-			//{
-			//	Play(curClip.nextIdx);
-			//}
 			else
 				currentCoroutine = null;
 			yield return null;
@@ -168,6 +165,7 @@ public class HaloAnimator : MonoBehaviour
 
 	public void SetTexture()
 	{
+		Debug.Log(_currentRenderer.gameObject.activeSelf);
 		_currentRenderer.gameObject.SetActive(true);
 		_currentRenderer.materials = _haloAnimationsInfo.animatoins[0].materials;
 		//_currentRenderer.
@@ -184,7 +182,8 @@ public class HaloAnimator : MonoBehaviour
 
 	public void DelTexture()
 	{
-		sequence.Kill();
+		sequence?.Kill();
+		Debug.Log(_currentRenderer.gameObject.activeSelf);
 		_currentRenderer.gameObject.SetActive(false);
 	}
 }

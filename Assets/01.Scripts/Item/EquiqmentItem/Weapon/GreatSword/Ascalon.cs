@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class Ascalon : GreatSword
 {
-	public override void Skill()
+	public override void Skill(Vector3 vec)
 	{
 		if (_isCoolTime)
 			return;

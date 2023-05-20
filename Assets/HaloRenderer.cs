@@ -57,11 +57,11 @@ public class HaloRenderer : MonoBehaviour
 
 	private void Start()
 	{
-		foreach (HaloAnimator halo in _haloAnimators)
-		{
-			if (halo.State == HaloAnimationState.None)
-				halo.AnimatorStop();
-		}
+		//foreach (HaloAnimator halo in _haloAnimators)
+		//{
+		//	if (halo.State == HaloAnimationState.None)
+		//		halo.AnimatorStop();
+		//}
 	}
 
 	private void Update()

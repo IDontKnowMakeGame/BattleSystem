@@ -50,9 +50,9 @@ namespace Managements.Managers
 		public static event Action<Vector3> OnAttackHold;
 		public static event Action<Vector3> OnAttackRelease;
 
-		public static event Action OnSkillPress;
-		public static event Action OnSkillHold;
-		public static event Action OnSkillRelease;
+		public static event Action<Vector3> OnSkillPress;
+		public static event Action<Vector3> OnSkillHold;
+		public static event Action<Vector3> OnSkillRelease;
 
 		public static event Action OnSubPress;
 		public static event Action OnChangePress;
@@ -71,10 +71,10 @@ namespace Managements.Managers
 
 		private static List<KeyboardInputData> _keyboardInputDatas = new()
 		{
-			new KeyboardInputData() { keyboardInput = KeyboardInput.MoveForward, keyCode = KeyCode.UpArrow },
-			new KeyboardInputData() { keyboardInput = KeyboardInput.MoveBackward, keyCode = KeyCode.DownArrow },
-			new KeyboardInputData() { keyboardInput = KeyboardInput.MoveLeft, keyCode = KeyCode.LeftArrow },
-			new KeyboardInputData() { keyboardInput = KeyboardInput.MoveRight, keyCode = KeyCode.RightArrow },
+			new KeyboardInputData() { keyboardInput = KeyboardInput.MoveForward, keyCode = KeyCode.W },
+			new KeyboardInputData() { keyboardInput = KeyboardInput.MoveBackward, keyCode = KeyCode.S },
+			new KeyboardInputData() { keyboardInput = KeyboardInput.MoveLeft, keyCode = KeyCode.A },
+			new KeyboardInputData() { keyboardInput = KeyboardInput.MoveRight, keyCode = KeyCode.D },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.AttackForward, keyCode = KeyCode.W },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.AttackBackward, keyCode = KeyCode.S },
 			new KeyboardInputData() { keyboardInput = KeyboardInput.AttackLeft, keyCode = KeyCode.A },
@@ -160,7 +160,8 @@ namespace Managements.Managers
 
 			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.Skill)))
 			{
-				OnSkillPress?.Invoke();
+				Vector3 vec = Input.mousePosition;
+				OnSkillPress?.Invoke(vec);
 			}
 
 			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.SubKey)))
@@ -217,6 +218,12 @@ namespace Managements.Managers
             {
 				OnPotionPress?.Invoke();
             }
+
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.Click)))
+			{
+				Vector3 vec = Input.mousePosition;
+				OnClickPress?.Invoke(vec);
+			}
 		}
 
 		private void InputRelease()
@@ -258,7 +265,14 @@ namespace Managements.Managers
 
 			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.Skill)))
 			{
-				OnSkillRelease?.Invoke();
+				Vector3 vec = Input.mousePosition;
+				OnSkillRelease?.Invoke(vec);
+			}
+
+			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.Click)))
+			{
+				Vector3 vec = Input.mousePosition;
+				OnClickRelease?.Invoke(vec);
 			}
 		}
 
@@ -298,7 +312,14 @@ namespace Managements.Managers
 
 			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.Skill)))
 			{
-				OnSkillHold?.Invoke();
+				Vector3 vec = Input.mousePosition;
+				OnSkillHold?.Invoke(vec);
+			}
+
+			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.Click)))
+			{
+				Vector3 vec = Input.mousePosition;
+				OnClickHold?.Invoke(vec);
 			}
 		}
 
