@@ -131,11 +131,11 @@ public class PlayerEquipment : CharacterEquipmentAct
 		Define.GetManager<DataManager>().SwapWeaponData();
 		UIManager.Instance.InGame.ChangeWeaponPanel();
 	}
-	private void Skill()
+	private void Skill(Vector3 vec)
 	{
 		if (!_haveinHand)
 			return;
-		CurrentWeapon?.Skill();
+		CurrentWeapon?.Skill(Weapon.DirReturn(vec));
 		
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.ChangeStat, _eventParam);
 	}

@@ -9,9 +9,9 @@ using UnityEngine;
 
 public class TaintedSword : StraightSword
 {
-	public override void Skill()
+	public override void Skill(Vector3 vec)
 	{
-		base.Skill();
+		base.Skill(vec);
 		_characterActor.AddState(CharacterState.Skill);
 		_isCoolTime = true;
 		//Define.GetManager<MapManager>().AttackBlock(_characterActor.Position + Vector3.forward, info.Atk, 1f, _characterActor, MovementType.None, true);

@@ -50,9 +50,9 @@ namespace Managements.Managers
 		public static event Action<Vector3> OnAttackHold;
 		public static event Action<Vector3> OnAttackRelease;
 
-		public static event Action OnSkillPress;
-		public static event Action OnSkillHold;
-		public static event Action OnSkillRelease;
+		public static event Action<Vector3> OnSkillPress;
+		public static event Action<Vector3> OnSkillHold;
+		public static event Action<Vector3> OnSkillRelease;
 
 		public static event Action OnSubPress;
 		public static event Action OnChangePress;
@@ -160,7 +160,8 @@ namespace Managements.Managers
 
 			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.Skill)))
 			{
-				OnSkillPress?.Invoke();
+				Vector3 vec = Input.mousePosition;
+				OnSkillPress?.Invoke(vec);
 			}
 
 			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.SubKey)))
@@ -264,7 +265,8 @@ namespace Managements.Managers
 
 			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.Skill)))
 			{
-				OnSkillRelease?.Invoke();
+				Vector3 vec = Input.mousePosition;
+				OnSkillRelease?.Invoke(vec);
 			}
 
 			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.Click)))
@@ -310,7 +312,8 @@ namespace Managements.Managers
 
 			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.Skill)))
 			{
-				OnSkillHold?.Invoke();
+				Vector3 vec = Input.mousePosition;
+				OnSkillHold?.Invoke(vec);
 			}
 
 			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.Click)))

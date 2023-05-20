@@ -91,7 +91,7 @@ namespace Acts.Characters.Player
         public void BowBackStep(Vector3 position)
         {
             playerDir = (position - ThisActor.Position);
-            Debug.Log(playerDir);
+            //Debug.Log(playerDir);
             base.Move(position);
         }
 
@@ -138,7 +138,7 @@ namespace Acts.Characters.Player
 
        private void SkillAnimation()
         {
-            Debug.Log(SkillDir);
+            //Debug.Log(SkillDir);
             if (SkillDir == Vector3.left)
             {
                 ThisActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
