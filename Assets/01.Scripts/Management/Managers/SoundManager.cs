@@ -50,6 +50,7 @@ public class SoundManager : Manager
         var go = Define.GetManager<PoolManager>().Pop(soundObj, _transform);
         Debug.Log(go);
         go.gameObject.GetComponent<soundEffectobj>().Play(audioClip, pitch);
+
         //Define.GetManager<PoolManager>().Push(go.GetComponent<Poolable>());
     }
 
