@@ -62,7 +62,6 @@ public class PoolManager : Manager
         {
             GameObject go = Object.Instantiate<GameObject>(Original);
             go.name = Original.name;
-
             Poolable component = go.GetComponent<Poolable>();
             if (component == null)
                 component = go.AddComponent<Poolable>();
