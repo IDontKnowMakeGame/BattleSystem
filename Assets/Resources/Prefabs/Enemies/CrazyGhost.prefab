@@ -101,12 +101,18 @@ MonoBehaviour:
       ats: 0
       afs: 0
       speed: 0
+    _feahter: 0
+    info:
+      _id: 0
+      _count: 0
+      _isWeapon: 0
     isBoss: 1
   _enemyAnimation:
     curClip:
       name: 
       nextIdx: -1
       texture: {fileID: 0}
+      normal: {fileID: 0}
       fps: 0
       isLoop: 0
       delay: 0
@@ -822,7 +828,7 @@ GameObject:
   - component: {fileID: 2602499904033520459}
   - component: {fileID: 2602499904033520468}
   - component: {fileID: 2602499904033520469}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -15,6 +15,9 @@ public class PlayerEquipment : CharacterEquipmentAct
 	[SerializeField]
 	private HaloRenderer _haloRanderer;
 
+	[SerializeField]
+	private GameObject cursur;
+
 	protected PlayerActor _playerActor;
 	private PlayerAnimation _playerAnimation;
 
@@ -71,7 +74,6 @@ public class PlayerEquipment : CharacterEquipmentAct
 		base.Start();
 		InputManager<Weapon>.OnChangePress += Change;
 		InputManager<Weapon>.OnSkillPress += Skill;
-		InputManager<Weapon>.OnOffPress += WeaponOnOff;
 		_useHalo.Add(ItemID.HaloOfGhost, new HaloOfGhost());
 		_useHalo.Add(ItemID.HaloOfPollution, new HaloOfPollution());
 		_useHalo.Add(ItemID.HaloOfEreshkigal, new HaloOfEreshkigal());
