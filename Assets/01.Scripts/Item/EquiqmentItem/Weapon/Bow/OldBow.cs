@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class OldBow : Bow
 {
-	public override void Skill()
+	public override void Skill(Vector3 vec)
 	{
 		if (!_characterActor.HasState(CharacterState.Hold))
 			return;

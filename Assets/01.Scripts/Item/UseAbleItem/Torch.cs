@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Acts.Characters.Player;
 using Core;
+using Managements.Managers;
 
 public class Torch : UseAbleItem
 {

@@ -195,8 +195,11 @@ namespace Core
             var block = GetBlock(pos.SetY(0));
             if (block == null)
             {
-                var state = CharacterState.Hold | CharacterState.Attack;
-                attacker.RemoveState(state);
+                if (isLast)
+                {
+                    var state = CharacterState.Hold | CharacterState.Attack;
+                    attacker.RemoveState(state);
+                }
                 return;
             }
             var resourceManager = Define.GetManager<ResourceManager>();

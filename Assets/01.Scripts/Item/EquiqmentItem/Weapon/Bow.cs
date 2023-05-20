@@ -113,7 +113,7 @@ public class Bow : Weapon
 			return;
 
 
-		InputManager<Bow>.OnAttackPress += Shoot;
+		InputManager<Bow>.OnClickPress += Shoot;
 
 		if (_playerAnimation.GetClip("HorizontalPull") == null)
 			Debug.Log("빽!!");
@@ -149,7 +149,7 @@ public class Bow : Weapon
 		base.UnEquipment(actor);
 		if (isEnemy)
 			return;
-		InputManager<Bow>.OnAttackPress -= Shoot;
+		InputManager<Bow>.OnClickPress -= Shoot;
 	}
 
 	public override void Update()
@@ -173,8 +173,8 @@ public class Bow : Weapon
 		isShoot = true;
 
 
-		_orginVec = vec;
-		_currentVec = InGame.CamDirCheck(DirReturn(vec));
+		_orginVec = DirReturn(vec);
+		_currentVec = InGame.CamDirCheck(_orginVec);
 		_characterActor.AddState(CharacterState.StopMove);
 		_characterActor.AddState(CharacterState.Hold);
 
@@ -209,7 +209,7 @@ public class Bow : Weapon
 
 	private void ChargeAnimation(Vector3 dir)
 	{
-		Debug.Log(InGame.CamDirCheck(dir));
+		//Debug.Log(InGame.CamDirCheck(dir));
 
 		if (dir == Vector3.left)
 		{

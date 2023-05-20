@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class OldStraightSword : StraightSword
 {
-	public override void Skill()
+	public override void Skill(Vector3 vec)
 	{
 		if (_isCoolTime)
 			return;
@@ -14,11 +14,6 @@ public class OldStraightSword : StraightSword
 			return;
 
 		_characterActor.AddState(CharacterState.Skill);
-		_characterActor.StartCoroutine(SameTimeInput());
-	}
-
-	protected override void STimeInputSkill(Vector3 vec)
-	{
 		CharacterMove.OnMoveEnd += SkillInputEnd;
 		_characterActor.RemoveState(CharacterState.Skill);
 		PlayerMove move = _characterActor.GetAct<PlayerMove>();

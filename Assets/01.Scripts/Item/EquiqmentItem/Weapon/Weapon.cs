@@ -139,7 +139,7 @@ public class Weapon : EquiqmentItem
 	/// <summary>
 	/// Weapon들의 기본 스킬
 	/// </summary>
-	public virtual void Skill()
+	public virtual void Skill(Vector3 vec)
 	{
 		if (_isCoolTime)
 			return;
@@ -211,7 +211,7 @@ public class Weapon : EquiqmentItem
 		_ => 0
 	};
 
-	protected Vector3 DirReturn(Vector3 vec)
+	public static Vector3 DirReturn(Vector3 vec)
 	{
 		int i_width = Screen.width;
 		int i_height = Screen.height;
@@ -226,12 +226,12 @@ public class Weapon : EquiqmentItem
 		float angle = Mathf.Atan2(angleDir.x, angleDir.y) * Mathf.Rad2Deg;
 
 		//angle = angle < 0 ? Mathf.Abs(angle) + 180f : angle;
-		Debug.Log(angle);
+		//Debug.Log(angle);
 
 		return AngleToDir(angle);
 	}
 
-	protected Vector3 AngleToDir(float angle)
+	public static Vector3 AngleToDir(float angle)
 	{
 		if (angle > 135 || angle < -135)
 			return Vector3.forward;
