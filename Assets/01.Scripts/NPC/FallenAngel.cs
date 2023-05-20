@@ -52,12 +52,15 @@ public class FallenAngel : NPCActor
     public void Talking()
     {
         Debug.Log(gameObject.name);
+
+        UIManager.Instance.Dialog.AddChoiceBox("무기 강화", StoreBtn);
+        //UIManager.Instance.Dialog.AddChoiceBox("돌아가기", BackBtn);
+
         UIManager.Instance.Dialog.StartListeningDialog(dialogueList[0]);
 
         ReadyBtnQuest();
 
-        UIManager.Instance.Dialog.AddChoiceBox("무기 강화", StoreBtn);
-        UIManager.Instance.Dialog.AddChoiceBox("돌아가기", BackBtn);
+       
     }
     private void ReadyBtnQuest()
     {
