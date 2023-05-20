@@ -8,11 +8,11 @@ public class TorchController : MonoBehaviour
 {
     void Start()
     {
-        ChangeWarmTiles();
-
-        MapManager _map = Define.GetManager<MapManager>();
-        bool mode = _map.GetBlock(InGame.Player.Position.SetY(0)).isWarm;
-        InGame.Player.GetAct<PlayerFlooding>().ChangeWarmMode(mode);
+        //ChangeWarmTiles();
+        //
+        //MapManager _map = Define.GetManager<MapManager>();
+        //bool mode = _map.GetBlock(InGame.Player.Position.SetY(0)).isWarm;
+        //InGame.Player.GetAct<PlayerFlooding>().ChangeWarmMode(mode);
 
     }
 

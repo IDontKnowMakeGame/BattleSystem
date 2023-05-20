@@ -15,6 +15,9 @@ public class PlayerEquipment : CharacterEquipmentAct
 	[SerializeField]
 	private HaloRenderer _haloRanderer;
 
+	[SerializeField]
+	private GameObject cursur;
+
 	protected PlayerActor _playerActor;
 	private PlayerAnimation _playerAnimation;
 

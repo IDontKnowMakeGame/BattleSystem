@@ -310,13 +310,13 @@ namespace Managements.Managers
 				OnAttackHold?.Invoke(Vector3.right);
 			}
 
-			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.Skill)))
+			if (Input.GetKey(GetKeyCode(KeyboardInput.Skill)))
 			{
 				Vector3 vec = Input.mousePosition;
 				OnSkillHold?.Invoke(vec);
 			}
 
-			if (Input.GetKeyUp(GetKeyCode(KeyboardInput.Click)))
+			if (Input.GetKey(GetKeyCode(KeyboardInput.Click)))
 			{
 				Vector3 vec = Input.mousePosition;
 				OnClickHold?.Invoke(vec);

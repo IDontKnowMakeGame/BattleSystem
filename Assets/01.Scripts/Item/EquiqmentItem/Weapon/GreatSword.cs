@@ -56,18 +56,18 @@ public class GreatSword : Weapon
 			return;
 		if (_sliderObject == null)
 			_sliderObject = _characterActor.GetComponentInChildren<SliderObject>();
-		InputManager<GreatSword>.OnAttackPress += AttakStart;
-		InputManager<GreatSword>.OnAttackHold += Hold;
-		InputManager<GreatSword>.OnAttackRelease += AttackRealease;
+		InputManager<GreatSword>.OnClickPress += AttakStart;
+		InputManager<GreatSword>.OnClickHold += Hold;
+		InputManager<GreatSword>.OnClickRelease += AttackRealease;
 	}
 	public override void UnEquipment(CharacterActor actor)
 	{
 		base.UnEquipment(actor);
 		if (isEnemy)
 			return;
-		InputManager<GreatSword>.OnAttackPress -= AttakStart;
-		InputManager<GreatSword>.OnAttackHold -= Hold;
-		InputManager<GreatSword>.OnAttackRelease -= AttackRealease;
+		InputManager<GreatSword>.OnClickPress -= AttakStart;
+		InputManager<GreatSword>.OnClickHold -= Hold;
+		InputManager<GreatSword>.OnClickRelease -= AttackRealease;
 	}
 	public virtual void AttakStart(Vector3 vec)
 	{
@@ -84,6 +84,8 @@ public class GreatSword : Weapon
     }
 	public virtual void Hold(Vector3 vec)
 	{
+		//_currrentVector = DirReturn(vec);
+		//ChargeAnimation(_currrentVector);
 		if (!_characterActor.HasState(CharacterState.Hold))
 			return;
 		if (timer >= info.Ats)
@@ -107,7 +109,7 @@ public class GreatSword : Weapon
 			_attackInfo.RightStat = new ColliderStat(1, 1, InGame.None, InGame.None);
 
 			_attackInfo.ResetDir();
-			_attackInfo.PressInput = vec;
+			_attackInfo.PressInput = _currrentVector;
 			_attackInfo.AddDir(_attackInfo.DirTypes(_currrentVector));
 
 			if(timer >= info.Ats)
