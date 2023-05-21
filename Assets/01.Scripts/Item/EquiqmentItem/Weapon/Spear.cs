@@ -1,21 +1,12 @@
 using Actors.Characters;
-using Blocks;
 using Core;
 using Managements.Managers;
-using System;
-using System.Collections;
-using TMPro;
 using UnityEngine;
 using Acts.Characters.Player;
-using Acts.Characters;
+using Unity.VisualScripting;
 
 public class Spear : Weapon
 {
-	private bool _isAttack;
-	private bool _isEnterEnemy = true;
-	private bool _isDown = false;
-	private bool _isCurrentVec = false;
-	private bool _isClick = false;
 	private bool _nonDir = false;
 
 	public bool NonDir => _nonDir;
@@ -25,6 +16,9 @@ public class Spear : Weapon
 	private Vector3 _originVec = Vector3.zero;
 
 	private int range = 1;
+
+	public float timer;
+	private SliderObject _sliderObject;
 	public override void LoadWeaponClassLevel()
 	{
 		WeaponClassLevelData level = Define.GetManager<DataManager>().LoadWeaponClassLevel("Spear");
@@ -71,8 +65,6 @@ public class Spear : Weapon
 		_playerAnimation = _characterActor?.GetAct<PlayerAnimation>();
 
 		InputManager<Spear>.OnClickPress += Attack;
-		InputManager<Spear>.OnMovePress += CurrentBool;
-		CharacterMove.OnMoveEnd += MoveEnd;
 
 		DefaultAnimation();
 	}
@@ -83,66 +75,32 @@ public class Spear : Weapon
 			return;
 
 		InputManager<Spear>.OnClickPress -= Attack;
-		InputManager<Spear>.OnMovePress -= CurrentBool;
-		CharacterMove.OnMoveEnd -= MoveEnd;
-		_isCurrentVec = false;
-		_isAttack = false;
-        _isDown = false;
-		_nonDir = false;
 	}
     public override void Update()
 	{
-		if (!_isDown)
-			return;
-
-		bool isEnemy = false;
-		for (int i = 1; i <= range; i++)
-		{
-			if (_mapManager == null) return;
-			if (_mapManager.GetBlock(_characterActor.Position + _currentVec * i)?.ActorOnBlock != null)
-				isEnemy = true;
-		}
-		if (_isDown && _isEnterEnemy && isEnemy && _isCurrentVec)
-		{
-			_eventParam.attackParam = _attackInfo;
-			_isEnterEnemy = false;
-			Define.GetManager<EventManager>().TriggerEvent(EventFlag.FureAttack, _eventParam);
-		}
-		else if (!_isEnterEnemy && !isEnemy)
-			_isEnterEnemy = true;
-
-		_currentVec = InGame.CamDirCheck(_originVec);
 	}
 
+	protected void AttackStart(Vector3 vec)
+	{
+		_characterActor.AddState(CharacterState.Hold);
+	}
+	protected void AttackRelase(Vector3 vec)
+	{
+		if (!_characterActor.HasState(CharacterState.Hold))
+			return;
+		if (timer >= info.Ats)
+		{
+			_sliderObject.PullSlider(0.1f, true, Color.red);
+			return;
+		}
+		timer += Time.deltaTime;
+		_sliderObject.SliderUp(timer);
+	}
 	public virtual void Attack(Vector3 vec)
 	{
-		if (_characterActor.HasState(CharacterState.Equip))
-			return;
-
-		if (!_isAttack && !_isDown)
-		{
-			_isAttack = true;
-			_characterActor.StartCoroutine(AttackCorutine(DirReturn(vec)));
-		}
-		else if (_isAttack && _isDown && InGame.CamDirCheck(DirReturn(vec)) == _currentVec)
-		{
-			_isAttack = false;
-			_characterActor.StartCoroutine(AttackUpCorutine(DirReturn(vec)));
-		}
+		_characterActor.RemoveState(CharacterState.Hold);
 	}
 
-	public virtual IEnumerator AttackCorutine(Vector3 vec)
-	{
-		_attackInfo.AddDir(_attackInfo.DirTypes(vec));
-		_originVec = vec;
-		_currentVec = InGame.CamDirCheck(_originVec);
-		_attackInfo.PressInput = vec;
-		_nonDir = true;
-		Debug.Log(vec);
-		ReadyAnimation(vec);
-		yield return new WaitForSeconds(info.Ats);
-		_isDown = true;
-	}
 
 	private void DefaultAnimation()
 	{
@@ -181,36 +139,5 @@ public class Spear : Weapon
 			_playerAnimation.GetClip("Idle").ChangeClip(_playerAnimation.GetClip("UpperReadyIdle"));
 			_playerAnimation.Play("UpperReady");
 		}
-	}
-
-	public virtual IEnumerator AttackUpCorutine(Vector3 vec)
-	{
-		_attackInfo.RemoveDir(_attackInfo.DirTypes(vec));
-		_attackInfo.PressInput = vec;
-		_currentVec = Vector3.zero;
-		_nonDir = false;
-		DefaultAnimation();
-		yield return new WaitForSeconds(info.Afs);
-		_isDown = false;
-	}
-
-	private void CurrentBool(Vector3 vec)
-	{
-		_isClick = true;
-
-		if (!(vec == _attackInfo.PressInput && _isDown))
-			_isCurrentVec = false;
-		else
-			_isCurrentVec = true;
-	}
-
-	private void MoveEnd(int id, Vector3 vec)
-	{
-		if (_characterActor == null)
-			return;
-		if (id != _characterActor.UUID)
-			return;
-
-		_isClick = false;
 	}
 }
