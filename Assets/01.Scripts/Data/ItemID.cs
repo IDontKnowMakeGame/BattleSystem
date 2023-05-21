@@ -18,8 +18,9 @@ namespace Data
 		OutwornBow = 8,
         RustySpear = 9,
         Ascalon = 10,
-        ////100~199 Helo
-        HaloOfGhost = 100,
+		ExecutionBlade = 11,
+		////100~199 Helo
+		HaloOfGhost = 100,
         HaloOfPollution = 101,
         HaloOfEreshkigal = 102,
         HaloOfDismantle = 103,
