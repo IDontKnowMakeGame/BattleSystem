@@ -137,6 +137,8 @@ public class PlayerEquipment : CharacterEquipmentAct
 	{
 		if (!_haveinHand)
 			return;
+		if (_playerActor.HasAnyState()) return;
+
 		CurrentWeapon?.Skill(Weapon.DirReturn(vec));
 		
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.ChangeStat, _eventParam);
