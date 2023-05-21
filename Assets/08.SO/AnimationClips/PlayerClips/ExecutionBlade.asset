@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca2b332a7b5e5447adcd7343094485c, type: 3}
+  m_Name: ExecutionBlade
+  m_EditorClassIdentifier: 
+  type: Player
+  actorName: Weapon
+  weaponID: 11
+  weaponName: ExecutionBlade
+  clips:
+  - name: Idle
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: c5f28e2e5fbefcc48a546706f9382641, type: 3}
+    normal: {fileID: 2800000, guid: 25c6993ee9a2a8d4fab6cb733833018b, type: 3}
+    fps: 12
+    isLoop: 1
+    delay: 0.1
+  - name: HorizontalMove
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 1566596c1303b90439d36f74693bb9e1, type: 3}
+    normal: {fileID: 2800000, guid: 04e8e6a92fa178e4fade59712a2e4387, type: 3}
+    fps: 7
+    isLoop: 0
+    delay: 0.04
+  - name: UpperMove
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: d7f024304c3003246b37621a43fe8db9, type: 3}
+    normal: {fileID: 2800000, guid: 572f5147e2fda4a40af2c3a08a91c355, type: 3}
+    fps: 7
+    isLoop: 0
+    delay: 0.04
+  - name: LowerMove
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 2eb85f3c867d2754a9b80e35cfe51313, type: 3}
+    normal: {fileID: 2800000, guid: 82085e0e84dedaf4f94ebd8e6d020e6a, type: 3}
+    fps: 7
+    isLoop: 0
+    delay: 0.04
+  - name: Skill
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 8115cb0af47d9ab4485a75ecf7e5a11f, type: 3}
+    normal: {fileID: 2800000, guid: ecd6580961be6924187d819052f1f4c0, type: 3}
+    fps: 5
+    isLoop: 0
+    delay: 0.03
+  - name: Equip
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: bac22003da668174d855d25e5b44355d, type: 3}
+    normal: {fileID: 2800000, guid: 13f6a03d68f291544b8912aba5f2f49a, type: 3}
+    fps: 12
+    isLoop: 0
+    delay: 0.1

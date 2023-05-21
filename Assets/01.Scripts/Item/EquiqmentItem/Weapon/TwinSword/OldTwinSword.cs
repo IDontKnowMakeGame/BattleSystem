@@ -18,6 +18,7 @@ public class OldTwinSword : TwinSword
 		_isCoolTime = true;
 		GameObject obj = Define.GetManager<ResourceManager>().Instantiate("TwinSword-Slash");
 		obj.transform.position = _characterActor.Position + vector + Vector3.up;
+		obj.transform.localRotation = Quaternion.LookRotation(vector);
 		for (int i = 0; i < 6; i++)
 		{
 			//Define.GetManager<MapManager>().AttackBlock(_characterActor.Position + vector, info.Atk, i * 0.2f, _characterActor, MovementType.None, true);
