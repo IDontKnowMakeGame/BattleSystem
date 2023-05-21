@@ -66,9 +66,27 @@ namespace Tool.Map.Controll
             ShowRoomCreator(7);
             ShowSwitchCamera(7);
             ShowEnemyList();
+            ShowInvisibleBtn(7);
 
             CheckCharacter();
             DragHandle();
+        }
+
+        private void ShowInvisibleBtn(int _height)
+        {
+            var index = idx * height;
+            var invisibleBtnRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index + space, 300, height * _height);
+            if (GUI.Button(invisibleBtnRect, "Invisible"))
+            {
+                foreach (var block in selectedBlocks)
+                {
+                    var model = block.Value.transform.GetChild(0).GetChild(0).gameObject;
+                    model.SetActive(!model.activeSelf);
+                }
+                selectedBlocks.Clear();
+            }
+
+            idx += _height + spaceIdx;
         }
 
         Vector2 scrollPos2 = Vector2.zero;
@@ -330,6 +348,8 @@ namespace Tool.Map.Controll
                     color = Color.white;
                 if(selectedBlocks.ContainsKey(block.Key))
                     color = Color.yellow;
+                if (block.Value.transform.GetChild(0).GetChild(0).gameObject.activeSelf == false)
+                    color.a = 0.5f;
                 GUI.backgroundColor = color;
                 var _rect = new Rect(block.Key.x * width, -block.Key.z * height, width, height);
 

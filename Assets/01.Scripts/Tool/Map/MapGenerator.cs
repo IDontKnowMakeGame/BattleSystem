@@ -81,6 +81,7 @@ namespace Tool.Map
             posX = EditorGUILayout.FloatField("Start X:", posX);
             posZ = EditorGUILayout.FloatField("Start Z:", posZ);
             spawnWall = EditorGUILayout.Toggle("Spawn Wall", spawnWall);
+            IsModel = EditorGUILayout.Toggle("Is Model", IsModel);
 
             if (GUILayout.Button("Generation"))
             {
@@ -90,6 +91,7 @@ namespace Tool.Map
         }
         #endregion
 
+        bool IsModel = false;
         private void GenerateMap(string data)
         {
             changeX = posX;
@@ -152,18 +154,18 @@ namespace Tool.Map
 
             if (posMode == Mode.StartPos)
             {
-                SearchStartModeTile(row, rowSize, columnSize);
+                SearchStartModeTile(row, rowSize, columnSize, IsModel);
             }
             else if (posMode == Mode.CenterPos)
             {
                 for (int i = rowSize / 2; i < rowSize; i++)
                 {
-                    FindMapTile(i, row, rowSize, columnSize, -1);
+                    FindMapTile(i, row, rowSize, columnSize, -1, IsModel);
                 }
 
                 for (int i = (rowSize / 2) - 1; i >= 0; i--)
                 {
-                    FindMapTile(i, row, rowSize, columnSize, 1);
+                    FindMapTile(i, row, rowSize, columnSize, 1, IsModel);
                 }
             }
 
@@ -173,7 +175,7 @@ namespace Tool.Map
             }
         }
 
-        void SearchStartModeTile(string[] row, int rowSize, int columnSize)
+        void SearchStartModeTile(string[] row, int rowSize, int columnSize, bool isModel)
         {
             int num;
             for (int i = 0; i < rowSize; i++)
@@ -183,7 +185,7 @@ namespace Tool.Map
                 {
                     if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
                     {
-                        SpawnTile(num, changeX, changeZ);
+                        SpawnTile(num, changeX, changeZ, isModel);
                     }
                     changeX += gridObjects.offsetX;
                 }
@@ -192,7 +194,7 @@ namespace Tool.Map
             }
         }
 
-        void FindMapTile(int curRow, string[] row, int rowSize, int columnSize, int increase)
+        void FindMapTile(int curRow, string[] row, int rowSize, int columnSize, int increase, bool isModel)
         {
             int num;
             string[] column = row[curRow].Split('\t');
@@ -200,23 +202,32 @@ namespace Tool.Map
             {
                 if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
                     SpawnTile(num, Mathf.Abs((columnSize / 2) - j) * gridObjects.offsetX + posX, Mathf.Abs((rowSize / 2) - curRow) *
-                        (increase * gridObjects.offsetZ) + posZ);
+                        (increase * gridObjects.offsetZ) + posZ, isModel);
             }
             for (int j = (columnSize / 2) - 1; j >= 0; j--)
             {
                 if (column[j] != string.Empty && Int32.TryParse(column[j], out num))
                     SpawnTile(num, Mathf.Abs((columnSize / 2) - j) * -gridObjects.offsetX + posX, Mathf.Abs((rowSize / 2) - curRow) *
-                        (increase * gridObjects.offsetZ) + posZ);
+                        (increase * gridObjects.offsetZ) + posZ, isModel);
             }
         }
 
-        void SpawnTile(int idx, float spawnX, float spawnZ)
+        void SpawnTile(int idx, float spawnX, float spawnZ, bool isModel)
         {
             if (idx >= 0)
             {
                 var position = new Vector3(spawnX, 0, spawnZ);
-                currentTile.Add(position);
-                var blockObject = Instantiate(gridObjects.tiles[idx], position, Quaternion.identity, tiledParent.transform);
+                GameObject blockObject = null;
+                if (isModel == false)
+                {
+                    currentTile.Add(position);
+                    blockObject = Instantiate(gridObjects.tiles[idx], position, Quaternion.identity, tiledParent.transform);
+                }
+                else
+                {
+                    blockObject = Instantiate(gridObjects.tiles[idx].transform.GetChild(0).GetChild(0).gameObject, position, Quaternion.identity, tiledParent.transform);
+                }
+                
                 blockObject.name = $"Tile #{count++}";
             }
         }

@@ -43,6 +43,8 @@ namespace Blocks.Acts
         }
         public void SetMainColor(Color color)
         {
+            if (_renderer == null)
+                return;
             _renderer.material.SetColor("_MainColor", color);
         }
         
@@ -53,6 +55,8 @@ namespace Blocks.Acts
 
         public void SetOutlineColor(Color color)
         {
+            if (_renderer == null)
+                return;
             _renderer.material.SetColor("_OutlineColor", color);
         }
         
