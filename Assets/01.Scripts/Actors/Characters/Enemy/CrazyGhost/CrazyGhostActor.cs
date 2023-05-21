@@ -87,6 +87,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                     var playerPos = InGame.Player.Position;
                     var dir = (playerPos - Position).GetDirection();
                     _enemyAnimation.Play("JumpAttackJump");
+                    Define.GetManager<SoundManager>().PlayAtPoint("Boss/jump", transform.position, 1);
                     move.Jump(playerPos, dir, 0);
                     jumpClip.OnExit = () =>
                     {

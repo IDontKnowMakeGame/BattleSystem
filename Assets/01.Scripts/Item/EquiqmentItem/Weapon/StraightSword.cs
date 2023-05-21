@@ -74,13 +74,13 @@ public class StraightSword : Weapon
 		_attackInfo.RightStat = new ColliderStat(1, 1, InGame.None, InGame.None);
 
 		Vector3 vector = DirReturn(vec);
-		Define.GetManager<SoundManager>().Play("LongSword/slash", Define.Sound.Effect, 1);
 		Debug.Log(vector);
 		_attackInfo.ReachFrame = 5;
 		_attackInfo.PressInput = vector;
 		_attackInfo.ResetDir();
 		_attackInfo.AddDir(_attackInfo.DirTypes(vector));
 		_eventParam.attackParam = _attackInfo;
+		Define.GetManager<SoundManager>().Play("LongSword/slash", Define.Sound.Effect, 1);
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
 	}
 }
