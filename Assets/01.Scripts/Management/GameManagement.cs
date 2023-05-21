@@ -35,7 +35,6 @@ namespace Managements
         public Dictionary<Type, Manager> Manager => _managers;
         public  List<SpawnCharacter> SpawnCharacters = new();
 
-
         #region Control_Managers
 
         public void AddManager<T>(T instance = null) where T : Manager, new()
@@ -131,6 +130,7 @@ namespace Managements
             Instance.AddManager<InputManager<Weapon>>();
             Instance.AddManager<ItemManager>();
             Instance.AddManager<EventManager>();
+            Instance.AddManager<SoundManager>();
             Define.MainCamera = Camera.main;
             DOTween.KillAll();
             DOTween.Init(true, true, LogBehaviour.Verbose).SetCapacity(10,1000);

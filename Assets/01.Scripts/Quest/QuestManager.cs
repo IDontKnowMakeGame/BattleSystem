@@ -69,6 +69,7 @@ public class QuestManager : MonoBehaviour
         switch (currentQuest)
         {
             case QuestName.FirstFloorBossKill:
+                Debug.Log("저 확인좀..");
                 AddMonsterKillMission(currentQuest, EnemyType.CrazyGhostActor, 1);
                 break;
             case QuestName.S10AreaEnter:
@@ -124,6 +125,7 @@ public class QuestManager : MonoBehaviour
     #region Check Mission
     public void CheckKillMission(EnemyType type)
     {
+        Debug.Log(type + "입니다.");
         if(checkMonsterDic.ContainsKey(type))
         {
             QuestValue quest = checkMonsterDic[type];

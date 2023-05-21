@@ -77,7 +77,10 @@ public class UIManager : MonoBehaviour
         {
  
         }
-
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            Dialog.NextMessage();
+        }
 
     }
     public void UpdateInGameUI()

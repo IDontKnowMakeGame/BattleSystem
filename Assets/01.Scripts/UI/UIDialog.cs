@@ -54,7 +54,7 @@ public class UIDialog : UIBase
         else
             choicePanel.style.display = DisplayStyle.None;
     }
-    public void StartListeningDialog(DialogueData dialogue,bool isObject = false)
+    public void StartListeningDialog(DialogueData dialogue,bool isEndMessage = true,bool isObject = false)
     {
         Debug.Log("StartListeningDialog");
         if (isPlayDialog) return;
@@ -64,10 +64,17 @@ public class UIDialog : UIBase
             visualImage.style.display = DisplayStyle.None;
             nameBox.style.display= DisplayStyle.None;
         }
+        else
+        {
+            visualImage.style.display = DisplayStyle.Flex;
+            nameBox.style.display = DisplayStyle.Flex;
+        }
+
+        if(isEndMessage)
+            AddChoiceBox("돌아가기", ()=> { });
 
         FlagDialogue(true);
         FlagChoicePanel(false);
-        choicePanel.Clear();
         isPlayDialog = true;
 
         nameText.text = dialogue.name;
@@ -93,6 +100,7 @@ public class UIDialog : UIBase
     }
     public void NextMessage()
     {
+        if (isPlayDialog == false) return;
         if(isPlayLineText)
         {
             UIManager.Instance.StopCoroutine(textLineCoroutine);
@@ -102,19 +110,17 @@ public class UIDialog : UIBase
         }
         if (msgLine.Count <= 0)
         {
-            FlagDialogue(false);
+            //FlagDialogue(false);
             EndMessage();
             return;
         }
 
         currentTextLine = this.msgLine.Dequeue();
         textLineCoroutine = UIManager.Instance.StartCoroutine(SetTextLine(currentTextLine));
-        //if (msgLine.Count <= 0)
-        //    EndMessage();
     }
     public void EndMessage()
     {
-        isPlayDialog = false;
+        //isPlayDialog = false;
         FlagChoicePanel(true);
     }
     public void SetMessageBoxText(string message)
@@ -127,16 +133,24 @@ public class UIDialog : UIBase
     }
     public void AddChoiceBox(string name,Action action)
     {
+        if (isPlayDialog) return;
+
         VisualElement choiceBox = choiceBoxTmep.Instantiate();
         choiceBox.Q<Label>().text = name;
 
         choiceBox.RegisterCallback<ClickEvent>(e =>
         {
-            FlagDialogue(false);
+            BackBtn();
             action();
         });
 
         choicePanel.Add(choiceBox);
+    }
+    public void BackBtn()
+    {
+        isPlayDialog = false;
+        choicePanel.Clear();
+        FlagDialogue(false);
     }
     public void ClearChoiceBox()
     {

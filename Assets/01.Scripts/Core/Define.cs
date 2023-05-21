@@ -15,6 +15,13 @@ namespace Core
 {
     public static class Define
     {
+        public enum Sound
+        {
+            Bgm,
+            Effect,
+            MaxCount,
+        }
+
         private static Camera _mainCamera;
 
         public static Camera MainCamera
@@ -213,6 +220,8 @@ namespace Core
 
             block?.Shake(duration, type);
         }
+
+
     }
 
 }
