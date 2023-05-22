@@ -5,6 +5,7 @@ using Acts.Base;
 using Data;
 using Managements.Managers;
 using Core;
+using Blocks;
 
 namespace Acts.Characters.Player
 {
@@ -15,6 +16,7 @@ namespace Acts.Characters.Player
         private Shield _shieldItem;
         private HPPotion _hpPotion;
         private Pick _pick;
+        private CompassOfSpace _compassOfSpace;
 
         private FirstMap _fristMap;
         private SecondMap _secondMap;
@@ -28,6 +30,8 @@ namespace Acts.Characters.Player
 
         [SerializeField]
         private ParticleSystem holyParticle;
+        [SerializeField]
+        private Block floorTargetBlock;
 
         public override void Start()
         {
@@ -37,12 +41,14 @@ namespace Acts.Characters.Player
             _shieldItem = new Shield();
             _hpPotion = new HPPotion();
 			_pick = new Pick();
+            _compassOfSpace = new CompassOfSpace();
 
             _fristMap = new FirstMap();
             _secondMap = new SecondMap();
             _thirdMap = new ThirdMap();
 
             _hpPotion.HolyParticle = holyParticle;
+            _compassOfSpace.TargetBlock = floorTargetBlock.transform;
 
             useAbleItems.Add(ItemID.Torch, _torchItem);
             useAbleItems.Add(ItemID.Shield, _shieldItem);
@@ -59,6 +65,7 @@ namespace Acts.Characters.Player
             _shieldItem.SettingItem();
             _torchItem.SettingItem();
             _pick.SettingItem();
+            _compassOfSpace.SettingItem();
 
             _fristMap.SettingItem();
             _secondMap.SettingItem();
@@ -104,7 +111,13 @@ namespace Acts.Characters.Player
         {
             base.Update();
 
+            if(Input.GetKeyDown(KeyCode.Alpha9))
+            {
+                _compassOfSpace.UseItem();
+            }
+
             _hpPotion.UpdateItem();
+            _compassOfSpace.UpdateItem();
 
             /*            if(Input.GetKeyDown(KeyCode.Alpha1))
                         {
