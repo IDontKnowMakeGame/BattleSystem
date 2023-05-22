@@ -67,9 +67,11 @@ namespace Blocks.Acts
         }
         IEnumerator DelayChangeColorCoroutine(Color color1, float f)
         {
+            _renderer.gameObject.SetActive(true);
             SetMainColor(color1);
             yield return new WaitForSeconds(f);
             SetMainColor(Color.black);
+            _renderer.gameObject.SetActive(false);
         }
         
     }

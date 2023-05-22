@@ -205,7 +205,7 @@ namespace Core
             var resourceManager = Define.GetManager<ResourceManager>();
             var decalObj = resourceManager.Instantiate("AttackDecal");
             decalObj.transform.position = pos.SetY(0f);
-            decalObj.transform.rotation = Quaternion.identity;
+            decalObj.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
             decalObj.transform.SetParent(block.transform.GetChild(0));
             var rect = new Rect(new Vector2(pos.x - size.x / 2, pos.z - size.z / 2), new Vector2(size.x, size.z));
             

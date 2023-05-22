@@ -13,33 +13,37 @@ namespace Blocks.Acts
     }
     public class BlockMovement : Act
     {
+        private Transform _anchorTransform;
         private Transform _modelTransform;
         private bool isMoving = false;
         public override void Awake()
         {
-            _modelTransform = ThisActor.transform.Find("Anchor/Model");
+            _anchorTransform = ThisActor.transform.Find("Anchor");
+            _modelTransform = _anchorTransform.Find("Model");
             base.Awake();
         }
 
 
         public void Shake(float duration, float strength = 1f, int vibrato = 10, float randomness = 90f)
         {
-            if (_modelTransform == null)
+            if (_anchorTransform == null)
                 return;
             if(isMoving) return;
             isMoving = true;
+            _modelTransform.gameObject.SetActive(true);
             var seq = DOTween.Sequence();
-            seq.Append(_modelTransform.DOShakePosition(duration, strength, vibrato, randomness));
+            seq.Append(_anchorTransform.DOShakePosition(duration, strength, vibrato, randomness));
             seq.AppendCallback(() =>
             {
-                if (_modelTransform == null)
+                if (_anchorTransform == null)
                 {
                     isMoving = false;
                     seq.Kill();
                     return;
                 }
-                _modelTransform.localPosition = Vector3.zero;
+                _anchorTransform.localPosition = Vector3.zero;
                 isMoving = false;
+                _modelTransform.gameObject.SetActive(false);
                 seq.Kill(true);
             });
         }
@@ -48,12 +52,14 @@ namespace Blocks.Acts
         {
             if(isMoving) return;
             isMoving = true;
+            _modelTransform.gameObject.SetActive(true);
             var seq = DOTween.Sequence();
-            seq.Append(_modelTransform.DOLocalJump(Vector3.zero, strength, 1, duration));
+            seq.Append(_anchorTransform.DOLocalJump(Vector3.zero, strength, 1, duration));
             seq.AppendCallback(() =>
             {
-                _modelTransform.localPosition = Vector3.zero;
+                _anchorTransform.localPosition = Vector3.zero;
                 isMoving = false;
+                _modelTransform.gameObject.SetActive(false);
                 seq.Kill(true);
             });
         }
@@ -62,13 +68,15 @@ namespace Blocks.Acts
         {
             if(isMoving) return;
             isMoving = true;
+            _modelTransform.gameObject.SetActive(true);
             var seq = DOTween.Sequence();
-            seq.Append(_modelTransform.DOLocalRotate(new Vector3(900, 900, 900), duration, RotateMode.LocalAxisAdd));
-            seq.Join(_modelTransform.DOLocalJump(Vector3.zero, strength / 2f, 1, duration));
+            seq.Append(_anchorTransform.DOLocalRotate(new Vector3(900, 900, 900), duration, RotateMode.LocalAxisAdd));
+            seq.Join(_anchorTransform.DOLocalJump(Vector3.zero, strength / 2f, 1, duration));
             seq.AppendCallback(() =>
             {
-                _modelTransform.localRotation = Quaternion.identity;
+                _anchorTransform.localRotation = Quaternion.identity;
                 isMoving = false;
+                _modelTransform.gameObject.SetActive(false);
                 seq.Kill(true);
             });
         }
