@@ -69,10 +69,10 @@ public class QuestManager : MonoBehaviour
         switch (currentQuest)
         {
             case QuestName.FirstFloorBossKill:
-                Debug.Log("저 확인좀..");
                 AddMonsterKillMission(currentQuest, EnemyType.CrazyGhostActor, 1);
                 break;
             case QuestName.S10AreaEnter:
+                Debug.Log("저 확인좀..");
                 AddRoomMission(currentQuest, "S10");
                 break;
         }
@@ -141,7 +141,6 @@ public class QuestManager : MonoBehaviour
                     check.RemoveAt(i);
                     Define.GetManager<DataManager>().ReadyClearQuest(questList[i]);
                     questList.RemoveAt(i);
-                    Debug.Log("�̼� Ŭ����!");
                     i--;
                 }
             }
@@ -163,7 +162,6 @@ public class QuestManager : MonoBehaviour
         {
             if(checkRoom.Contains(allRoomSODic[result].roomSO))
             {
-                Debug.Log("�̼� Ŭ����!");
                 Define.GetManager<DataManager>().ReadyClearQuest(allRoomSODic[result].myQuest[0]);
                 checkRoom.Remove(allRoomSODic[result].roomSO);
             }
