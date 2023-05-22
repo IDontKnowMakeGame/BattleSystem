@@ -11,5 +11,7 @@ namespace Tool.Map.Rooms
         public Vector3 StartPos { get; set; }
         [field:SerializeField]
         public Vector3 EndPos { get; set; }
+
+        public Transform modelRoot = null;
     }
 }
