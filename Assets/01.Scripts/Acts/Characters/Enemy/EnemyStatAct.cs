@@ -41,12 +41,8 @@ namespace Acts.Characters.Enemy
                 return;
             }
 
-			//GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Damage");
-			//obj.GetComponent<DamagePopUp>().DamageText((int)damage, ThisActor.transform.position, (actor.transform.position - ThisActor.transform.position).GetDirection(), true);
-
 			GameObject obj = Define.GetManager<ResourceManager>().Instantiate("DamageText");
 			obj.GetComponent<DamageText>().PopUp((int)damage, ThisActor.transform.position, (actor.transform.position - ThisActor.transform.position).GetDirection());
-
 
 			if (ThisActor is BossActor)
             {
@@ -98,6 +94,9 @@ namespace Acts.Characters.Enemy
             if (enemy != null) enemy.Alive = false;
 
 		    ThisActor.RemoveAct<EnemyAI>();
+
+            Debug.Log(isBoss);
+
             if (!isBoss)
             {
 	            UnitAnimation unit = ThisActor.GetAct<UnitAnimation>();
@@ -124,6 +123,9 @@ namespace Acts.Characters.Enemy
 	            //DOTween.To(() => 4, x => mat.SetFloat("_Cutoff_Height", x), 0, 0.8f);
 	            deathParticle.transform.position = ThisActor.Position;
 	            unit.Play("Die");
+
+                Debug.Log("Die");
+                Debug.Log(unit);
             }
 
             if(info._id != ItemID.None)
@@ -131,7 +133,6 @@ namespace Acts.Characters.Enemy
                 GameObject obj = Define.GetManager<ResourceManager>().Instantiate("GetItemObject");
                 obj.GetComponent<GetItemObject>().Init(info);
                 obj.transform.position = this.ThisActor.Position + Vector3.up/2;
-
 			}
 
             InGame.Player.GetAct<PlayerAttack>().RangeReset();

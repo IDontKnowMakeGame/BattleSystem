@@ -32,8 +32,9 @@ namespace Data
         SecondMap = 204,
         ThirdMap = 205,
 		Pick = 206,
-		//300~399 QuestItem
-		TEST = 300
+        CompassOfSpace = 207,
+        //300~399 QuestItem
+        TEST = 300
 
     }
 }
