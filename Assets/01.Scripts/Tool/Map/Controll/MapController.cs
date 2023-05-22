@@ -9,6 +9,8 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.U2D.Animation;
 using UnityEngine;
+using UnityEngine.ProBuilder;
+using UnityEngine.ProBuilder.MeshOperations;
 
 namespace Tool.Map.Controll
 {
@@ -73,12 +75,66 @@ namespace Tool.Map.Controll
             ShowToggleBtn(7);
             ShowRoomCreator(7);
             ShowRoomController(3);
+            ShowRoomArea(3);
+            ShowRoomMerge(3);
             ShowSwitchCamera(7);
             ShowEnemyList();
             ShowInvisibleBtn(7);
 
             CheckCharacter();
             DragHandle();
+        }
+
+        [Obsolete("Obsolete")]
+        private void ShowRoomMerge(int _height)
+        {
+            var index = idx * height;
+            var meregBtnRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index, 300, height * _height);
+            if (GUI.Button(meregBtnRect, "Merge Room"))
+            {
+                foreach (var room in rooms)
+                {
+                    var blocks_T = room.modelRoot.AllChildrenObjListT();
+                        
+                    var blocks_M = blocks_T.Select(x => x.GetComponent<ProBuilderMesh>()).ToList();
+                    var combine = CombineMeshes.Combine(blocks_M);
+                    foreach (var model_T in blocks_T)
+                    {
+                        DestroyImmediate(model_T.gameObject);
+                    }
+                        
+                    combine[0].transform.SetParent(room.modelRoot);
+                }
+
+                selectedBlocks.Clear();
+            }
+
+            idx += _height + spaceIdx;
+        }
+
+        private void ShowRoomArea(int _height)
+        {
+            var index = idx * height;
+            var areaBtnRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index, 300, height * _height);
+            if (GUI.Button(areaBtnRect, "SetArea"))
+            {
+                foreach (var room in rooms)
+                {
+                    if (room.name == roomText)
+                    {
+                        var blocks_T = room.transform.AllChildrenObjListT().ToArray();
+                        var minMax = blocks_T.GetMaxMinVector3s();
+                        room.StartPos = minMax[0];
+                        room.EndPos = minMax[1];
+                        Init();
+                        break;
+                    }
+                }
+
+                selectedBlocks.Clear();
+            }
+
+            idx += _height;
         }
 
         private void ShowRoomController(int _height)
@@ -122,7 +178,7 @@ namespace Tool.Map.Controll
                 selectedBlocks.Clear();
             }
 
-            idx += _height + spaceIdx;
+            idx += _height;
         }
 
         private void ShowInvisibleBtn(int _height)

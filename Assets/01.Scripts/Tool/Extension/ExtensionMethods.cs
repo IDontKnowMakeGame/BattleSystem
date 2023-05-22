@@ -871,24 +871,22 @@ public static class ExtensionMethods
     }
 
     #if UNITY_EDITOR
-    public static Vector3[] GetMaxMinVector3s(this Block[] poses)
+    public static Vector3[] GetMaxMinVector3s(this Transform[] poses)
     {
-        if (poses[0] == null)
-            poses = MapManager.GetBlockOnMap();
-        var maxX = poses[0].transform.position.x;
-        var minX = poses[0].transform.position.x;
-        var maxZ = poses[0].transform.position.z;
-        var minZ = poses[0].transform.position.z;
+        var maxX = poses[0].position.x;
+        var minX = poses[0].position.x;
+        var maxZ = poses[0].position.z;
+        var minZ = poses[0].position.z;
         foreach (var pose in poses)
         {
-            if (pose.transform.position.x > maxX)
-                maxX = pose.transform.position.x;
-            if (pose.transform.position.x < minX)
-                minX = pose.transform.position.x;
-            if (pose.transform.position.z > maxZ)
-                maxZ = pose.transform.position.z;
-            if (pose.transform.position.z < minZ)
-                minZ = pose.transform.position.z;
+            if (pose.position.x > maxX)
+                maxX = pose.position.x;
+            if (pose.position.x < minX)
+                minX = pose.position.x;
+            if (pose.position.z > maxZ)
+                maxZ = pose.position.z;
+            if (pose.position.z < minZ)
+                minZ = pose.position.z;
         }
         
         return new []{new Vector3(minX, 0, maxZ), new Vector3(maxX, 0, minZ)};
