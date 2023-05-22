@@ -111,6 +111,12 @@
             "name": "Pick",
             "currentCnt": 99,
             "maxCnt": 99
+        },
+        {
+            "id": 207,
+            "name": "CompassOfSpace",
+            "currentCnt": 98,
+            "maxCnt": 99
         }
     ],
     "inventoryInQuestItemList": [
