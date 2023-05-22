@@ -45,8 +45,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.4403433, b: 0.21226418, a: 1}
-  m_Intensity: 3
-  m_Range: 12.48
+  m_Intensity: 10
+  m_Range: 15
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -345,7 +345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198000011722818690, guid: 21df8899561f4a948a38ec8fa91adfb8, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 198000011722818690, guid: 21df8899561f4a948a38ec8fa91adfb8, type: 3}
       propertyPath: InitialModule.startRotationX.minMaxState
@@ -357,7 +357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198000011904630776, guid: 21df8899561f4a948a38ec8fa91adfb8, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 198000011904630776, guid: 21df8899561f4a948a38ec8fa91adfb8, type: 3}
       propertyPath: InitialModule.startRotationX.minMaxState
@@ -369,7 +369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198000012884573298, guid: 21df8899561f4a948a38ec8fa91adfb8, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 198000013759526944, guid: 21df8899561f4a948a38ec8fa91adfb8, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
