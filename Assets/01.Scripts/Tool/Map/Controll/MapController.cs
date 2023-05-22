@@ -21,6 +21,7 @@ namespace Tool.Map.Controll
         private static Vector3[] mapPoses;
         private Dictionary<Vector3, Block> selectedBlocks = new();
         private Dictionary<Vector3, Vector2> blockPosDic = new();
+        private Transform mapModelRoot = null;
         public static Dictionary<Vector3, GameObject> SpawnCharacters = new();
         private static Rooms.Room[] rooms;
         private static GameObject[] enemies;
@@ -36,6 +37,13 @@ namespace Tool.Map.Controll
         [MenuItem("Tools/MapController")]
         public static void ShowWindow()
         {
+            Init();
+            MapController window = (MapController)EditorWindow.GetWindow(typeof(MapController));
+            window.Show();
+        }
+
+        public static void Init()
+        {
             blocks = MapManager.GetDictWithBlocks();
             rooms = MapManager.GetRoomsOnMap();
             var objects = Resources.LoadAll("Prefabs/Enemies");
@@ -47,8 +55,6 @@ namespace Tool.Map.Controll
             
             mapPoses = blocks.GetMaxMinVector3s();
             SpawnCharacters = GameManagement.Instance.SpawnCharacters.ToDictionary(x => x.Position.SetY(0), y => y.Prefab);
-            MapController window = (MapController)EditorWindow.GetWindow(typeof(MapController));
-            window.Show();
         }
 
         private void Update()
@@ -58,12 +64,15 @@ namespace Tool.Map.Controll
 
         private void OnGUI()
         {
+            if(blocks == null)
+                Init();
             GetArea();
             ShowBlocks();
 
             idx = 0;
             ShowToggleBtn(7);
             ShowRoomCreator(7);
+            ShowRoomController(3);
             ShowSwitchCamera(7);
             ShowEnemyList();
             ShowInvisibleBtn(7);
@@ -72,10 +81,54 @@ namespace Tool.Map.Controll
             DragHandle();
         }
 
+        private void ShowRoomController(int _height)
+        {
+            var index = idx * height;
+            var addBtnRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index, 150, height * _height);
+            if (GUI.Button(addBtnRect, "Add Blocks"))
+            {
+                foreach (var room in rooms)
+                {
+                    if (room.name == roomText)
+                    {
+                        selectedBlocks.Values.ToList().ForEach(block => block.transform.SetParent(room.transform));
+                        Init();
+                        break;
+                    }
+                }
+
+                selectedBlocks.Clear();
+            }
+            
+            var removeBtnRect = new Rect((mapPoses[1].x) * width + 200, mapRect.y + index, 150, height * _height);
+            if (GUI.Button(removeBtnRect, "Remove Room"))
+            {
+                foreach (var room in rooms)
+                {
+                    if (room.name == roomText)
+                    {
+                        DestroyImmediate(room.modelRoot.gameObject);
+                        var root = room.transform.parent;
+                        foreach (var block in room.transform.AllChildrenObjListT())
+                        {
+                            block.transform.SetParent(root);
+                        }
+                        DestroyImmediate(room.gameObject);
+                        Init();
+                        break;
+                    }
+                }
+
+                selectedBlocks.Clear();
+            }
+
+            idx += _height + spaceIdx;
+        }
+
         private void ShowInvisibleBtn(int _height)
         {
             var index = idx * height;
-            var invisibleBtnRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index + space, 300, height * _height);
+            var invisibleBtnRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index, 300, height * _height);
             if (GUI.Button(invisibleBtnRect, "Invisible"))
             {
                 foreach (var block in selectedBlocks)
@@ -94,7 +147,7 @@ namespace Tool.Map.Controll
         {
             var index = idx * height;
             var enemyList = enemies.ToList();
-            var enemyListRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index + space, 300, height * 2 * (enemyList.Count + 1));
+            var enemyListRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index, 300, height * 2 * (enemyList.Count + 1));
             GUI.Box(enemyListRect, "");
             scrollPos2 = GUI.BeginScrollView(enemyListRect, scrollPos2, new Rect(0, 0, 300, height * (enemyList.Count + 1)));
             var listHeight = 0f;
@@ -161,18 +214,51 @@ namespace Tool.Map.Controll
             var roomBtnRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index + (height * _height * 0.33f), 300, height * _height * 0.66f);
             if (GUI.Button(roomBtnRect, "Create Room"))
             {
-                var parentTrm = new GameObject(roomText).transform;
-                parentTrm.AddComponent<Rooms.Room>();
+                if (mapModelRoot == null)
+                {
+                    var mapModel = GameObject.Find("MapModel");
+                    if(mapModel == null)
+                        mapModel = new GameObject {name = "MapModel"};
+                    mapModelRoot = mapModel.transform;
+                    
+                }
+
                 var rootTrm = GameObject.Find("MapTiled").transform;
+                var modelParentTrm = new GameObject(roomText + "Model").transform;
+                Transform model = null;
+                foreach (var r in rooms)
+                {
+                    if (r.name == roomText)
+                    {
+                        modelParentTrm.SetParent(mapModelRoot);
+                        r.modelRoot = modelParentTrm;
+                        foreach (var block in selectedBlocks.Values)
+                        {
+                            var modelTrm = block.transform.GetChild(0).GetChild(0);
+                            model = Instantiate(modelTrm, modelParentTrm);
+                            model.position = block.transform.position;
+                        }
+                        selectedBlocks.Clear();
+                        return;
+                    }
+                }
+                var parentTrm = new GameObject(roomText).transform;
                 parentTrm.SetParent(rootTrm);
+                var room = parentTrm.AddComponent<Rooms.Room>();
                 foreach (var block in selectedBlocks.Values)
                 {
                     block.transform.SetParent(parentTrm);
+                    var modelTrm = block.transform.GetChild(0).GetChild(0);
+                    model = Instantiate(modelTrm, modelParentTrm);
+                    model.position = block.transform.position;
                 }
+
+                modelParentTrm.SetParent(mapModelRoot);
+                room.modelRoot = modelParentTrm;
                 selectedBlocks.Clear();
                 rooms = MapManager.GetRoomsOnMap();
             }
-            idx += _height + spaceIdx;
+            idx += _height;
             
             var roomListRect = new Rect((mapPoses[1].x) * width + 375, height * 3, 150, position.height);
             GUI.Box(roomListRect, "");
@@ -186,6 +272,7 @@ namespace Tool.Map.Controll
                 var roomRect = new Rect(0, roomList.IndexOf(room) * height * 2, 150, height * 2);
                 if (GUI.Button(roomRect, room.name))
                 {
+                    roomText = room.name;
                     selectedBlocks.Clear();
                     foreach (Transform child in room.transform)
                     {
@@ -245,10 +332,11 @@ namespace Tool.Map.Controll
                     var switchInputDurationRect = new Rect((mapPoses[1].x) * width + 200, mapRect.y + index, 150, height * 2);
                     GUI.Label(switchTitleDurationRect, "Duration", EditorStyles.wordWrappedMiniLabel);
                     firstSelectedBlock.switchCamera.Duration = EditorGUI.FloatField(switchInputDurationRect, firstSelectedBlock.switchCamera.Duration);
-                    
                     idx += 2;
                 }
             }
+            
+            idx += spaceIdx;
         }
 
         private void CheckCharacter()
