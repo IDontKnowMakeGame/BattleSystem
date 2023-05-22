@@ -7,6 +7,7 @@ namespace Blocks
         [SerializeField] private float delay = 0.5f;
         private bool isActive = false;
         private float timer = 0.0f;
+        
         protected override void Awake()
         {
             isParent = true;
