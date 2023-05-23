@@ -29,6 +29,7 @@ public class RoomSquall : MonoBehaviour
 	[Space]
 
 	[Header("스콜 나오는 프리팹")]
+	[SerializeField]
 	private string _objName;
 
 	private float _currentTimer = 0;
@@ -77,8 +78,11 @@ public class RoomSquall : MonoBehaviour
 		else
 		{
 			_currentTimer = 0;
-			isSquall = Random.Range(0, 1) == 0 ? true : false;
 			_waitCurrentTimer = 0;
+			int sq = Random.Range(0, 2);
+			isSquall = sq == 0 ? true : false;
+			Debug.Log(isSquall);
+			Debug.Log(sq);
 		}
 
 
@@ -112,6 +116,8 @@ public class RoomSquall : MonoBehaviour
 			int count = blocks.Length;
 			RandomListInit(count);
 			RandomRoom(count);
+			Debug.Log(count);
+			Debug.Log(_randomList);
 			for (int i = 0; i < _count; i++)
 			{
 				GameObject obj = Define.GetManager<ResourceManager>().Instantiate(_objName);
