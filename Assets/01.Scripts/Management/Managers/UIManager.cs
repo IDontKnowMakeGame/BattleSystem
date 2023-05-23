@@ -19,8 +19,7 @@ public class UIManager : MonoBehaviour
     public UIDialog Dialog = new UIDialog();
     public UIFirstFloorMap UIFirstFloorMap = new UIFirstFloorMap();
 
-    public ItemStoreTableSO itemStoreTable;
-
+    public MapNameData MapNameData;
 
     private void Awake()
     {
