@@ -137,7 +137,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 	{
 		if (!_haveinHand)
 			return;
-		if (_playerActor.HasAnyState()) return;
+		if (_playerActor.HasState(CharacterState.Equip)) return;
 
 		CurrentWeapon?.Skill(Weapon.DirReturn(vec));
 		

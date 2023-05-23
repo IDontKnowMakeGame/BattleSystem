@@ -40,7 +40,7 @@ public class PlayerFlooding : Act
         }
     }
 
-    private void ChangeflooadCnt(int addCnt)
+    public void ChangeflooadCnt(int addCnt)
     {
         floodCount += addCnt;
 
