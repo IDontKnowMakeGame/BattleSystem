@@ -1,4 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="QuestPanelTemp" src="project://database/Assets/Resources/UIDoc/QuestPanelTemp.uxml?fileID=9197481963319205126&amp;guid=5a66b64a53d26ec4bb900f0eb19564a5&amp;type=3#QuestPanelTemp" />
     <ui:Template name="UIInGameItemBox" src="project://database/Assets/Resources/UIDoc/UIInGameItemBox.uxml?fileID=9197481963319205126&amp;guid=de6cc622f7df38c4cb12be03b0ce6b42&amp;type=3#UIInGameItemBox" />
     <Style src="project://database/Assets/Resources/UIDoc/USS/InGame.uss?fileID=7433441132597879392&amp;guid=0b1a8573c5056594fa475e1a87e44cce&amp;type=3#InGame" />
     <ui:VisualElement name="background" style="position: absolute; width: 100%; height: 100%; left: 0; top: 0; justify-content: space-between;">
@@ -39,7 +40,9 @@
                         <ui:Label text="퀘스트" display-tooltip-when-elided="true" name="QuestTitleText" style="-unity-font: url(&apos;project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&amp;guid=fdf177119c8b7f84fbad0a6901efb8cc&amp;type=3#SUITE-Variable&apos;); -unity-font-definition: none; font-size: 30px; color: rgb(217, 217, 217); margin-left: 10px;" />
                         <ui:VisualElement name="Line" style="background-color: rgb(255, 255, 255); width: 259px; height: 4%;" />
                     </ui:VisualElement>
-                    <ui:ScrollView name="QuestListPanel" style="width: 100%; height: 100%;" />
+                    <ui:ScrollView name="QuestListPanel" mode="Vertical" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" style="width: 100%; height: 100%;">
+                        <ui:Instance template="QuestPanelTemp" name="QuestPanelTemp" style="transition-property: left; transition-duration: 0.4s; transition-timing-function: ease-in; transition-delay: 0.1s;" />
+                    </ui:ScrollView>
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Middle" style="flex-basis: 33%; height: 100%;">
