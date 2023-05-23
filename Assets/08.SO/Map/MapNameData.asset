@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc7c4cffe5d145a45b4b7a89a5e9bde8, type: 3}
+  m_Name: MapNameData
+  m_EditorClassIdentifier: 
+  firstMapName:
+  - "\uC2DC\uC791\uC758 \uBC29"
+  - "\uD3D0\uD5C8"
+  - "\uC717 \uBCF5\uB3C4"
+  - "\uCE68\uC18C"
+  - "\uB300\uC11C\uACE0"
+  - "\uC81C 1 \uB0B4\uC9C4"
+  - "\uC81C 1 \uD68C\uB791"
+  - "\uB3D9\uCABD \uCC3D\uACE0"
+  - "\uC544\uB7AB \uBCF5\uB3C4"
+  - "\uC544\uB7AB \uAE38\uBAA9"
+  - "\uBE48 \uD3D0\uD5C8"
+  - "\uB05D \uBC29"
+  - "\uC791\uC740 \uC11C\uC7AC"
+  - "\uB300\uC2DD\uB2F9"
+  - "\uBCC4\uC758 \uBB34\uB364"
+  - "\uD070 \uCC3D\uACE0"
+  - "\uC81C 2 \uD68C\uB791"
+  - "\uC81C 2 \uB0B4\uC9C4"
+  - "\uC81C 2 \uCE21\uB791"
+  - "\uC544\uB7AB \uCC3D\uACE0"
+  - "\uC774\uB984\uC5C6\uB294 \uACF3"
+  - "\uC11C\uCABD \uBCF5\uB3C4"
+  - "\uCC45\uBC29"
+  - ???
+  - ???
+  - ???
+  - "\uC545\uB9C8\uC758 \uC740\uC2E0\uCC98"
+  secondMapName: []

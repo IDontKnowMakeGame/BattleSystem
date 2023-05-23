@@ -104,7 +104,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 3ef5a1a2da5be7f4582c3a39af5635e5, type: 3}
 --- !u!114 &329202427
@@ -131,6 +131,8 @@ MonoBehaviour:
   _characterState: 0
   _isBlocking: 0
   canKnockBack: 0
+  characterDetect:
+    isDetecting: 0
   _itemObject: {fileID: 1085409376}
   _particle: {fileID: 2992910569754046198}
 --- !u!320 &329202428
@@ -282,7 +284,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: e129cb2f91e2663438d9b61f3cf6dea8, type: 3}
 --- !u!95 &329202430

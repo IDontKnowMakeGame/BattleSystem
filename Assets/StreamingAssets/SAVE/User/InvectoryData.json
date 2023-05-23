@@ -73,7 +73,7 @@
         {
             "id": 200,
             "name": "Torch",
-            "currentCnt": 26,
+            "currentCnt": 23,
             "maxCnt": 99
         },
         {
@@ -109,6 +109,12 @@
         {
             "id": 206,
             "name": "Pick",
+            "currentCnt": 99,
+            "maxCnt": 99
+        },
+        {
+            "id": 207,
+            "name": "CompassOfSpace",
             "currentCnt": 99,
             "maxCnt": 99
         }

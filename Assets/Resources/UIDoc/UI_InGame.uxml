@@ -27,24 +27,44 @@
             </ui:VisualElement>
             <ui:VisualElement name="area_playerstatus" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; flex-basis: 10%;" />
         </ui:VisualElement>
-        <ui:VisualElement name="area_Void" style="flex-basis: 50%; align-items: flex-end; justify-content: flex-end;">
-            <ui:VisualElement name="ItemPanel" class="ShowItemPanel HideItemPanel" style="height: 50%; width: 10%; background-color: rgb(94, 94, 94); justify-content: center; align-items: center; margin-right: 1%; transition-property: left; transition-duration: 1s; transition-delay: 0.2s; transition-timing-function: ease-in;">
-                <ui:VisualElement name="Image" style="height: 80%; width: 80%; background-image: resource(&apos;Item/1&apos;); -unity-background-scale-mode: scale-to-fit; justify-content: flex-end; align-items: flex-end;">
-                    <ui:Label text="x3" display-tooltip-when-elided="true" name="ItemCntText" style="margin-bottom: 5px; margin-right: 5px; font-size: 30%;" />
+        <ui:VisualElement name="area_Void" style="flex-basis: 50%; align-items: flex-end; justify-content: flex-end; flex-direction: row;">
+            <ui:VisualElement name="Left" style="flex-basis: 33%; height: 100%;">
+                <ui:VisualElement name="RoomInfoPanel" style="flex-basis: 15%; width: 35%; background-color: rgba(0, 0, 0, 0.25); justify-content: center; align-items: center; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; margin-bottom: 5px;">
+                    <ui:Label text="시작의 방" display-tooltip-when-elided="true" name="RoomNameText" style="-unity-font: url(&apos;project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&amp;guid=fdf177119c8b7f84fbad0a6901efb8cc&amp;type=3#SUITE-Variable&apos;); -unity-font-definition: none; color: rgb(226, 226, 226); font-size: 30px; margin-bottom: 3px;" />
+                    <ui:VisualElement name="Line" style="width: 70%; height: 5%; background-color: rgb(255, 255, 255); margin-bottom: 5px;" />
+                    <ui:VisualElement name="Line" style="width: 60%; height: 5%; background-color: rgb(255, 255, 255);" />
                 </ui:VisualElement>
-                <ui:VisualElement name="TextBox" style="width: 80%; height: 10%; background-color: rgb(166, 166, 166); justify-content: center; align-items: center;">
-                    <ui:Label text="Label" display-tooltip-when-elided="true" name="ItemName" style="color: rgb(0, 0, 0); font-size: 15%;" />
+                <ui:VisualElement name="QuestInfoPanel" style="flex-basis: 85%; width: 50%;">
+                    <ui:VisualElement name="QuestTitle" style="width: 100%; height: 10%; background-color: rgba(0, 0, 0, 0.25); justify-content: center; align-items: flex-start; padding-left: 10%; display: none;">
+                        <ui:Label text="퀘스트" display-tooltip-when-elided="true" name="QuestTitleText" style="-unity-font: url(&apos;project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&amp;guid=fdf177119c8b7f84fbad0a6901efb8cc&amp;type=3#SUITE-Variable&apos;); -unity-font-definition: none; font-size: 30px; color: rgb(217, 217, 217); margin-left: 10px;" />
+                        <ui:VisualElement name="Line" style="background-color: rgb(255, 255, 255); width: 259px; height: 4%;" />
+                    </ui:VisualElement>
+                    <ui:ScrollView name="QuestListPanel" style="width: 100%; height: 100%;" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="Interaction" style="width: 100%; height: 42px; align-items: center;">
-                <ui:VisualElement name="InteractionBox" style="height: 100%; width: 20%; background-color: rgb(197, 197, 197); justify-content: center; align-items: center; display: none; opacity: 0.5;">
-                    <ui:Label text="E : Click" display-tooltip-when-elided="true" style="color: rgb(0, 0, 0); font-size: 30%;" />
+            <ui:VisualElement name="Middle" style="flex-basis: 33%; height: 100%;">
+                <ui:VisualElement name="Interaction" style="width: 100%; height: 42px; align-items: center;">
+                    <ui:VisualElement name="InteractionBox" style="height: 100%; width: 20%; background-color: rgb(197, 197, 197); justify-content: center; align-items: center; display: none; opacity: 0.5;">
+                        <ui:Label text="E : Click" display-tooltip-when-elided="true" style="color: rgb(0, 0, 0); font-size: 30%;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Right" style="flex-basis: 33%; height: 100%; align-items: flex-end; justify-content: flex-end;">
+                <ui:VisualElement name="ItemPanel" class="ShowItemPanel HideItemPanel" style="height: 50%; width: 30%; background-color: rgb(94, 94, 94); justify-content: center; align-items: center; margin-right: 1%; transition-property: left; transition-duration: 1s; transition-delay: 0.2s; transition-timing-function: ease-in;">
+                    <ui:VisualElement name="Image" style="height: 80%; width: 80%; background-image: resource(&apos;Item/1&apos;); -unity-background-scale-mode: scale-to-fit; justify-content: flex-end; align-items: flex-end;">
+                        <ui:Label text="x3" display-tooltip-when-elided="true" name="ItemCntText" style="margin-bottom: 5px; margin-right: 5px; font-size: 30%;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="TextBox" style="width: 80%; height: 10%; background-color: rgb(166, 166, 166); justify-content: center; align-items: center;">
+                        <ui:Label text="Label" display-tooltip-when-elided="true" name="ItemName" style="color: rgb(0, 0, 0); font-size: 15%;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="area_Cristal" style="flex-basis: 5%; justify-content: flex-start; align-items: center; flex-direction: row;">
-            <ui:VisualElement name="Image" style="width: 3%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Cristal.png?fileID=2800000&amp;guid=8c3bfa99538504249b5586b47afccc17&amp;type=3#UI_Cristal&apos;); -unity-background-scale-mode: scale-to-fit;" />
-            <ui:Label text="4/3" display-tooltip-when-elided="true" name="cristalCnt" style="font-size: 37%; color: rgb(255, 255, 255); -unity-text-align: middle-left;" />
+        <ui:VisualElement style="flex-basis: 5%; flex-direction: row;">
+            <ui:VisualElement name="area_Cristal" style="justify-content: flex-start; align-items: center; display: flex; flex-direction: row; width: 100%; height: 100%;">
+                <ui:VisualElement name="Image" style="width: 3%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Cristal.png?fileID=2800000&amp;guid=8c3bfa99538504249b5586b47afccc17&amp;type=3#UI_Cristal&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:Label text="4/3" display-tooltip-when-elided="true" name="cristalCnt" style="font-size: 37%; color: rgb(255, 255, 255); -unity-text-align: middle-left;" />
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="area_equipment" style="flex-basis: 20%; left: 0; bottom: 0; flex-direction: row; justify-content: flex-start; align-items: flex-end; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
             <ui:VisualElement name="area_weapon" style="flex-basis: 12%; height: 100%; flex-direction: row; align-items: flex-end; margin-right: 10px;">

@@ -136,11 +136,11 @@ public class Arrow : MonoBehaviour
 
 		_stickActor = InGame.GetActor(other.gameObject.GetInstanceID()) as CharacterActor;
 
-		Vector3 vec = _stickActor.transform.position + (this.transform.position - _stickActor.transform.position).GetDirection();
+		Vector3 vec = other.transform.position + (this.transform.position - other.transform.position).GetDirection();
 		vec.y = 1;
 		this.transform.position = vec;
 		this.transform.parent = other.transform;
-		_stickActor.GetAct<CharacterStatAct>()?.Damage(_damage, _shootActor);
+		_stickActor?.GetAct<CharacterStatAct>()?.Damage(_damage, _shootActor);
 			_isStick = true;
 
 		if (_isDestroy)
