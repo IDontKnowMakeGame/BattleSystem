@@ -68,13 +68,15 @@ public class StraightSword : Weapon
 		if (!_attakAble)
 			return;
 
+		if (_characterActor.HasAnyState())
+			return;
+
 		_attackInfo.UpStat = new ColliderStat(1, 1, InGame.None, InGame.None);
 		_attackInfo.DownStat = new ColliderStat(1, 1, InGame.None, InGame.None);
 		_attackInfo.LeftStat = new ColliderStat(1, 1, InGame.None, InGame.None);
 		_attackInfo.RightStat = new ColliderStat(1, 1, InGame.None, InGame.None);
 
 		Vector3 vector = DirReturn(vec);
-		Define.GetManager<SoundManager>().Play("LongSword/slash", Define.Sound.Effect, 1);
 		Debug.Log(vector);
 		_attackInfo.ReachFrame = 5;
 		_attackInfo.PressInput = vector;

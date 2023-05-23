@@ -48,7 +48,8 @@ namespace Acts.Characters.Player
             _thirdMap = new ThirdMap();
 
             _hpPotion.HolyParticle = holyParticle;
-            _compassOfSpace.TargetBlock = floorTargetBlock.transform;
+            if(floorTargetBlock != null)
+                _compassOfSpace.TargetBlock = floorTargetBlock.transform;
 
             useAbleItems.Add(ItemID.Torch, _torchItem);
             useAbleItems.Add(ItemID.Shield, _shieldItem);

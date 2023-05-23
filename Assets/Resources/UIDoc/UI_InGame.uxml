@@ -3,18 +3,18 @@
     <Style src="project://database/Assets/Resources/UIDoc/USS/InGame.uss?fileID=7433441132597879392&amp;guid=0b1a8573c5056594fa475e1a87e44cce&amp;type=3#InGame" />
     <ui:VisualElement name="background" style="position: absolute; width: 100%; height: 100%; left: 0; top: 0; justify-content: space-between;">
         <ui:VisualElement name="area_playerCondition" style="flex-basis: 20%; width: 100%; height: 20%; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; top: 0; left: 0; flex-grow: 0;">
-            <ui:VisualElement name="slider_hpbar" style="flex-basis: 50%; width: 100%; padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; justify-content: center;">
-                <ui:VisualElement name="bar_hpbackgroud" style="width: 20%; height: 60%; max-width: 95%; min-width: 20%; left: 37px; background-color: rgb(36, 36, 36);">
-                    <ui:VisualElement name="ServeFill" style="width: 90%; height: 100%; position: absolute; left: 0; top: 0; background-color: rgb(159, 159, 159);" />
-                    <ui:VisualElement name="Fill" style="width: 91%; height: 100%; position: absolute; left: 0; top: 0; background-color: rgb(185, 48, 48); background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Slilder.png?fileID=-640806315&amp;guid=5c0fe44ae223cbc44add2c8a043a259b&amp;type=3#UI_Slilder_0&apos;);" />
-                    <ui:VisualElement name="BackGround" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Player_UI_Hpvar.png?fileID=-1464394398&amp;guid=592a4313b6d8fa44987488eb3b4085aa&amp;type=3#Player_UI_Hpvar_1&apos;);" />
+            <ui:VisualElement name="slider_hpbar" style="flex-basis: 50%; width: 100%; padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; justify-content: center; height: 100px; display: flex;">
+                <ui:VisualElement name="bar_hpbackgroud" style="width: 30%; height: 40%; max-width: 95%; min-width: 20%; left: 37px; background-color: rgb(36, 36, 36); opacity: 1; display: flex;">
+                    <ui:VisualElement name="ServeFill" style="width: 90%; height: 100%; position: absolute; left: 0; top: 0; background-color: rgb(159, 159, 159); display: flex;" />
+                    <ui:VisualElement name="Fill" style="width: 91%; height: 100%; position: absolute; left: 0; top: 0; background-color: rgb(185, 48, 48); background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Slilder.png?fileID=-640806315&amp;guid=5c0fe44ae223cbc44add2c8a043a259b&amp;type=3#UI_Slilder_0&apos;); display: flex;" />
+                    <ui:VisualElement name="BackGround" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Player_UI_Hpvar.png?fileID=-1464394398&amp;guid=592a4313b6d8fa44987488eb3b4085aa&amp;type=3#Player_UI_Hpvar_1&apos;); display: flex;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Icon" style="position: absolute; width: 76px; height: 76px; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Player_UI_Hpvar.png?fileID=730970451&amp;guid=592a4313b6d8fa44987488eb3b4085aa&amp;type=3#Player_UI_Hpvar_2&apos;); left: 8px;" />
             </ui:VisualElement>
             <ui:VisualElement name="slider_angerbar" style="flex-basis: 25%; width: 100%; padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; justify-content: center;">
-                <ui:VisualElement name="bar_angerbackgroud" style="width: 25%; height: 60%; left: 37px; background-color: rgb(36, 36, 36);">
+                <ui:VisualElement name="bar_angerbackgroud" style="width: 25%; height: 60%; left: 37px; background-color: rgb(36, 36, 36); display: flex;">
                     <ui:VisualElement name="Fill" style="width: 73%; background-color: rgb(168, 31, 87); height: 100%; max-width: 100%; min-width: 0; display: flex; position: absolute; left: 0; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Slilder.png?fileID=461472133&amp;guid=5c0fe44ae223cbc44add2c8a043a259b&amp;type=3#UI_Slilder_1&apos;);" />
-                    <ui:VisualElement name="BackGround" style="width: 100%; height: 100%;" />
+                    <ui:VisualElement name="BackGround" style="width: 100%; height: 100%; display: flex;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Icon" style="position: absolute; width: 45px; height: 45px; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Player_UI_Hpvar.png?fileID=633027&amp;guid=592a4313b6d8fa44987488eb3b4085aa&amp;type=3#Player_UI_Hpvar_3&apos;); left: 23px;" />
             </ui:VisualElement>

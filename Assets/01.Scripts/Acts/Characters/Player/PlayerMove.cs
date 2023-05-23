@@ -173,7 +173,8 @@ namespace Acts.Characters.Player
             }
 
             MapManager _map = Define.GetManager<MapManager>();
-            QuestManager.Instance.CheckRoomMission(ThisActor.Position);
+            if(QuestManager.Instance != null)
+                QuestManager.Instance.CheckRoomMission(ThisActor.Position);
             bool mode = _map.GetBlock(ThisActor.Position).isWarm;
             ThisActor.GetAct<PlayerFlooding>().ChangeWarmMode(mode);
             Define.GetManager<RoomManager>().CurrentRoomSetting();

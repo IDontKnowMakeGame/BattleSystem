@@ -71,7 +71,7 @@ public class GreatSword : Weapon
 	}
 	public virtual void AttakStart(Vector3 vec)
 	{
-		if (_characterActor.HasState(CharacterState.Everything))
+		if (_characterActor.HasAnyState())
 			return;
 
 		_sliderObject.SliderInit(_stat.ChangeStat.ats);
