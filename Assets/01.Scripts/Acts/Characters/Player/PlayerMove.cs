@@ -176,6 +176,7 @@ namespace Acts.Characters.Player
             QuestManager.Instance.CheckRoomMission(ThisActor.Position);
             bool mode = _map.GetBlock(ThisActor.Position).isWarm;
             ThisActor.GetAct<PlayerFlooding>().ChangeWarmMode(mode);
+            Define.GetManager<RoomManager>().CurrentRoomSetting();
             dust.Stop();
             base.MoveStop();
             //QuestManager.Instance.CheckRoomMission(ThisActor.Position);
