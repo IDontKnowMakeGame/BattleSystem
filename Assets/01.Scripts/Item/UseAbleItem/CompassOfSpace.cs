@@ -23,7 +23,8 @@ public class CompassOfSpace : UseAbleItem
     public override void SettingItem()
     {
         arrow = InGame.Player.transform.Find("Arrow");
-        arrow.gameObject.SetActive(false);
+        if(arrow != null)
+            arrow.gameObject.SetActive(false);
     }
 
     public override bool UseItem()

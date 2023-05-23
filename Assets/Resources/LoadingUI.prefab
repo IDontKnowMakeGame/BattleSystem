@@ -864,6 +864,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131a64db368d685479c50ca15577ca2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundImg: {fileID: 8332689336110574213}
+  bgSprites:
+  - {fileID: 21300000, guid: 3fe1029a7c583484e919798b17279fa4, type: 3}
+  - {fileID: 21300000, guid: 2026b338fcf726f40824bb586b6a9cf1, type: 3}
   canvasGroup: {fileID: 8332689336117115603}
   progressBar: {fileID: 8332689335396693291}
   titleTmp: {fileID: 5908595347979123683}
