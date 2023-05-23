@@ -30,21 +30,21 @@ MonoBehaviour:
     normal: {fileID: 2800000, guid: 9d455cb9d69ce9d44a009fd80b87ec80, type: 3}
     fps: 7
     isLoop: 1
-    delay: 0.1
+    delay: 0.07
   - name: UpperMove
     nextIdx: 0
     texture: {fileID: 2800000, guid: 596206cb01e607649b579ed50206bfda, type: 3}
     normal: {fileID: 2800000, guid: a5a9b6b0e83a50244a905d5038ca1329, type: 3}
     fps: 7
     isLoop: 1
-    delay: 0.1
+    delay: 0.07
   - name: LowerMove
     nextIdx: 0
     texture: {fileID: 2800000, guid: 7040f6d2968a93a4e81446cc1fe659dd, type: 3}
     normal: {fileID: 2800000, guid: a34e52ea27453574ab233de39a1ca13f, type: 3}
     fps: 7
     isLoop: 1
-    delay: 0.1
+    delay: 0.07
   - name: HorizontalCharge
     nextIdx: -1
     texture: {fileID: 2800000, guid: 4db1e0a459d7bd34abc149f25bade168, type: 3}
