@@ -1,6 +1,7 @@
 using Actors.Characters;
 using Actors.Characters.Player;
 using Acts.Characters.Player;
+using Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,7 +28,7 @@ public class Squall : MonoBehaviour
 
 	public void OnTriggerEnter(Collider other)
 	{
-		if(other.CompareTag("Character"))
+		if(other.CompareTag("Player"))
 		{
 			PlayerActor actor = other.GetComponent<PlayerActor>();
 
@@ -39,8 +40,8 @@ public class Squall : MonoBehaviour
 				actor.GetAct<CharacterStatAct>().Damage(damage, null);
 			}
 			actor.GetAct<PlayerFlooding>().ChangeflooadCnt(1);
-
-
 		}
+
+		Define.GetManager<ResourceManager>().Destroy(this.gameObject);
 	}
 }
