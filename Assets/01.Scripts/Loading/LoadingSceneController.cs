@@ -45,6 +45,12 @@ public class LoadingSceneController : MonoBehaviour
     }
 
     [SerializeField]
+    private Image backgroundImg;
+
+    [SerializeField]
+    private List<Sprite> bgSprites;
+
+    [SerializeField]
     private CanvasGroup canvasGroup;
 
     [SerializeField]
@@ -82,6 +88,10 @@ public class LoadingSceneController : MonoBehaviour
 
     private IEnumerator LoadSceneProcess()
     {
+        // background 설정
+        int rand = Random.Range(0, bgSprites.Count);
+        backgroundImg.sprite = bgSprites[rand];
+
         // Tooltip 설정
         int idx = Random.Range(0, titleToolTipList.tooltipList.Count);
         titleTmp.text = titleToolTipList.tooltipList[idx].Replace("\\r\\n", "\n");
