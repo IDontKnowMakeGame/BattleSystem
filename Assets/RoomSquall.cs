@@ -81,8 +81,6 @@ public class RoomSquall : MonoBehaviour
 			_waitCurrentTimer = 0;
 			int sq = Random.Range(0, 2);
 			isSquall = sq == 0 ? true : false;
-			Debug.Log(isSquall);
-			Debug.Log(sq);
 		}
 
 

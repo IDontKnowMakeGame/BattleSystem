@@ -68,6 +68,9 @@ public class StraightSword : Weapon
 		if (!_attakAble)
 			return;
 
+		if (_characterActor.HasAnyState())
+			return;
+
 		_attackInfo.UpStat = new ColliderStat(1, 1, InGame.None, InGame.None);
 		_attackInfo.DownStat = new ColliderStat(1, 1, InGame.None, InGame.None);
 		_attackInfo.LeftStat = new ColliderStat(1, 1, InGame.None, InGame.None);
