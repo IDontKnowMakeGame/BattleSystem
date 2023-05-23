@@ -50,11 +50,13 @@ namespace Managements.Managers
 
                 // 현재 룸과 연결된 룸만 키기
                 currentRoom.modelRoot.gameObject.SetActive(true);
-                currentRoom.roomObjs.gameObject.SetActive(true);
+                if(currentRoom.roomObjs != null)
+                    currentRoom.roomObjs.gameObject.SetActive(true);
                 foreach (Room connectRoom in currentRoom.connectRoom)
                 {
                     connectRoom.modelRoot.gameObject.SetActive(true);
-                    connectRoom.roomObjs.gameObject.SetActive(true);
+                    if (connectRoom.roomObjs != null)
+                        connectRoom.roomObjs.gameObject.SetActive(true);
                 }
 
             }
