@@ -23,10 +23,12 @@ namespace Managements.Managers
             {
                 saveRoom = currentRoom;
 
+
+
                 // 모든 Room 오브젝트 끄기
                 foreach (Transform room in parentRoom)
                 {
-                    room.GetComponent<Room>().modelRoot.gameObject.SetActive(false);
+                    room.GetComponent<Room>()?.modelRoot.gameObject.SetActive(false);
                 }
 
                 // 현재 룸과 연결된 룸만 키기
