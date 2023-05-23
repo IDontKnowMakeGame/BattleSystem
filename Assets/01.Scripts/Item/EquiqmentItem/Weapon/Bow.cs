@@ -172,7 +172,7 @@ public class Bow : Weapon
 		if (isShoot && _playerActor != null)
 			return;
 
-		if (_characterActor.HasState(CharacterState.Everything))
+		if (_characterActor.HasAnyState())
 			return;
 
 		_isCharge = true;

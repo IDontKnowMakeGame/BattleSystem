@@ -53,6 +53,8 @@ public class TwinSword : Weapon
 		base.Equiqment(actor);
 		if (isEnemy)
 			return;
+		if (_characterActor.HasState(CharacterState.Equip))
+			return;
 
 		InputManager<Weapon>.OnMovePress += AttackVec;
 		PlayerMove.OnMoveEnd += OnAttack;

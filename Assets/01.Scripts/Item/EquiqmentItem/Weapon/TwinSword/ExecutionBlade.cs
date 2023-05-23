@@ -41,6 +41,7 @@ public class ExecutionBlade : TwinSword
 			InGame.Attack(_pos + (_dir * i) + right, Vector3.one, info.Atk, i / 10, _characterActor);
 		}
 		_playerMove.distance = 1;
+		_isCoolTime = true;
 		PlayerMove.OnMoveEnd -= OnEnd;
 	}
 }
