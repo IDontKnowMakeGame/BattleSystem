@@ -80,7 +80,6 @@ public class StraightSword : Weapon
 		_attackInfo.ResetDir();
 		_attackInfo.AddDir(_attackInfo.DirTypes(vector));
 		_eventParam.attackParam = _attackInfo;
-		Define.GetManager<SoundManager>().Play("LongSword/slash", Define.Sound.Effect, 1);
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
 	}
 }
