@@ -23,6 +23,13 @@ public class UIInGame : UIBase
     private VisualElement _itemList;
     private VisualElement _interactionBox;
 
+    private VisualElement _roomInfoPanel;
+    private Label _roomNameText;
+
+    //private VisualElement _questInfoPanel;
+    private ListView _questListPanel;
+    private VisualTreeAsset _questPanelTemp;
+
     private VisualElement _crsitalPanel;
 
     private VisualElement _itemPanel;
@@ -84,6 +91,12 @@ public class UIInGame : UIBase
         _itemList = _root.Q<VisualElement>("area_item");
         _itemPanel = _root.Q<VisualElement>("ItemPanel");
         _interactionBox = _root.Q<VisualElement>("InteractionBox");
+
+        _roomInfoPanel = _root.Q<VisualElement>("RoomInfoPanel");
+        _roomNameText = _roomInfoPanel.Q<Label>("RoomNameText");
+
+        _questListPanel = _root.Q<ListView>("QuestListPanel");
+        _questPanelTemp = Define.GetManager<ResourceManager>().Load<VisualTreeAsset>("UIDoc/QuestPanelTemp");
 
         _crsitalPanel = _root.Q<VisualElement>("area_Cristal");
 
@@ -211,6 +224,7 @@ public class UIInGame : UIBase
     public void CristalInfoInRoom(int roomNum)
     {
         currentRoom = roomNum;
+        _roomNameText.text = UIManager.Instance.MapNameData.firstMapName[roomNum];
         if (roomNum == 0)
         {
             _crsitalPanel.style.display = DisplayStyle.None;

@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1998556553119683270
 Transform:
   m_ObjectHideFlags: 0
@@ -84,7 +84,7 @@ Light:
     serializedVersion: 2
     m_Bits: 503
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 11.84, y: 9.71}
   m_BounceIntensity: 0
@@ -270,4 +270,6 @@ MonoBehaviour:
   _characterState: 0
   _isBlocking: 0
   canKnockBack: 0
+  characterDetect:
+    isDetecting: 0
   torchLight: {fileID: 1998556553119683269}

@@ -19,8 +19,7 @@ public class UIManager : MonoBehaviour
     public UIDialog Dialog = new UIDialog();
     public UIFirstFloorMap UIFirstFloorMap = new UIFirstFloorMap();
 
-    public ItemStoreTableSO itemStoreTable;
-
+    public MapNameData MapNameData;
 
     private void Awake()
     {
@@ -37,7 +36,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.FirstMap);
+        Define.GetManager<DataManager>().AddItemInInventory(ItemID.CompassOfSpace);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.SecondMap);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.Pick,1);
     }

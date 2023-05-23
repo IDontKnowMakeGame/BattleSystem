@@ -54,6 +54,7 @@ namespace Acts.Characters.Player
             useAbleItems.Add(ItemID.Shield, _shieldItem);
             useAbleItems.Add(ItemID.HPPotion, _hpPotion);
             useAbleItems.Add(ItemID.Pick, _pick);
+            useAbleItems.Add(ItemID.CompassOfSpace, _compassOfSpace);
 
             useAbleItems.Add(ItemID.FirstMap, _fristMap);
             useAbleItems.Add(ItemID.SecondMap, _secondMap);
