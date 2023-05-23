@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/Resources/UIDoc/USS/QuestPanelTemp.uss?fileID=7433441132597879392&amp;guid=063f34dd166c0a94d94f15d9591e9152&amp;type=3#QuestPanelTemp" />
-    <ui:VisualElement name="QuestPanelTemp" class="image-simple" style="transition-duration: 0.1s; transition-timing-function: ease-in-cubic; transition-delay: 0.3s; transition-property: all;">
+    <ui:VisualElement name="TempCard" class="image-simple OpenQuest CloseQuest">
         <ui:VisualElement name="TitleArea" style="width: 100%; height: 30%;">
             <ui:Label text="퀘스트 이름" display-tooltip-when-elided="true" name="QuestName" style="-unity-font: url(&apos;project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&amp;guid=fdf177119c8b7f84fbad0a6901efb8cc&amp;type=3#SUITE-Variable&apos;); -unity-font-style: bold; -unity-font-definition: none; color: rgb(219, 219, 219); font-size: 15px;" />
         </ui:VisualElement>
