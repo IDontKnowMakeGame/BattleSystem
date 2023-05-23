@@ -6,10 +6,18 @@ using Tool.Map.Rooms;
 
 namespace Managements.Managers
 {
+
     public class RoomManager : Manager
     {
 
         private Room saveRoom = null;
+        private Transform mapParent = null;
+
+        public override void Awake()
+        {
+            base.Awake();
+            mapParent = GameObject.FindGameObjectWithTag("Map")?.transform;
+        }
 
         public void CurrentRoomSetting()
         {
@@ -19,6 +27,7 @@ namespace Managements.Managers
             Debug.Log("현재방:" + currentRoom.gameObject.name);
             
             Transform parentRoom = Define.GetManager<MapManager>().GetBlock(InGame.Player.Position).transform.parent.parent;
+
             if (currentRoom != null && saveRoom != currentRoom)
             {
                 saveRoom = currentRoom;
@@ -29,13 +38,23 @@ namespace Managements.Managers
                 foreach (Transform room in parentRoom)
                 {
                     room.GetComponent<Room>()?.modelRoot.gameObject.SetActive(false);
+                    
+                }
+
+                // 모든 map 오브젝트 끄기
+                foreach (Transform map in mapParent)
+                {
+                    map.gameObject.SetActive(false);
+
                 }
 
                 // 현재 룸과 연결된 룸만 키기
                 currentRoom.modelRoot.gameObject.SetActive(true);
+                currentRoom.roomObjs.gameObject.SetActive(true);
                 foreach (Room connectRoom in currentRoom.connectRoom)
                 {
                     connectRoom.modelRoot.gameObject.SetActive(true);
+                    connectRoom.roomObjs.gameObject.SetActive(true);
                 }
 
             }

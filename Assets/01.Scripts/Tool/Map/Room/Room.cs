@@ -16,5 +16,6 @@ namespace Tool.Map.Rooms
         public List<Room> connectRoom;
 
         public Transform modelRoot = null;
+        public Transform roomObjs = null;
     }
 }
