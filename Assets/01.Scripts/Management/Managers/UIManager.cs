@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
         Define.GetManager<DataManager>().AddItemInInventory(ItemID.CompassOfSpace);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.SecondMap);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.Pick,1);
+        UIStart();
     }
 
     private void Init()
@@ -52,6 +53,12 @@ public class UIManager : MonoBehaviour
         UIFirstFloorMap.Init();
     }
 
+    private void UIStart()
+    {
+        //InGame.Start();
+    }
+
+
     private void Update()
     {
         InGame.Update();
@@ -59,7 +66,7 @@ public class UIManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-
+            InGame.OpenQuestPanel();
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -67,14 +74,11 @@ public class UIManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-/*            InGame.AddShowItemPanel(ItemID.OldStraightSword);
-            InGame.AddShowItemPanel(ItemID.HaloOfPollution);
-            InGame.AddShowItemPanel(ItemID.Torch);
-            InGame.AddShowItemPanel(ItemID.Shield);*/
+            InGame.AddQuestPanel(QuestName.FallenAngel);
         }
         if (Input.GetKeyDown(KeyCode.B))
         {
- 
+            InGame.AddQuestPanel(QuestName.WeaponGift);
         }
         if(Input.GetKeyDown(KeyCode.E))
         {

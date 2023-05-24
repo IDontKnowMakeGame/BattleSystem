@@ -27,7 +27,7 @@ public class UIInGame : UIBase
     private Label _roomNameText;
 
     //private VisualElement _questInfoPanel;
-    private ListView _questListPanel;
+    private VisualElement _questListPanel;
     private VisualTreeAsset _questPanelTemp;
 
     private VisualElement _crsitalPanel;
@@ -46,6 +46,7 @@ public class UIInGame : UIBase
     private bool flagCool = true;
 
     private int currentRoom = 0;
+    private int openQuestNum = 0;
 
     #region HP
     private float _currentHpValue = 100;
@@ -71,6 +72,7 @@ public class UIInGame : UIBase
     #endregion
 
     private Dictionary<ItemID, VisualElement> _invenInItems = new Dictionary<ItemID, VisualElement>();
+    private Dictionary<QuestName,VisualElement> _questLlistCard = new Dictionary<QuestName,VisualElement>();
 
     private Label _feather;
     private Label _addFeatherCnt;
@@ -95,7 +97,7 @@ public class UIInGame : UIBase
         _roomInfoPanel = _root.Q<VisualElement>("RoomInfoPanel");
         _roomNameText = _roomInfoPanel.Q<Label>("RoomNameText");
 
-        _questListPanel = _root.Q<ListView>("QuestListPanel");
+        _questListPanel = _root.Q<VisualElement>("QuestListPanel");
         _questPanelTemp = Define.GetManager<ResourceManager>().Load<VisualTreeAsset>("UIDoc/QuestPanelTemp");
 
         _crsitalPanel = _root.Q<VisualElement>("area_Cristal");
@@ -108,8 +110,13 @@ public class UIInGame : UIBase
         ChangeFirstWeaponImage(DataManager.UserData_.firstWeapon);
         ChangeSecondWeaponImage(DataManager.UserData_.secondWeapon);
         ChangeItemPanelImage();
+        InitQuestPanel();
 
         CristalInfoInRoom(0);
+    }
+    public override void Start()
+    {
+        OpenQuestPanel();
     }
     public override void Update()
     {
@@ -118,6 +125,7 @@ public class UIInGame : UIBase
         SecondWeaponCoolTime();
         AddFeatherEffect();
         GetItemUpdate();
+        OpenQuestPanel();
     }
     public void ChangeWeaponPanel()
     {
@@ -219,6 +227,35 @@ public class UIInGame : UIBase
         float t = Mathf.Clamp01(secondWeaponTimer / secondWeaponDuration);
         float currentFov = Mathf.Lerp(100, 0, t);
         _secondWeaponHide.style.height = new Length(currentFov, LengthUnit.Percent);
+    }
+
+    public void InitQuestPanel()
+    {
+        List<QuestName> list = DataManager.PlayerOpenQuestData_.openQuestList;
+        for(int i = 0; i < list.Count;i++)
+        {
+            AddQuestPanel(list[i]);
+        }
+    }
+    public void AddQuestPanel(QuestName name)
+    {
+        VisualElement panel = _questPanelTemp.Instantiate();
+        panel.Q<Label>("QuestName").text = name.ToString();
+        _questListPanel.Add(panel);
+        _questLlistCard[name] = panel;
+
+        //'OpenQuestPanel();
+    }
+    public void OpenQuestPanel()
+    {
+        if (openQuestNum >= _questLlistCard.Count) return;
+
+        openQuestNum = 0;
+        foreach (VisualElement panel in _questLlistCard.Values)
+        {
+            panel.Q<VisualElement>("TempCard").RemoveFromClassList("CloseQuest");
+            openQuestNum++;
+        }
     }
 
     public void CristalInfoInRoom(int roomNum)

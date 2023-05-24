@@ -11,6 +11,11 @@ public class UIBase
 
     }
 
+    public virtual void Start()
+    {
+
+    }
+
     public virtual void Update()
     {
 

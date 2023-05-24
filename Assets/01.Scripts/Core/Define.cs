@@ -190,7 +190,8 @@ namespace Core
             return direction;
         }
 
-        public static void Attack(Vector3 pos, Vector3 size, float damage, float delay, CharacterActor attacker, bool isLast = false)
+        public static void Attack(Vector3 pos, Vector3 size, float damage, float delay, CharacterActor attacker,
+            bool isLast = false)
         {
             var block = GetBlock(pos.SetY(0));
             if (block == null)
@@ -200,9 +201,21 @@ namespace Core
                     var state = CharacterState.Hold | CharacterState.Attack;
                     attacker.RemoveState(state);
                 }
+
                 return;
             }
-            var resourceManager = Define.GetManager<ResourceManager>();
+
+            if (block.transform.Find("Anchor/AttackDecal"))
+            {       if (isLast)
+                {
+                    var state = CharacterState.Hold | CharacterState.Attack;
+                    attacker.RemoveState(state);
+                }
+
+                return;
+            }  
+
+        var resourceManager = Define.GetManager<ResourceManager>();
             var decalObj = resourceManager.Instantiate("AttackDecal");
             decalObj.transform.position = pos.SetY(0f);
             decalObj.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);

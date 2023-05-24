@@ -16,6 +16,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
         {
             Attack();
             ThisActor.GetAct<EnemyParticle>().PlayLandingParticle();
+            Define.GetManager<SoundManager>().PlayAtPoint("Boss/JumpImpact", ThisActor.Position, 1);
             for (var i = -distance; i <= distance; i++)
             {
                 for (var j = -distance; j <= distance; j++)
@@ -43,7 +44,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
             {
                 for (var i = -distance; i <= distance; i++)
                 {
-                    for(var j = -distance; j <= distance; j++)
+                    for (var j = -distance; j <= distance; j++)
                     {
                         var attackPos = new Vector3(i, 0, j);
                         if (area.Contains(attackPos)) continue;
@@ -53,9 +54,8 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                         if(distance == 1 || singleLayer)
                             area.Add(attackPos);
                     }
-
                 }
-
+                Define.GetManager<SoundManager>().PlayAtPoint("Boss/explosion", CharacterActor.Position + new Vector3(distance, 0, 0), 1); ;
                 yield return new WaitForSeconds(0.25f);
                 distance++;
             }
@@ -77,6 +77,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
             var range = new Vector3[] { new(1, 0, -2), new(1, 0, -1), new(1, 0, 0), new(1, 0, 1), new(1, 0, 2) };
             var distance = 0;
             var block = Define.GetManager<MapManager>().GetBlock(ThisActor.Position);
+            Define.GetManager<SoundManager>().PlayAtPoint("Boss/soulAttackReadysound", ThisActor.Position, 1);
             while (distance <= 20)
             {
                 var count = 0;
@@ -90,7 +91,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                     block = Define.GetManager<MapManager>().GetBlock(attackPos);
                     if (block != null)
                     {
-                        Define.GetManager<SoundManager>().PlayAtPoint("Boss/explosion", block.transform, 1);
+                        Define.GetManager<SoundManager>().PlayAtPoint("Boss/soulAttackImpact", block.transform, 1);
                         if (block.isWalkable)
                             count++;
                     }
