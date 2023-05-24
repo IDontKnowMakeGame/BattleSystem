@@ -10,16 +10,27 @@ public class TitleController : MonoBehaviour
     [SerializeField]
     private CanvasGroup group;
 
+
+    private Animator animator;
+
+    private readonly int hashSkip = Animator.StringToHash("Skip");
+
     Sequence _sequence;
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         SetResolution();
     }
 
     void Update()
     {
-        if (enableLoad && Input.anyKeyDown)
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            animator.SetTrigger(hashSkip);
+        }
+
+        else if (enableLoad && Input.anyKeyDown)
         {
             if (press) return;
             press = true;
