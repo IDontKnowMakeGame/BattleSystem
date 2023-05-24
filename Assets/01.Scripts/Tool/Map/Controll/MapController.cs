@@ -77,12 +77,27 @@ namespace Tool.Map.Controll
             ShowRoomController(3);
             ShowRoomArea(3);
             ShowRoomMerge(3);
+            ShowModelMerge(3);
             ShowSwitchCamera(7);
             ShowEnemyList();
             ShowInvisibleBtn(7);
 
             CheckCharacter();
             DragHandle();
+        }
+
+        private void ShowModelMerge(int _height)
+        {
+            var index = idx * height;
+            var mergeBtnRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index, 300, height * _height);
+            if (GUI.Button(mergeBtnRect, "Merge Model"))
+            {
+                var block_M = selectedBlocks.Values.Select(block => block.transform.Find("Anchor/Model"))
+                    .Where(model => model != null).Select(x => x.GetComponent<ProBuilderMesh>());
+                var combine = CombineMeshes.Combine(block_M.ToList());
+                combine[0].transform.SetParent(mapModelRoot);
+            }
+            idx += _height * spaceIdx;
         }
 
         [Obsolete("Obsolete")]
@@ -109,7 +124,7 @@ namespace Tool.Map.Controll
                 selectedBlocks.Clear();
             }
 
-            idx += _height + spaceIdx;
+            idx += _height;
         }
 
         private void ShowRoomArea(int _height)
@@ -336,6 +351,22 @@ namespace Tool.Map.Controll
                     }
                 }
             }
+            var roadRect = new Rect(0, roomList.Count * height * 2, 150, height * 2);
+            
+            if (GUI.Button(roadRect, "Road"))
+            {
+                roomText = null;
+                selectedBlocks.Clear();
+                var leftBlocks = GameObject.Find("MapTiled").transform.AllChildrenObjListT();
+                foreach (var block in leftBlocks)
+                {
+                    if (block.gameObject.HasComponent<Block>())
+                    {
+                        selectedBlocks.Add(block.transform.position.SetY(0), block.GetComponent<Block>());
+                    }
+                }
+            }
+
             GUI.EndScrollView();
         }
 

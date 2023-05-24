@@ -22,6 +22,7 @@ namespace Actors.Characters
 		Stun = 1 << 5,
 		Equip = 1 << 6,
 		KnockBack = 1 << 7,
+		StopAttack = 1 << 8,
 		Everything = ~None,
 	}
 	public class CharacterActor : Actor

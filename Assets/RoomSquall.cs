@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Tool.Map.Rooms;
+using UnityEditor.TextCore.Text;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -44,6 +45,9 @@ public class RoomSquall : MonoBehaviour
 
 	public bool awakeNaturalSquall = true;
 
+	private bool isFirst = false;
+	private Block[] blocks;
+
 	private void Start()
 	{
 		SquallInit(_objName, awakeNaturalSquall);
@@ -65,9 +69,11 @@ public class RoomSquall : MonoBehaviour
 		_objName = name;
 		onNaturalSquall = isNatural;
 		isSquall = isNatural;
+		SetRoom();
 	}
 
 	public void SquallOnOff(bool squall) => isSquall = squall;
+
 
 	private void NaturalSquall()
 	{
@@ -81,6 +87,8 @@ public class RoomSquall : MonoBehaviour
 			_waitCurrentTimer = 0;
 			int sq = Random.Range(0, 2);
 			isSquall = sq == 0 ? true : false;
+			if(isSquall)
+				SetRoom();
 		}
 
 
@@ -109,19 +117,25 @@ public class RoomSquall : MonoBehaviour
 		else
 		{
 			_waitSquallCreateTimer = 0;
-			Transform room = InGame.GetBlock(InGame.Player.Position).gameObject.transform.parent;
-			Block[] blocks = room.GetComponentsInChildren<Block>();
-			int count = blocks.Length;
-			RandomListInit(count);
-			RandomRoom(count);
-			Debug.Log(count);
-			Debug.Log(_randomList);
 			for (int i = 0; i < _count; i++)
 			{
 				GameObject obj = Define.GetManager<ResourceManager>().Instantiate(_objName);
 				obj.transform.position = blocks[_randomList[i]].transform.position + Vector3.up * 6;
 			}
 		}
+	}
+
+
+	private void SetRoom()
+	{
+		Transform room = InGame.GetBlock(InGame.Player.Position)?.gameObject.transform.parent;
+		Debug.Log(room);
+		blocks = room?.GetComponentsInChildren<Block>();
+		int count = 0;
+		if (blocks != null)
+			count = blocks.Length;
+		RandomListInit(count);
+		RandomRoom(count);
 	}
 	private void RandomListInit(int count)
 	{
@@ -134,6 +148,8 @@ public class RoomSquall : MonoBehaviour
 	}
 	private void RandomRoom(int count)
 	{
+		if (count <= 0)
+			return;
 		for (int j = 0; j < 100; j++)
 		{
 			int range1 = Random.Range(0, count);

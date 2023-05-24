@@ -255,4 +255,16 @@ public class PlayerEquipment : CharacterEquipmentAct
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.ChangeStat, _eventParam);
 	}
 	#endregion
+
+	public void WeaponOnOff(bool isOn)
+	{
+		if(isOn)
+		{
+			_characterController.AddState(CharacterState.StopAttack);
+		}
+		else
+		{
+            _characterController.RemoveState(CharacterState.StopAttack);
+        }
+	}
 }
