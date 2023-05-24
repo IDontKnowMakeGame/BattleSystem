@@ -80,5 +80,20 @@ namespace Blocks.Acts
                 seq.Kill(true);
             });
         }
+
+        public void Fall(float duration, float strength = 0.5f)
+        {
+            if(isMoving) return;
+            isMoving = true;
+            _modelTransform.gameObject.SetActive(true);
+            var seq = DOTween.Sequence();
+            seq.Append(_anchorTransform.DOLocalMoveY(-5f, duration));
+            seq.AppendCallback(() =>
+            {
+                isMoving = false;
+                _modelTransform.gameObject.SetActive(false);
+                seq.Kill(true);
+            });
+        }
     }
 }
