@@ -14,7 +14,15 @@
             "floor": 1,
             "isBossKill": false,
             "onCristalList": [
-                15
+                15,
+                1,
+                2,
+                4,
+                5,
+                12,
+                16,
+                18,
+                0
             ],
             "openChestList": [
                 2

@@ -19,28 +19,28 @@ MonoBehaviour:
   clips:
   - name: Idle
     nextIdx: -1
-    texture: {fileID: 0}
+    texture: {fileID: 2800000, guid: d9ee613f926d5f04f9d61443c4472d0e, type: 3}
     normal: {fileID: 0}
     fps: 8
     isLoop: 1
     delay: 0.1
   - name: HorizontalMove
     nextIdx: -1
-    texture: {fileID: 0}
+    texture: {fileID: 2800000, guid: 531280d62dcb75443951b91b2c67e336, type: 3}
     normal: {fileID: 0}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: UpperMove
     nextIdx: -1
-    texture: {fileID: 0}
+    texture: {fileID: 2800000, guid: e1af1a426132bc843b1ed2e30563777e, type: 3}
     normal: {fileID: 0}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: LowerMove
     nextIdx: -1
-    texture: {fileID: 0}
+    texture: {fileID: 2800000, guid: 59f529f92ab656346813b88950f2a4fe, type: 3}
     normal: {fileID: 0}
     fps: 6
     isLoop: 1
@@ -51,84 +51,84 @@ MonoBehaviour:
     normal: {fileID: 2800000, guid: c1e918bc68f7585409c66aa344f6d6dc, type: 3}
     fps: 6
     isLoop: 1
-    delay: 0.1
+    delay: 0.07
   - name: DefaultUpperMove
     nextIdx: -1
     texture: {fileID: 2800000, guid: 95edb00a2a3f2d4478ca72ae28010a41, type: 3}
     normal: {fileID: 2800000, guid: 1f0e0c8e8af33c2488509bfe0ac09047, type: 3}
     fps: 6
     isLoop: 1
-    delay: 0.1
+    delay: 0.07
   - name: DefaultLowerMove
     nextIdx: -1
     texture: {fileID: 2800000, guid: 0a759fa92c86c264f817c6d87b3ed060, type: 3}
     normal: {fileID: 2800000, guid: ca30f4ed2c1c1ac4da0a34a5bdb6e3af, type: 3}
     fps: 6
     isLoop: 1
-    delay: 0.1
+    delay: 0.07
   - name: HorizontalReadyHorizontalMove
     nextIdx: -1
     texture: {fileID: 2800000, guid: 531280d62dcb75443951b91b2c67e336, type: 3}
     normal: {fileID: 2800000, guid: 50c8b3cb80dfcf64a9af8c9682d06f15, type: 3}
     fps: 6
     isLoop: 1
-    delay: 0.1
+    delay: 0.07
   - name: HorizontalReadyUpperMove
     nextIdx: -1
     texture: {fileID: 2800000, guid: e1af1a426132bc843b1ed2e30563777e, type: 3}
     normal: {fileID: 2800000, guid: 7ac610dc05ce62a4fa0d72e7d5fdd811, type: 3}
     fps: 6
     isLoop: 1
-    delay: 0.1
+    delay: 0.07
   - name: HorizontalReadyLowerMove
     nextIdx: -1
     texture: {fileID: 2800000, guid: 59f529f92ab656346813b88950f2a4fe, type: 3}
     normal: {fileID: 2800000, guid: c6d44fd6de21122428e63a83099ceb1d, type: 3}
     fps: 6
     isLoop: 1
-    delay: 0.1
+    delay: 0.07
   - name: UpperReadyHorizontalMove
     nextIdx: -1
     texture: {fileID: 2800000, guid: 6f571426c0f4d97418589521983db90a, type: 3}
     normal: {fileID: 2800000, guid: 83630d5ffc9a64447bb68f127685c35c, type: 3}
     fps: 6
     isLoop: 1
-    delay: 0.1
+    delay: 0.07
   - name: UpperReadyUpperMove
     nextIdx: -1
     texture: {fileID: 2800000, guid: 0e5473102588d6f4f8618127ef02343e, type: 3}
     normal: {fileID: 2800000, guid: cc3401b4489d67049bc4aef4b032afe6, type: 3}
     fps: 6
     isLoop: 1
-    delay: 0.1
+    delay: 0.07
   - name: UpperReadyLowerMove
     nextIdx: -1
     texture: {fileID: 2800000, guid: 266f0aa893ca75340ad12d56279005de, type: 3}
     normal: {fileID: 2800000, guid: 39d25758840941a4bad543a133b29ad9, type: 3}
     fps: 6
     isLoop: 1
-    delay: 0.1
+    delay: 0.07
   - name: LowerReadyHorizontalMove
     nextIdx: -1
     texture: {fileID: 2800000, guid: 831bc7c1420b1f8489f21067d0bd9578, type: 3}
     normal: {fileID: 2800000, guid: db359c06fc441054a898116a65d933f3, type: 3}
     fps: 6
     isLoop: 1
-    delay: 0.1
+    delay: 0.07
   - name: LowerReadyUpperMove
     nextIdx: -1
     texture: {fileID: 2800000, guid: fc5e8a21ab5f27046ab0f9203d02e5fa, type: 3}
     normal: {fileID: 2800000, guid: 1b80572ff45f77647a790d401784472a, type: 3}
     fps: 6
     isLoop: 1
-    delay: 0.1
+    delay: 0.07
   - name: LowerReadyLowerMove
     nextIdx: -1
     texture: {fileID: 2800000, guid: 4fc9a1d53e5b3084f9f6de0bf5538cbd, type: 3}
     normal: {fileID: 2800000, guid: 9138083d2bae9f844914c5e1c848ff8c, type: 3}
     fps: 6
     isLoop: 1
-    delay: 0.1
+    delay: 0.07
   - name: DefaultIdle
     nextIdx: -1
     texture: {fileID: 2800000, guid: cccbc401f40ab4d419fe966f072182fc, type: 3}
