@@ -59,7 +59,6 @@ namespace Acts.Characters.Player
             playerDir = direction;
             direction = InGame.CamDirCheck(direction);
 
-           Debug.Log(distance);
             base.Translate(direction * distance);
         }
 

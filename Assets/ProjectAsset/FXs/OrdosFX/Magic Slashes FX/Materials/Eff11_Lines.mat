@@ -2,13 +2,16 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Eff11_Lines
   m_Shader: {fileID: 4800000, guid: 7e671e89f590cef458d0a2d232ccb988, type: 3}
-  m_ShaderKeywords: USE_ALPHA_CUTOUT
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - USE_ALPHA_CUTOUT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -62,6 +65,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AlphaMul: 1
     - _AlphaPow: 1
@@ -89,4 +93,5 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DistStrength: {r: 0.1, g: 0.1, b: -10, a: -10}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _TintColor: {r: 3.5661764, g: 0.36710632, b: 2.9484239, a: 1}
+    - _TintColor: {r: 4.000135, g: 0, b: 0.08862922, a: 1}
+  m_BuildTextureStacks: []

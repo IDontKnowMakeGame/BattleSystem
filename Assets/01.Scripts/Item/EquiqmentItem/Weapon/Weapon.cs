@@ -213,15 +213,15 @@ public class Weapon : EquiqmentItem
 
 	public static Vector3 DirReturn(Vector3 vec)
 	{
-		int i_width = Screen.width;
-		int i_height = Screen.height;
+		//int i_width = Screen.width;
+		//int i_height = Screen.height;
 
-		float heightDot = (float)i_height / 2;
+		//float heightDot = (float)i_height / 2;
 
-		Vector3 screen = new Vector3(i_width, i_height,0);
-		Vector3 screenDot = screen / 2;
+		//Vector3 screen = new Vector3(i_width, i_height,0);
+		//Vector3 screenDot = screen / 2;
 
-		Vector3 angleDir = screenDot - vec;
+		Vector3 angleDir = Camera.main.WorldToScreenPoint(InGame.Player.Position) - vec;
 
 		float angle = Mathf.Atan2(angleDir.x, angleDir.y) * Mathf.Rad2Deg;
 
@@ -233,13 +233,13 @@ public class Weapon : EquiqmentItem
 
 	public static Vector3 AngleToDir(float angle)
 	{
-		if (angle > 135 || angle < -135)
+		if (angle > 145 || angle < -145)
 			return Vector3.forward;
-		else if (angle > 45 && angle < 135)
+		else if (angle > 90 && angle < 145)
 			return Vector3.left;
-		else if (angle > -45 && angle < 45)
+		else if (angle > -90 && angle < 90)
 			return Vector3.back;
-		else if (angle > -135 && angle < -45)
+		else if (angle > -145 && angle < -90)
 			return Vector3.right;
 
 		return Vector3.zero;

@@ -23,8 +23,8 @@ namespace Managements.Managers
         {
             Room currentRoom = Define.GetManager<MapManager>().GetBlock(InGame.Player.Position).transform.parent.GetComponent<Room>();
             
-            if(currentRoom != null)
-            Debug.Log("현재방:" + currentRoom.gameObject.name);
+            //if(currentRoom != null)
+            //Debug.Log("현재방:" + currentRoom.gameObject.name);
             
             Transform parentRoom = Define.GetManager<MapManager>().GetBlock(InGame.Player.Position).transform.parent.parent;
 

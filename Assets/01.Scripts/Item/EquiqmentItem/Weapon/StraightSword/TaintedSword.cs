@@ -12,6 +12,10 @@ public class TaintedSword : StraightSword
 	public override void Skill(Vector3 vec)
 	{
 		base.Skill(vec);
+
+		if (_isCoolTime)
+			return;
+
 		_characterActor.AddState(CharacterState.Skill);
 		_isCoolTime = true;
 		InGame.Attack(_characterActor.Position + Vector3.forward, new Vector3(1, 0, 1), info.Atk, 1f, _characterActor, true);

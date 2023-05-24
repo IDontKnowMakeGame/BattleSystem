@@ -21,6 +21,9 @@ public class ExecutionBlade : TwinSword
 
 	public override void Skill(Vector3 vec)
 	{
+		//if (_isCoolTime)
+		//	return;
+
 		_playerMove.distance = 5;
 		_playerMove.Translate(vec);
 		PlayerMove.OnMoveEnd += OnEnd;
@@ -35,6 +38,14 @@ public class ExecutionBlade : TwinSword
 		Vector3 left = Mathf.Abs(_dir.x) > Mathf.Abs(_dir.z) ? Vector3.back : Vector3.left;
 		Vector3 right = Mathf.Abs(_dir.x) > Mathf.Abs(_dir.z) ? Vector3.forward : Vector3.right;
 
+		GameObject obj = Define.GetManager<ResourceManager>().Instantiate("BladeHint");
+		obj.transform.position = _pos + _dir + left/2;
+		obj.transform.localRotation = UnityEngine.Quaternion.LookRotation(vec);
+		GameObject obj2 = Define.GetManager<ResourceManager>().Instantiate("BladeHint");
+		obj2.transform.position = _pos + _dir + right/2;
+		obj2.transform.localRotation = UnityEngine.Quaternion.LookRotation(vec);
+
+		Debug.Log(vec);
 		for (int i = 1; i <= 5; i++)
 		{
 			InGame.Attack(_pos + (_dir * i) + left, Vector3.one, info.Atk, i / 10, _characterActor);
