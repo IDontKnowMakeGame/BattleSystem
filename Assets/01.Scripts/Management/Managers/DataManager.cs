@@ -192,6 +192,8 @@ public class DataManager : Manager
                 break;
         }
 
+        UIManager.Instance.InGame.ChangeHalo(id);
+
         SaveToUserData();
     }
 

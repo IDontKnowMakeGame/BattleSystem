@@ -36,22 +36,13 @@ namespace Actors.Characters.Furnitures
             if (Define.GetManager<DataManager>().IsOpenDoorl(int.Parse(gameObject.name), DataManager.MapData_.currentFloor))
             {
                 Open();
+                RemoveInteration();
                 return;
             }
 
-            characterDetect.EnterDetect += ShowInteration;
-            characterDetect.ExitDetect += HideInteration;
-
             base.Start();
         }
-        public void ShowInteration(Vector3 vec)
-        {
-            UIManager.Instance.InGame.ShowInteraction();
-        }
-        public void HideInteration(Vector3 vec)
-        {
-            UIManager.Instance.InGame.HideInteraction();
-        }
+
         public void Faild()
         {
             UIManager.Instance.Dialog.StartListeningDialog(dialogueData,true);

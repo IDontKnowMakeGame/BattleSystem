@@ -16,6 +16,7 @@ public class UIInGame : UIBase
     private VisualElement _hpServeSlider;
     private VisualElement _angerSlider;
     private VisualElement _adrenalineSlider;
+    private VisualElement _haloIcon;
 
     private VisualElement _firstWaepon;
     private VisualElement _firstWeaponHide;
@@ -86,6 +87,7 @@ public class UIInGame : UIBase
         _hpServeSlider = _hpSlider.Q<VisualElement>("ServeFill");
         _angerSlider = _root.Q<VisualElement>("slider_angerbar");
         _adrenalineSlider = _root.Q<VisualElement>("slider_adrenaline");
+        _haloIcon = _root.Q<VisualElement>("HaloIcon");
 
         _firstWaepon = _root.Q<VisualElement>("weaponbox_first");
         _firstWeaponHide = _firstWaepon.Q<VisualElement>("Hide");
@@ -112,6 +114,7 @@ public class UIInGame : UIBase
         ChangeSecondWeaponImage(DataManager.UserData_.secondWeapon);
         ChangeItemPanelImage();
         InitQuestPanel();
+        ChangeHalo();
 
         CristalInfoInRoom(0);
     }
@@ -186,6 +189,15 @@ public class UIInGame : UIBase
             back.AddToClassList("OnAdrenalin");
         else
             back.RemoveFromClassList("OnAdrenalin");
+    }
+    public void ChangeHalo()
+    {
+        ItemID id = DataManager.UserData_.firstHalo;
+        ChangeHalo(id);
+    }
+    public void ChangeHalo(ItemID id)
+    {
+        _haloIcon.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
     }
 
     public void FlagCoolTimePanel(float coolTime)
