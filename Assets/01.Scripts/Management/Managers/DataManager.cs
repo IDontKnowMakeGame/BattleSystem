@@ -658,6 +658,7 @@ public class DataManager : Manager
         string json = JsonManager.ObjectToJson(PlayerOpenQuestData_);
         JsonManager.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/User", "OpenQuest", json);
     }
+
     public void ReadyQuest(QuestName name)
     {
         if (IsReadyQuest(name))
@@ -681,6 +682,8 @@ public class DataManager : Manager
         PlayerOpenQuestData_.openQuestList.Add(name);
         PlayerOpenQuestData_.readyQuestList.Remove(name);
 
+        UIManager.Instance.InGame.AddQuestPanel(name);
+
         SaveToOpenQuestData();
     }
     public void ReadyClearQuest(QuestName name)
@@ -691,6 +694,9 @@ public class DataManager : Manager
         }
         Debug.Log($"IsReadyClear Quest Number : {(int)name} Name : {name}");
         PlayerOpenQuestData_.readyClearQuestList.Add(name);
+        PlayerOpenQuestData_.openQuestList.Remove(name);
+
+        UIManager.Instance.InGame.ClearQuestPanel(name);
 
         SaveToOpenQuestData();
     }
@@ -704,7 +710,7 @@ public class DataManager : Manager
 
         PlayerOpenQuestData_.clearQuestList.Add(name);
         PlayerOpenQuestData_.readyClearQuestList.Remove(name);
-        PlayerOpenQuestData_.openQuestList.Remove(name);
+        
 
         SaveToOpenQuestData();
     }

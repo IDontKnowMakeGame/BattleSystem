@@ -28,7 +28,7 @@ public class UIDialog : UIBase
         _root = UIManager.Instance._document.rootVisualElement.Q<VisualElement>("UI_Dialog");
         choiceBoxTmep = Define.GetManager<ResourceManager>().Load<VisualTreeAsset>("UIDoc/DialogChoiceBox");
         
-        visualImage = _root.Q<VisualElement>("Visual");
+        //visualImage = _root.Q<VisualElement>("Visual");
         choicePanel = _root.Q<VisualElement>("ChoicePanel");
         nameBox = _root.Q<VisualElement>("NameBox");
         messageBox = _root.Q<VisualElement>("MessageBox");
@@ -61,12 +61,12 @@ public class UIDialog : UIBase
 
         if (isObject)
         {
-            visualImage.style.display = DisplayStyle.None;
+            //visualImage.style.display = DisplayStyle.None;
             nameBox.style.display= DisplayStyle.None;
         }
         else
         {
-            visualImage.style.display = DisplayStyle.Flex;
+            //visualImage.style.display = DisplayStyle.Flex;
             nameBox.style.display = DisplayStyle.Flex;
         }
 
