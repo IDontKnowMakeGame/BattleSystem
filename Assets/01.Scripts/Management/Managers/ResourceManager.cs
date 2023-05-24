@@ -57,6 +57,7 @@ public class ResourceManager : Manager
 
     public void Destroy(GameObject go, float delay)
     {
+        go.transform.rotation = Quaternion.identity;
         Instance.StartCoroutine(DestroyCoroutine(go, delay));
     }
     
