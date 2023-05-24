@@ -104,7 +104,6 @@ public class RoomSquall : MonoBehaviour
 			}
 			else
 			{
-				Debug.Log(isFirst);
 				SquallCreate();
 			}
 		}
