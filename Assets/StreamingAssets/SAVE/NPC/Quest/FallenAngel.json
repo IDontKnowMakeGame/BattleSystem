@@ -2,7 +2,7 @@
     "currentQuestLine": 0,
     "quests": [
         {
-            "btnName": "BossKillQuest",
+            "btnName": "2층으로 가는 법",
             "questName": 2,
             "IsComplate": false,
             "rewardfeather": 100,
