@@ -138,7 +138,7 @@ namespace Acts.Characters.Player
             }
         }
 
-       private void SkillAnimation()
+       public void SkillAnimation()
         {
             //Debug.Log(SkillDir);
             if (SkillDir == Vector3.left)
