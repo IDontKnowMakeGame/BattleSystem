@@ -8,7 +8,7 @@
             <ui:VisualElement name="NameBox" style="position: absolute; width: 318px; height: 90px; top: -106px; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Card.png?fileID=-1935884182&amp;guid=f8d86aaee61368341922d38dda1585f6&amp;type=3#UI_Card_2&apos;); left: 0; justify-content: center; align-items: center;">
                 <ui:Label text="Label" display-tooltip-when-elided="true" name="NameText" style="-unity-font: url(&apos;project://database/Assets/09.%20Font/Basic/KOTRA_SONGEULSSI.ttf?fileID=12800000&amp;guid=b619c6bd733922444b07a41208f486c1&amp;type=3#KOTRA_SONGEULSSI&apos;); -unity-font-definition: none; font-size: 30px; color: rgb(221, 221, 221);" />
             </ui:VisualElement>
-            <ui:Label text="김동윤" display-tooltip-when-elided="true" name="Message" style="font-size: 50px; color: rgb(255, 255, 255); -unity-font: url(&apos;project://database/Assets/09.%20Font/Basic/KOTRA_SONGEULSSI.ttf?fileID=12800000&amp;guid=b619c6bd733922444b07a41208f486c1&amp;type=3#KOTRA_SONGEULSSI&apos;); -unity-font-style: normal; -unity-font-definition: none;" />
+            <ui:Label text="김동윤" display-tooltip-when-elided="true" name="Message" style="font-size: 50px; color: rgb(255, 255, 255); -unity-font: url(&apos;project://database/Assets/09.%20Font/Basic/KOTRA_SONGEULSSI.ttf?fileID=12800000&amp;guid=b619c6bd733922444b07a41208f486c1&amp;type=3#KOTRA_SONGEULSSI&apos;); -unity-font-style: normal; -unity-font-definition: none; white-space: normal; -unity-text-align: upper-center;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
