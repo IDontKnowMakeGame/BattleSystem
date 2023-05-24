@@ -130,7 +130,11 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 move.Jump(Position, -dir, 3);
                 jumpClip.OnExit += () =>
                 {
-                    Attack(Vector3.zero,"SoulAttack", () => { attack.SoulAttack(dir, 0.15f); }, false);
+                    Attack(Vector3.zero,"SoulAttack", () =>
+                    {
+                        GetAct<EnemyParticle>().PlayTaintedParticle(dir);
+                        attack.SoulAttack(dir, 0.15f);
+                    }, false);
                 };
             };
             screaming.OnEnter = () =>
@@ -157,6 +161,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 move.Jump(Position, -dir, 3);
                 jumpClip.OnExit += () =>
                 {
+                    GetAct<EnemyParticle>().PlayTaintedParticle(dir);
                     Attack(Vector3.zero,"SoulAttack", () => { attack.SoulAttack(dir, 0f); }, false);
                 };
             };

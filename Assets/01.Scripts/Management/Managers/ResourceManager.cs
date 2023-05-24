@@ -54,4 +54,15 @@ public class ResourceManager : Manager
 
         Object.Destroy(go);
     }
+
+    public void Destroy(GameObject go, float delay)
+    {
+        Instance.StartCoroutine(DestroyCoroutine(go, delay));
+    }
+    
+    public IEnumerator DestroyCoroutine(GameObject go, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(go);
+    }
 }
