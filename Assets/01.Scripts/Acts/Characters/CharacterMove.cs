@@ -245,6 +245,8 @@ namespace Acts.Characters
         public void Chase(Actor target)
         {
             if(_character.HasState(CharacterState.Move)) return;
+            if(_character.HasState(CharacterState.Attack)) return;
+            if(_character.HasState(CharacterState.Hold)) return;
             if (isChasing) return;
             ThisActor.StartCoroutine(AstarCoroutine(target.Position));
         }

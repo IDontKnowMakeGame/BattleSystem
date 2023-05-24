@@ -24,7 +24,7 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Panel" style="flex-basis: 85%; flex-direction: row; overflow: hidden;">
-                <ui:VisualElement name="ItemPanel" style="translate: 0 0; overflow: visible; flex-basis: 100%;">
+                <ui:VisualElement name="ItemPanel" style="overflow: visible; flex-basis: 100%;">
                     <ui:VisualElement name="WeaponPanel" class="ItemPanel" style="flex-direction: row; display: flex; left: 0;">
                         <ui:VisualElement name="CharacterView" style="flex-basis: 30%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-1221198161&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_0&apos;);">
                             <ui:VisualElement name="CharacterImage" style="flex-basis: 75%; justify-content: center; align-items: center;">
@@ -68,9 +68,11 @@
                             <ui:VisualElement name="BackGround" style="justify-content: flex-end; align-items: center; width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UIHaloBackGround.png?fileID=21300000&amp;guid=227cfcd7eeca2be488797bce1ce372ea&amp;type=3#UIHaloBackGround&apos;);">
                                 <ui:VisualElement name="Line" style="background-image: none; width: 100px; height: 2200px;" />
                                 <ui:VisualElement name="HaloSelectPanel" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%;">
+                                    <ui:VisualElement name="100" style="position: absolute; width: 150px; height: 150px; top: 147px; left: 436px; background-image: resource(&apos;Item/100&apos;); justify-content: center; align-items: center;" />
                                     <ui:VisualElement name="101" style="position: absolute; width: 150px; height: 150px; top: 365px; left: 168px; background-image: resource(&apos;Item/101&apos;);" />
                                     <ui:VisualElement name="102" style="position: absolute; width: 150px; height: 150px; top: 282px; left: 1236px; background-image: resource(&apos;Item/102&apos;);" />
-                                    <ui:VisualElement name="100" style="position: absolute; width: 150px; height: 150px; top: 147px; left: 436px; background-image: resource(&apos;Item/100&apos;); justify-content: center; align-items: center;" />
+                                    <ui:VisualElement name="103" style="position: absolute; width: 150px; height: 150px; top: 562px; left: 1072px; background-image: resource(&apos;Item/103&apos;);" />
+                                    <ui:VisualElement name="104" style="position: absolute; width: 150px; height: 150px; top: 818px; left: 334px; background-image: resource(&apos;Item/104&apos;);" />
                                 </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:ScrollView>

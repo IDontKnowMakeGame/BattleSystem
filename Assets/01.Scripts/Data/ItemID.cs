@@ -23,7 +23,8 @@ namespace Data
 		HaloOfGhost = 100,
         HaloOfPollution = 101,
         HaloOfEreshkigal = 102,
-        HaloOfDismantle = 103,
+        //HaloOfTime = 103,
+        HaloOfDismantle = 104,
         ////200~299 UseableItem
         Torch = 200,
         Shield = 201,
@@ -34,7 +35,8 @@ namespace Data
 		Pick = 206,
         CompassOfSpace = 207,
         //300~399 QuestItem
-        TEST = 300
+        SoulStone = 300,
+        SoulRope = 301,
 
     }
 }
