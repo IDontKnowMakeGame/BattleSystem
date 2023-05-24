@@ -43,6 +43,8 @@ namespace Acts.Characters.Player
             base.Start();
             _playerAnimation = ThisActor.GetAct<PlayerAnimation>();
             _playerActor = InGame.Player.GetComponent<PlayerActor>();
+
+            Define.GetManager<RoomManager>().CurrentRoomSetting();
         }
 
         public override void Update()
