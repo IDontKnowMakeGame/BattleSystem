@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Diagnostics;
 using UnityEngine.UIElements;
+using static UnityEngine.Rendering.DebugUI;
 
 public class UIInGame : UIBase
 {
@@ -245,6 +246,12 @@ public class UIInGame : UIBase
         _questLlistCard[name] = panel;
 
         //'OpenQuestPanel();
+    }
+    public void ClearQuestPanel(QuestName name)
+    {
+        Debug.Log($"{_questLlistCard[name].name} : ¿Ã∞‘ ππ¡“?");
+        _questLlistCard[name].Q<VisualElement>("ClearMark").style.display = DisplayStyle.Flex;
+        
     }
     public void OpenQuestPanel()
     {

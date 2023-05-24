@@ -162,10 +162,12 @@ public class UIInventory : UIBase
     {
         if(isOpen)
         {
+            InGame.Player.GetAct<PlayerEquipment>().WeaponOnOff(false);
             HideInventory();
             return;
         }
 
+        InGame.Player.GetAct<PlayerEquipment>().WeaponOnOff(true);
         isOpen = true;
         _root.style.display = DisplayStyle.Flex;
         EquipWeaponBoxImage();
