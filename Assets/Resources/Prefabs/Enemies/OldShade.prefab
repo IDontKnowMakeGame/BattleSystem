@@ -324,6 +324,7 @@ MonoBehaviour:
   To: Pattern
   _conditions:
   - rid: 4755812611868852235
+  - rid: 8698174372973117440
   - rid: 4755812611868852225
   references:
     version: 2
@@ -345,6 +346,13 @@ MonoBehaviour:
         IsNeeded: 1
         _thisActor: {fileID: 6861387177648206927}
         BaseActor: {fileID: 6861387177648206927}
+    - rid: 8698174372973117440
+      type: {class: MoveCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 8
+        IsNegative: 1
+        IsNeeded: 1
+        _thisActor: {fileID: 6861387177648206927}
 --- !u!114 &6861387177648206931
 MonoBehaviour:
   m_ObjectHideFlags: 0
