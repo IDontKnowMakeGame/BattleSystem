@@ -104,7 +104,7 @@ namespace Core
         {
             if (!Actors.ContainsKey(uuid))
             {
-                Debug.LogError($"Actor {uuid} is not in this Dict.");
+                Debug.LogWarning($"Actor {uuid} is not in this Dict.");
                 return null;
             }
             return Actors[uuid];
