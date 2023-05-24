@@ -50,12 +50,13 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                         if (area.Contains(attackPos)) continue;
                         //Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position + attackPos, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.Roll);
                         InGame.Attack(CharacterActor.Position + attackPos, new Vector3(1, 0, 1), DefaultStat.Atk, DefaultStat.Ats, CharacterActor);
+                        Define.GetManager<SoundManager>().PlayAtPoint("Boss/explosion", CharacterActor.Position + attackPos, 1);
                         InGame.ShakeBlock(CharacterActor.Position + attackPos, DefaultStat.Ats, MovementType.Roll);
                         if(distance == 1 || singleLayer)
                             area.Add(attackPos);
                     }
                 }
-                Define.GetManager<SoundManager>().PlayAtPoint("Boss/explosion", CharacterActor.Position + new Vector3(distance, 0, 0), 1); ;
+                 ;
                 yield return new WaitForSeconds(0.25f);
                 distance++;
             }
@@ -87,11 +88,11 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                     //Define.GetManager<MapManager>().AttackBlock(attackPos, DefaultStat.Atk * 2f, DefaultStat.Ats,
                     //CharacterActor, MovementType.Shake);
                     InGame.Attack(attackPos, new Vector3(1, 0, 1), DefaultStat.Atk, DefaultStat.Ats, CharacterActor);
+                    Define.GetManager<SoundManager>().PlayAtPoint("Boss/soulAttackImpact", attackPos, 1);
                     InGame.ShakeBlock(attackPos, DefaultStat.Ats, MovementType.Shake);
                     block = Define.GetManager<MapManager>().GetBlock(attackPos);
                     if (block != null)
                     {
-                        Define.GetManager<SoundManager>().PlayAtPoint("Boss/soulAttackImpact", block.transform, 1);
                         if (block.isWalkable)
                             count++;
                     }
