@@ -55,6 +55,7 @@ namespace Tool.Map
             ExcelDataReader.ID = "14rbIKCHzWCK1VHf1qcgOi7S3TwRGIfXlDE-SGML7kxs";
             ExcelDataReader.StartIdx = EditorGUILayout.TextField("StartIdx", ExcelDataReader.StartIdx);
             ExcelDataReader.EndIdx = EditorGUILayout.TextField("EndIdx", ExcelDataReader.EndIdx);
+            ExcelDataReader.Gid = EditorGUILayout.TextField("Gid", ExcelDataReader.Gid);
 
             GUILayout.Label("Tiles Setting", EditorStyles.miniBoldLabel);
 

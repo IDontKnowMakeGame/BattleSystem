@@ -10,16 +10,27 @@ public class TitleController : MonoBehaviour
     [SerializeField]
     private CanvasGroup group;
 
+
+    private Animator animator;
+
+    private readonly int hashSkip = Animator.StringToHash("Skip");
+
     Sequence _sequence;
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         SetResolution();
     }
 
     void Update()
     {
-        if (enableLoad && Input.anyKeyDown)
+        if(Input.GetKeyDown(KeyCode.Escape) && GetNormalizedTime(animator, "NoneSkip") <= 0.7f)
+        {
+            animator.SetTrigger(hashSkip);
+        }
+
+        else if (enableLoad && Input.anyKeyDown)
         {
             if (press) return;
             press = true;
@@ -46,5 +57,24 @@ public class TitleController : MonoBehaviour
         int setHeight = 1080;
 
         Screen.SetResolution(setWidth, setHeight, true);
+    }
+
+    private float GetNormalizedTime(Animator animator, string tag)
+    {
+        AnimatorStateInfo currentInfo = animator.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo nextInfo = animator.GetNextAnimatorStateInfo(0);
+
+        if (animator.IsInTransition(0) && nextInfo.IsTag(tag))
+        {
+            return nextInfo.normalizedTime;
+        }
+        else if (!animator.IsInTransition(0) && currentInfo.IsTag(tag))
+        {
+            return currentInfo.normalizedTime;
+        }
+        else
+        {
+            return 0f;
+        }
     }
 }
