@@ -12,6 +12,7 @@ namespace Tool.Excel
         
         public static string StartIdx = "";
         public static string EndIdx = "";
+        public static string Gid = "";
         public static bool IsParsing = false;
         public static bool IsProcessing = false;
         public static string Data;
@@ -19,7 +20,7 @@ namespace Tool.Excel
         public static async void GetData(Action<string> callback)
         {
             string url;
-            url = $"https://docs.google.com/spreadsheets/d/{ID}/export?format=tsv&range={StartIdx}:{EndIdx}";
+            url = $"https://docs.google.com/spreadsheets/d/{ID}/export?format=tsv&gid={Gid}&range={StartIdx}:{EndIdx}";
             var www = UnityWebRequest.Get(url);
             await www.SendWebRequest();
             Data = www.downloadHandler.text;

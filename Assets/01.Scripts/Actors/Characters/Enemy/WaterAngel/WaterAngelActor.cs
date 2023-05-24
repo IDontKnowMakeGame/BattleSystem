@@ -20,6 +20,7 @@ namespace Actors.Characters.Enemy.WaterAngel
         {
             base.Start();
             
+            
         }
     }
 }
