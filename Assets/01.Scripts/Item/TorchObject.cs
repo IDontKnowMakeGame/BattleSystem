@@ -11,6 +11,7 @@ public class TorchObject : InteractionActor
 {
     [SerializeField] private GameObject torchLight;
 
+    [SerializeField]
     private bool isOn = false;
     protected override void Start()
     {
@@ -20,20 +21,9 @@ public class TorchObject : InteractionActor
         {
             ChangeWarmTiles();
             torchLight.SetActive(true);
+            RemoveInteration();
             return;
         }
-
-        characterDetect.EnterDetect += ShowDetect;
-        characterDetect.ExitDetect += HideDetect;
-    }
-    public void ShowDetect(Vector3 vec)
-    {
-        Debug.Log($"{gameObject.name}Enter Cristal Zone");
-        UIManager.Instance.InGame.ShowInteraction();
-    }
-    public void HideDetect(Vector3 vec)
-    {
-        UIManager.Instance.InGame.HideInteraction();
     }
     public override void Interact()
     {
@@ -43,9 +33,7 @@ public class TorchObject : InteractionActor
         ChangeWarmTiles();
         torchLight.SetActive(true);
         Define.GetManager<DataManager>().OnCrital(Int32.Parse(gameObject.name));
-        characterDetect.EnterDetect -= ShowDetect;
-        characterDetect.ExitDetect -= HideDetect;
-        HideDetect(Vector3.zero);
+        RemoveInteration();
     }
 
     public void ChangeWarmTiles()

@@ -15,7 +15,25 @@ public class InteractionActor : CharacterActor
     {
         base.Init();
         characterDetect = AddAct<CharacterDetect>();
+        characterDetect.EnterDetect += ShowInteration;
+        characterDetect.ExitDetect += HideInteration;
+
         InputManager<Weapon>.OnInteractionPress += Interact;
+    }
+    public void ShowInteration(Vector3 vec)
+    {
+        UIManager.Instance.InGame.ShowInteraction();
+    }
+    public void HideInteration(Vector3 vec)
+    {
+        UIManager.Instance.InGame.HideInteraction();
+    }
+
+    public void RemoveInteration()
+    {
+        characterDetect.EnterDetect -= ShowInteration;
+        characterDetect.ExitDetect -= HideInteration;
+        HideInteration(Vector3.zero);
     }
 
     public virtual void Interact()
