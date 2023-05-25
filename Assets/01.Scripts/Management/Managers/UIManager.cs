@@ -67,7 +67,7 @@ public class UIManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            InGame.OpenQuestPanel();
+           InGame.AddAbnormalStatus();
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -75,11 +75,11 @@ public class UIManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            InGame.AddQuestPanel(QuestName.FallenAngel);
+            
         }
         if (Input.GetKeyDown(KeyCode.B))
         {
-            InGame.AddQuestPanel(QuestName.WeaponGift);
+            
         }
         if(Input.GetKeyDown(KeyCode.E))
         {
