@@ -13,7 +13,7 @@ namespace AI.Conditions
             var dirs = new Vector3[] { Vector3.forward, Vector3.back, Vector3.left, Vector3.right };
             foreach (var dir in dirs)
             {
-                if(_thisActor.transform.position.SetY(0) + dir == TargetActor.Position)
+                if(_thisActor.Position + dir == TargetActor.Position)
                 {
                     return true;
                 }

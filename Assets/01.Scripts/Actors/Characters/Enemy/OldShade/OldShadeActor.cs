@@ -1,7 +1,9 @@
-﻿using System.Reflection;
+﻿using System.Collections.Generic;
+using System.Reflection;
 using Acts.Characters;
 using Acts.Characters.Enemy;
 using AI.States;
+using AttackDecals;
 using Core;
 using UnityEngine;
 
@@ -33,11 +35,16 @@ namespace Actors.Characters.Enemy.OldShade
             {
                 AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
+                var decals = new List<AttackDecal>();
                 var dir = (playerPos - Position).GetDirection();
                 Attack(dir, "", () =>
                 {
-                    attack?.HorizontalAttack(dir, true);
-                });
+                    decals.ForEach(x => x?.EndAttack());
+                    RemoveState(CharacterState.Chase);
+                }, 
+                    true, 
+                    null, 
+                    () => decals = attack?.HorizontalAttackNoEnd(dir, true));
             });
         }
     }
