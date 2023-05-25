@@ -4,6 +4,8 @@ using Core;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using Actors.Characters.Player;
+using Acts.Characters.Player;
 
 public class OldGreatSword : GreatSword
 {
@@ -15,6 +17,10 @@ public class OldGreatSword : GreatSword
 			return;
 
 		_isCoolTime = true;
+		if(_characterActor is PlayerActor)
+        {
+			_characterActor.GetAct<PlayerAnimation>().Play("Skill");
+        }
 		_characterActor.StartCoroutine(HalfSkill());
 		particleObj = Define.GetManager<ResourceManager>().Instantiate("OldGreatSwordAura").transform.gameObject;
 		particleObj.transform.position = _characterActor.transform.position;
