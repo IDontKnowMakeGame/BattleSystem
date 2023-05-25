@@ -38,6 +38,9 @@ namespace AttackDecals
             material.SetFloat("_Fill", fill);
             decalProjector.material = material;
             attacker.AddState(CharacterState.Hold);
+            seq = DOTween.Sequence();
+            if (seq == null)
+                return;
             seq.Append(DOTween.To(() => fill, value => fill = value, 0, delay).OnUpdate(()=>
             {
                 material.SetFloat("_Fill", fill);
