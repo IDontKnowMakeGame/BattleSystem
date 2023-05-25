@@ -10,7 +10,7 @@ public class OldStraightSword : StraightSword
 	{
 		if (_isCoolTime)
 			return;
-		if (_characterActor.HasState(~CharacterState.None & ~CharacterState.Move))
+		if (_playerActor.HasAnyState())
 			return;
 
 		_characterActor.AddState(CharacterState.Skill);

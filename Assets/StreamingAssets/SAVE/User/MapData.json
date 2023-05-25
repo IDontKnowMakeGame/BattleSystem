@@ -14,7 +14,8 @@
             "floor": 1,
             "isBossKill": false,
             "onCristalList": [
-                0
+                0,
+                1
             ],
             "openChestList": [],
             "openDoorList": [],
