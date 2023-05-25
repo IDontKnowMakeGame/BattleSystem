@@ -25,6 +25,12 @@ public class UIInGame : UIBase
     private VisualElement _itemList;
     private VisualElement _interactionBox;
 
+    private VisualElement _abnormalStatusBox;
+    private VisualElement _abnormalStatusSliderBar;
+    private VisualElement _abnormalStatusIcon;
+    private int _abnormalStatusMaxCount = 0;
+    private int _abnormalStatusCount = 0;
+
     private VisualElement _roomInfoPanel;
     private Label _roomNameText;
 
@@ -97,6 +103,10 @@ public class UIInGame : UIBase
         _itemPanel = _root.Q<VisualElement>("ItemPanel");
         _interactionBox = _root.Q<VisualElement>("InteractionBox");
 
+        _abnormalStatusBox = _root.Q<VisualElement>("abnormalStatusBox");
+        _abnormalStatusSliderBar = _root.Q<VisualElement>("slider_AbnormalStatusBar");
+        _abnormalStatusIcon = _root.Q<VisualElement>("IabnormalStatusIcon").Q<VisualElement>("Icon");
+
         _roomInfoPanel = _root.Q<VisualElement>("RoomInfoPanel");
         _roomNameText = _roomInfoPanel.Q<Label>("RoomNameText");
 
@@ -115,6 +125,7 @@ public class UIInGame : UIBase
         ChangeItemPanelImage();
         InitQuestPanel();
         ChangeHalo();
+        HideAbnormalStatusBox();
 
         CristalInfoInRoom(0);
     }
@@ -307,7 +318,30 @@ public class UIInGame : UIBase
         _interactionBox.style.display = DisplayStyle.None;
     }
 
-   public void GetItemUpdate()
+    public void ShowAbnormalStatusBox()
+    {
+        _abnormalStatusBox.style.display = DisplayStyle.Flex;
+        _abnormalStatusMaxCount = 7;
+    }
+    public void HideAbnormalStatusBox()
+    {
+        _abnormalStatusBox.style.display = DisplayStyle.None;
+        _abnormalStatusMaxCount = 7;
+    }
+    public void SetAbnormalStatus(int count)
+    {
+        _abnormalStatusCount = count;
+        int sliderValue = (100/ _abnormalStatusMaxCount) * count;
+        _abnormalStatusSliderBar.style.width = new Length(sliderValue, LengthUnit.Percent);
+    }
+    public void AddAbnormalStatus(int count = 1)
+    {
+        if(_abnormalStatusCount == 0)
+            ShowAbnormalStatusBox();
+        SetAbnormalStatus(_abnormalStatusCount + count);
+    }
+
+    public void GetItemUpdate()
     {
         _itemTime += Time.deltaTime;
 
