@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 221c2c51f3876c34da75407d6dddf122
+guid: ed17eefd92add4547aaa025d7360f0c8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -122,7 +122,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
+        width: 118.15385
         height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -131,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ad74bfae970a8d42ab6aa35ab0682d7
-      internalID: -1247836405
+      spriteID: 8e2056737b9ced14c97bc85e9b3b12ef
+      internalID: -667223910
       vertices: []
       indices: 
       edges: []
@@ -141,9 +141,9 @@ TextureImporter:
       name: TaintedlongSword_Skill_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 118
         y: 0
-        width: 128
+        width: 118.15385
         height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -152,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2a6dacaa50079c4fa5355de8cd49b07
-      internalID: 1501520069
+      spriteID: 1600bc930749403459df254fdbd87c95
+      internalID: 1751460801
       vertices: []
       indices: 
       edges: []
@@ -162,9 +162,9 @@ TextureImporter:
       name: TaintedlongSword_Skill_2
       rect:
         serializedVersion: 2
-        x: 256
+        x: 236
         y: 0
-        width: 128
+        width: 118.15385
         height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -173,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80e52103b9f1fb84385ea6067b17f1ee
-      internalID: 1707952115
+      spriteID: ab3127124e987db40a19d216fc47c309
+      internalID: -659380247
       vertices: []
       indices: 
       edges: []
@@ -183,9 +183,9 @@ TextureImporter:
       name: TaintedlongSword_Skill_3
       rect:
         serializedVersion: 2
-        x: 384
+        x: 354
         y: 0
-        width: 128
+        width: 118.15385
         height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -194,8 +194,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64f8e284b5e35a74e8e262fd051e68b1
-      internalID: 647835523
+      spriteID: 4da48bcde779e40448d84c5afc31467f
+      internalID: 864457393
       vertices: []
       indices: 
       edges: []
@@ -204,9 +204,9 @@ TextureImporter:
       name: TaintedlongSword_Skill_4
       rect:
         serializedVersion: 2
-        x: 512
+        x: 472
         y: 0
-        width: 128
+        width: 118.15385
         height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -215,8 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dbb3679a99c341b4ab05ae9a6df80b27
-      internalID: -1759567836
+      spriteID: 23d434862c534a8469c7d90a5edfe07a
+      internalID: 1338359747
       vertices: []
       indices: 
       edges: []
@@ -225,9 +225,9 @@ TextureImporter:
       name: TaintedlongSword_Skill_5
       rect:
         serializedVersion: 2
-        x: 640
+        x: 590
         y: 0
-        width: 128
+        width: 118.15385
         height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -236,8 +236,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11367553dbcb0aa4f84ed4ea56977d97
-      internalID: -834528314
+      spriteID: a83c72d270cbefa40882c8787391d485
+      internalID: -426743302
       vertices: []
       indices: 
       edges: []
@@ -246,9 +246,9 @@ TextureImporter:
       name: TaintedlongSword_Skill_6
       rect:
         serializedVersion: 2
-        x: 768
+        x: 708
         y: 0
-        width: 128
+        width: 118.15385
         height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -257,8 +257,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1ccdbed3b3ede64dab01b09b4939a2f
-      internalID: 1010223149
+      spriteID: 7f4dd89a92ed9d94eb6e9d2cfadb081c
+      internalID: -1672419173
       vertices: []
       indices: 
       edges: []
@@ -267,9 +267,9 @@ TextureImporter:
       name: TaintedlongSword_Skill_7
       rect:
         serializedVersion: 2
-        x: 896
+        x: 826
         y: 0
-        width: 128
+        width: 118.15385
         height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -278,8 +278,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64cee8716c4ab1945b445f7d48bf4460
-      internalID: -1695869827
+      spriteID: ad1efd46723fd6440b303070b9cc4b02
+      internalID: -221717098
       vertices: []
       indices: 
       edges: []
@@ -288,9 +288,9 @@ TextureImporter:
       name: TaintedlongSword_Skill_8
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 944
         y: 0
-        width: 128
+        width: 118.15385
         height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -299,8 +299,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5bbeae1ec5df7be45bc8ef587a5d9c0f
-      internalID: -385354837
+      spriteID: 36e6741f8d9f568428db2f345153519f
+      internalID: -1790995192
       vertices: []
       indices: 
       edges: []
@@ -309,9 +309,9 @@ TextureImporter:
       name: TaintedlongSword_Skill_9
       rect:
         serializedVersion: 2
-        x: 1152
+        x: 1062
         y: 0
-        width: 128
+        width: 118.15385
         height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -320,8 +320,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6c2b0f17c8273b43b01226324ec01b5
-      internalID: 1127875688
+      spriteID: e009e7825ad5746438f4f8782dd08668
+      internalID: -1594039882
       vertices: []
       indices: 
       edges: []
@@ -330,9 +330,9 @@ TextureImporter:
       name: TaintedlongSword_Skill_10
       rect:
         serializedVersion: 2
-        x: 1280
+        x: 1180
         y: 0
-        width: 128
+        width: 118.15385
         height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -341,8 +341,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6b20112b4a6ba1428f60c37b0dfe7df
-      internalID: -688649399
+      spriteID: 9ccb8de5e277d084295dd4ec686b37b6
+      internalID: 1349991535
       vertices: []
       indices: 
       edges: []
@@ -351,9 +351,9 @@ TextureImporter:
       name: TaintedlongSword_Skill_11
       rect:
         serializedVersion: 2
-        x: 1408
+        x: 1298
         y: 0
-        width: 128
+        width: 118.15385
         height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -362,8 +362,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: faae31970bf66104aa7a2c13291eee10
-      internalID: -439536405
+      spriteID: c3d3ef82662c75f45803c4b0da51e077
+      internalID: -245273706
       vertices: []
       indices: 
       edges: []
@@ -372,9 +372,9 @@ TextureImporter:
       name: TaintedlongSword_Skill_12
       rect:
         serializedVersion: 2
-        x: 1536
+        x: 1416
         y: 0
-        width: 128
+        width: 118.15385
         height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -383,8 +383,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2aca26c4c2ec3b847a04fb7a15051fcb
-      internalID: -846124620
+      spriteID: a767216fc19a9d84abcead3c4a6ea96a
+      internalID: -873152424
       vertices: []
       indices: 
       edges: []
@@ -393,9 +393,9 @@ TextureImporter:
       name: TaintedlongSword_Skill_13
       rect:
         serializedVersion: 2
-        x: 1664
+        x: 1534
         y: 0
-        width: 128
+        width: 118.15385
         height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -404,8 +404,260 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38e4266b9fe942f4791ed059e9331193
-      internalID: -1892731517
+      spriteID: af9a3ca4d0ba21c4eaa214f964e9e499
+      internalID: 2106858047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TaintedlongSword_Skill_14
+      rect:
+        serializedVersion: 2
+        x: 1652
+        y: 0
+        width: 118.15385
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02dca07a1939fca4daa06ab43e7d10a0
+      internalID: -474519053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TaintedlongSword_Skill_15
+      rect:
+        serializedVersion: 2
+        x: 1770
+        y: 0
+        width: 118.15385
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b57a32a04db4d1c40abf47ece90e7b67
+      internalID: 9821885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TaintedlongSword_Skill_16
+      rect:
+        serializedVersion: 2
+        x: 1888
+        y: 0
+        width: 118.15385
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0418ab6146d25d41919c925cc1d765d
+      internalID: -1712933858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TaintedlongSword_Skill_17
+      rect:
+        serializedVersion: 2
+        x: 2006
+        y: 0
+        width: 118.15385
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ecc6de2e16fcc64088bf9654beabedd
+      internalID: 1095517744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TaintedlongSword_Skill_18
+      rect:
+        serializedVersion: 2
+        x: 2124
+        y: 0
+        width: 118.15385
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3830eee23abd7d42bd3e4f137696821
+      internalID: 1648908365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TaintedlongSword_Skill_19
+      rect:
+        serializedVersion: 2
+        x: 2242
+        y: 0
+        width: 118.15385
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cafe8cdcd112d714a85a9b246d256538
+      internalID: 509116077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TaintedlongSword_Skill_20
+      rect:
+        serializedVersion: 2
+        x: 2360
+        y: 0
+        width: 118.15385
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25422ccee0490d6449313d9b4ba9a9f9
+      internalID: -2139215116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TaintedlongSword_Skill_21
+      rect:
+        serializedVersion: 2
+        x: 2478
+        y: 0
+        width: 118.15385
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c42a5f4e66520eb4db7f22cc2b9896e0
+      internalID: 1786846129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TaintedlongSword_Skill_22
+      rect:
+        serializedVersion: 2
+        x: 2596
+        y: 0
+        width: 118.15385
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04356b2e86772b34caad308f52529016
+      internalID: -1055370639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TaintedlongSword_Skill_23
+      rect:
+        serializedVersion: 2
+        x: 2714
+        y: 0
+        width: 118.15385
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f60c1f1a94b5a484294d4dfbdb5dfe0d
+      internalID: 938550925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TaintedlongSword_Skill_24
+      rect:
+        serializedVersion: 2
+        x: 2832
+        y: 0
+        width: 118.15385
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a16a9c1fcce22da40a9899d8d67e0bd4
+      internalID: 703533571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TaintedlongSword_Skill_25
+      rect:
+        serializedVersion: 2
+        x: 2950
+        y: 0
+        width: 118.15385
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8eb9ab4fb1708a48bfa3f833e487c86
+      internalID: 482144203
       vertices: []
       indices: 
       edges: []
@@ -413,7 +665,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 63d0cb24adc63dc4b8db2f3c77d81c78
+    spriteID: feb7d4be05e1ecc4d8fd238cc54000ba
     internalID: 0
     vertices: []
     indices: 
@@ -421,20 +673,32 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      TaintedlongSword_Skill_5: -834528314
-      TaintedlongSword_Skill_10: -688649399
-      TaintedlongSword_Skill_7: -1695869827
-      TaintedlongSword_Skill_12: -846124620
-      TaintedlongSword_Skill_6: 1010223149
-      TaintedlongSword_Skill_4: -1759567836
-      TaintedlongSword_Skill_11: -439536405
-      TaintedlongSword_Skill_2: 1707952115
-      TaintedlongSword_Skill_0: -1247836405
-      TaintedlongSword_Skill_1: 1501520069
-      TaintedlongSword_Skill_13: -1892731517
-      TaintedlongSword_Skill_8: -385354837
-      TaintedlongSword_Skill_9: 1127875688
-      TaintedlongSword_Skill_3: 647835523
+      TaintedlongSword_Skill_16: -1712933858
+      TaintedlongSword_Skill_5: -426743302
+      TaintedlongSword_Skill_17: 1095517744
+      TaintedlongSword_Skill_10: 1349991535
+      TaintedlongSword_Skill_18: 1648908365
+      TaintedlongSword_Skill_20: -2139215116
+      TaintedlongSword_Skill_7: -221717098
+      TaintedlongSword_Skill_12: -873152424
+      TaintedlongSword_Skill_6: -1672419173
+      TaintedlongSword_Skill_25: 482144203
+      TaintedlongSword_Skill_4: 1338359747
+      TaintedlongSword_Skill_11: -245273706
+      TaintedlongSword_Skill_2: -659380247
+      TaintedlongSword_Skill_0: -667223910
+      TaintedlongSword_Skill_1: 1751460801
+      TaintedlongSword_Skill_22: -1055370639
+      TaintedlongSword_Skill_13: 2106858047
+      TaintedlongSword_Skill_19: 509116077
+      TaintedlongSword_Skill_14: -474519053
+      TaintedlongSword_Skill_15: 9821885
+      TaintedlongSword_Skill_21: 1786846129
+      TaintedlongSword_Skill_8: -1790995192
+      TaintedlongSword_Skill_9: -1594039882
+      TaintedlongSword_Skill_3: 864457393
+      TaintedlongSword_Skill_23: 938550925
+      TaintedlongSword_Skill_24: 703533571
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
