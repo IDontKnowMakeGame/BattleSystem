@@ -12,6 +12,7 @@ public class ExecutionBlade : TwinSword
 
 	private Vector3 _pos;
 	private Vector3 _dir;
+	private Vector3 _origindir;
 
 	public override void Equiqment(CharacterActor actor)
 	{
@@ -21,14 +22,16 @@ public class ExecutionBlade : TwinSword
 
 	public override void Skill(Vector3 vec)
 	{
-		//if (_isCoolTime)
-		//	return;
+		if (_isCoolTime)
+			return;
 
 		_playerMove.distance = 5;
 		_playerMove.Translate(vec);
-		PlayerMove.OnMoveEnd += OnEnd;
 		_pos = _characterActor.Position;
-		_dir = InGame.CamDirCheck(vec);
+		_origindir = vec;
+		_dir = InGame.CamDirCheck(_origindir);
+
+		PlayerMove.OnMoveEnd += OnEnd;
 	}
 
 	private void OnEnd(int id, Vector3 vec)
@@ -39,13 +42,12 @@ public class ExecutionBlade : TwinSword
 		Vector3 right = Mathf.Abs(_dir.x) > Mathf.Abs(_dir.z) ? Vector3.forward : Vector3.right;
 
 		GameObject obj = Define.GetManager<ResourceManager>().Instantiate("BladeHint");
-		obj.transform.position = _pos + _dir + left/2;
-		obj.transform.localRotation = UnityEngine.Quaternion.LookRotation(vec);
+		obj.transform.position = _pos + _dir + left / 2;
+		obj.transform.localRotation = UnityEngine.Quaternion.LookRotation(_dir);
 		GameObject obj2 = Define.GetManager<ResourceManager>().Instantiate("BladeHint");
-		obj2.transform.position = _pos + _dir + right/2;
-		obj2.transform.localRotation = UnityEngine.Quaternion.LookRotation(vec);
+		obj2.transform.position = _pos + _dir + right / 2;
+		obj2.transform.localRotation = UnityEngine.Quaternion.LookRotation(_dir);
 
-		Debug.Log(vec);
 		for (int i = 1; i <= 5; i++)
 		{
 			InGame.Attack(_pos + (_dir * i) + left, Vector3.one, info.Atk, i / 10, _characterActor);

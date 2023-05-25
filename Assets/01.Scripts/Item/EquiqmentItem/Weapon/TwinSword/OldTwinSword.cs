@@ -17,7 +17,7 @@ public class OldTwinSword : TwinSword
 		Vector3 vector = InGame.CamDirCheck(vec);
 		_isCoolTime = true;
 		GameObject obj = Define.GetManager<ResourceManager>().Instantiate("TwinSword-Slash");
-		obj.transform.position = _characterActor.Position + vector + Vector3.up;
+		obj.transform.position = _characterActor.Position + vector/5 + Vector3.up;
 		obj.transform.localRotation = Quaternion.LookRotation(vector);
 		_characterActor.GetAct<PlayerAnimation>().Play("Skill");
 
