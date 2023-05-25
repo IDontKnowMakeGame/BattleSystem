@@ -125,8 +125,8 @@ namespace Acts.Characters
                 MoveStop();
                 return;
             }
-            
-            var ccState = CharacterState.Stun | CharacterState.KnockBack;
+
+            var ccState = CharacterState.Stun | CharacterState.KnockBack | CharacterState.StopMove;
             if (_character.HasState(ccState))
             {
                 enableQ = false;
@@ -244,6 +244,8 @@ namespace Acts.Characters
         private bool isChasing = false;
         public void Chase(Actor target)
         {
+            if(_character.HasState(CharacterState.Chase)) return;
+            _character.AddState(CharacterState.Chase);
             if(_character.HasState(CharacterState.Move)) return;
             if(_character.HasState(CharacterState.Attack)) return;
             if(_character.HasState(CharacterState.Hold)) return;
@@ -258,6 +260,7 @@ namespace Acts.Characters
             if (InGame.GetBlock(end).isWalkable == false)
             {
                 isChasing = false;
+                _character.RemoveState(CharacterState.Chase);
                 yield break;
             }
             astar.SetPath(ThisActor.Position, end);
@@ -267,10 +270,11 @@ namespace Acts.Characters
             if (nextBlock == null)
             {
                 isChasing = false;
+                _character.RemoveState(CharacterState.Chase);
                 yield break;
             }
             var nextPos = nextBlock.Position;
-            Move(nextPos);
+            Move(nextPos);  
         }
         protected virtual void AnimationCheck()
         {
@@ -302,6 +306,7 @@ namespace Acts.Characters
         protected virtual void MoveStop()
         {
             _character.RemoveState(CharacterState.Move);
+            _character.RemoveState(CharacterState.Chase);
             isChasing = false;
         }
 

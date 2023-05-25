@@ -1,6 +1,8 @@
-﻿using System.Numerics;
+﻿using System.Collections.Generic;
+using System.Numerics;
 using Actors.Characters;
 using Acts.Base;
+using AttackDecals;
 using Blocks.Acts;
 using Core;
 using Data;
@@ -43,8 +45,30 @@ namespace Acts.Characters.Enemy
 
                 //Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position, DefaultStat.Atk, DefaultStat.Ats,
                 //    CharacterActor, MovementType.None, isLast);
-                InGame.Attack(CharacterActor.Position, new Vector3(1, 0, 1), DefaultStat.Atk, DefaultStat.Ats, CharacterActor, isLast);
             }
+            InGame.Attack(CharacterActor.Position, new Vector3(1, 0, 1), DefaultStat.Atk, DefaultStat.Ats, CharacterActor, isLast);
+        }
+
+        public List<AttackDecal> HorizontalAttackNoEnd(Vector3 dir, bool isLast = true)
+        {
+            Attack();
+            var degree = dir.ToDegree().GetRotation();
+            var decals = new List<AttackDecal>(); 
+            Debug.Log(degree);
+            var range = new Vector3[] { new (1, 0, -1), new (1, 0, 0), new (1, 0, 1) };
+            for (var r = 0; r < 3; r++)
+            {
+                var attackPos = CharacterActor.Position + (degree * range[r]);
+                //Define.GetManager<MapManager>()
+                //    .AttackBlock(attackPos, DefaultStat.Atk, 0.1f, CharacterActor, MovementType.None);
+                decals.Add(InGame.AttackNoEnd(attackPos, new Vector3(1, 0, 1), DefaultStat.Atk, CharacterActor));
+
+                //Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position, DefaultStat.Atk, DefaultStat.Ats,
+                //    CharacterActor, MovementType.None, isLast);
+            }
+            decals.Add(InGame.AttackNoEnd(CharacterActor.Position, new Vector3(1, 0, 1), DefaultStat.Atk, CharacterActor, isLast));
+
+            return decals;
         }
 
         public void VerticalAttack(Vector3 dir, bool isLast = true)

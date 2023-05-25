@@ -324,8 +324,7 @@ MonoBehaviour:
   From: Chase
   To: Pattern
   _conditions:
-  - rid: 4755812611868852235
-  - rid: 8698174372973117440
+  - rid: 8698174384013574144
   - rid: 4755812611868852225
   references:
     version: 2
@@ -339,21 +338,14 @@ MonoBehaviour:
         _thisActor: {fileID: 6861387177648206927}
         targetActor: {fileID: 0}
         IsPlayer: 1
-    - rid: 4755812611868852235
-      type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+    - rid: 8698174384013574144
+      type: {class: StateCondition, ns: AI.Conditions, asm: Assembly-CSharp}
       data:
-        Type: 3
-        IsNegative: 0
-        IsNeeded: 1
-        _thisActor: {fileID: 6861387177648206927}
-        BaseActor: {fileID: 6861387177648206927}
-    - rid: 8698174372973117440
-      type: {class: MoveCondition, ns: AI.Conditions, asm: Assembly-CSharp}
-      data:
-        Type: 8
+        Type: 12
         IsNegative: 1
         IsNeeded: 1
         _thisActor: {fileID: 6861387177648206927}
+        State: 523
 --- !u!114 &6861387177648206931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,18 +361,18 @@ MonoBehaviour:
   From: Pattern
   To: Chase
   _conditions:
-  - rid: 4755812611868852226
+  - rid: 8698174384013574153
   references:
     version: 2
     RefIds:
-    - rid: 4755812611868852226
-      type: {class: AttackCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+    - rid: 8698174384013574153
+      type: {class: StateCondition, ns: AI.Conditions, asm: Assembly-CSharp}
       data:
-        Type: 3
-        IsNegative: 0
+        Type: 12
+        IsNegative: 1
         IsNeeded: 1
         _thisActor: {fileID: 6861387177648206927}
-        BaseActor: {fileID: 6861387177648206927}
+        State: 11
 --- !u!65 &6861387177648206925
 BoxCollider:
   m_ObjectHideFlags: 0
