@@ -16,7 +16,10 @@ public class OldGreatSword : GreatSword
 		if (_isCoolTime)
 			return;
 
-		_isCoolTime = true;
+		if (_playerActor.HasAnyState())
+			return;
+
+			_isCoolTime = true;
 		if(_characterActor is PlayerActor)
         {
 			_characterActor.GetAct<PlayerAnimation>().Play("Skill");

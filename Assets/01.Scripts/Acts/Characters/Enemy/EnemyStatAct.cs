@@ -12,6 +12,7 @@ using DG.Tweening;
 using Random = UnityEngine.Random;
 using Data;
 using Actors.Characters.Player;
+using Object = UnityEngine.Object;
 
 namespace Acts.Characters.Enemy
 {
@@ -118,6 +119,7 @@ namespace Acts.Characters.Enemy
 						arrow.transform.parent = null;
 					}
 					ThisActor.gameObject.SetActive(false);
+					Object.Destroy(ThisActor);
                 };
 	            var deathParticle = Define.GetManager<ResourceManager>().Instantiate("DeathParticle");
 	            //DOTween.To(() => 4, x => mat.SetFloat("_Cutoff_Height", x), 0, 0.8f);
@@ -137,7 +139,7 @@ namespace Acts.Characters.Enemy
 
             InGame.Player.GetAct<PlayerAttack>().RangeReset();
             InGame.Player.GetAct<PlayerAttack>().DeleteEnemy(ThisActor.gameObject);
-		}
+        }
 
         private void ObjectCreate()
         {

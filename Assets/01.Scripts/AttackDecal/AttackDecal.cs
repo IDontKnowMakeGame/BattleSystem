@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Actors.Bases;
 using Actors.Characters;
+using Actors.Characters.Player;
 using Core;
 using DG.Tweening;
 using UnityEngine;
@@ -29,15 +30,11 @@ namespace AttackDecals
         
         public void Attack(Rect _rect, CharacterActor _attacker, float _damage, float delay, bool _isLast = false)
         {
-            rect = _rect;
-            decalProjector.size = new Vector3(rect.width, rect.height, 1.5f);
-            attacker = _attacker;
-            damage = _damage;
-            isLast = _isLast;
-            fill = 1f;
-            material.SetFloat("_Fill", fill);
-            decalProjector.material = material;
+            Init(_rect, _attacker, _damage, _isLast);
             attacker.AddState(CharacterState.Hold);
+            seq = DOTween.Sequence();
+            if (seq == null)
+                return;
             seq.Append(DOTween.To(() => fill, value => fill = value, 0, delay).OnUpdate(()=>
             {
                 material.SetFloat("_Fill", fill);
@@ -48,6 +45,13 @@ namespace AttackDecals
 
         public void AttackNoEnd(Rect _rect, CharacterActor _attacker, float _damage, bool _isLast = false)
         {
+            Init(_rect, _attacker, _damage, _isLast);
+            attacker.AddState(CharacterState.Hold);
+            StartCoroutine(DeleteCoroutine());
+        }
+
+        private void Init(Rect _rect, CharacterActor _attacker, float _damage, bool _isLast = false)
+        {
             rect = _rect;
             decalProjector.size = new Vector3(rect.width, rect.height, 1.5f);
             attacker = _attacker;
@@ -55,9 +59,9 @@ namespace AttackDecals
             isLast = _isLast;
             fill = 1f;
             material.SetFloat("_Fill", fill);
+            var decalColor = (_attacker is PlayerActor ? Color.blue : Color.red) * 0.5f;
+            material.SetColor("_MainColor", decalColor);
             decalProjector.material = material;
-            attacker.AddState(CharacterState.Hold);
-            StartCoroutine(DeleteCoroutine());
         }
 
         public void EndAttack()
