@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Numerics;
 using Actors.Characters;
+using Actors.Characters.Enemy;
 using Acts.Base;
 using AttackDecals;
 using Blocks.Acts;
@@ -27,6 +28,10 @@ namespace Acts.Characters.Enemy
         {
             Attack();
             //Define.GetManager<MapManager>().AttackBlock(ThisActor.Position + dir, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.None, isLast);
+            if(ThisActor is BossActor)
+            {
+                Define.GetManager<SoundManager>().PlayAtPoint("Boss/explosion", ThisActor.Position + dir, 1);
+            }
             InGame.Attack(ThisActor.Position + dir, new Vector3(1, 0, 1), DefaultStat.Atk, DefaultStat.Ats, CharacterActor, isLast);
         }
         

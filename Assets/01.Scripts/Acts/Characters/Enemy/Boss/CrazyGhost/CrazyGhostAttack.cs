@@ -78,7 +78,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
             var range = new Vector3[] { new(1, 0, -2), new(1, 0, -1), new(1, 0, 0), new(1, 0, 1), new(1, 0, 2) };
             var distance = 0;
             var block = Define.GetManager<MapManager>().GetBlock(ThisActor.Position);
-            Define.GetManager<SoundManager>().PlayAtPoint("Boss/soulAttackReadysound", ThisActor.Position, 1);
+            Debug.Log("ReadySound");
             while (distance <= 20)
             {
                 var count = 0;
