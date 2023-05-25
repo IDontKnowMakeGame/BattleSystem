@@ -152,6 +152,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 			return;
 		if (_playerActor.HasState(CharacterState.Equip)) return;
 
+		Debug.Log(vec);
 		CurrentWeapon?.Skill(Weapon.DirReturn(vec));
 		
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.ChangeStat, _eventParam);

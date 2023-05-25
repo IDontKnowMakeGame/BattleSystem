@@ -54,7 +54,6 @@ public class PlayerFlooding : Act
 
     public void ChangeWarmMode(bool mode)
     {
-        Debug.Log(mode);
         if(warmMode != mode)
         {
             if(mode)

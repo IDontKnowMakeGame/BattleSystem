@@ -82,7 +82,8 @@ public class TImeLinePlayer : MonoBehaviour
 		"Spear" => 4,
 		"Bow" => 5, 
         "gf" => 6,
-        _ => 0
+		"OldGreatSkill" => 7,
+		_ => 0
 	};
 
     private void ChangeTimeLine(int number)

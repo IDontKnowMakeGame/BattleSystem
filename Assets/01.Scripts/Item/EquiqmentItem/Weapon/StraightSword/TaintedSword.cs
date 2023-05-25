@@ -12,6 +12,10 @@ public class TaintedSword : StraightSword
 	public override void Skill(Vector3 vec)
 	{
 		base.Skill(vec);
+
+		if (_isCoolTime)
+			return;
+
 		_characterActor.AddState(CharacterState.Skill);
 		_isCoolTime = true;
 
