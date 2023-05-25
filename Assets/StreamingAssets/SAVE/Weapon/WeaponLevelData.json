@@ -1,3 +1,8 @@
 {
-    "weaponLevelDataList": []
+    "weaponLevelDataList": [
+        {
+            "id": 1,
+            "level": 30
+        }
+    ]
 }
