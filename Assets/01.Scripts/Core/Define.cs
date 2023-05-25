@@ -205,17 +205,7 @@ namespace Core
                 return;
             }
 
-            if (block.transform.Find("Anchor/AttackDecal"))
-            {       if (isLast)
-                {
-                    var state = CharacterState.Hold | CharacterState.Attack;
-                    attacker.RemoveState(state);
-                }
-
-                return;
-            }  
-
-        var resourceManager = Define.GetManager<ResourceManager>();
+            var resourceManager = Define.GetManager<ResourceManager>();
             var decalObj = resourceManager.Instantiate("AttackDecal");
             decalObj.transform.position = pos.SetY(0f);
             decalObj.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
@@ -225,6 +215,34 @@ namespace Core
 
             var decal = decalObj.GetComponent<AttackDecal>();
             decal.Attack(rect, attacker, damage, delay, isLast);
+        }
+
+        public static AttackDecal AttackNoEnd(Vector3 pos, Vector3 size, float damage, CharacterActor attacker,
+            bool isLast = false)
+        {
+            var block = GetBlock(pos.SetY(0));
+            if (block == null)
+            {
+                if (isLast)
+                {
+                    var state = CharacterState.Hold | CharacterState.Attack;
+                    attacker.RemoveState(state);
+                }
+
+                return null;
+            }
+
+            var resourceManager = Define.GetManager<ResourceManager>();
+            var decalObj = resourceManager.Instantiate("AttackDecal");
+            decalObj.transform.position = pos.SetY(0f);
+            decalObj.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
+            decalObj.transform.SetParent(block.transform.GetChild(0));
+            var rect = new Rect(new Vector2(pos.x - size.x / 2, pos.z - size.z / 2), new Vector2(size.x, size.z));
+            
+
+            var decal = decalObj.GetComponent<AttackDecal>();
+            decal.AttackNoEnd(rect, attacker, damage, isLast);
+            return decal;
         }
 
         public static void ShakeBlock(Vector3 pos, float duration, MovementType type)

@@ -16,31 +16,51 @@ namespace AttackDecals
         private float damage = 0.0f;
         private CharacterActor attacker = null;
         private float fill = 1f;
+        private bool isLast = false;
         private DecalProjector decalProjector = null;
         private Material material = null;
+        private Sequence seq = null;
 
         private void Awake()
         {
             decalProjector = GetComponent<DecalProjector>();
-            material = decalProjector.material;
+            material = Instantiate(decalProjector.material);
         }
         
-        public void Attack(Rect _rect, CharacterActor _attacker, float _damage, float delay, bool isLast = false)
+        public void Attack(Rect _rect, CharacterActor _attacker, float _damage, float delay, bool _isLast = false)
         {
             rect = _rect;
             decalProjector.size = new Vector3(rect.width, rect.height, 1.5f);
             attacker = _attacker;
             damage = _damage;
+            isLast = _isLast;
             fill = 1f;
+            material.SetFloat("_Fill", fill);
+            decalProjector.material = material;
             attacker.AddState(CharacterState.Hold);
-            DOTween.To(() => fill, value => fill = value, 0, delay).OnUpdate(()=>material.SetFloat("_Fill", fill));
-            StartCoroutine(AttackCoroutine(delay, isLast));
+            seq.Append(DOTween.To(() => fill, value => fill = value, 0, delay).OnUpdate(()=>
+            {
+                material.SetFloat("_Fill", fill);
+            }));
+            StartCoroutine(AttackCoroutine(delay));
         }
 
-        private IEnumerator AttackCoroutine(float delay, bool isLast)
+        public void AttackNoEnd(Rect _rect, CharacterActor _attacker, float _damage, bool _isLast = false)
         {
-            yield return new WaitForSeconds(delay);
+            rect = _rect;
+            decalProjector.size = new Vector3(rect.width, rect.height, 1.5f);
+            attacker = _attacker;
+            damage = _damage;
+            isLast = _isLast;
+            fill = 1f;
+            material.SetFloat("_Fill", fill);
+            decalProjector.material = material;
+            attacker.AddState(CharacterState.Hold);
+        }
 
+        public void EndAttack()
+        {
+            seq.Kill();
             var actors = from actor in InGame.Actors.Values
                 where actor is CharacterActor
                 let actorPos = new Vector3(actor.Position.x, actor.Position.z)
@@ -63,6 +83,13 @@ namespace AttackDecals
                 attacker.RemoveState(CharacterState.Attack);
             }
             Define.GetManager<ResourceManager>().Destroy(this.gameObject);
+        }
+
+        private IEnumerator AttackCoroutine(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+
+            EndAttack();
         }
     }
 }

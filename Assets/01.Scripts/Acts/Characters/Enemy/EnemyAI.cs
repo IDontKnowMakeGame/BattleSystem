@@ -35,21 +35,12 @@ namespace Acts.Characters.Enemy
                     MoveNextState(currentTransition);
                     currentTransition.ResetAllConditions();
                     _hasEntered = false;
-                    _hasFinished = true;
-                    break;
+                    _hasFinished = true; 
+                    CurrentState?.OnExit?.Invoke();
+                    return;
                 }
             }
-            
-            if(_hasFinished == true)
-            {
-                CurrentState?.OnExit?.Invoke();
-                _hasFinished = false;
-            }
-            else
-            {
-                CurrentState?.OnStay?.Invoke();
-            }
-                
+            CurrentState?.OnStay?.Invoke();
         }
 
         public override void Awake()

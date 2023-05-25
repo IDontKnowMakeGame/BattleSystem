@@ -79,7 +79,7 @@ namespace Actors.Characters.Enemy
             return result;
         }
 
-        protected void Attack(Vector3 dir, string stateName, Action onAttack = null, bool isLast = true, Action onEnd = null)
+        protected void Attack(Vector3 dir, string stateName, Action onAttack = null, bool isLast = true, Action onEnd = null, Action onStart = null)
         {
             var dirName = GetDirName(dir);
             var nextState = dirName + stateName;
@@ -93,6 +93,7 @@ namespace Actors.Characters.Enemy
                 attackClip = _enemyAnimation.GetClip( nextState + "Attack");
                 returnClip = _enemyAnimation.GetClip( nextState + "Return");
             }
+            onStart?.Invoke();
             _enemyAnimation.Play( nextState + "Ready");
             readyClip.OnExit = () =>
             {
