@@ -42,6 +42,7 @@ namespace AttackDecals
             {
                 material.SetFloat("_Fill", fill);
             }));
+            StartCoroutine(DeleteCoroutine());
             StartCoroutine(AttackCoroutine(delay));
         }
 
@@ -56,6 +57,7 @@ namespace AttackDecals
             material.SetFloat("_Fill", fill);
             decalProjector.material = material;
             attacker.AddState(CharacterState.Hold);
+            StartCoroutine(DeleteCoroutine());
         }
 
         public void EndAttack()
@@ -83,6 +85,17 @@ namespace AttackDecals
                 attacker.RemoveState(CharacterState.Attack);
             }
             Define.GetManager<ResourceManager>().Destroy(this.gameObject);
+        }
+
+        private IEnumerator DeleteCoroutine()
+        {
+            while (true)
+            {
+                yield return new WaitForEndOfFrame();
+                if (attacker != null) continue;
+                Define.GetManager<ResourceManager>().Destroy(this.gameObject);
+                break;
+            }
         }
 
         private IEnumerator AttackCoroutine(float delay)
