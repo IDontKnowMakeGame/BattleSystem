@@ -32,6 +32,8 @@ public enum EventFlag
 	ChangeStat,
 	HaloAdd,
 	HaloDel,
+	PlayScreenEffect,
+	StopScreenEffect,
 
 	// Halo
 	PollutionHalo,

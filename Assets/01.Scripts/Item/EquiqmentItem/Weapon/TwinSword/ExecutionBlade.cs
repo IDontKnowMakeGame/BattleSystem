@@ -30,6 +30,7 @@ public class ExecutionBlade : TwinSword
 		_pos = _characterActor.Position;
 		_origindir = vec;
 		_dir = InGame.CamDirCheck(_origindir);
+		Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayScreenEffect, new EventParam() { intParam = 0});
 
 		PlayerMove.OnMoveEnd += OnEnd;
 	}
@@ -55,6 +56,8 @@ public class ExecutionBlade : TwinSword
 		}
 		_playerMove.distance = 1;
 		_isCoolTime = true;
+
+		Define.GetManager<EventManager>().TriggerEvent(EventFlag.StopScreenEffect, new EventParam());
 		PlayerMove.OnMoveEnd -= OnEnd;
 	}
 }
