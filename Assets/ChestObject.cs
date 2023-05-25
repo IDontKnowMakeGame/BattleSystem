@@ -30,19 +30,10 @@ public class ChestObject : InteractionActor
             _particle.gameObject.SetActive(false);
             direction.Play();
             isOpen = true;
-			return;
+			RemoveInteration();
+            return;
         }
 
-		characterDetect.EnterDetect += ShowInteration;
-		characterDetect.ExitDetect += HideInteration;
-    }
-    public void ShowInteration(Vector3 vec)
-    {
-        UIManager.Instance.InGame.ShowInteraction();
-    }
-    public void HideInteration(Vector3 vec)
-    {
-        UIManager.Instance.InGame.HideInteraction();
     }
     public override void Interact()
 	{

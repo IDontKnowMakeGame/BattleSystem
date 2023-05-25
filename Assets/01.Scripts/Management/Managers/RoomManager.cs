@@ -23,8 +23,8 @@ namespace Managements.Managers
         {
             Room currentRoom = Define.GetManager<MapManager>().GetBlock(InGame.Player.Position).transform.parent.GetComponent<Room>();
             
-            //if(currentRoom != null)
-            //Debug.Log("ÇöÀç¹æ:" + currentRoom.gameObject.name);
+            if(currentRoom != null)
+            Debug.Log("í˜„ì¬ë°©:" + currentRoom.gameObject.name);
             
             Transform parentRoom = Define.GetManager<MapManager>().GetBlock(InGame.Player.Position).transform.parent.parent;
 
@@ -34,21 +34,21 @@ namespace Managements.Managers
 
 
 
-                // ¸ğµç Room ¿ÀºêÁ§Æ® ²ô±â
+                // ëª¨ë“  Room ì˜¤ë¸Œì íŠ¸ ë„ê¸°
                 foreach (Transform room in parentRoom)
                 {
                     room.GetComponent<Room>()?.modelRoot.gameObject.SetActive(false);
                     
                 }
 
-                // ¸ğµç map ¿ÀºêÁ§Æ® ²ô±â
+                // ëª¨ë“  map ì˜¤ë¸Œì íŠ¸ ë„ê¸°
                 foreach (Transform map in mapParent)
                 {
                     map.gameObject.SetActive(false);
 
                 }
 
-                // ÇöÀç ·ë°ú ¿¬°áµÈ ·ë¸¸ Å°±â
+                // í˜„ì¬ ë£¸ê³¼ ì—°ê²°ëœ ë£¸ë§Œ í‚¤ê¸°
                 currentRoom.modelRoot.gameObject.SetActive(true);
                 if(currentRoom.roomObjs != null)
                     currentRoom.roomObjs.gameObject.SetActive(true);

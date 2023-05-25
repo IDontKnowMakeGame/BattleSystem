@@ -16,6 +16,7 @@ public class UIInGame : UIBase
     private VisualElement _hpServeSlider;
     private VisualElement _angerSlider;
     private VisualElement _adrenalineSlider;
+    private VisualElement _haloIcon;
 
     private VisualElement _firstWaepon;
     private VisualElement _firstWeaponHide;
@@ -23,6 +24,12 @@ public class UIInGame : UIBase
     private VisualElement _secondWeaponHide;
     private VisualElement _itemList;
     private VisualElement _interactionBox;
+
+    private VisualElement _abnormalStatusBox;
+    private VisualElement _abnormalStatusSliderBar;
+    private VisualElement _abnormalStatusIcon;
+    private int _abnormalStatusMaxCount = 0;
+    private int _abnormalStatusCount = 0;
 
     private VisualElement _roomInfoPanel;
     private Label _roomNameText;
@@ -86,6 +93,7 @@ public class UIInGame : UIBase
         _hpServeSlider = _hpSlider.Q<VisualElement>("ServeFill");
         _angerSlider = _root.Q<VisualElement>("slider_angerbar");
         _adrenalineSlider = _root.Q<VisualElement>("slider_adrenaline");
+        _haloIcon = _root.Q<VisualElement>("HaloIcon");
 
         _firstWaepon = _root.Q<VisualElement>("weaponbox_first");
         _firstWeaponHide = _firstWaepon.Q<VisualElement>("Hide");
@@ -94,6 +102,10 @@ public class UIInGame : UIBase
         _itemList = _root.Q<VisualElement>("area_item");
         _itemPanel = _root.Q<VisualElement>("ItemPanel");
         _interactionBox = _root.Q<VisualElement>("InteractionBox");
+
+        _abnormalStatusBox = _root.Q<VisualElement>("abnormalStatusBox");
+        _abnormalStatusSliderBar = _root.Q<VisualElement>("slider_AbnormalStatusBar");
+        _abnormalStatusIcon = _root.Q<VisualElement>("IabnormalStatusIcon").Q<VisualElement>("Icon");
 
         _roomInfoPanel = _root.Q<VisualElement>("RoomInfoPanel");
         _roomNameText = _roomInfoPanel.Q<Label>("RoomNameText");
@@ -112,6 +124,8 @@ public class UIInGame : UIBase
         ChangeSecondWeaponImage(DataManager.UserData_.secondWeapon);
         ChangeItemPanelImage();
         InitQuestPanel();
+        ChangeHalo();
+        HideAbnormalStatusBox();
 
         CristalInfoInRoom(0);
     }
@@ -186,6 +200,15 @@ public class UIInGame : UIBase
             back.AddToClassList("OnAdrenalin");
         else
             back.RemoveFromClassList("OnAdrenalin");
+    }
+    public void ChangeHalo()
+    {
+        ItemID id = DataManager.UserData_.firstHalo;
+        ChangeHalo(id);
+    }
+    public void ChangeHalo(ItemID id)
+    {
+        _haloIcon.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
     }
 
     public void FlagCoolTimePanel(float coolTime)
@@ -295,7 +318,30 @@ public class UIInGame : UIBase
         _interactionBox.style.display = DisplayStyle.None;
     }
 
-   public void GetItemUpdate()
+    public void ShowAbnormalStatusBox()
+    {
+        _abnormalStatusBox.style.display = DisplayStyle.Flex;
+        _abnormalStatusMaxCount = 7;
+    }
+    public void HideAbnormalStatusBox()
+    {
+        _abnormalStatusBox.style.display = DisplayStyle.None;
+        _abnormalStatusMaxCount = 7;
+    }
+    public void SetAbnormalStatus(int count)
+    {
+        _abnormalStatusCount = count;
+        int sliderValue = (100/ _abnormalStatusMaxCount) * count;
+        _abnormalStatusSliderBar.style.width = new Length(sliderValue, LengthUnit.Percent);
+    }
+    public void AddAbnormalStatus(int count = 1)
+    {
+        if(_abnormalStatusCount == 0)
+            ShowAbnormalStatusBox();
+        SetAbnormalStatus(_abnormalStatusCount + count);
+    }
+
+    public void GetItemUpdate()
     {
         _itemTime += Time.deltaTime;
 

@@ -47,6 +47,12 @@
             "name": "BrokenSword",
             "currentCnt": 1,
             "maxCnt": 0
+        },
+        {
+            "id": 6,
+            "name": "TaintedSword",
+            "currentCnt": 1,
+            "maxCnt": 0
         }
     ],
     "inventoryInHaloList": [
@@ -67,13 +73,19 @@
             "name": "HaloOfPollution",
             "currentCnt": 0,
             "maxCnt": 0
+        },
+        {
+            "id": 103,
+            "name": "HaloOfTime",
+            "currentCnt": 1,
+            "maxCnt": 0
         }
     ],
     "inventoryInUsableItemList": [
         {
             "id": 200,
             "name": "Torch",
-            "currentCnt": 5,
+            "currentCnt": 13,
             "maxCnt": 99
         },
         {

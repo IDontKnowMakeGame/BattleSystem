@@ -32,12 +32,6 @@ public class QuestManager : MonoBehaviour
         RoomSet();
     }
 
-    private void Start()
-    {
-        QuestCheck(QuestName.FirstFloorBossKill);
-        QuestCheck(QuestName.S10AreaEnter);
-    }
-
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.P))

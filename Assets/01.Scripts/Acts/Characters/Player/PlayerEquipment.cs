@@ -78,6 +78,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 		_useHalo.Add(ItemID.HaloOfPollution, new HaloOfPollution());
 		_useHalo.Add(ItemID.HaloOfEreshkigal, new HaloOfEreshkigal());
 		_useHalo.Add(ItemID.HaloOfDismantle, new HaloOfDismantle());
+		_useHalo.Add(ItemID.HaloOfTime, new HaloOfTime());
 		_halos = Define.GetManager<DataManager>().LoadHaloListInUserData();
 
 		if (_halos[0] != ItemID.None)
@@ -104,6 +105,18 @@ public class PlayerEquipment : CharacterEquipmentAct
 		Define.GetManager<EventManager>()?.StopListening(EventFlag.WeaponUpgrade, Upgrade);
 		Define.GetManager<EventManager>()?.StopListening(EventFlag.HaloAdd, EquipmentWeapon);
 		Define.GetManager<EventManager>()?.StopListening(EventFlag.HaloDel, EquipmentWeapon);
+	}
+
+    public override void Update()
+    {
+        base.Update();
+
+		foreach (ItemID haloID in _halos)
+		{
+			if (haloID == ItemID.None) return;
+			_useHalo[haloID].Update();
+		}
+
 	}
 	#endregion
 	#region Weapon
