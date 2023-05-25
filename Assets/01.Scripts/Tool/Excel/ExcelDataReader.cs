@@ -12,7 +12,7 @@ namespace Tool.Excel
         
         public static string StartIdx = "";
         public static string EndIdx = "";
-        public static string Gid = "";
+        public static string Gid = "0";
         public static bool IsParsing = false;
         public static bool IsProcessing = false;
         public static string Data;
