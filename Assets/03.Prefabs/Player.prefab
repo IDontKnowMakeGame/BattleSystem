@@ -149,7 +149,7 @@ Transform:
   - {fileID: 1513531373}
   - {fileID: 1111396346}
   m_Father: {fileID: 959488258604861648}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &855542704
 MonoBehaviour:
@@ -421,7 +421,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 959488258604861648}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &1588203166
 MeshFilter:
@@ -804,8 +804,8 @@ Transform:
   - {fileID: 959488257909060789}
   - {fileID: 1624052664}
   - {fileID: 8608105190816280863}
-  - {fileID: 855542705}
   - {fileID: 1588203163}
+  - {fileID: 855542705}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -839,7 +839,7 @@ MonoBehaviour:
     dust: {fileID: 6806287646911352019}
   _playerStat:
     _basicStat:
-      maxHP: 300
+      maxHP: 150
       hp: 10
       atk: 0
       ats: 0
@@ -879,7 +879,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: eb04cdf1f0d107b45981f8ccba80e5d0, type: 2}
     - {fileID: 11400000, guid: 899b69bc9b1473e4cb4f4acdc988e3a0, type: 2}
     - {fileID: 11400000, guid: 1cbf4ccb99f2cd643b9baf1d9c944210, type: 2}
-    - {fileID: 11400000, guid: 86685988caf165145b66176d5ce026ab, type: 2}
+    - {fileID: 11400000, guid: c3f7900f1c95a6d4eb4f4a96428dafd2, type: 2}
     - {fileID: 11400000, guid: d8c447713deaed34bbcfad4b1a74aaa3, type: 2}
     - {fileID: 11400000, guid: 646eef05f26487e4c9b1ddf362a4f7df, type: 2}
     - {fileID: 11400000, guid: 294c15789af91904293c35dd14c7f3c8, type: 2}

@@ -11,7 +11,6 @@ public class soundEffectobj : MonoBehaviour
         audioSource.clip = null;
         audioSource.pitch = _pitch;
         audioSource.PlayOneShot(audioClip, volume);
-        Debug.Log(volume);
         Invoke("EndClip", audioClip.length);
     }
 
