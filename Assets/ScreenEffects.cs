@@ -10,7 +10,7 @@ using UnityEngine.VFX;
 public enum ScreenEffectEnum
 {
     None,
-    Speed,
+    Speed = 0,
 }
 
 public class ScreenEffects : MonoBehaviour
@@ -41,6 +41,8 @@ public class ScreenEffects : MonoBehaviour
 	{
 		StopEffect();
 	}
+
+    public void PlaySpeedEffect() => PlayEffect(ScreenEffectEnum.Speed);
 
 	public void PlayEffect(ScreenEffectEnum effect)
     {

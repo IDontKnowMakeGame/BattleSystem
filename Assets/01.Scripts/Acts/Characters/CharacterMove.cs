@@ -126,7 +126,7 @@ namespace Acts.Characters
                 return;
             }
 
-            var ccState = CharacterState.Stun | CharacterState.KnockBack | CharacterState.StopMove;
+            var ccState = CharacterState.Stun | CharacterState.KnockBack;
             if (_character.HasState(ccState))
             {
                 enableQ = false;

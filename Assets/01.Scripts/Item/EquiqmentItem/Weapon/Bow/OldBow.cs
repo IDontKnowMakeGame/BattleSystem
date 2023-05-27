@@ -17,19 +17,8 @@ public class OldBow : Bow
 		_isCoolTime = true;
 		_characterActor.GetAct<PlayerMove>().IsSKill = true;
 		_characterActor.GetAct<PlayerMove>().BowBackStep(_characterActor.Position + -_currentVec);
-		GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Dust");
-		obj.transform.position = _characterActor.Position + Vector3.up/2 + _currentVec/2;
-		obj.transform.localRotation = Quaternion.LookRotation(-_currentVec);
-		//PlayerMove.OnMoveEnd += MoveEnd;
-	}
-
-	private void MoveEnd(int id, Vector3 vec)
-	{
-		if (id != _characterActor.UUID) return;
-
 		//GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Dust");
-		//obj.transform.position = _characterActor.Position + Vector3.up;
-		//obj.transform.localRotation = Quaternion.LookRotation(_characterActor.Position + _currentVec);
-		PlayerMove.OnMoveEnd -= MoveEnd;
+		//obj.transform.position = _characterActor.Position + Vector3.up/2 + _currentVec/2;
+		//obj.transform.localRotation = Quaternion.LookRotation(-_currentVec);
 	}
 }

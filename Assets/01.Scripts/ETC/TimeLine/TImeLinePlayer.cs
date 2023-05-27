@@ -68,6 +68,7 @@ public class TImeLinePlayer : MonoBehaviour
     {
         if (_isPlaying) return;
 
+        Debug.Log(TimeLineNumber(eventParam.stringParam));
         ChangeTimeLine(TimeLineNumber(eventParam.stringParam));
         _playable.Play();
     }
@@ -83,6 +84,7 @@ public class TImeLinePlayer : MonoBehaviour
 		"Bow" => 5, 
         "gf" => 6,
 		"OldGreatSkill" => 7,
+		"Execute" => 8,
 		_ => 0
 	};
 

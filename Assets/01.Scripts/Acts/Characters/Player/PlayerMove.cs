@@ -92,7 +92,6 @@ namespace Acts.Characters.Player
         public void BowBackStep(Vector3 position)
         {
             playerDir = (position - ThisActor.Position);
-            //Debug.Log(playerDir);
             base.Move(position);
         }
 

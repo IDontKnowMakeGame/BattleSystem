@@ -26,13 +26,24 @@ public class ExecutionBlade : TwinSword
 			return;
 
 		_playerMove.distance = 5;
-		_playerMove.Translate(vec);
 		_pos = _characterActor.Position;
 		_origindir = vec;
 		_dir = InGame.CamDirCheck(_origindir);
-		Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayScreenEffect, new EventParam() { intParam = 0});
+		Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, new EventParam() { stringParam = "Execute" ,intParam = 1});
 
 		PlayerMove.OnMoveEnd += OnEnd;
+		_characterActor.AddState(CharacterState.Skill);
+		_characterActor.StartCoroutine(WaitMove());
+	}
+
+	private IEnumerator WaitMove()
+	{
+		yield return new WaitForSeconds(0.83f/5);
+		_characterActor.RemoveState(CharacterState.Skill);
+		GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Dust");
+		obj.transform.position = _characterActor.Position + Vector3.up / 2 + _dir / 2;
+		obj.transform.localRotation = Quaternion.LookRotation(_dir);
+		_playerMove.Translate(_origindir);
 	}
 
 	private void OnEnd(int id, Vector3 vec)
