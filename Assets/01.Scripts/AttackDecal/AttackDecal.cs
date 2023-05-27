@@ -32,9 +32,9 @@ namespace AttackDecals
         {
             Init(_rect, _attacker, _damage, _isLast);
             attacker.AddState(CharacterState.Hold);
-            seq = DOTween.Sequence();
+/*            seq = DOTween.Sequence();
             if (seq == null)
-                return;
+                return;*/
             seq.Append(DOTween.To(() => fill, value => fill = value, 0, delay).OnUpdate(()=>
             {
                 material.SetFloat("_Fill", fill);
