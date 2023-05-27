@@ -55,7 +55,7 @@ namespace Acts.Characters.Player
 
         public override void Translate(Vector3 direction)
         {
-            if (_playerActor.HasAnyState()) return;
+            if (_playerActor.HasState(~CharacterState.Hold)) return;
             playerDir = direction;
             direction = InGame.CamDirCheck(direction);
 
