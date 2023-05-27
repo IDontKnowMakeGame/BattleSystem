@@ -11,11 +11,13 @@ public class soundEffectobj : MonoBehaviour
         audioSource.clip = null;
         audioSource.pitch = _pitch;
         audioSource.PlayOneShot(audioClip, volume);
-        Invoke("EndClip", audioClip.length);
+        StartCoroutine(PushSoundObj(audioClip.length));
     }
 
-    private void EndClip()
+    private IEnumerator PushSoundObj(float len)
     {
+        yield return new WaitForSeconds(len + 0.5f);
         Define.GetManager<PoolManager>().Push(this.gameObject.GetComponent<Poolable>());
     }
+
 }

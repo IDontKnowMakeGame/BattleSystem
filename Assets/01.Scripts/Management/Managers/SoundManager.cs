@@ -29,7 +29,7 @@ public class SoundManager : Manager
         }
         audioSources[(int)Define.Sound.Bgm].loop = true;
         soundObj = Define.GetManager<ResourceManager>().Load<GameObject>("Prefabs/SoundEffectObj");
-        Define.GetManager<PoolManager>().CreatePool(soundObj, 5);
+        Define.GetManager<PoolManager>().CreatePool(soundObj, 50);
     }
 
     public override void Update()
@@ -71,14 +71,15 @@ public class SoundManager : Manager
         var go = Define.GetManager<PoolManager>().Pop(soundObj, _transform);
         SetClipInfo(audioClipInfo, 2, 1, go.gameObject);
 
-
     }
 
     //포지션 값으로 소리날 위치 정하는 함수
     public void PlayAtPoint(AudioClipInfo audioClipInfo, Vector3 _vec, float pitch = 1.0f)
     {
         if (audioClipInfo.clip == null) return;
-        SetClipInfo(audioClipInfo, 1, 1, null, _vec);
+        var go = Define.GetManager<PoolManager>().Pop(soundObj);
+        go.transform.position = _vec;
+        SetClipInfo(audioClipInfo, 2, 1, go.gameObject);
 
     }
 
@@ -161,7 +162,7 @@ public class SoundManager : Manager
                     audioSources[(int)Define.Sound.Effect].PlayOneShot(info.clip);
                     break;
                 case 1:
-                    AudioSource.PlayClipAtPoint(info.clip, vec);
+                    go.GetComponent<soundEffectobj>().PlayEffect(info.clip, pitch, seInfo.volume);
                     break;
                 case 2:
                     go.GetComponent<soundEffectobj>().PlayEffect(info.clip, pitch, seInfo.volume);

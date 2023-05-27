@@ -63,7 +63,7 @@
                             </ui:VisualElement>
                         </ui:ScrollView>
                     </ui:VisualElement>
-                    <ui:VisualElement name="HaloPanel" class="ItemPanel" style="display: flex; align-items: center; justify-content: flex-start; left: 100%; flex-direction: column;">
+                    <ui:VisualElement name="HaloPanel" class="ItemPanel" style="display: flex; align-items: center; justify-content: center; left: 100%; flex-direction: column;">
                         <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; overflow: hidden; justify-content: flex-end;">
                             <ui:VisualElement name="BackGround" style="justify-content: flex-end; align-items: center; width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UIHaloBackGround.png?fileID=21300000&amp;guid=227cfcd7eeca2be488797bce1ce372ea&amp;type=3#UIHaloBackGround&apos;);">
                                 <ui:VisualElement name="Line" style="background-image: none; width: 100px; height: 2200px;" />
@@ -79,8 +79,8 @@
                         <ui:VisualElement name="HaloCharacterView" style="background-color: rgb(79, 79, 79); width: 126px; height: 171px; background-image: url(&apos;project://database/Assets/02.Sprites/Ghost.png?fileID=2128063284&amp;guid=f3ba31022ba0a8046a76e645fdde2f38&amp;type=3#Ghost_0&apos;); display: none;" />
                         <ui:VisualElement name="EquipHalo">
                             <ui:VisualElement name="1" style="width: 120px; height: 120px; margin-bottom: 10px;" />
-                            <ui:VisualElement name="2" style="width: 120px; height: 120px; margin-bottom: 10px;" />
-                            <ui:VisualElement name="3" style="width: 120px; height: 120px;" />
+                            <ui:VisualElement name="2" style="width: 120px; height: 120px; margin-bottom: 10px; display: none;" />
+                            <ui:VisualElement name="3" style="width: 120px; height: 120px; display: none;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="UseblePanel" class="ItemPanel" style="display: flex; left: 200%;">
