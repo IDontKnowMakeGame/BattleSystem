@@ -29,7 +29,7 @@ public class SoundManager : Manager
         }
         audioSources[(int)Define.Sound.Bgm].loop = true;
         soundObj = Define.GetManager<ResourceManager>().Load<GameObject>("Prefabs/SoundEffectObj");
-        Define.GetManager<PoolManager>().CreatePool(soundObj, 70);
+        Define.GetManager<PoolManager>().CreatePool(soundObj, 5);
     }
 
     public override void Update()
@@ -37,7 +37,6 @@ public class SoundManager : Manager
         foreach (AudioClipInfo info in _audioClips.Values)
         {
             List<SEInfo> newList = new List<SEInfo>();
-
             foreach (SEInfo seInfo in info.playingList)
             {
                 seInfo.curTime = seInfo.curTime - Time.deltaTime;
@@ -70,7 +69,7 @@ public class SoundManager : Manager
         if (audioClipInfo.clip == null) return;
 
         var go = Define.GetManager<PoolManager>().Pop(soundObj, _transform);
-        SetClipInfo(audioClipInfo, 1, go.gameObject, null);
+        SetClipInfo(audioClipInfo, 2, 1, go.gameObject);
 
 
     }
@@ -79,10 +78,7 @@ public class SoundManager : Manager
     public void PlayAtPoint(AudioClipInfo audioClipInfo, Vector3 _vec, float pitch = 1.0f)
     {
         if (audioClipInfo.clip == null) return;
-
-        var go = Define.GetManager<PoolManager>().Pop(soundObj);
-        go.transform.position = _vec;
-        SetClipInfo(audioClipInfo, 1, go.gameObject , null);
+        SetClipInfo(audioClipInfo, 1, 1, null, _vec);
 
     }
 
@@ -113,7 +109,7 @@ public class SoundManager : Manager
         {
             AudioSource audio = audioSources[(int)Define.Sound.Effect];
             audio.pitch = pitch;
-            SetClipInfo(audioClipinfo, 1, null, audio);
+            SetClipInfo(audioClipinfo, 0 , 1);
         }
     }
     public void Play(string path, Define.Sound type = Define.Sound.Effect, float pitch = 1)
@@ -137,18 +133,8 @@ public class SoundManager : Manager
 
         AudioClipInfo info = _audioClips[path];
 
-
-        if (type == Define.Sound.Bgm)
-        {
+        if(info.clip == null)
             info.clip = Define.GetManager<ResourceManager>().Load<AudioClip>(path);
-        }
-        else
-        {
-            if (info.clip == null)
-            {
-                info.clip = Define.GetManager<ResourceManager>().Load<AudioClip>(path);
-            }
-        }
 
         if (info.clip == null)
         {
@@ -158,7 +144,7 @@ public class SoundManager : Manager
         return info;
     }
 
-    private void SetClipInfo(AudioClipInfo info, float pitch = 1f, GameObject go = null, AudioSource audioSource = null)
+    private void SetClipInfo(AudioClipInfo info, int index, float pitch = 1f, GameObject go = null, Vector3 vec = new Vector3())
     {
         float len = info.clip.length;
 
@@ -167,20 +153,22 @@ public class SoundManager : Manager
             SEInfo seInfo = info.stockList.Values[0];
             seInfo.curTime = len;
             info.playingList.Add( seInfo );
-
             info.stockList.Remove(seInfo.index);
 
-            if(go)
+            switch (index)
             {
-                go.GetComponent<soundEffectobj>().PlayEffect(info.clip, pitch, seInfo.volume);
-            }
-            else if(audioSource)
-            {
-                audioSource.PlayOneShot(info.clip, seInfo.volume);
-            }
-            else
-            {
-                Debug.Log("audio Source Missing");
+                case 0:
+                    audioSources[(int)Define.Sound.Effect].PlayOneShot(info.clip);
+                    break;
+                case 1:
+                    AudioSource.PlayClipAtPoint(info.clip, vec);
+                    break;
+                case 2:
+                    go.GetComponent<soundEffectobj>().PlayEffect(info.clip, pitch, seInfo.volume);
+                    break;
+                default:
+                    Debug.Log("Not allowed index");
+                    break;
             }
         }
     }

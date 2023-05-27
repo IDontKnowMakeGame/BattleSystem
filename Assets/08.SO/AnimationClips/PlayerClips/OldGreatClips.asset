@@ -93,7 +93,7 @@ MonoBehaviour:
     normal: {fileID: 2800000, guid: 3acd1d95be1f40948a5a0c4a4148dd23, type: 3}
     fps: 9
     isLoop: 0
-    delay: 0.05
+    delay: 0.08
   - name: Equip
     nextIdx: 0
     texture: {fileID: 2800000, guid: 0dbf0bb87197a834cb4fb707cdb0a219, type: 3}
