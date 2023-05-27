@@ -50,7 +50,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                         if (area.Contains(attackPos)) continue;
                         //Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position + attackPos, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.Roll);
                         InGame.Attack(CharacterActor.Position + attackPos, new Vector3(1, 0, 1), DefaultStat.Atk, DefaultStat.Ats, CharacterActor);
-                        Define.GetManager<SoundManager>().PlayAtPoint("Boss/explosion", CharacterActor.Position + attackPos, 1);
+                        //Define.GetManager<SoundManager>().PlayAtPoint("Boss/explosion", CharacterActor.Position + attackPos, 1);
                         InGame.ShakeBlock(CharacterActor.Position + attackPos, DefaultStat.Ats, MovementType.Roll);
                         if(distance == 1 || singleLayer)
                             area.Add(attackPos);
@@ -78,7 +78,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
             var range = new Vector3[] { new(1, 0, -2), new(1, 0, -1), new(1, 0, 0), new(1, 0, 1), new(1, 0, 2) };
             var distance = 0;
             var block = Define.GetManager<MapManager>().GetBlock(ThisActor.Position);
-            Define.GetManager<SoundManager>().PlayAtPoint("Boss/soulAttackReadysound", ThisActor.Position, 1);
+            Debug.Log("ReadySound");
             while (distance <= 20)
             {
                 var count = 0;

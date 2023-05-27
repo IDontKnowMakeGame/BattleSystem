@@ -81,13 +81,13 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 canKnockBack = true;
                 var jumpClip = _enemyAnimation.GetClip("JumpAttackJump");
                 var readyClip = _enemyAnimation.GetClip("JumpAttackReady");
+                Define.GetManager<SoundManager>().Play("Boss/jump", Define.Sound.Effect, 1);
                 _enemyAnimation.Play("JumpAttackReady");
                 readyClip.OnExit = () =>
                 {
                     var playerPos = InGame.Player.Position;
                     var dir = (playerPos - Position).GetDirection();
                     _enemyAnimation.Play("JumpAttackJump");
-                    Define.GetManager<SoundManager>().PlayAtPoint("Boss/jump", transform.position, 1);
                     move.Jump(playerPos, dir, 0);
                     jumpClip.OnExit = () =>
                     {
