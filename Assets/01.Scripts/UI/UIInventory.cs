@@ -83,7 +83,7 @@ public class UIInventory : UIBase
         _exitBtn.RegisterCallback<ClickEvent>(e =>
         {
             HideInventory();
-            UIManager.Instance.UpdateInGameUI();
+            
         });
 
         VisualElement selectType = _root.Q<VisualElement>("SelectItemType");
@@ -162,7 +162,6 @@ public class UIInventory : UIBase
     {
         if(isOpen)
         {
-            InGame.Player.GetAct<PlayerEquipment>().WeaponOnOff(false);
             HideInventory();
             return;
         }
@@ -179,6 +178,8 @@ public class UIInventory : UIBase
         HideWeaponInfoPanel();
         InitSelectHaloSetting();
         SelectOptionInit(true);
+        UIManager.Instance.UpdateInGameUI();
+        InGame.Player.GetAct<PlayerEquipment>().WeaponOnOff(false);
     }
 
     public void EquipWeaponBoxImage()
