@@ -15,10 +15,17 @@
             "isBossKill": false,
             "onCristalList": [
                 0,
-                1
+                1,
+                15,
+                21,
+                22
             ],
             "openChestList": [],
-            "openDoorList": [],
+            "openDoorList": [
+                1,
+                2,
+                3
+            ],
             "brokenWallList": [],
             "killUniqueEnemy": []
         },
