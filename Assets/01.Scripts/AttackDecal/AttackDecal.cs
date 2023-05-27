@@ -66,7 +66,8 @@ namespace AttackDecals
 
         public void EndAttack()
         {
-            seq.Kill();
+            if(seq != null && seq.IsActive())
+                seq.Kill();
             var actors = from actor in InGame.Actors.Values
                 where actor is CharacterActor
                 let actorPos = new Vector3(actor.Position.x, actor.Position.z)
