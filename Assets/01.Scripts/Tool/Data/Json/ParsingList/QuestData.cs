@@ -9,7 +9,10 @@ public enum QuestName
     WeaponGift,
     FirstFloorBossKill,
     S10AreaEnter,
-    FallenAngel,
+    Shade10Kill,
+    FallenAngelCarryingThing,
+    FallenAngelSupplyThing
+
 }
 [Serializable]
 public class QuestInfo
