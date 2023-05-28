@@ -26,21 +26,21 @@ MonoBehaviour:
     delay: 0.1
   - name: HorizontalMove
     nextIdx: 0
-    texture: {fileID: 2800000, guid: a505dbc6c866a3d4fbfc1f5ba3eb99c8, type: 3}
+    texture: {fileID: 2800000, guid: 4bd4333c3d638eb41b14ff66f1d52272, type: 3}
     normal: {fileID: 0}
     fps: 6
     isLoop: 0
     delay: 0.03
   - name: LowerMove
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 808c93fabc56992488ecaa537b42fe58, type: 3}
+    texture: {fileID: 2800000, guid: bba0fb11478a0a943913a5cbf1289c6c, type: 3}
     normal: {fileID: 0}
     fps: 6
     isLoop: 0
     delay: 0.03
   - name: UpperMove
     nextIdx: 0
-    texture: {fileID: 2800000, guid: ff7f72d5d3210d948898b1c28bec322e, type: 3}
+    texture: {fileID: 2800000, guid: e61066e39b044244781619ac55b69231, type: 3}
     normal: {fileID: 0}
     fps: 6
     isLoop: 0
