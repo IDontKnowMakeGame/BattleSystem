@@ -37,6 +37,7 @@ namespace Data
         //300~399 QuestItem
         SoulStone = 300,
         SoulRope = 301,
-
+        AngelWingFragment = 302,
+        AngelEyes = 303
     }
 }
