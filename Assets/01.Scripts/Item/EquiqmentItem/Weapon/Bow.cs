@@ -30,6 +30,7 @@ public class Bow : Weapon
 
 	protected Vector3 _currentVec;
 	private Vector3 _orginVec;
+	protected Vector3 _pos;
 
 	private SliderObject _sliderObject = null;
 
@@ -181,6 +182,8 @@ public class Bow : Weapon
 
 		_orginVec = DirReturn(vec);
 		_currentVec = InGame.CamDirCheck(_orginVec);
+		_pos = _characterActor.Position;
+
 		_characterActor.AddState(CharacterState.StopMove);
 		_characterActor.AddState(CharacterState.Hold);
 
@@ -208,7 +211,7 @@ public class Bow : Weapon
 			_characterActor.AddState(CharacterState.Attack);
 			
 			ShootAnimation(_orginVec);
-			Arrow.ShootArrow(_currentVec, _characterActor.Position, _characterActor, Speed, Damage, Range, isDestroy);
+			Arrow.ShootArrow(_currentVec, _pos, _characterActor, Speed, Damage, Range, isDestroy);
 			_sliderObject.SliderActive(false);
 		}
 	}

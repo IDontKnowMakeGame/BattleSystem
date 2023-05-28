@@ -4936,6 +4936,7 @@ MonoBehaviour:
   obj: {fileID: 2810282604059055726}
   _isTimeDestroy: 1
   _time: 1
+  _shake: 1
 --- !u!114 &8838204099557509341
 MonoBehaviour:
   m_ObjectHideFlags: 0

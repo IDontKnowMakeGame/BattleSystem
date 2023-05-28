@@ -14,6 +14,9 @@ public class EffectDestory : MonoBehaviour
 	[SerializeField]
 	private float _time = 0;
 
+	[SerializeField]
+	private bool _shake = false;
+
 	private void OnEnable()
 	{
 		if (_isTimeDestroy)
@@ -22,12 +25,16 @@ public class EffectDestory : MonoBehaviour
 
 	public void OnTriggerEnter(Collider other)
 	{
+		if (_shake)
+			Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, new EventParam() { stringParam = "Damaged", intParam = 2 });
 		Define.GetManager<ResourceManager>().Destroy(obj);
 	}
 
 	private IEnumerator Destroy(float timer)
 	{
 		yield return new WaitForSeconds(timer);
+		if (_shake)
+			Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, new EventParam() { stringParam = "Damaged", intParam = 2 });
 		Define.GetManager<ResourceManager>().Destroy(obj);
 	}
 }
