@@ -40,6 +40,7 @@ public class TaintedSword : StraightSword
 	{
 		yield return new WaitForSeconds(1f);
 		Define.GetManager<ResourceManager>().Instantiate("TaintedEffect").transform.position = _characterActor.Position + Vector3.up;
+		Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, new EventParam() { stringParam = "StraightSword", intParam = 2 });
 		_characterActor.RemoveState(CharacterState.Skill);
 	}
 }
