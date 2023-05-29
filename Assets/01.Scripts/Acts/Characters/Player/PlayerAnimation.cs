@@ -58,7 +58,7 @@ namespace Acts.Characters.Player
             if (currentCoroutine != null)
                 ThisActor.StopCoroutine(currentCoroutine);
             curClip = weaponClipDic[name];
-            currentCoroutine = ThisActor.StartCoroutine(AnimationPlay());
+            currentCoroutine = ThisActor?.StartCoroutine(AnimationPlay());
         }
 
         public override ClipBase GetClip(string name)

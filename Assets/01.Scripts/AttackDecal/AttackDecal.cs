@@ -32,12 +32,11 @@ namespace AttackDecals
         {
             Init(_rect, _attacker, _damage, _isLast);
             attacker.AddState(CharacterState.Hold);
-/*            seq = DOTween.Sequence();
-            if (seq == null)
-                return;*/
+            seq = DOTween.Sequence();
             seq.Append(DOTween.To(() => fill, value => fill = value, 0, delay).OnUpdate(()=>
             {
-                material.SetFloat("_Fill", fill);
+                if(material != null)
+                    material.SetFloat("_Fill", fill);
             }));
             StartCoroutine(DeleteCoroutine());
             StartCoroutine(AttackCoroutine(delay));
@@ -66,8 +65,6 @@ namespace AttackDecals
 
         public void EndAttack()
         {
-            if(seq != null && seq.IsActive())
-                seq.Kill();
             var actors = from actor in InGame.Actors.Values
                 where actor is CharacterActor
                 let actorPos = new Vector3(actor.Position.x, actor.Position.z)
