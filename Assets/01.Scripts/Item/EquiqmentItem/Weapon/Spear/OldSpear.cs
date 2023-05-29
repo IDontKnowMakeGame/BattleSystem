@@ -36,6 +36,8 @@ public class OldSpear : Spear
 		else if(count == 3)
 		{
 			count = 0;
+			GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Hit3");
+			obj.transform.position = _characterActor.Position + _currentVec;
 			_stat.DelDrainageAtk("OldSpear");
 			_characterActor.GetAct<CharacterStatAct>().StatChange();
 		}

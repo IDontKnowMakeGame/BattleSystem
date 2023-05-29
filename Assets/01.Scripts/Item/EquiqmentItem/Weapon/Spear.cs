@@ -21,8 +21,8 @@ public class Spear : Weapon
 	public bool NonDir => _nonDir;
 
 	private MapManager _mapManager => Define.GetManager<MapManager>();
-	private Vector3 _currentVec = Vector3.zero;
-	private Vector3 _originVec = Vector3.zero;
+	protected Vector3 _currentVec = Vector3.zero;
+	protected Vector3 _originVec = Vector3.zero;
 
 	private int range = 1;
 	public override void LoadWeaponClassLevel()
