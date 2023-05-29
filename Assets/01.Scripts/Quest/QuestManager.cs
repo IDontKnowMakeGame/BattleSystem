@@ -4,6 +4,7 @@ using UnityEngine;
 using Actors.Characters.Enemy;
 using System;
 using Core;
+using Data;
 
 struct QuestValue
 {
@@ -18,11 +19,12 @@ public class QuestManager : MonoBehaviour
     private List<RoomSO> allRoomSo;
 
     private Dictionary<string, QuestValue> allRoomSODic = new Dictionary<string, QuestValue>();
-    private Dictionary<EnemyType, QuestValue> checkMonsterDic = new Dictionary<EnemyType, QuestValue>();
 
     private Dictionary<Vector3, string> roomData = new Dictionary<Vector3, string>(); 
     
+    private Dictionary<EnemyType, QuestValue> checkMonsterDic = new Dictionary<EnemyType, QuestValue>();
     private HashSet<RoomSO> checkRoom = new HashSet<RoomSO>();
+    private Dictionary<ItemID, QuestValue> checkHaveItem = new Dictionary<ItemID, QuestValue>();
 
     public static QuestManager Instance { get; private set; }
 
@@ -32,11 +34,16 @@ public class QuestManager : MonoBehaviour
         RoomSet();
     }
 
+    private void Start()
+    {
+        StartOpenQuestCheck();
+    }
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.P))
         {
-            Debug.Log(roomData[InGame.Player.Position.SetY(0)]);
+            Debug.Log(checkMonsterDic[EnemyType.OldShade].intList.Count);
         }
     }
 
@@ -60,15 +67,22 @@ public class QuestManager : MonoBehaviour
 
     private void QuestCheck(QuestName currentQuest)
     {
+        Debug.Log("들어옴");
         switch (currentQuest)
         {
             case QuestName.FirstFloorBossKill:
                 AddMonsterKillMission(currentQuest, EnemyType.CrazyGhostActor, 1);
                 break;
             case QuestName.S10AreaEnter:
-                Debug.Log("저 확인좀..");
                 AddRoomMission(currentQuest, "S10");
                 break;
+            case QuestName.Shade10Kill:
+                AddMonsterKillMission(currentQuest, EnemyType.OldShade, 10);
+                break;
+            case QuestName.FallenAngelSupplyThing:
+                AddHaveItemMission(currentQuest, ItemID.AngelWingFragment);
+                break;
+
         }
     }
 
@@ -114,6 +128,16 @@ public class QuestManager : MonoBehaviour
         allRoomSODic[roomCode] = quest;
         checkRoom.Add(allRoomSODic[roomCode].roomSO);
     }
+
+    public void AddHaveItemMission(QuestName currentQuest, ItemID item)
+    {
+        if(!checkHaveItem.ContainsKey(item))
+        {
+            QuestValue quest = new QuestValue();
+            quest.myQuest = new List<QuestName> { currentQuest };
+            checkHaveItem.Add(item, quest);
+        }
+    }
     #endregion
 
     #region Check Mission
@@ -130,7 +154,8 @@ public class QuestManager : MonoBehaviour
             {
                 check[i]--;
 
-                if(check[i] == 0)
+
+                if (check[i] == 0)
                 {
                     check.RemoveAt(i);
                     Define.GetManager<DataManager>().ReadyClearQuest(questList[i]);
@@ -159,6 +184,16 @@ public class QuestManager : MonoBehaviour
                 Define.GetManager<DataManager>().ReadyClearQuest(allRoomSODic[result].myQuest[0]);
                 checkRoom.Remove(allRoomSODic[result].roomSO);
             }
+        }
+    }
+
+    public void CheckHaveItemMission(ItemID itemID)
+    {
+        if(checkHaveItem.ContainsKey(itemID) && DataManager.HaveQuestItem(itemID))
+        {
+            QuestName myQuest = checkHaveItem[itemID].myQuest[0];
+            Define.GetManager<DataManager>().ReadyClearQuest(myQuest);
+            checkHaveItem.Remove(itemID);
         }
     }
     #endregion
