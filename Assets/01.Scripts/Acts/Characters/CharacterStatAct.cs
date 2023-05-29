@@ -194,7 +194,7 @@ public class CharacterStatAct : Act
 			if (actor is PlayerActor)
 			{
 				PlayerActor player = actor as PlayerActor;
-				Debug.Log("¿˚ ¡◊¿”");
+				Debug.Log("Ï†Å Ï£ΩÏûÑ");
 				EventParam param = new EventParam();
 				param.boolParam = true;
 				Define.GetManager<EventManager>().TriggerEvent(EventFlag.HaloOfEreshkigal, param);
@@ -238,6 +238,7 @@ public class CharacterStatAct : Act
 		particleAnchorTrm.rotation = rotation;
 		particleModelTrm.localScale = scale;
         particle.transform.SetParent(null);
+		InGame.GetBlock(ThisActor.Position).RemoveActorOnBlock();
 		ThisActor.gameObject.SetActive(false);
 	}
 

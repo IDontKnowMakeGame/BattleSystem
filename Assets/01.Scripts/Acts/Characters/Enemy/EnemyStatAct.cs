@@ -119,6 +119,7 @@ namespace Acts.Characters.Enemy
 						arrow.transform.parent = null;
 					}
 					ThisActor.gameObject.SetActive(false);
+					InGame.GetBlock(ThisActor.Position).RemoveActorOnBlock();
 					Object.Destroy(ThisActor);
                 };
 	            var deathParticle = Define.GetManager<ResourceManager>().Instantiate("DeathParticle");
