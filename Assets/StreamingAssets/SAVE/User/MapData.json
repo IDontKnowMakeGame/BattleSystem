@@ -18,9 +18,19 @@
                 1,
                 15,
                 21,
-                22
+                22,
+                9,
+                3,
+                7,
+                5,
+                17,
+                19,
+                18,
+                16
             ],
-            "openChestList": [],
+            "openChestList": [
+                1
+            ],
             "openDoorList": [
                 1,
                 2,

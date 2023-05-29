@@ -11,6 +11,7 @@ public class SoundManager : Manager
 
     GameObject soundObj;
 
+
     public override void Awake()
     {
         GameObject root = GameObject.Find("@Sound");
@@ -82,7 +83,6 @@ public class SoundManager : Manager
         SetClipInfo(audioClipInfo, 2, 1, go.gameObject);
 
     }
-
     public void PlayAtPoint(string path, Transform _transform, float pitch = 1.0f)
     {
         AudioClipInfo info = GetOrAddAudioClip(path, Define.Sound.Effect);
