@@ -1,5 +1,121 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1109748551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1109748552}
+  - component: {fileID: 1109748554}
+  - component: {fileID: 1109748553}
+  m_Layer: 0
+  m_Name: VEG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1109748552
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109748551}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3577013144753390076}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!2083052967 &1109748554
+VisualEffect:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109748551}
+  m_Enabled: 1
+  m_Asset: {fileID: 8926484042661614526, guid: 2776e0ffae9d60a48ac95e121188cdee, type: 3}
+  m_InitialEventName: OnPlay
+  m_InitialEventNameOverriden: 0
+  m_StartSeed: 0
+  m_ResetSeedOnPlay: 1
+  m_ResourceVersion: 1
+  m_PropertySheet:
+    m_Float:
+      m_Array:
+      - m_Value: 2.5
+        m_Name: Radius
+        m_Overridden: 1
+    m_Vector2f:
+      m_Array: []
+    m_Vector3f:
+      m_Array: []
+    m_Vector4f:
+      m_Array: []
+    m_Uint:
+      m_Array: []
+    m_Int:
+      m_Array:
+      - m_Value: 1000
+        m_Name: SpawnRate
+        m_Overridden: 1
+    m_Matrix4x4f:
+      m_Array: []
+    m_AnimationCurve:
+      m_Array: []
+    m_Gradient:
+      m_Array: []
+    m_NamedObject:
+      m_Array: []
+    m_Bool:
+      m_Array: []
+--- !u!73398921 &1109748553
+VFXRenderer:
+  serializedVersion: 1
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109748551}
+  m_Enabled: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &3577013143826766618
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,6 +417,7 @@ GameObject:
   - component: {fileID: 3577013144753390065}
   - component: {fileID: 3577013144753390078}
   - component: {fileID: 3577013144753390064}
+  - component: {fileID: 3577013143329756091}
   m_Layer: 0
   m_Name: PlayerCam
   m_TagString: Untagged
@@ -324,6 +441,7 @@ Transform:
   - {fileID: 3577013144432477148}
   - {fileID: 3577013143826766621}
   - {fileID: 3577013145075598591}
+  - {fileID: 1109748552}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 20, y: 180, z: 0}
@@ -350,7 +468,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 5
-    NearClipPlane: 0.3
+    NearClipPlane: 2
     FarClipPlane: 1000
     Dutch: 0
     ModeOverride: 0
@@ -414,7 +532,7 @@ PlayableDirector:
   m_GameObject: {fileID: 3577013144753390074}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 012f19aadb8b67b4691d610824b27167, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 8cb3529185826a64e946e96fbc3a8c3f, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -426,13 +544,17 @@ PlayableDirector:
     value: {fileID: 3577013144753390064}
   - key: {fileID: 5179538661318899961, guid: fe9f6e2c81b8b534092b2c7df51f8450, type: 2}
     value: {fileID: 3577013144753390064}
-  - key: {fileID: 4099231955123992283, guid: 012f19aadb8b67b4691d610824b27167, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 3577013144753390064}
-  - key: {fileID: 7100257736995311818, guid: 012f19aadb8b67b4691d610824b27167, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 3577013144753390064}
-  - key: {fileID: -6002259652604868245, guid: 012f19aadb8b67b4691d610824b27167, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 3577013144753390064}
-  - key: {fileID: 3201042480885589301, guid: 012f19aadb8b67b4691d610824b27167, type: 2}
+  - key: {fileID: 4618620202640260443, guid: 012f19aadb8b67b4691d610824b27167, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: 5179538661318899961, guid: 3c91ddeae127b8b41b8904984ebe633c, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: 5179538661318899961, guid: 8cb3529185826a64e946e96fbc3a8c3f, type: 2}
     value: {fileID: 3577013144753390064}
   m_ExposedReferences:
     m_References: []
@@ -458,6 +580,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9461c4f6326ddab4a9c1882af2a9cf77, type: 2}
   - {fileID: 11400000, guid: 9461c4f6326ddab4a9c1882af2a9cf77, type: 2}
   - {fileID: 11400000, guid: 012f19aadb8b67b4691d610824b27167, type: 2}
+  - {fileID: 11400000, guid: 8cb3529185826a64e946e96fbc3a8c3f, type: 2}
+  - {fileID: 11400000, guid: 3c91ddeae127b8b41b8904984ebe633c, type: 2}
 --- !u!114 &3577013144753390064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,6 +613,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c1e5469b21c3a114890622f07ba0a73d, type: 2}
     - {fileID: 11400000, guid: 57b125ff50b5a984494532149436eaac, type: 2}
     - {fileID: 11400000, guid: fea8d711d6f12f64e8918b586dd681fa, type: 2}
+    - {fileID: 11400000, guid: a4c594067fa24824aaefca6aa731b816, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -742,7 +867,7 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
-            m_FloatArgument: 30
+            m_FloatArgument: 23
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -788,6 +913,35 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3577013143329756091}
+          m_TargetAssemblyTypeName: ScreenEffects, Assembly-CSharp
+          m_MethodName: PlaySpeedEffect
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &3577013143329756091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3577013144753390074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3209c150aae8c42478279bde1802c3d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vegs:
+  - {fileID: 8926484042661614526, guid: 2776e0ffae9d60a48ac95e121188cdee, type: 3}
+  _visualEffect: {fileID: 1109748554}
 --- !u!1 &3577013145075598588
 GameObject:
   m_ObjectHideFlags: 0
