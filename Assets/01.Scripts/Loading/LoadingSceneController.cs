@@ -44,6 +44,15 @@ public class LoadingSceneController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+        // ToolTip List Setting
+        for(int i = 0; i < titleToolTipList.tooltipList.Count; i++)
+        {
+            toolTipIdx.Add(i);
+        }
+    }
+
     [SerializeField]
     private Image backgroundImg;
 
@@ -75,6 +84,13 @@ public class LoadingSceneController : MonoBehaviour
 
     public bool isLoading = false;
 
+    private bool nextScene = false;
+
+    [SerializeField]
+    private List<int> toolTipIdx = new List<int>();
+
+    private int curIdx = 0;
+
     public IEnumerator LoadScene(string sceneName, float timer = 0f)
     {
         if (isLoading) yield break;
@@ -93,9 +109,20 @@ public class LoadingSceneController : MonoBehaviour
         backgroundImg.sprite = bgSprites[rand];
 
         // Tooltip 설정
-        int idx = Random.Range(0, titleToolTipList.tooltipList.Count);
-        titleTmp.text = titleToolTipList.tooltipList[idx].Replace("\\r\\n", "\n");
-        writeTmp.text = writeToolTipList.tooltipList[idx].Replace("\\r\\n", "\n");
+        for(int i = 0; i < 100; i++)
+        {
+            int randA = Random.Range(0, titleToolTipList.tooltipList.Count);
+            int randB = Random.Range(0, titleToolTipList.tooltipList.Count);
+
+            int swap = toolTipIdx[randA];
+            toolTipIdx[randA] = toolTipIdx[randB];
+            toolTipIdx[randB] = swap;
+        }
+
+        curIdx = 0;
+
+        titleTmp.text = titleToolTipList.tooltipList[toolTipIdx[curIdx]].Replace("\\r\\n", "\n");
+        writeTmp.text = writeToolTipList.tooltipList[toolTipIdx[curIdx]].Replace("\\r\\n", "\n");
 
         progressBar.fillAmount = 0f;
         yield return StartCoroutine(Fade(true));
@@ -117,6 +144,7 @@ public class LoadingSceneController : MonoBehaviour
                 progressBar.fillAmount = Mathf.Lerp(0.9f, 1f, timer);
                 if (progressBar.fillAmount >= 1f)
                 {
+                    nextScene = true;
                     op.allowSceneActivation = true;
                     isLoading = false;
                     Debug.Log("접근해!!");
@@ -128,11 +156,38 @@ public class LoadingSceneController : MonoBehaviour
         isLoading = false;
     }
 
+    private void Update()
+    {
+        if(nextScene && Input.GetMouseButtonDown(0))
+        {
+            StartCoroutine(Fade(false));
+            nextScene = false;
+        }
+
+        if(Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            curIdx--;
+            if(curIdx < 0)
+            {
+                curIdx = titleToolTipList.tooltipList.Count - 1;
+            }
+            Debug.Log(curIdx);
+            titleTmp.text = titleToolTipList.tooltipList[toolTipIdx[curIdx]].Replace("\\r\\n", "\n");
+            writeTmp.text = writeToolTipList.tooltipList[toolTipIdx[curIdx]].Replace("\\r\\n", "\n");
+        }
+        else if(Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            curIdx = (++curIdx) % titleToolTipList.tooltipList.Count;
+            titleTmp.text = titleToolTipList.tooltipList[toolTipIdx[curIdx]].Replace("\\r\\n", "\n");
+            writeTmp.text = writeToolTipList.tooltipList[toolTipIdx[curIdx]].Replace("\\r\\n", "\n");
+        }
+    }
+
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         if (arg0.name == loadSceneName)
         {
-            StartCoroutine(Fade(false));
+            //StartCoroutine(Fade(false));
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }
