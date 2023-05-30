@@ -155,7 +155,7 @@ MonoBehaviour:
         _thisActor: {fileID: 7082799638287047}
         targetActor: {fileID: 0}
         IsPlayer: 1
-        Distance: 0
+        Distance: 6
 --- !u!114 &7082799638287045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,8 +400,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_Intensity: 1
-  m_Range: 10
+  m_Intensity: 0.5
+  m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10

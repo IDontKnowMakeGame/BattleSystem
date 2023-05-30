@@ -6,28 +6,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public enum CusorDirEnum
-{
-	Left,
-	Right,
-	Up,
-	Down
-}
 public class CursorSetting : MonoBehaviour
 {
 	[SerializeField]
-	private DecalProjector[] _decal;
+	private DecalProjector _decal;
 
 	[SerializeField]
 	private CharacterActor _actor;
-
-	private void Start()
-	{
-		foreach (var enumdir in Enum.GetValues(typeof(CusorDirEnum)))
-		{
-			_decal[(int)enumdir].gameObject.SetActive(false);
-		}
-	}
 
 	private void Update()
 	{
@@ -37,24 +22,10 @@ public class CursorSetting : MonoBehaviour
 		Vector3 vec = Input.mousePosition;
 		Vector3 dir = InGame.CamDirCheck(Weapon.DirReturn(vec));
 
-		_decal[(int)DirReturn(dir)].gameObject.SetActive(true);
-
-		foreach (var enumdir in Enum.GetValues(typeof(CusorDirEnum)))
-		{
-			if (DirReturn(dir) == (CusorDirEnum)enumdir)
-				continue;
-
-			_decal[(int)enumdir].gameObject.SetActive(false);
-		}
-	}
-
-	private CusorDirEnum DirReturn(Vector3 vec)
-	{
-		if (Mathf.Abs(vec.x) > 0)
-			return vec.x > 0 ? CusorDirEnum.Right : CusorDirEnum.Left;
-		else if(Mathf.Abs(vec.z) > 0)
-			return vec.z > 0 ? CusorDirEnum.Up : CusorDirEnum.Down;
-
-		return CusorDirEnum.Up;
+		if (Mathf.Abs(dir.x) > 0)
+			_decal.gameObject.transform.localRotation = Quaternion.Euler(0, 0, dir.x > 0 ? 0 : 180);
+		else if(Mathf.Abs(dir.z) > 0)
+			_decal.gameObject.transform.localRotation = Quaternion.Euler(0, 0, dir.z > 0 ? 90 : 270);
+		//_decal[(int)DirReturn(dir)].gameObject.SetActive(true);
 	}
 }
