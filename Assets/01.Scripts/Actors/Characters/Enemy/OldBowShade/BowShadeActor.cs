@@ -72,7 +72,6 @@ public class BowShadeActor : EnemyActor
 
 		if (dir == Vector3.left || dir == Vector3.right)
 		{
-			Debug.Log("charge");
 			_unitAnimation.Play("HorizontalCharge");
 		}
 		else if (dir == Vector3.forward)
@@ -100,7 +99,6 @@ public class BowShadeActor : EnemyActor
 		Vector3 vector = this.transform.localScale;
 		Vector3 vec = dir.x < 0 ? new Vector3(vector.x, vector.y, vector.z) : new Vector3(Mathf.Abs(vector.x) * -1, vector.y, vector.z);
 		this.transform.localScale = vec;
-
 
 		_sliderObject.SliderInit(_unitStat.ChangeStat.ats);
 		_sliderObject.SliderActive(true);

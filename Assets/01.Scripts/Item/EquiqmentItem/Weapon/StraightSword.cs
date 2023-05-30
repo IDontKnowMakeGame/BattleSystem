@@ -77,7 +77,6 @@ public class StraightSword : Weapon
 		_attackInfo.RightStat = new ColliderStat(1, 1, InGame.None, InGame.None);
 
 		Vector3 vector = DirReturn(vec);
-		Debug.Log(vector);
 		_attackInfo.ReachFrame = 5;
 		_attackInfo.PressInput = vector;
 		_attackInfo.ResetDir();

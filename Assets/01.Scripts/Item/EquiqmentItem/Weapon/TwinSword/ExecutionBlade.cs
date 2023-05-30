@@ -1,6 +1,7 @@
 using Actors.Characters;
 using Acts.Characters.Player;
 using Core;
+using DG.Tweening;
 using Managements.Managers;
 using System.Collections;
 using System.Collections.Generic;
