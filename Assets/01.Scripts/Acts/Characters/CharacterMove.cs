@@ -37,7 +37,6 @@ namespace Acts.Characters
         public override void Awake()
         {
             _thisTransform = ThisActor.transform;
-            
         }
 
         public virtual void Translate(Vector3 direction)
@@ -110,15 +109,7 @@ namespace Acts.Characters
         }
 
         public virtual void Move(Vector3 position)
-        {
-/*            var attackState = CharacterState.Attack | CharacterState.Hold;
-            if (_character.HasState(attackState))
-            {
-                Debug.Log("attackState");
-                _character.RemoveState(CharacterState.Move);
-                return;
-            }*/
-            
+        {   
             if (_isMoving)
             {
                 enableQ = false;

@@ -155,7 +155,7 @@ MonoBehaviour:
         _thisActor: {fileID: 7082799638287047}
         targetActor: {fileID: 0}
         IsPlayer: 1
-        Distance: 0
+        Distance: 6
 --- !u!114 &7082799638287045
 MonoBehaviour:
   m_ObjectHideFlags: 0
