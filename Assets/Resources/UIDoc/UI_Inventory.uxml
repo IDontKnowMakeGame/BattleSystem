@@ -3,8 +3,7 @@
     <ui:Template name="InventoryWeaponItemCard" src="project://database/Assets/Resources/UIDoc/InventoryWeaponItemCard.uxml?fileID=9197481963319205126&amp;guid=dee5e798766fc7b418ec331020af07aa&amp;type=3#InventoryWeaponItemCard" />
     <Style src="project://database/Assets/Resources/UIDoc/USS/Inventory.uss?fileID=7433441132597879392&amp;guid=06c2d37b5c549d84c8ca098e2b839d33&amp;type=3#Inventory" />
     <ui:VisualElement name="background" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; align-items: center; justify-content: center; flex-direction: row;">
-        <ui:Instance template="ExitBtn" name="ExitBtn" style="top: -392px;" />
-        <ui:VisualElement name="InventoryPanel" style="width: 80%; height: 80%; background-color: rgb(108, 108, 108); border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; overflow: hidden;">
+        <ui:VisualElement name="InventoryPanel" style="width: 100%; height: 100%; background-color: rgb(108, 108, 108); border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; overflow: hidden;">
             <ui:VisualElement name="SelectItemType" style="flex-basis: 15%; flex-direction: row; align-items: flex-end;">
                 <ui:VisualElement name="Weapon" class="SelectItemTypeBox">
                     <ui:Label text="Weapon" display-tooltip-when-elided="true" class="SelectItemTypeText" style="display: none;" />
@@ -22,12 +21,13 @@
                     <ui:Label text="Quest" display-tooltip-when-elided="true" class="SelectItemTypeText" style="display: none;" />
                     <ui:VisualElement name="Icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=1653532630&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_7&apos;); width: 100px; height: 100px;" />
                 </ui:VisualElement>
+                <ui:Instance template="ExitBtn" name="ExitBtn" />
             </ui:VisualElement>
             <ui:VisualElement name="Panel" style="flex-basis: 85%; flex-direction: row; overflow: hidden;">
-                <ui:VisualElement name="ItemPanel" style="overflow: visible; flex-basis: 100%;">
+                <ui:VisualElement name="ItemPanel" style="overflow: visible; flex-basis: 100%; translate: -200% 0;">
                     <ui:VisualElement name="WeaponPanel" class="ItemPanel" style="flex-direction: row; display: flex; left: 0;">
                         <ui:VisualElement name="CharacterView" style="flex-basis: 30%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-1221198161&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_0&apos;);">
-                            <ui:VisualElement name="CharacterImage" style="flex-basis: 75%; justify-content: center; align-items: center;">
+                            <ui:VisualElement name="CharacterImage" style="flex-basis: 80%; justify-content: center; align-items: center;">
                                 <ui:VisualElement name="Character" style="background-image: resource(&apos;Image/GreatSword&apos;); width: 512px; height: 320px;" />
                                 <ui:VisualElement name="WeaponInfoPanel" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Card.png?fileID=-1380171658&amp;guid=f8d86aaee61368341922d38dda1585f6&amp;type=3#UI_Card_0&apos;); display: none;">
                                     <ui:VisualElement name="StatusPanel" style="flex-basis: 45%; flex-direction: row;">
@@ -46,7 +46,7 @@
                                     </ui:ScrollView>
                                 </ui:VisualElement>
                             </ui:VisualElement>
-                            <ui:VisualElement name="WeaponEquip" style="flex-basis: 25%; flex-direction: row; justify-content: space-around; border-left-color: rgb(128, 128, 128); border-right-color: rgb(128, 128, 128); border-top-color: rgb(128, 128, 128); border-bottom-color: rgb(128, 128, 128); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px;">
+                            <ui:VisualElement name="WeaponEquip" style="flex-basis: 20%; flex-direction: row; justify-content: space-around; border-left-color: rgb(128, 128, 128); border-right-color: rgb(128, 128, 128); border-top-color: rgb(128, 128, 128); border-bottom-color: rgb(128, 128, 128); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px;">
                                 <ui:VisualElement name="FirstWeapon" class="WeaponEquipBox" style="align-items: center; justify-content: center; background-image: resource(&apos;Item/1&apos;);">
                                     <ui:Label text="First Weapon" display-tooltip-when-elided="true" style="display: none;" />
                                     <ui:VisualElement name="Case" class="Case" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/InGame_UI_FeatherIcon.png?fileID=-1522164109&amp;guid=51366b9a6ca4e804789e3772d10af377&amp;type=3#InGame_UI_FeatherIcon_1&apos;);" />
@@ -74,6 +74,10 @@
                                     <ui:VisualElement name="103" style="position: absolute; width: 150px; height: 150px; top: 562px; left: 1072px; background-image: resource(&apos;Item/103&apos;);" />
                                     <ui:VisualElement name="104" style="position: absolute; width: 150px; height: 150px; top: 818px; left: 334px; background-image: resource(&apos;Item/104&apos;);" />
                                 </ui:VisualElement>
+                                <ui:VisualElement name="Halo-Tooltip" style="width: 250px; height: 300px; background-color: rgb(214, 214, 214); position: absolute; left: 426px; top: 300px; border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 3px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; align-items: center;">
+                                    <ui:Label text="에레시키갈의 헤일로" display-tooltip-when-elided="true" style="width: 100%; height: 20%; color: rgb(29, 29, 29); -unity-text-align: middle-center; font-size: 25px; -unity-font: url(&apos;project://database/Assets/Font/GabiaBombaram/gabia_bombaram.ttf?fileID=12800000&amp;guid=20cb78c96f927a64ea32abf84df2c515&amp;type=3#gabia_bombaram&apos;); -unity-font-definition: initial;" />
+                                    <ui:VisualElement name="Line" style="width: 90%; height: 1%; background-color: rgb(0, 0, 0);" />
+                                </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:ScrollView>
                         <ui:VisualElement name="HaloCharacterView" style="background-color: rgb(79, 79, 79); width: 126px; height: 171px; background-image: url(&apos;project://database/Assets/02.Sprites/Ghost.png?fileID=2128063284&amp;guid=f3ba31022ba0a8046a76e645fdde2f38&amp;type=3#Ghost_0&apos;); display: none;" />
@@ -84,25 +88,25 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="UseblePanel" class="ItemPanel" style="display: flex; left: 200%;">
-                        <ui:ScrollView name="UseableItemScroll" style="flex-basis: 80%; width: 100%; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; border-left-color: rgb(236, 236, 236); border-right-color: rgb(236, 236, 236); border-top-color: rgb(236, 236, 236); border-bottom-color: rgb(236, 236, 236); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px;">
+                        <ui:ScrollView name="UseableItemScroll" style="flex-basis: 84%; width: 100%; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; border-left-color: rgb(236, 236, 236); border-right-color: rgb(236, 236, 236); border-top-color: rgb(236, 236, 236); border-bottom-color: rgb(236, 236, 236); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px;">
                             <ui:VisualElement name="UseableItemScrollPanel" style="width: 100%; flex-wrap: wrap; flex-direction: row;" />
                         </ui:ScrollView>
-                        <ui:VisualElement name="UseableEquipPanel" style="flex-basis: 20%; flex-direction: row; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; border-left-color: rgb(236, 236, 236); border-right-color: rgb(236, 236, 236); border-top-color: rgb(236, 236, 236); border-bottom-color: rgb(236, 236, 236); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px;">
+                        <ui:VisualElement name="UseableEquipPanel" style="flex-basis: 16%; flex-direction: row; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; border-left-color: rgb(236, 236, 236); border-right-color: rgb(236, 236, 236); border-top-color: rgb(236, 236, 236); border-bottom-color: rgb(236, 236, 236); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px;">
                             <ui:VisualElement name="ItemBoxs" style="width: 1105px; flex-direction: row;">
                                 <ui:VisualElement name="1" class="UseableEquipBox">
-                                    <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Case_Empty_UI.png?fileID=548808370&amp;guid=8d14667a022af2940949b1ab8780e0d4&amp;type=3#Case_Empty_UI_0&apos;);" />
+                                    <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Card.png?fileID=738687179&amp;guid=f8d86aaee61368341922d38dda1585f6&amp;type=3#UI_Card_1&apos;);" />
                                 </ui:VisualElement>
                                 <ui:VisualElement name="2" class="UseableEquipBox">
-                                    <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Case_Empty_UI.png?fileID=548808370&amp;guid=8d14667a022af2940949b1ab8780e0d4&amp;type=3#Case_Empty_UI_0&apos;);" />
+                                    <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Card.png?fileID=738687179&amp;guid=f8d86aaee61368341922d38dda1585f6&amp;type=3#UI_Card_1&apos;);" />
                                 </ui:VisualElement>
                                 <ui:VisualElement name="3" class="UseableEquipBox">
-                                    <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Case_Empty_UI.png?fileID=548808370&amp;guid=8d14667a022af2940949b1ab8780e0d4&amp;type=3#Case_Empty_UI_0&apos;);" />
+                                    <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Card.png?fileID=738687179&amp;guid=f8d86aaee61368341922d38dda1585f6&amp;type=3#UI_Card_1&apos;);" />
                                 </ui:VisualElement>
                                 <ui:VisualElement name="4" class="UseableEquipBox">
-                                    <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Case_Empty_UI.png?fileID=548808370&amp;guid=8d14667a022af2940949b1ab8780e0d4&amp;type=3#Case_Empty_UI_0&apos;);" />
+                                    <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Card.png?fileID=738687179&amp;guid=f8d86aaee61368341922d38dda1585f6&amp;type=3#UI_Card_1&apos;);" />
                                 </ui:VisualElement>
                                 <ui:VisualElement name="5" class="UseableEquipBox">
-                                    <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Case_Empty_UI.png?fileID=548808370&amp;guid=8d14667a022af2940949b1ab8780e0d4&amp;type=3#Case_Empty_UI_0&apos;);" />
+                                    <ui:VisualElement name="Case" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Card.png?fileID=738687179&amp;guid=f8d86aaee61368341922d38dda1585f6&amp;type=3#UI_Card_1&apos;);" />
                                 </ui:VisualElement>
                             </ui:VisualElement>
                             <ui:VisualElement name="OptionBox" style="width: 867px; align-items: flex-end; height: 100%;">

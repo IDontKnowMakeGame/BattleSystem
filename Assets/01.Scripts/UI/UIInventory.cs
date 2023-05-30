@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -217,7 +218,7 @@ public class UIInventory : UIBase
     {
         _itemPanel.style.translate = new StyleTranslate(new Translate(new Length(-100 * pageNum, LengthUnit.Percent), new Length(0, LengthUnit.Pixel)));
     }
-    public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<SaveItemData> list,Action<VisualElement,ItemID> action)
+public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<SaveItemData> list,Action<VisualElement,ItemID> action)
     {
         parent.Clear();
         foreach (SaveItemData item in list)
@@ -379,6 +380,10 @@ public class UIInventory : UIBase
             card.RegisterCallback<ClickEvent>(e =>
             {
                 HaloSelectCard(card, Int32.Parse(card.name));
+            });
+            card.RegisterCallback<MouseEnterEvent>(evt =>
+            {
+                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             });
         }
 
