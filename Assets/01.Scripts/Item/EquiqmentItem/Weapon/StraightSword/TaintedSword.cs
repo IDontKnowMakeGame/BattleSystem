@@ -24,15 +24,8 @@ public class TaintedSword : StraightSword
 		PlayerMove move = _characterActor.GetAct<PlayerMove>();
 		move.SkillDir = vec;
 		move.SkillAnimation();
-
-		InGame.Attack(_characterActor.Position + Vector3.forward, new Vector3(1, 0, 1), info.Atk, 1f, _characterActor, true);
-		InGame.Attack(_characterActor.Position + Vector3.back, new Vector3(1, 0, 1), info.Atk, 1f, _characterActor, true);
-		InGame.Attack(_characterActor.Position + Vector3.left, new Vector3(1, 0, 1), info.Atk, 1f, _characterActor, true);
-		InGame.Attack(_characterActor.Position + Vector3.right, new Vector3(1, 0, 1), info.Atk, 1f, _characterActor, true);
-		InGame.Attack(_characterActor.Position + Vector3.right + Vector3.forward, new Vector3(1, 0, 1), info.Atk, 1f, _characterActor, true);
-		InGame.Attack(_characterActor.Position + Vector3.left + Vector3.forward, new Vector3(1, 0, 1), info.Atk, 1f, _characterActor, true);
-		InGame.Attack(_characterActor.Position + Vector3.left + Vector3.back, new Vector3(1, 0, 1), info.Atk, 1f, _characterActor, true);
-		InGame.Attack(_characterActor.Position + Vector3.right + Vector3.back, new Vector3(1, 0, 1), info.Atk, 1f, _characterActor, true);
+		
+		InGame.Attack(_characterActor.Position, new Vector3(3f, 0, 3f), info.Atk, 1f, _characterActor, true);
 		
 		_characterActor.StartCoroutine(SkillCorutine());
 	}

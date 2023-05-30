@@ -37,6 +37,7 @@ public class BrokenObjectStatAct : CharacterStatAct
 		GameObject obj = GameObject.Instantiate(_brokenObject);
 		obj.transform.position = ThisActor.transform.position;
 		obj.GetComponent<Broken>().Brokens(dir);
+		InGame.GetBlock(ThisActor.Position).RemoveActorOnBlock();
 		GameManagement.Instance.GetManager<ResourceManager>().Destroy(ThisActor.gameObject);
 	}
 }

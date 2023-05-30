@@ -58,7 +58,7 @@ namespace AttackDecals
             isLast = _isLast;
             fill = 1f;
             material.SetFloat("_Fill", fill);
-            var decalColor = (_attacker is PlayerActor ? Color.blue : Color.red) * 0.5f;
+            var decalColor = (_attacker is PlayerActor ? new Color(0, 0.7f, 0.5f) : Color.red) * 0.5f;
             material.SetColor("_MainColor", decalColor);
             decalProjector.material = material;
         }
