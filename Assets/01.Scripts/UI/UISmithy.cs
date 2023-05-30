@@ -73,6 +73,7 @@ public class UISmithy : UIBase
 
     public void ShowSmithy()
     {
+
         _root.style.display = DisplayStyle.Flex;
         _weaponSelectPanel.style.display = DisplayStyle.Flex;
         CreateWeaponCardList();
@@ -115,121 +116,42 @@ public class UISmithy : UIBase
         afterLevel = nowLevel + 1;
 
         int myAtk = (int)Define.GetManager<DataManager>().GetWeaponData(id).Atk;
-        nowAtk = myAtk + LevelToAtk(nowLevel);
-        afterAtk = myAtk + LevelToAtk(afterLevel);
+        nowAtk = myAtk + UIManager.Instance.LevelToAtk(nowLevel);
+        afterAtk = myAtk + UIManager.Instance.LevelToAtk(afterLevel);
 
-        price = LevelToFeather(afterLevel);
+        price = UIManager.Instance.LevelToFeather(afterLevel);
 
         UpdateSmithyUI();
     }
     public void PurchaseBtn()
     {
         if (currentItem == ItemID.None) return;
+        if (nowLevel >= 12) return;
+
+        Define.GetManager<DataManager>().AddFeahter(-price);
+        UIManager.Instance.InGame.WriteFeatherValue();
 
         nowLevel++;
         afterLevel++;
         int myAtk = (int)Define.GetManager<DataManager>().GetWeaponData(currentItem).Atk;
-        nowAtk = myAtk + LevelToAtk(nowLevel);
-        afterAtk = myAtk + LevelToAtk(afterLevel);
+        nowAtk = myAtk + UIManager.Instance.LevelToAtk(nowLevel);
+        afterAtk = myAtk + UIManager.Instance.LevelToAtk(afterLevel);
 
         nowFeather = afterFeather;
-        price = LevelToFeather(afterLevel);
+        price = UIManager.Instance.LevelToFeather(afterLevel);
 
-        Define.GetManager<DataManager>().SaveUpGradeWeaponLevelData(currentItem);
+        Define.GetManager<DataManager>().SaveUpGradeWeaponLevelData(currentItem); 
+        
 
+        
         UpdateSmithyUI();
     }
-    public int LevelToAtk(int level)
-    {
-        int value = 0;
-        switch (level)
-        {
-            case 0:
-                value = 0;
-                break;
-                case 1: value = 20; 
-                break;
-                case 2: value = 45;  
-                break;
-                case 3: value = 75;
-                break;
-                case 4: value = 110; 
-                break;
-                case 5: value = 150;
-                break;
-                case 6: value = 195;
-                break;
-                case 7: value = 245;
-                break;
-                case 8: value = 300;
-                break;
-                case 9: value = 360;
-                break;
-                case 10: value = 425;
-                break;
-                case 11: value = 495;
-                break;
-                case 12: value = 570;
-                break;
-            default:
-                break;
-        }
-
-        return value;
-    }
-    public int LevelToFeather(int level)
-    {
-        int value = 0;
-        switch (level)
-        {
-            case 0:
-                value = 0;
-                break;
-            case 1:
-                value = 500;
-                break;
-            case 2:
-                value = 800;
-                break;
-            case 3:
-                value = 1000;
-                break;
-            case 4:
-                value = 2500;
-                break;
-            case 5:
-                value = 4500;
-                break;
-            case 6:
-                value = 8500;
-                break;
-            case 7:
-                value = 10000;
-                break;
-            case 8:
-                value = 12500;
-                break;
-            case 9:
-                value = 15000;
-                break;
-            case 10:
-                value = 25000;
-                break;
-            case 11:
-                value = 35000;
-                break;
-            case 12:
-                value = 45000;
-                break;
-            default:
-                break;
-        }
-        return value;
-    }
+    
     public void UpdateSmithyUI()
     {
         _levelText.text = string.Format("Level {0} -> {1}", nowLevel, afterLevel);
         _atkText.text = string.Format("Atk {0} -> {1}", nowAtk, afterAtk);
+        nowFeather = Define.GetManager<DataManager>().GetFeather();
 
         _smithyNowFeatherText.text = nowFeather.ToString();
         afterFeather = nowFeather - price;

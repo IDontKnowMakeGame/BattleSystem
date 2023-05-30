@@ -2,7 +2,19 @@
     "weaponLevelDataList": [
         {
             "id": 1,
-            "level": 30
+            "level": 1
+        },
+        {
+            "id": 6,
+            "level": 1
+        },
+        {
+            "id": 3,
+            "level": 1
+        },
+        {
+            "id": 2,
+            "level": 1
         }
     ]
 }

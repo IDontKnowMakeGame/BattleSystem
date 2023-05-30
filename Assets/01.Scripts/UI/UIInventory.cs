@@ -44,7 +44,15 @@ public class UIInventory : UIBase
     private VisualElement _haloSelectPanel;
     private VisualElement _equipHaloPanel;
 
-    private VisualElement _selectHaloCard = null;
+    private VisualElement _haloTooltipPanel;
+    private VisualElement _haloNameLabel;
+    private VisualElement _haloEffectNameLabel;
+    private VisualElement _haloEffectExplanationLabel;
+    private VisualElement _haloExplanationLabel;
+    private VisualElement _haloConnectBtn;
+    private VisualElement _haloTooltipBackBtn;
+
+    private VisualElement _equipHaloCard = null;
     private ItemID _selectHaloID = ItemID.None;
     private int _selectHaloEquipNum = 0;
     private bool _selectIsHaloCard = false;
@@ -136,6 +144,26 @@ public class UIInventory : UIBase
         //HaloPanel===================================================================================
         _haloSelectPanel = _haloPanel.Q<VisualElement>("HaloSelectPanel");
         _equipHaloPanel = _haloPanel.Q<VisualElement>("EquipHalo");
+
+        _haloTooltipPanel = _haloPanel.Q<VisualElement>("Halo-Tooltip");
+        _haloTooltipPanel.style.display = DisplayStyle.None;
+        _haloNameLabel = _haloTooltipPanel.Q<VisualElement>("Halo-name");
+        _haloEffectNameLabel = _haloTooltipPanel.Q<VisualElement>("effectNameText");
+        _haloEffectExplanationLabel = _haloTooltipPanel.Q<VisualElement>("effectExplanationText");
+        _haloExplanationLabel = _haloTooltipPanel.Q<VisualElement>("explanationTexd");
+        _haloConnectBtn = _haloTooltipPanel.Q<VisualElement>("ConnectBtn");
+        _haloConnectBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            EquipHalo( _selectHaloID, _selectHaloEquipNum);
+            _haloTooltipPanel.style.display = DisplayStyle.None;
+        });
+        _haloTooltipBackBtn = _haloTooltipPanel.Q<VisualElement>("BackBtn");
+        _haloTooltipBackBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            InitSelectHaloSetting();
+            _haloTooltipPanel.style.display = DisplayStyle.None;
+        });
+
         //UseablePanel===================================================================================
         _useableItemScrollPanel = _useableItemPanel.Q<VisualElement>("UseableItemScrollPanel");
         _useableEquipPanel = _useableItemPanel.Q<VisualElement>("UseableEquipPanel");
@@ -258,7 +286,7 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
 
         VisualElement status = _weaponInfoPanel.Q<VisualElement>("Status");
         status.Q<Label>("Atk").text = string.Format("Level : {0}", weaponLevel);
-        status.Q<Label>("Atk").text = string.Format("공격력 : {0} + {1}", data.Atk, weaponLevel);
+        status.Q<Label>("Atk").text = string.Format("공격력 : {0} + {1}", data.Atk, UIManager.Instance.LevelToAtk(weaponLevel));
         status.Q<Label>("Ats").text = string.Format("공격속도 : {0}", data.Ats);
         status.Q<Label>("Afs").text = string.Format("후 딜레이 : {0}", data.Afs);
         status.Q<Label>("Wei").text = string.Format("무게 : {0}", data.Weight);
@@ -381,71 +409,42 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
             {
                 HaloSelectCard(card, Int32.Parse(card.name));
             });
-            card.RegisterCallback<MouseEnterEvent>(evt =>
-            {
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            });
         }
 
-        List<ItemID> list = Define.GetManager<DataManager>().LoadHaloListInUserData();
-        int index = 0;
-        foreach(VisualElement card in _equipHaloPanel.Children())
+        ItemID id = DataManager.UserData_.firstHalo;
+        _equipHaloCard = _equipHaloPanel.Q<VisualElement>("1");
+        ChangeHaloImage(_equipHaloCard, id);
+        _equipHaloCard.RegisterCallback<ClickEvent>(e =>
         {
-            ChangeHaloImage(card,list[index++]);
-            card.RegisterCallback<ClickEvent>(e =>
-            {
-                HaloEquipSelectCard(card,Int32.Parse(card.name));
-            });
-        }
-        
-
+            HaloEquipSelectCard(_equipHaloCard, Int32.Parse(_equipHaloCard.name));
+        });
     }
     public void HaloSelectCard(VisualElement card, int id)
     {
         if (card == null) return;
-        if (_selectIsHaloCard)
-        {
-            InitSelectHaloSetting();
-            return;
-        }
 
-        if (_selectIsEquipHaloCard)
-        {
-            EquipHalo(_selectHaloCard, (ItemID)id, _selectHaloEquipNum);
-        }
-        else
-        {
-            _selectIsHaloCard = true;
-            _selectHaloCard = card;
-            _selectHaloID = (ItemID)id;
+        _selectIsHaloCard = true;
+        _selectHaloID = (ItemID)id;
+        _selectHaloEquipNum = 1;
 
-            CardBorderWidth(card, 1, Color.green);
-        }
-        
+        _haloTooltipPanel.style.display = DisplayStyle.Flex;
+
+        //CardBorderWidth(card, 1, Color.green);
+
     }
     public void HaloEquipSelectCard(VisualElement card,int equipNum)
     {
         if (card == null) return;
         if(_selectIsEquipHaloCard)
         {
-            EquipHalo(card, ItemID.None, equipNum);
+            EquipHalo(ItemID.None, equipNum);
             return;
         }
 
-        if(_selectIsHaloCard)
-        {
-            EquipHalo(card,_selectHaloID, equipNum);
-        }
-        else
-        {
-            _selectIsEquipHaloCard = true;
-            _selectHaloCard = card;
-            _selectHaloEquipNum = equipNum;
-
-            CardBorderWidth(card, 1, Color.green);
-        }
+        _selectIsEquipHaloCard = true;
+        CardBorderWidth(card, 1, Color.green);
     }
-    public void EquipHalo(VisualElement card,ItemID id, int equipNum)
+    public void EquipHalo(ItemID id, int equipNum)
     {
         List<ItemID> list = Define.GetManager<DataManager>().LoadHaloListInUserData();
         if (list.Contains(id)&&id != ItemID.None)
@@ -466,14 +465,13 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
             Define.GetManager<EventManager>().TriggerEvent(EventFlag.HaloDel, eventParam);
         }
             
-        ChangeHaloImage(card, id);
+        ChangeHaloImage(_equipHaloCard, id);
         InitSelectHaloSetting();
     }
     public void InitSelectHaloSetting()
     {
-        CardBorderWidth(_selectHaloCard,0,Color.green);
+        CardBorderWidth(_equipHaloCard,0,Color.green);
 
-        _selectHaloCard = null;
         _selectHaloID = ItemID.None;
         _selectHaloEquipNum = 0;
 

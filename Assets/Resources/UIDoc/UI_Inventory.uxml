@@ -24,7 +24,7 @@
                 <ui:Instance template="ExitBtn" name="ExitBtn" />
             </ui:VisualElement>
             <ui:VisualElement name="Panel" style="flex-basis: 85%; flex-direction: row; overflow: hidden;">
-                <ui:VisualElement name="ItemPanel" style="overflow: visible; flex-basis: 100%; translate: -200% 0;">
+                <ui:VisualElement name="ItemPanel" style="overflow: visible; flex-basis: 100%; translate: -100% 0;">
                     <ui:VisualElement name="WeaponPanel" class="ItemPanel" style="flex-direction: row; display: flex; left: 0;">
                         <ui:VisualElement name="CharacterView" style="flex-basis: 30%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-1221198161&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_0&apos;);">
                             <ui:VisualElement name="CharacterImage" style="flex-basis: 80%; justify-content: center; align-items: center;">
@@ -74,10 +74,6 @@
                                     <ui:VisualElement name="103" style="position: absolute; width: 150px; height: 150px; top: 562px; left: 1072px; background-image: resource(&apos;Item/103&apos;);" />
                                     <ui:VisualElement name="104" style="position: absolute; width: 150px; height: 150px; top: 818px; left: 334px; background-image: resource(&apos;Item/104&apos;);" />
                                 </ui:VisualElement>
-                                <ui:VisualElement name="Halo-Tooltip" style="width: 250px; height: 300px; background-color: rgb(214, 214, 214); position: absolute; left: 426px; top: 300px; border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 3px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; align-items: center;">
-                                    <ui:Label text="에레시키갈의 헤일로" display-tooltip-when-elided="true" style="width: 100%; height: 20%; color: rgb(29, 29, 29); -unity-text-align: middle-center; font-size: 25px; -unity-font: url(&apos;project://database/Assets/Font/GabiaBombaram/gabia_bombaram.ttf?fileID=12800000&amp;guid=20cb78c96f927a64ea32abf84df2c515&amp;type=3#gabia_bombaram&apos;); -unity-font-definition: initial;" />
-                                    <ui:VisualElement name="Line" style="width: 90%; height: 1%; background-color: rgb(0, 0, 0);" />
-                                </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:ScrollView>
                         <ui:VisualElement name="HaloCharacterView" style="background-color: rgb(79, 79, 79); width: 126px; height: 171px; background-image: url(&apos;project://database/Assets/02.Sprites/Ghost.png?fileID=2128063284&amp;guid=f3ba31022ba0a8046a76e645fdde2f38&amp;type=3#Ghost_0&apos;); display: none;" />
@@ -85,6 +81,26 @@
                             <ui:VisualElement name="1" style="width: 120px; height: 120px; margin-bottom: 10px;" />
                             <ui:VisualElement name="2" style="width: 120px; height: 120px; margin-bottom: 10px; display: none;" />
                             <ui:VisualElement name="3" style="width: 120px; height: 120px; display: none;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Halo-Tooltip" style="width: 100%; height: 888px; background-color: rgba(233, 233, 233, 0.71); position: absolute; border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 3px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; align-items: center; display: flex;">
+                            <ui:Label text="에레시키갈의 헤일로" display-tooltip-when-elided="true" name="Halo-name" style="width: 100%; height: 15%; color: rgb(29, 29, 29); -unity-text-align: middle-center; font-size: 32px; -unity-font: url(&apos;project://database/Assets/Font/GabiaBombaram/gabia_bombaram.ttf?fileID=12800000&amp;guid=20cb78c96f927a64ea32abf84df2c515&amp;type=3#gabia_bombaram&apos;); -unity-font-definition: initial; -unity-font-style: bold;" />
+                            <ui:VisualElement name="Line" style="width: 90%; height: 1%; background-color: rgb(0, 0, 0); margin-top: 5px; margin-bottom: 5px;" />
+                            <ui:VisualElement name="effectExplanationBox" style="width: 70%; height: 30%;">
+                                <ui:Label text="죽음의 의지" display-tooltip-when-elided="true" name="effectNameText" style="width: 100%; height: 20%; -unity-text-align: middle-center; color: rgb(0, 0, 0); font-size: 30px; -unity-font: url(&apos;project://database/Assets/Font/GabiaBombaram/gabia_bombaram.otf?fileID=12800000&amp;guid=42bb642905ac6ed448d8c60b58eee848&amp;type=3#gabia_bombaram&apos;); -unity-font-definition: url(&apos;project://database/Assets/Font/GabiaBombaram/gabia_bombaram%20SDF%201.asset?fileID=11400000&amp;guid=fe430329458db5b4aa220ca0b2fc8a02&amp;type=2#gabia_bombaram SDF 1&apos;); white-space: normal; -unity-font-style: bold;" />
+                                <ui:Label text="중첩이 되며 적 처치 1명당 +5의 공격력이 강화 된다. 맞을때 마다 중첩이 1감소 하며 죽으면 수치는 초기화 된다." display-tooltip-when-elided="true" name="effectExplanationText" style="width: 100%; height: 80%; -unity-font: url(&apos;project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&amp;guid=fdf177119c8b7f84fbad0a6901efb8cc&amp;type=3#SUITE-Variable&apos;); -unity-font-definition: url(&apos;project://database/Assets/Font/SUITE-Variable%20SDF%201.asset?fileID=11400000&amp;guid=640b171b207c5cb4d9380b34f11967f1&amp;type=2#SUITE-Variable SDF 1&apos;); color: rgb(0, 0, 0); -unity-font-style: bold; -unity-text-align: middle-center; font-size: 25px;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="Line" style="width: 85%; height: 1%; background-color: rgb(0, 0, 0); margin-top: 5px; margin-bottom: 5px;" />
+                            <ui:VisualElement name="explanationBox" style="width: 70%; height: 30%;">
+                                <ui:Label text="가장 가까이서 죽음을 보고 느끼며 이곳 [지옥], [저승], [명계] [이르칼라] 온갖 형태로 불리우는 이곳을 지키며 수많은 존재들의 [후회] [원망] [절망] 에 형태로 튀어나오는 죽음에대한 절규.&#10;&#10; 죽었으면 조용히 죽음을 받아들일 것이지.. 이곳에서도 죽음가 가까운 것이 존재한다하는 것을 보여주도록 하지 불만 있는 놈들은 내앞으로 나와라" display-tooltip-when-elided="true" name="explanationTexd" style="width: 100%; height: 100%; -unity-text-align: middle-center; color: rgb(0, 0, 0); font-size: 25px; -unity-font: url(&apos;project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&amp;guid=fdf177119c8b7f84fbad0a6901efb8cc&amp;type=3#SUITE-Variable&apos;); -unity-font-definition: url(&apos;project://database/Assets/Font/SUITE-Variable%20SDF%201.asset?fileID=11400000&amp;guid=640b171b207c5cb4d9380b34f11967f1&amp;type=2#SUITE-Variable SDF 1&apos;); white-space: normal; -unity-font-style: bold;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="BTnBox" style="width: 80%; height: 20%; flex-direction: row; justify-content: space-around; align-items: center;">
+                                <ui:VisualElement name="ConnectBtn" style="height: 30%; width: 20%; background-color: rgb(8, 29, 4); justify-content: center; align-items: center;">
+                                    <ui:Label text="연결한다" display-tooltip-when-elided="true" style="color: rgb(224, 224, 224); font-size: 25px; -unity-text-align: middle-left; -unity-font: url(&apos;project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&amp;guid=fdf177119c8b7f84fbad0a6901efb8cc&amp;type=3#SUITE-Variable&apos;); -unity-font-definition: initial;" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="BackBtn" style="height: 30%; width: 20%; background-color: rgb(0, 0, 0); justify-content: center; align-items: center;">
+                                    <ui:Label text="돌아간다" display-tooltip-when-elided="true" style="color: rgb(224, 224, 224); font-size: 25px; -unity-text-align: middle-left; -unity-font: url(&apos;project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&amp;guid=fdf177119c8b7f84fbad0a6901efb8cc&amp;type=3#SUITE-Variable&apos;); -unity-font-definition: initial;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="UseblePanel" class="ItemPanel" style="display: flex; left: 200%;">
