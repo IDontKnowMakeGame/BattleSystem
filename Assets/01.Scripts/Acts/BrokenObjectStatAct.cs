@@ -5,6 +5,7 @@ using Managements;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Actors.Characters;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Analytics;
@@ -38,6 +39,7 @@ public class BrokenObjectStatAct : CharacterStatAct
 		obj.transform.position = ThisActor.transform.position;
 		obj.GetComponent<Broken>().Brokens(dir);
 		InGame.GetBlock(ThisActor.Position).RemoveActorOnBlock();
+		_actor.AddState(CharacterState.Die);
 		GameManagement.Instance.GetManager<ResourceManager>().Destroy(ThisActor.gameObject);
 	}
 }

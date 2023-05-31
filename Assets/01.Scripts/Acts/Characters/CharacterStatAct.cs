@@ -87,6 +87,7 @@ public class CharacterStatAct : Act
 		}
 	}
 
+
 	private float _drainageStat
 	{
 		get
@@ -106,7 +107,7 @@ public class CharacterStatAct : Act
 
 	private float half = 0;
 
-	private CharacterActor _actor;
+	protected CharacterActor _actor;
 	private CharacterRender _render;
 	private CharacterEquipmentAct _eqipment;
 
@@ -220,6 +221,7 @@ public class CharacterStatAct : Act
 		var anime = ThisActor.GetAct<PlayerAnimation>();
 			anime.ChangeWeaponClips((int)ItemID.None);
 		var clip = anime.GetClip("Fall");
+		_actor.AddState(CharacterState.Die);
 		clip.OnExit = Die;
 		anime.Play("Fall");
 	}
@@ -227,6 +229,7 @@ public class CharacterStatAct : Act
 	public virtual void Die()
 	{
 		ThisActor.RemoveAct<CharacterMove>();
+		_actor.AddState(CharacterState.Die);
 		var particle = Define.GetManager<ResourceManager>().Instantiate("DeathParticle", ThisActor.transform);
 		particle.transform.position = ThisActor.transform.position;
 		var anchorTrm = ThisActor.transform.Find("Anchor");
