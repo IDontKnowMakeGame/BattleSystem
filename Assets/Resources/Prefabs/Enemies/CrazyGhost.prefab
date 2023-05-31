@@ -88,8 +88,8 @@ MonoBehaviour:
     _isPlayer: 0
   _characterStat:
     _basicStat:
-      maxHP: 1000
-      hp: 1000
+      maxHP: 2000
+      hp: 2000
       atk: 0
       ats: 0
       afs: 0
