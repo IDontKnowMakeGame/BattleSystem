@@ -24,7 +24,6 @@ public class Ascalon : GreatSword
 
 		_stat.PercentAtk(30);
 
-		Damage = info.Atk;
 		PlayerAttack.OnAttackEnd += SkillEnd;
 	}
 
