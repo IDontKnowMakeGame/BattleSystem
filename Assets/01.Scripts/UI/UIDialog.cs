@@ -57,6 +57,7 @@ public class UIDialog : UIBase
     public void StartListeningDialog(DialogueData dialogue,bool isEndMessage = true,bool isObject = false)
     {
         Debug.Log("StartListeningDialog");
+        
         if (isPlayDialog) return;
 
         if (isObject)
@@ -84,6 +85,7 @@ public class UIDialog : UIBase
         foreach (string msg in dialogue.sentence)
             this.msgLine.Enqueue(msg);
 
+        UIManager.Instance.MoveAndInputStop();
         NextMessage();
     }
     public IEnumerator SetTextLine(string textline)
@@ -151,6 +153,7 @@ public class UIDialog : UIBase
         isPlayDialog = false;
         choicePanel.Clear();
         FlagDialogue(false);
+        UIManager.Instance.MoveAndInputPlay();
     }
     public void ClearChoiceBox()
     {

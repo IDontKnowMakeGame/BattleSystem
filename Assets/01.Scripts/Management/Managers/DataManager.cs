@@ -448,6 +448,7 @@ public class DataManager : Manager
         SaveItemData item = new SaveItemData();
         item.id = id;
         item.currentCnt = count;
+        item.maxCnt = 99;
         item.name = id.ToString();
 
         if ((int)id < 100)
@@ -685,6 +686,7 @@ public class DataManager : Manager
         PlayerOpenQuestData_.readyQuestList.Remove(name);
 
         UIManager.Instance.InGame.AddQuestPanel(name);
+        QuestManager.Instance.AddQuestCheck();
 
         SaveToOpenQuestData();
     }
@@ -712,8 +714,8 @@ public class DataManager : Manager
 
         PlayerOpenQuestData_.clearQuestList.Add(name);
         PlayerOpenQuestData_.readyClearQuestList.Remove(name);
-        
 
+        UIManager.Instance.InGame.CloseQuestPanel(name);
         SaveToOpenQuestData();
     }
     public bool IsReadyQuest(QuestName name)

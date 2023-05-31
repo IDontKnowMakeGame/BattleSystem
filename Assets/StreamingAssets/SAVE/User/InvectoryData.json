@@ -59,6 +59,12 @@
             "name": "ExecutionBlade",
             "currentCnt": 1,
             "maxCnt": 0
+        },
+        {
+            "id": 10,
+            "name": "Ascalon",
+            "currentCnt": 1,
+            "maxCnt": 0
         }
     ],
     "inventoryInHaloList": [
@@ -91,7 +97,7 @@
         {
             "id": 200,
             "name": "Torch",
-            "currentCnt": 9,
+            "currentCnt": 12,
             "maxCnt": 99
         },
         {
@@ -133,7 +139,7 @@
         {
             "id": 207,
             "name": "CompassOfSpace",
-            "currentCnt": 99,
+            "currentCnt": 1,
             "maxCnt": 99
         }
     ],

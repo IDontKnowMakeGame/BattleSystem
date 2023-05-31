@@ -3,11 +3,15 @@
     "quests": [
         {
             "btnName": "2층으로 가는 법",
+            "clearBtnName": "처리했다",
             "questName": 2,
             "IsComplate": false,
-            "rewardfeather": 100,
+            "rewardfeather": 500,
+            "questGiveItem": [
+                207
+            ],
             "rewords": [
-                200
+                300
             ],
             "openQuest": []
         }

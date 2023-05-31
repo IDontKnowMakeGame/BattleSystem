@@ -258,16 +258,22 @@ public class UIInGame : UIBase
     {
         List<QuestName> list = DataManager.PlayerOpenQuestData_.openQuestList;
         for(int i = 0; i < list.Count;i++)
-        {
             AddQuestPanel(list[i]);
-        }
+
+        list.Clear();
+        list = DataManager.PlayerOpenQuestData_.readyClearQuestList;
+        for (int i = 0; i < list.Count; i++)
+            AddQuestPanel(list[i],true);
     }
-    public void AddQuestPanel(QuestName name)
+    public void AddQuestPanel(QuestName name,bool isClearReadQuest = false)
     {
         VisualElement panel = _questPanelTemp.Instantiate();
         panel.Q<Label>("QuestName").text = name.ToString();
         _questListPanel.Add(panel);
         _questLlistCard[name] = panel;
+
+        if(isClearReadQuest)
+            ClearQuestPanel(name);
 
         //'OpenQuestPanel();
     }
@@ -287,6 +293,10 @@ public class UIInGame : UIBase
             panel.Q<VisualElement>("TempCard").RemoveFromClassList("CloseQuest");
             openQuestNum++;
         }
+    }
+    public void CloseQuestPanel(QuestName name = QuestName.none)
+    {
+        _questLlistCard[name].AddToClassList("CloseQuest");
     }
 
     public void CristalInfoInRoom(int roomNum)

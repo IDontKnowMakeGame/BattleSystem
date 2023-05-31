@@ -230,9 +230,9 @@ public class CharacterStatAct : Act
 		}
 		else if(anime is EnemyAnimation eAnime)
 		{
-			var clip = eAnime.GetClip("Fall");
+			var clip = eAnime.GetClip("Die");
 			clip.OnExit = Die;
-			eAnime.Play("Fall");
+			eAnime.Play("Die");
 		}
 		
 	}
