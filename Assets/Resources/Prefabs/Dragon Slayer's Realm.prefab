@@ -14751,8 +14751,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  GraphTimeMultiplier: 4
-  GraphIntensityMultiplier: 1.1
+  GraphTimeMultiplier: 0.01
+  GraphIntensityMultiplier: 10
   IsLoop: 0
 --- !u!114 &114639848298784389
 MonoBehaviour:
@@ -14786,7 +14786,7 @@ MonoBehaviour:
     ctime6: 0
     ctime7: 0
     atime0: 0
-    atime1: 4819
+    atime1: 2224
     atime2: 63151
     atime3: 65535
     atime4: 65535
@@ -24796,7 +24796,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4864533186648971
 Transform:
   m_ObjectHideFlags: 0
@@ -34361,7 +34361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4516058501560689
 Transform:
   m_ObjectHideFlags: 0
@@ -34995,7 +34995,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4957976414894397
 Transform:
   m_ObjectHideFlags: 0

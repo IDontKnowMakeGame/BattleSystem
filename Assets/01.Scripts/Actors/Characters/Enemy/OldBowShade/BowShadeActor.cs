@@ -39,7 +39,7 @@ public class BowShadeActor : EnemyActor
 	{
 		base.Start();
 		ShootState state = _enemyAi.GetState<ShootState>();
-		WaitState idlestate = _enemyAi.GetState<WaitState>();
+		//WaitState idlestate = _enemyAi.GetState<WaitState>();
 		IdleState iddlestate = _enemyAi.GetState<IdleState>();
 		_unitAnimation = GetAct<UnitAnimation>();
 		_unitStat = GetAct<CharacterStatAct>();
@@ -47,10 +47,6 @@ public class BowShadeActor : EnemyActor
 		state.OnEnter += () =>
 		{
 			Shoot(state);
-		};
-		idlestate.OnEnter += () =>
-		{
-			_enemyAnimation.Play("Idle");
 		};
 
 		if (_sliderObject == null)
@@ -123,6 +119,7 @@ public class BowShadeActor : EnemyActor
 			ShootAnimation(InGame.CamDirCheck(originVec.normalized));
 			_sliderObject.SliderActive(false);
 		}
+
 	}
 
 	private void ShootAnimation(Vector3 dir)
@@ -151,7 +148,17 @@ public class BowShadeActor : EnemyActor
 			else
 				_unitAnimation.Play("Idle");
 		});
-		_unitAnimation.GetClip("UpperShoot").SetEventOnFrame(_unitAnimation.GetClip("UpperShoot").fps - 1, () => _unitAnimation.Play("Idle"));
-		_unitAnimation.GetClip("LowerShoot").SetEventOnFrame(_unitAnimation.GetClip("LowerShoot").fps - 1, () => _unitAnimation.Play("Idle"));
+		_unitAnimation.GetClip("UpperShoot").SetEventOnFrame(_unitAnimation.GetClip("UpperShoot").fps - 1, () => {
+			if (GetAct<CharacterStatAct>().ChangeStat.hp <= 0)
+				_unitAnimation.Play("Die");
+			else
+				_unitAnimation.Play("Idle");
+		});
+		_unitAnimation.GetClip("LowerShoot").SetEventOnFrame(_unitAnimation.GetClip("LowerShoot").fps - 1, () => {
+			if (GetAct<CharacterStatAct>().ChangeStat.hp <= 0)
+				_unitAnimation.Play("Die");
+			else
+				_unitAnimation.Play("Idle");
+		});
 	}
 }

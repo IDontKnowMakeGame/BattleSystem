@@ -5,6 +5,7 @@ using Core;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using System.Reflection;
+using UnityEngine.Events;
 
 namespace Actors.Characters.Enemy
 {
@@ -28,6 +29,8 @@ namespace Actors.Characters.Enemy
         [SerializeField] private bool alive = true;
         [SerializeField] private int spriteSize = 1;
         [SerializeField] private EnemyType currentType = EnemyType.None;
+        [Space]
+        public UnityEvent OnDie = new UnityEvent();
         public EnemyType CurrentType => currentType;
 
         public bool Alive
