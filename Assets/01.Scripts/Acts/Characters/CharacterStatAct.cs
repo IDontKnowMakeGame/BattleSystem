@@ -10,6 +10,7 @@ using Acts.Characters;
 using System.Collections.Generic;
 using Acts.Characters.Player;
 using Actors.Characters.Enemy;
+using Acts.Characters.Enemy;
 using Blocks;
 
 [Serializable]
@@ -219,11 +220,21 @@ public class CharacterStatAct : Act
 	protected virtual void Fall()
 	{
 		_actor.AddState(CharacterState.Die);
-		var anime = ThisActor.GetAct<PlayerAnimation>();
-			anime.ChangeWeaponClips((int)ItemID.None);
-		var clip = anime.GetClip("Fall");
-		clip.OnExit = Die;
-		anime.Play("Fall");
+		var anime = ThisActor.GetAct<UnitAnimation>();
+		if (anime is PlayerAnimation pAnime)
+		{
+			pAnime.ChangeWeaponClips((int)ItemID.None);
+			var clip = pAnime.GetClip("Fall");
+			clip.OnExit = Die;
+			pAnime.Play("Fall");
+		}
+		else if(anime is EnemyAnimation eAnime)
+		{
+			var clip = eAnime.GetClip("Fall");
+			clip.OnExit = Die;
+			eAnime.Play("Fall");
+		}
+		
 	}
 
 	public virtual void Die()
