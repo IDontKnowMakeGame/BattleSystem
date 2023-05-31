@@ -45,10 +45,10 @@ public class UIInventory : UIBase
     private VisualElement _equipHaloPanel;
 
     private VisualElement _haloTooltipPanel;
-    private VisualElement _haloNameLabel;
-    private VisualElement _haloEffectNameLabel;
-    private VisualElement _haloEffectExplanationLabel;
-    private VisualElement _haloExplanationLabel;
+    private Label _haloNameLabel;
+    private Label _haloEffectNameLabel;
+    private Label _haloEffectExplanationLabel;
+    private Label _haloExplanationLabel;
     private VisualElement _haloConnectBtn;
     private VisualElement _haloTooltipBackBtn;
 
@@ -147,10 +147,10 @@ public class UIInventory : UIBase
 
         _haloTooltipPanel = _haloPanel.Q<VisualElement>("Halo-Tooltip");
         _haloTooltipPanel.style.display = DisplayStyle.None;
-        _haloNameLabel = _haloTooltipPanel.Q<VisualElement>("Halo-name");
-        _haloEffectNameLabel = _haloTooltipPanel.Q<VisualElement>("effectNameText");
-        _haloEffectExplanationLabel = _haloTooltipPanel.Q<VisualElement>("effectExplanationText");
-        _haloExplanationLabel = _haloTooltipPanel.Q<VisualElement>("explanationTexd");
+        _haloNameLabel = _haloTooltipPanel.Q<Label>("Halo-name");
+        _haloEffectNameLabel = _haloTooltipPanel.Q<Label>("effectNameText");
+        _haloEffectExplanationLabel = _haloTooltipPanel.Q<Label>("effectExplanationText");
+        _haloExplanationLabel = _haloTooltipPanel.Q<Label>("explanationTexd");
         _haloConnectBtn = _haloTooltipPanel.Q<VisualElement>("ConnectBtn");
         _haloConnectBtn.RegisterCallback<ClickEvent>(e =>
         {
@@ -428,6 +428,11 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
         _selectHaloEquipNum = 1;
 
         _haloTooltipPanel.style.display = DisplayStyle.Flex;
+        HaloTextInfoSO data = UIManager.Instance.haloTextInfoListSO.list[id - 100];
+        _haloNameLabel.text = data.nameText;
+        _haloExplanationLabel.text = data.haloExplanationText;
+        _haloEffectNameLabel.text = data.skillNameText;
+        _haloEffectExplanationLabel.text = data.skillExplanationText;
 
         //CardBorderWidth(card, 1, Color.green);
 

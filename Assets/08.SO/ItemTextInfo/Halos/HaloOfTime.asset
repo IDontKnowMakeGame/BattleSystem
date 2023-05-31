@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc1fc708d98c2f24c8144b713ec6178c, type: 3}
+  m_Name: HaloOfTime
+  m_EditorClassIdentifier: 
+  ItemID: 103
+  nameText: "\uC2DC\uAC04\uC758 \uD5E4\uC77C\uB85C"
+  skillNameText: "\uC2DC\uAC04\uC758 \uC758\uC9C0"
+  skillExplanationText: "\uC138\uACC4\uC758 \uC2DC\uAC04\uC774 1.5\uBC30 \uAC00\uC18D\uC2DC\uD0A4\uAC70\uB098
+    0.5\uBC30 \uAC10\uC18D \uC885\uC815\uD560 \uC218 \uC788\uB2E4."
+  haloExplanationText: "\uC774\uACF3\uC5D4 \uC2DC\uAC04\uC774\uB77C\uB294 \uAC1C\uB150\uC774
+    \uBA85\uD655\uD558\uC9C0 \uC54A\uC544 \uC790\uC2E0\uC774 \uB290\uB07C\uAE30\uC5D0
+    \uB530\uB77C \uB2EC\uB77C\uC9C4\uB2E4.\r\n\r\n\uD558\uC9C0\uB9CC \uB9D0\uD588\uB2E4\uC2DC\uD53C
+    \uB290\uB07C\uAE30\uC5D0 \uB530\uB77C \uB2EC\uB77C\uC9C0\uB294 \uAC83 \uBFD0
+    \uC2E4\uC81C\uB85C \uBE68\uB77C\uC9C0\uAC70\uB098 \uB290\uB824\uC9C0\uB294 \uAC83\uC774
+    \uC544\uB2C8\uB780 \uAC83\uC744 \uBA85\uC2EC\uD574\uB77C."

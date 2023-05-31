@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc1fc708d98c2f24c8144b713ec6178c, type: 3}
+  m_Name: HaloOfGhost
+  m_EditorClassIdentifier: 
+  ItemID: 100
+  nameText: "\uC545\uB839\uC758 \uD5E4\uC77C\uB85C"
+  skillNameText: "\uAE4A\uC740 \uC758\uC9C0"
+  skillExplanationText: "\uCCB4\uB825\uC744 100 \uC0C1\uC2B9 \uC2DC\uD0A8\uB2E4."
+  haloExplanationText: "\uB0B4\uAC00 \uC313\uC544\uC628 \uBA85\uC608, \uBA85\uC131,
+    \uC9C0\uC704 \uADF8\uB7F0\uAC83 \uBCF4\uB2E4\uB3C4 \uB0B4\uAC00 \uC313\uC544\uC62C\uB9B0
+    \uC2DC\uCCB4\uB4E4\uACFC \uC5C5\uC744 \uB354\uC6B1\uB354 \uC2E0\uACBD \uC4F0\uBA70
+    \uC0B4\uC558\uB2E4. \uD558\uC9C0\uB9CC \uB2F9\uC2E0\uC740 \uC544\uB2C8\uC57C
+    \uB2F9\uC2E0\uC740 \uB098\uC5D0\uAC8C\uC11C \uAC70\uB46C\uAC08 \uC790\uACA9 \uB530\uC708
+    \uC5C6\uB2E4. \uADF8\uB4E4\uC5D0\uAC8C \uC870\uAE08\uC758 \uC704\uC548\uC774
+    \uB418\uAC8C \uB09C \uACC4\uC18D \uB098\uC544\uAC00 \uADF8\uC5D0\uAC8C \uBCF5\uC218
+    \uD558\uB9AC\uB77C"

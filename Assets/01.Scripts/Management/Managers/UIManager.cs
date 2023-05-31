@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     public UIFirstFloorMap UIFirstFloorMap = new UIFirstFloorMap();
 
     public MapNameData MapNameData;
+    public HaloTextInfoListSO haloTextInfoListSO;
 
     private void Awake()
     {
