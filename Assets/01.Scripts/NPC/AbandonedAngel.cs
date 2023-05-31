@@ -1,5 +1,6 @@
 using Actors.Characters.NPC;
 using Core;
+using Data;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,17 +14,22 @@ public class AbandonedAngel : NPCActor
     [SerializeField]
     private DialogueData[] dialogueList;
 
+    private StorePurchaseData storeData;
     private QuestData questData;
 
     private Dictionary<QuestName,Action> castReadyQuestActions = new Dictionary<QuestName,Action>();
     private Dictionary<QuestName, Action> castClearQuestActions = new Dictionary<QuestName, Action>();
 
+    private Dictionary<ItemID,PurchaseItemInfoData> purchaseItemDict = new Dictionary<ItemID,PurchaseItemInfoData>();
+
     protected override void Init()
     {
         base.Init();
 
+        storeData = JsonManager.LoadJsonFile<StorePurchaseData>(Application.streamingAssetsPath + "/SAVE/NPC/Store", GetType().Name);
         questData = JsonManager.LoadJsonFile<QuestData>(Application.streamingAssetsPath + "/SAVE/NPC/Quest", GetType().Name);
 
+        InitPurchaseItemData();
         SaveQuestData();
     }
 
@@ -32,6 +38,26 @@ public class AbandonedAngel : NPCActor
         string json = JsonManager.ObjectToJson(questData);
         JsonManager.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/NPC/Quest", GetType().Name,json);
     }
+    public void InitPurchaseItemData()
+    {
+        foreach(PurchaseItemInfoData data in storeData.itemList)
+        {
+            purchaseItemDict[data.itemID] = data;
+        }
+    }
+    public void SavePurchaseItemData()
+    {
+        List<PurchaseItemInfoData> list = new List< PurchaseItemInfoData >();
+        foreach(PurchaseItemInfoData data in purchaseItemDict.Values)
+        {
+            list.Add(data);
+        }
+
+        storeData.itemList = list;
+        string json = JsonManager.ObjectToJson(storeData);
+        JsonManager.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/NPC/Store", GetType().Name, json);
+    }
+
     public override void Interact()
     {
         if (InGame.Player.Position.IsNeighbor(Position) == false) return;
@@ -42,12 +68,11 @@ public class AbandonedAngel : NPCActor
     public void Talking()
     {
         Debug.Log(gameObject.name);
-        UIManager.Instance.Dialog.StartListeningDialog(dialogueList[0]);
+        UIManager.Instance.Dialog.AddChoiceBox("물건을 사고싶다.", StoreBtn);
 
         ReadyBtnQuest();
 
-        UIManager.Instance.Dialog.AddChoiceBox("상점", StoreBtn);
-        UIManager.Instance.Dialog.AddChoiceBox("돌아가기", BackBtn);
+        UIManager.Instance.Dialog.StartListeningDialog(dialogueList[0]);
     }
     private void ReadyBtnQuest()
     {

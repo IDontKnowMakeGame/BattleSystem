@@ -141,6 +141,7 @@ public class UIInGame : UIBase
         AddFeatherEffect();
         GetItemUpdate();
         OpenQuestPanel();
+        WriteFeatherValue();
     }
     public void ChangeWeaponPanel()
     {

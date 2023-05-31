@@ -28,6 +28,8 @@ public class UIItemStore : UIBase
     private int _currentItemPrice = 0;
 
     private int _currentPurchaseCnt = 0;
+
+    private Dictionary<VisualElement,ItemPrice> itemPriceDict = new Dictionary<VisualElement,ItemPrice>();
     public override void Init()
     {
         _root = UIManager.Instance._document.rootVisualElement.Q<VisualElement>("UI_ItemStore");
@@ -68,15 +70,17 @@ public class UIItemStore : UIBase
     public void ShowItemStore(ItemStoreTableSO table)
     {
         _itemScrollPanel.Clear();
+        itemPriceDict.Clear();
         _root.style.display = DisplayStyle.Flex;
         foreach (ItemPrice item in table.table)
         {
-            VisualElement card = _itemCardTemp.Instantiate();
+            VisualElement card = _itemCardTemp.Instantiate().Q<VisualElement>("card");
+            card.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)item.itemID}"));
             card.RegisterCallback<ClickEvent>(e =>
             {
                 SelectItme(card, item.itemID, item.price);
             });
-
+            itemPriceDict[card] = item;
             _itemScrollPanel.Add(card);
         }
     }
@@ -132,6 +136,8 @@ public class UIItemStore : UIBase
     {
         int value = _currentFeather - (_currentItemPrice * _currentPurchaseCnt);
         if (value < 0) return;
+
+        ItemPrice itemprice = itemPriceDict[_currentItem];
 
         _currentFeather = value;
         Define.GetManager<DataManager>().SetFeahter(_currentFeather);

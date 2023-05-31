@@ -9,6 +9,8 @@ public class ItemPrice
 {
     public ItemID itemID;
     public int price;
+    public bool limitItem = false;
+    public int limitCnt = 1;
 }
 
 [CreateAssetMenu(menuName = "SO/ItemStore/ItemTable")]

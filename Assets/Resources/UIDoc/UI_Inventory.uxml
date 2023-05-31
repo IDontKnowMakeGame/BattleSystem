@@ -4,27 +4,29 @@
     <Style src="project://database/Assets/Resources/UIDoc/USS/Inventory.uss?fileID=7433441132597879392&amp;guid=06c2d37b5c549d84c8ca098e2b839d33&amp;type=3#Inventory" />
     <ui:VisualElement name="background" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; align-items: center; justify-content: center; flex-direction: row;">
         <ui:VisualElement name="InventoryPanel" style="width: 100%; height: 100%; background-color: rgb(108, 108, 108); border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; overflow: hidden;">
-            <ui:VisualElement name="SelectItemType" style="flex-basis: 15%; flex-direction: row; align-items: flex-end;">
-                <ui:VisualElement name="Weapon" class="SelectItemTypeBox">
-                    <ui:Label text="Weapon" display-tooltip-when-elided="true" class="SelectItemTypeText" style="display: none;" />
-                    <ui:VisualElement name="Icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-875096578&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_4&apos;); width: 100px; height: 100px;" />
-                </ui:VisualElement>
-                <ui:VisualElement name="Halo" class="SelectItemTypeBox" style="height: 80%;">
-                    <ui:Label text="Halo" display-tooltip-when-elided="true" class="SelectItemTypeText" style="display: none;" />
-                    <ui:VisualElement name="Icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-1143893429&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_5&apos;); width: 100px; height: 100px;" />
-                </ui:VisualElement>
-                <ui:VisualElement name="UseableItem" class="SelectItemTypeBox" style="height: 80%;">
-                    <ui:Label text="Useable" display-tooltip-when-elided="true" class="SelectItemTypeText" style="display: none;" />
-                    <ui:VisualElement name="Icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-1643081658&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_6&apos;); width: 100px; height: 100px;" />
-                </ui:VisualElement>
-                <ui:VisualElement name="QuestItem" class="SelectItemTypeBox" style="height: 80%;">
-                    <ui:Label text="Quest" display-tooltip-when-elided="true" class="SelectItemTypeText" style="display: none;" />
-                    <ui:VisualElement name="Icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=1653532630&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_7&apos;); width: 100px; height: 100px;" />
+            <ui:VisualElement name="SelectItemType" style="flex-basis: 15%; flex-direction: row; align-items: flex-start; justify-content: space-between;">
+                <ui:VisualElement style="flex-direction: row; align-items: flex-end; height: 100%;">
+                    <ui:VisualElement name="Weapon" class="SelectItemTypeBox">
+                        <ui:Label text="Weapon" display-tooltip-when-elided="true" class="SelectItemTypeText" style="display: none;" />
+                        <ui:VisualElement name="Icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-875096578&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_4&apos;); width: 100px; height: 100px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Halo" class="SelectItemTypeBox" style="height: 80%;">
+                        <ui:Label text="Halo" display-tooltip-when-elided="true" class="SelectItemTypeText" style="display: none;" />
+                        <ui:VisualElement name="Icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-1143893429&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_5&apos;); width: 100px; height: 100px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="UseableItem" class="SelectItemTypeBox" style="height: 80%;">
+                        <ui:Label text="Useable" display-tooltip-when-elided="true" class="SelectItemTypeText" style="display: none;" />
+                        <ui:VisualElement name="Icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-1643081658&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_6&apos;); width: 100px; height: 100px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="QuestItem" class="SelectItemTypeBox" style="height: 80%;">
+                        <ui:Label text="Quest" display-tooltip-when-elided="true" class="SelectItemTypeText" style="display: none;" />
+                        <ui:VisualElement name="Icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=1653532630&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_7&apos;); width: 100px; height: 100px;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:Instance template="ExitBtn" name="ExitBtn" />
             </ui:VisualElement>
             <ui:VisualElement name="Panel" style="flex-basis: 85%; flex-direction: row; overflow: hidden;">
-                <ui:VisualElement name="ItemPanel" style="overflow: visible; flex-basis: 100%; translate: -100% 0;">
+                <ui:VisualElement name="ItemPanel" style="overflow: visible; flex-basis: 100%;">
                     <ui:VisualElement name="WeaponPanel" class="ItemPanel" style="flex-direction: row; display: flex; left: 0;">
                         <ui:VisualElement name="CharacterView" style="flex-basis: 30%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-1221198161&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_0&apos;);">
                             <ui:VisualElement name="CharacterImage" style="flex-basis: 80%; justify-content: center; align-items: center;">
