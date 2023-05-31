@@ -218,10 +218,10 @@ public class CharacterStatAct : Act
 
 	protected virtual void Fall()
 	{
+		_actor.AddState(CharacterState.Die);
 		var anime = ThisActor.GetAct<PlayerAnimation>();
 			anime.ChangeWeaponClips((int)ItemID.None);
 		var clip = anime.GetClip("Fall");
-		_actor.AddState(CharacterState.Die);
 		clip.OnExit = Die;
 		anime.Play("Fall");
 	}
