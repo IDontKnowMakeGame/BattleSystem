@@ -14,3 +14,13 @@ public class AscalonData
 	public static readonly float decrease = 25f;
 	
 }
+public class TaintedSwordData
+{
+    public static readonly int damage = 50;
+	
+}
+public class ExecutedSwordData
+{
+    public static readonly int damage = 50;
+	
+}
