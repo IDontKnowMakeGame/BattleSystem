@@ -2,6 +2,7 @@ using Core;
 using System.Collections;
 using System.Collections.Generic;
 using Actors.Bases;
+using Actors.Characters;
 using Actors.Characters.Player;
 using Acts.Characters.Player;
 using Blocks;
@@ -102,6 +103,7 @@ public class PlayerStatAct : CharacterStatAct
 	{
 		GameManagement.Instance.RemoveInputManagers(); 
 
+		_actor.AddState(CharacterState.Die);
 		_playerAnimation.ChangeWeaponClips((int)ItemID.None);
 		_playerAnimation.Play("Die");
 
