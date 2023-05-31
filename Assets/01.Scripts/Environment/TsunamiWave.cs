@@ -6,6 +6,8 @@ using Actors.Characters.Player;
 using Actors.Characters;
 using System.Linq;
 using Actors.Bases;
+using Core;
+using Managements.Managers;
 
 public class TsunamiWave : Actor
 {
@@ -30,20 +32,22 @@ public class TsunamiWave : Actor
     private List<CharacterActor> inSideUnits = new List<CharacterActor>();
     private List<CharacterActor> currentUnits = new List<CharacterActor>();
 
-    private void Start()
+    protected override void Start()
     {
         particle.Stop();
     }                                                                                                    
 
 
-    private void Update()
+    protected override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))    
+        if (Input.GetKeyDown(KeyCode.N) && !playTsunami)    
         {
             timer = 0f;
+            moveCharacter.transform.localPosition = Vector3.zero;
             playTsunami = true;
             inSideUnits.Clear();
             currentUnits = spawnerController.Units.ToList();
+            particle.gameObject.SetActive(true);
             particle.Play();   
         }
 
@@ -52,28 +56,28 @@ public class TsunamiWave : Actor
             Debug.Log("particle");
             particle.Stop();
         }
-
         if (playTsunami)
         {
             if (timer >= lifeTime)
             {
-                foreach(CharacterActor unit in inSideUnits)
-                {
-                    if (unit != null)
-                    {
-                        unit.transform.position = unit.Position.SetY(1);
-                        if (inSideUnits.Count > 1 && !(unit is PlayerActor))
-                        {
-                            Debug.Log(unit.name + "이요");
-                            unit.OnKnockBack?.Invoke(1, this);
-                        }
-                    }
-                }
+                AdaptPos();
                 playTsunami = false;
                 return;
             }
             timer += Time.deltaTime;
-            moveCharacter.transform.localPosition = moveCharacter.transform.localPosition.SetZ((timer / lifeTime) * velocity.x);
+
+            var map = Define.GetManager<MapManager>();
+
+            Vector3 checkMap = Vector3Int.CeilToInt(moveCharacter.transform.position);
+            if (!map.GetBlock(checkMap.SetY(0)))
+            {
+                AdaptPos();
+                particle.gameObject.SetActive(false);
+                playTsunami = false;
+                return;
+            }
+
+            moveCharacter.transform.localPosition = moveCharacter.transform.localPosition.SetX((timer / lifeTime) * velocity.z);
 
 
             for(int i = 0; i < currentUnits.Count; i++)
@@ -82,6 +86,7 @@ public class TsunamiWave : Actor
                 {
                     if (Vector3.Distance(currentUnits[i].transform.position.Flattened(), moveCharacter.transform.position.Flattened()) <= 0.5f)
                     {
+                        Debug.Log(currentUnits[i].name + "이 존재합니다.");
                         inSideUnits.Add(currentUnits[i]);
                         currentUnits.Remove(currentUnits[i]);
                         i--;
@@ -93,6 +98,21 @@ public class TsunamiWave : Actor
             {
                 if (unit != null)
                     unit.transform.position = moveCharacter.transform.position.SetY(1);
+            }
+        }
+    }
+
+    private void AdaptPos()
+    {
+        foreach (CharacterActor unit in inSideUnits)
+        {
+            if (unit != null)
+            {
+                unit.transform.position = unit.Position.SetY(1);
+                if (inSideUnits.Count > 1 && !(unit is PlayerActor))
+                {
+                    unit.OnKnockBack?.Invoke(1, this);
+                }
             }
         }
     }
