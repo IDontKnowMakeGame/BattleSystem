@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
         Define.GetManager<DataManager>().AddItemInInventory(ItemID.CompassOfSpace);
         Define.GetManager<DataManager>().AddItemInInventory(ItemID.HaloOfTime);
         Define.GetManager<DataManager>().AddItemInInventory(ItemID.ExecutionBlade);
+        Define.GetManager<DataManager>().AddItemInInventory(ItemID.Ascalon);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.SecondMap);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.Pick,1);
         UIStart();

@@ -53,6 +53,18 @@
             "name": "TaintedSword",
             "currentCnt": 1,
             "maxCnt": 0
+        },
+        {
+            "id": 11,
+            "name": "ExecutionBlade",
+            "currentCnt": 1,
+            "maxCnt": 0
+        },
+        {
+            "id": 10,
+            "name": "Ascalon",
+            "currentCnt": 1,
+            "maxCnt": 0
         }
     ],
     "inventoryInHaloList": [
