@@ -31,6 +31,7 @@ public class UIInventory : UIBase
     private VisualElement _firstWeaponImage;
     private VisualElement _secondWeaponImage;
     private VisualElement _weaponScrollPanel;
+    private Label _waeponExplainText;
 
     private VisualTreeAsset _weaponCardTemp;
     #endregion
@@ -128,6 +129,7 @@ public class UIInventory : UIBase
         //WeaponPanel===================================================================================
         _weaponChacraterViewImage = _weaponPanel.Q<VisualElement>("Character");
         _weaponInfoPanel = _weaponPanel.Q<VisualElement>("WeaponInfoPanel");
+        _waeponExplainText = _weaponPanel.Q<Label>("ExplainText");
         _weaponStatusPanel = _weaponInfoPanel.Q<VisualElement>("StatusPanel");
         _firstWeaponImage = _weaponPanel.Q<VisualElement>("FirstWeapon");
         _firstWeaponImage.RegisterCallback<ClickEvent>(e =>
@@ -199,6 +201,10 @@ public class UIInventory : UIBase
         isOpen = true;
         _root.style.display = DisplayStyle.Flex;
         EquipWeaponBoxImage();
+
+        CreateCardList(_weaponScrollPanel, _weaponCardTemp, Define.GetManager<DataManager>().LoadWeaponDataFromInventory(), SelectCard);
+        CreateCardList(_useableItemScrollPanel, _useableItemCardTemp, Define.GetManager<DataManager>().LoadUsableItemFromInventory(), SelectCard);
+        CreateCardList(_questItemScrollPanel, _questItemCardTemp, Define.GetManager<DataManager>().LoadQuestFromInventory(), SelectCard);
     }
     public void HideInventory()
     {
@@ -290,6 +296,8 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
         status.Q<Label>("Ats").text = string.Format("공격속도 : {0}", data.Ats);
         status.Q<Label>("Afs").text = string.Format("후 딜레이 : {0}", data.Afs);
         status.Q<Label>("Wei").text = string.Format("무게 : {0}", data.Weight);
+
+        _waeponExplainText.text = "";
     }
     public void HideWeaponInfoPanel()
     {

@@ -10,6 +10,7 @@ using Acts.Characters;
 using System.Collections.Generic;
 using Acts.Characters.Player;
 using Actors.Characters.Enemy;
+using Acts.Characters.Enemy;
 using Blocks;
 
 [Serializable]
@@ -92,6 +93,7 @@ public class CharacterStatAct : Act
 		}
 	}
 
+
 	private float _drainageStat
 	{
 		get
@@ -111,7 +113,7 @@ public class CharacterStatAct : Act
 
 	private float half = 0;
 
-	private CharacterActor _actor;
+	protected CharacterActor _actor;
 	private CharacterRender _render;
 	private CharacterEquipmentAct _eqipment;
 
@@ -222,16 +224,28 @@ public class CharacterStatAct : Act
 
 	protected virtual void Fall()
 	{
-		var anime = ThisActor.GetAct<PlayerAnimation>();
-			anime.ChangeWeaponClips((int)ItemID.None);
-		var clip = anime.GetClip("Fall");
-		clip.OnExit = Die;
-		anime.Play("Fall");
+		_actor.AddState(CharacterState.Die);
+		var anime = ThisActor.GetAct<UnitAnimation>();
+		if (anime is PlayerAnimation pAnime)
+		{
+			pAnime.ChangeWeaponClips((int)ItemID.None);
+			var clip = pAnime.GetClip("Fall");
+			clip.OnExit = Die;
+			pAnime.Play("Fall");
+		}
+		else if(anime is EnemyAnimation eAnime)
+		{
+			var clip = eAnime.GetClip("Fall");
+			clip.OnExit = Die;
+			eAnime.Play("Fall");
+		}
+		
 	}
 
 	public virtual void Die()
 	{
 		ThisActor.RemoveAct<CharacterMove>();
+		_actor.AddState(CharacterState.Die);
 		var particle = Define.GetManager<ResourceManager>().Instantiate("DeathParticle", ThisActor.transform);
 		particle.transform.position = ThisActor.transform.position;
 		var anchorTrm = ThisActor.transform.Find("Anchor");

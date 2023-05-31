@@ -26,7 +26,7 @@ namespace Acts.Characters.Enemy
 
 		private Actor attackActor;
 
-        public bool isBoss = false;
+		public bool isBoss = false;
         public override void Awake()
         {
             base.Awake();
@@ -66,6 +66,8 @@ namespace Acts.Characters.Enemy
         {
             if (!ThisActor.gameObject.activeSelf)
                 return;
+
+            _actor.AddState(CharacterState.Die);
 
 			ThisActor.GetAct<EnemyAI>()?.ResetAllConditions();
             ThisActor.gameObject.tag = "Untagged";
@@ -138,6 +140,11 @@ namespace Acts.Characters.Enemy
                 obj.transform.position = this.ThisActor.Position + Vector3.up/2;
 			}
 
+            if (ThisActor is EnemyActor)
+            {
+	            var eActor = ThisActor as EnemyActor;
+	            if (eActor != null) eActor.OnDie?.Invoke();
+            }
             InGame.Player.GetAct<PlayerAttack>().RangeReset();
             InGame.Player.GetAct<PlayerAttack>().DeleteEnemy(ThisActor.gameObject);
         }
