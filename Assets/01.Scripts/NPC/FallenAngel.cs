@@ -12,6 +12,7 @@ public class FallenAngel : NPCActor
     [SerializeField]
     private DialogueData[] dialogueList;
 
+    
     private QuestData questData;
 
     private Dictionary<QuestName, Action> castReadyQuestActions = new Dictionary<QuestName, Action>();
@@ -20,19 +21,12 @@ public class FallenAngel : NPCActor
     protected override void Init()
     {
         base.Init();
-
+        
         questData = JsonManager.LoadJsonFile<QuestData>(Application.streamingAssetsPath+"/SAVE/NPC/Quest",GetType().Name);
 
         castReadyQuestActions.Add(QuestName.FirstFloorBossKill, AcceptBossKillQuestBtn);
 
         castClearQuestActions.Add(QuestName.FirstFloorBossKill, ClearBossKillQuestBtn);
-
-        //QuestInfo info = new QuestInfo();
-        //info.btnName = "BossKillQuest";
-        //info.rewardfeather = 100;
-        //info.questName = QuestName.FirstFloorBossKill;
-        //info.rewords.Add(Data.ItemID.Torch);
-        //questData.quests.Add(info);
 
         SaveQuestData();
     }
@@ -59,10 +53,6 @@ public class FallenAngel : NPCActor
         ReadyBtnQuest();
 
         UIManager.Instance.Dialog.StartListeningDialog(dialogueList[0]);
-
-        
-
-       
     }
     private void ReadyBtnQuest()
     {

@@ -25,6 +25,7 @@ public class QuestManager : MonoBehaviour
     private Dictionary<EnemyType, QuestValue> checkMonsterDic = new Dictionary<EnemyType, QuestValue>();
     private HashSet<RoomSO> checkRoom = new HashSet<RoomSO>();
     private Dictionary<ItemID, QuestValue> checkHaveItem = new Dictionary<ItemID, QuestValue>();
+    private HashSet<QuestName> checkDeliveryItem = new HashSet<QuestName>();
 
     public static QuestManager Instance { get; private set; }
 
@@ -82,6 +83,9 @@ public class QuestManager : MonoBehaviour
             case QuestName.FallenAngelSupplyThing:
                 AddHaveItemMission(currentQuest, ItemID.AngelWingFragment);
                 break;
+            case QuestName.FallenAngelCarryingThing:
+                AddDeliveryItemMission(currentQuest);
+                break;
 
         }
     }
@@ -104,7 +108,7 @@ public class QuestManager : MonoBehaviour
     }
 
     #region Add Mission
-    public void AddMonsterKillMission(QuestName currentQuest, EnemyType type, int cnt)
+    private void AddMonsterKillMission(QuestName currentQuest, EnemyType type, int cnt)
     { 
         if(checkMonsterDic.ContainsKey(type))
         {
@@ -121,7 +125,7 @@ public class QuestManager : MonoBehaviour
 
     }
 
-    public void AddRoomMission(QuestName currentQuest, string roomCode)
+    private void AddRoomMission(QuestName currentQuest, string roomCode)
     {
         QuestValue quest = allRoomSODic[roomCode];
         quest.myQuest = new List<QuestName> { currentQuest };
@@ -129,7 +133,7 @@ public class QuestManager : MonoBehaviour
         checkRoom.Add(allRoomSODic[roomCode].roomSO);
     }
 
-    public void AddHaveItemMission(QuestName currentQuest, ItemID item)
+    private void AddHaveItemMission(QuestName currentQuest, ItemID item)
     {
         if(!checkHaveItem.ContainsKey(item))
         {
@@ -137,6 +141,14 @@ public class QuestManager : MonoBehaviour
             quest.myQuest = new List<QuestName> { currentQuest };
             checkHaveItem.Add(item, quest);
         }
+    }
+
+    private void AddDeliveryItemMission(QuestName currentQuest)
+    { 
+        if(!checkDeliveryItem.Contains(currentQuest))
+        {
+            checkDeliveryItem.Add(currentQuest);
+        }    
     }
     #endregion
 
@@ -194,6 +206,15 @@ public class QuestManager : MonoBehaviour
             QuestName myQuest = checkHaveItem[itemID].myQuest[0];
             Define.GetManager<DataManager>().ReadyClearQuest(myQuest);
             checkHaveItem.Remove(itemID);
+        }
+    }
+
+    public void CheckDeliveryQuestMission(QuestName quest)
+    {
+        if(checkDeliveryItem.Contains(quest))
+        {
+            Define.GetManager<DataManager>().ReadyClearQuest(quest);
+            checkDeliveryItem.Remove(quest);
         }
     }
     #endregion

@@ -8,13 +8,13 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="WeaponPanel" style="flex-basis: 50%; justify-content: flex-end; align-items: flex-end;">
-            <ui:VisualElement name="WeaponUpgradePanel" style="background-color: rgb(103, 103, 103); position: absolute; top: 0; right: 0; width: 75%; height: 80%; display: flex; justify-content: flex-start; border-left-color: rgb(207, 207, 207); border-right-color: rgb(207, 207, 207); border-top-color: rgb(207, 207, 207); border-bottom-color: rgb(207, 207, 207); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Card.png?fileID=-1380171658&amp;guid=f8d86aaee61368341922d38dda1585f6&amp;type=3#UI_Card_0&apos;);">
+            <ui:VisualElement name="WeaponUpgradePanel" style="background-color: rgba(0, 0, 0, 0.25); position: absolute; top: 0; right: 0; width: 75%; height: 80%; display: flex; justify-content: flex-start; border-left-color: rgb(207, 207, 207); border-right-color: rgb(207, 207, 207); border-top-color: rgb(207, 207, 207); border-bottom-color: rgb(207, 207, 207); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px;">
                 <ui:VisualElement name="InfoBox" style="flex-basis: 90%; align-items: center; justify-content: center; display: flex; background-image: url(&apos;project://database/Assets/02.Sprites/UI/InGame_UI_FeatherIcon.png?fileID=-1522164109&amp;guid=51366b9a6ca4e804789e3772d10af377&amp;type=3#InGame_UI_FeatherIcon_1&apos;);">
                     <ui:VisualElement name="LevelBox" class="StatusBox">
-                        <ui:Label text="Level" display-tooltip-when-elided="true" name="LevelText" class="StatusText" />
+                        <ui:Label text="Level" display-tooltip-when-elided="true" name="LevelText" class="StatusText" style="color: rgba(231, 231, 231, 255);" />
                     </ui:VisualElement>
                     <ui:VisualElement name="AtkBox" class="StatusBox">
-                        <ui:Label text="Atk" display-tooltip-when-elided="true" name="AtkText" class="StatusText" />
+                        <ui:Label text="Atk" display-tooltip-when-elided="true" name="AtkText" class="StatusText" style="color: rgba(236, 236, 236, 255);" />
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="PurchaseBox" style="flex-basis: 10%; flex-direction: row; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; background-image: url(&apos;project://database/Assets/02.Sprites/UI/InGame_UI_FeatherIcon.png?fileID=-1522164109&amp;guid=51366b9a6ca4e804789e3772d10af377&amp;type=3#InGame_UI_FeatherIcon_1&apos;);">
@@ -22,7 +22,7 @@
                         <ui:Label text="Label" display-tooltip-when-elided="true" name="NowFeatherText" style="color: rgb(255, 255, 255); margin-left: 9px;" />
                     </ui:VisualElement>
                     <ui:VisualElement name="BeforeFeather" style="flex-basis: 40%; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; background-color: rgb(12, 12, 12); align-items: flex-start; justify-content: center; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Card.png?fileID=-1380171658&amp;guid=f8d86aaee61368341922d38dda1585f6&amp;type=3#UI_Card_0&apos;);">
-                        <ui:Label text="Label" display-tooltip-when-elided="true" name="BeforeFeatherText" style="color: rgb(255, 255, 255); margin-left: 11px;" />
+                        <ui:Label text="Label" display-tooltip-when-elided="true" name="BeforeFeatherText" style="color: rgb(238, 106, 106); margin-left: 11px;" />
                     </ui:VisualElement>
                     <ui:VisualElement name="PurchaseBtn" style="flex-basis: 20%; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; background-color: rgb(185, 185, 185); align-items: center; justify-content: center; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Card.png?fileID=738687179&amp;guid=f8d86aaee61368341922d38dda1585f6&amp;type=3#UI_Card_1&apos;);">
                         <ui:Label text="Purchase" display-tooltip-when-elided="true" style="color: rgb(0, 0, 0); font-size: 20px;" />

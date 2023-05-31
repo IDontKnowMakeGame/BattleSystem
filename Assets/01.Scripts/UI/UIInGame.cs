@@ -74,7 +74,7 @@ public class UIInGame : UIBase
     #endregion
 
     #region FeatherEffect;
-    private float _featherEffectTime = 0;
+    private float _featherEffectTime = 3;
     private float _featherEffectDuration = 3f;
     private bool _IsFeatherEffect = false;
     #endregion
@@ -141,6 +141,7 @@ public class UIInGame : UIBase
         AddFeatherEffect();
         GetItemUpdate();
         OpenQuestPanel();
+        WriteFeatherValue();
     }
     public void ChangeWeaponPanel()
     {
@@ -437,8 +438,10 @@ public class UIInGame : UIBase
         if (currentFov <= 0)
             _IsFeatherEffect = true;
     }
-    public void WriteFeatherValue(int value)
+    public void WriteFeatherValue()
     {
-        _feather.text = value.ToString();
+        if(Define.GetManager<DataManager>()==null) return;
+
+        _feather.text = Define.GetManager<DataManager>().GetFeather().ToString();
     }
 }

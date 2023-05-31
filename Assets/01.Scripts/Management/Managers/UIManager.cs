@@ -102,4 +102,103 @@ public class UIManager : MonoBehaviour
     {
         BossBar.ShowBossBar(name);
     }
+    public int LevelToAtk(int level)
+    {
+        int value = 0;
+        switch (level)
+        {
+            case 0:
+                value = 0;
+                break;
+            case 1:
+                value = 20;
+                break;
+            case 2:
+                value = 45;
+                break;
+            case 3:
+                value = 75;
+                break;
+            case 4:
+                value = 110;
+                break;
+            case 5:
+                value = 150;
+                break;
+            case 6:
+                value = 195;
+                break;
+            case 7:
+                value = 245;
+                break;
+            case 8:
+                value = 300;
+                break;
+            case 9:
+                value = 360;
+                break;
+            case 10:
+                value = 425;
+                break;
+            case 11:
+                value = 495;
+                break;
+            case 12:
+                value = 570;
+                break;
+            default:
+                break;
+        }
+
+        return value;
+    }
+    public int LevelToFeather(int level)
+    {
+        int value = 0;
+        switch (level)
+        {
+            case 0:
+                value = 0;
+                break;
+            case 1:
+                value = 500;
+                break;
+            case 2:
+                value = 800;
+                break;
+            case 3:
+                value = 1000;
+                break;
+            case 4:
+                value = 2500;
+                break;
+            case 5:
+                value = 4500;
+                break;
+            case 6:
+                value = 8500;
+                break;
+            case 7:
+                value = 10000;
+                break;
+            case 8:
+                value = 12500;
+                break;
+            case 9:
+                value = 15000;
+                break;
+            case 10:
+                value = 25000;
+                break;
+            case 11:
+                value = 35000;
+                break;
+            case 12:
+                value = 45000;
+                break;
+            default:
+                break;
+        }
+        return value;
+    }
 }

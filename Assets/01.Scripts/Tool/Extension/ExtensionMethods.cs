@@ -869,6 +869,29 @@ public static class ExtensionMethods
         y = Mathf.RoundToInt(y / 90) * 90;
         return Quaternion.Euler(0, y, 0);
     }
+    
+    public static Rect Rotate(this Rect rect, float degree)
+    {
+        var center = rect.center;
+        var quaternion = Quaternion.Euler(0, 0, degree);
+        var first = new Vector2(-rect.width / 2, -rect.height / 2);
+        var second = new Vector2(rect.width / 2, -rect.height / 2);
+        var third = new Vector2(rect.width / 2, rect.height / 2);
+        var fourth = new Vector2(-rect.width / 2, rect.height / 2);
+        first = quaternion * first;
+        second = quaternion * second;
+        third = quaternion * third;
+        fourth = quaternion * fourth;
+        var newFirst = new Vector2(first.x + center.x, first.y + center.y);
+        var newSecond = new Vector2(second.x + center.x, second.y + center.y);
+        var newThird = new Vector2(third.x + center.x, third.y + center.y);
+        var newFourth = new Vector2(fourth.x + center.x, fourth.y + center.y);
+        var minX = Mathf.Min(newFirst.x, newSecond.x, newThird.x, newFourth.x);
+        var maxX = Mathf.Max(newFirst.x, newSecond.x, newThird.x, newFourth.x);
+        var minY = Mathf.Min(newFirst.y, newSecond.y, newThird.y, newFourth.y);
+        var maxY = Mathf.Max(newFirst.y, newSecond.y, newThird.y, newFourth.y);
+        return new Rect(minX, minY, maxX - minX, maxY - minY);
+    }
 
     #if UNITY_EDITOR
     public static Vector3[] GetMaxMinVector3s(this Transform[] poses)

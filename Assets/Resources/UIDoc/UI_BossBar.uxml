@@ -1,14 +1,16 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement name="background" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; justify-content: flex-end; align-items: center;">
-        <ui:VisualElement name="BossHPBox" style="background-color: rgb(0, 0, 0); width: 900px; height: 80px; margin-bottom: 50px; flex-direction: row;">
-            <ui:VisualElement name="BossIcon" style="width: 91px; height: 100%; background-color: rgb(51, 20, 20); background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-1643081658&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_6&apos;);">
+        <ui:VisualElement name="BossHPBox" style="width: 900px; height: 80px; margin-bottom: 80px; flex-direction: row; align-items: flex-end;">
+            <ui:VisualElement name="BossIcon" style="width: 91px; height: 100%; background-color: rgb(51, 20, 20); background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-1643081658&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_6&apos;); display: none;">
                 <ui:VisualElement name="Background" style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Boss_Card.png?fileID=-2084590875&amp;guid=a3aa13f2daa85e445a63480adaf8adde&amp;type=3#UI_Boss_Card_1&apos;);" />
             </ui:VisualElement>
-            <ui:VisualElement name="BossBar" style="align-items: flex-end; width: 100%; height: 100%; justify-content: flex-end; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Boss_Card.png?fileID=-148962995&amp;guid=a3aa13f2daa85e445a63480adaf8adde&amp;type=3#UI_Boss_Card_3&apos;);">
-                <ui:VisualElement name="Background" style="width: 100%; height: 100%; background-color: rgb(48, 2, 2);">
-                    <ui:VisualElement name="Fill" style="width: 68%; height: 100%; max-width: 100%; min-width: 0; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Slilder.png?fileID=-640806315&amp;guid=5c0fe44ae223cbc44add2c8a043a259b&amp;type=3#UI_Slilder_0&apos;);" />
+            <ui:VisualElement style="flex-direction: row; width: 100%; height: 35%; background-color: rgb(0, 0, 0);">
+                <ui:VisualElement name="BossBar" style="align-items: flex-end; width: 100%; height: 100%; justify-content: flex-end; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Boss_Card.png?fileID=-148962995&amp;guid=a3aa13f2daa85e445a63480adaf8adde&amp;type=3#UI_Boss_Card_3&apos;);">
+                    <ui:VisualElement name="Background" style="width: 100%; height: 100%; background-color: rgb(48, 2, 2);">
+                        <ui:VisualElement name="Fill" style="width: 68%; height: 100%; max-width: 100%; min-width: 0; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Slilder.png?fileID=-640806315&amp;guid=5c0fe44ae223cbc44add2c8a043a259b&amp;type=3#UI_Slilder_0&apos;);" />
+                        <ui:Label text="BossName" display-tooltip-when-elided="true" name="BossName" style="position: absolute; right: 1px; bottom: 23px; font-size: 20px; color: rgb(233, 233, 233); -unity-font: url(&apos;project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&amp;guid=fdf177119c8b7f84fbad0a6901efb8cc&amp;type=3#SUITE-Variable&apos;);" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:Label text="BossName" display-tooltip-when-elided="true" name="BossName" style="position: absolute; right: 10px; bottom: 10px; font-size: 20px; color: rgb(195, 195, 195); -unity-font: url(&apos;project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&amp;guid=fdf177119c8b7f84fbad0a6901efb8cc&amp;type=3#SUITE-Variable&apos;);" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

@@ -13,11 +13,23 @@ MonoBehaviour:
   m_Name: New Item Store Table SO
   m_EditorClassIdentifier: 
   table:
+  - itemID: 200
+    price: 50
+    limitItem: 0
+    limitCnt: 1
+  - itemID: 201
+    price: 100
+    limitItem: 0
+    limitCnt: 1
+  - itemID: 206
+    price: 300
+    limitItem: 0
+    limitCnt: 1
   - itemID: 300
-    price: 1200
-  - itemID: 300
-    price: 12121
-  - itemID: 300
-    price: 1212
-  - itemID: 300
-    price: 1212
+    price: 10000
+    limitItem: 1
+    limitCnt: 1
+  - itemID: 301
+    price: 10000
+    limitItem: 1
+    limitCnt: 1

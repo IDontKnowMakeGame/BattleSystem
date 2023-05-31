@@ -34,7 +34,7 @@
         <ui:VisualElement name="area_Void" style="flex-basis: 55%; align-items: flex-end; justify-content: flex-end; flex-direction: row;">
             <ui:VisualElement name="Left" style="flex-basis: 33%; height: 100%;">
                 <ui:VisualElement name="RoomInfoPanel" style="flex-basis: 15%; width: 35%; background-color: rgba(0, 0, 0, 0.25); justify-content: center; align-items: center; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; margin-bottom: 5px;">
-                    <ui:Label text="시작의 방" display-tooltip-when-elided="true" name="RoomNameText" style="-unity-font: url(&apos;project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&amp;guid=fdf177119c8b7f84fbad0a6901efb8cc&amp;type=3#SUITE-Variable&apos;); -unity-font-definition: none; color: rgb(226, 226, 226); font-size: 30px; margin-bottom: 3px;" />
+                    <ui:Label text="시작의 방" display-tooltip-when-elided="true" name="RoomNameText" style="-unity-font: url(&apos;project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&amp;guid=fdf177119c8b7f84fbad0a6901efb8cc&amp;type=3#SUITE-Variable&apos;); -unity-font-definition: url(&apos;project://database/Assets/Font/SUITE-Variable%20SDF%201.asset?fileID=11400000&amp;guid=640b171b207c5cb4d9380b34f11967f1&amp;type=2#SUITE-Variable SDF 1&apos;); color: rgb(226, 226, 226); font-size: 30px; margin-bottom: 3px;" />
                     <ui:VisualElement name="Line" style="width: 70%; height: 5%; background-color: rgb(255, 255, 255); margin-bottom: 5px;" />
                     <ui:VisualElement name="Line" style="width: 60%; height: 5%; background-color: rgb(255, 255, 255);" />
                 </ui:VisualElement>
