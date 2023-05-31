@@ -197,7 +197,7 @@ public class UIInventory : UIBase
             return;
         }
 
-        InGame.Player.GetAct<PlayerEquipment>().WeaponOnOff(true);
+        UIManager.Instance.MoveAndInputStop();
         isOpen = true;
         _root.style.display = DisplayStyle.Flex;
         EquipWeaponBoxImage();
@@ -214,7 +214,7 @@ public class UIInventory : UIBase
         InitSelectHaloSetting();
         SelectOptionInit(true);
         UIManager.Instance.UpdateInGameUI();
-        InGame.Player.GetAct<PlayerEquipment>().WeaponOnOff(false);
+        UIManager.Instance.MoveAndInputPlay();
     }
 
     public void EquipWeaponBoxImage()

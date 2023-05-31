@@ -37,10 +37,10 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        Define.GetManager<DataManager>().AddItemInInventory(ItemID.CompassOfSpace);
-        Define.GetManager<DataManager>().AddItemInInventory(ItemID.HaloOfTime);
-        Define.GetManager<DataManager>().AddItemInInventory(ItemID.ExecutionBlade);
-        Define.GetManager<DataManager>().AddItemInInventory(ItemID.Ascalon);
+        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.CompassOfSpace);
+        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.HaloOfTime);
+        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.ExecutionBlade);
+        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.Ascalon);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.SecondMap);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.Pick,1);
         UIStart();
@@ -89,6 +89,14 @@ public class UIManager : MonoBehaviour
             Dialog.NextMessage();
         }
 
+    }
+    public void MoveAndInputPlay()
+    {
+        Core.InGame.Player.GetAct<PlayerEquipment>().WeaponOnOff(false);
+    }
+    public void MoveAndInputStop()
+    {
+        Core.InGame.Player.GetAct<PlayerEquipment>().WeaponOnOff(true);
     }
     public void UpdateInGameUI()
     {

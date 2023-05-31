@@ -18,9 +18,11 @@ public enum QuestName
 public class QuestInfo
 {
     public string btnName = "";
+    public string clearBtnName = "";
     public QuestName questName = QuestName.none;
     public bool IsComplate = false;
     public int rewardfeather = 0;
+    public List<ItemID> questGiveItem = new List<ItemID>();
     public List<ItemID> rewords = new List<ItemID>();
     public List<QuestName> openQuest = new List<QuestName>();
 }

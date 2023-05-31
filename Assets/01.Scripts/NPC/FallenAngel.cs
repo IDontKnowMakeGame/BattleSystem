@@ -67,7 +67,7 @@ public class FallenAngel : NPCActor
                 if (castClearQuestActions.ContainsKey(info.questName) == false)
                     Debug.LogError($"Not Have Dictionary info QuestInfo : {info.questName}");
 
-                UIManager.Instance.Dialog.AddChoiceBox(info.btnName, castClearQuestActions[info.questName]);
+                UIManager.Instance.Dialog.AddChoiceBox(info.clearBtnName, castClearQuestActions[info.questName]);
             }
             //ready Quest
             if (Define.GetManager<DataManager>().IsReadyQuest(info.questName) == true)
@@ -95,6 +95,8 @@ public class FallenAngel : NPCActor
     {
         UIManager.Instance.Dialog.StartListeningDialog(dialogueList[1]);
         Define.GetManager<DataManager>().OpenQuest(QuestName.FirstFloorBossKill);
+
+        Define.GetManager<DataManager>().AddItemInInventory(questData.quests[0].questGiveItem[0], 1);
     }
 
     public void ClearBossKillQuestBtn()
