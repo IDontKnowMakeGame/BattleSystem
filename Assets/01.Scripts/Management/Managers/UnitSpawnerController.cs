@@ -25,6 +25,10 @@ public class UnitSpawnerController : MonoBehaviour
     {
         SpawnEnemys();
 
+        if (InGame.Player == null)
+            Debug.Log("플레이어 없음");
+        else
+            Debug.Log(InGame.Player.name);
         units.Add(InGame.Player);
     }
 
