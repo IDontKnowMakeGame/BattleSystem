@@ -35,16 +35,41 @@ namespace Actors.Characters.Enemy.OldShade
             {
                 AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
-                var decals = new List<AttackDecal>();
                 var dir = (playerPos - Position).GetDirection();
-                Attack(dir, "", () =>
+                
+                
+                var dirName = GetDirName(dir);
+                var nextState = dirName;
+                var readyClip =  _enemyAnimation.GetClip( nextState + "Ready");
+                var attackClip = _enemyAnimation.GetClip( nextState + "Attack");
+                var returnClip = _enemyAnimation.GetClip( nextState + "Return");
+                if (readyClip == null || attackClip == null || returnClip == null)
                 {
-                    decals.ForEach(x => x?.EndAttack());
-                    RemoveState(CharacterState.Chase);
-                }, 
-                    true, 
-                    null, 
-                    () => decals = attack?.HorizontalAttackNoEnd(dir, true));
+                    nextState = "Lower";
+                    readyClip =  _enemyAnimation.GetClip( nextState + "Ready");
+                    attackClip = _enemyAnimation.GetClip( nextState + "Attack");
+                    returnClip = _enemyAnimation.GetClip( nextState + "Return");
+                }
+
+                
+                var delay = readyClip.delay * (readyClip.fps + attackClip.fps);
+                readyClip.OnEnter = () =>
+                {
+                    attack.HorizontalAttackWithDelay(dir, delay, false);
+                };
+                _enemyAnimation.Play( nextState + "Ready");
+                readyClip.OnExit = () =>
+                {
+                    attackClip.OnExit = () =>
+                    {
+                        returnClip.OnExit = () =>
+                        {
+                            RemoveState(CharacterState.Attack);
+                        };
+                        _enemyAnimation.Play( nextState + "Return");
+                    };
+                    _enemyAnimation.Play( nextState + "Attack");
+                };
             });
         }
     }

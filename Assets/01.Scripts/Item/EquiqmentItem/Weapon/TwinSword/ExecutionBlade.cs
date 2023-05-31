@@ -63,8 +63,8 @@ public class ExecutionBlade : TwinSword
 
 		for (int i = 1; i <= 5; i++)
 		{
-			InGame.Attack(_pos + (_dir * i) + left, Vector3.one, info.Atk, i / 10, _characterActor);
-			InGame.Attack(_pos + (_dir * i) + right, Vector3.one, info.Atk, i / 10, _characterActor);
+			InGame.Attack(_pos + (_dir * i) + left, 0, Vector3.one, info.Atk, i / 10, _characterActor);
+			InGame.Attack(_pos + (_dir * i) + right, 0, Vector3.one, info.Atk, i / 10, _characterActor);
 		}
 		_playerMove.distance = 1;
 		_isCoolTime = true;
