@@ -25,7 +25,7 @@ public class TaintedSword : StraightSword
 		move.SkillDir = vec;
 		move.SkillAnimation();
 		
-		InGame.Attack(_characterActor.Position, new Vector3(3f, 0, 3f), info.Atk, 1f, _characterActor, true);
+		InGame.Attack(_characterActor.Position, 0, new Vector3(3f, 0, 3f), info.Atk, 1f, _characterActor, true);
 		
 		_characterActor.StartCoroutine(SkillCorutine());
 	}

@@ -33,6 +33,7 @@ namespace Acts.Characters
 		{
 			index = -1;
 			isFinished = false;
+			curClip.OnEnter?.Invoke();
 			while (true)
 			{
 				yield return new WaitForSeconds(curClip.delay);

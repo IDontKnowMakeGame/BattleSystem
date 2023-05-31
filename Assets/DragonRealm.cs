@@ -11,6 +11,8 @@ public class DragonRealm : MonoBehaviour
 	private bool _isCoolTime = false;
 	private float _currentTimer = 0;
 
+	private bool isAdd = false;
+
 	public void Init(float duration, float decrease)
 	{
 		_duration = duration;
@@ -42,6 +44,7 @@ public class DragonRealm : MonoBehaviour
 			if (!other.GetComponent<PlayerActor>())
 				return;
 
+			isAdd = true;
 			other.GetComponent<PlayerActor>().GetAct<PlayerStatAct>().Half += _decrease;
 		}
 	}
@@ -53,7 +56,16 @@ public class DragonRealm : MonoBehaviour
 			if (!other.GetComponent<PlayerActor>())
 				return;
 
+			isAdd = false;
 			other.GetComponent<PlayerActor>().GetAct<PlayerStatAct>().Half -= _decrease;
+		}
+	}
+
+	private void OnDisable()
+	{
+		if(isAdd)
+		{
+			InGame.Player.GetComponent<PlayerActor>().GetAct<PlayerStatAct>().Half -= _decrease;
 		}
 	}
 }

@@ -324,8 +324,8 @@ MonoBehaviour:
   From: Chase
   To: Pattern
   _conditions:
-  - rid: 8698174384013574144
   - rid: 4755812611868852225
+  - rid: 8698174384013574144
   references:
     version: 2
     RefIds:
@@ -372,7 +372,7 @@ MonoBehaviour:
         IsNegative: 1
         IsNeeded: 1
         _thisActor: {fileID: 6861387177648206927}
-        State: 11
+        State: 523
 --- !u!65 &6861387177648206925
 BoxCollider:
   m_ObjectHideFlags: 0

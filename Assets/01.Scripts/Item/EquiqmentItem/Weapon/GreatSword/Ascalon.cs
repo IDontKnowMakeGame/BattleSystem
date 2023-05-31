@@ -15,6 +15,10 @@ public class Ascalon : GreatSword
 
 		_isCoolTime = true;
 
+		GameObject obj = GameManagement.Instance.GetManager<ResourceManager>().Instantiate("AscalonEffect");
+		obj.transform.position = _characterActor.Position + (Vector3.up /2);
+		obj.transform.SetParent(_characterActor.transform);
+
 		_stat.PercentAtk(30);
 
 		PlayerAttack.OnAttackEnd += SkillEnd;

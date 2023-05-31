@@ -68,7 +68,7 @@ namespace AttackDecals
             var actors = from actor in InGame.Actors.Values
                 where actor is CharacterActor
                 let actorPos = new Vector3(actor.Position.x, actor.Position.z)
-                where rect.Contains(actorPos)
+                where rect.Rotate(transform.eulerAngles.y).Contains(actorPos)
                 where actor != attacker
                 select actor as CharacterActor;
             

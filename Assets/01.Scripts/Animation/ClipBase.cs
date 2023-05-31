@@ -17,6 +17,7 @@ namespace Tools
         public float delay;
         public List<Action> events = null;
         public Action OnExit;
+        public Action OnEnter;
 
         public void SetEventOnFrame(int frame, Action action)
         {
