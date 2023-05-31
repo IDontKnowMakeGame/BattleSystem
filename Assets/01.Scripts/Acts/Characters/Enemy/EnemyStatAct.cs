@@ -26,6 +26,8 @@ namespace Acts.Characters.Enemy
 
 		private Actor attackActor;
 
+		public Action OnDie = null;
+
         public bool isBoss = false;
         public override void Awake()
         {
@@ -142,6 +144,7 @@ namespace Acts.Characters.Enemy
 
             InGame.Player.GetAct<PlayerAttack>().RangeReset();
             InGame.Player.GetAct<PlayerAttack>().DeleteEnemy(ThisActor.gameObject);
+            OnDie?.Invoke();
         }
 
         private void ObjectCreate()
