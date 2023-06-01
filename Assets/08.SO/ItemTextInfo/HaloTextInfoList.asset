@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fbe97a7078e90e4e91e983f6af04f9d, type: 3}
+  m_Name: HaloTextInfoList
+  m_EditorClassIdentifier: 
+  list:
+  - {fileID: 11400000, guid: b448906a02a25a54f84b41c010e17f0c, type: 2}
+  - {fileID: 11400000, guid: 01ada56bd3ae9d241bdf5fb520d6cba7, type: 2}
+  - {fileID: 11400000, guid: 06b3d035bf133284bb2b7ce19932ab98, type: 2}
+  - {fileID: 11400000, guid: c96f2b518f7912545ac376a9067bde2c, type: 2}
+  - {fileID: 11400000, guid: 1b0e61e94e4e1674c9efe26475e37f20, type: 2}

@@ -31,6 +31,7 @@ public class UIInventory : UIBase
     private VisualElement _firstWeaponImage;
     private VisualElement _secondWeaponImage;
     private VisualElement _weaponScrollPanel;
+    private Label _weaponNameLabel;
     private Label _waeponExplainText;
 
     private VisualTreeAsset _weaponCardTemp;
@@ -130,6 +131,7 @@ public class UIInventory : UIBase
         _weaponChacraterViewImage = _weaponPanel.Q<VisualElement>("Character");
         _weaponInfoPanel = _weaponPanel.Q<VisualElement>("WeaponInfoPanel");
         _waeponExplainText = _weaponPanel.Q<Label>("ExplainText");
+        _weaponNameLabel = _weaponPanel.Q<Label>("WeaponNameText");
         _weaponStatusPanel = _weaponInfoPanel.Q<VisualElement>("StatusPanel");
         _firstWeaponImage = _weaponPanel.Q<VisualElement>("FirstWeapon");
         _firstWeaponImage.RegisterCallback<ClickEvent>(e =>
@@ -297,7 +299,9 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
         status.Q<Label>("Afs").text = string.Format("후 딜레이 : {0}", data.Afs);
         status.Q<Label>("Wei").text = string.Format("무게 : {0}", data.Weight);
 
-        _waeponExplainText.text = "";
+        _weaponNameLabel.text = UIManager.Instance.weaponTextInfoListSO.weapons[(int)itemID - 1].weaponNameText;
+        string coolTime = string.Format("{0}s", data.CoolTime);
+        _waeponExplainText.text = UIManager.Instance.weaponTextInfoListSO.weapons[(int)itemID - 1].explanationText.Replace("CoolTime", coolTime);
     }
     public void HideWeaponInfoPanel()
     {
