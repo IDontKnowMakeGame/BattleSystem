@@ -85,7 +85,7 @@ namespace Acts.Characters.Player
 
             if(currentID != ItemID.None)
             {
-                if (currentID == ItemID.FirstMap || currentID == ItemID.SecondMap || currentID == ItemID.ThirdMap)
+                if (currentID == ItemID.FirstMap || currentID == ItemID.SecondMap || currentID == ItemID.ThirdMap || currentID == ItemID.CompassOfSpace)
                     useAbleItems[currentID].UseItem();
                 else
                 {

@@ -1,4 +1,5 @@
 using Core;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,8 @@ public class EffectDestory : MonoBehaviour
 	[SerializeField]
 	private bool _shake = false;
 
+	public Action destroyEvent;
+
 	private void OnEnable()
 	{
 		if (_isTimeDestroy)
@@ -27,6 +30,7 @@ public class EffectDestory : MonoBehaviour
 	{
 		if (_shake)
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, new EventParam() { stringParam = "Damaged", intParam = 2 });
+		destroyEvent?.Invoke();
 		Define.GetManager<ResourceManager>().Destroy(obj);
 	}
 
@@ -35,6 +39,7 @@ public class EffectDestory : MonoBehaviour
 		yield return new WaitForSeconds(timer);
 		if (_shake)
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, new EventParam() { stringParam = "Damaged", intParam = 2 });
+		destroyEvent?.Invoke();
 		Define.GetManager<ResourceManager>().Destroy(obj);
 	}
 }

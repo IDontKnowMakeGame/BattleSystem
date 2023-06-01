@@ -82,9 +82,9 @@ public class CharacterStatAct : Act
 			if (_drainageAtk.Count > 0 || _percentStat > 0)
 			{
 				_changeStat.atk = (_changeStat.atk * _drainageStat) + ((_changeStat.atk * _drainageStat) * (_percentStat / 100));
-				Debug.Log((_changeStat.atk * _drainageStat));
-				Debug.Log((_percentStat / 100));
-				Debug.Log(((_changeStat.atk * _drainageStat) * (_percentStat / 100)));
+				//Debug.Log((_changeStat.atk * _drainageStat));
+				//Debug.Log((_percentStat / 100));
+				//Debug.Log(((_changeStat.atk * _drainageStat) * (_percentStat / 100)));
 			}
 			else
 				_changeStat.atk = (_changeStat.atk * 1) + ((_changeStat.atk * 1) * (_percentStat / 100));

@@ -26,6 +26,13 @@ public class PlayerStatAct : CharacterStatAct
     public override void Start()
 	{
 		base.Start();
+
+		// HP 포션 5개로 초기화
+		SaveItemData currentData = Define.GetManager<DataManager>().LoadItemFromInventory(Data.ItemID.HPPotion);
+		currentData.currentCnt = 5;
+		UIManager.Instance.InGame.SetItemPanelCnt(Data.ItemID.HPPotion);
+		Define.GetManager<DataManager>().ChangeItemInfo(currentData);
+
 		_playerAnimation = ThisActor.GetAct<PlayerAnimation>();
 		UIManager.Instance.InGame.ChanageMaxHP((int)ChangeStat.maxHP / 10);
 		UIManager.Instance.InGame.ChangeCurrentHP(PercentHP());
@@ -117,11 +124,6 @@ public class PlayerStatAct : CharacterStatAct
 		param.boolParam = false;
 		param.stringParam = "Die";
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.HaloOfEreshkigal, param);
-		// HP 포션 5개로 초기화
-		SaveItemData currentData = Define.GetManager<DataManager>().LoadItemFromInventory(Data.ItemID.HPPotion);
-		currentData.currentCnt = 5;
-		UIManager.Instance.InGame.SetItemPanelCnt(Data.ItemID.HPPotion);
-		Define.GetManager<DataManager>().ChangeItemInfo(currentData);
 		Debug.Log(ThisActor);
 	}
 }

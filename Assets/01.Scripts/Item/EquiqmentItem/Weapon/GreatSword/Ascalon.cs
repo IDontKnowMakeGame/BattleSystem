@@ -18,9 +18,14 @@ public class Ascalon : GreatSword
 
 		_isCoolTime = true;
 
-		_obj = GameManagement.Instance.GetManager<ResourceManager>().Instantiate("AscalonEffect");
-		_obj.transform.SetParent(_characterActor.transform);
-		_obj.transform.localPosition = Vector3.zero;
+		GameObject obj = GameManagement.Instance.GetManager<ResourceManager>().Instantiate("Hit-AscalonEffect");
+		obj.transform.position = _characterActor.Position + Vector3.up;
+		obj.GetComponent<EffectDestory>().destroyEvent = () =>
+		{
+			_obj = GameManagement.Instance.GetManager<ResourceManager>().Instantiate("AscalonEffect");
+			_obj.transform.SetParent(_characterActor.transform);
+			_obj.transform.localPosition = Vector3.zero;
+		};
 
 		_stat.PercentAtk(30);
 
