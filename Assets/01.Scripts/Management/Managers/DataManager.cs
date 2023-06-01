@@ -30,6 +30,7 @@ public class DataManager : Manager
         WeaponLevelListData_ = JsonManager.LoadJsonFile<WeaponLevelDataList>(Application.streamingAssetsPath + "/SAVE/Weapon", "WeaponLevelData");
         ItemTableData = JsonManager.LoadJsonFile<ItemTable>(Application.streamingAssetsPath + "/Save/Json/" + typeof(ItemTable), typeof(ItemTable).ToString());
         PlayerOpenQuestData_ = JsonManager.LoadJsonFile<PlayerQuestData>(Application.streamingAssetsPath + "/SAVE/User", "OpenQuest");
+        //Debug.Log($"QuestData Load : {PlayerOpenQuestData_.openQuestList[0]}");
 
         if(MapData_.mapData.Count == 0)
             InitMapData();

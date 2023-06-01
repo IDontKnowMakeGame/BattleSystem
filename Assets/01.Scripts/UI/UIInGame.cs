@@ -260,7 +260,6 @@ public class UIInGame : UIBase
         for(int i = 0; i < list.Count;i++)
             AddQuestPanel(list[i]);
 
-        list.Clear();
         list = DataManager.PlayerOpenQuestData_.readyClearQuestList;
         for (int i = 0; i < list.Count; i++)
             AddQuestPanel(list[i],true);

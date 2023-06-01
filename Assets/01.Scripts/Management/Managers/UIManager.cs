@@ -78,7 +78,7 @@ public class UIManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            
+            Debug.Log($" open QuestList Cnt : {DataManager.PlayerOpenQuestData_.openQuestList[0]}");
         }
         if (Input.GetKeyDown(KeyCode.B))
         {
