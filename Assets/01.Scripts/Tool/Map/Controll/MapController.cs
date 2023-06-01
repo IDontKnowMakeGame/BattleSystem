@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using Actors.Characters;
 using Blocks;
 using Managements;
@@ -10,6 +11,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.ProBuilder;
 using UnityEngine.ProBuilder.MeshOperations;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Tool.Map.Controll
 {
@@ -21,6 +24,7 @@ namespace Tool.Map.Controll
         private static Rect mapRect;
         private static Vector3[] mapPoses;
         private Dictionary<Vector3, Block> selectedBlocks = new();
+        private static Dictionary<Vector3, GameObject> meshes = new(); 
         private Dictionary<Vector3, Vector2> blockPosDic = new();
         private Transform mapModelRoot = null;
         public static Dictionary<Vector3, GameObject> SpawnCharacters = new();
@@ -47,6 +51,8 @@ namespace Tool.Map.Controll
         {
             blocks = MapManager.GetDictWithBlocks();
             rooms = MapManager.GetRoomsOnMap();
+            meshes = rooms.SelectMany(r => r.modelRoot.AllChildrenObjArray()).ToDictionary(r => r.transform.position.SetY(0));
+            Debug.Log(meshes.Count);
             var objects = Resources.LoadAll("Prefabs/Enemies");
             enemies = new GameObject[objects.Length];
             for (int i = 0; i < objects.Length; i++)
@@ -71,9 +77,11 @@ namespace Tool.Map.Controll
             ShowBlocks();
 
             idx = 0;
+            ShowBlockList();
             ShowToggleBtn(7);
             ShowRoomCreator(7);
             ShowRoomController(3);
+            ShowModelRemover(_height: 3);
             ShowRoomArea(3);
             ShowRoomMerge(3);
             ShowModelMerge(3);
@@ -83,6 +91,63 @@ namespace Tool.Map.Controll
 
             CheckCharacter();
             DragHandle();
+        }
+
+        Vector2 scrollPos3 = Vector2.zero;
+        private void ShowBlockList()
+        {
+            var index = idx * height;
+            var enemyList = enemies.ToList();
+            var enemyListRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index, 300, height * 2 * (enemyList.Count + 1));
+            GUI.Box(enemyListRect, "");
+            scrollPos2 = GUI.BeginScrollView(enemyListRect, scrollPos2, new Rect(0, 0, 300, height * (enemyList.Count + 1)));
+            var listHeight = 0f;
+            var blockRect = new Rect(0, listHeight, 300, height * 2);
+            if (GUI.Button(blockRect, "Block List"))
+            {
+                selectedBlocks.Clear();
+                selectedBlocks.AddRange(blocks.Where(b => b.Value is not EmptyBlock and not FallingBlock).Select(b => b.Value).ToDictionary(b => b.transform.position));
+            }
+            listHeight += height * 2;
+            var emptyRect = new Rect(0, listHeight, 300, height * 2);
+            if (GUI.Button(emptyRect, "EmptyBlock List"))
+            {
+                selectedBlocks.Clear();
+                selectedBlocks.AddRange(blocks.Where(b => b.Value is EmptyBlock and not FallingBlock).Select(b => b.Value).ToDictionary(b => b.transform.position));
+            }
+            listHeight += height * 2;
+            var fallingRect = new Rect(0, listHeight, 300, height * 2);
+            if (GUI.Button(fallingRect, "FallingBlock List"))
+            {
+                selectedBlocks.Clear();
+                selectedBlocks.AddRange(blocks.Where(b => b.Value is FallingBlock).Select(b => b.Value).ToDictionary(b => b.transform.position));
+            }
+            listHeight += height * 2;
+            var enemyRect2 = new Rect(0, listHeight, 300, height * 2);
+            if (GUI.Button(enemyRect2, "All"))
+            {
+                selectedBlocks.Clear();
+                selectedBlocks.AddRange(blocks);
+            }
+            GUI.EndScrollView();
+            idx += (enemyList.Count + spaceIdx) * 2;
+        }
+
+        private void ShowModelRemover(int _height)
+        {
+            var index = idx * height;
+            var removeBtnRect = new Rect((mapPoses[1].x) * width + 50, mapRect.y + index, 300, height * _height);
+            if (GUI.Button(removeBtnRect, "Remove Model"))
+            {
+                foreach (var block in selectedBlocks)
+                {
+                    Debug.Log(block.Key);
+                    if(meshes.TryGetValue(block.Key.SetY(0), out var mesh))
+                        DestroyImmediate(mesh);
+                    Debug.Log(mesh);
+                }
+            }
+            idx += _height * spaceIdx;
         }
 
         private void ShowModelMerge(int _height)
@@ -98,8 +163,7 @@ namespace Tool.Map.Controll
             }
             idx += _height * spaceIdx;
         }
-
-        [Obsolete("Obsolete")]
+        
         private void ShowRoomMerge(int _height)
         {
             var index = idx * height;
@@ -162,6 +226,17 @@ namespace Tool.Map.Controll
                     if (room.name == roomText)
                     {
                         selectedBlocks.Values.ToList().ForEach(block => block.transform.SetParent(room.transform));
+                        
+                        var rootTrm = GameObject.Find("MapTiled").transform;
+                        var modelParentTrm = GameObject.Find(roomText + "Model").transform;
+                        foreach (var block in selectedBlocks.Values)
+                        {
+                            var modelTrm = block.transform.GetChild(0).GetChild(0);
+                            var model = Instantiate(modelTrm, modelParentTrm);
+                            model.position = block.transform.position;
+                        }
+
+                        
                         Init();
                         break;
                     }
@@ -296,22 +371,22 @@ namespace Tool.Map.Controll
                 var rootTrm = GameObject.Find("MapTiled").transform;
                 var modelParentTrm = new GameObject(roomText + "Model").transform;
                 Transform model = null;
-                foreach (var r in rooms)
-                {
-                    if (r.name == roomText)
-                    {
-                        modelParentTrm.SetParent(mapModelRoot);
-                        r.modelRoot = modelParentTrm;
-                        foreach (var block in selectedBlocks.Values)
-                        {
-                            var modelTrm = block.transform.GetChild(0).GetChild(0);
-                            model = Instantiate(modelTrm, modelParentTrm);
-                            model.position = block.transform.position;
-                        }
-                        selectedBlocks.Clear();
-                        return;
-                    }
-                }
+                // foreach (var r in rooms)
+                // {
+                //     if (r.name == roomText)
+                //     {
+                //         modelParentTrm.SetParent(mapModelRoot);
+                //         r.modelRoot = modelParentTrm;
+                //         foreach (var block in selectedBlocks.Values)
+                //         {
+                //             var modelTrm = block.transform.GetChild(0).GetChild(0);
+                //             model = Instantiate(modelTrm, modelParentTrm);
+                //             model.position = block.transform.position;
+                //         }
+                //         selectedBlocks.Clear();
+                //         return;
+                //     }
+                // }
                 var parentTrm = new GameObject(roomText).transform;
                 parentTrm.SetParent(rootTrm);
                 var room = parentTrm.AddComponent<Rooms.Room>();
@@ -490,7 +565,7 @@ namespace Tool.Map.Controll
 
             var color = GUI.backgroundColor;
             var nextColor = Color.cyan;
-            nextColor.a = 0.5f;
+            nextColor.a = 0.8f;
             GUI.backgroundColor = nextColor;
             GUI.Box(rect, "");
             GUI.backgroundColor = color;    
@@ -514,6 +589,10 @@ namespace Tool.Map.Controll
             {
                 var oldColor = GUI.backgroundColor;
                 var color = Color.green;
+                if (block.Value is EmptyBlock)
+                    color = Color.gray;
+                if  (block.Value is FallingBlock)
+                    color = Color.blue;
                 if (block.Value.isWalkable == false)
                     color = Color.red;
                 if(block.Value.HasSwitchCamera)
