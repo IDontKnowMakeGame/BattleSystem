@@ -52,8 +52,11 @@ public class QuestManager : MonoBehaviour
     {
         List<QuestName> openQuestList = DataManager.PlayerOpenQuestData_.openQuestList;
 
+        Debug.Log(openQuestList.Count);
+
         foreach(QuestName currentQuest in openQuestList)
         {
+            Debug.Log(currentQuest);
             QuestCheck(currentQuest);
         }
     }
