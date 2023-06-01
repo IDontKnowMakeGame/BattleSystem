@@ -15,8 +15,6 @@ public class CompassOfSpace : UseAbleItem
         set => targetBlock = value;
     }
 
-    private float timer = 0f;
-    private float maxTimer = 4f;
     private bool useItem = false;
 
 
@@ -29,8 +27,13 @@ public class CompassOfSpace : UseAbleItem
 
     public override bool UseItem()
     {
-        if (useItem) return false;
-        timer = 0f;
+        if (useItem)
+        {
+            Debug.Log("나침반 리셋");
+            Reset();
+            return true;
+        }
+        Debug.Log("나침반 시작");
         arrow.gameObject.SetActive(true);
         useItem = true;
         return true;
@@ -41,7 +44,6 @@ public class CompassOfSpace : UseAbleItem
         if (useItem)
         {
             ArrowDir();
-            Timer();
         }
     }
 
@@ -53,19 +55,12 @@ public class CompassOfSpace : UseAbleItem
         Quaternion rot = Quaternion.LookRotation(dir.normalized);
         Quaternion targetRotation = Quaternion.Euler(-90f, rot.eulerAngles.y, rot.eulerAngles.z);
 
-        Debug.Log(targetRotation.eulerAngles);
-
         arrow.localRotation = targetRotation;
     }
 
-    private void Timer()
+    private void Reset()
     {
-        timer += Time.deltaTime;
-
-        if (timer >= maxTimer)
-        {
-            arrow.gameObject.SetActive(false);
-            useItem = false;
-        }
+        arrow.gameObject.SetActive(false);
+        useItem = false;
     }
 }
