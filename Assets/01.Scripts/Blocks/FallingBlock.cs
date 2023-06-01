@@ -1,4 +1,5 @@
-﻿using Blocks.Acts;
+﻿using Actors.Characters;
+using Blocks.Acts;
 using UnityEngine;
 
 namespace Blocks
@@ -37,6 +38,12 @@ namespace Blocks
                         movement.Fall(0.5f);
                     }
                     if(ActorOnBlock == null) return;
+                    if (ActorOnBlock is CharacterActor)
+                    {
+                        var characterOnBlock = ActorOnBlock as CharacterActor;
+                        if (characterOnBlock.HasState(CharacterState.Die))
+                            return;
+                    }
                     var stat = ActorOnBlock.GetAct<CharacterStatAct>();
                     stat?.Damage(int.MaxValue, this);
                 }
