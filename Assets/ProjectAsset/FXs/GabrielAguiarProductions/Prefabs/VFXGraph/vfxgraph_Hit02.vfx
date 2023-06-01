@@ -5752,7 +5752,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615485}
   m_ExposedName: ParticlesRate
   m_Exposed: 1
-  m_Order: 5
+  m_Order: 4
   m_Category: PARTICLES
   m_Min:
     m_Type:
@@ -5832,7 +5832,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615487}
   m_ExposedName: ParticlesLifetime
   m_Exposed: 1
-  m_Order: 7
+  m_Order: 6
   m_Category: PARTICLES
   m_Min:
     m_Type:
@@ -5915,7 +5915,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615489}
   m_ExposedName: ParticlesSize
   m_Exposed: 1
-  m_Order: 9
+  m_Order: 8
   m_Category: PARTICLES
   m_Min:
     m_Type:
@@ -5998,7 +5998,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615491}
   m_ExposedName: ParticlesTexture
   m_Exposed: 1
-  m_Order: 3
+  m_Order: 2
   m_Category: PARTICLES
   m_Min:
     m_Type:
@@ -6078,7 +6078,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615493}
   m_ExposedName: ParticlesColor
   m_Exposed: 1
-  m_Order: 1
+  m_Order: 0
   m_Category: PARTICLES
   m_Min:
     m_Type:
@@ -6294,7 +6294,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615499}
   m_ExposedName: TrailsRate
   m_Exposed: 1
-  m_Order: 15
+  m_Order: 14
   m_Category: PARTICLES
   m_Min:
     m_Type:
@@ -6374,7 +6374,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615501}
   m_ExposedName: TrailsColor
   m_Exposed: 1
-  m_Order: 11
+  m_Order: 10
   m_Category: PARTICLES
   m_Min:
     m_Type:
@@ -6590,7 +6590,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615507}
   m_ExposedName: TrailsSize
   m_Exposed: 1
-  m_Order: 19
+  m_Order: 18
   m_Category: PARTICLES
   m_Min:
     m_Type:
@@ -6670,7 +6670,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615509}
   m_ExposedName: TrailsTexture
   m_Exposed: 1
-  m_Order: 13
+  m_Order: 12
   m_Category: PARTICLES
   m_Min:
     m_Type:
@@ -6750,7 +6750,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615511}
   m_ExposedName: TrailsLifetime
   m_Exposed: 1
-  m_Order: 17
+  m_Order: 16
   m_Category: PARTICLES
   m_Min:
     m_Type:
@@ -6833,7 +6833,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615513}
   m_ExposedName: FlashColor
   m_Exposed: 1
-  m_Order: 2
+  m_Order: 1
   m_Category: FLASH
   m_Min:
     m_Type:
@@ -7049,7 +7049,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615519}
   m_ExposedName: FlashTexture
   m_Exposed: 1
-  m_Order: 4
+  m_Order: 3
   m_Category: FLASH
   m_Min:
     m_Type:
@@ -7129,7 +7129,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615521}
   m_ExposedName: FlashRate
   m_Exposed: 1
-  m_Order: 6
+  m_Order: 5
   m_Category: FLASH
   m_Min:
     m_Type:
@@ -7209,7 +7209,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615523}
   m_ExposedName: FlashLifetime
   m_Exposed: 1
-  m_Order: 8
+  m_Order: 7
   m_Category: FLASH
   m_Min:
     m_Type:
@@ -7292,7 +7292,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615525}
   m_ExposedName: FlashSize
   m_Exposed: 1
-  m_Order: 12
+  m_Order: 11
   m_Category: FLASH
   m_Min:
     m_Type:
@@ -7372,7 +7372,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615528}
   m_ExposedName: SpiralTexture
   m_Exposed: 1
-  m_Order: 16
+  m_Order: 15
   m_Category: FLASH
   m_Min:
     m_Type:
@@ -7452,7 +7452,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615530}
   m_ExposedName: SpiralColor
   m_Exposed: 1
-  m_Order: 14
+  m_Order: 13
   m_Category: FLASH
   m_Min:
     m_Type:
@@ -7668,7 +7668,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615536}
   m_ExposedName: SpiralSize
   m_Exposed: 1
-  m_Order: 18
+  m_Order: 17
   m_Category: FLASH
   m_Min:
     m_Type:
@@ -7748,7 +7748,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615538}
   m_ExposedName: SpiralRotation
   m_Exposed: 1
-  m_Order: 10
+  m_Order: 9
   m_Category: FLASH
   m_Min:
     m_Type:
@@ -10073,7 +10073,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615620}
   m_ExposedName: CrossSize
   m_Exposed: 1
-  m_Order: 20
+  m_Order: 19
   m_Category: 
   m_Min:
     m_Type:
@@ -10153,7 +10153,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615622}
   m_ExposedName: CrossColor
   m_Exposed: 1
-  m_Order: 21
+  m_Order: 20
   m_Category: 
   m_Min:
     m_Type:
@@ -10369,7 +10369,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615628}
   m_ExposedName: CrossTexture
   m_Exposed: 1
-  m_Order: 22
+  m_Order: 21
   m_Category: 
   m_Min:
     m_Type:
@@ -10449,7 +10449,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615630}
   m_ExposedName: CrossScale
   m_Exposed: 1
-  m_Order: 23
+  m_Order: 22
   m_Category: 
   m_Min:
     m_Type:
@@ -10641,7 +10641,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615635}
   m_ExposedName: CrossLifetime
   m_Exposed: 1
-  m_Order: 24
+  m_Order: 23
   m_Category: 
   m_Min:
     m_Type:
@@ -10721,7 +10721,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615637}
   m_ExposedName: CrossRate
   m_Exposed: 1
-  m_Order: 25
+  m_Order: 24
   m_Category: 
   m_Min:
     m_Type:

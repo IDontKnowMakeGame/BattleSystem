@@ -27,13 +27,13 @@ public class ExecutionBlade : TwinSword
 	{
 		if (_isCoolTime)
 			return;
+		if(_characterActor.HasAnyState())
+			return;
 
-		//_playerMove.distance = 5;
 		_pos = _characterActor.Position;
 		_origindir = vec;
 		_dir = InGame.CamDirCheck(_origindir);
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, new EventParam() { stringParam = "Execute" ,intParam = 1});
-
 		_characterActor.AddState(CharacterState.Skill);
 		_characterActor.StartCoroutine(WaitMove());
 	}
@@ -41,32 +41,33 @@ public class ExecutionBlade : TwinSword
 	private IEnumerator WaitMove()
 	{
 		yield return new WaitForSeconds(0.83f/5);
-		_characterActor.RemoveState(CharacterState.Skill);
 		GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Dust");
 		obj.transform.position = _characterActor.Position + Vector3.up / 2 + _dir / 2;
 		obj.transform.localRotation = Quaternion.LookRotation(_dir);
 
 		int count = 1;
-		for(count = 1; count < 5; count++)
+		for(count = 1; count <= 5; ++count)
 		{
+
 			if(InGame.GetBlock(_characterActor.Position + _dir * count) != null)
 			{
 				if (InGame.GetBlock(_characterActor.Position + _dir * count).ActorOnBlock == null && !InGame.GetBlock(_characterActor.Position + _dir * count).isWalkable)
+				{
+					count--;
+					Debug.Log(count);
 					break;
+				}
 			}
 			else
 			{
 				count--;
+				Debug.Log(count);
 				break;
 			}
 		}
 
 		float speed = 0.5f;
 		_seq = DOTween.Sequence();
-		Debug.Log((_origindir * count));
-		Debug.Log((_origindir));
-		Debug.Log(count);
-		Debug.Log(_characterActor.Position);
 		_seq.Append(_characterActor.transform.DOMove(_characterActor.Position + Vector3.up + (_dir * count), speed).OnComplete(() =>
 		{
 			Vector3 left = Mathf.Abs(_dir.x) > Mathf.Abs(_dir.z) ? Vector3.back : Vector3.left;
@@ -88,6 +89,8 @@ public class ExecutionBlade : TwinSword
 			_isCoolTime = true;
 
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.StopScreenEffect, new EventParam());
+
+			_characterActor.RemoveState(CharacterState.Skill);
 		}));
 
 		_seq.Play();
