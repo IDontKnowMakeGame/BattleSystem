@@ -125,6 +125,10 @@ public class UISmithy : UIBase
     }
     public void PurchaseBtn()
     {
+        if(afterFeather < 0)
+        {
+            return;
+        }
         if (currentItem == ItemID.None) return;
         if (nowLevel >= 12) return;
 
@@ -149,12 +153,24 @@ public class UISmithy : UIBase
     
     public void UpdateSmithyUI()
     {
-        _levelText.text = string.Format("Level {0} -> {1}", nowLevel, afterLevel);
-        _atkText.text = string.Format("Atk {0} -> {1}", nowAtk, afterAtk);
         nowFeather = Define.GetManager<DataManager>().GetFeather();
-
         _smithyNowFeatherText.text = nowFeather.ToString();
-        afterFeather = nowFeather - price;
-        _smithyAfterFeatherText.text = afterFeather.ToString();
+        if (nowLevel >= 12)
+        {
+            _levelText.text = string.Format("Level : ALL ({0})", nowLevel);
+            _atkText.text = string.Format("Atk {0}", nowAtk);
+
+            afterFeather = nowFeather;
+            _smithyAfterFeatherText.text = afterFeather.ToString();
+        }
+        else
+        {
+            _levelText.text = string.Format("Level {0} -> {1}", nowLevel, afterLevel);
+            _atkText.text = string.Format("Atk {0} -> {1}", nowAtk, afterAtk);
+
+            afterFeather = nowFeather - price;
+            _smithyAfterFeatherText.text = afterFeather.ToString();
+        }
+
     }
 }

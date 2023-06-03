@@ -473,16 +473,18 @@ public class DataManager : Manager
                 InventoryData_.inventoryInUsableItemList.Add(item);
             }
             else
-            {
                 AddItemCount(item);
-            }
         }
         else if ((int)item.id < 400)
         { //QuestItem
-            Debug.Log(InventoryData_.inventoryInQuestItemList.Count);
-            if (HaveQuestItem(item.id)) return;
-            InventoryData_.inventoryInQuestItemList.Add(item);
-            Debug.Log(item.id);
+            SaveItemData info = LoadQuestFromInventory(id);
+            if (info == null)
+            {
+                info = item;
+                InventoryData_.inventoryInQuestItemList.Add(item);
+            }
+            else
+                AddQuestItemCount(item);
         }
 
         if (UIManager.Instance != null)
@@ -638,7 +640,20 @@ public class DataManager : Manager
         }
         return null;
     }
+    public void AddQuestItemCount(SaveItemData data)
+    {
+        for (int i = 0; i < InventoryData_.inventoryInQuestItemList.Count; i++)
+        {
+            if (InventoryData_.inventoryInQuestItemList[i].id == data.id)
+            {
+                SaveItemData info = InventoryData_.inventoryInQuestItemList[i];
+                InventoryData_.inventoryInQuestItemList[i].currentCnt = Math.Clamp((info.currentCnt + data.currentCnt), 0, info.maxCnt);
 
+                SaveToInventoryData();
+                return;
+            }
+        }
+    }
     public static bool HaveQuestItem(ItemID id)
     {
         foreach (SaveItemData item in InventoryData_.inventoryInQuestItemList)

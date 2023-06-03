@@ -76,6 +76,7 @@ public class UIItemStore : UIBase
         {
             VisualElement card = _itemCardTemp.Instantiate().Q<VisualElement>("card");
             card.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)item.itemID}"));
+            card.Q<Label>("PriceText").text = item.price.ToString();
             card.RegisterCallback<ClickEvent>(e =>
             {
                 SelectItme(card, item.itemID, item.price);
