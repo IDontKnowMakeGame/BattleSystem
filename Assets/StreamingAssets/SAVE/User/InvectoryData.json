@@ -109,7 +109,7 @@
         {
             "id": 202,
             "name": "HPPotion",
-            "currentCnt": 5,
+            "currentCnt": 4,
             "maxCnt": 5
         },
         {
@@ -149,6 +149,12 @@
             "name": "TEST",
             "currentCnt": 0,
             "maxCnt": 0
+        },
+        {
+            "id": 301,
+            "name": "SoulRope",
+            "currentCnt": 1,
+            "maxCnt": 99
         }
     ]
 }
