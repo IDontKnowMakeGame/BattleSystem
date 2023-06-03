@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
 
     public WeaponInfoListSO weaponTextInfoListSO;
     public HaloTextInfoListSO haloTextInfoListSO;
+    public UseableItemTextInfoListSO useableItemTextInfoListSO;
 
     private void Awake()
     {
