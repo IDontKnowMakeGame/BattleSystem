@@ -65,6 +65,12 @@
             "name": "Ascalon",
             "currentCnt": 1,
             "maxCnt": 0
+        },
+        {
+            "id": 9,
+            "name": "RustySpear",
+            "currentCnt": 1,
+            "maxCnt": 99
         }
     ],
     "inventoryInHaloList": [
@@ -139,7 +145,7 @@
         {
             "id": 207,
             "name": "CompassOfSpace",
-            "currentCnt": 2,
+            "currentCnt": 3,
             "maxCnt": 99
         }
     ],

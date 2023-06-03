@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
 
     public WeaponInfoListSO weaponTextInfoListSO;
     public HaloTextInfoListSO haloTextInfoListSO;
+    public UseableItemTextInfoListSO useableItemTextInfoListSO;
 
     private void Awake()
     {
@@ -39,7 +40,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.CompassOfSpace);
+        Define.GetManager<DataManager>().AddItemInInventory(ItemID.RustySpear);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.HaloOfTime);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.ExecutionBlade);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.Ascalon);

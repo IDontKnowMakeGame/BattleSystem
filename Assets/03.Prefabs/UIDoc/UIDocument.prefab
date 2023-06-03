@@ -65,3 +65,4 @@ MonoBehaviour:
   MapNameData: {fileID: 11400000, guid: e17b57d724129c245835699b4a0feccb, type: 2}
   weaponTextInfoListSO: {fileID: 11400000, guid: ed672c11be7d27e4ea4739a7afd12b7d, type: 2}
   haloTextInfoListSO: {fileID: 11400000, guid: e3240106821442c44a8753d9540f829d, type: 2}
+  useableItemTextInfoListSO: {fileID: 11400000, guid: d3989ecd5a644824d8cdccdc1d37eb7b, type: 2}
