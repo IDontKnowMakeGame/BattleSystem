@@ -103,7 +103,7 @@
         {
             "id": 200,
             "name": "Torch",
-            "currentCnt": 9,
+            "currentCnt": 0,
             "maxCnt": 99
         },
         {
@@ -159,6 +159,12 @@
         {
             "id": 301,
             "name": "SoulRope",
+            "currentCnt": 2,
+            "maxCnt": 99
+        },
+        {
+            "id": 302,
+            "name": "AngelWingFragment",
             "currentCnt": 1,
             "maxCnt": 99
         }
