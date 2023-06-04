@@ -11,6 +11,7 @@ using UnityEngine.Serialization;
 public class InteractionActor : CharacterActor
 {
     [SerializeField] protected CharacterDetect characterDetect;
+    [SerializeField] protected bool canInteract = true;
     protected override void Init()
     {
         base.Init();

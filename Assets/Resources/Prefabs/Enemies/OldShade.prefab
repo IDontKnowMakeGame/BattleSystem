@@ -192,7 +192,7 @@ MonoBehaviour:
     _blinkTime: 0.1
     _blinkDelay: 0.1
   _characterState: 0
-  _isBlocking: 0
+  _isBlocking: 1
   canKnockBack: 0
   _secondPhaseHpPercent: 0
   _enemyAi:
@@ -240,6 +240,9 @@ MonoBehaviour:
   alive: 1
   spriteSize: 1
   currentType: 1
+  OnDie:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6861387177648206924
 MonoBehaviour:
   m_ObjectHideFlags: 0
