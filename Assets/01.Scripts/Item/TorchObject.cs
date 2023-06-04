@@ -37,6 +37,11 @@ public class TorchObject : InteractionActor
         if (InGame.Player.Position.IsNeighbor(Position) == false || isOn) return;
 
         base.Interact();
+        TurnOn();   
+    }
+
+    public void TurnOn()
+    {
         ChangeWarmTiles();
         torchLight.SetActive(true);
         Define.GetManager<DataManager>().OnCrital(Int32.Parse(gameObject.name));
