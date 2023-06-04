@@ -66,6 +66,8 @@ public class DieAction : InteractionActor
 		base.Interact();
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, new EventParam() { stringParam = "gf" });
 		_unitAnimation.Play(objName);
+		Debug.Log(objName);
+		Define.GetManager<SoundManager>().Play("Boss/" + objName, Define.Sound.Effect, 1);
 		_unitAnimation.GetClip(objName)?.SetEventOnFrame(_unitAnimation.GetClip(objName).fps -1, Die);
 		if (_unitAnimation.GetClip(objName) == null)
 			return;
