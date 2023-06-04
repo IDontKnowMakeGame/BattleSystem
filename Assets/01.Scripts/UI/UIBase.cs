@@ -20,4 +20,12 @@ public class UIBase
     {
 
     }
+    public virtual void Show()
+    {
+        _root.style.display = DisplayStyle.Flex;
+    }
+    public virtual void Hide()
+    {
+        _root.style.display = DisplayStyle.None;
+    }
 }

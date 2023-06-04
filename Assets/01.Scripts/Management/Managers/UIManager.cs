@@ -42,8 +42,8 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        Define.GetManager<DataManager>().AddItemInInventory(ItemID.AngelWingFragment);
-        Define.GetManager<DataManager>().AddItemInInventory(ItemID.AngelEyes);
+        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.AngelWingFragment);
+        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.AngelEyes);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.ExecutionBlade);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.Ascalon);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.SecondMap);
@@ -61,6 +61,7 @@ public class UIManager : MonoBehaviour
         Dialog.Init();
         UIFirstFloorMap.Init();
     }
+
 
     private void UIStart()
     {
@@ -94,6 +95,14 @@ public class UIManager : MonoBehaviour
             Dialog.NextMessage();
         }
 
+    }
+    public void HideAllUI()
+    {
+        InGame.Hide();
+    }
+    public void ShowAllUI()
+    {
+        InGame.Show();
     }
     public void MoveAndInputPlay()
     {
