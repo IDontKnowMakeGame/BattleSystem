@@ -103,7 +103,7 @@
         {
             "id": 200,
             "name": "Torch",
-            "currentCnt": 0,
+            "currentCnt": 9,
             "maxCnt": 99
         },
         {
@@ -115,7 +115,7 @@
         {
             "id": 202,
             "name": "HPPotion",
-            "currentCnt": 4,
+            "currentCnt": 5,
             "maxCnt": 5
         },
         {
@@ -157,15 +157,15 @@
             "maxCnt": 0
         },
         {
-            "id": 301,
-            "name": "SoulRope",
-            "currentCnt": 2,
+            "id": 302,
+            "name": "AngelWingFragment",
+            "currentCnt": 6,
             "maxCnt": 99
         },
         {
-            "id": 302,
-            "name": "AngelWingFragment",
-            "currentCnt": 1,
+            "id": 303,
+            "name": "AngelEyes",
+            "currentCnt": 6,
             "maxCnt": 99
         }
     ]

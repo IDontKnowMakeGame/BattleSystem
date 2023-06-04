@@ -74,6 +74,15 @@ public class DataManager : Manager
 
         SaveToUserData();
     }
+    public ItemID LoadEquipWeaponItemID(int equipNum)
+    {
+        if (equipNum == 1)
+            return UserData_.firstWeapon;
+        else if (equipNum == 2)
+            return UserData_.secondWeapon;
+
+        return ItemID.None;
+    }
     public void SwapWeaponData()
     {
         ItemID temp = UserData_.firstWeapon;
@@ -159,6 +168,11 @@ public class DataManager : Manager
     {
         return UserData_.equipUseableItem;
     }
+    public ItemID LoadEquipUseableItemID(int equipNum)
+    {
+        List<ItemID> list = LoadUsableItemList();
+        return list[equipNum - 1];
+    }
     public List<ItemID> LoadUsableItemList()
     {
         List<ItemID> list = new List<ItemID>();
@@ -197,7 +211,6 @@ public class DataManager : Manager
 
         SaveToUserData();
     }
-
     public List<ItemID> LoadHaloListInUserData()
     {
         List<ItemID> list = new List<ItemID>();

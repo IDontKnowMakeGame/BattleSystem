@@ -77,6 +77,10 @@ public class UIInventory : UIBase
 
     #region QuestItemPanel
     private VisualElement _questItemScrollPanel;
+    private VisualElement _questItemInfoPanel;
+    private VisualElement _questItemInfoIcon;
+    private Label _questItemInfoNameLabel;
+    private Label _questItemInfoTextLabel;
 
     private VisualTreeAsset _questItemCardTemp;
     #endregion
@@ -190,8 +194,13 @@ public class UIInventory : UIBase
         _useableItemExplanationTextLabel = _useableItemPanel.Q<Label>("UseableItemExplanationText");
         _useableItemCardTemp = Resources.Load<VisualTreeAsset>("UIDoc/InventoryUseableItemCardTemp");
 
+        //QuestPanel==================================================================================
         _questItemScrollPanel = _questItemPanel.Q<VisualElement>("QuestItemScrollPanel");
         _questItemCardTemp = Resources.Load<VisualTreeAsset>("UIDoc/InventoryQuestItemCardTemp");
+        _questItemInfoPanel = _questItemPanel.Q<VisualElement>("QuestItemInfoPanel");
+        _questItemInfoIcon = _questItemPanel.Q<VisualElement>("QuestItemImage");
+        _questItemInfoNameLabel = _questItemPanel.Q<Label>("QuestItemName");
+        _questItemInfoTextLabel = _questItemPanel.Q<Label>("QuestItemTextInfo");
 
         UseableEquipBoxSetting();
         CreateCardList(_weaponScrollPanel, _weaponCardTemp, Define.GetManager<DataManager>().LoadWeaponDataFromInventory(), SelectCard);
@@ -213,6 +222,7 @@ public class UIInventory : UIBase
         _root.style.display = DisplayStyle.Flex;
         EquipWeaponBoxImage();
         HideUseableItemExplanationPanel();
+        HideQuestItemInfoPanel();
 
         CreateCardList(_weaponScrollPanel, _weaponCardTemp, Define.GetManager<DataManager>().LoadWeaponDataFromInventory(), SelectCard);
         CreateCardList(_useableItemScrollPanel, _useableItemCardTemp, Define.GetManager<DataManager>().LoadUsableItemFromInventory(), SelectCard);
@@ -372,7 +382,7 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
         }
         else
         {
-            if (isSelectEquipBox)
+            if (selectCard == card)
             {
                 if(isItemEquip)
                     EquipItem(ItemID.None, equipNum);
@@ -380,8 +390,23 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
                 SelectOptionInit(true);
                 return;
             }
+
             if (selectCard != null)
                 CardBorderWidth(selectCard, 0, Color.white);
+
+            ItemID id = ItemID.None;
+
+            if (isItemEquip == false)
+            {
+                id = Define.GetManager<DataManager>().LoadEquipWeaponItemID(equipNum);
+                ShowWeaponInfoPanel(id);
+            }
+            else
+            {
+                id = Define.GetManager<DataManager>().LoadEquipUseableItemID(equipNum);
+                ShowExplanationUseableItemPanel(id);
+            }
+
             selectCard = card;
             CardBorderWidth(selectCard, 3, Color.red);
             selectNumber = equipNum;
@@ -409,11 +434,14 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
             if (selectCard != null)
                 CardBorderWidth(selectCard, 0, Color.white);
 
-            if((int)id < 101&&(int)id !=0 )
+            if((int)id < 100&&(int)id !=0 )
                 ShowWeaponInfoPanel(id);
 
-            if ((int)id < 301 && (int)id >= 200)
+            if ((int)id < 300 && (int)id >= 200)
                 ShowExplanationUseableItemPanel(id);
+
+            if ((int)id >= 300)
+                ShowQuestItemInfoPanel(id);
 
             selectCard = card;
             CardBorderWidth(selectCard, 3, Color.red);
@@ -434,6 +462,21 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
         isSelectEquipBox = false;
 
         HideWeaponInfoPanel();
+        HideUseableItemExplanationPanel();
+    }
+    public void HideQuestItemInfoPanel()
+    {
+        _questItemInfoPanel.style.visibility = Visibility.Hidden;
+    }
+    public void ShowQuestItemInfoPanel(ItemID id)
+    {
+        _questItemInfoPanel.style.visibility = Visibility.Visible;
+
+        _questItemInfoIcon.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
+
+        QuestItemTextInfo info = UIManager.Instance.questItemTextInfoListSO.list[(int)id - 300];
+        _questItemInfoNameLabel.text = info.name;
+        _questItemInfoTextLabel.text = info.description;
     }
     public void HideUseableItemExplanationPanel()
     {

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7b20d46833c2a47a950039dda1722c, type: 3}
+  m_Name: QuestTextInfoList
+  m_EditorClassIdentifier: 
+  list:
+  - ItemID: 300
+    name: "\uC601\uD63C\uC11D"
+    description: "\uC601\uD63C\uC774 \uB2F4\uAE34 \uB3CC.\n\n\uC601\uD63C \uC815\uC218\uC758
+      \uD798\uC744 \uB04C\uC5B4\uB0B4\uB294\uB370 \uC0AC\uC6A9\uD55C\uB2E4."
+  - ItemID: 301
+    name: "\uC601\uD63C\uC758 \uB048"
+    description: "\uC601\uD63C\uC740 \uC0AC\uB77C\uC9C0\uC9C0 \uC54A\uC73C\uBA70
+      \uC774\uC138\uACC4 \uC5B4\uB518\uAC00 \uC5F0\uACB0\uB41C\uB2E4.\n\n\uC601\uD63C\uC758
+      \uB048\uC744 \uC0AC\uC6A9\uD558\uBA74 \uC138\uACC4\uC640 \uC5F0\uACB0\uB418\uC5B4
+      \uC788\uB294 \uD5E4\uC77C\uB85C\uB97C \uC870\uAE08 \uB354 \uAC15\uD654\uAC8C
+      \uC5F0\uACB0 \uC2DC\uD0AC \uC218 \uC788\uB2E4."
+  - ItemID: 302
+    name: "\uCC9C\uC0AC\uC758 \uB0A0\uAC1C \uD30C\uD3B8"
+    description: "\uCC9C\uC0AC \uB0A0\uAC1C\uC758 \uC77C\uBD80\uC774\uB2E4. \n\n\uB354\uC774\uC0C1
+      \uB0A0\uAC1C\uB85C\uC368\uC758 \uAE30\uB2A5\uC740 \uD558\uC9C0\uBABB\uD560
+      \uAC83 \uAC19\uB2E4."
+  - ItemID: 303
+    name: "\uCC9C\uC0AC\uC758 \uB208"
+    description: "\uCC9C\uC0AC\uC758 \uB208\uC774\uB2E4. \n\n\uAC00\uB054\uC529 \uCCD0\uB2E4\uBCF4\uB294
+      \uAC83 \uAC19\uC740 \uB290\uB08C\uC774 \uB4E4\uC9C0\uB9CC \uC6C0\uC9C1\uC774\uC9C0\uB294
+      \uC54A\uB294\uB2E4."
