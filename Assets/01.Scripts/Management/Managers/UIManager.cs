@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
     public WeaponInfoListSO weaponTextInfoListSO;
     public HaloTextInfoListSO haloTextInfoListSO;
     public UseableItemTextInfoListSO useableItemTextInfoListSO;
+    public QuestItemTextInfoListSO questItemTextInfoListSO;
+
 
     private void Awake()
     {
@@ -40,8 +42,8 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        Define.GetManager<DataManager>().AddItemInInventory(ItemID.RustySpear);
-        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.HaloOfTime);
+        Define.GetManager<DataManager>().AddItemInInventory(ItemID.AngelWingFragment);
+        Define.GetManager<DataManager>().AddItemInInventory(ItemID.AngelEyes);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.ExecutionBlade);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.Ascalon);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.SecondMap);

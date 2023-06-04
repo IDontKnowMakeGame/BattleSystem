@@ -155,6 +155,18 @@
             "name": "TEST",
             "currentCnt": 0,
             "maxCnt": 0
+        },
+        {
+            "id": 302,
+            "name": "AngelWingFragment",
+            "currentCnt": 6,
+            "maxCnt": 99
+        },
+        {
+            "id": 303,
+            "name": "AngelEyes",
+            "currentCnt": 6,
+            "maxCnt": 99
         }
     ]
 }
