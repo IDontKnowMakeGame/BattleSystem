@@ -44,6 +44,8 @@ public class LoadingSceneController : MonoBehaviour
             toolTipIdx.Add(i);
         }
 
+        ui.SetActive(false);
+
         if (Instnace != this)
         {
             Destroy(gameObject);
