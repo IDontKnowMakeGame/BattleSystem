@@ -93,9 +93,14 @@ public class LoadingSceneController : MonoBehaviour
 
     private int curIdx = 0;
 
+    [SerializeField]
+    private GameObject toolTipParent;
+    [SerializeField]
+    private GameObject progressBarParent;
+
     public IEnumerator LoadScene(string sceneName, float timer = 0f)
     {
-        if (isLoading) yield break;
+        if (IsVisbleLoading()) yield break;
         isLoading = true;
 
         ui.SetActive(true);
@@ -136,6 +141,8 @@ public class LoadingSceneController : MonoBehaviour
                     nextScene = true;
                     op.allowSceneActivation = true;
                     isLoading = false;
+                    progressBarParent.SetActive(false);
+                    toolTipParent.SetActive(false);
                     bgAnimator.SetBool("Complete", true);
                     Debug.Log("접근해!!");
                     yield break;
@@ -144,6 +151,11 @@ public class LoadingSceneController : MonoBehaviour
         }
 
         isLoading = false;
+    }
+
+    public bool IsVisbleLoading()
+    {
+        return (isLoading || nextScene);
     }
 
     private void Update()
@@ -200,6 +212,9 @@ public class LoadingSceneController : MonoBehaviour
 
     private void SetUI()
     {
+        progressBarParent.SetActive(true);
+        toolTipParent.SetActive(true);
+
         // background 설정
         int rand = Random.Range(0, bgSprites.Count);
         bgAnimator.SetInteger("Cnt", rand);
