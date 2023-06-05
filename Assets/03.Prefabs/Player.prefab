@@ -1209,7 +1209,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c3f7900f1c95a6d4eb4f4a96428dafd2, type: 2}
     - {fileID: 11400000, guid: d8c447713deaed34bbcfad4b1a74aaa3, type: 2}
     - {fileID: 11400000, guid: 646eef05f26487e4c9b1ddf362a4f7df, type: 2}
-    - {fileID: 11400000, guid: 294c15789af91904293c35dd14c7f3c8, type: 2}
+    - {fileID: 11400000, guid: d46400a3e6998cb48be2b54420204090, type: 2}
     - {fileID: 11400000, guid: 384e65aa1a2fdb9418a816d528cbe594, type: 2}
     - {fileID: 11400000, guid: c042bc5210c330b4da0ff37a7e70897d, type: 2}
     curWeaponClips: {fileID: 0}
