@@ -19,67 +19,169 @@ MonoBehaviour:
   clips:
   - name: Idle
     nextIdx: -1
-    texture: {fileID: 2800000, guid: a620aad94a3b1ac419c3c3990be7bc49, type: 3}
-    fps: 10
+    texture: {fileID: 2800000, guid: d9ee613f926d5f04f9d61443c4472d0e, type: 3}
+    normal: {fileID: 0}
+    fps: 8
     isLoop: 1
     delay: 0.1
   - name: HorizontalMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 208813ef9115ac345a24e3c381704eb5, type: 3}
-    fps: 7
+    texture: {fileID: 2800000, guid: 531280d62dcb75443951b91b2c67e336, type: 3}
+    normal: {fileID: 0}
+    fps: 6
     isLoop: 1
-    delay: 0.1
+    delay: 0.06
   - name: UpperMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: a6a884d5c78d4884f99a2a823523f759, type: 3}
-    fps: 7
+    texture: {fileID: 2800000, guid: e1af1a426132bc843b1ed2e30563777e, type: 3}
+    normal: {fileID: 0}
+    fps: 6
     isLoop: 1
-    delay: 0.1
+    delay: 0.06
   - name: LowerMove
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 9cbcf186d8f573d47bb9e2fd55bbd569, type: 3}
-    fps: 7
+    texture: {fileID: 2800000, guid: 59f529f92ab656346813b88950f2a4fe, type: 3}
+    normal: {fileID: 0}
+    fps: 6
+    isLoop: 1
+    delay: 0.06
+  - name: DefaultHorizontalMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: d2ce0f324278c1245aedf1ef2eb145af, type: 3}
+    normal: {fileID: 2800000, guid: c1e918bc68f7585409c66aa344f6d6dc, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.07
+  - name: DefaultUpperMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 95edb00a2a3f2d4478ca72ae28010a41, type: 3}
+    normal: {fileID: 2800000, guid: 1f0e0c8e8af33c2488509bfe0ac09047, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.07
+  - name: DefaultLowerMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 0a759fa92c86c264f817c6d87b3ed060, type: 3}
+    normal: {fileID: 2800000, guid: ca30f4ed2c1c1ac4da0a34a5bdb6e3af, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.07
+  - name: HorizontalReadyHorizontalMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 531280d62dcb75443951b91b2c67e336, type: 3}
+    normal: {fileID: 2800000, guid: 50c8b3cb80dfcf64a9af8c9682d06f15, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.06
+  - name: HorizontalReadyUpperMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: e1af1a426132bc843b1ed2e30563777e, type: 3}
+    normal: {fileID: 2800000, guid: 7ac610dc05ce62a4fa0d72e7d5fdd811, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.06
+  - name: HorizontalReadyLowerMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 59f529f92ab656346813b88950f2a4fe, type: 3}
+    normal: {fileID: 2800000, guid: c6d44fd6de21122428e63a83099ceb1d, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.06
+  - name: UpperReadyHorizontalMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 6f571426c0f4d97418589521983db90a, type: 3}
+    normal: {fileID: 2800000, guid: 83630d5ffc9a64447bb68f127685c35c, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.07
+  - name: UpperReadyUpperMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 0e5473102588d6f4f8618127ef02343e, type: 3}
+    normal: {fileID: 2800000, guid: cc3401b4489d67049bc4aef4b032afe6, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.07
+  - name: UpperReadyLowerMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 266f0aa893ca75340ad12d56279005de, type: 3}
+    normal: {fileID: 2800000, guid: 39d25758840941a4bad543a133b29ad9, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.07
+  - name: LowerReadyHorizontalMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 831bc7c1420b1f8489f21067d0bd9578, type: 3}
+    normal: {fileID: 2800000, guid: db359c06fc441054a898116a65d933f3, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.07
+  - name: LowerReadyUpperMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: fc5e8a21ab5f27046ab0f9203d02e5fa, type: 3}
+    normal: {fileID: 2800000, guid: 1b80572ff45f77647a790d401784472a, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.07
+  - name: LowerReadyLowerMove
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 4fc9a1d53e5b3084f9f6de0bf5538cbd, type: 3}
+    normal: {fileID: 2800000, guid: 9138083d2bae9f844914c5e1c848ff8c, type: 3}
+    fps: 6
+    isLoop: 1
+    delay: 0.07
+  - name: DefaultIdle
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: cccbc401f40ab4d419fe966f072182fc, type: 3}
+    normal: {fileID: 2800000, guid: d856c81228a89254596e19aa45b02a66, type: 3}
+    fps: 8
     isLoop: 1
     delay: 0.1
-  - name: HorizontalAttack
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 8cf44e75070c5844790a8cf39e63c8f8, type: 3}
-    fps: 10
-    isLoop: 0
-    delay: 0.03
-  - name: UpperAttack
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: f250e8c8c1f4f73469c98f5b5af3423b, type: 3}
-    fps: 10
-    isLoop: 0
-    delay: 0.03
-  - name: LowerAttack
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: d98ff5933b35f4a47a2023a72ae2cabc, type: 3}
-    fps: 10
-    isLoop: 0
-    delay: 0.03
-  - name: HorizontalSkill
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 26f1dc036dd140a44aef486bd1b64b61, type: 3}
-    fps: 10
-    isLoop: 0
-    delay: 0.03
-  - name: UpperSkill
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 5e9e724cee6964a418b9bee58edd6d8a, type: 3}
-    fps: 10
-    isLoop: 0
-    delay: 0.03
-  - name: LowerSkill
-    nextIdx: 0
-    texture: {fileID: 2800000, guid: 655eb6d0967b26d4a9503ed6ba5b7404, type: 3}
-    fps: 10
-    isLoop: 0
-    delay: 0.03
+  - name: HorizontalReadyIdle
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: d9ee613f926d5f04f9d61443c4472d0e, type: 3}
+    normal: {fileID: 2800000, guid: 015075370a20ad04c98c31f90b254c00, type: 3}
+    fps: 8
+    isLoop: 1
+    delay: 0.1
+  - name: UpperReadyIdle
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 7b5e06856d6b2fb4fb219d166552a6c7, type: 3}
+    normal: {fileID: 2800000, guid: d928e038d0ff26f4d96c3eeb0af399f2, type: 3}
+    fps: 8
+    isLoop: 1
+    delay: 0.1
+  - name: LowerReadyIdle
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 646022b397e7fc744a588b9c2d537e4f, type: 3}
+    normal: {fileID: 2800000, guid: e17db50752b8f4141826e0364d2fc3e7, type: 3}
+    fps: 8
+    isLoop: 1
+    delay: 0.1
   - name: Equip
     nextIdx: 0
-    texture: {fileID: 2800000, guid: 170d529a774c1f6449290ef18951e39c, type: 3}
-    fps: 10
+    texture: {fileID: 2800000, guid: 4cf3fdef88b40da4586ec85c71b8d690, type: 3}
+    normal: {fileID: 2800000, guid: 535e39b18f3eee349909d43e2effdaae, type: 3}
+    fps: 11
     isLoop: 0
     delay: 0.1
+  - name: HorizontalReady
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 8d65cae41e673fc4ea96bb1fcc6466ae, type: 3}
+    normal: {fileID: 2800000, guid: 724b796b03ab7ec46b843c6a4debb119, type: 3}
+    fps: 6
+    isLoop: 0
+    delay: 0.05
+  - name: UpperReady
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 88113e7a2ef9c1148a2865e1222343e9, type: 3}
+    normal: {fileID: 2800000, guid: 11e49fd91dbe85845acb9cdafebafa58, type: 3}
+    fps: 6
+    isLoop: 0
+    delay: 0.05
+  - name: LowerReady
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: e5443bacaf53718438942a993079ab5d, type: 3}
+    normal: {fileID: 2800000, guid: e5c148dcdadbcea4f93448416685fbbe, type: 3}
+    fps: 6
+    isLoop: 0
+    delay: 0.05
