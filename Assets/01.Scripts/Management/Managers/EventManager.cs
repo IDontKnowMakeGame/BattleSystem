@@ -34,6 +34,7 @@ public enum EventFlag
 	HaloDel,
 	PlayScreenEffect,
 	StopScreenEffect,
+	TraillOnOff,
 
 	// Halo
 	PollutionHalo,

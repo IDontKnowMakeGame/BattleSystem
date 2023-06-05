@@ -59,6 +59,8 @@ public class GreatSword : Weapon
 		InputManager<GreatSword>.OnClickPress += AttakStart;
 		InputManager<GreatSword>.OnClickHold += Hold;
 		InputManager<GreatSword>.OnClickRelease += AttackRealease;
+
+		InputManager<GreatSword>.OnMovePress += MoveEnd;
 	}
 	public override void UnEquipment(CharacterActor actor)
 	{
@@ -139,10 +141,15 @@ public class GreatSword : Weapon
 		_sliderObject.SliderActive(false);
 	}
 
-	private void AttackEnd(int id)
+	private void MoveEnd(Vector3 vec)
 	{
-		info.Atk = Damage;
-		PlayerAttack.OnAttackEnd -= AttackEnd;
+		timer = 0;
+		_currrentVector = Vector3.zero;
+		_characterActor.GetAct<CharacterStatAct>().Half -= _half;
+		_characterActor.RemoveState(CharacterState.Hold);
+
+		_sliderObject.PullSlider(0f, false, Color.white);
+		_sliderObject.SliderActive(false);
 	}
 
 	private void ChargeAnimation(Vector3 dir)

@@ -72,7 +72,7 @@ namespace Acts.Characters.Player
         #region Test Code
         private void EnqueMove(Vector3 direction)
         {
-            if (moveDir.Count > 1 || enableQ) return;
+            if (moveDir.Count > 1 || enableQ || LoadingSceneController.Instnace.IsVisbleLoading()) return;
             moveDir.Enqueue(direction);
         }
         private void PopMove()

@@ -8412,7 +8412,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615140}
   m_ExposedName: BloodLifetime
   m_Exposed: 1
-  m_Order: 5
+  m_Order: 4
   m_Category: 
   m_Min:
     m_Type:
@@ -9148,7 +9148,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615168}
   m_ExposedName: BloodGravity
   m_Exposed: 1
-  m_Order: 6
+  m_Order: 5
   m_Category: 
   m_Min:
     m_Type:
@@ -9367,7 +9367,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615174}
   m_ExposedName: BloodSize
   m_Exposed: 1
-  m_Order: 7
+  m_Order: 6
   m_Category: 
   m_Min:
     m_Type:
@@ -9586,7 +9586,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615180}
   m_ExposedName: GroundBloodLifetime
   m_Exposed: 1
-  m_Order: 8
+  m_Order: 7
   m_Category: 
   m_Min:
     m_Type:
@@ -9805,7 +9805,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615186}
   m_ExposedName: GroundBloodSize
   m_Exposed: 1
-  m_Order: 9
+  m_Order: 8
   m_Category: 
   m_Min:
     m_Type:
@@ -10024,7 +10024,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615192}
   m_ExposedName: BloodParticlesVelocity
   m_Exposed: 1
-  m_Order: 12
+  m_Order: 11
   m_Category: 
   m_Min:
     m_Type:
@@ -10542,7 +10542,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615207}
   m_ExposedName: BloodParticlesLifetime
   m_Exposed: 1
-  m_Order: 11
+  m_Order: 10
   m_Category: 
   m_Min:
     m_Type:
@@ -10761,7 +10761,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615213}
   m_ExposedName: BloodParticlesSize
   m_Exposed: 1
-  m_Order: 13
+  m_Order: 12
   m_Category: 
   m_Min:
     m_Type:
@@ -11275,7 +11275,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615227}
   m_ExposedName: GroundBloodScale
   m_Exposed: 1
-  m_Order: 10
+  m_Order: 9
   m_Category: 
   m_Min:
     m_Type:

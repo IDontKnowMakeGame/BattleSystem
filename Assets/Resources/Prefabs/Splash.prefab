@@ -105,9 +105,9 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3947859649755966786}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 108f16fc32d20384e9ec8cd3ca717694, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: 48e4578babdd90245a061262a31c0494, type: 3}
   m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_ResourceVersion: 1
@@ -133,7 +133,10 @@ VisualEffect:
     m_NamedObject:
       m_Array: []
     m_Bool:
-      m_Array: []
+      m_Array:
+      - m_Value: 0
+        m_Name: Loop
+        m_Overridden: 1
 --- !u!73398921 &3947859649755966785
 VFXRenderer:
   serializedVersion: 1
