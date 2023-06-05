@@ -39,6 +39,14 @@ public class CameraEffecter : MonoBehaviour
         _basicShake = transform.Find("BasicShake").GetComponent<Shake>();
         _greateSwordShake = transform.Find("GreateSwordShake").GetComponent<Shake>();
     }
+    public void HideUI()
+    {
+        UIManager.Instance.HideAllUI();
+    }
+    public void ShowUI()
+    {
+        UIManager.Instance.ShowAllUI();
+    }
     public void StartCameraAction()
     {
         _isCameraAction = true;

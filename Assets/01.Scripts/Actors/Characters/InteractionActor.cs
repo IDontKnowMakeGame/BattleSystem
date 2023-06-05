@@ -11,6 +11,7 @@ using UnityEngine.Serialization;
 public class InteractionActor : CharacterActor
 {
     [SerializeField] protected CharacterDetect characterDetect;
+    [SerializeField] protected bool canInteract = true;
     protected override void Init()
     {
         base.Init();
@@ -19,10 +20,15 @@ public class InteractionActor : CharacterActor
         characterDetect.ExitDetect += HideInteration;
 
         InputManager<Weapon>.OnInteractionPress += Interact;
+        InputManager<Weapon>.OnInteractionPress += HideInteration;
     }
     public void ShowInteration(Vector3 vec)
     {
         UIManager.Instance.InGame.ShowInteraction();
+    }
+    public void HideInteration()
+    {
+        UIManager.Instance.InGame.HideInteraction();
     }
     public void HideInteration(Vector3 vec)
     {

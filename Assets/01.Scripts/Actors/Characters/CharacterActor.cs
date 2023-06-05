@@ -49,6 +49,10 @@ namespace Actors.Characters
 				UpdatePosition();
 				InGame.SetActorOnBlock(this);
 			}
+			else
+			{
+				IsUpdatingPosition = false;
+			}
 			base.Start();
 		}
 

@@ -5,7 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Tool.Map.Rooms;
-using UnityEditor.TextCore.Text;
 using UnityEngine;
 using UnityEngine.XR;
 

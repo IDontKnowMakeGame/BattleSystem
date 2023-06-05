@@ -4,7 +4,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -31,6 +30,7 @@ public class UIInventory : UIBase
     private VisualElement _firstWeaponImage;
     private VisualElement _secondWeaponImage;
     private VisualElement _weaponScrollPanel;
+    private Label _weaponNameLabel;
     private Label _waeponExplainText;
 
     private VisualTreeAsset _weaponCardTemp;
@@ -66,12 +66,20 @@ public class UIInventory : UIBase
     private VisualElement _useableItemScrollPanel;
     private VisualElement _useableEquipPanel;
     private VisualElement _unmountBtn;
+    private VisualElement _useableItemExplanationPanel;
+    private VisualElement _useableItemExplanationIcon;
+    private Label _useableItemExplanationNameLabel;
+    private Label _useableItemExplanationTextLabel;
 
     private VisualTreeAsset _useableItemCardTemp;
     #endregion
 
     #region QuestItemPanel
     private VisualElement _questItemScrollPanel;
+    private VisualElement _questItemInfoPanel;
+    private VisualElement _questItemInfoIcon;
+    private Label _questItemInfoNameLabel;
+    private Label _questItemInfoTextLabel;
 
     private VisualTreeAsset _questItemCardTemp;
     #endregion
@@ -130,6 +138,7 @@ public class UIInventory : UIBase
         _weaponChacraterViewImage = _weaponPanel.Q<VisualElement>("Character");
         _weaponInfoPanel = _weaponPanel.Q<VisualElement>("WeaponInfoPanel");
         _waeponExplainText = _weaponPanel.Q<Label>("ExplainText");
+        _weaponNameLabel = _weaponPanel.Q<Label>("WeaponNameText");
         _weaponStatusPanel = _weaponInfoPanel.Q<VisualElement>("StatusPanel");
         _firstWeaponImage = _weaponPanel.Q<VisualElement>("FirstWeapon");
         _firstWeaponImage.RegisterCallback<ClickEvent>(e =>
@@ -178,16 +187,26 @@ public class UIInventory : UIBase
             UIManager.Instance.InGame.ChangeItemPanelImage();
         });
         _useableEquipPanel = _useableItemPanel.Q<VisualElement>("UseableEquipPanel").Q<VisualElement>("ItemBoxs");
+        _useableItemExplanationPanel = _useableItemPanel.Q<VisualElement>("UseableItemExplanationPanel");
+        _useableItemExplanationIcon = _useableItemPanel.Q<VisualElement>("UseableItemImage");
+        _useableItemExplanationNameLabel = _useableItemPanel.Q<Label>("UseableItemName");
+        _useableItemExplanationTextLabel = _useableItemPanel.Q<Label>("UseableItemExplanationText");
         _useableItemCardTemp = Resources.Load<VisualTreeAsset>("UIDoc/InventoryUseableItemCardTemp");
 
+        //QuestPanel==================================================================================
         _questItemScrollPanel = _questItemPanel.Q<VisualElement>("QuestItemScrollPanel");
         _questItemCardTemp = Resources.Load<VisualTreeAsset>("UIDoc/InventoryQuestItemCardTemp");
+        _questItemInfoPanel = _questItemPanel.Q<VisualElement>("QuestItemInfoPanel");
+        _questItemInfoIcon = _questItemPanel.Q<VisualElement>("QuestItemImage");
+        _questItemInfoNameLabel = _questItemPanel.Q<Label>("QuestItemName");
+        _questItemInfoTextLabel = _questItemPanel.Q<Label>("QuestItemTextInfo");
 
         UseableEquipBoxSetting();
         CreateCardList(_weaponScrollPanel, _weaponCardTemp, Define.GetManager<DataManager>().LoadWeaponDataFromInventory(), SelectCard);
         CreateCardList(_useableItemScrollPanel, _useableItemCardTemp, Define.GetManager<DataManager>().LoadUsableItemFromInventory(), SelectCard);
         CreateCardList(_questItemScrollPanel, _questItemCardTemp, Define.GetManager<DataManager>().LoadQuestFromInventory(), SelectCard);
         InitHaloSelectCard();
+        HideUseableItemExplanationPanel();
     }
     public void ShowInventory()
     {
@@ -201,6 +220,8 @@ public class UIInventory : UIBase
         isOpen = true;
         _root.style.display = DisplayStyle.Flex;
         EquipWeaponBoxImage();
+        HideUseableItemExplanationPanel();
+        HideQuestItemInfoPanel();
 
         CreateCardList(_weaponScrollPanel, _weaponCardTemp, Define.GetManager<DataManager>().LoadWeaponDataFromInventory(), SelectCard);
         CreateCardList(_useableItemScrollPanel, _useableItemCardTemp, Define.GetManager<DataManager>().LoadUsableItemFromInventory(), SelectCard);
@@ -297,7 +318,9 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
         status.Q<Label>("Afs").text = string.Format("후 딜레이 : {0}", data.Afs);
         status.Q<Label>("Wei").text = string.Format("무게 : {0}", data.Weight);
 
-        _waeponExplainText.text = "";
+        _weaponNameLabel.text = UIManager.Instance.weaponTextInfoListSO.weapons[(int)itemID - 1].weaponNameText;
+        string coolTime = string.Format("{0}s", data.CoolTime);
+        _waeponExplainText.text = UIManager.Instance.weaponTextInfoListSO.weapons[(int)itemID - 1].explanationText.Replace("CoolTime", coolTime);
     }
     public void HideWeaponInfoPanel()
     {
@@ -311,14 +334,18 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
             card.RegisterCallback<ClickEvent>(e =>
             {
                 int i = Int32.Parse(card.name);
-                EquipItemBox(card, i);
+                EquipItemBox(card, i,true);
                 EquipUseableItemBoxImage(card,i);
             });
         }
     }
     public void EquipItem(ItemID id,int equipNum)
     {
-        if((int)id < 100)
+        if(id == ItemID.None)
+        {
+                UnmountItem(equipNum);
+        }
+        else if((int)id < 100)
         {
             Define.GetManager<DataManager>().ChangeUserWeaponData(id, equipNum);
             CreateCardList(_weaponScrollPanel, _weaponCardTemp, Define.GetManager<DataManager>().LoadWeaponDataFromInventory(), SelectCard);
@@ -335,13 +362,15 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
     }
     public void UnmountItem(int equipNum)
     {
+        Debug.Log($"Ummount Item : {equipNum}");
         Define.GetManager<DataManager>().UnmountUseableItem(equipNum);
         EquipUseableItemBoxImage(selectCard, int.Parse(selectCard.name));
         CreateCardList(_useableItemScrollPanel, _useableItemCardTemp, Define.GetManager<DataManager>().LoadUsableItemFromInventory(), SelectCard);
     }
-    public void EquipItemBox(VisualElement card,int equipNum)
+    public void EquipItemBox(VisualElement card,int equipNum,bool isItemEquip = false)
     {
         Debug.Log($"EquipItemBox {card.name} + {equipNum}");
+
         if(isSelectCard)
         {
             if (selectCard != null)
@@ -354,11 +383,29 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
         {
             if (selectCard == card)
             {
+                if(isItemEquip)
+                    EquipItem(ItemID.None, equipNum);
+
                 SelectOptionInit(true);
                 return;
             }
+
             if (selectCard != null)
                 CardBorderWidth(selectCard, 0, Color.white);
+
+            ItemID id = ItemID.None;
+
+            if (isItemEquip == false)
+            {
+                id = Define.GetManager<DataManager>().LoadEquipWeaponItemID(equipNum);
+                ShowWeaponInfoPanel(id);
+            }
+            else
+            {
+                id = Define.GetManager<DataManager>().LoadEquipUseableItemID(equipNum);
+                ShowExplanationUseableItemPanel(id);
+            }
+
             selectCard = card;
             CardBorderWidth(selectCard, 3, Color.red);
             selectNumber = equipNum;
@@ -386,8 +433,14 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
             if (selectCard != null)
                 CardBorderWidth(selectCard, 0, Color.white);
 
-            if((int)id < 101&&(int)id !=0 )
+            if((int)id < 100&&(int)id !=0 )
                 ShowWeaponInfoPanel(id);
+
+            if ((int)id < 300 && (int)id >= 200)
+                ShowExplanationUseableItemPanel(id);
+
+            if ((int)id >= 300)
+                ShowQuestItemInfoPanel(id);
 
             selectCard = card;
             CardBorderWidth(selectCard, 3, Color.red);
@@ -408,6 +461,34 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
         isSelectEquipBox = false;
 
         HideWeaponInfoPanel();
+        HideUseableItemExplanationPanel();
+    }
+    public void HideQuestItemInfoPanel()
+    {
+        _questItemInfoPanel.style.visibility = Visibility.Hidden;
+    }
+    public void ShowQuestItemInfoPanel(ItemID id)
+    {
+        _questItemInfoPanel.style.visibility = Visibility.Visible;
+
+        _questItemInfoIcon.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
+
+        QuestItemTextInfo info = UIManager.Instance.questItemTextInfoListSO.list[(int)id - 300];
+        _questItemInfoNameLabel.text = info.name;
+        _questItemInfoTextLabel.text = info.description;
+    }
+    public void HideUseableItemExplanationPanel()
+    {
+        _useableItemExplanationPanel.style.visibility = Visibility.Hidden;
+    }
+    public void ShowExplanationUseableItemPanel(ItemID id)
+    {
+        _useableItemExplanationPanel.style.visibility = Visibility.Visible;
+        _useableItemExplanationIcon.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
+
+        UseableItemTextInfo info = UIManager.Instance.useableItemTextInfoListSO.list[(int)id - 200];
+        _useableItemExplanationNameLabel.text = info.name;
+        _useableItemExplanationTextLabel.text = info.explanation;
     }
     public void InitHaloSelectCard()
     {

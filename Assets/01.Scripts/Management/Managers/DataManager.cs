@@ -30,6 +30,7 @@ public class DataManager : Manager
         WeaponLevelListData_ = JsonManager.LoadJsonFile<WeaponLevelDataList>(Application.streamingAssetsPath + "/SAVE/Weapon", "WeaponLevelData");
         ItemTableData = JsonManager.LoadJsonFile<ItemTable>(Application.streamingAssetsPath + "/Save/Json/" + typeof(ItemTable), typeof(ItemTable).ToString());
         PlayerOpenQuestData_ = JsonManager.LoadJsonFile<PlayerQuestData>(Application.streamingAssetsPath + "/SAVE/User", "OpenQuest");
+        //Debug.Log($"QuestData Load : {PlayerOpenQuestData_.openQuestList[0]}");
 
         if(MapData_.mapData.Count == 0)
             InitMapData();
@@ -72,6 +73,15 @@ public class DataManager : Manager
         UserData_.feather = Math.Clamp(UserData_.feather + value, 0, int.MaxValue);
 
         SaveToUserData();
+    }
+    public ItemID LoadEquipWeaponItemID(int equipNum)
+    {
+        if (equipNum == 1)
+            return UserData_.firstWeapon;
+        else if (equipNum == 2)
+            return UserData_.secondWeapon;
+
+        return ItemID.None;
     }
     public void SwapWeaponData()
     {
@@ -158,6 +168,11 @@ public class DataManager : Manager
     {
         return UserData_.equipUseableItem;
     }
+    public ItemID LoadEquipUseableItemID(int equipNum)
+    {
+        List<ItemID> list = LoadUsableItemList();
+        return list[equipNum - 1];
+    }
     public List<ItemID> LoadUsableItemList()
     {
         List<ItemID> list = new List<ItemID>();
@@ -196,7 +211,6 @@ public class DataManager : Manager
 
         SaveToUserData();
     }
-
     public List<ItemID> LoadHaloListInUserData()
     {
         List<ItemID> list = new List<ItemID>();
@@ -472,16 +486,18 @@ public class DataManager : Manager
                 InventoryData_.inventoryInUsableItemList.Add(item);
             }
             else
-            {
                 AddItemCount(item);
-            }
         }
         else if ((int)item.id < 400)
         { //QuestItem
-            Debug.Log(InventoryData_.inventoryInQuestItemList.Count);
-            if (HaveQuestItem(item.id)) return;
-            InventoryData_.inventoryInQuestItemList.Add(item);
-            Debug.Log(item.id);
+            SaveItemData info = LoadQuestFromInventory(id);
+            if (info == null)
+            {
+                info = item;
+                InventoryData_.inventoryInQuestItemList.Add(item);
+            }
+            else
+                AddQuestItemCount(item);
         }
 
         if (UIManager.Instance != null)
@@ -637,7 +653,20 @@ public class DataManager : Manager
         }
         return null;
     }
+    public void AddQuestItemCount(SaveItemData data)
+    {
+        for (int i = 0; i < InventoryData_.inventoryInQuestItemList.Count; i++)
+        {
+            if (InventoryData_.inventoryInQuestItemList[i].id == data.id)
+            {
+                SaveItemData info = InventoryData_.inventoryInQuestItemList[i];
+                InventoryData_.inventoryInQuestItemList[i].currentCnt = Math.Clamp((info.currentCnt + data.currentCnt), 0, info.maxCnt);
 
+                SaveToInventoryData();
+                return;
+            }
+        }
+    }
     public static bool HaveQuestItem(ItemID id)
     {
         foreach (SaveItemData item in InventoryData_.inventoryInQuestItemList)

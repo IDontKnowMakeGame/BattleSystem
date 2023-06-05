@@ -20,7 +20,12 @@ public class UIManager : MonoBehaviour
     public UIFirstFloorMap UIFirstFloorMap = new UIFirstFloorMap();
 
     public MapNameData MapNameData;
+
+    public WeaponInfoListSO weaponTextInfoListSO;
     public HaloTextInfoListSO haloTextInfoListSO;
+    public UseableItemTextInfoListSO useableItemTextInfoListSO;
+    public QuestItemTextInfoListSO questItemTextInfoListSO;
+
 
     private void Awake()
     {
@@ -37,8 +42,8 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.CompassOfSpace);
-        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.HaloOfTime);
+        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.AngelWingFragment);
+        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.AngelEyes);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.ExecutionBlade);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.Ascalon);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.SecondMap);
@@ -56,6 +61,7 @@ public class UIManager : MonoBehaviour
         Dialog.Init();
         UIFirstFloorMap.Init();
     }
+
 
     private void UIStart()
     {
@@ -78,7 +84,7 @@ public class UIManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            
+            Debug.Log($" open QuestList Cnt : {DataManager.PlayerOpenQuestData_.openQuestList[0]}");
         }
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -89,6 +95,14 @@ public class UIManager : MonoBehaviour
             Dialog.NextMessage();
         }
 
+    }
+    public void HideAllUI()
+    {
+        InGame.Hide();
+    }
+    public void ShowAllUI()
+    {
+        InGame.Show();
     }
     public void MoveAndInputPlay()
     {

@@ -15,6 +15,7 @@ public class TorchObject : InteractionActor
     private bool isOn = false;
     protected override void Start()
     {
+        base.Start();
         Floor floor = DataManager.MapData_.currentFloor;
         isOn = Define.GetManager<DataManager>().IsOnCrital(Int32.Parse(gameObject.name), floor);
         if (isOn)
@@ -24,12 +25,23 @@ public class TorchObject : InteractionActor
             RemoveInteration();
             return;
         }
+        if(canInteract == false)
+        {
+            InputManager<Weapon>.OnInteractionPress -= Interact;
+            InputManager<Weapon>.OnInteractionPress -= HideInteration;
+            RemoveInteration();
+        }
     }
     public override void Interact()
     {
         if (InGame.Player.Position.IsNeighbor(Position) == false || isOn) return;
 
         base.Interact();
+        TurnOn();   
+    }
+
+    public void TurnOn()
+    {
         ChangeWarmTiles();
         torchLight.SetActive(true);
         Define.GetManager<DataManager>().OnCrital(Int32.Parse(gameObject.name));

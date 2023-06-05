@@ -36,6 +36,14 @@ public class LoadingSceneController : MonoBehaviour
 
     private void Awake()
     {
+        bgAnimator = backgroundImg.GetComponent<Animator>();
+
+        // ToolTip List Setting
+        for (int i = 0; i < titleToolTipList.tooltipList.Count; i++)
+        {
+            toolTipIdx.Add(i);
+        }
+
         if (Instnace != this)
         {
             Destroy(gameObject);
@@ -44,17 +52,11 @@ public class LoadingSceneController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
-    {
-        // ToolTip List Setting
-        for(int i = 0; i < titleToolTipList.tooltipList.Count; i++)
-        {
-            toolTipIdx.Add(i);
-        }
-    }
 
     [SerializeField]
     private Image backgroundImg;
+
+    private Animator bgAnimator;
 
     [SerializeField]
     private List<Sprite> bgSprites;
@@ -91,39 +93,31 @@ public class LoadingSceneController : MonoBehaviour
 
     private int curIdx = 0;
 
+    [SerializeField]
+    private GameObject toolTipParent;
+    [SerializeField]
+    private GameObject progressBarParent;
+
     public IEnumerator LoadScene(string sceneName, float timer = 0f)
     {
-        if (isLoading) yield break;
+        if (IsVisbleLoading()) yield break;
         isLoading = true;
-        yield return new WaitForSeconds(timer);
+
         ui.SetActive(true);
+
+        bgAnimator.SetBool("Complete", false);
+
+        SetUI();
+
+        yield return new WaitForSeconds(timer);
         SceneManager.sceneLoaded += OnSceneLoaded;
         loadSceneName = sceneName;
+
         StartCoroutine(LoadSceneProcess());
     }
 
     private IEnumerator LoadSceneProcess()
     {
-        // background 설정
-        int rand = Random.Range(0, bgSprites.Count);
-        backgroundImg.sprite = bgSprites[rand];
-
-        // Tooltip 설정
-        for(int i = 0; i < 100; i++)
-        {
-            int randA = Random.Range(0, titleToolTipList.tooltipList.Count);
-            int randB = Random.Range(0, titleToolTipList.tooltipList.Count);
-
-            int swap = toolTipIdx[randA];
-            toolTipIdx[randA] = toolTipIdx[randB];
-            toolTipIdx[randB] = swap;
-        }
-
-        curIdx = 0;
-
-        titleTmp.text = titleToolTipList.tooltipList[toolTipIdx[curIdx]].Replace("\\r\\n", "\n");
-        writeTmp.text = writeToolTipList.tooltipList[toolTipIdx[curIdx]].Replace("\\r\\n", "\n");
-
         progressBar.fillAmount = 0f;
         yield return StartCoroutine(Fade(true));
 
@@ -147,6 +141,9 @@ public class LoadingSceneController : MonoBehaviour
                     nextScene = true;
                     op.allowSceneActivation = true;
                     isLoading = false;
+                    progressBarParent.SetActive(false);
+                    toolTipParent.SetActive(false);
+                    bgAnimator.SetBool("Complete", true);
                     Debug.Log("접근해!!");
                     yield break;
                 }
@@ -154,6 +151,11 @@ public class LoadingSceneController : MonoBehaviour
         }
 
         isLoading = false;
+    }
+
+    public bool IsVisbleLoading()
+    {
+        return (isLoading || nextScene);
     }
 
     private void Update()
@@ -206,5 +208,34 @@ public class LoadingSceneController : MonoBehaviour
         {
             ui.SetActive(false);
         }
+    }
+
+    private void SetUI()
+    {
+        progressBarParent.SetActive(true);
+        toolTipParent.SetActive(true);
+
+        // background 설정
+        int rand = Random.Range(0, bgSprites.Count);
+        bgAnimator.SetInteger("Cnt", rand);
+        Debug.Log(bgSprites[rand].name + "맞음?");
+        backgroundImg.sprite = bgSprites[rand];
+        Debug.Log(rand + "입니당");
+
+        // Tooltip 설정
+        for (int i = 0; i < 100; i++)
+        {
+            int randA = Random.Range(0, titleToolTipList.tooltipList.Count);
+            int randB = Random.Range(0, titleToolTipList.tooltipList.Count);
+
+            int swap = toolTipIdx[randA];
+            toolTipIdx[randA] = toolTipIdx[randB];
+            toolTipIdx[randB] = swap;
+        }
+
+        curIdx = 0;
+
+        titleTmp.text = titleToolTipList.tooltipList[toolTipIdx[curIdx]].Replace("\\r\\n", "\n");
+        writeTmp.text = writeToolTipList.tooltipList[toolTipIdx[curIdx]].Replace("\\r\\n", "\n");
     }
 }

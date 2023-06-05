@@ -46,7 +46,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0, z: 0}
+  isWalkable: 1
+  isMoving: 0
+  isWarm: 0
+  canEnemyEnter: 1
+  canBossEnter: 0
   _actorOnBlock: {fileID: 0}
+  switchCamera: {fileID: 0}
 --- !u!1 &3269900698752101910
 GameObject:
   m_ObjectHideFlags: 0
