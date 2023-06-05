@@ -20,6 +20,8 @@ public class OldStraightSword : StraightSword
 		move.IsSKill = true;
 		move.SkillDir = vec;
 		move.Move(_characterActor.Position + InGame.CamDirCheck(vec) * 2);
+
+		Define.GetManager<EventManager>().TriggerEvent(EventFlag.TraillOnOff, new EventParam { intParam = 3, boolParam = true});
 	}
 
 	protected override void SkillInputEnd(int i, Vector3 vec)
@@ -30,5 +32,6 @@ public class OldStraightSword : StraightSword
 		base.SkillInputEnd(i, DirReturn(vec));
 		_characterActor.GetAct<PlayerMove>().IsSKill = false;
 		CharacterMove.OnMoveEnd -= SkillInputEnd;
+		Define.GetManager<EventManager>().TriggerEvent(EventFlag.TraillOnOff, new EventParam { intParam = 3, boolParam = false });
 	}
 }

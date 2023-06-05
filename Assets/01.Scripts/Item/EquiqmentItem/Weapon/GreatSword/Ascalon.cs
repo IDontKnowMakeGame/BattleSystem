@@ -40,14 +40,14 @@ public class Ascalon : GreatSword
 	public override void UnEquipment(CharacterActor actor)
 	{
 		base.UnEquipment(actor);
-
-		if(_obj)
+		if (_obj)
 		{
 			_obj.transform.SetParent(null);
-			GameManagement.Instance.GetManager<ResourceManager>()?.Destroy(_obj);
-			PlayerAttack.OnAttackEnd -= SkillEnd;
-			_stat.PercentAtk(-30);
+			GameManagement.Instance.GetManager<ResourceManager>().Destroy(_obj);
 		}
+
+		_stat.PercentAtk(-30);
+		PlayerAttack.OnAttackEnd -= SkillEnd;
 	}
 
 	private void SkillEnd(int id)
@@ -55,13 +55,16 @@ public class Ascalon : GreatSword
 		if (id != _characterActor.UUID)
 			return;
 
-		_obj.transform.SetParent(null);
-		GameManagement.Instance.GetManager<ResourceManager>().Destroy(_obj);
+		if(_obj)
+		{
+			_obj.transform.SetParent(null);
+			GameManagement.Instance.GetManager<ResourceManager>().Destroy(_obj);
+		}
 
 		_stat.PercentAtk(-30);
+		PlayerAttack.OnAttackEnd -= SkillEnd;
 		GameObject obj = GameManagement.Instance.GetManager<ResourceManager>().Instantiate("Dragon Slayer's Realm");
 		obj.transform.position = _characterActor.Position + InGame.CamDirCheck(_currrentVector) + (Vector3.up / 2);
 		obj.GetComponent<DragonRealm>().Init(AscalonData.duration, AscalonData.decrease);
-		PlayerAttack.OnAttackEnd -= SkillEnd;
 	}
 }

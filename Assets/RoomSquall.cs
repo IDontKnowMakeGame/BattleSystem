@@ -55,13 +55,21 @@ public class RoomSquall : MonoBehaviour
 
 	void Update()
 	{
-		if (!onNaturalSquall)
+		if(Input.GetKeyDown(KeyCode.N))
 		{
-			if (isSquall)
-				SquallCreate();
+			isSquall = !isSquall;
+			SquallOnOff(isSquall);
 		}
-		else
+
+		if (onNaturalSquall)
 			NaturalSquall();
+		else
+		{
+			if(isSquall)
+			{
+				SquallCreate();
+			}
+		}
 	}
 
 	public void SquallInit(string name, bool isNatural = false)
@@ -73,7 +81,6 @@ public class RoomSquall : MonoBehaviour
 	}
 
 	public void SquallOnOff(bool squall) => isSquall = squall;
-
 
 	private void NaturalSquall()
 	{
@@ -87,10 +94,7 @@ public class RoomSquall : MonoBehaviour
 			_waitCurrentTimer = 0;
 			int sq = Random.Range(0, 2);
 			isSquall = sq == 0 ? true : false;
-			if(isSquall)
-				SetRoom();
 		}
-
 
 		Squall();
 	}
@@ -110,6 +114,7 @@ public class RoomSquall : MonoBehaviour
 	}
 	private void SquallCreate()
 	{
+		SetRoom();
 		if (_waitSquallCreateTime > _waitSquallCreateTimer)
 		{
 			_waitSquallCreateTimer += Time.deltaTime;
@@ -125,11 +130,9 @@ public class RoomSquall : MonoBehaviour
 		}
 	}
 
-
 	private void SetRoom()
 	{
 		Transform room = InGame.GetBlock(InGame.Player.Position)?.gameObject.transform.parent;
-		Debug.Log(room);
 		blocks = room?.GetComponentsInChildren<Block>();
 		int count = 0;
 		if (blocks != null)

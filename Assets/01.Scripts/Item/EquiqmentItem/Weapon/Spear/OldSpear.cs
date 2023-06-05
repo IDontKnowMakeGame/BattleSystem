@@ -37,7 +37,7 @@ public class OldSpear : Spear
 		{
 			count = 0;
 			GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Hit3");
-			obj.transform.position = _characterActor.Position + _currentVec;
+			obj.transform.position = _characterActor.Position + _currentVec + Vector3.up + -_currentVec/2;
 			_stat.DelDrainageAtk("OldSpear");
 			_characterActor.GetAct<CharacterStatAct>().StatChange();
 		}

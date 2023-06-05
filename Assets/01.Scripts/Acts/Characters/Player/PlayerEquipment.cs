@@ -222,7 +222,6 @@ public class PlayerEquipment : CharacterEquipmentAct
 	}
 	#endregion
 
-	//private int index = 0;
 	#region Halo
 	public void AddHalo(EventParam param)
 	{//int = num , float = Itemid;

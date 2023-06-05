@@ -43,7 +43,7 @@ VisualEffect:
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 06b6277868df34246ba3c475773ae459, type: 3}
   m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_ResourceVersion: 1
@@ -56,11 +56,17 @@ VisualEffect:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 4.867144, y: 2.0385942, z: 0.8664026, w: 1}
+      - m_Value: {x: 4.867145, y: 0.8664027, z: 1.2525504, w: 1}
         m_Name: TrailsColor
         m_Overridden: 1
-      - m_Value: {x: 9.082411, y: 3.8041513, z: 1.5692124, w: 1}
+      - m_Value: {x: 9.082411, y: 1.8358297, z: 1.6167641, w: 1}
         m_Name: CrossColor
+        m_Overridden: 1
+      - m_Value: {x: 7.8, y: 1.3476439, z: 1.3476439, w: 1}
+        m_Name: FlashColor
+        m_Overridden: 1
+      - m_Value: {x: 766.9961, y: 136.53333, z: 162.24695, w: 1}
+        m_Name: ParticlesColor
         m_Overridden: 1
     m_Uint:
       m_Array: []
@@ -125,6 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 470243065411146891}
+  - component: {fileID: 6622613212359647801}
   m_Layer: 0
   m_Name: Hit3
   m_TagString: Untagged
@@ -148,3 +155,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6622613212359647801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470243065411146888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aca2edb7cd7d324e9e2350534cb9702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj: {fileID: 470243065411146888}
+  _isTimeDestroy: 1
+  _time: 0.3
+  _shake: 0

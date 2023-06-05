@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using Actors.Characters.Player;
 using Acts.Characters.Player;
+using Tools;
 
 public class OldGreatSword : GreatSword
 {
@@ -19,25 +20,24 @@ public class OldGreatSword : GreatSword
 		if (_playerActor.HasAnyState())
 			return;
 
-			_isCoolTime = true;
-		if(_characterActor is PlayerActor)
-        {
-			_characterActor.GetAct<PlayerAnimation>().Play("Skill");
-        }
-		_characterActor.StartCoroutine(HalfSkill());
-		particleObj = Define.GetManager<ResourceManager>().Instantiate("OldGreatSwordAura").transform.gameObject;
-		particleObj.transform.position = _characterActor.transform.position;
-		EventParam eventParam = new EventParam();
-		eventParam.intParam = 1;
-		eventParam.stringParam = "OldGreatSkill";
-		Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam);
-	}
-
-	private IEnumerator HalfSkill()
-	{
+		_isCoolTime = true;
+		_characterActor.GetAct<PlayerAnimation>().Play("Skill");
 		_characterActor.GetAct<CharacterStatAct>().Half += 30;
-		yield return new WaitForSeconds(0.5f);
-		_characterActor.GetAct<CharacterStatAct>().Half -= 30;
-		Define.GetManager<ResourceManager>().Destroy(particleObj);
+
+		ClipBase clip = _characterActor.GetAct<PlayerAnimation>().GetClip("Skill");
+		clip.SetEventOnFrame(3, () =>
+		{
+			particleObj = Define.GetManager<ResourceManager>().Instantiate("OldGreatSwordAura").transform.gameObject;
+			particleObj.transform.position = _characterActor.transform.position;
+			EventParam eventParam = new EventParam();
+			eventParam.intParam = 1;
+			eventParam.stringParam = "OldGreatSkill";
+			Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam); ;
+		});
+		clip.SetEventOnFrame(clip.fps - 1, () =>
+		{
+			_characterActor.GetAct<CharacterStatAct>().Half -= 30;
+			Define.GetManager<ResourceManager>().Destroy(particleObj);
+		});
 	}
 }

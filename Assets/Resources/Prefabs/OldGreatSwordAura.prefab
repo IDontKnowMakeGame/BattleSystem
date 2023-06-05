@@ -4808,6 +4808,7 @@ GameObject:
   - component: {fileID: 2507681623959350393}
   - component: {fileID: 2507681623944130329}
   - component: {fileID: 2507681623943200887}
+  - component: {fileID: 1115164116194753738}
   m_Layer: 0
   m_Name: OldGreatSwordAura
   m_TagString: Untagged
@@ -9595,3 +9596,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &1115164116194753738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2507681623959047851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aca2edb7cd7d324e9e2350534cb9702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj: {fileID: 0}
+  _isTimeDestroy: 0
+  _time: 0
+  _shake: 0
