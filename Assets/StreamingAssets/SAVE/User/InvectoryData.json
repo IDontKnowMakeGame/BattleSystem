@@ -103,7 +103,7 @@
         {
             "id": 200,
             "name": "Torch",
-            "currentCnt": 3,
+            "currentCnt": 23,
             "maxCnt": 99
         },
         {
@@ -115,7 +115,7 @@
         {
             "id": 202,
             "name": "HPPotion",
-            "currentCnt": 5,
+            "currentCnt": 4,
             "maxCnt": 5
         },
         {
@@ -139,13 +139,13 @@
         {
             "id": 206,
             "name": "Pick",
-            "currentCnt": 99,
+            "currentCnt": 98,
             "maxCnt": 99
         },
         {
             "id": 207,
             "name": "CompassOfSpace",
-            "currentCnt": 3,
+            "currentCnt": 4,
             "maxCnt": 99
         }
     ],

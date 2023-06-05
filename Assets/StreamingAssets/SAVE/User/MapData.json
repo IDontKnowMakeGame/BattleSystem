@@ -14,11 +14,30 @@
             "floor": 1,
             "isBossKill": false,
             "onCristalList": [
+                1,
+                2,
+                5,
+                6,
+                37,
+                36,
                 0,
-                1
+                15,
+                17,
+                19,
+                18,
+                16,
+                20,
+                20,
+                20
             ],
-            "openChestList": [],
-            "openDoorList": [],
+            "openChestList": [
+                3
+            ],
+            "openDoorList": [
+                1,
+                2,
+                3
+            ],
             "brokenWallList": [],
             "killUniqueEnemy": []
         },
