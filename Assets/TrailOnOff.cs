@@ -37,6 +37,6 @@ public class TrailOnOff : MonoBehaviour
 
 	private void OnDisable()
 	{
-		Define.GetManager<EventManager>().StopListening(EventFlag.TraillOnOff, ObjSetActive);
+		Define.GetManager<EventManager>()?.StopListening(EventFlag.TraillOnOff, ObjSetActive);
 	}
 }

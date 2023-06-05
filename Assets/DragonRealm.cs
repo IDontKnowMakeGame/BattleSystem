@@ -33,7 +33,7 @@ public class DragonRealm : MonoBehaviour
 		{
 			_currentTimer = 0;
 			_isCoolTime = false;
-			Define.GetManager<ResourceManager>().Destroy(this.gameObject);
+			Define.GetManager<ResourceManager>()?.Destroy(this.gameObject);
 		}
 	}
 

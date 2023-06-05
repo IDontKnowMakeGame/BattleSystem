@@ -40,6 +40,6 @@ public class EffectDestory : MonoBehaviour
 		if (_shake)
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, new EventParam() { stringParam = "Damaged", intParam = 2 });
 		destroyEvent?.Invoke();
-		Define.GetManager<ResourceManager>().Destroy(obj);
+		Define.GetManager<ResourceManager>()?.Destroy(obj);
 	}
 }
