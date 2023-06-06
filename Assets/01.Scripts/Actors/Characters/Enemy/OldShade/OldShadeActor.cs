@@ -19,6 +19,8 @@ namespace Actors.Characters.Enemy.OldShade
             AddAct(_enemyAi);
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
+        // ReSharper disable Unity.PerformanceAnalysis
         protected override void Start()
         {
             base.Start();
@@ -33,6 +35,8 @@ namespace Actors.Characters.Enemy.OldShade
             };
             pattern.RandomActions.Add(() =>
             {
+                if (HasState(CharacterState.Attack))
+                    return;
                 AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
                 var dir = (playerPos - Position).GetDirection();
@@ -59,11 +63,13 @@ namespace Actors.Characters.Enemy.OldShade
                 };
                 readyClip.OnExit = () =>
                 {
+                    Debug.LogWarning("Ready Enter");
                     attackClip.OnExit = () =>
                     {
                         returnClip.OnExit = () =>
                         {
                             RemoveState(CharacterState.Attack);
+                            Debug.LogWarning("Ready Exit");
                         };
                         _enemyAnimation.Play( nextState + "Return");
                     };
