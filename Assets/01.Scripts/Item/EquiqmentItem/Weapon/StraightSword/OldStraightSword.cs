@@ -27,6 +27,8 @@ public class OldStraightSword : StraightSword
 
 	protected override void SkillInputEnd(int i, Vector3 vec)
 	{
+		if (_characterActor == null) return;
+
 		if (i != _characterActor.UUID)
 			return;
 
