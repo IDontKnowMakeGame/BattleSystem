@@ -71,7 +71,7 @@ namespace Actors.Characters.Enemy.OldShade
                             RemoveState(CharacterState.Attack);
                             Debug.LogWarning("Ready Exit");
                         };
-                        _enemyAnimation.Play( nextState + "Return");
+                        _enemyAnimation.Play( nextState + "Return");    
                     };
                     _enemyAnimation.Play( nextState + "Attack");
                 };
