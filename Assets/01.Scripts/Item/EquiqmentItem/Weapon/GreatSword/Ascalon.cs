@@ -3,6 +3,7 @@ using Actors.Characters.Player;
 using Acts.Characters.Player;
 using Core;
 using Managements;
+using Managements.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ using UnityEngine;
 public class Ascalon : GreatSword
 {
 	private GameObject _obj = null;
+
+	private IEnumerator cor = null;
 
 	public override void Skill(Vector3 vec)
 	{
@@ -29,8 +32,33 @@ public class Ascalon : GreatSword
 
 		_stat.PercentAtk(30);
 
-		PlayerAttack.OnAttackEnd += SkillEnd;
+		cor = EffectTimer();
+		_characterActor.StartCoroutine(cor);
+
+		PlayerAttack.OnSkillEnd += SkillEnd;
+		InputManager<GreatSword>.OnClickPress += RemainVector;
 	}
+
+	private IEnumerator EffectTimer()
+	{
+		yield return new WaitForSeconds(info.CoolTime);
+		_obj.transform.SetParent(null);
+		GameManagement.Instance?.GetManager<ResourceManager>()?.Destroy(_obj);
+		_stat?.PercentAtk(-30);
+		PlayerAttack.OnSkillEnd -= SkillEnd;
+		_characterActor.StopCoroutine(cor);
+	}
+
+	private void RemainVector(Vector3 vec)
+	{
+		if (!_isCoolTime)
+			return;
+
+		_remainVec = DirReturn(vec);
+		Debug.Log(_remainVec);
+	}
+
+	private Vector3 _remainVec;
 
 	public override void Update()
 	{
@@ -40,14 +68,16 @@ public class Ascalon : GreatSword
 	public override void UnEquipment(CharacterActor actor)
 	{
 		base.UnEquipment(actor);
-		if (_obj)
+		if (_obj != null)
 		{
-			_obj.transform.SetParent(null);
-			GameManagement.Instance.GetManager<ResourceManager>().Destroy(_obj);
-		}
+			//_obj.transform.parent = null;
+			GameManagement.Instance?.GetManager<ResourceManager>()?.Destroy(_obj);
+			_stat?.PercentAtk(-30);
 
-		_stat.PercentAtk(-30);
-		PlayerAttack.OnAttackEnd -= SkillEnd;
+			_characterActor.StopCoroutine(cor);
+		}
+		PlayerAttack.OnSkillEnd -= SkillEnd;
+		InputManager<GreatSword>.OnClickPress -= RemainVector;
 	}
 
 	private void SkillEnd(int id)
@@ -55,16 +85,18 @@ public class Ascalon : GreatSword
 		if (id != _characterActor.UUID)
 			return;
 
-		if(_obj)
+		if (_obj)
 		{
 			_obj.transform.SetParent(null);
 			GameManagement.Instance.GetManager<ResourceManager>().Destroy(_obj);
 		}
 
 		_stat.PercentAtk(-30);
+		PlayerAttack.OnSkillEnd -= SkillEnd;
 		PlayerAttack.OnAttackEnd -= SkillEnd;
 		GameObject obj = GameManagement.Instance.GetManager<ResourceManager>().Instantiate("Dragon Slayer's Realm");
-		obj.transform.position = _characterActor.Position + InGame.CamDirCheck(_currrentVector) + (Vector3.up / 2);
+		_characterActor.StopCoroutine(cor);
+		obj.transform.position = _characterActor.Position + InGame.CamDirCheck(_remainVec) + (Vector3.up / 2);
 		obj.GetComponent<DragonRealm>().Init(AscalonData.duration, AscalonData.decrease);
 	}
 }

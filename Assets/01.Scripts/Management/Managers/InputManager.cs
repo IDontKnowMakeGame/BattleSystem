@@ -100,7 +100,9 @@ namespace Managements.Managers
 		}
 
 		public override void Update()
-		{ 
+		{
+			if (LoadingSceneController.Instnace.IsVisbleLoading()) return;
+
 			var currentWp = InGame.Player.GetAct<CharacterEquipmentAct>().CurrentWeapon;
 			if (currentWp is T || typeof(T) == typeof(Weapon))
 			{

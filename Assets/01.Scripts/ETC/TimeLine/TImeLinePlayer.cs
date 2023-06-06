@@ -68,7 +68,6 @@ public class TImeLinePlayer : MonoBehaviour
     {
         if (_isPlaying) return;
 
-        Debug.Log(TimeLineNumber(eventParam.stringParam));
         ChangeTimeLine(TimeLineNumber(eventParam.stringParam));
         _playable.Play();
     }

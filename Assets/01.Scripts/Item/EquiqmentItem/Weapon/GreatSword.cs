@@ -148,8 +148,8 @@ public class GreatSword : Weapon
 		_characterActor.GetAct<CharacterStatAct>().Half -= _half;
 		_characterActor.RemoveState(CharacterState.Hold);
 
-		_sliderObject.PullSlider(0f, false, Color.white);
-		_sliderObject.SliderActive(false);
+		_sliderObject?.PullSlider(0f, false, Color.white);
+		_sliderObject?.SliderActive(false);
 	}
 
 	private void ChargeAnimation(Vector3 dir)

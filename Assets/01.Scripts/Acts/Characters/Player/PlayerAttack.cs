@@ -6,6 +6,7 @@ using Core;
 using Actors.Characters.Player;
 using Actors.Characters;
 using Actors.Characters.Enemy;
+using System;
 
 namespace Acts.Characters.Player
 {
@@ -28,7 +29,9 @@ namespace Acts.Characters.Player
         private CharacterState _tempState;
         private CCInfo _ccInfo;
 
-        public override void Awake()
+		public static Action<int> OnSkillEnd;
+
+		public override void Awake()
         {
             base.Awake();
 
@@ -82,6 +85,8 @@ namespace Acts.Characters.Player
                 _playerAnimation.curClip.SetEventOnFrame(attackInfo.ReachFrame, Attack);
             }
 
+			_playerAnimation.curClip.SetEventOnFrame(attackInfo.ReachFrame+1, () => OnSkillEnd?.Invoke(ThisActor.UUID));
+
 			OnAttackEnd?.Invoke(_playerActor.UUID);
 			attackCol.AllReset();
         }
@@ -111,7 +116,7 @@ namespace Acts.Characters.Player
                     spark.GetComponent<ParticleSystem>().Play();
                 }
             }
-            _playerActor.GetAct<PlayerBuff>().ChangeAdneraline(1);
+			_playerActor.GetAct<PlayerBuff>().ChangeAdneraline(1);
 		}
 
         private void ParticleRot(Vector3 pressInput)
@@ -171,7 +176,7 @@ namespace Acts.Characters.Player
 
         private void FinishAttack()
         {
-            _playerActor.RemoveState(Actors.Characters.CharacterState.Attack);
+			_playerActor.RemoveState(Actors.Characters.CharacterState.Attack);
             _playerAnimation.curClip.events.Clear();
         }
 
