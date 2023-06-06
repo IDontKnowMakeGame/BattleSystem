@@ -46,10 +46,13 @@ public class Arrow : MonoBehaviour
 	}
 	public static void ShootArrow(Vector3 vec, Vector3 position, CharacterActor actor, float speed, float damage, int distance, bool destroy = false)
 	{
-		Arrow obj = Define.GetManager<ResourceManager>().Instantiate("Arrow").GetComponent<Arrow>();
-		obj.transform.position = position;
-		obj.transform.rotation = Quaternion.Euler(VecToRotation(vec));
-		obj.Shoot(vec, position, actor, speed, damage, distance, destroy);
+		if(Define.GetManager<ResourceManager>() != null)
+		{
+			Arrow obj = Define.GetManager<ResourceManager>().Instantiate("Arrow").GetComponent<Arrow>();
+			obj.transform.position = position;
+			obj.transform.rotation = Quaternion.Euler(VecToRotation(vec));
+			obj.Shoot(vec, position, actor, speed, damage, distance, destroy);
+		}
 	}
 	private static Vector3 VecToRotation(Vector3 vec)
 	{
