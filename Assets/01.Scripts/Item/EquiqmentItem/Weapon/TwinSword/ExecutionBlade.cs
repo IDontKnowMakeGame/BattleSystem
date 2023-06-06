@@ -46,28 +46,33 @@ public class ExecutionBlade : TwinSword
 		obj.transform.localRotation = Quaternion.LookRotation(_dir);
 
 		int count;
-		for(count = 1; count < 5; count++)
+		for(count = 1; count < 5; ++count)
 		{
 			Debug.Log(InGame.GetBlock(_characterActor.Position + (_dir * count)));
+			Debug.Log(_characterActor.Position + (_dir * count));
 			if(InGame.GetBlock(_characterActor.Position + (_dir * count)) != null)
 			{
 				if (InGame.GetBlock(_characterActor.Position + (_dir * count)).ActorOnBlock != null || !InGame.GetBlock(_characterActor.Position + (_dir * count)).isWalkable)
 				{
-					count--;
+					count = count - 1;
 					Debug.Log(count);
 					break;
 				}
 			}
 			else
 			{
-				count--;
+				count = count - 1;
 				Debug.Log(count);
 				break;
 			}
+
+			if (count == 4)
+				break;
 		}
 
 		float speed = 0.5f;
 		_seq = DOTween.Sequence();
+		Debug.Log(_characterActor.Position + Vector3.up + (_dir * count));
 		_seq.Append(_characterActor.transform.DOMove(_characterActor.Position + Vector3.up + (_dir * count), speed).OnComplete(() =>
 		{
 			Vector3 left = Mathf.Abs(_dir.x) > Mathf.Abs(_dir.z) ? Vector3.back : Vector3.left;
@@ -80,7 +85,7 @@ public class ExecutionBlade : TwinSword
 			obj2.transform.position = _pos + _dir + right / 2;
 			obj2.transform.localRotation = UnityEngine.Quaternion.LookRotation(_dir);
 
-			for (int i = 1; i < 5; i++)
+			for (int i = 1; i < 5; ++i)
 			{
 				InGame.Attack(_pos + (_dir * i) + left, 0, Vector3.one, ExecutedSwordData.damage, i / 10, _characterActor);
 				InGame.Attack(_pos + (_dir * i) + right, 0, Vector3.one, ExecutedSwordData.damage, i / 10, _characterActor);
