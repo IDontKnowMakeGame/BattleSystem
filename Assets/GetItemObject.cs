@@ -33,6 +33,8 @@ public class GetItemObject : InteractionActor
 
 	private static List<GetItemObject> obj = new List<GetItemObject>();
 
+	private IEnumerator cor;
+
 	protected override void Awake()
 	{
 		base.Awake();
@@ -59,15 +61,15 @@ public class GetItemObject : InteractionActor
 		_isWeapon = info._isWeapon;
 		canInteraction = true;
 	}
-    public void ShowInteration(Vector3 vec)
-    {
-        UIManager.Instance.InGame.ShowInteraction();
-    }
-    public void HideInteration(Vector3 vec)
-    {
-        UIManager.Instance.InGame.HideInteraction();
-    }
-    public override void Interact()
+	public void ShowInteration(Vector3 vec)
+	{
+		UIManager.Instance.InGame.ShowInteraction();
+	}
+	public void HideInteration(Vector3 vec)
+	{
+		UIManager.Instance.InGame.HideInteraction();
+	}
+	public override void Interact()
 	{
 		if (count == 1)
 			return;
@@ -79,11 +81,13 @@ public class GetItemObject : InteractionActor
 
 		count++;
 		canInteraction = false;
-        characterDetect.EnterDetect -= ShowInteration;
-        characterDetect.ExitDetect -= HideInteration;
+		characterDetect.EnterDetect -= ShowInteration;
+		characterDetect.ExitDetect -= HideInteration;
 		HideInteration(Vector2.zero);
 
-        StartCoroutine(GetObjectTime());
+		cor = GetObjectTime();
+
+		StartCoroutine(cor);
 	}
 
 
@@ -91,7 +95,16 @@ public class GetItemObject : InteractionActor
 	{
 		yield return new WaitForSeconds(0.1f);
 		count = 0;
-		Define.GetManager<DataManager>().AddItemInInventory(_id, _count);
-		Define.GetManager<ResourceManager>().Destroy(this.gameObject);
+		if (Define.GetManager<DataManager>() != null)
+		{
+			Define.GetManager<DataManager>().AddItemInInventory(_id, _count);
+			Define.GetManager<ResourceManager>().Destroy(this.gameObject);
+		}
+	}
+
+	protected override void OnDisable()
+	{
+		if (cor != null)
+			StopCoroutine(cor);
 	}
 }

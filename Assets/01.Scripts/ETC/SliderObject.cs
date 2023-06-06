@@ -68,8 +68,11 @@ public class SliderObject : MonoBehaviour
 		_power = power;
 		_color = color;
 
-		_backGroundObject.GetComponent<SpriteRenderer>().color = _color;
-		this.transform.localPosition = _originPos;
+		if(_backGroundObject != null) 
+		{
+			_backGroundObject.GetComponent<SpriteRenderer>().color = _color;
+			this.transform.localPosition = _originPos;
+		}
 	}
 
 	private void ActiveObjects(bool isActive)

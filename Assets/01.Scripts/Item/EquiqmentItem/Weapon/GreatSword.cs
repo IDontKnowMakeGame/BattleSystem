@@ -70,6 +70,8 @@ public class GreatSword : Weapon
 		InputManager<GreatSword>.OnClickPress -= AttakStart;
 		InputManager<GreatSword>.OnClickHold -= Hold;
 		InputManager<GreatSword>.OnClickRelease -= AttackRealease;
+
+		InputManager<GreatSword>.OnMovePress -= MoveEnd;
 	}
 	public virtual void AttakStart(Vector3 vec)
 	{
