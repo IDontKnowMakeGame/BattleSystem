@@ -65,20 +65,6 @@ public class BowShadeActor : EnemyActor
 			state?.OnExit?.Invoke();
 			return;
 		}
-
-		if (dir == Vector3.left || dir == Vector3.right)
-		{
-			_unitAnimation.Play("HorizontalCharge");
-		}
-		else if (dir == Vector3.forward)
-		{
-			_unitAnimation.Play("UpperCharge");
-		}
-		else if (dir == Vector3.back)
-		{
-			_unitAnimation.Play("LowerCharge");
-		}
-
 		dir.y = 0;
 
 		Vector3 cameraDir = InGame.CameraDir();
@@ -92,8 +78,22 @@ public class BowShadeActor : EnemyActor
 			dir.z = -dir.z;
 		}  
 
+		if (dir.x == Vector3.left.x || dir.x == Vector3.right.x)
+		{
+			_unitAnimation.Play("HorizontalCharge");
+		}
+		else if (dir.z == Vector3.forward.z)
+		{
+			_unitAnimation.Play("UpperCharge");
+		}
+		else if (dir.z == Vector3.back.z)
+		{
+			_unitAnimation.Play("LowerCharge");
+		}
+
+
 		Vector3 vector = this.transform.localScale;
-		Vector3 vec = dir.x < 0 ? new Vector3(vector.x, vector.y, vector.z) : new Vector3(Mathf.Abs(vector.x) * -1, vector.y, vector.z);
+		Vector3 vec = dir.x < 0 ? new Vector3(Mathf.Abs(vector.x), vector.y, vector.z) : new Vector3(Mathf.Abs(vector.x) * -1, vector.y, vector.z);
 		this.transform.localScale = vec;
 
 		_sliderObject.SliderInit(_unitStat.ChangeStat.ats);
