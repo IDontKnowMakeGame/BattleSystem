@@ -18,6 +18,8 @@ public class Ascalon : GreatSword
 	{
 		if (_isCoolTime)
 			return;
+		if (_characterActor == null)
+			return;
 
 		_isCoolTime = true;
 
@@ -33,7 +35,7 @@ public class Ascalon : GreatSword
 		_stat.PercentAtk(30);
 
 		cor = EffectTimer();
-		_characterActor.StartCoroutine(cor);
+		_characterActor?.StartCoroutine(cor);
 
 		PlayerAttack.OnSkillEnd += SkillEnd;
 		InputManager<GreatSword>.OnClickPress += RemainVector;
@@ -68,16 +70,16 @@ public class Ascalon : GreatSword
 	public override void UnEquipment(CharacterActor actor)
 	{
 		base.UnEquipment(actor);
-		if (_obj != null)
-		{
-			//_obj.transform.parent = null;
-			GameManagement.Instance?.GetManager<ResourceManager>()?.Destroy(_obj);
-			_stat?.PercentAtk(-30);
 
-			_characterActor.StopCoroutine(cor);
-		}
 		PlayerAttack.OnSkillEnd -= SkillEnd;
 		InputManager<GreatSword>.OnClickPress -= RemainVector;
+		InputManager<GreatSword>.OnSkillPress -= Skill;
+		if(_isCoolTime)
+		{
+			_stat?.PercentAtk(-30);
+		}
+		if(cor != null)
+			_characterActor.StopCoroutine(cor);
 	}
 
 	private void SkillEnd(int id)
