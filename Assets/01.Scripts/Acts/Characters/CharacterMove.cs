@@ -265,6 +265,12 @@ namespace Acts.Characters
                 yield break;
             }
             var nextPos = nextBlock.Position;
+            if (nextBlock.IsActorOnBlock)
+            {
+                isChasing = false;
+                _character.RemoveState(CharacterState.Chase);
+                yield break;
+            }
             Move(nextPos);  
         }
         protected virtual void AnimationCheck()
