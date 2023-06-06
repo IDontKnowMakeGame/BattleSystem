@@ -73,7 +73,6 @@ public class Ascalon : GreatSword
 
 		PlayerAttack.OnSkillEnd -= SkillEnd;
 		InputManager<GreatSword>.OnClickPress -= RemainVector;
-		InputManager<GreatSword>.OnSkillPress -= Skill;
 		if(_isCoolTime)
 		{
 			_stat?.PercentAtk(-30);
