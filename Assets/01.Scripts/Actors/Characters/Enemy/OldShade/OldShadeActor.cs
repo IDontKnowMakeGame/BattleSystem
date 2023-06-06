@@ -57,7 +57,6 @@ namespace Actors.Characters.Enemy.OldShade
                 {
                     attack.HorizontalAttackWithDelay(dir, delay, false);
                 };
-                _enemyAnimation.Play( nextState + "Ready");
                 readyClip.OnExit = () =>
                 {
                     attackClip.OnExit = () =>
@@ -70,6 +69,7 @@ namespace Actors.Characters.Enemy.OldShade
                     };
                     _enemyAnimation.Play( nextState + "Attack");
                 };
+                _enemyAnimation.Play( nextState + "Ready");
             });
         }
     }

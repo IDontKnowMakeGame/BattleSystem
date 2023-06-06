@@ -162,7 +162,7 @@ public class LoadingSceneController : MonoBehaviour
 
     private void Update()
     {
-        if(nextScene && Input.GetMouseButtonDown(0))
+        if(nextScene && Input.anyKey)
         {
             StartCoroutine(Fade(false));
             nextScene = false;
