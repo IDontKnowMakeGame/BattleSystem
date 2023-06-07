@@ -72,9 +72,16 @@ namespace Acts.Characters.Player
         #region Test Code
         private void EnqueMove(Vector3 direction)
         {
-            if (moveDir.Count > 1 || enableQ || LoadingSceneController.Instnace.IsVisbleLoading()) return;
+            int check = ThisActor.GetAct<PlayerEquipment>().CurrentWeapon.WeaponInfo.Weight > 5 ? 0 : 1;
+            if (moveDir.Count > check || enableQ || LoadingSceneController.Instnace.IsVisbleLoading()) return;
             moveDir.Enqueue(direction);
         }
+
+        public void ResetMoveQueue()
+        {
+            moveDir.Clear();
+        }
+
         private void PopMove()
         {
             if (ThisActor.GetAct<CharacterStatAct>().ChangeStat.hp <= 0) return;
