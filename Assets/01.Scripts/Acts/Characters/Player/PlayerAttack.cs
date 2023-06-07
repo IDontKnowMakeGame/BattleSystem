@@ -68,7 +68,6 @@ namespace Acts.Characters.Player
         public override void AttackCheck(AttackInfo attackInfo)
         {
             enemys.Clear();
-            ThisActor.GetAct<PlayerMove>().ResetMoveQueue();
 
             attackCol.SetAttackCol(attackInfo);
 
@@ -179,6 +178,7 @@ namespace Acts.Characters.Player
         {
 			_playerActor.RemoveState(Actors.Characters.CharacterState.Attack);
             _playerAnimation.curClip.events.Clear();
+            ThisActor.GetAct<PlayerMove>().ResetMoveQueue();
         }
 
         private void Attack(EventParam eventParam)
