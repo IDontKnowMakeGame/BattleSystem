@@ -178,6 +178,7 @@ namespace Acts.Characters.Player
         {
 			_playerActor.RemoveState(Actors.Characters.CharacterState.Attack);
             _playerAnimation.curClip.events.Clear();
+            ThisActor.GetAct<PlayerMove>().ResetMoveQueue();
         }
 
         private void Attack(EventParam eventParam)
