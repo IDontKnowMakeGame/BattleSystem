@@ -1,10 +1,27 @@
 ﻿using Actors.Characters;
+using UnityEngine;
 
 namespace Blocks
 {
     public class EmptyBlock : Block
     {
         protected bool isParent = false;
+        protected override void Start()
+        {
+            base.Start();
+            var anchorTrm = transform.Find("Anchor");
+            var lightObj = new GameObject("Light");
+            var light = lightObj.AddComponent<Light>();
+            light.type = LightType.Point;
+            light.range = 1.5f;
+            light.intensity = 5f;
+            light.color = Color.white;
+            light.shadows = LightShadows.Hard;
+            light.renderMode = LightRenderMode.ForceVertex;
+            lightObj.transform.SetParent(anchorTrm);
+            lightObj.transform.localPosition = Vector3.up * -0.2f;
+        }
+
         protected override void Update()
         {
             base.Update();
