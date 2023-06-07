@@ -68,6 +68,7 @@ namespace Acts.Characters.Player
         public override void AttackCheck(AttackInfo attackInfo)
         {
             enemys.Clear();
+            ThisActor.GetAct<PlayerMove>().ResetMoveQueue();
 
             attackCol.SetAttackCol(attackInfo);
 
