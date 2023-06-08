@@ -990,3 +990,4 @@ MonoBehaviour:
   toolTipIdx: 
   toolTipParent: {fileID: 1695490011391477375}
   progressBarParent: {fileID: 330157116725778203}
+  textvignette: {fileID: 1553422019785612388}

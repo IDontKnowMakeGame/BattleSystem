@@ -46,7 +46,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.2979708, g: 0.63488376, b: 0.6792453, a: 1}
   m_Intensity: 60
-  m_Range: 6
+  m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -272,4 +272,6 @@ MonoBehaviour:
   canKnockBack: 0
   characterDetect:
     isDetecting: 0
+  canInteract: 1
   torchLight: {fileID: 1998556553119683269}
+  isOn: 0
