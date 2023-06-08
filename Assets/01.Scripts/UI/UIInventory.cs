@@ -262,8 +262,10 @@ public class UIInventory : UIBase
     public void SelectItemBtn(int pageNum,VisualElement chageBox)
     {
         _selectBtnBox.style.height = new Length(80, LengthUnit.Percent);
+        _selectBtnBox.style.opacity = new StyleFloat(0.35f);
         _selectBtnBox = chageBox;
         _selectBtnBox.style.height = new Length(100, LengthUnit.Percent);
+        _selectBtnBox.style.opacity = new StyleFloat(1f);
 
         ChangeShowInventoryPanel(pageNum);
         SelectOptionInit(true);

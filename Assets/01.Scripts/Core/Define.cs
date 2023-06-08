@@ -84,7 +84,7 @@ namespace Core
         {
             if (Actors.ContainsKey(actor.UUID))
             {
-                Debug.LogError($"Actor {actor.UUID} is already in this Dict.");
+                Debug.LogError($"Actor {actor.name} : {actor.UUID} is already in this Dict.");
                 return;
             }
             Actors.Add(actor.UUID, actor);
