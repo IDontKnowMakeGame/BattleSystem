@@ -6,12 +6,14 @@ using Managements.Managers;
 using Actors.Characters;
 using System;
 using Acts.Characters;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 public class InteractionActor : CharacterActor
 {
     [SerializeField] protected CharacterDetect characterDetect;
     [SerializeField] protected bool canInteract = true;
+    [SerializeField] protected UnityEvent onInteract = new UnityEvent();
     protected override void Init()
     {
         base.Init();
@@ -45,8 +47,12 @@ public class InteractionActor : CharacterActor
     public virtual void Interact()
     {
         if (InGame.Player.Position.IsNeighbor(Position) == false) return;
-
-        //TODO : 상호작용
+        
         InputManager<Weapon>.OnInteractionPress -= Interact;
+        if (canInteract)
+        {
+            onInteract?.Invoke();
+        }
+        //TODO : 상호작용
 	}
 }

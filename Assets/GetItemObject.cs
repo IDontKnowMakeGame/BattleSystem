@@ -6,6 +6,7 @@ using Managements.Managers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -77,6 +78,9 @@ public class GetItemObject : InteractionActor
 		if (!canInteraction)
 			return;
 
+		if (InGame.Player == null) return;
+		if (Define.GetManager<MapManager>() == null) return;
+		
 		if (InGame.Player.Position.IsNeighbor(Position) == false && Define.GetManager<MapManager>().GetBlock(Position)?.ActorOnBlock != InGame.Player) return;
 
 		count++;
