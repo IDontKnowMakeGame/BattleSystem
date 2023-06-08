@@ -8433,6 +8433,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e8f1d23ec45f0746912676d6255386a, type: 3}
+--- !u!1 &1076989935571459607 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1076989935826885231, guid: 5e8f1d23ec45f0746912676d6255386a, type: 3}
+  m_PrefabInstance: {fileID: 533300344}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1969569571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076989935571459607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!4 &2972935225597469578 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2972935225131280370, guid: 5e8f1d23ec45f0746912676d6255386a, type: 3}
@@ -16151,6 +16176,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390314651861947}
     m_Modifications:
+    - target: {fileID: 1237369719584617802, guid: 87d1d1a85869bea49bdc24757722e19a, type: 3}
+      propertyPath: m_Range
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237369719584617802, guid: 87d1d1a85869bea49bdc24757722e19a, type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4957586451504964055, guid: 87d1d1a85869bea49bdc24757722e19a, type: 3}
       propertyPath: m_Name
       value: TorchModel
@@ -17411,6 +17444,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e8f1d23ec45f0746912676d6255386a, type: 3}
+--- !u!1 &1076989934786330151 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1076989935826885231, guid: 5e8f1d23ec45f0746912676d6255386a, type: 3}
+  m_PrefabInstance: {fileID: 1312678984}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2106093905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076989934786330151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!4 &2972935226370540474 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2972935225131280370, guid: 5e8f1d23ec45f0746912676d6255386a, type: 3}
@@ -21140,6 +21198,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e8f1d23ec45f0746912676d6255386a, type: 3}
+--- !u!1 &1076989934153624340 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1076989935826885231, guid: 5e8f1d23ec45f0746912676d6255386a, type: 3}
+  m_PrefabInstance: {fileID: 1682190715}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1689438946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076989934153624340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!4 &2972935226813453961 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2972935225131280370, guid: 5e8f1d23ec45f0746912676d6255386a, type: 3}
@@ -29405,6 +29488,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390315036371369}
     m_Modifications:
+    - target: {fileID: 1237369719584617802, guid: 87d1d1a85869bea49bdc24757722e19a, type: 3}
+      propertyPath: m_Range
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237369719584617802, guid: 87d1d1a85869bea49bdc24757722e19a, type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4957586451504964055, guid: 87d1d1a85869bea49bdc24757722e19a, type: 3}
       propertyPath: m_Name
       value: TorchModel (1)
@@ -29755,6 +29846,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390313864565510}
     m_Modifications:
+    - target: {fileID: 1237369719584617802, guid: 87d1d1a85869bea49bdc24757722e19a, type: 3}
+      propertyPath: m_Range
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237369719584617802, guid: 87d1d1a85869bea49bdc24757722e19a, type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4957586451504964055, guid: 87d1d1a85869bea49bdc24757722e19a, type: 3}
       propertyPath: m_Name
       value: TorchModel (3)
@@ -31918,6 +32017,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390315036371369}
     m_Modifications:
+    - target: {fileID: 1237369719584617802, guid: 87d1d1a85869bea49bdc24757722e19a, type: 3}
+      propertyPath: m_Range
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237369719584617802, guid: 87d1d1a85869bea49bdc24757722e19a, type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4957586451504964055, guid: 87d1d1a85869bea49bdc24757722e19a, type: 3}
       propertyPath: m_Name
       value: TorchModel
@@ -34116,6 +34223,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7630390313864565510}
     m_Modifications:
+    - target: {fileID: 1237369719584617802, guid: 87d1d1a85869bea49bdc24757722e19a, type: 3}
+      propertyPath: m_Range
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237369719584617802, guid: 87d1d1a85869bea49bdc24757722e19a, type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4957586451504964055, guid: 87d1d1a85869bea49bdc24757722e19a, type: 3}
       propertyPath: m_Name
       value: TorchModel (2)
@@ -34636,11 +34751,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1085409376, guid: 94a4e3eafbc7e2942931221d56b6e8d6, type: 3}
       propertyPath: _id
-      value: 200
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 1085409376, guid: 94a4e3eafbc7e2942931221d56b6e8d6, type: 3}
       propertyPath: _count
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6459312, guid: 94a4e3eafbc7e2942931221d56b6e8d6, type: 3}
@@ -44366,11 +44481,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1085409376, guid: 94a4e3eafbc7e2942931221d56b6e8d6, type: 3}
       propertyPath: _id
-      value: 200
+      value: 206
       objectReference: {fileID: 0}
     - target: {fileID: 1085409376, guid: 94a4e3eafbc7e2942931221d56b6e8d6, type: 3}
       propertyPath: _count
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6459312, guid: 94a4e3eafbc7e2942931221d56b6e8d6, type: 3}
@@ -50257,7 +50372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1085409376, guid: 94a4e3eafbc7e2942931221d56b6e8d6, type: 3}
       propertyPath: _count
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6459312, guid: 94a4e3eafbc7e2942931221d56b6e8d6, type: 3}
