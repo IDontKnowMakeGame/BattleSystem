@@ -1,0 +1,7 @@
+.MenuBtn {
+    translate: 0 0;
+}
+
+.MenuBtn-hide {
+    translate: -500px 0;
+}
