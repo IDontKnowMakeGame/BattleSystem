@@ -146,12 +146,12 @@ public class LoadingSceneController : MonoBehaviour
                     progressBarParent.SetActive(false);
                     toolTipParent.SetActive(false);
                     bgAnimator.SetBool("Complete", true);
+                    Debug.Log(loadSceneName);
                     Debug.Log("접근해!!");
                     yield break;
                 }
             }
         }
-
         isLoading = false;
     }
 
@@ -209,6 +209,7 @@ public class LoadingSceneController : MonoBehaviour
         if (!isFadeIn)
         {
             ui.SetActive(false);
+            Core.Define.GetManager<SoundManager>().Play("Sounds/BackGround/" + loadSceneName + "BackGround", Core.Define.Sound.Bgm);
         }
     }
 
