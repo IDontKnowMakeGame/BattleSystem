@@ -1,0 +1,37 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UIElements;
+
+public class UIPadeInOut : UIBase
+{
+    private VisualElement _padePanel;
+    public override void Init()
+    {
+        _root = UIManager.Instance._document.rootVisualElement.Q<VisualElement>("UI_PadeInOut");
+        _root.style.display = DisplayStyle.None;
+
+        _padePanel = _root.Q<VisualElement>("PadePanel");
+       
+    }
+
+    public void Pade(int padeNum,Action action = null)
+    {
+        if(padeNum == 0)
+            UIManager.Instance.StartCoroutine(PadeCoroutine("PadePanel-out-under", "PadePanel-out-top", action));
+        else if(padeNum == 1)
+            UIManager.Instance.StartCoroutine(PadeCoroutine("PadePanel-out-top", "PadePanel-out-under", action));
+    }
+    private IEnumerator PadeCoroutine(string removeClass,string addClass,Action action = null)
+    {
+        _root.style.display = DisplayStyle.Flex;
+
+        _padePanel.RemoveFromClassList(removeClass);
+        yield return new WaitForSeconds(0.7f);
+        action?.Invoke();
+        _padePanel.AddToClassList(addClass);
+        yield return new WaitForSeconds(0.7f);
+        _root.style.display = DisplayStyle.None;
+    }
+}

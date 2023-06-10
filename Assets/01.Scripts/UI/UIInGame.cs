@@ -276,7 +276,6 @@ public class UIInGame : UIBase
     }
     public void ClearQuestPanel(QuestName name)
     {
-        Debug.Log($"{_questLlistCard[name].name} : ¿Ã∞‘ ππ¡“?");
         _questLlistCard[name].Q<VisualElement>("ClearMark").style.display = DisplayStyle.Flex;
         
     }

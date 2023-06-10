@@ -2,6 +2,7 @@ using Core;
 using Data;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,6 +12,7 @@ public class UIManager : MonoBehaviour
 
     public UIDocument _document;
 
+    public UIMenu Menu = new UIMenu();
     public UIInGame InGame = new UIInGame();
     public UIInventory Inventory = new UIInventory();
     public UIItemStore ItemStore = new UIItemStore();
@@ -18,6 +20,7 @@ public class UIManager : MonoBehaviour
     public UIBossBar BossBar = new UIBossBar();
     public UIDialog Dialog = new UIDialog();
     public UIFirstFloorMap UIFirstFloorMap = new UIFirstFloorMap();
+    public UIPadeInOut PadeInOut = new UIPadeInOut();
 
     public MapNameData MapNameData;
 
@@ -25,6 +28,10 @@ public class UIManager : MonoBehaviour
     public HaloTextInfoListSO haloTextInfoListSO;
     public UseableItemTextInfoListSO useableItemTextInfoListSO;
     public QuestItemTextInfoListSO questItemTextInfoListSO;
+
+    #region Escape
+    public static Stack<UIBase> OpenPanels = new Stack<UIBase>();
+    #endregion
 
 
     private void Awake()
@@ -53,6 +60,7 @@ public class UIManager : MonoBehaviour
 
     private void Init()
     {
+        Menu.Init();
         InGame.Init();
         Inventory.Init();
         ItemStore.Init();
@@ -60,6 +68,7 @@ public class UIManager : MonoBehaviour
         BossBar.Init();
         Dialog.Init();
         UIFirstFloorMap.Init();
+        PadeInOut.Init();
     }
 
 
@@ -78,25 +87,38 @@ public class UIManager : MonoBehaviour
         {
     
         }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Inventory.ShowInventory();
-        }
         if (Input.GetKeyDown(KeyCode.X))
         {
             Define.GetManager<DataManager>().AddItemInInventory(ItemID.Pick, 3);
             Define.GetManager<DataManager>().AddItemInInventory(ItemID.Torch, 2);
             Define.GetManager<DataManager>().AddItemInInventory(ItemID.Shield, 2);
         }
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            
+            Escape();
         }
         if(Input.GetKeyDown(KeyCode.E))
         {
             Dialog.NextMessage();
         }
+    }
+    private void Escape()
+    {
+        if(OpenPanels.Count <= 0)
+        {
+            Menu.Show();
+            return;
+        }
 
+        UIBase ui = OpenPanels.Pop();
+        if(ui is UIMenu)
+        {
+            ui.Hide();
+            return;
+        }
+
+        PadeInOut.Pade(1, () => { ui.Hide(); });
+        
     }
     public void HideAllUI()
     {

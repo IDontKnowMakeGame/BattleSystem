@@ -100,7 +100,7 @@ public class UIInventory : UIBase
         _exitBtn = _root.Q<VisualElement>("ExitBtn");
         _exitBtn.RegisterCallback<ClickEvent>(e =>
         {
-            HideInventory();
+            Hide();
             
         });
 
@@ -208,11 +208,11 @@ public class UIInventory : UIBase
         InitHaloSelectCard();
         HideUseableItemExplanationPanel();
     }
-    public void ShowInventory()
+    public override void Show()
     {
         if(isOpen)
         {
-            HideInventory();
+            Hide();
             return;
         }
 
@@ -226,8 +226,10 @@ public class UIInventory : UIBase
         CreateCardList(_weaponScrollPanel, _weaponCardTemp, Define.GetManager<DataManager>().LoadWeaponDataFromInventory(), SelectCard);
         CreateCardList(_useableItemScrollPanel, _useableItemCardTemp, Define.GetManager<DataManager>().LoadUsableItemFromInventory(), SelectCard);
         CreateCardList(_questItemScrollPanel, _questItemCardTemp, Define.GetManager<DataManager>().LoadQuestFromInventory(), SelectCard);
+
+        UIManager.OpenPanels.Push(this);
     }
-    public void HideInventory()
+    public override void Hide()
     {
         isOpen = false;
         _root.style.display = DisplayStyle.None;
