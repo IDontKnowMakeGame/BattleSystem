@@ -243,8 +243,7 @@ public class UIInventory : UIBase
         ItemID id = DataManager.UserData_.firstWeapon;
         ItemInfo data = Define.GetManager<DataManager>().weaponDictionary[id];
         _firstWeaponImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
-        _weaponChacraterViewImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Image/{data.Class}"));
-
+        
         id = DataManager.UserData_.secondWeapon;
         _secondWeaponImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
         
