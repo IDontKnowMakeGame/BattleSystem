@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.ExecutionBlade);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.Ascalon);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.SecondMap);
-        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.Pick,1);
+        
         UIStart();
     }
 
@@ -76,7 +76,7 @@ public class UIManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-           InGame.AddAbnormalStatus();
+    
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -84,7 +84,9 @@ public class UIManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            Debug.Log($" open QuestList Cnt : {DataManager.PlayerOpenQuestData_.openQuestList[0]}");
+            Define.GetManager<DataManager>().AddItemInInventory(ItemID.Pick, 3);
+            Define.GetManager<DataManager>().AddItemInInventory(ItemID.Torch, 2);
+            Define.GetManager<DataManager>().AddItemInInventory(ItemID.Shield, 2);
         }
         if (Input.GetKeyDown(KeyCode.B))
         {

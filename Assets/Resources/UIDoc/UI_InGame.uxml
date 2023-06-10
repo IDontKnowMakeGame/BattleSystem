@@ -85,17 +85,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="Right" style="flex-basis: 33%; height: 100%; align-items: flex-end; justify-content: flex-end;">
-                <ui:VisualElement name="ItemPanel" class="ShowItemPanel HideItemPanel" style="height: 50%; width: 30%; background-color: rgba(0, 0, 0, 0.25); justify-content: center; align-items: center; margin-right: 1%; transition-property: left; transition-duration: 1s; transition-delay: 0.2s; transition-timing-function: ease-in; border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; border-bottom-width: 3px; border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255);">
-                    <ui:VisualElement name="Image" style="height: 80%; width: 80%; background-image: resource(&apos;Item/1&apos;); -unity-background-scale-mode: scale-to-fit; justify-content: flex-end; align-items: flex-end;">
-                        <ui:Label text="x3" display-tooltip-when-elided="true" name="ItemCntText" style="margin-bottom: 5px; margin-right: 5px; font-size: 30%; color: rgb(233, 233, 233);" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="TextBox" style="width: 80%; height: 15%; justify-content: center; align-items: center;">
-                        <ui:Label text="ABCDEFGHIJKLNMOPQR" display-tooltip-when-elided="true" name="ItemName" style="color: rgb(255, 255, 255); font-size: 15%; -unity-font: url(&apos;project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&amp;guid=fdf177119c8b7f84fbad0a6901efb8cc&amp;type=3#SUITE-Variable&apos;); -unity-font-definition: none; -unity-font-style: bold; white-space: normal;" />
-                        <ui:VisualElement style="width: 100%; height: 3%; background-color: rgb(255, 255, 255); margin-top: 5px;" />
-                    </ui:VisualElement>
-                </ui:VisualElement>
-            </ui:VisualElement>
+            <ui:VisualElement name="Right" style="flex-basis: 33%; height: 100%; align-items: flex-end; justify-content: flex-end;" />
         </ui:VisualElement>
         <ui:VisualElement style="flex-basis: 5%; flex-direction: row;">
             <ui:VisualElement name="area_Cristal" style="justify-content: flex-start; align-items: center; display: flex; flex-direction: row; width: 100%; height: 100%;">

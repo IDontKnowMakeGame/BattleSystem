@@ -1,16 +1,20 @@
 .SelectItemTypeBox {
-    width: 150px;
+    width: 200px;
     height: 100%;
-    background-color: rgb(70, 70, 70);
+    background-color: rgb(22, 22, 22);
     margin-left: 5px;
     margin-right: 5px;
     align-items: center;
     justify-content: center;
-    background-image: url('project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-1221198161&guid=a1cbd5f1f818af548831518a40057cbf&type=3#UI_Icon_0');
+    flex-direction: row;
 }
 
 .SelectItemTypeText {
     font-size: 30px;
+    color: rgba(231, 231, 231, 255);
+    -unity-font-definition: url('project://database/Assets/Font/SUITE-Variable%20SDF%201.asset?fileID=11400000&guid=640b171b207c5cb4d9380b34f11967f1&type=2#SUITE-Variable SDF 1');
+    -unity-font: url('project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&guid=fdf177119c8b7f84fbad0a6901efb8cc&type=3#SUITE-Variable');
+    -unity-text-align: middle-left;
 }
 
 .ItemPanel {

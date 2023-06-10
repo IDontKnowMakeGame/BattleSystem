@@ -502,6 +502,7 @@ public class DataManager : Manager
 
         if (UIManager.Instance != null)
         {
+            Debug.Log("Item!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             UIManager.Instance.InGame.AddShowItemPanel(id, count);
             UIManager.Instance.InGame.ChangeItemPanelImage();
         }

@@ -1,0 +1,7 @@
+.ShowItemPanel {
+    left: 1%;
+}
+
+.HideItemPanel {
+    left: 110%;
+}

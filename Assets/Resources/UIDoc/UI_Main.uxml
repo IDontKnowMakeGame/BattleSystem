@@ -6,6 +6,7 @@
     <ui:Template name="UI_Smithy" src="project://database/Assets/Resources/UIDoc/UI_Smithy.uxml?fileID=9197481963319205126&amp;guid=3108707ba752eca45bf2a04f9a0cea6b&amp;type=3#UI_Smithy" />
     <ui:Template name="UI_Dialog" src="project://database/Assets/Resources/UIDoc/UI_Dialog.uxml?fileID=9197481963319205126&amp;guid=484b74fa5b46373459c3314e83b98d10&amp;type=3#UI_Dialog" />
     <ui:Template name="UI_FirstFloorMap" src="project://database/Assets/Resources/UIDoc/UI_FirstFloorMap.uxml?fileID=9197481963319205126&amp;guid=db3dc5eecf8a99c4ba30ab12b7c76e02&amp;type=3#UI_FirstFloorMap" />
+    <ui:Template name="UI_Menu" src="project://database/Assets/Resources/UIDoc/UI_Menu.uxml?fileID=9197481963319205126&amp;guid=b269bc1964854424e930b8465874a0e4&amp;type=3#UI_Menu" />
     <Style src="project://database/Assets/Resources/UIDoc/USS/Main.uss?fileID=7433441132597879392&amp;guid=997ef1579b50b3a4e99e0b8e8cd1021a&amp;type=3#Main" />
     <ui:Instance template="UI_InGame" name="UI_InGame" class="Panel" style="display: flex;" />
     <ui:Instance template="UI_BossBar" name="UI_BossBar" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; display: none;" />
@@ -14,4 +15,5 @@
     <ui:Instance template="UI_Smithy" name="UI_Smithy" class="Panel" style="display: none;" />
     <ui:Instance template="UI_Dialog" name="UI_Dialog" style="position: absolute; left: 0; width: 100%; height: 100%; display: none; top: 0;" />
     <ui:Instance template="UI_FirstFloorMap" name="UI_FirstFloorMap" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: none;" />
+    <ui:Instance template="UI_Menu" name="UI_Menu" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%;" />
 </ui:UXML>

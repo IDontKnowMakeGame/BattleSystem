@@ -243,8 +243,7 @@ public class UIInventory : UIBase
         ItemID id = DataManager.UserData_.firstWeapon;
         ItemInfo data = Define.GetManager<DataManager>().weaponDictionary[id];
         _firstWeaponImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
-        _weaponChacraterViewImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Image/{data.Class}"));
-
+        
         id = DataManager.UserData_.secondWeapon;
         _secondWeaponImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
         
@@ -262,8 +261,10 @@ public class UIInventory : UIBase
     public void SelectItemBtn(int pageNum,VisualElement chageBox)
     {
         _selectBtnBox.style.height = new Length(80, LengthUnit.Percent);
+        _selectBtnBox.style.opacity = new StyleFloat(0.35f);
         _selectBtnBox = chageBox;
         _selectBtnBox.style.height = new Length(100, LengthUnit.Percent);
+        _selectBtnBox.style.opacity = new StyleFloat(1f);
 
         ChangeShowInventoryPanel(pageNum);
         SelectOptionInit(true);
