@@ -1,0 +1,7 @@
+.MenuPanel {
+    translate: 0 0;
+}
+
+.MenuPanel-hide {
+    translate: -460px 0;
+}
