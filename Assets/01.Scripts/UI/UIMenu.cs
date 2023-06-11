@@ -101,7 +101,7 @@ public class UIMenu : UIBase
         switch (num)
         {
             case 0:
-
+                UIManager.Instance.Status.Show();
                 break;
             case 1:
                 UIManager.Instance.PadeInOut.Pade(0, () => {
