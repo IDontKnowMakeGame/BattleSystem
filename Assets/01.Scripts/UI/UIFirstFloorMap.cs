@@ -67,13 +67,13 @@ public class UIFirstFloorMap : UIBase
     {
         if (flag)
         {
-            _root.style.display = DisplayStyle.Flex;
             Define.GetManager<SoundManager>().Play($"Sounds/item/folding", Define.Sound.Effect);
+            _root.style.display = DisplayStyle.Flex;
         }
         else
         {
-            _root.style.display = DisplayStyle.None;
             Define.GetManager<SoundManager>().Play($"Sounds/item/unfolding", Define.Sound.Effect);
+            _root.style.display = DisplayStyle.None;
         }
     }
     public void ShowFirstFloorMap()
