@@ -90,9 +90,11 @@ public class PlayerStatAct : CharacterStatAct
 
 		ThisActor.transform.GetChild(0).DOMoveY(-1f, 0.5f);
 
-		var dieClip = _playerAnimation.GetClip("Fall");
+        UIManager.Instance.DeathPanel.Show();
+
+        var dieClip = _playerAnimation.GetClip("Fall");
 		dieClip.SetEventOnFrame(dieClip.fps - 2, () =>
-		LoadingSceneController.Instnace.StartCoroutine(LoadingSceneController.Instnace.LoadScene("Lobby", 1f)));
+		LoadingSceneController.Instnace.StartCoroutine(LoadingSceneController.Instnace.LoadScene("Lobby", 4f)));
 		dieClip.SetEventOnFrame(dieClip.fps - 1, base.Die);
 
 		EventParam param = new EventParam();

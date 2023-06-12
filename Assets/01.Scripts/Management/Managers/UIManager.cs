@@ -15,12 +15,14 @@ public class UIManager : MonoBehaviour
     public UIMenu Menu = new UIMenu();
     public UIInGame InGame = new UIInGame();
     public UIInventory Inventory = new UIInventory();
+    public UIStatus Status = new UIStatus();
     public UIItemStore ItemStore = new UIItemStore();
     public UISmithy Smithy = new UISmithy();
     public UIBossBar BossBar = new UIBossBar();
     public UIDialog Dialog = new UIDialog();
     public UIFirstFloorMap UIFirstFloorMap = new UIFirstFloorMap();
     public UIPadeInOut PadeInOut = new UIPadeInOut();
+    public UIDeathPanel DeathPanel = new UIDeathPanel();
 
     public MapNameData MapNameData;
 
@@ -63,12 +65,14 @@ public class UIManager : MonoBehaviour
         Menu.Init();
         InGame.Init();
         Inventory.Init();
+        Status.Init();
         ItemStore.Init();
         Smithy.Init();
         BossBar.Init();
         Dialog.Init();
         UIFirstFloorMap.Init();
         PadeInOut.Init();
+        DeathPanel.Init();
     }
 
 
@@ -85,7 +89,7 @@ public class UIManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-    
+            DeathPanel.Show();
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -112,6 +116,11 @@ public class UIManager : MonoBehaviour
 
         UIBase ui = OpenPanels.Pop();
         if(ui is UIMenu)
+        {
+            ui.Hide();
+            return;
+        }
+        if (ui is UIStatus)
         {
             ui.Hide();
             return;

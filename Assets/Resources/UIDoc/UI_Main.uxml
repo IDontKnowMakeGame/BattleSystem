@@ -5,9 +5,11 @@
     <ui:Template name="UI_Dialog" src="project://database/Assets/Resources/UIDoc/UI_Dialog.uxml?fileID=9197481963319205126&amp;guid=484b74fa5b46373459c3314e83b98d10&amp;type=3#UI_Dialog" />
     <ui:Template name="UI_ItemStore" src="project://database/Assets/Resources/UIDoc/UI_ItemStore.uxml?fileID=9197481963319205126&amp;guid=b64fc3db94e21614ab47482b8255d072&amp;type=3#UI_ItemStore" />
     <ui:Template name="UI_Inventory" src="project://database/Assets/Resources/UIDoc/UI_Inventory.uxml?fileID=9197481963319205126&amp;guid=5557f3af87ffa374ab28d9f45a66ce0d&amp;type=3#UI_Inventory" />
+    <ui:Template name="UI_Status" src="project://database/Assets/Resources/UIDoc/UI_Status.uxml?fileID=9197481963319205126&amp;guid=84e2a8826783a5240bef1dbd774da825&amp;type=3#UI_Status" />
     <ui:Template name="UI_Smithy" src="project://database/Assets/Resources/UIDoc/UI_Smithy.uxml?fileID=9197481963319205126&amp;guid=3108707ba752eca45bf2a04f9a0cea6b&amp;type=3#UI_Smithy" />
     <ui:Template name="UI_FirstFloorMap" src="project://database/Assets/Resources/UIDoc/UI_FirstFloorMap.uxml?fileID=9197481963319205126&amp;guid=db3dc5eecf8a99c4ba30ab12b7c76e02&amp;type=3#UI_FirstFloorMap" />
     <ui:Template name="UI_PadeInOut" src="project://database/Assets/Resources/UIDoc/UI_PadeInOut.uxml?fileID=9197481963319205126&amp;guid=7cfb45c7a4285ad478047583db268af1&amp;type=3#UI_PadeInOut" />
+    <ui:Template name="UI_DeathPanel" src="project://database/Assets/Resources/UIDoc/UI_DeathPanel.uxml?fileID=9197481963319205126&amp;guid=71edbe1749513984f9d7fa5bda7477bc&amp;type=3#UI_DeathPanel" />
     <Style src="project://database/Assets/Resources/UIDoc/USS/Main.uss?fileID=7433441132597879392&amp;guid=997ef1579b50b3a4e99e0b8e8cd1021a&amp;type=3#Main" />
     <ui:Instance template="UI_InGame" name="UI_InGame" class="Panel" style="display: flex;" />
     <ui:Instance template="UI_BossBar" name="UI_BossBar" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; display: none;" />
@@ -15,7 +17,9 @@
     <ui:Instance template="UI_Dialog" name="UI_Dialog" style="position: absolute; left: 0; width: 100%; height: 100%; display: none; top: 0;" />
     <ui:Instance template="UI_ItemStore" name="UI_ItemStore" class="Panel" style="display: none;" />
     <ui:Instance template="UI_Inventory" name="UI_Inventory" class="Panel" style="display: none;" />
+    <ui:Instance template="UI_Status" name="UI_Status" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: none;" />
     <ui:Instance template="UI_Smithy" name="UI_Smithy" class="Panel" style="display: none;" />
     <ui:Instance template="UI_FirstFloorMap" name="UI_FirstFloorMap" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: none;" />
     <ui:Instance template="UI_PadeInOut" name="UI_PadeInOut" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: none;" />
+    <ui:Instance template="UI_DeathPanel" name="UI_DeathPanel" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: none;" />
 </ui:UXML>

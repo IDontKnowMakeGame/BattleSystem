@@ -32,7 +32,8 @@ namespace ETC
             seq.Append(DOTween.To(() => vignette.intensity.value, x => vignette.intensity.value = x, 0.8f, 1.5f).SetEase(Ease.Linear));
             seq.AppendCallback(() =>
             {
-                LoadingSceneController.Instnace.StartCoroutine(LoadingSceneController.Instnace.LoadScene("Lobby", 1f));
+                UIManager.Instance.DeathPanel.Show();
+                LoadingSceneController.Instnace.StartCoroutine(LoadingSceneController.Instnace.LoadScene("Lobby", 4f));
                 DOTween.CompleteAll();
                 DOTween.KillAll();
                 DOTween.Kill(seq);

@@ -1,0 +1,7 @@
+.DeathPanel {
+    opacity: 1;
+}
+
+.DeathPanel-alphaZero {
+    opacity: 0;
+}
