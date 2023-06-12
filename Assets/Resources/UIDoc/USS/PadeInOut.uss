@@ -1,0 +1,17 @@
+.PadePanel {
+    translate: 0 0;
+}
+
+.PadePanel-out-under {
+    translate: 0 1080px;
+}
+
+.PadePanel-out-top {
+    translate: 0 -1080px;
+}
+
+.PadePanel-out-left {
+}
+
+.PadePanel-out-right {
+}

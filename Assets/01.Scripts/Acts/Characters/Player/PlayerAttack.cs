@@ -107,11 +107,14 @@ namespace Acts.Characters.Player
                     }
 
 					GameObject spark = Define.GetManager<ResourceManager>().Instantiate("Spark");
-
                     Vector3 particleRot = spark.transform.localEulerAngles;
                     particleRot.y = degree;
 
                     spark.transform.localPosition = enemy.transform.position.SetY(0.7f) + offset;
+                    float pitch = _playerEquipment.CurrentWeapon.WeaponInfo.Weight * 0.05f;
+
+                    Define.GetManager<SoundManager>().PlayAtPoint($"Sounds/Unit/Attack", enemy.transform.position , UnityEngine.Random.Range(0.9f,1.1f));
+                    Define.GetManager<SoundManager>().PlayAtPoint($"Sounds/Unit/hit", enemy.transform.position , 1f);
                     spark.transform.localRotation = Quaternion.Euler(particleRot);
                     spark.GetComponent<ParticleSystem>().Play();
                 }
@@ -178,6 +181,7 @@ namespace Acts.Characters.Player
         {
 			_playerActor.RemoveState(Actors.Characters.CharacterState.Attack);
             _playerAnimation.curClip.events.Clear();
+            ThisActor.GetAct<PlayerMove>().ResetMoveQueue();
         }
 
         private void Attack(EventParam eventParam)

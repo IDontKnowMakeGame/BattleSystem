@@ -22,12 +22,23 @@ public class SoundManager : Manager
         Object.DontDestroyOnLoad(root);
 
         string[] soundName = System.Enum.GetNames(typeof(Define.Sound));
-        for (int i = 0; i < soundName.Length - 1; i++)
+        if(root.GetComponentsInChildren<AudioSource>().Length > 0)
         {
-            GameObject go = new GameObject { name = soundName[i] };
-            audioSources[i] = go.AddComponent<AudioSource>();
-            go.transform.parent = root.transform;
+            Debug.Log("있음");
+            audioSources = (AudioSource[])root.GetComponentsInChildren<AudioSource>();
         }
+        else
+        {
+            Debug.Log("없음");
+            for (int i = 0; i < soundName.Length - 1; i++)
+            {
+                GameObject go = new GameObject { name = soundName[i] };
+                audioSources[i] = go.AddComponent<AudioSource>();
+                go.transform.parent = root.transform;
+            }
+        }
+
+        Debug.Log(audioSources[(int)Define.Sound.Bgm]);
         audioSources[(int)Define.Sound.Bgm].loop = true;
         soundObj = Define.GetManager<ResourceManager>().Load<GameObject>("Prefabs/SoundEffectObj");
         Define.GetManager<PoolManager>().CreatePool(soundObj, 50);
@@ -41,7 +52,7 @@ public class SoundManager : Manager
             foreach (SEInfo seInfo in info.playingList)
             {
                 seInfo.curTime = seInfo.curTime - Time.deltaTime;
-                if(seInfo.curTime > info.clip.length - 0.05f)
+                if (seInfo.curTime > info.clip.length - 0.05f)
                 {
                     newList.Add(seInfo);
                 }
@@ -65,23 +76,22 @@ public class SoundManager : Manager
     }
 
     //게임 오브젝트에 자식으로 붙여서 계속 소리 낼 때 사용하는 함수
-    public void PlayAtPoint(AudioClipInfo audioClipInfo, Transform _transform, float pitch = 1.0f)
+    private void PlayAtPoint(AudioClipInfo audioClipInfo, Transform _transform, float pitch = 1.0f)
     {
         if (audioClipInfo.clip == null) return;
 
         var go = Define.GetManager<PoolManager>().Pop(soundObj, _transform);
-        SetClipInfo(audioClipInfo, 2, 1, go.gameObject);
+        SetClipInfo(audioClipInfo, 1, pitch, go.gameObject);
 
     }
 
     //포지션 값으로 소리날 위치 정하는 함수
-    public void PlayAtPoint(AudioClipInfo audioClipInfo, Vector3 _vec, float pitch = 1.0f)
+    private void PlayAtPoint(AudioClipInfo audioClipInfo, Vector3 _vec, float pitch = 1.0f)
     {
         if (audioClipInfo.clip == null) return;
         var go = Define.GetManager<PoolManager>().Pop(soundObj);
         go.transform.position = _vec;
-        SetClipInfo(audioClipInfo, 2, 1, go.gameObject);
-
+        SetClipInfo(audioClipInfo, 1, pitch, go.gameObject);
     }
     public void PlayAtPoint(string path, Transform _transform, float pitch = 1.0f)
     {
@@ -95,7 +105,7 @@ public class SoundManager : Manager
     }
 
     //위치가 필요없는 효과음이나 배경음악 실행 함수
-    public void Play(AudioClipInfo audioClipinfo, Define.Sound type = Define.Sound.Effect, float pitch = 1.0f)
+    private void Play(AudioClipInfo audioClipinfo, Define.Sound type = Define.Sound.Effect, float pitch = 1.0f)
     {
         if (audioClipinfo.clip == null) return;
 
@@ -104,13 +114,14 @@ public class SoundManager : Manager
             AudioSource audio = audioSources[(int)Define.Sound.Bgm];
             audio.pitch = pitch;
             audio.clip = audioClipinfo.clip;
+            if (audio.isPlaying) audio.Stop();
             audio.Play();
         }
         else
         {
             AudioSource audio = audioSources[(int)Define.Sound.Effect];
             audio.pitch = pitch;
-            SetClipInfo(audioClipinfo, 0 , 1);
+            SetClipInfo(audioClipinfo, 0, 1);
         }
     }
     public void Play(string path, Define.Sound type = Define.Sound.Effect, float pitch = 1)
@@ -134,12 +145,12 @@ public class SoundManager : Manager
 
         AudioClipInfo info = _audioClips[path];
 
-        if(info.clip == null)
+        if (info.clip == null)
             info.clip = Define.GetManager<ResourceManager>().Load<AudioClip>(path);
 
         if (info.clip == null)
         {
-            //Debug.Log($"{path} missing");
+            Debug.Log($"{path} missing");
         }
 
         return info;
@@ -149,11 +160,11 @@ public class SoundManager : Manager
     {
         float len = info.clip.length;
 
-        if(info.stockList.Count > 0)
+        if (info.stockList.Count > 0)
         {
             SEInfo seInfo = info.stockList.Values[0];
             seInfo.curTime = len;
-            info.playingList.Add( seInfo );
+            info.playingList.Add(seInfo);
             info.stockList.Remove(seInfo.index);
 
             switch (index)
@@ -162,9 +173,6 @@ public class SoundManager : Manager
                     audioSources[(int)Define.Sound.Effect].PlayOneShot(info.clip);
                     break;
                 case 1:
-                    go.GetComponent<soundEffectobj>().PlayEffect(info.clip, pitch, seInfo.volume);
-                    break;
-                case 2:
                     go.GetComponent<soundEffectobj>().PlayEffect(info.clip, pitch, seInfo.volume);
                     break;
                 default:
@@ -191,7 +199,7 @@ public class AudioClipInfo
         this.initVolume = initVolume;
         attenuate = CalcAttenuateRate();
 
-        for(int i = 0; i < maxSENum; i++)
+        for (int i = 0; i < maxSENum; i++)
         {
             SEInfo seInfo = new SEInfo(i, 0.01f, initVolume * Mathf.Pow(attenuate, i));
             stockList.Add(seInfo.index, seInfo);

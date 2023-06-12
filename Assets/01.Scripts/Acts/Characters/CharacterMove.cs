@@ -171,6 +171,8 @@ namespace Acts.Characters
             }
             AnimationCheck();
 
+            Define.GetManager<SoundManager>().PlayAtPoint($"Sounds/Unit/footStep{Random.Range(1,4)}", _thisTransform.position,0.9f);
+
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
             block.isWalkable = false;
             var seq = DOTween.Sequence();

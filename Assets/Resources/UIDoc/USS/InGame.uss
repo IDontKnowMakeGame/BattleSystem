@@ -15,5 +15,5 @@
 }
 
 .HideItemPanel {
-    left: 40%;
+    left: 65%;
 }

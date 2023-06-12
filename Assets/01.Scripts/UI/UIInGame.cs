@@ -40,16 +40,13 @@ public class UIInGame : UIBase
 
     private VisualElement _crsitalPanel;
 
-    private VisualElement _itemPanel;
-    private Queue<Pair> _itemQueue = new Queue<Pair>();
-    private class Pair
-    {
-        public ItemID id;
-        public int cnt;
-    }
-    private float _itemTime = 0;
-    private float _hideItemTime = 2.3f;
-    private bool _showItemPanel = false;
+    private VisualElement _showItemPanel;
+    private VisualTreeAsset _itemPanelTemp;
+    private Queue<VisualElement> _showItemQueue = new Queue<VisualElement>();
+    private Queue<VisualElement> _hideitemQueue = new Queue<VisualElement>();
+    private float _hideItemTime = 0;
+    private float _hideItemMaxTime = 2f;
+    private bool _IsShowItemPanel = false;
 
     private bool flagCool = true;
 
@@ -100,7 +97,8 @@ public class UIInGame : UIBase
         _secondWeapon = _root.Q<VisualElement>("weaponbox_second");
         _secondWeaponHide = _secondWeapon.Q<VisualElement>("Hide");
         _itemList = _root.Q<VisualElement>("area_item");
-        _itemPanel = _root.Q<VisualElement>("ItemPanel");
+        _showItemPanel = _root.Q<VisualElement>("Right");
+        _itemPanelTemp = Define.GetManager<ResourceManager>().Load<VisualTreeAsset>("UIDoc/AcquisitionItemPanel");
         _interactionBox = _root.Q<VisualElement>("InteractionBox");
 
         _abnormalStatusBox = _root.Q<VisualElement>("abnormalStatusBox");
@@ -278,7 +276,6 @@ public class UIInGame : UIBase
     }
     public void ClearQuestPanel(QuestName name)
     {
-        Debug.Log($"{_questLlistCard[name].name} : ¿Ã∞‘ ππ¡“?");
         _questLlistCard[name].Q<VisualElement>("ClearMark").style.display = DisplayStyle.Flex;
         
     }
@@ -353,36 +350,55 @@ public class UIInGame : UIBase
 
     public void GetItemUpdate()
     {
-        _itemTime += Time.deltaTime;
+        if (_showItemQueue.Count != 0)
+            ShowItemPanel();
 
-        if (_itemTime > _hideItemTime)
-            if (_showItemPanel)
-                HideItemPanel();
-            else
-                AddShowItemPanel();
-    }
-    public void AddShowItemPanel()
-    {
-        if (_showItemPanel || _itemQueue.Count <= 0) return;
+        if(_hideitemQueue.Count != 0)
+        {
+            if (_IsShowItemPanel)
+            {
+                _hideItemTime += Time.deltaTime;
 
-        _itemTime = 0;
-        _showItemPanel = true;
-        Pair pair = _itemQueue.Dequeue();
-        _itemPanel.Q<VisualElement>("Image").style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)pair.id}"));
-        _itemPanel.Q<Label>("ItemName").text = pair.id.ToString();
-        _itemPanel.Q<Label>("ItemCntText").text = string.Format("x{0}", pair.cnt);
-        _itemPanel.RemoveFromClassList("HideItemPanel");
+                if (_hideItemTime > _hideItemMaxTime)
+                    HideItemPanel();
+            }
+        }
+        
     }
     public void AddShowItemPanel(ItemID id, int cnt = 1)
     {
-        _itemQueue.Enqueue(new Pair() { id = id, cnt = cnt });
-        AddShowItemPanel();
+        VisualElement _itemPanel = _itemPanelTemp.Instantiate();
+        _itemPanel.style.width = new Length(50, LengthUnit.Percent);
+        _itemPanel.Q<VisualElement>("Image").style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
+        _itemPanel.Q<Label>("ItemName").text = id.ToString();
+        _itemPanel.Q<Label>("ItemCntText").text = string.Format("x{0}", cnt);
+        _showItemPanel.Add(_itemPanel);
+        _showItemQueue.Enqueue(_itemPanel);
+    }
+    public void ShowItemPanel()
+    {
+        if(_hideitemQueue.Count == 0)
+        {
+            _IsShowItemPanel = true;
+        }
+
+        VisualElement panel = _showItemQueue.Dequeue();
+        panel.Q<VisualElement>("ItemPanel").RemoveFromClassList("HideItemPanel");
+        _hideitemQueue.Enqueue(panel);
     }
     public void HideItemPanel()
     {
-        _itemTime = 0;
-        _showItemPanel = false;
-        _itemPanel.AddToClassList("HideItemPanel");
+        _IsShowItemPanel = false;
+        VisualElement panel = _hideitemQueue.Dequeue();
+        panel.Q<VisualElement>("ItemPanel").AddToClassList("HideItemPanel");
+        UIManager.Instance.StartCoroutine(RemoveItemPanel(panel));
+    }
+    private IEnumerator RemoveItemPanel(VisualElement item)
+    {
+        yield return new WaitForSeconds(1f);
+        _showItemPanel.Remove(item);
+        _IsShowItemPanel = true;
+        _hideItemTime = 0;
     }
 
     public void ChangeWeaponCoolTime()

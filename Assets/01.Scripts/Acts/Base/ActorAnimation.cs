@@ -42,8 +42,8 @@ namespace Acts.Characters
 
 				if (index == curClip.fps)
 				{
-					index = -1;
 					isFinished = true;
+					index = -1;
 					curClip.OnExit?.Invoke();
 					break;
 				}

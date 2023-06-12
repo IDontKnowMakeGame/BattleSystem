@@ -118,6 +118,8 @@ namespace Managements
         private void Init()
         {
             instance = this;
+            if(_managers.Count > 0)
+                _managers.Clear();
             Instance.AddManager<MapManager>();
             Instance.AddManager<DataManager>();
             Instance.AddManager<PoolManager>();
@@ -156,6 +158,9 @@ namespace Managements
 
         public void Update()
         {
+            if (_managers == null) return;
+            if (_managers.Count < 1) return;
+            
             foreach (var manager in _managers.Values)
             {
                 manager.Update();
@@ -164,6 +169,8 @@ namespace Managements
 
         public void FixedUpdate()
         {
+            if (_managers == null) return;
+            if (_managers.Count < 1) return;
             foreach (var manager in _managers.Values)
             {
                 manager.FixedUpdate();
@@ -172,6 +179,7 @@ namespace Managements
 
         public void LateUpdate()
         {
+            if (_managers == null) return;
             foreach (var manager in _managers.Values)
             {
                 manager.LateUpdate();
@@ -215,7 +223,6 @@ namespace Managements
             {
                 manager.OnDestroy();
             }
-            _managers.Clear();
             LoadingSceneController.Instnace.StartCoroutine(LoadingSceneController.Instnace.LoadScene(sceneName));
         }
 

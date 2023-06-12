@@ -74,7 +74,7 @@ MonoBehaviour:
     isLoop: 0
     delay: 0.1
   - name: HorizontalReturn
-    nextIdx: 0
+    nextIdx: -1
     texture: {fileID: 2800000, guid: 28d24bdcdfca675409c680aafe4290ca, type: 3}
     normal: {fileID: 0}
     fps: 3
@@ -95,7 +95,7 @@ MonoBehaviour:
     isLoop: 0
     delay: 0.1
   - name: LowerReturn
-    nextIdx: 0
+    nextIdx: -1
     texture: {fileID: 2800000, guid: 34759bd3b22e33e469b797acf82a10eb, type: 3}
     normal: {fileID: 0}
     fps: 3
@@ -116,7 +116,7 @@ MonoBehaviour:
     isLoop: 0
     delay: 0.1
   - name: UpperReturn
-    nextIdx: 0
+    nextIdx: -1
     texture: {fileID: 2800000, guid: 9cd3c11bbaf5b234c900c64e3c7afcbc, type: 3}
     normal: {fileID: 0}
     fps: 3

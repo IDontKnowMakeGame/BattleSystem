@@ -63,17 +63,15 @@ namespace Actors.Characters.Enemy.OldShade
                 };
                 readyClip.OnExit = () =>
                 {
-                    Debug.LogWarning("Ready Enter");
-                    attackClip.OnExit = () =>
-                    {
-                        returnClip.OnExit = () =>
-                        {
-                            RemoveState(CharacterState.Attack);
-                            Debug.LogWarning("Ready Exit");
-                        };
-                        _enemyAnimation.Play( nextState + "Return");
-                    };
                     _enemyAnimation.Play( nextState + "Attack");
+                };
+                attackClip.OnExit = () =>
+                {
+                    _enemyAnimation.Play( nextState + "Return");    
+                };
+                returnClip.OnExit = () =>
+                {
+                    RemoveState(CharacterState.Attack);
                 };
                 _enemyAnimation.Play( nextState + "Ready");
             });

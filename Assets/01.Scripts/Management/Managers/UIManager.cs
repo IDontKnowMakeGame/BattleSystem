@@ -2,6 +2,7 @@ using Core;
 using Data;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,13 +12,17 @@ public class UIManager : MonoBehaviour
 
     public UIDocument _document;
 
+    public UIMenu Menu = new UIMenu();
     public UIInGame InGame = new UIInGame();
     public UIInventory Inventory = new UIInventory();
+    public UIStatus Status = new UIStatus();
     public UIItemStore ItemStore = new UIItemStore();
     public UISmithy Smithy = new UISmithy();
     public UIBossBar BossBar = new UIBossBar();
     public UIDialog Dialog = new UIDialog();
     public UIFirstFloorMap UIFirstFloorMap = new UIFirstFloorMap();
+    public UIPadeInOut PadeInOut = new UIPadeInOut();
+    public UIDeathPanel DeathPanel = new UIDeathPanel();
 
     public MapNameData MapNameData;
 
@@ -25,6 +30,10 @@ public class UIManager : MonoBehaviour
     public HaloTextInfoListSO haloTextInfoListSO;
     public UseableItemTextInfoListSO useableItemTextInfoListSO;
     public QuestItemTextInfoListSO questItemTextInfoListSO;
+
+    #region Escape
+    public static Stack<UIBase> OpenPanels = new Stack<UIBase>();
+    #endregion
 
 
     private void Awake()
@@ -47,19 +56,23 @@ public class UIManager : MonoBehaviour
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.ExecutionBlade);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.Ascalon);
         //Define.GetManager<DataManager>().AddItemInInventory(ItemID.SecondMap);
-        //Define.GetManager<DataManager>().AddItemInInventory(ItemID.Pick,1);
+        
         UIStart();
     }
 
     private void Init()
     {
+        Menu.Init();
         InGame.Init();
         Inventory.Init();
+        Status.Init();
         ItemStore.Init();
         Smithy.Init();
         BossBar.Init();
         Dialog.Init();
         UIFirstFloorMap.Init();
+        PadeInOut.Init();
+        DeathPanel.Init();
     }
 
 
@@ -76,25 +89,45 @@ public class UIManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-           InGame.AddAbnormalStatus();
-        }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Inventory.ShowInventory();
+            DeathPanel.Show();
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            Debug.Log($" open QuestList Cnt : {DataManager.PlayerOpenQuestData_.openQuestList[0]}");
+            Define.GetManager<DataManager>().AddItemInInventory(ItemID.Pick, 3);
+            Define.GetManager<DataManager>().AddItemInInventory(ItemID.Torch, 2);
+            Define.GetManager<DataManager>().AddItemInInventory(ItemID.Shield, 2);
         }
-        if (Input.GetKeyDown(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            
+            Escape();
         }
         if(Input.GetKeyDown(KeyCode.E))
         {
             Dialog.NextMessage();
         }
+    }
+    private void Escape()
+    {
+        if(OpenPanels.Count <= 0)
+        {
+            Menu.Show();
+            return;
+        }
 
+        UIBase ui = OpenPanels.Pop();
+        if(ui is UIMenu)
+        {
+            ui.Hide();
+            return;
+        }
+        if (ui is UIStatus)
+        {
+            ui.Hide();
+            return;
+        }
+
+        PadeInOut.Pade(1, () => { ui.Hide(); });
+        
     }
     public void HideAllUI()
     {
