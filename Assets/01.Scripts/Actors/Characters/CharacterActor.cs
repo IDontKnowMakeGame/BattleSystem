@@ -25,6 +25,7 @@ namespace Actors.Characters
 		StopAttack = 1 << 8,
 		Chase = 1 << 9,
 		Die = 1 << 10,
+		DontMoveAniation = 1 << 11,
 		Everything = ~None,
 	}
 	public class CharacterActor : Actor

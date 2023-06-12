@@ -138,7 +138,7 @@ MonoBehaviour:
     _blinkTime: 0.1
     _blinkDelay: 0.1
   _characterState: 0
-  _isBlocking: 0
+  _isBlocking: 1
   canKnockBack: 0
   _secondPhaseHpPercent: 0
   _enemyAi:
@@ -165,6 +165,10 @@ MonoBehaviour:
       afs: 0
       speed: 0
     _feahter: 0
+    info:
+      _id: 0
+      _count: 0
+      _isWeapon: 0
     isBoss: 0
   _enemyAnimation:
     curClip:
@@ -182,6 +186,9 @@ MonoBehaviour:
   alive: 0
   spriteSize: 1
   currentType: 0
+  OnDie:
+    m_PersistentCalls:
+      m_Calls: []
   _brokenStat:
     _basicStat:
       maxHP: 0
