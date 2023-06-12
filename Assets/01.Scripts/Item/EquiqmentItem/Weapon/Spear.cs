@@ -83,6 +83,8 @@ public class Spear : Weapon
 		CharacterMove.OnMoveEnd += MoveEnd;
 
 		DefaultAnimation();
+
+		Debug.Log("Equiqment");
 	}
 	public override void UnEquipment(CharacterActor actor)
 	{
@@ -93,9 +95,10 @@ public class Spear : Weapon
 		InputManager<Spear>.OnClickPress -= Attack;
 		InputManager<Spear>.OnMovePress -= CurrentBool;
 		CharacterMove.OnMoveEnd -= MoveEnd;
-		_isCurrentVec = false;
-		_isDown = false;
-		_nonDir = false;
+		AttackUpCorutine(_currentVec);
+		_isAni = false;
+
+		Debug.Log("UnEquiqment");
 	}
 
 	public override void Update()
@@ -119,12 +122,6 @@ public class Spear : Weapon
 		else if (!_isEnterEnemy && !isEnemy)
 			_isEnterEnemy = true;
 
-		//if(_isAni && _characterActor.HasState(CharacterState.DontMoveAniation) && _playerAnimation.curClip != _playerAnimation.GetClip(name))
-		//{
-		//	_characterActor.RemoveState(CharacterState.DontMoveAniation);
-		//	_playerAnimation.Play(name);
-		//}
-
 
 	}
 
@@ -146,6 +143,10 @@ public class Spear : Weapon
 			_isDown = false;
 			AttackCorutine(DirReturn(vec));
 		}
+
+		Debug.Log(!_isAni && InGame.CamDirCheck(DirReturn(vec)) != _currentVec);
+		Debug.Log(!_isAni);
+		Debug.Log(InGame.CamDirCheck(DirReturn(vec)) != _currentVec);
 	}
 	public virtual void AttackCorutine(Vector3 vec)
 	{
