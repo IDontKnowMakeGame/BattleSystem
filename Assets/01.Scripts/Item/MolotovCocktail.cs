@@ -23,10 +23,12 @@ public class MolotovCocktail : MonoBehaviour
 
     public void InitBottle(Vector3 setPos)
     {
+        setPos = InGame.CamDirCheck(setPos);
         if(setPos == Vector3.right)
         {
             transform.position = InGame.Player.Position + new Vector3(0.1f, 0.82f, -0.3f);
             transform.rotation = Quaternion.Euler(-120, -90, 0f);
+            InGame.Player.SpriteTransform.localScale = new Vector3(2, 1, 1);
             m_rotateX = -rotate;
             m_posX = pos;
             m_rotateY = 0;
@@ -36,6 +38,7 @@ public class MolotovCocktail : MonoBehaviour
         {
             transform.position = InGame.Player.Position + new Vector3(-0.1f, 0.82f, -0.3f);
             transform.rotation = Quaternion.Euler(-45, -90, 0f);
+            InGame.Player.SpriteTransform.localScale = new Vector3(-2, 1, 1);
             m_rotateX = rotate;
             m_posX = -pos;
             m_rotateY = 0;
