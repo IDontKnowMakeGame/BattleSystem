@@ -17,6 +17,7 @@ namespace Acts.Characters.Player
         private HPPotion _hpPotion;
         private Pick _pick;
         private CompassOfSpace _compassOfSpace;
+        private Bottle _bottle;
 
         private FirstMap _fristMap;
         private SecondMap _secondMap;
@@ -42,6 +43,7 @@ namespace Acts.Characters.Player
             _hpPotion = new HPPotion();
 			_pick = new Pick();
             _compassOfSpace = new CompassOfSpace();
+            _bottle = new Bottle();
 
             _fristMap = new FirstMap();
             _secondMap = new SecondMap();
@@ -56,6 +58,7 @@ namespace Acts.Characters.Player
             useAbleItems.Add(ItemID.HPPotion, _hpPotion);
             useAbleItems.Add(ItemID.Pick, _pick);
             useAbleItems.Add(ItemID.CompassOfSpace, _compassOfSpace);
+            useAbleItems.Add(ItemID.Bottle, _bottle);
 
             useAbleItems.Add(ItemID.FirstMap, _fristMap);
             useAbleItems.Add(ItemID.SecondMap, _secondMap);
@@ -68,6 +71,7 @@ namespace Acts.Characters.Player
             _torchItem.SettingItem();
             _pick.SettingItem();
             _compassOfSpace.SettingItem();
+            _bottle.SettingItem();
 
             _fristMap.SettingItem();
             _secondMap.SettingItem();
@@ -115,7 +119,7 @@ namespace Acts.Characters.Player
 
             if(Input.GetKeyDown(KeyCode.Alpha9))
             {
-                _compassOfSpace.UseItem();
+                _bottle.UseItem();
             }
 
             _hpPotion.UpdateItem();

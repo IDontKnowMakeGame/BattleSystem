@@ -1,38 +1,77 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Core;
 using System;
 
 public class MolotovCocktail : MonoBehaviour
 {
-    private Rigidbody _rigid;
     public GameObject explosition;
     public GameObject flames;
 
-    Vector3 startPos, endPos;
+    private Vector3 startPos, endPos;
 
-    private bool isPlay = false;
+    public bool isPlay = false;
 
     private float anim;
 
-    private void Start()
+    private const float rotate = 8;
+    private const float pos = 3;
+
+    private float m_rotateX, m_posX;
+    private float m_rotateY, m_posZ;
+
+    public void InitBottle(Vector3 setPos)
     {
-        _rigid = this.GetComponent<Rigidbody>();
+        setPos = InGame.CamDirCheck(setPos);
+        if(setPos == Vector3.right)
+        {
+            transform.position = InGame.Player.Position + new Vector3(0.1f, 0.82f, -0.3f);
+            transform.rotation = Quaternion.Euler(-120, -90, 0f);
+            InGame.Player.SpriteTransform.localScale = new Vector3(2, 1, 1);
+            m_rotateX = -rotate;
+            m_posX = pos;
+            m_rotateY = 0;
+            m_posZ = 0;
+        }
+        else if(setPos == Vector3.left)
+        {
+            transform.position = InGame.Player.Position + new Vector3(-0.1f, 0.82f, -0.3f);
+            transform.rotation = Quaternion.Euler(-45, -90, 0f);
+            InGame.Player.SpriteTransform.localScale = new Vector3(-2, 1, 1);
+            m_rotateX = rotate;
+            m_posX = -pos;
+            m_rotateY = 0;
+            m_posZ = 0;
+        }
+        else if(setPos == Vector3.forward)
+        {
+            transform.position = InGame.Player.Position + new Vector3(0f, 0.82f, -0.3f);
+            transform.rotation = Quaternion.Euler(-90, -90, 0f);
+            m_rotateY = -rotate;
+            m_posZ = pos;
+            m_rotateX = 0;
+            m_posX = 0;
+        }
+        else if(setPos == Vector3.back)
+        {
+            transform.position = InGame.Player.Position + new Vector3(0f, 0.82f, -0.3f);
+            transform.rotation = Quaternion.Euler(-90, -90, 0f);
+            m_rotateY = rotate;
+            m_posZ = -pos;
+            m_rotateX = 0;
+            m_posX = 0;
+        }
 
         startPos = transform.position;
-        endPos = (transform.position + new Vector3(-3, 0, 0)).SetY(0);
+        endPos = (transform.position + new Vector3(m_posX, 0, m_posZ)).SetY(0);
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.N))
-        {
-            isPlay = true;
-        }
-
         if (isPlay)
         {
-            transform.Rotate(new Vector3(20, 0, 0));
+            transform.Rotate(new Vector3(m_rotateX, m_rotateY, 0));
             Move();
         }
 
