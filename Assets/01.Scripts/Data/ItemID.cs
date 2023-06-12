@@ -34,6 +34,7 @@ namespace Data
         ThirdMap = 205,
 		Pick = 206,
         CompassOfSpace = 207,
+        Bottle = 208,
         //300~399 QuestItem
         SoulStone = 300,
         SoulRope = 301,
