@@ -55,7 +55,7 @@ namespace Acts.Characters.Player
 
         public override void Translate(Vector3 direction)
         {
-            if (_playerActor.HasState(~CharacterState.Hold)) return;
+            if ( _playerActor.HasState(~CharacterState.DontMoveAniation)) return;
             playerDir = direction;
             direction = InGame.CamDirCheck(direction);
 
@@ -78,7 +78,7 @@ namespace Acts.Characters.Player
         private void PopMove()
         {
             if (ThisActor.GetAct<CharacterStatAct>().ChangeStat.hp <= 0) return;
-            if (moveDir.Count > 0 && !_playerActor.HasState(~CharacterState.Hold) && !_isMoving)
+            if (moveDir.Count > 0 && !_playerActor.HasState(~CharacterState.DontMoveAniation) && !_isMoving)
             {
                 enableQ = true;
                 playerDir = moveDir.Dequeue();
@@ -112,7 +112,10 @@ namespace Acts.Characters.Player
 
         private void OrginalAnimation()
         {
-            if (playerDir == Vector3.left)
+            if (_playerActor.HasState(CharacterState.DontMoveAniation))
+                return;
+
+			if (playerDir == Vector3.left)
             {
                 if (_playerActor.currentWeapon is OldSpear == false || (_playerActor.currentWeapon as OldSpear).NonDir == false)
                     ThisActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
