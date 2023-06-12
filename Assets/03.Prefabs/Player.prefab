@@ -311,6 +311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _decal: {fileID: 1181102258}
   _actor: {fileID: 959488258604861649}
+  _speed: 10
 --- !u!1 &1132723952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,7 +1183,7 @@ MonoBehaviour:
     bloodController: {fileID: 0}
   _playerEquipment:
     _firstWeapon: 1
-    _secondWeapon: 2
+    _secondWeapon: 3
     _halos: 
     _isPlayer: 1
     _haloRanderer: {fileID: 6169498450256437212}
