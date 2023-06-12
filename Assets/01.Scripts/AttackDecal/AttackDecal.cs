@@ -13,6 +13,7 @@ namespace AttackDecals
 {
     public class AttackDecal : MonoBehaviour
     {
+        private Vector3 initPos;
         private Rect rect;
         private float damage = 0.0f;
         private CharacterActor attacker = null;
@@ -52,6 +53,7 @@ namespace AttackDecals
         private void Init(Rect _rect, CharacterActor _attacker, float _damage, bool _isLast = false)
         {
             rect = _rect;
+            initPos = _attacker.Position;
             decalProjector.size = new Vector3(rect.width, rect.height, 1.5f);
             attacker = _attacker;
             damage = _damage;
@@ -94,7 +96,8 @@ namespace AttackDecals
             while (true)
             {
                 yield return new WaitForEndOfFrame();
-                if (attacker != null) continue;
+                if(attacker != null) continue;
+                if (InGame.GetActor(initPos) == attacker) continue;
                 Define.GetManager<ResourceManager>().Destroy(this.gameObject);
                 break;
             }
