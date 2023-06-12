@@ -17,6 +17,7 @@ namespace Acts.Characters.Player
         private HPPotion _hpPotion;
         private Pick _pick;
         private CompassOfSpace _compassOfSpace;
+        private Bottle _bottle;
 
         private FirstMap _fristMap;
         private SecondMap _secondMap;
@@ -42,6 +43,7 @@ namespace Acts.Characters.Player
             _hpPotion = new HPPotion();
 			_pick = new Pick();
             _compassOfSpace = new CompassOfSpace();
+            _bottle = new Bottle();
 
             _fristMap = new FirstMap();
             _secondMap = new SecondMap();
@@ -56,6 +58,7 @@ namespace Acts.Characters.Player
             useAbleItems.Add(ItemID.HPPotion, _hpPotion);
             useAbleItems.Add(ItemID.Pick, _pick);
             useAbleItems.Add(ItemID.CompassOfSpace, _compassOfSpace);
+            useAbleItems.Add(ItemID.Bottle, _bottle);
 
             useAbleItems.Add(ItemID.FirstMap, _fristMap);
             useAbleItems.Add(ItemID.SecondMap, _secondMap);
@@ -68,6 +71,8 @@ namespace Acts.Characters.Player
             _torchItem.SettingItem();
             _pick.SettingItem();
             _compassOfSpace.SettingItem();
+            _bottle.SettingItem();
+
             _fristMap.SettingItem();
             _secondMap.SettingItem();
             _thirdMap.SettingItem();
@@ -85,20 +90,18 @@ namespace Acts.Characters.Player
             if(currentID != ItemID.None)
             {
                 if (currentID == ItemID.FirstMap || currentID == ItemID.SecondMap || currentID == ItemID.ThirdMap || currentID == ItemID.CompassOfSpace)
-                {
                     useAbleItems[currentID].UseItem();
-                }
                 else
                 {
                     SaveItemData currentData = Define.GetManager<DataManager>().LoadItemFromInventory(currentID);
                     int cnt = currentData.currentCnt;
+
                     if (cnt <= 0) return;
 
                     bool check = useAbleItems[currentID].UseItem();
                     if (check)
                     {
                         DecreaseDataCnt(currentData, currentID);
-                        Define.GetManager<SoundManager>().PlayAtPoint($"Sounds/item/{useAbleItems[currentID]}", InGame.Player.transform.position);
                     }
                 }
             }
@@ -116,7 +119,7 @@ namespace Acts.Characters.Player
 
             if(Input.GetKeyDown(KeyCode.Alpha9))
             {
-                _compassOfSpace.UseItem();
+                _bottle.UseItem();
             }
 
             _hpPotion.UpdateItem();

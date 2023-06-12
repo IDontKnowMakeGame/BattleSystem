@@ -186,6 +186,7 @@ public class CharacterStatAct : Act
 	}
 	public virtual void Damage(float damage, Actor actor)
 	{
+		if (ChangeStat.hp <= 0) return;
 
 		if (actor is EmptyBlock && ChangeStat.hp > 0)
 		{

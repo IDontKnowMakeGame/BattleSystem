@@ -94,7 +94,7 @@ public class GreatSword : Weapon
 			return;
 		if (timer >= info.Ats)
 		{
-			_sliderObject.PullSlider(0.1f, true, Color.red);
+			_sliderObject.PullSlider(0.02f, true, Color.red);
 			return;
 		}
 		timer += Time.deltaTime;
