@@ -1,15 +1,15 @@
 {
     "maxHp": 100,
-    "feather": 9980,
+    "feather": 16844,
     "firstWeapon": 3,
-    "secondWeapon": 1,
-    "firstHalo": 101,
+    "secondWeapon": 2,
+    "firstHalo": 102,
     "secondHalo": 0,
     "thirdHalo": 0,
     "equipUseableItem": {
         "first": 200,
-        "second": 201,
-        "third": 202,
+        "second": 202,
+        "third": 204,
         "fourth": 203,
         "fifth": 207
     }

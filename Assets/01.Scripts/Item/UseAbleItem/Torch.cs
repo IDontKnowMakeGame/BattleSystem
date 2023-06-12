@@ -13,7 +13,8 @@ public class Torch : UseAbleItem
     {
         if (InGame.Player.HasState(Actors.Characters.CharacterState.Everything)) return false;
         if (torchPos.Contains(InGame.Player.transform.position)) return false;
-        GameObject torch = Define.GetManager<ResourceManager>().Instantiate("TorchModel");  
+        GameObject torch = Define.GetManager<ResourceManager>().Instantiate("TorchModel");
+        Define.GetManager<SoundManager>().PlayAtPoint("Sounds/item/torch_fire", InGame.Player.transform.position, true);
         torch.transform.position = InGame.Player.transform.position.SetY(0.5f);
         torchPos.Add(InGame.Player.transform.position);
         return true;
