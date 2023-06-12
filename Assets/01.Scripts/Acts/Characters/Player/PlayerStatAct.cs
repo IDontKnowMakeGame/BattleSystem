@@ -47,7 +47,7 @@ public class PlayerStatAct : CharacterStatAct
 
 	public override void Damage(float damage, Actor actor)
 	{
-		if (ThisActor.GetAct<CharacterStatAct>().ChangeStat.hp <= 0) return;
+		if (ChangeStat.hp <= 0) return;
 
 		base.Damage(damage, actor);
 		
