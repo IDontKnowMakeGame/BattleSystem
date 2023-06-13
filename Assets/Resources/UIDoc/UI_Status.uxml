@@ -8,7 +8,7 @@
                 <ui:VisualElement name="charaterInfo" style="flex-basis: 39%; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; width: 100%; height: 1005px; align-items: flex-start;">
                     <ui:Label text="최대 체력 : x" display-tooltip-when-elided="true" name="label-info-hp" class="label" />
                     <ui:Label text="깃털 : x" display-tooltip-when-elided="true" name="label-info-feather" class="label" />
-                    <ui:Label text="영혼 정수 : 강화 (+x) 회복 (y)" display-tooltip-when-elided="true" name="label-info-potion" class="label" />
+                    <ui:Label text="영혼 정수 : 강화 (+x) 회복 (y)" display-tooltip-when-elided="true" name="label-info-potion" class="label" style="display: none;" />
                     <ui:Label text="장작 무기 : x &#10;&#x9;         y" display-tooltip-when-elided="true" name="label-info-weapon" class="label" />
                     <ui:Label text="헤일로 : x" display-tooltip-when-elided="true" name="label-info-halo" class="label" />
                 </ui:VisualElement>
@@ -16,74 +16,74 @@
             <ui:VisualElement name="middle-line" style="background-color: rgb(224, 224, 224); height: 90%; flex-basis: 5px;" />
             <ui:VisualElement name="right-panel" style="flex-basis: 65%; height: 100%; flex-direction: row;">
                 <ui:VisualElement name="weaponInfo-panel" style="height: 100%; flex-basis: 100%; align-items: flex-start; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;">
-                    <ui:VisualElement name="weaponinfo-sword" style="flex-basis: 20%; width: 100%; border-bottom-width: 3px; border-bottom-color: rgb(255, 255, 255); flex-direction: row;">
+                    <ui:VisualElement name="weaponinfo-sword" style="flex-basis: 20%; width: 100%; border-bottom-width: 3px; border-bottom-color: rgb(255, 255, 255); flex-direction: row; height: 100%;">
                         <ui:VisualElement name="explanation-info" style="flex-basis: 50%;">
-                            <ui:Label text="숙련도 - 직검" display-tooltip-when-elided="true" name="title" class="label label-title" />
-                            <ui:Label text="숙련도 레벨 : x" display-tooltip-when-elided="true" name="proficiency-level" class="label" />
-                            <ui:Label text="적 처치 수 : x" display-tooltip-when-elided="true" name="killCnt" class="label" />
+                            <ui:Label text="숙련도 - 직검" display-tooltip-when-elided="true" name="title" class="label label-title" style="flex-basis: 20%;" />
+                            <ui:Label text="숙련도 레벨 : x" display-tooltip-when-elided="true" name="proficiency-level" class="label" style="flex-basis: 20%;" />
+                            <ui:Label text="적 처치 수 : x" display-tooltip-when-elided="true" name="killCnt" class="label" style="flex-basis: 20%;" />
                         </ui:VisualElement>
-                        <ui:VisualElement name="explanation-proficiency" style="flex-basis: 50%; height: 100%;">
-                            <ui:Label text="Level 1 : +10 데미지 -0.01 공겨속도 " display-tooltip-when-elided="true" name="1" class="label label-off label-proficiency" style="flex-basis: 20%; width: 100%;" />
-                            <ui:Label text="Level 2 : +15 데미지 -0.03 공겨속도 " display-tooltip-when-elided="true" name="2" class="label label-off label-proficiency" style="flex-basis: 20%;" />
-                            <ui:Label text="Level 3 : +20 데미지 -0.05 공겨속도 " display-tooltip-when-elided="true" name="3" class="label label-off label-proficiency" style="flex-basis: 20%; width: 100%;" />
-                            <ui:Label text="Level 4 : +20 데미지 -0.07 공겨속도 -0.01 공격 딜레이 " display-tooltip-when-elided="true" name="4" class="label label-off label-proficiency" style="flex-basis: 20%; width: 100%;" />
-                            <ui:Label text="Level 5 : +20 데미지 -0.01 공겨속도 -0.05 공격 딜레이" display-tooltip-when-elided="true" name="5" class="label label-off label-proficiency" style="flex-basis: 20%; width: 100%;" />
+                        <ui:VisualElement name="explanation-proficiency" style="flex-basis: 50%; height: 100%; align-items: flex-start; justify-content: flex-end;">
+                            <ui:Label text="Level 1 : +10 데미지 -0.01 공겨속도 " display-tooltip-when-elided="true" name="1" class="label label-off label-proficiency" style="width: 100%;" />
+                            <ui:Label text="Level 2 : +15 데미지 -0.03 공겨속도 " display-tooltip-when-elided="true" name="2" class="label label-off label-proficiency" style="width: 100%;" />
+                            <ui:Label text="Level 3 : +20 데미지 -0.05 공겨속도 " display-tooltip-when-elided="true" name="3" class="label label-off label-proficiency" style="width: 100%;" />
+                            <ui:Label text="Level 4 : +20 데미지 -0.07 공겨속도 -0.01 공격 딜레이 " display-tooltip-when-elided="true" name="4" class="label label-off label-proficiency" style="width: 100%;" />
+                            <ui:Label text="Level 5 : +20 데미지 -0.01 공겨속도 -0.05 공격 딜레이" display-tooltip-when-elided="true" name="5" class="label label-off label-proficiency" style="width: 100%;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="weaponinfo-greatSword" style="flex-basis: 20%; width: 100%; border-bottom-width: 3px; border-bottom-color: rgb(255, 255, 255); flex-direction: row;">
                         <ui:VisualElement name="explanation-info" style="flex-basis: 50%;">
-                            <ui:Label text="숙련도 - 대검" display-tooltip-when-elided="true" name="title" class="label label-title" />
-                            <ui:Label text="숙련도 레벨 : x" display-tooltip-when-elided="true" name="proficiency-level" class="label" />
-                            <ui:Label text="적 처치 수 : x" display-tooltip-when-elided="true" name="killCnt" class="label" />
+                            <ui:Label text="숙련도 - 대검" display-tooltip-when-elided="true" name="title" class="label label-title" style="flex-basis: 20%;" />
+                            <ui:Label text="숙련도 레벨 : x" display-tooltip-when-elided="true" name="proficiency-level" class="label" style="flex-basis: 20%;" />
+                            <ui:Label text="적 처치 수 : x" display-tooltip-when-elided="true" name="killCnt" class="label" style="flex-basis: 20%;" />
                         </ui:VisualElement>
-                        <ui:VisualElement name="explanation-proficiency" style="flex-basis: 50%; height: 100%;">
-                            <ui:Label text="Level 1 : 차징중 받는 데미지 5%감소" display-tooltip-when-elided="true" name="1" class="label label-off label-proficiency" style="flex-basis: 20%;" />
-                            <ui:Label text="Level 2 : 차징중 받는 데미지 10%감소" display-tooltip-when-elided="true" name="2" class="label label-off label-proficiency" style="flex-basis: 20%;" />
-                            <ui:Label text="Level 3 : 차징중 받는 데미지 15%감소" display-tooltip-when-elided="true" name="3" class="label label-off label-proficiency" style="flex-basis: 20%;" />
-                            <ui:Label text="Level 4 : 차징중 받는 데미지 20%감소 " display-tooltip-when-elided="true" name="4" class="label label-off label-proficiency" style="flex-basis: 20%;" />
-                            <ui:Label text="Level 5 : 차징중 받는 데미지 20%감소 +20 데미지" display-tooltip-when-elided="true" name="5" class="label label-off label-proficiency" style="flex-basis: 20%;" />
+                        <ui:VisualElement name="explanation-proficiency" style="flex-basis: 50%; height: 100%; flex-direction: column; align-items: flex-start; justify-content: flex-end;">
+                            <ui:Label text="Level 1 : 차징중 받는 데미지 5%감소" display-tooltip-when-elided="true" name="1" class="label label-off label-proficiency" style="width: 100%;" />
+                            <ui:Label text="Level 2 : 차징중 받는 데미지 10%감소" display-tooltip-when-elided="true" name="2" class="label label-off label-proficiency" style="width: 100%;" />
+                            <ui:Label text="Level 3 : 차징중 받는 데미지 15%감소" display-tooltip-when-elided="true" name="3" class="label label-off label-proficiency" style="width: 100%;" />
+                            <ui:Label text="Level 4 : 차징중 받는 데미지 20%감소 " display-tooltip-when-elided="true" name="4" class="label label-off label-proficiency" style="width: 100%; height: 29px;" />
+                            <ui:Label text="Level 5 : 차징중 받는 데미지 20%감소 +20 데미지" display-tooltip-when-elided="true" name="5" class="label label-off label-proficiency" style="width: 100%;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="weaponinfo-twinSword" style="flex-basis: 20%; width: 100%; border-bottom-width: 3px; border-bottom-color: rgb(255, 255, 255); flex-direction: row;">
                         <ui:VisualElement name="explanation-info" style="flex-basis: 50%;">
-                            <ui:Label text="숙련도 - 쌍검 " display-tooltip-when-elided="true" name="title" class="label label-title" />
-                            <ui:Label text="숙련도 레벨 : x" display-tooltip-when-elided="true" name="proficiency-level" class="label" />
-                            <ui:Label text="적 처치 수 : x" display-tooltip-when-elided="true" name="killCnt" class="label" />
+                            <ui:Label text="숙련도 - 쌍검 " display-tooltip-when-elided="true" name="title" class="label label-title" style="flex-basis: 20%;" />
+                            <ui:Label text="숙련도 레벨 : x" display-tooltip-when-elided="true" name="proficiency-level" class="label" style="flex-basis: 20%;" />
+                            <ui:Label text="적 처치 수 : x" display-tooltip-when-elided="true" name="killCnt" class="label" style="flex-basis: 20%;" />
                         </ui:VisualElement>
-                        <ui:VisualElement name="explanation-proficiency" style="flex-basis: 50%; height: 100%;">
-                            <ui:Label text="Level 1 : +5 데미지 " display-tooltip-when-elided="true" name="1" class="label label-off label-proficiency" style="flex-basis: 20%;" />
-                            <ui:Label text="Level 2 : +10 데미지 " display-tooltip-when-elided="true" name="2" class="label label-off label-proficiency" style="flex-basis: 20%;" />
-                            <ui:Label text="Level 3 : +10 데미지  공격 범위 1증가" display-tooltip-when-elided="true" name="3" class="label label-off label-proficiency" style="flex-basis: 20%; height: 36px;" />
-                            <ui:Label text="Level 4 : +15 데미지  공격범위 1증가" display-tooltip-when-elided="true" name="4" class="label label-off label-proficiency" style="flex-basis: 20%;" />
-                            <ui:Label text="Level 5 : +20 데미지  공격범위 2증가" display-tooltip-when-elided="true" name="5" class="label label-off label-proficiency" style="flex-basis: 20%;" />
+                        <ui:VisualElement name="explanation-proficiency" style="flex-basis: 50%; height: 100%; align-items: flex-start; justify-content: flex-end;">
+                            <ui:Label text="Level 1 : +5 데미지 " display-tooltip-when-elided="true" name="1" class="label label-off label-proficiency" />
+                            <ui:Label text="Level 2 : +10 데미지 " display-tooltip-when-elided="true" name="2" class="label label-off label-proficiency" />
+                            <ui:Label text="Level 3 : +10 데미지  공격 범위 1증가" display-tooltip-when-elided="true" name="3" class="label label-off label-proficiency" style="height: 36px;" />
+                            <ui:Label text="Level 4 : +15 데미지  공격범위 1증가" display-tooltip-when-elided="true" name="4" class="label label-off label-proficiency" />
+                            <ui:Label text="Level 5 : +20 데미지  공격범위 2증가" display-tooltip-when-elided="true" name="5" class="label label-off label-proficiency" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="weaponinfo-spear" style="flex-basis: 20%; width: 100%; border-bottom-width: 3px; border-bottom-color: rgb(255, 255, 255); flex-direction: row;">
                         <ui:VisualElement name="explanation-info" style="flex-basis: 50%;">
-                            <ui:Label text="숙련도 - 창" display-tooltip-when-elided="true" name="title" class="label label-title" />
-                            <ui:Label text="숙련도 레벨 : x" display-tooltip-when-elided="true" name="proficiency-level" class="label" />
-                            <ui:Label text="적 처치 수 : x" display-tooltip-when-elided="true" name="killCnt" class="label" />
+                            <ui:Label text="숙련도 - 창" display-tooltip-when-elided="true" name="title" class="label label-title" style="flex-basis: 20%;" />
+                            <ui:Label text="숙련도 레벨 : x" display-tooltip-when-elided="true" name="proficiency-level" class="label" style="flex-basis: 20%;" />
+                            <ui:Label text="적 처치 수 : x" display-tooltip-when-elided="true" name="killCnt" class="label" style="flex-basis: 20%;" />
                         </ui:VisualElement>
-                        <ui:VisualElement name="explanation-proficiency" style="flex-basis: 50%; height: 100%;">
-                            <ui:Label text="Level 1 : +5 데미지" display-tooltip-when-elided="true" name="1" class="label label-off label-proficiency" style="flex-basis: 20%;" />
-                            <ui:Label text="Level 2 : +10 데미지" display-tooltip-when-elided="true" name="2" class="label label-off label-proficiency" style="flex-basis: 20%;" />
-                            <ui:Label text="Level 3 : +15 데미지" display-tooltip-when-elided="true" name="3" class="label label-off label-proficiency" style="flex-basis: 20%; height: 36px;" />
-                            <ui:Label text="Level 4 : +20 데미지" display-tooltip-when-elided="true" name="4" class="label label-off label-proficiency" style="flex-basis: 20%;" />
-                            <ui:Label text="Level 5 : +20 데미지 공격범위 1증가" display-tooltip-when-elided="true" name="5" class="label label-off label-proficiency" style="flex-basis: 20%;" />
+                        <ui:VisualElement name="explanation-proficiency" style="flex-basis: 50%; height: 100%; align-items: flex-start; justify-content: flex-end;">
+                            <ui:Label text="Level 1 : +5 데미지" display-tooltip-when-elided="true" name="1" class="label label-off label-proficiency" />
+                            <ui:Label text="Level 2 : +10 데미지" display-tooltip-when-elided="true" name="2" class="label label-off label-proficiency" />
+                            <ui:Label text="Level 3 : +15 데미지" display-tooltip-when-elided="true" name="3" class="label label-off label-proficiency" style="height: 36px;" />
+                            <ui:Label text="Level 4 : +20 데미지" display-tooltip-when-elided="true" name="4" class="label label-off label-proficiency" />
+                            <ui:Label text="Level 5 : +20 데미지 공격범위 1증가" display-tooltip-when-elided="true" name="5" class="label label-off label-proficiency" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="weaponinfo-bow" style="flex-basis: 20%; width: 100%; border-bottom-width: 3px; border-bottom-color: rgb(255, 255, 255); flex-direction: row;">
                         <ui:VisualElement name="explanation-info" style="flex-basis: 50%;">
-                            <ui:Label text="숙련도 - 활" display-tooltip-when-elided="true" name="title" class="label label-title" />
-                            <ui:Label text="숙련도 레벨 : x" display-tooltip-when-elided="true" name="proficiency-level" class="label" />
-                            <ui:Label text="적 처치 수 : x" display-tooltip-when-elided="true" name="killCnt" class="label" />
+                            <ui:Label text="숙련도 - 활" display-tooltip-when-elided="true" name="title" class="label label-title" style="flex-basis: 20%;" />
+                            <ui:Label text="숙련도 레벨 : x" display-tooltip-when-elided="true" name="proficiency-level" class="label" style="flex-basis: 20%;" />
+                            <ui:Label text="적 처치 수 : x" display-tooltip-when-elided="true" name="killCnt" class="label" style="flex-basis: 20%;" />
                         </ui:VisualElement>
-                        <ui:VisualElement name="explanation-proficiency" style="flex-basis: 50%; height: 100%;">
-                            <ui:Label text="Level 1 : +5 데미지 투사체 속도 +0.5" display-tooltip-when-elided="true" name="1" class="label label-off label-proficiency" style="flex-basis: 20%;" />
-                            <ui:Label text="Level 2 : +10 데미지 투사체 속도 +0.7" display-tooltip-when-elided="true" name="2" class="label label-off label-proficiency" style="flex-basis: 20%;" />
-                            <ui:Label text="Level 3 : +15 데미지 투사체 속도 +1" display-tooltip-when-elided="true" name="3" class="label label-off label-proficiency" style="flex-basis: 20%; height: 36px;" />
-                            <ui:Label text="Level 4 : +20 데미지 투사체 속도 +1.2" display-tooltip-when-elided="true" name="4" class="label label-off label-proficiency" style="flex-basis: 20%;" />
-                            <ui:Label text="Level 5 : +20 데미지 투사체 속도 +2" display-tooltip-when-elided="true" name="5" class="label label-off label-proficiency" style="flex-basis: 20%;" />
+                        <ui:VisualElement name="explanation-proficiency" style="flex-basis: 50%; height: 100%; align-items: flex-start; justify-content: flex-end;">
+                            <ui:Label text="Level 1 : +5 데미지 투사체 속도 +0.5" display-tooltip-when-elided="true" name="1" class="label label-off label-proficiency" />
+                            <ui:Label text="Level 2 : +10 데미지 투사체 속도 +0.7" display-tooltip-when-elided="true" name="2" class="label label-off label-proficiency" />
+                            <ui:Label text="Level 3 : +15 데미지 투사체 속도 +1" display-tooltip-when-elided="true" name="3" class="label label-off label-proficiency" style="height: 36px;" />
+                            <ui:Label text="Level 4 : +20 데미지 투사체 속도 +1.2" display-tooltip-when-elided="true" name="4" class="label label-off label-proficiency" />
+                            <ui:Label text="Level 5 : +20 데미지 투사체 속도 +2" display-tooltip-when-elided="true" name="5" class="label label-off label-proficiency" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>

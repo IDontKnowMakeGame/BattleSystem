@@ -1,5 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="ExitBtn" src="project://database/Assets/Resources/UIDoc/ExitBtn.uxml?fileID=9197481963319205126&amp;guid=026ad5a06dfcabf48b22e6f13c706d58&amp;type=3#ExitBtn" />
     <ui:Template name="InventoryWeaponItemCard" src="project://database/Assets/Resources/UIDoc/InventoryWeaponItemCard.uxml?fileID=9197481963319205126&amp;guid=dee5e798766fc7b418ec331020af07aa&amp;type=3#InventoryWeaponItemCard" />
     <Style src="project://database/Assets/Resources/UIDoc/USS/Inventory.uss?fileID=7433441132597879392&amp;guid=06c2d37b5c549d84c8ca098e2b839d33&amp;type=3#Inventory" />
     <ui:VisualElement name="background" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; align-items: center; justify-content: center; flex-direction: row;">
@@ -23,7 +22,6 @@
                         <ui:VisualElement name="Icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=1653532630&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_7&apos;); width: 100px; height: 100px; -unity-background-scale-mode: scale-to-fit;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:Instance template="ExitBtn" name="ExitBtn" />
             </ui:VisualElement>
             <ui:VisualElement name="Panel" style="flex-basis: 90%; flex-direction: row; overflow: hidden;">
                 <ui:VisualElement name="ItemPanel" style="overflow: visible; flex-basis: 100%; translate: 0 0;">
@@ -69,19 +67,19 @@
                     </ui:VisualElement>
                     <ui:VisualElement name="HaloPanel" class="ItemPanel" style="display: flex; align-items: center; justify-content: center; left: 100%; flex-direction: column;">
                         <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; overflow: hidden; justify-content: flex-end;">
-                            <ui:VisualElement name="BackGround" style="justify-content: flex-end; align-items: center; width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UIHaloBackGround.png?fileID=21300000&amp;guid=227cfcd7eeca2be488797bce1ce372ea&amp;type=3#UIHaloBackGround&apos;);">
-                                <ui:VisualElement name="Line" style="background-image: none; width: 100px; height: 2200px;" />
+                            <ui:VisualElement name="BackGround" style="justify-content: flex-end; align-items: center; width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/Tree.png?fileID=21300000&amp;guid=de0f691649fdf7540af8eb1a265249ee&amp;type=3#Tree&apos;); -unity-background-scale-mode: stretch-to-fill;">
+                                <ui:VisualElement name="Line" style="background-image: none; width: 100px; height: 2785px;" />
                                 <ui:VisualElement name="HaloSelectPanel" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%;">
-                                    <ui:VisualElement name="100" style="position: absolute; width: 150px; height: 150px; top: 147px; left: 436px; background-image: resource(&apos;Item/100&apos;); justify-content: center; align-items: center;" />
-                                    <ui:VisualElement name="101" style="position: absolute; width: 150px; height: 150px; top: 365px; left: 168px; background-image: resource(&apos;Item/101&apos;);" />
-                                    <ui:VisualElement name="102" style="position: absolute; width: 150px; height: 150px; top: 282px; left: 1236px; background-image: resource(&apos;Item/102&apos;);" />
-                                    <ui:VisualElement name="103" style="position: absolute; width: 150px; height: 150px; top: 562px; left: 1072px; background-image: resource(&apos;Item/103&apos;);" />
-                                    <ui:VisualElement name="104" style="position: absolute; width: 150px; height: 150px; top: 818px; left: 334px; background-image: resource(&apos;Item/104&apos;);" />
+                                    <ui:VisualElement name="100" style="position: absolute; width: 150px; height: 150px; top: 266px; left: 512px; background-image: resource(&apos;Item/100&apos;); justify-content: center; align-items: center;" />
+                                    <ui:VisualElement name="101" style="position: absolute; width: 150px; height: 150px; top: 660px; left: 206px; background-image: resource(&apos;Item/101&apos;);" />
+                                    <ui:VisualElement name="102" style="position: absolute; width: 150px; height: 150px; top: 387px; left: 1359px; background-image: resource(&apos;Item/102&apos;);" />
+                                    <ui:VisualElement name="103" style="position: absolute; width: 150px; height: 150px; top: 786px; left: 1623px; background-image: resource(&apos;Item/103&apos;);" />
+                                    <ui:VisualElement name="104" style="position: absolute; width: 150px; height: 150px; top: 1272px; left: 478px; background-image: resource(&apos;Item/104&apos;);" />
                                 </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:ScrollView>
                         <ui:VisualElement name="HaloCharacterView" style="background-color: rgb(79, 79, 79); width: 126px; height: 171px; background-image: url(&apos;project://database/Assets/02.Sprites/Ghost.png?fileID=2128063284&amp;guid=f3ba31022ba0a8046a76e645fdde2f38&amp;type=3#Ghost_0&apos;); display: none;" />
-                        <ui:VisualElement name="EquipHalo">
+                        <ui:VisualElement name="EquipHalo" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/HaloCase.png?fileID=21300000&amp;guid=6f2d7b1f859a9c146bbb9f16987568b6&amp;type=3#HaloCase&apos;); left: 18px; -unity-background-scale-mode: scale-to-fit; width: 293px; justify-content: center; align-items: center; height: 297px;">
                             <ui:VisualElement name="1" style="width: 120px; height: 120px; margin-bottom: 10px;" />
                             <ui:VisualElement name="2" style="width: 120px; height: 120px; margin-bottom: 10px; display: none;" />
                             <ui:VisualElement name="3" style="width: 120px; height: 120px; display: none;" />
