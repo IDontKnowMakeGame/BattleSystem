@@ -34,6 +34,8 @@ namespace Acts.Characters.Enemy
 
         public override void Damage(float damage, Actor actor)
         {
+	        if (ChangeStat.hp <= 0) return;
+
             attackActor = actor;
             base.Damage(damage, actor);
             if (actor is EmptyBlock)
@@ -67,8 +69,10 @@ namespace Acts.Characters.Enemy
             if (!ThisActor.gameObject.activeSelf)
                 return;
 
-            _actor.AddState(CharacterState.Die);
-
+            _actor.AddState(CharacterState.Die); 
+            InGame.GetBlock(ThisActor.Position).RemoveActorOnBlock();
+			_actor.IsUpdatingPosition = false;
+            
 			ThisActor.GetAct<EnemyAI>()?.ResetAllConditions();
             ThisActor.gameObject.tag = "Untagged";
 
@@ -121,7 +125,6 @@ namespace Acts.Characters.Enemy
 						arrow.transform.parent = null;
 					}
 					ThisActor.gameObject.SetActive(false);
-					InGame.GetBlock(ThisActor.Position).RemoveActorOnBlock();
 					Object.Destroy(ThisActor);
                 };
 	            var deathParticle = Define.GetManager<ResourceManager>().Instantiate("DeathParticle");
