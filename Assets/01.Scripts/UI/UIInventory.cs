@@ -97,13 +97,6 @@ public class UIInventory : UIBase
         isOpen = false;
         _root = UIManager.Instance._document.rootVisualElement.Q<VisualElement>("UI_Inventory");
 
-        _exitBtn = _root.Q<VisualElement>("ExitBtn");
-        _exitBtn.RegisterCallback<ClickEvent>(e =>
-        {
-            Hide();
-            
-        });
-
         VisualElement selectType = _root.Q<VisualElement>("SelectItemType");
         _weaponSelectBtn = selectType.Q<VisualElement>("Weapon");
         _weaponSelectBtn.RegisterCallback<ClickEvent>(e =>
@@ -222,6 +215,7 @@ public class UIInventory : UIBase
         EquipWeaponBoxImage();
         HideUseableItemExplanationPanel();
         HideQuestItemInfoPanel();
+        HaveHaloShow();
 
         CreateCardList(_weaponScrollPanel, _weaponCardTemp, Define.GetManager<DataManager>().LoadWeaponDataFromInventory(), SelectCard);
         CreateCardList(_useableItemScrollPanel, _useableItemCardTemp, Define.GetManager<DataManager>().LoadUsableItemFromInventory(), SelectCard);
@@ -528,6 +522,18 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
 
         //CardBorderWidth(card, 1, Color.green);
 
+    }
+    public void HaveHaloShow()
+    {
+        foreach (VisualElement card in _haloSelectPanel.Children())
+        {
+            if(Define.GetManager<DataManager>().HaveHalo((ItemID)Int32.Parse(card.name)) == false)
+            {
+                card.style.display = DisplayStyle.None;
+                continue;
+            }
+            card.style.display = DisplayStyle.Flex;
+        }
     }
     public void HaloEquipSelectCard(VisualElement card,int equipNum)
     {

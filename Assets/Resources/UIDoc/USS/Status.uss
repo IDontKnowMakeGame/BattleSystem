@@ -1,14 +1,14 @@
 .label {
-    color: rgba(231, 231, 231, 255);
+    color: rgb(231, 231, 231);
     -unity-font-definition: url('project://database/Assets/Font/SUITE-Variable%20SDF%201.asset?fileID=11400000&guid=640b171b207c5cb4d9380b34f11967f1&type=2#SUITE-Variable SDF 1');
     -unity-font: url('project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&guid=fdf177119c8b7f84fbad0a6901efb8cc&type=3#SUITE-Variable');
-    font-size: 35px;
+    font-size: 30px;
     -unity-text-align: middle-left;
     opacity: 1;
 }
 
 .label-title {
-    font-size: 45px;
+    font-size: 38px;
 }
 
 .label-off {
@@ -17,6 +17,7 @@
 
 .label-proficiency {
     font-size: 15px;
+    flex-basis: 15%;
 }
 
 .backGround {

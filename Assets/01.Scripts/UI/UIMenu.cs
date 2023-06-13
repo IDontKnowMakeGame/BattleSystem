@@ -23,6 +23,7 @@ public class UIMenu : UIBase
         
         for(int i = 0; i < 4; i++)
         {
+            if (i == 2) continue;
             VisualElement panel = _menuBtnTemp.Instantiate();
             int index = i;
             panel.RegisterCallback<ClickEvent>(e =>
@@ -112,7 +113,7 @@ public class UIMenu : UIBase
 
                 break;
             case 3:
-
+                Application.Quit();
                 break;
         }
     }
