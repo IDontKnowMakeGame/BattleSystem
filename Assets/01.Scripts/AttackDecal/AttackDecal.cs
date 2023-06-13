@@ -96,10 +96,13 @@ namespace AttackDecals
             while (true)
             {
                 yield return new WaitForEndOfFrame();
-                if(attacker != null) continue;
-                if (InGame.GetActor(initPos) == attacker) continue;
-                Define.GetManager<ResourceManager>().Destroy(this.gameObject);
-                break;
+                if (attacker.HasState(CharacterState.Die | CharacterState.KnockBack))
+                {
+                    attacker.RemoveState(CharacterState.Attack);
+                    attacker.RemoveState(CharacterState.Hold);
+                    Define.GetManager<ResourceManager>().Destroy(this.gameObject);
+                    break;
+                }
             }
         }
 
