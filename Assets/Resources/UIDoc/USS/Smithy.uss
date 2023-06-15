@@ -8,5 +8,11 @@
 }
 
 .StatusText {
-    font-size: 24px;
+    font-size: 50px;
+    color: rgb(224, 224, 224);
+    -unity-text-align: middle-center;
+    -unity-font-definition: url('project://database/Assets/Font/SUITE-Variable%20SDF%201.asset?fileID=11400000&guid=640b171b207c5cb4d9380b34f11967f1&type=2#SUITE-Variable SDF 1');
+    -unity-font: url('project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&guid=fdf177119c8b7f84fbad0a6901efb8cc&type=3#SUITE-Variable');
+    border-bottom-width: 5px;
+    border-bottom-color: rgba(248, 248, 248, 255);
 }

@@ -113,7 +113,7 @@ public class UIMenu : UIBase
 
                 break;
             case 3:
-                Application.Quit();
+                UIManager.Instance.Quit.Show();
                 break;
         }
     }

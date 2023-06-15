@@ -310,7 +310,7 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
 
         VisualElement status = _weaponInfoPanel.Q<VisualElement>("Status");
         status.Q<Label>("Atk").text = string.Format("Level : {0}", weaponLevel);
-        status.Q<Label>("Atk").text = string.Format("공격력 : {0} + {1}", data.Atk, UIManager.Instance.LevelToAtk(weaponLevel));
+        status.Q<Label>("Atk").text = string.Format("공격력 : {0} + {1}", data.Atk, UIManager.Instance.levelToAtk[weaponLevel]);
         status.Q<Label>("Ats").text = string.Format("공격속도 : {0}", data.Ats);
         status.Q<Label>("Afs").text = string.Format("후 딜레이 : {0}", data.Afs);
         status.Q<Label>("Wei").text = string.Format("무게 : {0}", data.Weight);

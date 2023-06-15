@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     public UIFirstFloorMap UIFirstFloorMap = new UIFirstFloorMap();
     public UIPadeInOut PadeInOut = new UIPadeInOut();
     public UIDeathPanel DeathPanel = new UIDeathPanel();
+    public UIQuit Quit = new UIQuit();
 
     public MapNameData MapNameData;
 
@@ -31,6 +32,38 @@ public class UIManager : MonoBehaviour
     public UseableItemTextInfoListSO useableItemTextInfoListSO;
     public QuestItemTextInfoListSO questItemTextInfoListSO;
 
+    public Dictionary<int, int> levelToAtk = new Dictionary<int, int>()
+    {
+        { 0,0},
+        { 1,20},
+        { 2,45},
+        { 3,75},
+        { 4,110},
+        { 5,150},
+        { 6,195},
+        { 7,245},
+        { 8,300},
+        { 9,360},
+        { 10,425},
+        { 11,495},
+        { 12,570},
+    };
+    public Dictionary<int, int> levelTofeather = new Dictionary<int, int>()
+    {
+        { 0,0},
+        { 1,500},
+        { 2,800},
+        { 3,1000},
+        { 4,2500},
+        { 5,4500},
+        { 6,8500},
+        { 7,10000},
+        { 8,12500},
+        { 9,15000},
+        { 10,25000},
+        { 11,35000},
+        { 12,45000},
+    };
     #region Escape
     public static Stack<UIBase> OpenPanels = new Stack<UIBase>();
     #endregion
@@ -73,6 +106,7 @@ public class UIManager : MonoBehaviour
         UIFirstFloorMap.Init();
         PadeInOut.Init();
         DeathPanel.Init();
+        Quit.Init();
     }
 
 
@@ -89,7 +123,7 @@ public class UIManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            DeathPanel.Show();
+            Smithy.Show();
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -106,7 +140,7 @@ public class UIManager : MonoBehaviour
             Dialog.NextMessage();
         }
     }
-    private void Escape()
+    public void Escape()
     {
         if(OpenPanels.Count <= 0)
         {
@@ -114,13 +148,9 @@ public class UIManager : MonoBehaviour
             return;
         }
 
+        MoveAndInputPlay();
         UIBase ui = OpenPanels.Pop();
-        if(ui is UIMenu)
-        {
-            ui.Hide();
-            return;
-        }
-        if (ui is UIStatus)
+        if(ui is UIMenu || ui is UIStatus || ui is UIQuit)
         {
             ui.Hide();
             return;
@@ -158,103 +188,6 @@ public class UIManager : MonoBehaviour
     {
         BossBar.ShowBossBar(name);
     }
-    public int LevelToAtk(int level)
-    {
-        int value = 0;
-        switch (level)
-        {
-            case 0:
-                value = 0;
-                break;
-            case 1:
-                value = 20;
-                break;
-            case 2:
-                value = 45;
-                break;
-            case 3:
-                value = 75;
-                break;
-            case 4:
-                value = 110;
-                break;
-            case 5:
-                value = 150;
-                break;
-            case 6:
-                value = 195;
-                break;
-            case 7:
-                value = 245;
-                break;
-            case 8:
-                value = 300;
-                break;
-            case 9:
-                value = 360;
-                break;
-            case 10:
-                value = 425;
-                break;
-            case 11:
-                value = 495;
-                break;
-            case 12:
-                value = 570;
-                break;
-            default:
-                break;
-        }
 
-        return value;
-    }
-    public int LevelToFeather(int level)
-    {
-        int value = 0;
-        switch (level)
-        {
-            case 0:
-                value = 0;
-                break;
-            case 1:
-                value = 500;
-                break;
-            case 2:
-                value = 800;
-                break;
-            case 3:
-                value = 1000;
-                break;
-            case 4:
-                value = 2500;
-                break;
-            case 5:
-                value = 4500;
-                break;
-            case 6:
-                value = 8500;
-                break;
-            case 7:
-                value = 10000;
-                break;
-            case 8:
-                value = 12500;
-                break;
-            case 9:
-                value = 15000;
-                break;
-            case 10:
-                value = 25000;
-                break;
-            case 11:
-                value = 35000;
-                break;
-            case 12:
-                value = 45000;
-                break;
-            default:
-                break;
-        }
-        return value;
-    }
+    
 }
