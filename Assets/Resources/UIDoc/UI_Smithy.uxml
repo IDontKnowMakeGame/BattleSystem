@@ -16,7 +16,7 @@
                 <ui:VisualElement name="statuspanel" style="width: 100%; height: 100%;">
                     <ui:VisualElement name="explanation-status" style="width: 100%; flex-basis: 60%; justify-content: flex-end; align-items: flex-start;">
                         <ui:Label text="레벨 : x -&gt; y" display-tooltip-when-elided="true" name="label-level" class="StatusText" style="margin-bottom: 20px; border-bottom-color: rgb(255, 255, 255); border-bottom-width: 5px;" />
-                        <ui:Label text="공격력 : x -&gt; y" display-tooltip-when-elided="true" name="label-atk" class="StatusText" style="border-bottom-color: rgb(233, 233, 233); border-bottom-width: 5px; margin-bottom: 10px;" />
+                        <ui:Label text="강화 공격력 : x -&gt; y" display-tooltip-when-elided="true" name="label-atk" class="StatusText" style="border-bottom-color: rgb(233, 233, 233); border-bottom-width: 5px; margin-bottom: 10px;" />
                     </ui:VisualElement>
                     <ui:VisualElement name="explanation-needItem" style="justify-content: center; align-items: flex-start; flex-basis: 20%;">
                         <ui:Label text="필요 깃털 : x" display-tooltip-when-elided="true" name="label-needfeather" class="StatusText" />
@@ -30,13 +30,13 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="panel-down" style="flex-basis: 25%; align-items: flex-end; flex-direction: row; justify-content: center;">
-            <ui:VisualElement style="flex-basis: 28%;" />
+            <ui:VisualElement style="flex-basis: 22%; height: 100%;" />
             <ui:VisualElement name="leftdegine" style="flex-basis: 5%; height: 100%;" />
             <ui:VisualElement name="panel-weapon-void" style="flex-basis: 43%; width: 100%; height: 100%; flex-direction: row; overflow: hidden; border-bottom-width: 5px; border-bottom-color: rgb(245, 245, 245);">
                 <ui:VisualElement name="panel-weapon" style="flex-direction: row; translate: 330px 0; position: absolute; left: 0; top: 0; transition-property: translate; transition-duration: 0.3s; transition-timing-function: ease-out-sine;" />
             </ui:VisualElement>
             <ui:VisualElement name="rightdegine" style="flex-basis: 5%; height: 100%;" />
-            <ui:VisualElement name="panel-feather" style="flex-basis: 28%; height: 100%; justify-content: flex-end; align-items: flex-end; padding-bottom: 5px; padding-right: 5px;">
+            <ui:VisualElement name="panel-feather" style="flex-basis: 22%; height: 100%; justify-content: flex-end; align-items: flex-end; padding-bottom: 5px; padding-right: 5px;">
                 <ui:VisualElement name="panel" style="width: 80%; height: 20%; flex-direction: row;">
                     <ui:VisualElement name="icon-feather" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/InGame_UI_FeatherIcon.png?fileID=-884404196&amp;guid=51366b9a6ca4e804789e3772d10af377&amp;type=3#InGame_UI_FeatherIcon_2&apos;); -unity-background-scale-mode: scale-to-fit; width: 65px; height: 100%;" />
                     <ui:VisualElement name="box-feather" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Card.png?fileID=-1380171658&amp;guid=f8d86aaee61368341922d38dda1585f6&amp;type=3#UI_Card_0&apos;); width: 100%; height: 100%;">

@@ -54,6 +54,7 @@ public class UISmithy : UIBase
         _leftBtn.RegisterCallback<ClickEvent>(e =>
         {
             if (index <= 0) return;
+            CancelCard(_weaponPanel[index]);
             index--;
             _weaponPanel.style.translate = new StyleTranslate(new Translate((-index + 2) * moveSclae,0,0));
             UpdateWeaponCard(index);
@@ -62,16 +63,34 @@ public class UISmithy : UIBase
         _rightBtn.RegisterCallback<ClickEvent>(e =>
         {
             if (index >= maxIndex) return;
+            CancelCard(_weaponPanel[index]);
             index++;
             _weaponPanel.style.translate = new StyleTranslate(new Translate((-index + 2) * moveSclae, 0, 0));
             UpdateWeaponCard(index);
         });
+        _purchaseBtn = _root.Q<VisualElement>("");
 
         CreateCard();
+    }
+    public override void Show()
+    {
+        UIManager.Instance.MoveAndInputStop();
+        UIManager.Instance.PadeInOut.Pade(PadeType.padeUp, () =>
+        {
+            _root.style.display = DisplayStyle.Flex;
+            CreateCard();
+            UIManager.OpenPanels.Push(this);
+        });
+    }
+    public override void Hide()
+    {
+        UIManager.Instance.MoveAndInputPlay();
+        _root.style.display = DisplayStyle.None;
     }
 
     public void CreateCard()
     {
+        _weaponPanel.Clear();
         _weaponList = Define.GetManager<DataManager>().LoadWeaponDataFromInventory();
         int cnt = 0;
         foreach (SaveItemData item in _weaponList)
@@ -84,6 +103,9 @@ public class UISmithy : UIBase
             cnt++;
         }
         maxIndex = cnt-1;
+        UpdateStatus(_weaponList[index].id);
+        UpdateWeaponCard(index);
+        UpdateCurrentFeather();
     }
 
     public void UpdateWeaponCard(int index)
@@ -92,7 +114,7 @@ public class UISmithy : UIBase
         Debug.Log($"cardName : {id}");
         _weaponImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
         _weaponName.text = UIManager.Instance.weaponTextInfoListSO.weapons[(int)id-1].weaponNameText;
-
+        SelectCard(_weaponPanel[index]);
         UpdateStatus(id);
     }
     public void UpdateStatus(ItemID id)
@@ -108,7 +130,33 @@ public class UISmithy : UIBase
 
         _levelLabel.text = _leveltext.Replace("x", level.ToString()).Replace("y", (level+1).ToString());
         _atkLabel.text = _atktext.Replace("x", UIManager.Instance.levelToAtk[level].ToString()).Replace("y", UIManager.Instance.levelToAtk[level+1].ToString());
-        _needFeatherLabel.text = UIManager.Instance.levelTofeather[level + 1].ToString();
+        _needFeatherLabel.text = _needFeatherText.Replace("x", UIManager.Instance.levelTofeather[level + 1].ToString());
+    }
+    public void UpdateCurrentFeather()
+    {
+        _featherLabel.text = DataManager.UserData_.feather.ToString();
+    }
+    public void SelectCard(VisualElement card)
+    {
+        //card.style.translate = new StyleTranslate(new Translate(0, -10));
+        SetBoderScale(_weaponPanel[index], 5, Color.white);
+    }
+    public void CancelCard(VisualElement card)
+    {
+        //card.style.translate = new StyleTranslate(new Translate(0, 0));
+        SetBoderScale(_weaponPanel[index], 0, Color.white);
+    }
+    public void SetBoderScale(VisualElement card,float value,Color color)
+    {
+        StyleFloat scale = new StyleFloat(value);
+        card.style.borderBottomWidth = scale;
+        card.style.borderTopWidth = scale;
+        card.style.borderLeftWidth = scale;
+        card.style.borderRightWidth = scale;
 
+        card.style.borderBottomColor = color;
+        card.style.borderTopColor = color;
+        card.style.borderLeftColor = color;
+        card.style.borderRightColor = color;
     }
 }

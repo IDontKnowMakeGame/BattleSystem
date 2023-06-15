@@ -142,6 +142,7 @@ public class UIManager : MonoBehaviour
     }
     public void Escape()
     {
+        if (PadeInOut.isPaded) return;
         if(OpenPanels.Count <= 0)
         {
             Menu.Show();
@@ -156,7 +157,7 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        PadeInOut.Pade(1, () => { ui.Hide(); });
+        PadeInOut.Pade(PadeType.padeDown, () => { ui.Hide(); });
         
     }
     public void HideAllUI()

@@ -105,7 +105,7 @@ public class UIMenu : UIBase
                 UIManager.Instance.Status.Show();
                 break;
             case 1:
-                UIManager.Instance.PadeInOut.Pade(0, () => {
+                UIManager.Instance.PadeInOut.Pade(PadeType.padeUp, () => {
                     UIManager.Instance.Inventory.Show();
                 });
                 break;
