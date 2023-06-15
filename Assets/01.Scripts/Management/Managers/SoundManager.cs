@@ -22,7 +22,7 @@ public class SoundManager : Manager
         Object.DontDestroyOnLoad(root);
 
         string[] soundName = System.Enum.GetNames(typeof(Define.Sound));
-        if(root.GetComponentsInChildren<AudioSource>().Length > 0)
+        if (root.GetComponentsInChildren<AudioSource>().Length > 0)
         {
             Debug.Log("있음");
             audioSources = (AudioSource[])root.GetComponentsInChildren<AudioSource>();
@@ -84,7 +84,6 @@ public class SoundManager : Manager
         SetClipInfo(audioClipInfo, 1, pitch, go.gameObject);
 
     }
-
     //포지션 값으로 소리날 위치 정하는 함수
     private void PlayAtPoint(AudioClipInfo audioClipInfo, Vector3 _vec, float pitch = 1.0f)
     {
@@ -93,18 +92,51 @@ public class SoundManager : Manager
         go.transform.position = _vec;
         SetClipInfo(audioClipInfo, 1, pitch, go.gameObject);
     }
+    //반복되는 사운드 이펙트
+    private void PlayAtPoint(AudioClipInfo audioClipInfo, Vector3 _vec, bool isLoop, float pitch = 1.0f)
+    {
+        if (audioClipInfo.clip == null) return;
+        var go = Define.GetManager<PoolManager>().Pop(soundObj);
+        go.transform.position = _vec;
+        SetClipInfo(audioClipInfo, 2, pitch, go.gameObject, isLoop);
+    }
+
+
+    /// <summary>
+    /// 게임 오브젝트에 자식으로 붙여서 계속 소리 낼 때 사용하는 함수
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="_transform"></param>
+    /// <param name="pitch"></param>
     public void PlayAtPoint(string path, Transform _transform, float pitch = 1.0f)
     {
         AudioClipInfo info = GetOrAddAudioClip(path, Define.Sound.Effect);
         PlayAtPoint(info, _transform, pitch);
     }
+
+    /// <summary>
+    /// 포지션 값으로 소리날 위치 정하는 함수
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="_vec"></param>
+    /// <param name="pitch"></param>
     public void PlayAtPoint(string path, Vector3 _vec, float pitch = 1.0f)
     {
         AudioClipInfo info = GetOrAddAudioClip(path, Define.Sound.Effect);
         PlayAtPoint(info, _vec, pitch);
     }
+    /// <summary>
+    /// 반복되는 사운드 이펙트쓰
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="_vec"></param>
+    /// <param name="pitch"></param>
+    public void PlayAtPoint(string path, Vector3 _vec, bool isLoop, float pitch = 1.0f)
+    {
+        AudioClipInfo info = GetOrAddAudioClip(path, Define.Sound.Effect);
+        PlayAtPoint(info, _vec, isLoop ,pitch);
+    }
 
-    //위치가 필요없는 효과음이나 배경음악 실행 함수
     private void Play(AudioClipInfo audioClipinfo, Define.Sound type = Define.Sound.Effect, float pitch = 1.0f)
     {
         if (audioClipinfo.clip == null) return;
@@ -124,6 +156,13 @@ public class SoundManager : Manager
             SetClipInfo(audioClipinfo, 0, 1);
         }
     }
+
+    /// <summary>
+    /// 위치가 필요없는 효과음이나 배경음악 실행 함수
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="type"></param>
+    /// <param name="pitch"></param>
     public void Play(string path, Define.Sound type = Define.Sound.Effect, float pitch = 1)
     {
         AudioClipInfo info = GetOrAddAudioClip(path, type);
@@ -152,11 +191,10 @@ public class SoundManager : Manager
         {
             Debug.Log($"{path} missing");
         }
-
         return info;
     }
 
-    private void SetClipInfo(AudioClipInfo info, int index, float pitch = 1f, GameObject go = null, Vector3 vec = new Vector3())
+    private void SetClipInfo(AudioClipInfo info, int index, float pitch = 1f, GameObject go = null, bool isLoop = false)
     {
         float len = info.clip.length;
 
@@ -174,6 +212,9 @@ public class SoundManager : Manager
                     break;
                 case 1:
                     go.GetComponent<soundEffectobj>().PlayEffect(info.clip, pitch, seInfo.volume);
+                    break;
+                case 2:
+                    go.GetComponent<soundEffectobj>().PlayEffectLoop(info.clip, pitch, seInfo.volume);
                     break;
                 default:
                     Debug.Log("Not allowed index");

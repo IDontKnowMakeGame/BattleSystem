@@ -203,6 +203,8 @@ public class CharacterStatAct : Act
 			{
 				PlayerActor player = actor as PlayerActor;
 				Debug.Log("적 죽임");
+				Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Unit/Attack_die", actor.Position);
+				Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Unit/die", actor.Position);
 				EventParam param = new EventParam();
 				param.boolParam = true;
 				Define.GetManager<EventManager>().TriggerEvent(EventFlag.HaloOfEreshkigal, param);

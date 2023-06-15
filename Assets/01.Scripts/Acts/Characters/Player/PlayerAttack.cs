@@ -111,10 +111,17 @@ namespace Acts.Characters.Player
                     particleRot.y = degree;
 
                     spark.transform.localPosition = enemy.transform.position.SetY(0.7f) + offset;
-                    float pitch = _playerEquipment.CurrentWeapon.WeaponInfo.Weight * 0.05f;
-
-                    Define.GetManager<SoundManager>().PlayAtPoint($"Sounds/Unit/Attack", enemy.transform.position , UnityEngine.Random.Range(0.9f,1.1f));
-                    Define.GetManager<SoundManager>().PlayAtPoint($"Sounds/Unit/hit", enemy.transform.position , 1f);
+                    float pitch = 0;
+                    if (_playerEquipment.CurrentWeapon.WeaponInfo.Weight > 4)
+                    {
+                        pitch = _playerEquipment.CurrentWeapon.WeaponInfo.Weight * 0.03f;
+                    }
+                    else
+                    {
+                        pitch = _playerEquipment.CurrentWeapon.WeaponInfo.Weight * -0.07f;
+                    }
+                    Define.GetManager<SoundManager>().PlayAtPoint($"Sounds/Unit/Attack", enemy.transform.position , UnityEngine.Random.Range(0.9f,1.1f) - pitch);
+                    Define.GetManager<SoundManager>().PlayAtPoint($"Sounds/Unit/hit", enemy.transform.position , 1f );
                     spark.transform.localRotation = Quaternion.Euler(particleRot);
                     spark.GetComponent<ParticleSystem>().Play();
                 }

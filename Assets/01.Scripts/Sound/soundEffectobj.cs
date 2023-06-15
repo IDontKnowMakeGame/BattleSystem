@@ -17,6 +17,17 @@ public class soundEffectobj : MonoBehaviour
         StartCoroutine(PushSoundObj());
     }
 
+    public void PlayEffectLoop(AudioClip audioClip, float _pitch, float volume)
+    {
+        if (this.gameObject == null) return;
+        AudioSource audioSource = this.GetComponent<AudioSource>();
+        audioSource.clip = audioClip;
+        audioSource.pitch = _pitch;
+        audioSource.volume = volume;
+        audioSource.loop = true;
+        audioSource.Play();
+    }
+
     private IEnumerator PushSoundObj()
     {
         yield return wait;
