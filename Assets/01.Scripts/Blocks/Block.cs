@@ -23,6 +23,7 @@ namespace Blocks
         public bool isWalkable = false;
         public bool isMoving = false;
         public bool isWarm = false;
+        public bool isFire = false;
 
         public bool HasSwitchCamera
         {
