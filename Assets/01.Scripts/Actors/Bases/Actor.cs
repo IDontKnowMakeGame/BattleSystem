@@ -16,7 +16,7 @@ namespace Actors.Bases
         public Action<float> OnDirectionUpdate = null;
         [SerializeField] private Vector3 position = Vector3.zero;
         protected Transform spriteTransform;
-        public bool IsUpdatingPosition { get; protected set; } = true;
+        public bool IsUpdatingPosition { get; set; } = true;
 
         public Vector3 Position => position;
         public void SetPosition(Vector3 pos)

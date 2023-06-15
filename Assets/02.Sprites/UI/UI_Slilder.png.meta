@@ -6,7 +6,7 @@ TextureImporter:
   serializedVersion: 12
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -36,8 +36,8 @@ TextureImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
   nPOTScale: 0
   lightmap: 0
@@ -51,7 +51,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fd6fccf90f07f240b99bcbd40b55c14
-      internalID: -640806315
+      spriteID: 75fc06a55f9e06a43a5bb5f95fecfb55
+      internalID: 1278801556
       vertices: []
       indices: 
       edges: []
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9abbcf01abe93f488016bc53114cf82
-      internalID: 461472133
+      spriteID: 4ac6a473a4ba9c843b4682a04b3dd55a
+      internalID: -1848777083
       vertices: []
       indices: 
       edges: []
@@ -161,8 +161,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95edcb4032db61e41b874f933870dbd6
-      internalID: -1433791024
+      spriteID: 4d8629dda8106ab458bbc5b7af3944cc
+      internalID: 251681709
       vertices: []
       indices: 
       edges: []
@@ -170,7 +170,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d71cfd821bd8f7d428a99be4fbc6ed73
+    spriteID: bd049a2fa8802a24ba72ddd7f86ec8c6
     internalID: 0
     vertices: []
     indices: 
@@ -178,9 +178,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      UI_Slilder_1: 461472133
-      UI_Slilder_0: -640806315
-      UI_Slilder_2: -1433791024
+      UI_Slilder_0: 1278801556
+      UI_Slilder_1: -1848777083
+      UI_Slilder_2: 251681709
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

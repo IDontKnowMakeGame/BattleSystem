@@ -31,12 +31,6 @@
             "maxCnt": 0
         },
         {
-            "id": 0,
-            "name": "None",
-            "currentCnt": 0,
-            "maxCnt": 0
-        },
-        {
             "id": 8,
             "name": "OutwornBow",
             "currentCnt": 1,
@@ -103,13 +97,13 @@
         {
             "id": 200,
             "name": "Torch",
-            "currentCnt": 2,
+            "currentCnt": 0,
             "maxCnt": 99
         },
         {
             "id": 201,
             "name": "Shield",
-            "currentCnt": 0,
+            "currentCnt": 2,
             "maxCnt": 99
         },
         {
@@ -139,7 +133,7 @@
         {
             "id": 206,
             "name": "Pick",
-            "currentCnt": 98,
+            "currentCnt": 99,
             "maxCnt": 99
         },
         {

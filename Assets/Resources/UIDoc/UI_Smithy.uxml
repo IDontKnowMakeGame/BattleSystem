@@ -1,46 +1,49 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="ExitBtn" src="project://database/Assets/Resources/UIDoc/ExitBtn.uxml?fileID=9197481963319205126&amp;guid=026ad5a06dfcabf48b22e6f13c706d58&amp;type=3#ExitBtn" />
     <Style src="project://database/Assets/Resources/UIDoc/USS/Smithy.uss?fileID=7433441132597879392&amp;guid=136ab4f50436a994ea83321a1b35a63b&amp;type=3#Smithy" />
-    <ui:VisualElement name="background" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; background-color: rgb(31, 31, 31); flex-direction: row; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
-        <ui:VisualElement name="CharacterImage" style="flex-basis: 50%; align-items: center; justify-content: center; background-image: url(&apos;project://database/Assets/02.Sprites/UI/NPC/BlackSmith_Solo.png?fileID=21300000&amp;guid=4418be08695357b4da6e497660a316c0&amp;type=3#BlackSmith_Solo&apos;);">
-            <ui:VisualElement name="WeaponSelect" style="background-color: rgb(58, 58, 58); width: 180px; height: 270px; align-items: center; justify-content: center; position: absolute; left: 87px; background-image: none;">
-                <ui:VisualElement name="BackGround" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Card.png?fileID=1060720071&amp;guid=f8d86aaee61368341922d38dda1585f6&amp;type=3#UI_Card_3&apos;); width: 100%; height: 100%;" />
+    <ui:VisualElement name="BackGround" style="width: 100%; height: 100%; background-color: rgb(0, 0, 0);">
+        <ui:VisualElement name="panel-up" style="flex-basis: 5%;" />
+        <ui:VisualElement name="panel-middle" style="flex-basis: 70%; justify-content: center; align-items: flex-end; flex-direction: row;">
+            <ui:VisualElement name="uppanel-left" style="flex-basis: 33%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/NPC/BlackSmith_Solo.png?fileID=21300000&amp;guid=4418be08695357b4da6e497660a316c0&amp;type=3#BlackSmith_Solo&apos;); -unity-background-scale-mode: scale-to-fit;" />
+            <ui:VisualElement name="uppanel-middle" style="flex-direction: row; justify-content: space-around; align-items: flex-end; flex-basis: 33%; height: 100%;">
+                <ui:VisualElement name="Btn-left" style="background-image: url(&apos;project://database/Packages/com.unity.2d.animation/Editor/Assets/SkinningModule/Icons/Selected/Bone_Influence@4x.png?fileID=21300000&amp;guid=daf2ab606d4db0d4f9ecf4c02137d2a8&amp;type=3#Bone_Influence@4x&apos;); width: 64px; height: 96px; -unity-background-scale-mode: scale-to-fit;" />
+                <ui:VisualElement name="weaponImage" style="background-image: resource(&apos;Item/2&apos;); width: 30%; height: 50%; -unity-background-scale-mode: scale-to-fit; justify-content: space-between; align-items: center;">
+                    <ui:Label text="a" display-tooltip-when-elided="true" name="label-weaponName" class="StatusText" style="top: -50px;" />
+                    <ui:VisualElement name="arrow" style="background-image: url(&apos;project://database/Packages/com.unity.collab-proxy/Editor/PlasticSCM/Assets/Images/ignoredoverlay@2x.png?fileID=21300000&amp;guid=999d04c0ea94ccc41b3d80788160695b&amp;type=3#ignoredoverlay@2x&apos;); width: 250px; height: 47px; -unity-background-scale-mode: scale-to-fit;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Btn-right" style="background-image: url(&apos;project://database/Packages/com.unity.2d.animation/Editor/Assets/SkinningModule/Icons/Selected/Bone_Influence@4x.png?fileID=21300000&amp;guid=daf2ab606d4db0d4f9ecf4c02137d2a8&amp;type=3#Bone_Influence@4x&apos;); width: 64px; height: 96px; -unity-background-scale-mode: scale-to-fit;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="uppanel-right" style="flex-basis: 33%; height: 100%; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+                <ui:VisualElement name="statuspanel" style="width: 100%; height: 100%;">
+                    <ui:VisualElement name="explanation-status" style="width: 100%; flex-basis: 60%; justify-content: flex-end; align-items: flex-start;">
+                        <ui:Label text="레벨 : x -&gt; y" display-tooltip-when-elided="true" name="label-level" class="StatusText" style="margin-bottom: 20px; border-bottom-color: rgb(255, 255, 255); border-bottom-width: 5px;" />
+                        <ui:Label text="공격력 : x -&gt; y" display-tooltip-when-elided="true" name="label-atk" class="StatusText" style="border-bottom-color: rgb(233, 233, 233); border-bottom-width: 5px; margin-bottom: 10px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="explanation-needItem" style="justify-content: center; align-items: flex-start; flex-basis: 20%;">
+                        <ui:Label text="필요 깃털 : x" display-tooltip-when-elided="true" name="label-needfeather" class="StatusText" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="panel-puchaseBtn" style="justify-content: center; align-items: flex-start; flex-basis: 20%;">
+                        <ui:VisualElement name="btn-purchase" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Card.png?fileID=-1935884182&amp;guid=f8d86aaee61368341922d38dda1585f6&amp;type=3#UI_Card_2&apos;); width: 165px; height: 74px; justify-content: center; align-items: center;">
+                            <ui:Label text="강화" display-tooltip-when-elided="true" class="StatusText" style="border-bottom-width: 0;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="WeaponPanel" style="flex-basis: 50%; justify-content: flex-end; align-items: flex-end;">
-            <ui:VisualElement name="WeaponUpgradePanel" style="background-color: rgba(0, 0, 0, 0.25); position: absolute; top: 0; right: 0; width: 75%; height: 80%; display: flex; justify-content: flex-start; border-left-color: rgb(207, 207, 207); border-right-color: rgb(207, 207, 207); border-top-color: rgb(207, 207, 207); border-bottom-color: rgb(207, 207, 207); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px;">
-                <ui:VisualElement name="InfoBox" style="flex-basis: 90%; align-items: center; justify-content: center; display: flex; background-image: url(&apos;project://database/Assets/02.Sprites/UI/InGame_UI_FeatherIcon.png?fileID=-1522164109&amp;guid=51366b9a6ca4e804789e3772d10af377&amp;type=3#InGame_UI_FeatherIcon_1&apos;);">
-                    <ui:VisualElement name="LevelBox" class="StatusBox">
-                        <ui:Label text="Level" display-tooltip-when-elided="true" name="LevelText" class="StatusText" style="color: rgb(231, 231, 231);" />
-                        <ui:VisualElement name="Line" style="width: 100%; height: 5px; background-color: rgb(241, 241, 241); margin-top: 5px;" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="AtkBox" class="StatusBox">
-                        <ui:Label text="Atk" display-tooltip-when-elided="true" name="AtkText" class="StatusText" style="color: rgb(236, 236, 236);" />
-                        <ui:VisualElement name="Line" style="width: 100%; height: 5px; background-color: rgb(241, 241, 241); margin-top: 5px;" />
+        <ui:VisualElement name="panel-down" style="flex-basis: 25%; align-items: flex-end; flex-direction: row; justify-content: center;">
+            <ui:VisualElement style="flex-basis: 28%;" />
+            <ui:VisualElement name="leftdegine" style="flex-basis: 5%; height: 100%;" />
+            <ui:VisualElement name="panel-weapon-void" style="flex-basis: 43%; width: 100%; height: 100%; flex-direction: row; overflow: hidden; border-bottom-width: 5px; border-bottom-color: rgb(245, 245, 245);">
+                <ui:VisualElement name="panel-weapon" style="flex-direction: row; translate: 330px 0; position: absolute; left: 0; top: 0; transition-property: translate; transition-duration: 0.3s; transition-timing-function: ease-out-sine;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="rightdegine" style="flex-basis: 5%; height: 100%;" />
+            <ui:VisualElement name="panel-feather" style="flex-basis: 28%; height: 100%; justify-content: flex-end; align-items: flex-end; padding-bottom: 5px; padding-right: 5px;">
+                <ui:VisualElement name="panel" style="width: 80%; height: 20%; flex-direction: row;">
+                    <ui:VisualElement name="icon-feather" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/InGame_UI_FeatherIcon.png?fileID=-884404196&amp;guid=51366b9a6ca4e804789e3772d10af377&amp;type=3#InGame_UI_FeatherIcon_2&apos;); -unity-background-scale-mode: scale-to-fit; width: 65px; height: 100%;" />
+                    <ui:VisualElement name="box-feather" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Card.png?fileID=-1380171658&amp;guid=f8d86aaee61368341922d38dda1585f6&amp;type=3#UI_Card_0&apos;); width: 100%; height: 100%;">
+                        <ui:Label text="99999" display-tooltip-when-elided="true" name="lable-feather" style="height: 100%; -unity-font-definition: url(&apos;project://database/Assets/Font/SUITE-Variable%20SDF%201.asset?fileID=11400000&amp;guid=640b171b207c5cb4d9380b34f11967f1&amp;type=2#SUITE-Variable SDF 1&apos;); -unity-font: url(&apos;project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&amp;guid=fdf177119c8b7f84fbad0a6901efb8cc&amp;type=3#SUITE-Variable&apos;); color: rgb(238, 238, 238); -unity-text-align: middle-left; margin-left: 7px; font-size: 28px;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="PurchaseBox" style="flex-basis: 10%; flex-direction: row; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; background-image: url(&apos;project://database/Assets/02.Sprites/UI/InGame_UI_FeatherIcon.png?fileID=-1522164109&amp;guid=51366b9a6ca4e804789e3772d10af377&amp;type=3#InGame_UI_FeatherIcon_1&apos;);">
-                    <ui:VisualElement name="NowFeather" style="flex-basis: 40%; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; background-color: rgb(12, 12, 12); justify-content: center; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Card.png?fileID=-1380171658&amp;guid=f8d86aaee61368341922d38dda1585f6&amp;type=3#UI_Card_0&apos;);">
-                        <ui:Label text="Label" display-tooltip-when-elided="true" name="NowFeatherText" style="color: rgb(255, 255, 255); margin-left: 9px;" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="BeforeFeather" style="flex-basis: 40%; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; background-color: rgb(12, 12, 12); align-items: flex-start; justify-content: center; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Card.png?fileID=-1380171658&amp;guid=f8d86aaee61368341922d38dda1585f6&amp;type=3#UI_Card_0&apos;);">
-                        <ui:Label text="Label" display-tooltip-when-elided="true" name="BeforeFeatherText" style="color: rgb(238, 106, 106); margin-left: 11px;" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="PurchaseBtn" style="flex-basis: 20%; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; background-color: rgb(185, 185, 185); align-items: center; justify-content: center; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Card.png?fileID=738687179&amp;guid=f8d86aaee61368341922d38dda1585f6&amp;type=3#UI_Card_1&apos;);">
-                        <ui:Label text="Purchase" display-tooltip-when-elided="true" style="color: rgb(0, 0, 0); font-size: 20px;" />
-                    </ui:VisualElement>
-                </ui:VisualElement>
-            </ui:VisualElement>
-            <ui:VisualElement name="WeaponSelectPanel" style="background-color: rgb(0, 0, 0); position: absolute; top: 0; right: 0; width: 75%; height: 80%; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; display: flex; background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Card.png?fileID=738687179&amp;guid=f8d86aaee61368341922d38dda1585f6&amp;type=3#UI_Card_1&apos;);">
-                <ui:ScrollView name="WeaponScroll" style="width: 100%; height: 100%;">
-                    <ui:VisualElement name="WeaponScrollPanel" style="flex-direction: row; flex-wrap: wrap;" />
-                </ui:ScrollView>
-            </ui:VisualElement>
-            <ui:VisualElement name="FeatherBox" style="width: 318px; height: 62px; background-color: rgb(94, 94, 94); border-left-color: rgb(209, 209, 209); border-right-color: rgb(209, 209, 209); border-top-color: rgb(209, 209, 209); border-bottom-color: rgb(209, 209, 209); border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px; flex-direction: row; justify-content: flex-start; align-items: center; display: none;">
-                <ui:VisualElement name="FeatherIcon" style="height: 100%; width: 61px;" />
-                <ui:Label text="Label" display-tooltip-when-elided="true" name="FeatherCnt" style="font-size: 25px;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:Instance template="ExitBtn" name="ExitBtn" style="position: absolute; left: 0; top: 0;" />
 </ui:UXML>

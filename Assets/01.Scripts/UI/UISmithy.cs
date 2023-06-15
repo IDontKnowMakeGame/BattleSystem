@@ -1,176 +1,114 @@
 using Core;
 using Data;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 public class UISmithy : UIBase
 {
-    private VisualElement _characterImage;
-    private VisualElement _weaponSelectBtn;
-
-    private VisualElement _weaponSelectPanel;
-    private VisualElement _weaponScrollPanel;
 
     private VisualTreeAsset _weaponCardTemp;
-    private VisualElement _weaponUpgradePanel;
-    private Label _levelText;
-    private Label _atkText;
-    private Label _smithyNowFeatherText;
-    private Label _smithyAfterFeatherText;
+
+    private VisualElement _weaponImage;
+    private VisualElement _weaponPanel;
+    private VisualElement _leftBtn;
+    private VisualElement _rightBtn;
     private VisualElement _purchaseBtn;
 
-    private VisualElement _exitBtn;
+    private Label _weaponName;
+    private Label _levelLabel;
+    private string _leveltext;
+    private Label _atkLabel;
+    private string _atktext;
+    private Label _needFeatherLabel;
+    private string _needFeatherText;
+    private Label _featherLabel;
 
-    private VisualElement _feaderBox;
+    private List<SaveItemData> _weaponList = new List<SaveItemData>();
 
-    private ItemID currentItem;
-    private int price = 0;
+    private float moveSclae = 165f;
+    private int index = 0;
+    private int maxIndex = 0;
+    
 
-    private int nowLevel = 0;
-    private int afterLevel = 0;
-    private int nowAtk = 0;
-    private int afterAtk = 0;
-    private int nowFeather = 0;
-    private int afterFeather = 0;
     public override void Init()
     {
         _root = UIManager.Instance._document.rootVisualElement.Q<VisualElement>("UI_Smithy");
 
-        _exitBtn = _root.Q<VisualElement>("ExitBtn");
-        _exitBtn.RegisterCallback<ClickEvent>(e =>
-        {
-            HideSmithy();
-        });
-
-        _characterImage = _root.Q<VisualElement>("CharacterImage");
-        _weaponSelectBtn = _characterImage.Q<VisualElement>("WeaponSelect");
-        _weaponSelectBtn.RegisterCallback<ClickEvent>(e =>
-        {
-            OpenWeaponSelectPanel();
-        });
-
-        _weaponSelectPanel = _root.Q<VisualElement>("WeaponSelectPanel");
-        _weaponScrollPanel = _weaponSelectPanel.Q<VisualElement>("WeaponScrollPanel");
-
-        _weaponUpgradePanel = _root.Q<VisualElement>("WeaponUpgradePanel");
-        _levelText = _weaponUpgradePanel.Q<Label>("LevelText");
-        _atkText = _weaponUpgradePanel.Q<Label>("AtkText");
-        _smithyNowFeatherText = _weaponUpgradePanel.Q<Label>("NowFeatherText");
-        _smithyAfterFeatherText = _weaponUpgradePanel.Q<Label>("BeforeFeatherText");
-        _purchaseBtn = _weaponUpgradePanel.Q<VisualElement>("PurchaseBtn");
-        _purchaseBtn.RegisterCallback<ClickEvent>(e =>
-        {
-            PurchaseBtn();
-        });
-
-        _feaderBox = _root.Q<VisualElement>("FeatherBox");
-
         _weaponCardTemp = Define.GetManager<ResourceManager>().Load<VisualTreeAsset>("UIDoc/InventoryWeaponItemCard");
-        nowFeather = Define.GetManager<DataManager>().GetFeather();
-    }
+        _weaponPanel = _root.Q<VisualElement>("panel-weapon");
+        _weaponImage = _root.Q<VisualElement>("weaponImage");
+        _weaponName = _weaponImage.Q<Label>("label-weaponName");
+        _levelLabel = _root.Q<Label>("label-level");
+        _leveltext = _levelLabel.text; 
+        _atkLabel = _root.Q<Label>("label-atk");
+        _atktext = _atkLabel.text;
+        _needFeatherLabel = _root.Q<Label>("label-needfeather");
+        _needFeatherText = _needFeatherLabel.text;
+        _featherLabel = _root.Q<Label>("lable-feather");
 
-    public void ShowSmithy()
-    {
-
-        _root.style.display = DisplayStyle.Flex;
-        _weaponSelectPanel.style.display = DisplayStyle.Flex;
-        CreateWeaponCardList();
-        UpdateSmithyUI();
-    }
-    public void HideSmithy()
-    {
-        _root.style.display = DisplayStyle.None;
-    }
-    public void CreateWeaponCardList()
-    {
-        CreateWeaponCardList(Define.GetManager<DataManager>().LoadWeaponDataFromInventory());
-    }
-    public void CreateWeaponCardList(List<SaveItemData> list)
-    {
-        _weaponScrollPanel.Clear();
-        foreach (SaveItemData item in list)
+        _leftBtn = _root.Q<VisualElement>("Btn-left");
+        _leftBtn.RegisterCallback<ClickEvent>(e =>
         {
-            VisualElement card = _weaponCardTemp.Instantiate().Q<VisualElement>("card");
-            card.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)item.id}"));
-            card.RegisterCallback<ClickEvent>(e =>
-            {
-                SelectWeaponCardOnClick(card,item.id);
-            });
+            if (index <= 0) return;
+            index--;
+            _weaponPanel.style.translate = new StyleTranslate(new Translate((-index + 2) * moveSclae,0,0));
+            UpdateWeaponCard(index);
+        });
+        _rightBtn = _root.Q<VisualElement>("Btn-right");
+        _rightBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            if (index >= maxIndex) return;
+            index++;
+            _weaponPanel.style.translate = new StyleTranslate(new Translate((-index + 2) * moveSclae, 0, 0));
+            UpdateWeaponCard(index);
+        });
 
-            _weaponScrollPanel.Add(card);
+        CreateCard();
+    }
+
+    public void CreateCard()
+    {
+        _weaponList = Define.GetManager<DataManager>().LoadWeaponDataFromInventory();
+        int cnt = 0;
+        foreach (SaveItemData item in _weaponList)
+        {
+            if (item.id == ItemID.None) continue;
+            VisualElement card = _weaponCardTemp.Instantiate();
+            
+            card.Q<VisualElement>("card").style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)item.id}"));
+            _weaponPanel.Add(card);
+            cnt++;
         }
+        maxIndex = cnt-1;
     }
-    public void OpenWeaponSelectPanel()
+
+    public void UpdateWeaponCard(int index)
     {
-        _weaponSelectPanel.style.display = DisplayStyle.Flex;
+        ItemID id = _weaponList[index].id;
+        Debug.Log($"cardName : {id}");
+        _weaponImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
+        _weaponName.text = UIManager.Instance.weaponTextInfoListSO.weapons[(int)id-1].weaponNameText;
+
+        UpdateStatus(id);
     }
-    public void SelectWeaponCardOnClick(VisualElement card,ItemID id)
+    public void UpdateStatus(ItemID id)
     {
-        _weaponSelectPanel.style.display = DisplayStyle.None;
-        _weaponSelectBtn.style.backgroundImage = card.style.backgroundImage;
-
-        currentItem = id;
-        nowLevel = Define.GetManager<DataManager>().LoadWeaponLevelData(currentItem);
-        afterLevel = nowLevel + 1;
-
-        int myAtk = (int)Define.GetManager<DataManager>().GetWeaponData(id).Atk;
-        nowAtk = myAtk + UIManager.Instance.LevelToAtk(nowLevel);
-        afterAtk = myAtk + UIManager.Instance.LevelToAtk(afterLevel);
-
-        price = UIManager.Instance.LevelToFeather(afterLevel);
-
-        UpdateSmithyUI();
-    }
-    public void PurchaseBtn()
-    {
-        if(afterFeather < 0)
+        int level = Define.GetManager<DataManager>().LoadWeaponLevelData(id);
+        if(level >= 12)
         {
+            _levelLabel.text = "레벨 : 12(Max)";
+            _atkLabel.text = $"공격력 : {UIManager.Instance.levelToAtk[level]}";
+            _needFeatherLabel.text = "";
             return;
         }
-        if (currentItem == ItemID.None) return;
-        if (nowLevel >= 12) return;
 
-        Define.GetManager<DataManager>().AddFeahter(-price);
-        UIManager.Instance.InGame.WriteFeatherValue();
-
-        nowLevel++;
-        afterLevel++;
-        int myAtk = (int)Define.GetManager<DataManager>().GetWeaponData(currentItem).Atk;
-        nowAtk = myAtk + UIManager.Instance.LevelToAtk(nowLevel);
-        afterAtk = myAtk + UIManager.Instance.LevelToAtk(afterLevel);
-
-        nowFeather = afterFeather;
-        price = UIManager.Instance.LevelToFeather(afterLevel);
-
-        Define.GetManager<DataManager>().SaveUpGradeWeaponLevelData(currentItem); 
-        
-
-        
-        UpdateSmithyUI();
-    }
-    
-    public void UpdateSmithyUI()
-    {
-        nowFeather = Define.GetManager<DataManager>().GetFeather();
-        _smithyNowFeatherText.text = nowFeather.ToString();
-        if (nowLevel >= 12)
-        {
-            _levelText.text = string.Format("Level : ALL ({0})", nowLevel);
-            _atkText.text = string.Format("Atk {0}", nowAtk);
-
-            afterFeather = nowFeather;
-            _smithyAfterFeatherText.text = afterFeather.ToString();
-        }
-        else
-        {
-            _levelText.text = string.Format("Level {0} -> {1}", nowLevel, afterLevel);
-            _atkText.text = string.Format("Atk {0} -> {1}", nowAtk, afterAtk);
-
-            afterFeather = nowFeather - price;
-            _smithyAfterFeatherText.text = afterFeather.ToString();
-        }
+        _levelLabel.text = _leveltext.Replace("x", level.ToString()).Replace("y", (level+1).ToString());
+        _atkLabel.text = _atktext.Replace("x", UIManager.Instance.levelToAtk[level].ToString()).Replace("y", UIManager.Instance.levelToAtk[level+1].ToString());
+        _needFeatherLabel.text = UIManager.Instance.levelTofeather[level + 1].ToString();
 
     }
 }

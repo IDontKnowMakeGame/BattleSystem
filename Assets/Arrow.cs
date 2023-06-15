@@ -73,6 +73,9 @@ public class Arrow : MonoBehaviour
 		int count = 0;
 		for (count = 0; count < distance; count++)
 		{
+			if (distance - 1 == count)
+				break;
+
 			if (map.GetBlock(position + (vec * count)) != null)
 			{
 				if (!map.GetBlock(position + (vec * count)).isWalkable && map.GetBlock(position + (vec * count)).ActorOnBlock == null)
@@ -249,27 +252,28 @@ public class Arrow : MonoBehaviour
 
 	private void PullAnimation()
 	{
+		Vector3 vec = InGame.CamDirCheck(_shootVec);
 		if (transform.parent == null)
 		{
 			Debug.Log(_playerAnimation);
 			Debug.Log(_playerAnimation.GetClip("GroundPull")); 
 			_playerAnimation.Play("GroundPull");
 		}
-		else if (-_shootVec == Vector3.left)
+		else if (vec == Vector3.left)
 		{
 			InGame.Player.SpriteTransform.localScale = new Vector3(-2, 1, 1);
 			_playerAnimation.Play("HorizontalPull");
 		}
-		else if (-_shootVec == Vector3.right)
+		else if (vec == Vector3.right)
 		{
 			InGame.Player.SpriteTransform.localScale = new Vector3(2, 1, 1);
 			_playerAnimation.Play("HorizontalPull");
 		}
-		else if (-_shootVec == Vector3.forward)
+		else if (vec == Vector3.forward)
 		{
 			_playerAnimation.Play("UpperPull");
 		}
-		else if (-_shootVec == Vector3.back)
+		else if (vec == Vector3.back)
 		{
 			_playerAnimation.Play("LowerPull");
 		}

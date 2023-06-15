@@ -10,6 +10,7 @@
     <ui:Template name="UI_FirstFloorMap" src="project://database/Assets/Resources/UIDoc/UI_FirstFloorMap.uxml?fileID=9197481963319205126&amp;guid=db3dc5eecf8a99c4ba30ab12b7c76e02&amp;type=3#UI_FirstFloorMap" />
     <ui:Template name="UI_PadeInOut" src="project://database/Assets/Resources/UIDoc/UI_PadeInOut.uxml?fileID=9197481963319205126&amp;guid=7cfb45c7a4285ad478047583db268af1&amp;type=3#UI_PadeInOut" />
     <ui:Template name="UI_DeathPanel" src="project://database/Assets/Resources/UIDoc/UI_DeathPanel.uxml?fileID=9197481963319205126&amp;guid=71edbe1749513984f9d7fa5bda7477bc&amp;type=3#UI_DeathPanel" />
+    <ui:Template name="UI_Quit" src="project://database/Assets/Resources/UIDoc/UI_Quit.uxml?fileID=9197481963319205126&amp;guid=90a33c763d6f0a34ab91639570cda41c&amp;type=3#UI_Quit" />
     <Style src="project://database/Assets/Resources/UIDoc/USS/Main.uss?fileID=7433441132597879392&amp;guid=997ef1579b50b3a4e99e0b8e8cd1021a&amp;type=3#Main" />
     <ui:Instance template="UI_InGame" name="UI_InGame" class="Panel" style="display: flex;" />
     <ui:Instance template="UI_BossBar" name="UI_BossBar" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; display: none;" />
@@ -22,4 +23,5 @@
     <ui:Instance template="UI_FirstFloorMap" name="UI_FirstFloorMap" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: none;" />
     <ui:Instance template="UI_PadeInOut" name="UI_PadeInOut" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: none;" />
     <ui:Instance template="UI_DeathPanel" name="UI_DeathPanel" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: none;" />
+    <ui:Instance template="UI_Quit" name="UI_Quit" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: none;" />
 </ui:UXML>

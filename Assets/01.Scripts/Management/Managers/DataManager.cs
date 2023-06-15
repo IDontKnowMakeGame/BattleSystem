@@ -347,6 +347,10 @@ public class DataManager : Manager
         string json = JsonManager.ObjectToJson(WeaponLevelListData_);
         JsonManager.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/Weapon", "WeaponLevelData", json);
     }
+    public List<WeaponLevelData> LoadWeaponLevelData()
+    {
+        return WeaponLevelListData_.weaponLevelDataList;
+    }
 
     public int LoadWeaponLevelData(ItemID id)
     {
@@ -464,6 +468,8 @@ public class DataManager : Manager
         item.currentCnt = count;
         item.maxCnt = 99;
         item.name = id.ToString();
+        if (id == ItemID.None)
+            return;
 
         if ((int)id < 100)
         { //Weapon
