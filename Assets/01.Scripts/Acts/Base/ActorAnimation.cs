@@ -11,9 +11,9 @@ namespace Acts.Characters
 	public class UnitAnimation : Act
 	{
 		public ClipBase curClip;
-
 		[SerializeField]
 		private Renderer renderer;
+
 
 		private Material baseMaterial;
 

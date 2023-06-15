@@ -32,9 +32,7 @@ public class HaloOfPollution : Halo
 
         if (ConditionCheck())
         {
-            Debug.Log(eventParam.unit);
-            
-            eventParam.unit.GetAct<EnemyStatAct>()?.Damage(damage, InGame.Player);
+            eventParam.unit?.GetAct<EnemyStatAct>()?.Damage(damage, InGame.Player);
         }
     }
 }
