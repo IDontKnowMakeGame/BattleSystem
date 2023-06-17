@@ -163,7 +163,8 @@ public class CharacterStatAct : Act
 				burnTimer = 0f;
 
 				burnStack--;
-				Damage(10, null);
+				Debug.Log(burnStack + "입니다.");
+				Damage(10, ThisActor);
 
 				if(burnStack <= 0)
                 {

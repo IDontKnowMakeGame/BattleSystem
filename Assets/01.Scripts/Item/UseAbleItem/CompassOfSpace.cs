@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Core;
+using Acts.Characters.Player;
 
 public class CompassOfSpace : UseAbleItem
 {
-    private Transform arrow;
-
     private Transform targetBlock;
 
     public Transform TargetBlock
@@ -20,22 +19,20 @@ public class CompassOfSpace : UseAbleItem
 
     public override void SettingItem()
     {
-        arrow = InGame.Player.transform.Find("Arrow");
-        if(arrow != null)
-            arrow.gameObject.SetActive(false);
+        InGame.Player.GetAct<PlayerUseAbleItem>().Arrow.transform.parent.gameObject.SetActive(false);
     }
 
     public override bool UseItem()
     {
-        if (useItem)
+        if(useItem)
         {
-            Debug.Log("나침반 리셋");
             Reset();
-            return true;
         }
-        Debug.Log("나침반 시작");
-        arrow.gameObject.SetActive(true);
-        useItem = true;
+        else
+        {
+            InGame.Player.GetAct<PlayerUseAbleItem>().Arrow.transform.parent.gameObject.SetActive(true);
+            useItem = true;
+        }
         return true;
     }
 
@@ -49,18 +46,22 @@ public class CompassOfSpace : UseAbleItem
 
     private void ArrowDir()
     {
-        Vector3 dir = targetBlock.transform.position - arrow.position;
+        Vector3 dir = (targetBlock.transform.position - InGame.Player.GetAct<PlayerUseAbleItem>().Arrow.transform.position).normalized;
+
         dir.y = 0;
 
-        Quaternion rot = Quaternion.LookRotation(dir.normalized);
-        Quaternion targetRotation = Quaternion.Euler(-90f, rot.eulerAngles.y, rot.eulerAngles.z);
+        float targetAngle = (Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg) + 90f;
 
-        arrow.localRotation = targetRotation;
+        Debug.Log(targetAngle);
+
+        Quaternion targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
+
+        InGame.Player.GetAct<PlayerUseAbleItem>().Arrow.transform.localRotation = targetRotation;
     }
 
     private void Reset()
     {
-        arrow.gameObject.SetActive(false);
+        InGame.Player.GetAct<PlayerUseAbleItem>().Arrow.transform.parent.gameObject.SetActive(false);
         useItem = false;
     }
 }
