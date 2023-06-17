@@ -156,6 +156,8 @@ namespace Blocks
         }
         
         public SwitchCamera switchCamera;
+        public bool isWet = false;
+
         public void ToggleHasSwitchCamera()
         {
             if (switchCamera.enabled)
@@ -171,6 +173,16 @@ namespace Blocks
         public void RemoveActorOnBlock()
         {
             _actorOnBlock = null;
+        }
+
+        public void WetBlock()
+        {
+            isWet = true;
+            var resource = Define.GetManager<ResourceManager>();
+            var wetBlock = resource.Load<GameObject>("WetBlock");
+            var wetBlockObj = Instantiate(wetBlock, transform.position, Quaternion.identity);
+            wetBlockObj.transform.SetParent(transform.GetChild(0));
+            wetBlockObj.transform.localPosition = Vector3.zero;
         }
 
         private IEnumerator AttackCoroutine(float damage, Color color, float delay, Actor attacker, MovementType shakeType = MovementType.None, bool isLast = false, float strength = 0.5f)
