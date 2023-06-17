@@ -306,7 +306,8 @@ namespace Acts.Characters
         {
             if (Define.GetManager<MapManager>().GetBlock(ThisActor.Position) != null && Define.GetManager<MapManager>().GetBlock(ThisActor.Position).isFire)
             {
-                ThisActor.GetAct<PlayerStatAct>().Burns();
+                if(ThisActor != InGame.Player)
+                    ThisActor.GetAct<CharacterStatAct>().Burns();
             }
             _character.RemoveState(CharacterState.Move);
             _character.RemoveState(CharacterState.Chase);
