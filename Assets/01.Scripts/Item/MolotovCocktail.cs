@@ -196,11 +196,6 @@ public class MolotovCocktail : MonoBehaviour
             SetFlames();
             Instantiate(explosition, transform.position.SetY(0.5f), Quaternion.identity);
 
-            if (Define.GetManager<MapManager>().GetBlock(InGame.Player.Position) != null && Define.GetManager<MapManager>().GetBlock(InGame.Player.Position).isFire)
-            {
-                InGame.Player.GetAct<PlayerStatAct>().Burns();
-            }
-
             //Instantiate(flames, transform.position.SetY(0.5f), Quaternion.identity);
             Destroy(gameObject);
         }
@@ -223,6 +218,11 @@ public class MolotovCocktail : MonoBehaviour
                 {
                     Instantiate(flames, pos, Quaternion.identity);
                     _map.GetBlock(new Vector3(exploreX, 0, exploreZ)).isFire = true;
+
+                    if (Define.GetManager<MapManager>().GetBlock(pos.SetY(0)).ActorOnBlock != null)
+                    {
+                        Define.GetManager<MapManager>().GetBlock(pos.SetY(0)).ActorOnBlock.GetAct<CharacterStatAct>()?.Burns();
+                    }
                 }
             }
         }
