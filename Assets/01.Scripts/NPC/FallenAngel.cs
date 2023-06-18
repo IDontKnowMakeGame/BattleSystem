@@ -83,7 +83,7 @@ public class FallenAngel : NPCActor
 
     public void StoreBtn()
     {
-        //UIManager.Instance.Smithy.ShowSmithy();
+        UIManager.Instance.Smithy.Show();
     }
 
     public void BackBtn()
