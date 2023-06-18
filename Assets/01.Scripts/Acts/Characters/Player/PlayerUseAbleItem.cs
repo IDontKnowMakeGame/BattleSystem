@@ -33,6 +33,10 @@ namespace Acts.Characters.Player
         private ParticleSystem holyParticle;
         [SerializeField]
         private Block floorTargetBlock;
+        [SerializeField]
+        private GameObject arrow;
+
+        public GameObject Arrow => arrow;
 
         public override void Start()
         {
@@ -124,15 +128,6 @@ namespace Acts.Characters.Player
 
             _hpPotion.UpdateItem();
             _compassOfSpace.UpdateItem();
-
-            /*            if(Input.GetKeyDown(KeyCode.Alpha1))
-                        {
-                            torchItem.UseItem();
-                        }
-                        if(Input.GetKeyDown(KeyCode.Alpha2))
-                        {
-                            shieldItem.UseItem();
-                        }*/
         }
     }
 }

@@ -304,11 +304,14 @@ namespace Acts.Characters
 
         protected virtual void MoveStop()
         {
+            if (Define.GetManager<MapManager>().GetBlock(ThisActor.Position) != null && Define.GetManager<MapManager>().GetBlock(ThisActor.Position).isFire)
+            {
+                if(ThisActor != InGame.Player)
+                    ThisActor.GetAct<CharacterStatAct>().Burns();
+            }
             _character.RemoveState(CharacterState.Move);
             _character.RemoveState(CharacterState.Chase);
             isChasing = false;
         }
-
-
     }
 }

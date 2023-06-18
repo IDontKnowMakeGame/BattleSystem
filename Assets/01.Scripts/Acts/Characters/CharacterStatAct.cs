@@ -12,6 +12,7 @@ using Acts.Characters.Player;
 using Actors.Characters.Enemy;
 using Acts.Characters.Enemy;
 using Blocks;
+using Managements.Managers;
 
 [Serializable]
 public class CharacterStat
@@ -120,6 +121,12 @@ public class CharacterStatAct : Act
 	private Dictionary<string, float> _drainageAtk = new Dictionary<string, float>();
 	private Dictionary<StatType, float> _changeStats = new Dictionary<StatType, float>();
 
+	private bool burnsMode = false;
+	private int burnStack;
+	private float burnTimer = 0f;
+
+	private const float maxTimer = 1f;
+
 	public override void Awake()
 	{
 		base.Awake();
@@ -143,7 +150,32 @@ public class CharacterStatAct : Act
 		_changeStat.hp = _changeStat.maxHP;
 	}
 
-	public virtual void AddDrainageAtk(string saveName, float plusValue)
+    public override void Update()
+    {
+        base.Update();
+
+		if (burnsMode)
+		{
+			burnTimer += Time.deltaTime;
+
+			if (burnTimer >= maxTimer)
+			{
+				burnTimer = 0f;
+
+				burnStack--;
+				Debug.Log(burnStack + "입니다.");
+				Damage(10, ThisActor);
+
+				if(burnStack <= 0)
+                {
+					burnsMode = false;
+					return;
+                }
+			}
+		}
+    }
+
+    public virtual void AddDrainageAtk(string saveName, float plusValue)
 	{
 		float repository = 0f;
 		if (_drainageAtk.TryGetValue(saveName, out repository))
@@ -244,6 +276,13 @@ public class CharacterStatAct : Act
 		}
 		
 	}
+
+	public void Burns()
+    {
+		burnsMode = true;
+		burnStack = 5;
+		burnTimer = 1f;
+    }
 
 	public virtual void Die()
 	{
