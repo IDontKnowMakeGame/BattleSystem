@@ -12,6 +12,8 @@ namespace Acts.Characters.Player
     [System.Serializable]
     public class PlayerUseAbleItem : Act
     {
+        public bool NotUseItem = false;
+
         private Torch _torchItem;
         private Shield _shieldItem;
         private HPPotion _hpPotion;
@@ -40,6 +42,8 @@ namespace Acts.Characters.Player
 
         public override void Start()
         {
+            if (NotUseItem) return;
+
             base.Start();
 
             _torchItem = new Torch();
@@ -84,6 +88,8 @@ namespace Acts.Characters.Player
 
         private void CheckItem(int itemKey)
         {
+            if (NotUseItem) return;
+
             List<ItemID> allItems = Define.GetManager<DataManager>().LoadUsableItemList();
 
             if (allItems.Count < itemKey)
@@ -119,6 +125,8 @@ namespace Acts.Characters.Player
 
         public override void Update()
         {
+            if (NotUseItem) return;
+
             base.Update();
 
             if(Input.GetKeyDown(KeyCode.Alpha9))

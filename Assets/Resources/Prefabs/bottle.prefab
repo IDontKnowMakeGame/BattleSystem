@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 931516804}
   - component: {fileID: 931516797}
   - component: {fileID: 4157672296893334247}
+  - component: {fileID: -2604575403804061901}
   m_Layer: 0
   m_Name: bottle
   m_TagString: Untagged
@@ -178,6 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosition: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
   flames: {fileID: 1095923369539180, guid: 9859a97dfe711a047823af0a181334a7, type: 3}
+  isPlay: 0
 --- !u!54 &931516797
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -214,3 +216,16 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!114 &-2604575403804061901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da98b277d1f6f994bbf224d6b515c747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isUsing: 0

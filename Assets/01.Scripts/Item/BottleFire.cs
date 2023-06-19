@@ -16,9 +16,12 @@ public class BottleFire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!particleSystem.isPlaying)
+        if(!particleSystem.IsAlive(true))
         {
             Define.GetManager<MapManager>().GetBlock(transform.position.SetY(0)).isFire = false;
+            this.gameObject.SetActive(false);
+            Define.GetManager<ResourceManager>().Destroy(this.gameObject);
+
         }
     }
 }
