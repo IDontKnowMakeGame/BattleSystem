@@ -103,7 +103,7 @@
         {
             "id": 201,
             "name": "Shield",
-            "currentCnt": 5,
+            "currentCnt": 0,
             "maxCnt": 99
         },
         {
