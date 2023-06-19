@@ -97,13 +97,13 @@
         {
             "id": 200,
             "name": "Torch",
-            "currentCnt": 0,
+            "currentCnt": 4,
             "maxCnt": 99
         },
         {
             "id": 201,
             "name": "Shield",
-            "currentCnt": 2,
+            "currentCnt": 5,
             "maxCnt": 99
         },
         {

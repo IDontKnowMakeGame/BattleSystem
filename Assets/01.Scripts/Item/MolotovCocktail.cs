@@ -8,9 +8,6 @@ using Blocks;
 
 public class MolotovCocktail : MonoBehaviour
 {
-    public GameObject explosition;
-    public GameObject flames;
-
     private Vector3 startPos, endPos;
 
     public bool isPlay = false;
@@ -189,15 +186,20 @@ public class MolotovCocktail : MonoBehaviour
         {
             transform.Rotate(new Vector3(m_rotateX, m_rotateY, 0));
             Move();
-        }
 
-        if (transform.position.y < 0)
-        {
-            SetFlames();
-            Instantiate(explosition, transform.position.SetY(0.5f), Quaternion.identity);
+            if (transform.position.y < 0)
+            {
+                isPlay = false;
+                anim = 0;
 
-            //Instantiate(flames, transform.position.SetY(0.5f), Quaternion.identity);
-            Destroy(gameObject);
+                SetFlames();
+                GameObject explosion = Define.GetManager<ResourceManager>().Instantiate("Explosion");
+                explosion.transform.position = transform.position.SetY(0.5f);
+                explosion.transform.rotation = Quaternion.identity;
+
+                this.gameObject.SetActive(false);
+                Define.GetManager<ResourceManager>().Destroy(this.gameObject);
+            }
         }
     }
 
@@ -216,7 +218,10 @@ public class MolotovCocktail : MonoBehaviour
 
                 if (_map.GetBlock(pos.SetY(0)) != null && _map.GetBlock(pos.SetY(0)) is not EmptyBlock)
                 {
-                    Instantiate(flames, pos, Quaternion.identity);
+                    GameObject flames = Define.GetManager<ResourceManager>().Instantiate("Flames");
+                    flames.transform.position = pos;
+                    flames.transform.rotation = Quaternion.identity;
+
                     _map.GetBlock(new Vector3(exploreX, 0, exploreZ)).isFire = true;
 
                     if (Define.GetManager<MapManager>().GetBlock(pos.SetY(0)).ActorOnBlock != null)
