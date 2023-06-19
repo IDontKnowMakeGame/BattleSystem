@@ -26,7 +26,7 @@ public class UIBossBar : UIBase
 
         ChangeBossBarValue(100);
         _bossName.text = name;
-        _bossIcon.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Image/Boss/{name}"));
+        //_bossIcon.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Image/Boss/{name}"));
     }
 
     public void HideBossBar()

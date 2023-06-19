@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc7c4cffe5d145a45b4b7a89a5e9bde8, type: 3}
   m_Name: MapNameData
   m_EditorClassIdentifier: 
+  tutorialMapName:
+  - "\uC9C0\uD558 \uCD5C\uC2EC\uCE35\uBD80"
+  - "\uAE30\uC0AC\uC758 \uC548\uC2DD\uCC98"
+  lobbyMapName:
+  - "\uC9C0\uD558 \uC740\uC2DD\uCC98"
   firstMapName:
   - "\uC2DC\uC791\uC758 \uBC29"
   - "\uD3D0\uD5C8"

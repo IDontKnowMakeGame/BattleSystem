@@ -298,7 +298,7 @@ public class UIInGame : UIBase
     public void CristalInfoInRoom(int roomNum)
     {
         currentRoom = roomNum;
-        _roomNameText.text = UIManager.Instance.MapNameData.firstMapName[roomNum];
+        RoomText(roomNum);
         if (roomNum == 0)
         {
             _crsitalPanel.style.display = DisplayStyle.None;
@@ -306,6 +306,10 @@ public class UIInGame : UIBase
         }
         _crsitalPanel.style.display = DisplayStyle.Flex;
         UpdateCristalText();
+    }
+    public void RoomText(int roomNum)
+    {
+        _roomNameText.text = UIManager.Instance.MapNameData.firstMapName[roomNum];
     }
     public void UpdateCristalText()
     {

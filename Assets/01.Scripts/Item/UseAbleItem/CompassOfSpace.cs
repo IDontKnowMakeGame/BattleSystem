@@ -19,7 +19,8 @@ public class CompassOfSpace : UseAbleItem
 
     public override void SettingItem()
     {
-        InGame.Player.GetAct<PlayerUseAbleItem>().Arrow.transform.parent.gameObject.SetActive(false);
+        if (InGame.Player.GetAct<PlayerUseAbleItem>().Arrow != null)
+            InGame.Player.GetAct<PlayerUseAbleItem>().Arrow.transform.parent.gameObject.SetActive(false);
     }
 
     public override bool UseItem()
