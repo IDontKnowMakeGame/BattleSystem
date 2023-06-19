@@ -7,27 +7,23 @@ using Managements.Managers;
 
 public class Shield : UseAbleItem
 {
-    private bool use = false;
-
     private Dictionary<Vector3, GameObject> ShieldPos = new Dictionary<Vector3, GameObject>();
 
     public override bool UseItem()
     {
-        // πÊ«‚
-        use = !use;
-
-        if (use)
-            InputManager<Weapon>.OnAttackPress += SpawnShield;
-        else
-            InputManager<Weapon>.OnAttackPress -= SpawnShield;
-
-        return false;
+        if (Define.GetManager<MapManager>().GetBlock((InGame.Player.transform.position + Weapon.DirReturn(Input.mousePosition)).SetY(0)).ActorOnBlock != null)
+        {
+            return false;
+        }
+        SpawnShield(Weapon.DirReturn(Input.mousePosition));
+        return true;
     }
 
     private void SpawnShield(Vector3 dir)
     {
+        Debug.Log(dir + "¿œ≤®ø‰..");
         if (InGame.Player.HasState(Actors.Characters.CharacterState.Everything & ~Actors.Characters.CharacterState.Attack)) return;
-        Vector3 spawnPos = (InGame.Player.transform.position - dir).SetY(0.5f);
+        Vector3 spawnPos = (InGame.Player.transform.position + dir).SetY(0.5f);
 
         if (ShieldPos.ContainsKey(spawnPos))
         {
@@ -37,18 +33,13 @@ public class Shield : UseAbleItem
                 return;
         }
 
-
         GameObject shield = Define.GetManager<ResourceManager>().Instantiate("Shield");
         shield.transform.position = spawnPos;
         shield.transform.rotation = Quaternion.Euler(RotateShield(dir));
 
-        use = false;
-        InputManager<Weapon>.OnAttackPress -= SpawnShield;
-
         ShieldPos.Add(spawnPos, shield);
 
         SaveItemData currentData = Define.GetManager<DataManager>().LoadItemFromInventory(Data.ItemID.Shield);
-        InGame.Player.GetAct<PlayerUseAbleItem>().DecreaseDataCnt(currentData, Data.ItemID.Shield);
     }
 
     private Vector3 RotateShield(Vector3 dir)
