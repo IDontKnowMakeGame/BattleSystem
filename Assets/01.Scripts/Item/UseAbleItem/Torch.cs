@@ -11,7 +11,6 @@ public class Torch : UseAbleItem
 
     public override bool UseItem()
     {
-        if (InGame.Player.HasState(Actors.Characters.CharacterState.Everything)) return false;
         if (torchPos.Contains(InGame.Player.Position)) return false;
         var block = InGame.GetBlock(InGame.Player.Position);
         if (block == null) return false;
