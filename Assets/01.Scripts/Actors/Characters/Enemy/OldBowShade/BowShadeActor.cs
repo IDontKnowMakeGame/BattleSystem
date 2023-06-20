@@ -29,6 +29,8 @@ public class BowShadeActor : EnemyActor
 
 	private Vector3 originVec;
 
+	private Arrow _arrow;
+
 	protected override void Init()
 	{
 		base.Init();
@@ -57,7 +59,7 @@ public class BowShadeActor : EnemyActor
 
 	private void Shoot(ShootState state)
 	{
-		originVec = InGame.Player.transform.position- this.transform.position;
+		originVec = InGame.Player.transform.position - this.transform.position;
 		Vector3 dir = originVec.normalized;
 		dir = InGame.CamDirCheck(dir);
 		if (dir.x != 0 && dir.z != 0)
@@ -76,7 +78,7 @@ public class BowShadeActor : EnemyActor
 		{
 			dir.x = -dir.x;
 			dir.z = -dir.z;
-		}  
+		}
 
 		if (dir.x == Vector3.left.x || dir.x == Vector3.right.x)
 		{
@@ -115,11 +117,18 @@ public class BowShadeActor : EnemyActor
 			_currentTimer = 0;
 			_isCharge = false;
 
-			Arrow.ShootArrow(originVec.normalized,Position, this, _speed, _characterEquipment.CurrentWeapon.info.Atk, _range, true);
+			_arrow = Arrow.ShootArrow(originVec.normalized, Position, this, _speed, _characterEquipment.CurrentWeapon.info.Atk, _range, true);
 			ShootAnimation(InGame.CamDirCheck(originVec.normalized));
 			_sliderObject.SliderActive(false);
 		}
 
+	}
+
+	protected override void OnDisable()
+	{
+		if (Define.GetManager<ResourceManager>() != null)
+			Define.GetManager<ResourceManager>().Destroy(_arrow.gameObject);
+		base.OnDisable();
 	}
 
 	private void ShootAnimation(Vector3 dir)
@@ -141,20 +150,22 @@ public class BowShadeActor : EnemyActor
 			_unitAnimation.Play("LowerShoot");
 		}
 
-		_unitAnimation.GetClip("HorizontalShoot").SetEventOnFrame(_unitAnimation.GetClip("HorizontalShoot").fps - 1, () => 
+		_unitAnimation.GetClip("HorizontalShoot").SetEventOnFrame(_unitAnimation.GetClip("HorizontalShoot").fps - 1, () =>
 		{
-			if(GetAct<CharacterStatAct>().ChangeStat.hp <= 0)
-				_unitAnimation.Play("Die");
-			else
-				_unitAnimation.Play("Idle");
-		});
-		_unitAnimation.GetClip("UpperShoot").SetEventOnFrame(_unitAnimation.GetClip("UpperShoot").fps - 1, () => {
 			if (GetAct<CharacterStatAct>().ChangeStat.hp <= 0)
 				_unitAnimation.Play("Die");
 			else
 				_unitAnimation.Play("Idle");
 		});
-		_unitAnimation.GetClip("LowerShoot").SetEventOnFrame(_unitAnimation.GetClip("LowerShoot").fps - 1, () => {
+		_unitAnimation.GetClip("UpperShoot").SetEventOnFrame(_unitAnimation.GetClip("UpperShoot").fps - 1, () =>
+		{
+			if (GetAct<CharacterStatAct>().ChangeStat.hp <= 0)
+				_unitAnimation.Play("Die");
+			else
+				_unitAnimation.Play("Idle");
+		});
+		_unitAnimation.GetClip("LowerShoot").SetEventOnFrame(_unitAnimation.GetClip("LowerShoot").fps - 1, () =>
+		{
 			if (GetAct<CharacterStatAct>().ChangeStat.hp <= 0)
 				_unitAnimation.Play("Die");
 			else

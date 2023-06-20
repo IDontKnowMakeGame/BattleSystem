@@ -43,7 +43,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
             var screaming = _enemyAi.GetState<ScreamingState>();
             var secondSoul = _enemyAi.GetState<SecondSoulAttackState>();
             chase.OnStay += () => { move.Chase(InGame.Player); };
-            pattern.RandomActions.Add(() =>
+            pattern.RandomActions.Add(new NextAction(() =>
             {
                 AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
@@ -58,8 +58,8 @@ namespace Actors.Characters.Enemy.CrazyGhost
                     attack.HorizontalAttack(dir, false);
                     attack.SliceEffect(dir);
                 });
-            });
-            pattern.RandomActions.Add(() =>
+            }, 30f));
+            pattern.RandomActions.Add(new NextAction(() =>
             {
                 AddState(CharacterState.Attack);
                 var playerPos = InGame.Player.Position;
@@ -74,7 +74,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                     move.Jump(Position, dir, 6, 0f);
                     attack.VerticalAttack(dir, false);
                 });
-            });
+            }, 70f));
             jump.OnEnter = () =>
             {
                 AddState(CharacterState.Attack);
