@@ -124,6 +124,7 @@ public class CharacterStatAct : Act
 	private bool burnsMode = false;
 	private int burnStack;
 	private float burnTimer = 0f;
+	private GameObject FireFX = null;
 
 	private const float maxTimer = 1f;
 
@@ -169,6 +170,12 @@ public class CharacterStatAct : Act
 				if(burnStack <= 0)
                 {
 					burnsMode = false;
+					if (FireFX != null)
+					{
+						FireFX.gameObject.SetActive(false);
+						Define.GetManager<ResourceManager>().Destroy(FireFX);
+						FireFX = null;
+					}
 					return;
                 }
 			}
@@ -279,6 +286,12 @@ public class CharacterStatAct : Act
 
 	public void Burns()
     {
+		if(FireFX == null)
+        {
+			FireFX = Define.GetManager<ResourceManager>().Instantiate("InfinityFlame", ThisActor.transform);
+			FireFX.transform.position = ThisActor.Position.SetY(0.6f);
+		}
+
 		burnsMode = true;
 		burnStack = 5;
 		burnTimer = 1f;
