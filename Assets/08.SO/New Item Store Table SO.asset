@@ -25,11 +25,7 @@ MonoBehaviour:
     price: 300
     limitItem: 0
     limitCnt: 1
-  - itemID: 300
-    price: 10000
-    limitItem: 1
-    limitCnt: 1
-  - itemID: 301
-    price: 10000
-    limitItem: 1
+  - itemID: 208
+    price: 500
+    limitItem: 0
     limitCnt: 1

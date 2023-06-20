@@ -23,7 +23,6 @@ public class UIMenu : UIBase
         
         for(int i = 0; i < 4; i++)
         {
-            if (i == 2) continue;
             VisualElement panel = _menuBtnTemp.Instantiate();
             int index = i;
             panel.RegisterCallback<ClickEvent>(e =>
@@ -86,19 +85,6 @@ public class UIMenu : UIBase
 
     private void ClickMenuBtn(VisualElement btn,int num)
     {
-        //if(btn == _selectBtn)
-        //{
-        //    SetMenuBtnStyle(btn, 0.5f);
-        //    _selectBtn = null;
-        //    return;
-        //}
-
-        //if(_selectBtn != null)
-        //    SetMenuBtnStyle(_selectBtn, 0.5f);
-
-        //_selectBtn = btn;
-        //SetMenuBtnStyle(_selectBtn, 1f);
-
         switch (num)
         {
             case 0:
@@ -110,7 +96,9 @@ public class UIMenu : UIBase
                 });
                 break;
             case 2:
-
+                UIManager.Instance.PadeInOut.Pade(PadeType.padeUp, () => {
+                    UIManager.Instance.SettingPanel.Show();
+                });
                 break;
             case 3:
                 UIManager.Instance.Quit.Show();

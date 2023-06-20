@@ -60,12 +60,16 @@ public class UIItemStore : UIBase
         _currentFeather = Define.GetManager<DataManager>().GetFeather();
         UpdateStoreUI();
     }
-
-    public void ShowItemStore(ItemStoreTableSO table)
+    public override void Show()
+    {
+        _root.style.display = DisplayStyle.Flex;
+        UIManager.OpenPanels.Push(this);
+        UIManager.Instance.MoveAndInputStop();
+    }
+    public void ItemSet(ItemStoreTableSO table)
     {
         _itemScrollPanel.Clear();
         itemPriceDict.Clear();
-        _root.style.display = DisplayStyle.Flex;
         foreach (ItemPrice item in table.table)
         {
             VisualElement card = _itemCardTemp.Instantiate().Q<VisualElement>("card");
@@ -79,7 +83,7 @@ public class UIItemStore : UIBase
             _itemScrollPanel.Add(card);
         }
     }
-    public void HideItemStore()
+    public override void Hide()
     {
         _root.style.display = DisplayStyle.None;
     }

@@ -19,13 +19,13 @@ namespace Data
         RustySpear = 9,
         Ascalon = 10,
 		ExecutionBlade = 11,
-		////100~199 Helo
+		//100~199 Helo
 		HaloOfGhost = 100,
         HaloOfPollution = 101,
         HaloOfEreshkigal = 102,
         HaloOfTime = 103,
         HaloOfDismantle = 104,
-        ////200~299 UseableItem
+        //200~299 UseableItem
         Torch = 200,
         Shield = 201,
         HPPotion = 202,

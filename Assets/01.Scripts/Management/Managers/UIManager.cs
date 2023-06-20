@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour
     public UIPadeInOut PadeInOut = new UIPadeInOut();
     public UIDeathPanel DeathPanel = new UIDeathPanel();
     public UIQuit Quit = new UIQuit();
+    public UISettingPanel SettingPanel = new UISettingPanel();
 
     public MapNameData MapNameData;
 
@@ -107,6 +108,7 @@ public class UIManager : MonoBehaviour
         PadeInOut.Init();
         DeathPanel.Init();
         Quit.Init();
+        SettingPanel.Init();
     }
 
 

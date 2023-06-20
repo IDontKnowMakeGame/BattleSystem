@@ -3,7 +3,7 @@
     <ui:VisualElement name="BackGround" style="width: 100%; height: 100%; background-color: rgb(0, 0, 0);">
         <ui:VisualElement name="panel-up" style="flex-basis: 5%;" />
         <ui:VisualElement name="panel-middle" style="flex-basis: 70%; justify-content: center; align-items: flex-end; flex-direction: row;">
-            <ui:VisualElement name="uppanel-left" style="flex-basis: 33%; height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/NPC/BlackSmith_Solo.png?fileID=21300000&amp;guid=4418be08695357b4da6e497660a316c0&amp;type=3#BlackSmith_Solo&apos;); -unity-background-scale-mode: scale-to-fit;" />
+            <ui:VisualElement name="uppanel-left" style="flex-basis: 33%; height: 100%; background-image: url(&apos;project://database/Assets/12.Texture/RenderTexture/Smithy.renderTexture?fileID=8400000&amp;guid=8efd1211eaf514446bb2bad66db447a6&amp;type=2#Smithy&apos;); -unity-background-scale-mode: scale-to-fit;" />
             <ui:VisualElement name="uppanel-middle" style="flex-direction: row; justify-content: space-around; align-items: flex-end; flex-basis: 33%; height: 100%;">
                 <ui:VisualElement name="Btn-left" style="background-image: url(&apos;project://database/Packages/com.unity.2d.animation/Editor/Assets/SkinningModule/Icons/Selected/Bone_Influence@4x.png?fileID=21300000&amp;guid=daf2ab606d4db0d4f9ecf4c02137d2a8&amp;type=3#Bone_Influence@4x&apos;); width: 64px; height: 96px; -unity-background-scale-mode: scale-to-fit;" />
                 <ui:VisualElement name="weaponImage" style="background-image: resource(&apos;Item/2&apos;); width: 30%; height: 50%; -unity-background-scale-mode: scale-to-fit; justify-content: space-between; align-items: center;">
