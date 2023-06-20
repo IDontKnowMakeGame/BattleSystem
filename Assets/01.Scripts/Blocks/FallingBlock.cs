@@ -10,9 +10,10 @@ namespace Blocks
         private bool isActive = false;
         private float timer = 0.0f;
         private bool isShaking = false;
-        private bool isFalling = false;
         private BlockMovement movement = null;
-        
+
+        public bool IsFalling { get; set; }
+
         protected override void Awake()
         {
             base.Awake();
@@ -32,9 +33,9 @@ namespace Blocks
                 timer += Time.deltaTime;
                 if (timer > delay)
                 {
-                    if(!isFalling)
+                    if(!IsFalling)
                     {
-                        isFalling = true;
+                        IsFalling = true;
                         movement.Fall(0.5f);
                     }
                     if(ActorOnBlock == null) return;
