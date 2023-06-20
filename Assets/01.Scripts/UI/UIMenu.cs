@@ -108,7 +108,7 @@ public class UIMenu : UIBase
     private void SettingBtn(VisualElement btn, int num)
     {
         btn.Q<VisualElement>("icon").style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"MenuIcon/{num}"));
-
+        SetMenuBtnStyle(btn, 0.5f);
         string name = "";
         switch(num)
         {

@@ -47,11 +47,11 @@
     height: 45px;
     font-size: 22px;
     -unity-text-align: middle-center;
-    color: rgba(229, 229, 229, 255);
+    color: rgb(229, 229, 229);
 }
 
 .drop-down > VisualElement > PopupTextElement {
-    color: rgba(255, 255, 255, 255);
+    color: rgb(255, 255, 255);
 }
 
 .drop-down > VisualElement {
@@ -60,8 +60,38 @@
     border-right-width: 0;
     border-top-width: 0;
     border-bottom-width: 3px;
-    border-bottom-color: rgba(255, 255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
 }
 
 .toggle {
+}
+
+.slider {
+    -unity-text-align: middle-center;
+    font-size: 24px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 80%;
+    color: rgba(226, 226, 226, 255);
+    -unity-font-definition: url('project://database/Assets/Font/SUITE-Variable%20SDF%201.asset?fileID=11400000&guid=640b171b207c5cb4d9380b34f11967f1&type=2#SUITE-Variable SDF 1');
+    -unity-font: url('project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&guid=fdf177119c8b7f84fbad0a6901efb8cc&type=3#SUITE-Variable');
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.slider > VisualElement > VisualElement {
+    top: 10px;
+}
+
+.text-slider {
+    position: absolute;
+    right: -65px;
+}
+
+.drop-down > Label {
+    color: rgba(231, 231, 231, 255);
+    font-size: 22px;
+    -unity-font-definition: url('project://database/Assets/Font/SUITE-Variable%20SDF%201.asset?fileID=11400000&guid=640b171b207c5cb4d9380b34f11967f1&type=2#SUITE-Variable SDF 1');
+    -unity-font: url('project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&guid=fdf177119c8b7f84fbad0a6901efb8cc&type=3#SUITE-Variable');
+    -unity-text-align: middle-center;
 }

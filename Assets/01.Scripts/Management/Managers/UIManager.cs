@@ -122,6 +122,7 @@ public class UIManager : MonoBehaviour
     {
         InGame.Update();
         UIFirstFloorMap.Update();
+        SettingPanel.Update();
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
