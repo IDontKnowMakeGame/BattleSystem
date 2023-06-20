@@ -31,12 +31,12 @@ public class Arrow : MonoBehaviour
 
 	private Type _type;
 
-    private void OnEnable()
-    {
+	private void OnEnable()
+	{
 		this.transform.GetComponent<BoxCollider>().enabled = true;
 	}
 
-    public void Start()
+	public void Start()
 	{
 		if (_shootActor is EnemyActor)
 			StartCoroutine(Destroy());
@@ -44,15 +44,14 @@ public class Arrow : MonoBehaviour
 		if (_shootActor is PlayerActor)
 			_playerAnimation = _shootActor.GetAct<PlayerAnimation>();
 	}
-	public static void ShootArrow(Vector3 vec, Vector3 position, CharacterActor actor, float speed, float damage, int distance, bool destroy = false)
+	public static Arrow ShootArrow(Vector3 vec, Vector3 position, CharacterActor actor, float speed, float damage, int distance, bool destroy = false)
 	{
-		if(Define.GetManager<ResourceManager>() != null)
-		{
-			Arrow obj = Define.GetManager<ResourceManager>().Instantiate("Arrow").GetComponent<Arrow>();
-			obj.transform.position = position;
-			obj.transform.rotation = Quaternion.Euler(VecToRotation(vec));
-			obj.Shoot(vec, position, actor, speed, damage, distance, destroy);
-		}
+		Arrow obj = Define.GetManager<ResourceManager>().Instantiate("Arrow").GetComponent<Arrow>();
+		obj.transform.position = position;
+		obj.transform.rotation = Quaternion.Euler(VecToRotation(vec));
+		obj.Shoot(vec, position, actor, speed, damage, distance, destroy);
+
+		return obj;
 	}
 	private static Vector3 VecToRotation(Vector3 vec)
 	{
@@ -112,7 +111,7 @@ public class Arrow : MonoBehaviour
 		_shootActor = actor;
 		_damage = damage;
 		_isDestroy = destroy;
-		if(_shootActor.GetAct<CharacterEquipmentAct>() != null)
+		if (_shootActor.GetAct<CharacterEquipmentAct>() != null)
 			_type = _shootActor.GetAct<CharacterEquipmentAct>().CurrentWeapon.GetType();
 		_seq.Play();
 
@@ -132,7 +131,7 @@ public class Arrow : MonoBehaviour
 	private void StickOnWall()
 	{
 		this.transform.position = new Vector3(this.transform.position.x, 1, this.transform.position.z);
-			_isStick = true;
+		_isStick = true;
 		_seq.Kill();
 	}
 
@@ -147,7 +146,7 @@ public class Arrow : MonoBehaviour
 		this.transform.position = vec;
 		this.transform.parent = other.transform;
 		_stickActor?.GetAct<CharacterStatAct>()?.Damage(_damage, _shootActor);
-			_isStick = true;
+		_isStick = true;
 
 		if (_isDestroy)
 			Define.GetManager<ResourceManager>().Destroy(this.gameObject);
@@ -159,7 +158,7 @@ public class Arrow : MonoBehaviour
 		_isStick = true;
 		this.transform.position = new Vector3(_stickActor.Position.x, 1, _stickActor.Position.z);
 		_stickActor = null;
-		Vector3 vec = new Vector3(-150,0,0);
+		Vector3 vec = new Vector3(-150, 0, 0);
 		this.transform.localRotation = Quaternion.Euler(vec);
 	}
 
@@ -212,7 +211,7 @@ public class Arrow : MonoBehaviour
 		if (actor == null)
 			return;
 
-		if(actor is WallObject)
+		if (actor is WallObject)
 		{
 			StickOnWall();
 			return;
@@ -256,7 +255,7 @@ public class Arrow : MonoBehaviour
 		if (transform.parent == null)
 		{
 			Debug.Log(_playerAnimation);
-			Debug.Log(_playerAnimation.GetClip("GroundPull")); 
+			Debug.Log(_playerAnimation.GetClip("GroundPull"));
 			_playerAnimation.Play("GroundPull");
 		}
 		else if (vec == Vector3.left)
