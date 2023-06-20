@@ -33,7 +33,7 @@ namespace Actors.Characters.Enemy.OldShade
             {
                 move?.Chase(InGame.Player);
             };
-            pattern.RandomActions.Add(() =>
+            pattern.RandomActions.Add(new NextAction(() =>
             {
                 if (HasState(CharacterState.Attack))
                     return;
@@ -74,7 +74,7 @@ namespace Actors.Characters.Enemy.OldShade
                     RemoveState(CharacterState.Attack);
                 };
                 _enemyAnimation.Play( nextState + "Ready");
-            });
+            }, 100f));
         }
     }
 }
