@@ -24,6 +24,22 @@ namespace Acts.Characters.Enemy
             CharacterActor.AddState(CharacterState.Attack);
         }
 
+        public virtual void RoundAttack(int distance, bool isLast = true)
+        {
+            Attack();
+            ThisActor.GetAct<EnemyParticle>().PlayLandingParticle();
+            for (var i = -distance; i <= distance; i++)
+            {
+                for (var j = -distance; j <= distance; j++)
+                {
+                    var attackPos = new Vector3(i, 0, j);
+                    //Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position + attackPos, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.Bounce, isLast);
+                    //InGame.Attack(CharacterActor.Position + attackPos, new Vector3(1, 0, 1), DefaultStat.Atk, DefaultStat.Ats, CharacterActor, isLast);
+                    InGame.ShakeBlock(CharacterActor.Position + attackPos, DefaultStat.Ats, MovementType.Bounce);
+                }
+            }
+            InGame.Attack(CharacterActor.Position , 0, new Vector3(distance + 0.5f, 0, distance + 0.5f) * 2, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, isLast);
+        }
         public void DefaultAttack(Vector3 dir, bool isLast = true)
         {
             Attack();

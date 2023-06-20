@@ -58,6 +58,7 @@ namespace Managements.Managers
 
                 }
 
+                Debug.Log(currentRoom.name);
                 // 현재 룸과 연결된 룸만 키기
                 currentRoom.modelRoot.gameObject.SetActive(true);
                 if(currentRoom.roomObjs != null)

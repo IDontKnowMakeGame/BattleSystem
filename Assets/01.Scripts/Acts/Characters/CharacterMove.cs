@@ -233,6 +233,55 @@ namespace Acts.Characters
                 seq.Kill();
             });
         }
+        
+        public virtual void Stamp(Vector3 targetPos, Vector3 dir, int distance, float power = 1)
+        {
+            if (_isMoving) return;
+            int i = distance;
+            var nextPos = targetPos + dir * distance;
+            while (i >= 0)
+            {
+                nextPos = targetPos + dir * i;
+                var nextBlock = InGame.GetBlock(nextPos.SetY(0));
+                if(nextBlock != null)
+                    break;
+                i--;
+            }
+
+            nextPos.y = 1;
+            var map = Define.GetManager<MapManager>();
+
+            if (map.GetBlock(nextPos.SetY(0)).IsActorOnBlock)
+            {
+                
+            }
+            else if (!map.IsStayable(nextPos.SetY(0)))
+            {
+                Debug.Log(1);
+                MoveStop();
+                return;
+            }
+
+            var block = map.GetBlock(nextPos.SetY(0));
+            if(block.CheckActorOnBlock(ThisActor) == false) return;
+            _character.AddState(Actors.Characters.CharacterState.Move);
+
+            var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
+            var seq = DOTween.Sequence();
+            block.isWalkable = false;
+            seq.Append(_thisTransform.DOMove(nextPos, speed));
+            seq.Join(_thisTransform.DOMoveY(power, speed));
+            seq.SetDelay(0.8f);
+            seq.Append(_thisTransform.DOMoveY(1, speed / 2).SetEase(Ease.InFlash));
+            seq.AppendCallback(() =>
+            {
+                map.GetBlock(nextPos.SetY(0)).SetActorOnBlock(ThisActor);
+                MoveStop();
+                block.isWalkable = true;
+                isChasing = false;
+                seq.Kill();
+            });
+        }
 
         private bool isChasing = false;
         public void Chase(Actor target)
