@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca2b332a7b5e5447adcd7343094485c, type: 3}
+  m_Name: KnightStatueClips
+  m_EditorClassIdentifier: 
+  type: Boss
+  actorName: KnightStatue
+  weaponID: -1
+  weaponName: 
+  clips:
+  - name: JumpReady
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 384e9aca0dd7e4a4491d3de06de37506, type: 3}
+    normal: {fileID: 0}
+    fps: 13
+    isLoop: 0
+    delay: 0.1
+  - name: JumpAttack
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 828b94432885484408486f9405c55f13, type: 3}
+    normal: {fileID: 0}
+    fps: 4
+    isLoop: 0
+    delay: 0.1
+  - name: JumpReturn
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 8cbd5f2d0a3faf846bdaad63bd02fdd8, type: 3}
+    normal: {fileID: 0}
+    fps: 11
+    isLoop: 0
+    delay: 0.1

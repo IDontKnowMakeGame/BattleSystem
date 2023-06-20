@@ -127,7 +127,11 @@ namespace Actors.Characters
 							{
 								var targetCharacter = target as CharacterActor;
 
-								if (targetCharacter != null) targetCharacter.OnKnockBack?.Invoke(1, this);
+								if (targetCharacter != null)
+								{
+									if(targetCharacter.HasState(CharacterState.KnockBack) == false)
+										targetCharacter.OnKnockBack?.Invoke(1, this);
+								}
 							}
 					}
 				}

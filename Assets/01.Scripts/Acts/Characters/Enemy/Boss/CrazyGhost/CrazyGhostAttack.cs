@@ -12,7 +12,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
 {
     public class CrazyGhostAttack : EnemyAttack
     {
-        public void RoundAttack(int distance, bool isLast = true)
+        public override void RoundAttack(int distance, bool isLast = true)
         {
             Attack();
             ThisActor.GetAct<EnemyParticle>().PlayLandingParticle();

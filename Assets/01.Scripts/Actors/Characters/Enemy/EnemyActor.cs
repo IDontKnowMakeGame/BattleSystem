@@ -118,7 +118,7 @@ namespace Actors.Characters.Enemy
             };
         }
 
-        protected void AttackWithNoReady(Vector3 dir, string stateName, Action onAttack)
+        public void AttackWithNoReady(Vector3 dir, string stateName, Action onAttack)
         {
             var dirName = GetDirName(dir);
             var nextState = dirName + stateName;
@@ -141,6 +141,7 @@ namespace Actors.Characters.Enemy
                 _enemyAnimation.Play(nextState + "Return");
                 returnClip.OnExit = () =>
                 {
+                    RemoveState(CharacterState.Hold);
                     RemoveState(CharacterState.Attack);
                 };
             };
