@@ -18,6 +18,7 @@ public class DataManager : Manager
     public static WeaponLevelDataList WeaponLevelListData_;
     public static ItemTable ItemTableData;
     public static PlayerQuestData PlayerOpenQuestData_;
+    public static SettingData SettingData_;
     
     public Dictionary<ItemID, ItemInfo> weaponDictionary = new Dictionary<ItemID, ItemInfo>();
 
@@ -30,9 +31,10 @@ public class DataManager : Manager
         WeaponLevelListData_ = JsonManager.LoadJsonFile<WeaponLevelDataList>(Application.streamingAssetsPath + "/SAVE/Weapon", "WeaponLevelData");
         ItemTableData = JsonManager.LoadJsonFile<ItemTable>(Application.streamingAssetsPath + "/Save/Json/" + typeof(ItemTable), typeof(ItemTable).ToString());
         PlayerOpenQuestData_ = JsonManager.LoadJsonFile<PlayerQuestData>(Application.streamingAssetsPath + "/SAVE/User", "OpenQuest");
+        SettingData_ = JsonManager.LoadJsonFile<SettingData>(Application.streamingAssetsPath + "/SAVE", "SettingData");
         //Debug.Log($"QuestData Load : {PlayerOpenQuestData_.openQuestList[0]}");
 
-        if(MapData_.mapData.Count == 0)
+        if (MapData_.mapData.Count == 0)
             InitMapData();
 
         if (WeaponClassLevelListData_.weaponClassLevelDataList.Count == 0)
@@ -789,6 +791,14 @@ public class DataManager : Manager
                 return true;
         }
         return false;
+    }
+    #endregion
+
+    #region SettingData
+    public void SaveToSettingData()
+    {
+        string json = JsonManager.ObjectToJson(SettingData_);
+        JsonManager.SaveJsonFile(Application.streamingAssetsPath + "/SAVE", "SettingData",json);
     }
     #endregion
 }

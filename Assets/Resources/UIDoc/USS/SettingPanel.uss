@@ -1,0 +1,97 @@
+.Text {
+    -unity-font: url('project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&guid=fdf177119c8b7f84fbad0a6901efb8cc&type=3#SUITE-Variable');
+    -unity-font-definition: url('project://database/Assets/Font/SUITE-Variable%20SDF%201.asset?fileID=11400000&guid=640b171b207c5cb4d9380b34f11967f1&type=2#SUITE-Variable SDF 1');
+    color: rgb(241, 241, 241);
+    -unity-text-align: middle-left;
+}
+
+.Text-btn {
+    -unity-font: url('project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&guid=fdf177119c8b7f84fbad0a6901efb8cc&type=3#SUITE-Variable');
+    -unity-font-definition: url('project://database/Assets/Font/SUITE-Variable%20SDF%201.asset?fileID=11400000&guid=640b171b207c5cb4d9380b34f11967f1&type=2#SUITE-Variable SDF 1');
+    font-size: 50px;
+    -unity-text-align: middle-left;
+    color: rgb(236, 236, 236);
+}
+
+.btn {
+    width: 200px;
+    height: 80px;
+    margin-top: 50px;
+    justify-content: center;
+    align-items: center;
+    border-bottom-width: 3px;
+    border-bottom-color: rgb(243, 243, 243);
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    opacity: 0.7;
+}
+
+.btn-select {
+    width: 220px;
+    height: 80px;
+    background-image: url('project://database/Assets/EffectExamples/Weapon%20Effects/Textures/DustPuffSmallParticleSheet.png?fileID=21300002&guid=32dde075fa5f86d458327a2ac0c4593b&type=3#SmallDustPuff_1');
+    opacity: 1;
+    border-bottom-width: 5px;
+}
+
+.btn-drag {
+    opacity: 0.9;
+    border-bottom-width: 5px;
+}
+
+.drop-down {
+    width: 80%;
+    margin-top: 20px;
+    height: 45px;
+    font-size: 22px;
+    -unity-text-align: middle-center;
+    color: rgb(229, 229, 229);
+}
+
+.drop-down > VisualElement > PopupTextElement {
+    color: rgb(255, 255, 255);
+}
+
+.drop-down > VisualElement {
+    background-color: rgba(255, 255, 255, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 3px;
+    border-bottom-color: rgb(255, 255, 255);
+}
+
+.toggle {
+}
+
+.slider {
+    -unity-text-align: middle-center;
+    font-size: 24px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 80%;
+    color: rgba(226, 226, 226, 255);
+    -unity-font-definition: url('project://database/Assets/Font/SUITE-Variable%20SDF%201.asset?fileID=11400000&guid=640b171b207c5cb4d9380b34f11967f1&type=2#SUITE-Variable SDF 1');
+    -unity-font: url('project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&guid=fdf177119c8b7f84fbad0a6901efb8cc&type=3#SUITE-Variable');
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.slider > VisualElement > VisualElement {
+    top: 10px;
+}
+
+.text-slider {
+    position: absolute;
+    right: -65px;
+}
+
+.drop-down > Label {
+    color: rgba(231, 231, 231, 255);
+    font-size: 22px;
+    -unity-font-definition: url('project://database/Assets/Font/SUITE-Variable%20SDF%201.asset?fileID=11400000&guid=640b171b207c5cb4d9380b34f11967f1&type=2#SUITE-Variable SDF 1');
+    -unity-font: url('project://database/Assets/Font/SUITE-Variable.ttf?fileID=12800000&guid=fdf177119c8b7f84fbad0a6901efb8cc&type=3#SUITE-Variable');
+    -unity-text-align: middle-center;
+}

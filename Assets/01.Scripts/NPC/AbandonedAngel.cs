@@ -105,7 +105,8 @@ public class AbandonedAngel : NPCActor
     #region Btn
     public void StoreBtn()
     {
-        UIManager.Instance.ItemStore.ShowItemStore(table);
+        UIManager.Instance.ItemStore.ItemSet(table);
+        UIManager.Instance.PadeInOut.Pade(PadeType.padeUp, UIManager.Instance.ItemStore.Show);
     }
          
     public void BackBtn()
