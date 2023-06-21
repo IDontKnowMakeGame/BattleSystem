@@ -7,6 +7,7 @@ using Actors.Characters.Player;
 using Actors.Characters;
 using Actors.Characters.Enemy;
 using System;
+using UnityEngine.Rendering.VirtualTexturing;
 
 namespace Acts.Characters.Player
 {

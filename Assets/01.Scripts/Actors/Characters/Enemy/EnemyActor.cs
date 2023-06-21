@@ -47,6 +47,12 @@ namespace Actors.Characters.Enemy
             base.Init();
         }
 
+        protected override void Start()
+        {
+            base.Start();
+            OnDirectionUpdate?.Invoke(1);
+        }
+
         protected bool IsSecondPhase()
         {
             var stat = GetAct<CharacterStatAct>();

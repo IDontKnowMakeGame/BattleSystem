@@ -38,3 +38,45 @@ MonoBehaviour:
     fps: 11
     isLoop: 0
     delay: 0.1
+  - name: LowerSlashReady
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 40937ed6e3386b844b548de9894b5f37, type: 3}
+    normal: {fileID: 0}
+    fps: 15
+    isLoop: 0
+    delay: 0.1
+  - name: LowerSlashAttack
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: b2f3e6f47f03a214a827e1ea5f03941b, type: 3}
+    normal: {fileID: 0}
+    fps: 4
+    isLoop: 0
+    delay: 0.1
+  - name: LowerSlashReturn
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 9b8956361fe71c247b261b9e0d7922ae, type: 3}
+    normal: {fileID: 0}
+    fps: 8
+    isLoop: 0
+    delay: 0.1
+  - name: LowerStrikeReady
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 25d01d33c99152b4487b5e0464345404, type: 3}
+    normal: {fileID: 0}
+    fps: 8
+    isLoop: 0
+    delay: 0.1
+  - name: LowerStrikeAttack
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: fce38be5d2ab71246b0163da214f5ab3, type: 3}
+    normal: {fileID: 0}
+    fps: 8
+    isLoop: 0
+    delay: 0.1
+  - name: LowerStrikeReturn
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: ef85549a2fdab70468760d0e88b1612e, type: 3}
+    normal: {fileID: 0}
+    fps: 8
+    isLoop: 0
+    delay: 0.1
