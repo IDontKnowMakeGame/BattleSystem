@@ -19,7 +19,7 @@ public class Pick : UseAbleItem
 			{
 				Debug.Log("UsePick");
 				actor2.GetComponent<IPickable>().Mining();
-				Define.GetManager<SoundManager>().PlayAtPoint("Assets/Resources/Sounds/Effect/Broken.mp3", InGame.Player.Position);
+				Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Effect/Broken", InGame.Player.Position);
 				return true;
 			}
 		}

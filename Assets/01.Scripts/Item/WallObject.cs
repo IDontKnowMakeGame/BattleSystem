@@ -11,7 +11,7 @@ public class WallObject : CharacterActor,IPickable
 		if (!Define.GetManager<DataManager>().HaveUseableItem(Data.ItemID.Pick))
 			return;
 
-		Define.GetManager<SoundManager>().PlayAtPoint("Assets/Resources/Sounds/Effect/Broken.mp3", this.transform.position);
+		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Effect/BrokenWall", this.transform.position);
 
 		GameObject obj = Define.GetManager<ResourceManager>().Instantiate("WallBrokenObject");
 		obj.transform.position = this.transform.position;
