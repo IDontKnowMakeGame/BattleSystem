@@ -97,7 +97,7 @@
         {
             "id": 200,
             "name": "Torch",
-            "currentCnt": 2,
+            "currentCnt": 0,
             "maxCnt": 99
         },
         {
