@@ -193,22 +193,23 @@ namespace Core
             bool isLast = false)
         {
             var block = GetBlock(pos.SetY(0));
-            if (block == null)
-            {
-                if (isLast)
-                {
-                    var state = CharacterState.Hold | CharacterState.Attack;
-                    attacker.RemoveState(state);
-                }
-
-                return;
-            }
+            // if (block == null)
+            // {
+            //     if (isLast)
+            //     {
+            //         var state = CharacterState.Hold | CharacterState.Attack;
+            //         attacker.RemoveState(state);
+            //     }
+            //
+            //     return;
+            // }
 
             var resourceManager = Define.GetManager<ResourceManager>();
             var decalObj = resourceManager.Instantiate("AttackDecal");
             decalObj.transform.position = pos.SetY(0f);
             decalObj.transform.rotation = Quaternion.Euler(-90f, angle, 0f);
-            decalObj.transform.SetParent(block.transform.GetChild(0));
+            if(block != null)
+                decalObj.transform.SetParent(block.transform.GetChild(0));
             var rect = new Rect(new Vector2(pos.x - size.x / 2, pos.z - size.z / 2), new Vector2(size.x, size.z));
             
 

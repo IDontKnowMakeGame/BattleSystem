@@ -29,7 +29,7 @@ namespace AttackDecals
             material = Instantiate(decalProjector.material);
         }
         
-        public void Attack(Rect _rect, CharacterActor _attacker, float _damage, float delay, bool _isLast = false)
+        public void Attack(Rect _rect, CharacterActor _attacker, float _damage, float delay, bool _isLast = true)
         {
             Init(_rect, _attacker, _damage, _isLast);
             attacker.AddState(CharacterState.Hold);
@@ -50,7 +50,7 @@ namespace AttackDecals
             StartCoroutine(DeleteCoroutine());
         }
 
-        private void Init(Rect _rect, CharacterActor _attacker, float _damage, bool _isLast = false)
+        private void Init(Rect _rect, CharacterActor _attacker, float _damage, bool _isLast = true)
         {
             rect = _rect;
             initPos = _attacker.Position;

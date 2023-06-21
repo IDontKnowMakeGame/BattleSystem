@@ -50,6 +50,13 @@ namespace Acts.Characters.Enemy
             }
             InGame.Attack(ThisActor.Position + dir, 0, new Vector3(1, 0, 1), DefaultStat.Atk, DefaultStat.Ats, CharacterActor, isLast);
         }
+
+        public void SizeAttack(Vector3 dir, Vector3 size, float distance, bool isLast = true)
+        {
+            Attack();
+            var degree = dir.ToDegree() + 90;
+            InGame.Attack(ThisActor.Position + (dir * distance), degree, size, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, isLast);
+        }
         
         public void HorizontalAttack(Vector3 dir, bool isLast = true)
         {
@@ -70,7 +77,7 @@ namespace Acts.Characters.Enemy
             InGame.Attack(attackPos, degree, new Vector3(3, 0, 1), DefaultStat.Atk, 0.1f, CharacterActor);
             InGame.Attack(CharacterActor.Position, 0, new Vector3(1, 0, 1), DefaultStat.Atk, DefaultStat.Ats, CharacterActor, isLast);
         }
-        
+
         public void HorizontalAttackWithDelay(Vector3 dir, float delay, bool isLast = true)
         {
             Attack();
