@@ -123,13 +123,13 @@ namespace Acts.Characters.Player
 
 			if (playerDir == Vector3.left)
 			{
-				if (_playerActor.currentWeapon is OldSpear == false || (_playerActor.currentWeapon as OldSpear).NonDir == false)
+				if (_playerActor.currentWeapon is Spear == false || (_playerActor.currentWeapon as Spear).NonDir == false)
 					ThisActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
 				_playerAnimation.Play("HorizontalMove");
 			}
 			else if (playerDir == Vector3.right)
 			{
-				if (_playerActor.currentWeapon is OldSpear == false || (_playerActor.currentWeapon as OldSpear).NonDir == false)
+				if (_playerActor.currentWeapon is Spear == false || (_playerActor.currentWeapon as Spear).NonDir == false)
 				{
 					ThisActor.SpriteTransform.localScale = new Vector3(2, 1, 1);
 				}
