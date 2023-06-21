@@ -13,13 +13,13 @@ public class Pick : UseAbleItem
 		if (InGame.Player.HasState(Actors.Characters.CharacterState.Everything)) return false;
 
 		CharacterActor[] actor = InGame.GetNearCharacterActors(InGame.Player.Position);
-		Debug.Log(actor);
 		foreach (CharacterActor actor2 in actor)
 		{
 			if (actor2?.GetComponent<IPickable>() != null)
 			{
 				Debug.Log("UsePick");
 				actor2.GetComponent<IPickable>().Mining();
+				Define.GetManager<SoundManager>().PlayAtPoint("Assets/Resources/Sounds/Effect/Broken.mp3", InGame.Player.Position);
 				return true;
 			}
 		}
