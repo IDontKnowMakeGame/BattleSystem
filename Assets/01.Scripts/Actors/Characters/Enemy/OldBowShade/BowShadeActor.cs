@@ -126,7 +126,7 @@ public class BowShadeActor : EnemyActor
 
 	protected override void OnDisable()
 	{
-		if (Define.GetManager<ResourceManager>() != null)
+		if (Define.GetManager<ResourceManager>() != null && _arrow != null)
 			Define.GetManager<ResourceManager>().Destroy(_arrow.gameObject);
 		base.OnDisable();
 	}
