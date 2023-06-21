@@ -1117,8 +1117,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c042bc5210c330b4da0ff37a7e70897d, type: 2}
     curWeaponClips: {fileID: 0}
   _playerUseAbleItem:
+    NotUseItem: 1
     holyParticle: {fileID: 7164146495960079744}
     floorTargetBlock: {fileID: 0}
+    arrow: {fileID: 0}
   _playerBuff:
     anger: 0
     adneraline: 0
@@ -1353,9 +1355,37 @@ PrefabInstance:
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6327054771803259931, guid: 4b2ef8a7f622c2347ae45852f58b3159, type: 3}
+      propertyPath: _haloAnimationInfos.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327054771803259931, guid: 4b2ef8a7f622c2347ae45852f58b3159, type: 3}
+      propertyPath: _haloAnimationInfos.Array.data[3].id
+      value: 103
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327054771803259931, guid: 4b2ef8a7f622c2347ae45852f58b3159, type: 3}
+      propertyPath: _haloAnimationInfos.Array.data[3].animatoins.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327054771803259931, guid: 4b2ef8a7f622c2347ae45852f58b3159, type: 3}
+      propertyPath: _haloAnimationInfos.Array.data[3].animatoins.Array.data[0].state
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327054771803259931, guid: 4b2ef8a7f622c2347ae45852f58b3159, type: 3}
       propertyPath: _haloAnimationInfos.Array.data[2].animatoins.Array.data[0].texture
       value: 
       objectReference: {fileID: 2800000, guid: 10eaceb3098e1c443ade908ecf221cbc, type: 3}
+    - target: {fileID: 6327054771803259931, guid: 4b2ef8a7f622c2347ae45852f58b3159, type: 3}
+      propertyPath: _haloAnimationInfos.Array.data[3].animatoins.Array.data[0].texture
+      value: 
+      objectReference: {fileID: 2800000, guid: ea84e5667c6b66c42aa12ee27280e3c6, type: 3}
+    - target: {fileID: 6327054771803259931, guid: 4b2ef8a7f622c2347ae45852f58b3159, type: 3}
+      propertyPath: _haloAnimationInfos.Array.data[3].animatoins.Array.data[0].delay.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327054771803259931, guid: 4b2ef8a7f622c2347ae45852f58b3159, type: 3}
+      propertyPath: _haloAnimationInfos.Array.data[3].animatoins.Array.data[0].delay.Array.data[0]
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6327054771803259931, guid: 4b2ef8a7f622c2347ae45852f58b3159, type: 3}
       propertyPath: _haloAnimationInfos.Array.data[0].animatoins.Array.data[0].materials.Array.size
       value: 1
@@ -1366,6 +1396,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6327054771803259931, guid: 4b2ef8a7f622c2347ae45852f58b3159, type: 3}
       propertyPath: _haloAnimationInfos.Array.data[2].animatoins.Array.data[0].materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6327054771803259931, guid: 4b2ef8a7f622c2347ae45852f58b3159, type: 3}
+      propertyPath: _haloAnimationInfos.Array.data[3].animatoins.Array.data[0].materials.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6327054771803259931, guid: 4b2ef8a7f622c2347ae45852f58b3159, type: 3}
@@ -1380,6 +1414,10 @@ PrefabInstance:
       propertyPath: _haloAnimationInfos.Array.data[2].animatoins.Array.data[0].materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: abd30272a10e15d42be05407edac70be, type: 2}
+    - target: {fileID: 6327054771803259931, guid: 4b2ef8a7f622c2347ae45852f58b3159, type: 3}
+      propertyPath: _haloAnimationInfos.Array.data[3].animatoins.Array.data[0].materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a74b128d85d94074baeb2c205d008806, type: 2}
     - target: {fileID: 7344623734468666991, guid: 4b2ef8a7f622c2347ae45852f58b3159, type: 3}
       propertyPath: m_Layer
       value: 7
