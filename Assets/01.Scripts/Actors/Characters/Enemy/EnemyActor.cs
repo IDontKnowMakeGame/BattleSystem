@@ -118,6 +118,7 @@ namespace Actors.Characters.Enemy
                     {
                         if(isLast)
                             RemoveState(CharacterState.Attack);
+                        RemoveState(CharacterState.Hold);
                         onEnd?.Invoke();
                     };
                 };
