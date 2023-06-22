@@ -42,6 +42,11 @@ public class DataManager : Manager
 
         WeaponInfoSerialize();
     }
+    public void LoadScene(string floor)
+    {
+        MapData_.currentFloor = (Floor)Enum.Parse(typeof(Floor), floor);
+        SaveToMapData();
+    }
     public void WeaponInfoSerialize()
     {
         foreach(ItemInfo item in ItemTableData.ItemList)
@@ -232,10 +237,9 @@ public class DataManager : Manager
     public void InitMapData()
     {
         MapData_.mapData.Clear();
+        MapData_.mapData.Add(new MapInfo() { floor = Floor.Tutorial });
         MapData_.mapData.Add(new MapInfo() { floor = Floor.Lobby});
         MapData_.mapData.Add(new MapInfo() { floor = Floor.First });
-        MapData_.mapData.Add(new MapInfo() { floor = Floor.Second });
-        MapData_.mapData.Add(new MapInfo() { floor = Floor.Third });
 
         SaveToMapData();
     }
