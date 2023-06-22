@@ -37,8 +37,9 @@ public class TorchObject : InteractionActor
         if (InGame.Player.Position.IsNeighbor(Position) == false || isOn) return;
 
         base.Interact();
-        TurnOn();   
-    }
+        TurnOn();
+		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Effect/Crystal", this.transform.position);
+	}
 
     public void TurnOn()
     {

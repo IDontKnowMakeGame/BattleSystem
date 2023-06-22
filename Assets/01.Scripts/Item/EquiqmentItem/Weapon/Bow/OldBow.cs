@@ -20,5 +20,6 @@ public class OldBow : Bow
 		GameObject obj = Define.GetManager<ResourceManager>().Instantiate("Dust");
 		obj.transform.position = _characterActor.Position + Vector3.up / 2 + _currentVec / 2;
 		obj.transform.localRotation = Quaternion.LookRotation(-_currentVec);
+		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Bow/BowSkill", this._characterActor.transform.position);
 	}
 }

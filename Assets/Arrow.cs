@@ -14,6 +14,9 @@ public class Arrow : MonoBehaviour
 	[SerializeField]
 	private float DestroyTime;
 
+	[SerializeField]
+	private TrailRenderer _trail;
+
 	private CharacterActor _shootActor;
 	private CharacterActor _stickActor;
 
@@ -120,6 +123,8 @@ public class Arrow : MonoBehaviour
 
 		if (_shootActor is PlayerActor)
 			_playerAnimation = _shootActor.GetAct<PlayerAnimation>();
+
+		_trail.enabled = true;
 	}
 
 	protected virtual void StickOnBlock()
@@ -129,6 +134,7 @@ public class Arrow : MonoBehaviour
 		_isStick = true;
 
 		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Bow/BowAttack", InGame.Player.Position);
+		_trail.enabled = false;
 	}
 	private void StickOnWall()
 	{
@@ -137,6 +143,7 @@ public class Arrow : MonoBehaviour
 		_seq.Kill();
 
 		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Bow/BowAttack", InGame.Player.Position);
+		_trail.enabled = false;
 	}
 
 	protected virtual void StickActor(Collider other)
@@ -156,7 +163,7 @@ public class Arrow : MonoBehaviour
 
 		if (_isDestroy)
 			Define.GetManager<ResourceManager>().Destroy(this.gameObject);
-
+		_trail.enabled = false;
 	}
 
 	public void StickReBlock()
@@ -166,6 +173,7 @@ public class Arrow : MonoBehaviour
 		_stickActor = null;
 		Vector3 vec = new Vector3(-150, 0, 0);
 		this.transform.localRotation = Quaternion.Euler(vec);
+		_trail.enabled = false;
 	}
 
 

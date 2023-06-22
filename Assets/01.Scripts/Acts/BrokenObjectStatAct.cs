@@ -20,6 +20,7 @@ public class BrokenObjectStatAct : CharacterStatAct
 	public override void Damage(float damage, Actor actor)
 	{
 		ChangeStat.hp -= damage - (damage * (Half / 100));
+		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Effect/Broken", this.ThisActor.transform.position);
 		if (ChangeStat.hp <= 0)
 		{
 			Die();

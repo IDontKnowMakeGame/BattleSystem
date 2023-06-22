@@ -1,4 +1,5 @@
 using Acts.Base;
+using Core;
 using UnityEngine;
 
 namespace Acts.Characters.Player
@@ -81,7 +82,8 @@ namespace Acts.Characters.Player
                 _playerStat.AddDrainageAtk("Anger",2);
 				_playerStat.Half += 50;
                 angerParticle.gameObject.SetActive(true);
-            }
+				Define.GetManager<SoundManager>().Play("Sounds/Unit/분노", Define.Sound.Effect);
+			}
             if (angerDecrease)
             {
                 if (anger <= 0)
@@ -125,7 +127,8 @@ namespace Acts.Characters.Player
                 _playerStat.Sub(StatType.Weight, 1f);
                 _playerStat.Sub(StatType.ATS, 0.2f);
                 adneralineParticle.gameObject.SetActive(true);
-            }
+				Define.GetManager<SoundManager>().Play("Sounds/Unit/아드레날린", Define.Sound.Effect);
+			}
             if (adneralineDecrease)
             {
                 if (adneraline <= 0)

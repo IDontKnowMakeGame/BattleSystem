@@ -7,6 +7,6 @@ public class LobbyDoorSound : MonoBehaviour
 {
     void Start()
     {
-		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Effect/LobbyMove", this.gameObject.transform.position, true);
+		//Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Effect/LobbyMove", this.gameObject.transform.position, true);
 	}
 }
