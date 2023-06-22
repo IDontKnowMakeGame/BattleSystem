@@ -1,7 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Resources/UIDoc/USS/Tutorial.uss?fileID=7433441132597879392&amp;guid=7f814fc50da53e340bc8962d0454ae8d&amp;type=3#Tutorial" />
     <ui:VisualElement name="background" style="width: 100%; height: 100%;">
-        <ui:VisualElement name="panel-up" style="justify-content: flex-end; align-items: center; flex-basis: 30%;" />
+        <ui:VisualElement name="panel-up" style="justify-content: flex-end; align-items: center; flex-basis: 20%;">
+            <ui:VisualElement />
+        </ui:VisualElement>
         <ui:VisualElement name="panel-down" style="flex-basis: 70%;" />
     </ui:VisualElement>
 </ui:UXML>
