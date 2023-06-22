@@ -33,9 +33,9 @@ MonoBehaviour:
     delay: 0.1
   - name: JumpReturn
     nextIdx: -1
-    texture: {fileID: 2800000, guid: 8cbd5f2d0a3faf846bdaad63bd02fdd8, type: 3}
+    texture: {fileID: 2800000, guid: 61a0006a9b34ffd40a8812450869c791, type: 3}
     normal: {fileID: 0}
-    fps: 11
+    fps: 13
     isLoop: 0
     delay: 0.1
   - name: LowerSlashReady
@@ -63,19 +63,103 @@ MonoBehaviour:
     nextIdx: -1
     texture: {fileID: 2800000, guid: 25d01d33c99152b4487b5e0464345404, type: 3}
     normal: {fileID: 0}
-    fps: 8
+    fps: 11
     isLoop: 0
     delay: 0.1
   - name: LowerStrikeAttack
     nextIdx: -1
     texture: {fileID: 2800000, guid: fce38be5d2ab71246b0163da214f5ab3, type: 3}
     normal: {fileID: 0}
-    fps: 8
+    fps: 4
     isLoop: 0
     delay: 0.1
   - name: LowerStrikeReturn
     nextIdx: -1
     texture: {fileID: 2800000, guid: ef85549a2fdab70468760d0e88b1612e, type: 3}
+    normal: {fileID: 0}
+    fps: 8
+    isLoop: 0
+    delay: 0.1
+  - name: UpperSlashReady
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: ee2c572ea46bf6a4abc93caf8275c957, type: 3}
+    normal: {fileID: 0}
+    fps: 15
+    isLoop: 0
+    delay: 0.1
+  - name: UpperSlashAttack
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 791f24e391a547b4e85f03cd82fe595d, type: 3}
+    normal: {fileID: 0}
+    fps: 4
+    isLoop: 0
+    delay: 0.1
+  - name: UpperSlashReturn
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: bdc430e4b42908b4e96cbf40d11eaaff, type: 3}
+    normal: {fileID: 0}
+    fps: 8
+    isLoop: 0
+    delay: 0.1
+  - name: HorizontalSlashReady
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: b8170ba058e07fa419d0aa806ca7b894, type: 3}
+    normal: {fileID: 0}
+    fps: 15
+    isLoop: 0
+    delay: 0.1
+  - name: HorizontalSlashAttack
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: fc798386bc341bf46873dd337883899f, type: 3}
+    normal: {fileID: 0}
+    fps: 4
+    isLoop: 0
+    delay: 0.1
+  - name: HorizontalSlashReturn
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 2d30a77c0901e7f4680685cfdc3f7983, type: 3}
+    normal: {fileID: 0}
+    fps: 8
+    isLoop: 0
+    delay: 0.1
+  - name: UpperStrikeReady
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 5b0e4b1f48620e542b3b00d30517f597, type: 3}
+    normal: {fileID: 0}
+    fps: 11
+    isLoop: 0
+    delay: 0.1
+  - name: UpperStrikeAttack
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: ceedd2d4c0dfaef4590daaeb8daf4d28, type: 3}
+    normal: {fileID: 0}
+    fps: 4
+    isLoop: 0
+    delay: 0.1
+  - name: UpperStrikeReturn
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: ceedd2d4c0dfaef4590daaeb8daf4d28, type: 3}
+    normal: {fileID: 0}
+    fps: 8
+    isLoop: 0
+    delay: 0.1
+  - name: HorizontalStrikeReady
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: f86606aed3c262d4ba6aacd92a51297c, type: 3}
+    normal: {fileID: 0}
+    fps: 11
+    isLoop: 0
+    delay: 0.1
+  - name: HorizontalStrikeAttack
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: e4a0a1542a495e7488977f86902243cb, type: 3}
+    normal: {fileID: 0}
+    fps: 4
+    isLoop: 0
+    delay: 0.1
+  - name: HorizontalStrikeReturn
+    nextIdx: -1
+    texture: {fileID: 2800000, guid: 500e6b1a84a19614980b5f3dcdf38ba9, type: 3}
     normal: {fileID: 0}
     fps: 8
     isLoop: 0
