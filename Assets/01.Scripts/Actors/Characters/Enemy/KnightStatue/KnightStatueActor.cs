@@ -41,7 +41,7 @@ namespace Actors.Characters.Enemy.KnightStatue
                 }
                 Attack(dir, "Slash", () =>
                 {
-                    attack.SizeAttack(dir, new Vector3(3, 0, 2), 1.5f);
+                    attack.SizeAttack(dir, new Vector3(3, 0, 2), 1.5f, false);
                 });
             }, 40f));
             pattern.RandomActions.Add(new NextAction(() =>
@@ -57,7 +57,7 @@ namespace Actors.Characters.Enemy.KnightStatue
                 Attack(dir,"Strike", () =>
                 {
                     move.Jump(Position, dir, 5, 0f);
-                    attack.SizeAttack(dir, new Vector3(1, 0, 4), 2.5f);
+                    attack.SizeAttack(dir, new Vector3(1, 0, 4), 2.5f, false);
 
                 });
             }, 60f));
