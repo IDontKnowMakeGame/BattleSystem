@@ -239,7 +239,7 @@ public class DataManager : Manager
         MapData_.mapData.Clear();
         MapData_.mapData.Add(new MapInfo() { floor = Floor.Tutorial });
         MapData_.mapData.Add(new MapInfo() { floor = Floor.Lobby});
-        MapData_.mapData.Add(new MapInfo() { floor = Floor.First });
+        MapData_.mapData.Add(new MapInfo() { floor = Floor.KHJScene1 });
 
         SaveToMapData();
     }

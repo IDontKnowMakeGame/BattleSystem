@@ -8,7 +8,7 @@ public enum Floor
 {
     Tutorial = 0,
     Lobby = 1,
-    First = 2,
+    KHJScene1 = 2,
 
 }
 

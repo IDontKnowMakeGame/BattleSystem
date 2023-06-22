@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class UIFirstFloorMap : UIBase
 {
-    private const Floor floor = Floor.First;
+    private const Floor floor = Floor.KHJScene1;
     private bool isOpen = false;
     private bool isActived = false;
 
@@ -57,7 +57,7 @@ public class UIFirstFloorMap : UIBase
 
         CristalInit();
 
-        if (DataManager.MapData_.currentFloor == Floor.First)
+        if(DataManager.MapData_.currentFloor == Floor.KHJScene1)
             isActived = true;
     }
 
@@ -104,7 +104,7 @@ public class UIFirstFloorMap : UIBase
     }
     public void MapCast()
     {
-        List<int> list = Define.GetManager<DataManager>().LoadOnCristalData(Floor.First);
+        List<int> list = Define.GetManager<DataManager>().LoadOnCristalData(Floor.KHJScene1);
         foreach (int i in list)
         {
                 cristalDictionary[i] = true;
