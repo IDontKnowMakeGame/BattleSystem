@@ -47,7 +47,8 @@ public class ChestObject : InteractionActor
 		isOpen = true;
 
 		Define.GetManager<DataManager>().OpenChest(int.Parse(gameObject.name));
-        characterDetect.EnterDetect -= ShowInteration;
+		Define.GetManager<SoundManager>().Play("Sounds/Effect/ChestOpen", Define.Sound.Effect);
+		characterDetect.EnterDetect -= ShowInteration;
         characterDetect.ExitDetect -= HideInteration;
 		HideInteration(Vector2.zero);
     }

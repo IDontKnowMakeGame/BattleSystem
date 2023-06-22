@@ -223,7 +223,8 @@ namespace Managements
             {
                 manager.OnDestroy();
             }
-            LoadingSceneController.Instnace.StartCoroutine(LoadingSceneController.Instnace.LoadScene(sceneName));
+
+			LoadingSceneController.Instnace.StartCoroutine(LoadingSceneController.Instnace.LoadScene(sceneName));
         }
 
         public void RemoveInputManagers()

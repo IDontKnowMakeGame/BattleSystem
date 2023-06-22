@@ -54,8 +54,8 @@ namespace Actors.Characters.Furnitures
             isOpening = true;
 
             Define.GetManager<DataManager>().OpenDoor(int.Parse(gameObject.name));
-
-            anchorTrm.DOLocalMoveZ(1.5f, 1f).OnComplete(() =>
+			Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Effect/IronDoor", InGame.Player.Position);
+			anchorTrm.DOLocalMoveZ(1.5f, 1f).OnComplete(() =>
             {
                 IsUpdatingPosition = false;
                 isOpening = false;

@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Actors.Bases;
 using Acts.Characters;
 using Acts.Characters.Enemy;
 using AI;
@@ -45,14 +46,16 @@ namespace Actors.Characters.Enemy.OldSpearShade
                 var readyClip = _enemyAnimation.GetClip(dirName + "Ready");
                 var moveClip = _enemyAnimation.GetClip(dirName + "Move");
 
-                if (readyClip == null || moveClip == null) return;
+				//Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Enemy/적 움직이는 사운드", this.gameObject.transform.position);
+
+				if (readyClip == null || moveClip == null) return;
                 _enemyAnimation?.Play(dirName + "Ready");
                 readyClip.OnExit = () =>
                 {
                     AddState(CharacterState.Attack);
                     _enemyAnimation?.Play(dirName + "Move");
                     move?.Translate(dir);
-                    moveClip.OnExit = () =>
+					moveClip.OnExit = () =>
                     {
                         attack?.DefaultAttack(dir, true);
                         _enemyAnimation?.Play(dirName + "Ready");

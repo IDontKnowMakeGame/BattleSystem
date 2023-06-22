@@ -85,7 +85,7 @@ public class GreatSword : Weapon
 		_currrentVector = DirReturn(vec);
 		ChargeAnimation(_currrentVector);
         _characterActor.GetAct<CharacterStatAct>().Half += _half;
-    }
+	}
 	public virtual void Hold(Vector3 vec)
 	{
 		//_currrentVector = DirReturn(vec);

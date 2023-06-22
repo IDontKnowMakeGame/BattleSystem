@@ -127,12 +127,16 @@ public class Arrow : MonoBehaviour
 		_seq.Kill();
 		_stickActor = null;
 		_isStick = true;
+
+		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Bow/BowAttack", InGame.Player.Position);
 	}
 	private void StickOnWall()
 	{
 		this.transform.position = new Vector3(this.transform.position.x, 1, this.transform.position.z);
 		_isStick = true;
 		_seq.Kill();
+
+		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Bow/BowAttack", InGame.Player.Position);
 	}
 
 	protected virtual void StickActor(Collider other)
@@ -147,6 +151,8 @@ public class Arrow : MonoBehaviour
 		this.transform.parent = other.transform;
 		_stickActor?.GetAct<CharacterStatAct>()?.Damage(_damage, _shootActor);
 		_isStick = true;
+
+		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Bow/BowAttack", InGame.Player.Position);
 
 		if (_isDestroy)
 			Define.GetManager<ResourceManager>().Destroy(this.gameObject);

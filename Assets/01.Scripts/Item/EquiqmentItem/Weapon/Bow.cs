@@ -193,6 +193,8 @@ public class Bow : Weapon
 
 		_sliderObject.SliderInit(_stat.ChangeStat.ats);
 		_sliderObject.SliderActive(true);
+
+		Define.GetManager<SoundManager>().Play("Sounds/Bow/BowCharge", Define.Sound.Effect);
 	}
 
 	private void Charge()
@@ -209,7 +211,8 @@ public class Bow : Weapon
 			_characterActor.RemoveState(CharacterState.StopMove);
 			_characterActor.RemoveState(CharacterState.Hold);
 			_characterActor.AddState(CharacterState.Attack);
-			
+
+			Define.GetManager<SoundManager>().Play("Sounds/Bow/BowShoot", Define.Sound.Effect);
 			ShootAnimation(_orginVec);
 			Arrow.ShootArrow(_currentVec, _pos, _characterActor, Speed, Damage, Range, isDestroy);
 			_sliderObject.SliderActive(false);
