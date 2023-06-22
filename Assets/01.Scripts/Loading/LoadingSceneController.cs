@@ -36,7 +36,7 @@ public class LoadingSceneController : MonoBehaviour
 
     private void Awake()
     {
-        bgAnimator = backgroundImg.GetComponent<Animator>();
+        clickAnimator = clickText.GetComponent<Animator>();
 
         // ToolTip List Setting
         for (int i = 0; i < titleToolTipList.tooltipList.Count; i++)
@@ -57,8 +57,6 @@ public class LoadingSceneController : MonoBehaviour
 
     [SerializeField]
     private Image backgroundImg;
-
-    private Animator bgAnimator;
 
     [SerializeField]
     private List<Sprite> bgSprites;
@@ -94,6 +92,7 @@ public class LoadingSceneController : MonoBehaviour
     private List<int> toolTipIdx = new List<int>();
 
     private int curIdx = 0;
+    private Animator clickAnimator;
 
     [SerializeField]
     private GameObject toolTipParent;
@@ -101,6 +100,8 @@ public class LoadingSceneController : MonoBehaviour
     private GameObject progressBarParent;
     [SerializeField]
     private GameObject textvignette;
+    [SerializeField]
+    private GameObject clickText;
 
     public IEnumerator LoadScene(string sceneName, float timer = 0f)
     {
@@ -108,8 +109,6 @@ public class LoadingSceneController : MonoBehaviour
         isLoading = true;
 
         ui.SetActive(true);
-
-        bgAnimator.SetBool("Complete", false);
 
         SetUI();
 
@@ -145,12 +144,9 @@ public class LoadingSceneController : MonoBehaviour
                     nextScene = true;
                     op.allowSceneActivation = true;
                     isLoading = false;
-                    progressBarParent.SetActive(false);
-                    toolTipParent.SetActive(false);
-                    textvignette.SetActive(false);
-                    bgAnimator.SetBool("Complete", true);
-                    Debug.Log(loadSceneName);
-                    Debug.Log("접근해!!");
+                    //progressBarParent.SetActive(false);
+                    //toolTipParent.SetActive(false);
+                    //textvignette.SetActive(false);
                     yield break;
                 }
             }
@@ -165,12 +161,6 @@ public class LoadingSceneController : MonoBehaviour
 
     private void Update()
     {
-        if(nextScene && Input.anyKey)
-        {
-            StartCoroutine(Fade(false));
-            nextScene = false;
-        }
-
         if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
             curIdx--;
@@ -178,7 +168,6 @@ public class LoadingSceneController : MonoBehaviour
             {
                 curIdx = titleToolTipList.tooltipList.Count - 1;
             }
-            Debug.Log(curIdx);
             titleTmp.text = titleToolTipList.tooltipList[toolTipIdx[curIdx]].Replace("\\r\\n", "\n");
             writeTmp.text = writeToolTipList.tooltipList[toolTipIdx[curIdx]].Replace("\\r\\n", "\n");
         }
@@ -188,6 +177,12 @@ public class LoadingSceneController : MonoBehaviour
             titleTmp.text = titleToolTipList.tooltipList[toolTipIdx[curIdx]].Replace("\\r\\n", "\n");
             writeTmp.text = writeToolTipList.tooltipList[toolTipIdx[curIdx]].Replace("\\r\\n", "\n");
         }
+        else if(nextScene && Input.anyKey && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
+        {
+            StartCoroutine(Fade(false));
+            nextScene = false;
+        }
+
     }
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -195,6 +190,8 @@ public class LoadingSceneController : MonoBehaviour
         if (arg0.name == loadSceneName)
         {
             //StartCoroutine(Fade(false));
+            clickText.SetActive(true);
+            clickAnimator.SetTrigger("Click");
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }
@@ -221,13 +218,11 @@ public class LoadingSceneController : MonoBehaviour
         progressBarParent.SetActive(true);
         toolTipParent.SetActive(true);
         textvignette.SetActive(true);
+        clickText.SetActive(false);
 
         // background 설정
         int rand = Random.Range(0, bgSprites.Count);
-        bgAnimator.SetInteger("Cnt", rand);
-        Debug.Log(bgSprites[rand].name + "맞음?");
         backgroundImg.sprite = bgSprites[rand];
-        Debug.Log(rand + "입니당");
 
         // Tooltip 설정
         for (int i = 0; i < 100; i++)
