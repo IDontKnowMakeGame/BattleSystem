@@ -131,6 +131,7 @@ MonoBehaviour:
   To: Idle
   _conditions:
   - rid: 9217235025722867716
+  - rid: 9217235071720751104
   references:
     version: 2
     RefIds:
@@ -142,6 +143,16 @@ MonoBehaviour:
         IsNeeded: 1
         _thisActor: {fileID: 4518107190019431485}
         TargetTime: 2
+    - rid: 9217235071720751104
+      type: {class: BlockCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 5
+        IsNegative: 0
+        IsNeeded: 1
+        _thisActor: {fileID: 4518107190019431485}
+        targetActor: {fileID: 0}
+        IsPlayer: 1
+        Area: 7
 --- !u!114 &4518107190019431480
 MonoBehaviour:
   m_ObjectHideFlags: 0
