@@ -1,7 +1,7 @@
 {
     "graphic": "3840x2160",
-    "windowMode": true,
-    "masterVolume": 18,
-    "backgroundVolume": 65,
-    "vfxVolume": 38
+    "fullScreenMode": false,
+    "masterVolume": 100,
+    "backgroundVolume": 100,
+    "vfxVolume": 100
 }

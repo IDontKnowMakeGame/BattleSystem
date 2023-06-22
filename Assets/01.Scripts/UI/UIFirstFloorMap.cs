@@ -8,6 +8,7 @@ public class UIFirstFloorMap : UIBase
 {
     private const Floor floor = Floor.First;
     private bool isOpen = false;
+    private bool isActived = false;
 
     private VisualElement _mapCast;
     private VisualElement _playerPos;
@@ -55,6 +56,9 @@ public class UIFirstFloorMap : UIBase
         _playerPos = _root.Q<VisualElement>("PlayerPosition");
 
         CristalInit();
+
+        if (DataManager.MapData_.currentFloor == Floor.First)
+            isActived = true;
     }
 
     public override void Update()
@@ -78,6 +82,8 @@ public class UIFirstFloorMap : UIBase
     }
     public void ShowFirstFloorMap()
     {
+        if (isActived == false) return;
+        
         if(!isOpen)
         {
             isOpen = true;

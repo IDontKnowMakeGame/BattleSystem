@@ -29,6 +29,7 @@ public class UISmithy : UIBase
 
     private List<SaveItemData> _weaponList = new List<SaveItemData>();
 
+    private ItemID currentWeaponID;
     private float moveSclae = 165f;
     private int index = 0;
     private int maxIndex = 0;
@@ -49,6 +50,11 @@ public class UISmithy : UIBase
         _needFeatherLabel = _root.Q<Label>("label-needfeather");
         _needFeatherText = _needFeatherLabel.text;
         _featherLabel = _root.Q<Label>("lable-feather");
+        _purchaseBtn = _root.Q<VisualElement>("btn-purchase");
+        _purchaseBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            Purchase();
+        });
 
         _leftBtn = _root.Q<VisualElement>("Btn-left");
         _leftBtn.RegisterCallback<ClickEvent>(e =>
@@ -110,19 +116,19 @@ public class UISmithy : UIBase
 
     public void UpdateWeaponCard(int index)
     {
-        ItemID id = _weaponList[index].id;
-        Debug.Log($"cardName : {id}");
-        _weaponImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
-        _weaponName.text = UIManager.Instance.weaponTextInfoListSO.weapons[(int)id-1].weaponNameText;
+        currentWeaponID = _weaponList[index].id;
+        Debug.Log($"cardName : {currentWeaponID}");
+        _weaponImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)currentWeaponID}"));
+        _weaponName.text = UIManager.Instance.weaponTextInfoListSO.weapons[(int)currentWeaponID - 1].weaponNameText;
         SelectCard(_weaponPanel[index]);
-        UpdateStatus(id);
+        UpdateStatus(currentWeaponID);
     }
     public void UpdateStatus(ItemID id)
     {
         int level = Define.GetManager<DataManager>().LoadWeaponLevelData(id);
-        if(level >= 12)
+        if(level >= 3)
         {
-            _levelLabel.text = "레벨 : 12(Max)";
+            _levelLabel.text = "레벨 : 3(Max)";
             _atkLabel.text = $"공격력 : {UIManager.Instance.levelToAtk[level]}";
             _needFeatherLabel.text = "";
             return;
@@ -131,6 +137,20 @@ public class UISmithy : UIBase
         _levelLabel.text = _leveltext.Replace("x", level.ToString()).Replace("y", (level+1).ToString());
         _atkLabel.text = _atktext.Replace("x", UIManager.Instance.levelToAtk[level].ToString()).Replace("y", UIManager.Instance.levelToAtk[level+1].ToString());
         _needFeatherLabel.text = _needFeatherText.Replace("x", UIManager.Instance.levelTofeather[level + 1].ToString());
+    }
+    public void Purchase()
+    {
+        int level = Define.GetManager<DataManager>().LoadWeaponLevelData(currentWeaponID);
+        if(level >= 3)
+        {
+            return;
+        }
+        level++;
+        Define.GetManager<DataManager>().SaveUpGradeWeaponLevelData(currentWeaponID);
+        Define.GetManager<DataManager>().AddFeahter(-UIManager.Instance.levelTofeather[level]);
+
+        UpdateStatus(currentWeaponID);
+        UpdateCurrentFeather();
     }
     public void UpdateCurrentFeather()
     {
