@@ -3,10 +3,13 @@ using Managements.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager : Manager
 {
     AudioSource[] audioSources = new AudioSource[(int)Define.Sound.MaxCount];
+    AudioMixer audioMix;
+    AudioMixerGroup[] audioMixerGroups;
     Dictionary<string, AudioClipInfo> _audioClips = new Dictionary<string, AudioClipInfo>();
 
     GameObject soundObj;
@@ -26,6 +29,7 @@ public class SoundManager : Manager
         {
             Debug.Log("있음");
             audioSources = (AudioSource[])root.GetComponentsInChildren<AudioSource>();
+            
         }
         else
         {
@@ -41,6 +45,10 @@ public class SoundManager : Manager
         Debug.Log(audioSources[(int)Define.Sound.Bgm]);
         audioSources[(int)Define.Sound.Bgm].loop = true;
         soundObj = Define.GetManager<ResourceManager>().Load<GameObject>("Prefabs/SoundEffectObj");
+        audioMix = soundObj.GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer;
+        audioMixerGroups = audioMix.FindMatchingGroups("Master");
+        audioSources[(int)Define.Sound.Bgm].outputAudioMixerGroup = audioMixerGroups[1];
+        audioSources[(int)Define.Sound.Effect].outputAudioMixerGroup = audioMixerGroups[2];
         Define.GetManager<PoolManager>().CreatePool(soundObj, 50);
     }
 
@@ -220,6 +228,42 @@ public class SoundManager : Manager
                     Debug.Log("Not allowed index");
                     break;
             }
+        }
+    }
+
+    /// <summary>
+    /// 마스터 볼륨 조절 함수
+    /// </summary>
+    /// <param name="value"></param>
+    public void SetMasterVolume(float value)
+    {
+        if(audioMix)
+        {
+            audioMixerGroups[0].audioMixer.SetFloat("MasterVolume", value);
+        }
+    }
+
+    /// <summary>
+    /// 배경음악 볼륨 조절 함수
+    /// </summary>
+    /// <param name="value"></param>
+    public void SetBGmVolume(float value)
+    {
+        if (audioMix)
+        {
+            audioMixerGroups[1].audioMixer.SetFloat("BGMVolume", value);
+        }
+    }
+
+    /// <summary>
+    /// 효과음 볼륨 조절 함수
+    /// </summary>
+    /// <param name="value"></param>
+    public void SetSFXVolume(float value)
+    {
+        if (audioMix)
+        {
+            audioMixerGroups[2].audioMixer.SetFloat("SoundEffectVolume", value);
         }
     }
 }

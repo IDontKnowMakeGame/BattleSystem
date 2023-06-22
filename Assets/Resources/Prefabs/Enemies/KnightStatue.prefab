@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 4518107190019431487}
   - component: {fileID: 4518107190019431486}
   - component: {fileID: 4518107190019431483}
+  - component: {fileID: -2556334140706239267}
   m_Layer: 0
   m_Name: KnightStatue
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,7 +56,7 @@ MonoBehaviour:
     isBillBoard: 1
     _defaultTexture: {fileID: 0}
     _frame: 0
-    size: {x: 3, y: 3, z: 3}
+    size: {x: 2, y: 2, z: 2}
     _blinkCnt: 1
     _blinkTime: 0.1
     _blinkDelay: 0.1
@@ -130,6 +131,7 @@ MonoBehaviour:
   To: Idle
   _conditions:
   - rid: 9217235025722867716
+  - rid: 9217235071720751104
   references:
     version: 2
     RefIds:
@@ -141,6 +143,16 @@ MonoBehaviour:
         IsNeeded: 1
         _thisActor: {fileID: 4518107190019431485}
         TargetTime: 2
+    - rid: 9217235071720751104
+      type: {class: BlockCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 5
+        IsNegative: 0
+        IsNeeded: 1
+        _thisActor: {fileID: 4518107190019431485}
+        targetActor: {fileID: 0}
+        IsPlayer: 1
+        Area: 7
 --- !u!114 &4518107190019431480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,6 +290,19 @@ MonoBehaviour:
         IsNeeded: 1
         _thisActor: {fileID: 4518107190019431485}
         State: 11
+--- !u!65 &-2556334140706239267
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4518107190019431475}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4518107190633881483
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,7 +329,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4518107190633881483}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.9, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

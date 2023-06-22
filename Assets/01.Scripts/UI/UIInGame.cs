@@ -63,10 +63,10 @@ public class UIInGame : UIBase
 
     #region WeaponCool
     private float firstWeaponTimer = 0;
-    private float firstWeaponDuration = 10;
+    private float firstWeaponDuration = 0;
     private bool IsFirstWeaponCool = false;
     private float secondWeaponTimer = 0;
-    private float secondWeaponDuration = 20;
+    private float secondWeaponDuration = 0;
     private bool IsSecondWeaponCool = false;
     #endregion
 
@@ -299,17 +299,35 @@ public class UIInGame : UIBase
     {
         currentRoom = roomNum;
         RoomText(roomNum);
-        if (roomNum == 0)
+
+        if(DataManager.MapData_.currentFloor == Floor.KHJScene1)
         {
-            _crsitalPanel.style.display = DisplayStyle.None;
-            return;
+            if (roomNum == 0)
+            {
+                _crsitalPanel.style.display = DisplayStyle.None;
+                return;
+            }
+            _crsitalPanel.style.display = DisplayStyle.Flex;
+            UpdateCristalText();
         }
-        _crsitalPanel.style.display = DisplayStyle.Flex;
-        UpdateCristalText();
     }
     public void RoomText(int roomNum)
     {
-        _roomNameText.text = UIManager.Instance.MapNameData.firstMapName[roomNum];
+        string text = "";
+        MapNameData nameData = UIManager.Instance.MapNameData;
+        switch (DataManager.MapData_.currentFloor)
+        {
+            case Floor.Tutorial:
+                text = nameData.tutorialMapName[roomNum];
+                break;
+            case Floor.Lobby:
+                text = nameData.lobbyMapName[roomNum];
+                break;
+            case Floor.KHJScene1:
+                text = nameData.firstMapName[roomNum];
+                break;
+        }
+        _roomNameText.text =text;
     }
     public void UpdateCristalText()
     {
