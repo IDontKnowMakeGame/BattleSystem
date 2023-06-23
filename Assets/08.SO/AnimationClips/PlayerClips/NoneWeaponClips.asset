@@ -66,3 +66,10 @@ MonoBehaviour:
     fps: 9
     isLoop: 0
     delay: 0.1
+  - name: WakeUp
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: f240b049147b58c4da0cdc61d8aa26ef, type: 3}
+    normal: {fileID: 0}
+    fps: 32
+    isLoop: 0
+    delay: 0.1
