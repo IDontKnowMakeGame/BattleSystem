@@ -39,7 +39,9 @@ public class Shield : UseAbleItem
 
         ShieldPos.Add(spawnPos, shield);
 
-        SaveItemData currentData = Define.GetManager<DataManager>().LoadItemFromInventory(Data.ItemID.Shield);
+		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Item/ShieldPlace", InGame.Player.Position);
+
+		SaveItemData currentData = Define.GetManager<DataManager>().LoadItemFromInventory(Data.ItemID.Shield);
     }
 
     private Vector3 RotateShield(Vector3 dir)

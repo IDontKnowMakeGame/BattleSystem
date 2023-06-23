@@ -1,5 +1,6 @@
 ﻿using Actors.Characters;
 using Blocks.Acts;
+using Core;
 using UnityEngine;
 
 namespace Blocks
@@ -52,8 +53,10 @@ namespace Blocks
             if(ActorOnBlock == null) return;
             if (ActorOnBlock.Position == Position)
             {
+                if(!isActive)
+				Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Effect/FalingTile", this.transform.position);
                 isActive = true;
-            }
+			}
             base.Update();
         }
     }

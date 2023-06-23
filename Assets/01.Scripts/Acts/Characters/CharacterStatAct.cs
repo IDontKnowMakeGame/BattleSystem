@@ -256,7 +256,9 @@ public class CharacterStatAct : Act
 		_render.Blink();
 		GameObject blood = Define.GetManager<ResourceManager>().Instantiate("Blood");
 		blood.transform.position = ThisActor.transform.position;
-		blood.GetComponent<ParticleSystem>().Play(); 
+		blood.GetComponent<ParticleSystem>().Play();
+
+		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Unit/Damaged", InGame.Player.Position);
 	}
 
 	public int PercentHP()

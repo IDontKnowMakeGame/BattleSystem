@@ -28,6 +28,7 @@ public class OldTwinSword : TwinSword
 			_characterActor.StartCoroutine(SkillsCorutine(vector, 0.2f * i));
 		}
 		_characterActor.StartCoroutine(SkillCorutine());
+		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/TwinSword/TwinSword", this._characterActor.transform.position);
 	}
 
 	Vector3 _vec = Vector3.zero;

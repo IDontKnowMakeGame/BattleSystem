@@ -32,6 +32,8 @@ public class Ascalon : GreatSword
 			_obj.transform.localPosition = Vector3.zero;
 		};
 
+		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/GreatSword/AscalonSkill", this._characterActor.transform.position);
+
 		_stat.PercentAtk(30);
 
 		cor = EffectTimer();

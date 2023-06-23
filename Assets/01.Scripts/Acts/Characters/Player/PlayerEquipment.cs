@@ -145,6 +145,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.ChangeStat, _eventParam);
 		Define.GetManager<DataManager>().SwapWeaponData();
 		UIManager.Instance.InGame.ChangeWeaponPanel();
+		Define.GetManager<SoundManager>().Play("Sounds/Unit/Equip");
 	}
 	private void Skill(Vector3 vec)
 	{
@@ -180,12 +181,19 @@ public class PlayerEquipment : CharacterEquipmentAct
 		CurrentWeapon.UnEquipment(_characterController);
 		_firstWeapon = DataManager.UserData_.firstWeapon;
 		_secondWeapon = DataManager.UserData_.secondWeapon;
-		Debug.Log("야 싸우저");
 		EquipAnimation();
 		CurrentWeapon.Equiqment(_characterController);
 
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.ChangeStat, _eventParam);
+
+		if (_isSound) Define.GetManager<SoundManager>().Play("Sounds/Unit/장착1");
+		else
+			Define.GetManager<SoundManager>().Play("Sounds/Unit/장착2");
+
+		_isSound = !_isSound;
 	}
+
+	private bool _isSound = false;
 
 	/// <summary>
 	/// 비어져있을때는 Equiqment를 안 비어있을 때는 뺄거와 바꿀거를 해준다.
@@ -203,7 +211,6 @@ public class PlayerEquipment : CharacterEquipmentAct
 			//secoundWeapon = Datamanger.Instnace.firstWeapon;
 		}
 
-		Debug.Log("야 싸우저");
 		CurrentWeapon?.UnEquipment(_characterController);
 		//firstWeapon = DataManager.Instance.firstWeaopn;
 		//secondWeapon = DataManager.Instance.secoundWeaopn;

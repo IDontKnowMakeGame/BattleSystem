@@ -35,6 +35,8 @@ public class ExecutionBlade : TwinSword
 		_dir = InGame.CamDirCheck(_origindir);
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, new EventParam() { stringParam = "Execute" ,intParam = 1});
 		_characterActor.AddState(CharacterState.Skill);
+		//Define.GetManager<SoundManager>().PlayAtPoint("Sounds/TwinSword/ExecutionBlade(1)", this._characterActor.transform.position);
+		//Define.GetManager<SoundManager>().PlayAtPoint("Sounds/TwinSword/ExecutionBlade(2)", this._characterActor.transform.position);
 		_characterActor.StartCoroutine(WaitMove());
 	}
 

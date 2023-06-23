@@ -364,6 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestroyTime: 20
+  _trail: {fileID: 507971227706092235}
 --- !u!65 &7737597599650558374
 BoxCollider:
   m_ObjectHideFlags: 0

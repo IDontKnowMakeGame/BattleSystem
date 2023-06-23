@@ -23,6 +23,7 @@ public class OldStraightSword : StraightSword
 		move.Move(_characterActor.Position + InGame.CamDirCheck(vec) * 2);
 
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.TraillOnOff, new EventParam { intParam = 3, boolParam = true});
+		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/LongSword/OldStraightSwordSkill()", this._characterActor.transform.position);
 	}
 
 	protected override void SkillInputEnd(int i, Vector3 vec)

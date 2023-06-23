@@ -231,7 +231,10 @@ public class MolotovCocktail : MonoBehaviour
                 }
             }
         }
-    }
+
+		Define.GetManager<SoundManager>().Play("Sounds/Item/FireBottle");
+		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Effect/Fire", this.transform.position, true);
+	}
 
     private void Move()
     {

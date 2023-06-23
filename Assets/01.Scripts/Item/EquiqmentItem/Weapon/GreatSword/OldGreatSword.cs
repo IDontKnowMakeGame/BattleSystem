@@ -33,6 +33,8 @@ public class OldGreatSword : GreatSword
 			eventParam.intParam = 1;
 			eventParam.stringParam = "OldGreatSkill";
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, eventParam); ;
+
+			Define.GetManager<SoundManager>().PlayAtPoint("Sounds/GreatSword/OldGreatSwordSkill", this._characterActor.transform.position);
 		});
 		clip.SetEventOnFrame(clip.fps - 1, () =>
 		{

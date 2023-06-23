@@ -95,9 +95,12 @@ public class Spear : Weapon
 		InputManager<Spear>.OnClickPress -= Attack;
 		InputManager<Spear>.OnMovePress -= CurrentBool;
 		CharacterMove.OnMoveEnd -= MoveEnd;
-		AttackUpCorutine(_currentVec);
 		_isAni = false;
 
+		_currentVec = Vector3.zero;
+		_nonDir = false;
+		_isDown = false;
+		_characterActor.RemoveState(CharacterState.DontMoveAniation);
 		Debug.Log("UnEquiqment");
 	}
 

@@ -39,7 +39,8 @@ namespace Actors.Characters.Traps
         private IEnumerator TrapCoroutine()
         {
             isActive = true;
-            yield return new WaitForSeconds(spikeDelay);
+			Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Effect/Spike", InGame.Player.Position);
+			yield return new WaitForSeconds(spikeDelay);
             
             spikeTrm.localScale = Vector3.one;
             var block = InGame.GetBlock(Position);
