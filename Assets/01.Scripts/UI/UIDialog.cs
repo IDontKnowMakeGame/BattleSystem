@@ -133,11 +133,13 @@ public class UIDialog : UIBase
     {
         this.nameText.text = name;
     }
-    public void AddChoiceBox(string name,Action action)
+    public void AddChoiceBox(string name,Action action,bool isQuest = false)
     {
         if (isPlayDialog) return;
 
         VisualElement choiceBox = choiceBoxTmep.Instantiate();
+        if (isQuest)
+            choiceBox.Q<VisualElement>("ChoiceBox").style.borderBottomColor = new Color(0.4f, 0.6f, 0.6f);
         choiceBox.Q<Label>().text = name;
 
         choiceBox.RegisterCallback<ClickEvent>(e =>

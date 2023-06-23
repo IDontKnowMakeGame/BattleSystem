@@ -33,6 +33,8 @@ public class UIManager : MonoBehaviour
     public UseableItemTextInfoListSO useableItemTextInfoListSO;
     public QuestItemTextInfoListSO questItemTextInfoListSO;
 
+    public QuestTextInfoListSO questTextInfoListSO;
+
     public Dictionary<int, int> levelToAtk = new Dictionary<int, int>()
     {
         { 0,0},

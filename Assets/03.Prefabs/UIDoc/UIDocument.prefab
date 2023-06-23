@@ -67,3 +67,4 @@ MonoBehaviour:
   haloTextInfoListSO: {fileID: 11400000, guid: e3240106821442c44a8753d9540f829d, type: 2}
   useableItemTextInfoListSO: {fileID: 11400000, guid: d3989ecd5a644824d8cdccdc1d37eb7b, type: 2}
   questItemTextInfoListSO: {fileID: 11400000, guid: 6b5213fca6f0bec4b81f41793264d2a5, type: 2}
+  questTextInfoListSO: {fileID: 11400000, guid: 569086eec6fff684f9215ad9e1eb754e, type: 2}
