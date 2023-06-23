@@ -312,6 +312,10 @@ public class UIInGame : UIBase
             _crsitalPanel.style.display = DisplayStyle.Flex;
             UpdateCristalText();
         }
+        else
+        {
+            _crsitalPanel.style.display = DisplayStyle.None;
+        }
     }
     public void RoomText(int roomNum)
     {
