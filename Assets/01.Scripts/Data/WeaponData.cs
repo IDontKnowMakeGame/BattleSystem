@@ -1,6 +1,6 @@
 public class OldGreatSwordData
 {
-    public static readonly float gt = 1.5f;
+    public static readonly float decrease = 100f;
 	
 }
 public class OldTwinSwordData
@@ -11,7 +11,7 @@ public class OldTwinSwordData
 public class AscalonData
 {
     public static readonly float duration = 20f;
-	public static readonly float decrease = 25f;
+	public static readonly float decrease = 100f;
 	
 }
 public class TaintedSwordData
