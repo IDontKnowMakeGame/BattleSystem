@@ -71,7 +71,7 @@ MonoBehaviour:
     isBillBoard: 1
     _defaultTexture: {fileID: 0}
     _frame: 0
-    size: {x: 0, y: 0, z: 0}
+    size: {x: 1, y: 1, z: 1}
     _blinkCnt: 1
     _blinkTime: 0.1
     _blinkDelay: 0.1
