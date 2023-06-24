@@ -32,7 +32,7 @@ public class Ascalon : GreatSword
 			_obj.transform.localPosition = Vector3.zero;
 		};
 
-		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/GreatSword/AscalonSkill(1)", this._characterActor.transform.position);
+		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/GreatSword/AscalonSkill(2)", this._characterActor.transform.position);
 
 		_stat.PercentAtk(30);
 
@@ -81,6 +81,12 @@ public class Ascalon : GreatSword
 		}
 		if(cor != null)
 			_characterActor.StopCoroutine(cor);
+
+		if (_obj)
+		{
+			_obj.transform.SetParent(null);
+			GameManagement.Instance.GetManager<ResourceManager>().Destroy(_obj);
+		}
 	}
 
 	private void SkillEnd(int id)
@@ -101,5 +107,7 @@ public class Ascalon : GreatSword
 		_characterActor.StopCoroutine(cor);
 		obj.transform.position = _characterActor.Position + InGame.CamDirCheck(_remainVec) + (Vector3.up / 2);
 		obj.GetComponent<DragonRealm>().Init(AscalonData.duration, AscalonData.decrease);
+
+		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/GreatSword/AscalonSkill(1)", this._characterActor.transform.position);
 	}
 }

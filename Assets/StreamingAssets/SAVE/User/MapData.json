@@ -1,5 +1,5 @@
 {
-    "currentFloor": 1,
+    "currentFloor": 2,
     "mapData": [
         {
             "floor": 0,
@@ -53,9 +53,23 @@
         {
             "floor": 2,
             "isBossKill": false,
-            "onCristalList": [],
+            "onCristalList": [
+                2,
+                4,
+                5,
+                7,
+                9,
+                11,
+                10,
+                14,
+                15,
+                1,
+                20
+            ],
             "openChestList": [],
-            "openDoorList": [],
+            "openDoorList": [
+                3
+            ],
             "brokenWallList": [],
             "killUniqueEnemy": []
         },

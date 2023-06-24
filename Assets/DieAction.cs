@@ -24,7 +24,6 @@ public class DieAction : InteractionActor
 	[SerializeField]
 	private EnemyAnimation _unitAnimation = new EnemyAnimation();
 
-
 	[SerializeField]
 	private float speed = 0f;
 
