@@ -144,7 +144,7 @@ public class LoadingSceneController : MonoBehaviour
                     nextScene = true;
                     op.allowSceneActivation = true;
                     isLoading = false;
-                    //progressBarParent.SetActive(false);
+                    progressBarParent.SetActive(false);
                     //toolTipParent.SetActive(false);
                     //textvignette.SetActive(false);
                     yield break;
