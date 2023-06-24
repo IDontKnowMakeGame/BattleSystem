@@ -265,7 +265,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -155}
+  m_AnchoredPosition: {x: 0, y: -224}
   m_SizeDelta: {x: 1005.5, y: 606.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8466514138665462621
@@ -413,7 +413,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -556.04, y: -196.6}
+  m_AnchoredPosition: {x: -556.04, y: -219}
   m_SizeDelta: {x: 590.6, y: 189.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7596269668714375182
@@ -590,7 +590,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -556.04, y: -246.6}
+  m_AnchoredPosition: {x: -556.04, y: -292}
   m_SizeDelta: {x: 590.6, y: 134.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3907113648669273354
@@ -1118,6 +1118,7 @@ MonoBehaviour:
   ui: {fileID: 6700273148867900702}
   isLoading: 0
   toolTipIdx: 
+  progressParent: {fileID: 330157116725778203}
   toolTipParent: {fileID: 1695490011391477375}
   progressBarParent: {fileID: 330157116725778203}
   textvignette: {fileID: 1553422019785612388}

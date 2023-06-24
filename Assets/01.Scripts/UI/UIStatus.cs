@@ -1,6 +1,7 @@
 using Core;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,11 +10,8 @@ public class UIStatus : UIBase
     private VisualElement _backGround;
 
     private VisualElement _characterInfoPanel;
-    private VisualElement _weaponInfoPanelSword;
-    private VisualElement _weaponInfoPanelGreatSword;
-    private VisualElement _weaponInfoPanelTwinSword;
-    private VisualElement _weaponInfoPanelSpear;
-    private VisualElement _weaponInfoPanelBow;
+    private VisualElement _weaponInfoPanel;
+
     public override void Init()
     {
         _root = UIManager.Instance._document.rootVisualElement.Q<VisualElement>("UI_Status");
@@ -21,13 +19,7 @@ public class UIStatus : UIBase
         _backGround = _root.Q<VisualElement>("BackGround");
 
         _characterInfoPanel = _backGround.Q<VisualElement>("charaterInfo");
-
-        VisualElement panel = _backGround.Q<VisualElement>("weaponInfo-panel");
-        _weaponInfoPanelSword = panel.Q<VisualElement>("weaponinfo-sword");
-        _weaponInfoPanelGreatSword = panel.Q<VisualElement>("weaponinfo-greatSword");
-        _weaponInfoPanelTwinSword = panel.Q<VisualElement>("weaponinfo-twinSword");
-        _weaponInfoPanelSpear = panel.Q<VisualElement>("weaponinfo-spear");
-        _weaponInfoPanelBow = panel.Q<VisualElement>("weaponinfo-bow");
+        _weaponInfoPanel = _backGround.Q<VisualElement>("weaponInfo-panel");
 
 
         _root.style.display = DisplayStyle.None;
@@ -51,6 +43,14 @@ public class UIStatus : UIBase
     {
         yield return new WaitForSeconds(duration);
         _root.style.display = DisplayStyle.None;
+    }
+    public void InitWeaponStatus()
+    {
+        
+    }
+    public void UpdateWeaponStatus()
+    {
+
     }
     public void CharacterStatusUpdate()
     {
