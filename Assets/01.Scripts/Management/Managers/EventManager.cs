@@ -38,7 +38,8 @@ public enum EventFlag
 
 	// Halo
 	PollutionHalo,
-	HaloOfEreshkigal
+	HaloOfEreshkigal,
+	HaloOfTime
 }
 public class EventManager : Manager
 {
