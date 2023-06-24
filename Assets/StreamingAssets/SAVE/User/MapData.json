@@ -53,7 +53,13 @@
         {
             "floor": 2,
             "isBossKill": false,
-            "onCristalList": [],
+            "onCristalList": [
+                3,
+                4,
+                2,
+                9,
+                10
+            ],
             "openChestList": [],
             "openDoorList": [],
             "brokenWallList": [],
