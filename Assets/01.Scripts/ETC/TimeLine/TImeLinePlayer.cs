@@ -81,9 +81,10 @@ public class TImeLinePlayer : MonoBehaviour
 		"TwinSword" => 3,
 		"Spear" => 4,
 		"Bow" => 5, 
-        "gf" => 6,
+        "CrazyGhost" => 6,
 		"OldGreatSkill" => 7,
 		"Execute" => 8,
+		"KnightStatue" => 9,
 		_ => 0
 	};
 

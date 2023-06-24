@@ -203,6 +203,12 @@ MonoBehaviour:
   _characterState: 0
   _isBlocking: 0
   canKnockBack: 0
+  characterDetect:
+    isDetecting: 0
+  canInteract: 1
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
   _unitAnimation:
     curClip:
       name: 
@@ -219,6 +225,8 @@ MonoBehaviour:
   speed: 0
   tx:
   - name: CrazyGhost
+    tex: {fileID: 2800000, guid: 08ca083b300231e4da6fda9cf247549b, type: 3}
+  - name: KnightStatue
     tex: {fileID: 2800000, guid: 08ca083b300231e4da6fda9cf247549b, type: 3}
 --- !u!1 &5102826491513950781
 GameObject:

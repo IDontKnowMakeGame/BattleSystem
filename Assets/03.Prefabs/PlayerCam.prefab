@@ -418,7 +418,6 @@ GameObject:
   - component: {fileID: 3577013144753390078}
   - component: {fileID: 3577013144753390064}
   - component: {fileID: 3577013143329756091}
-  - component: {fileID: 6914954131042661048}
   m_Layer: 0
   m_Name: PlayerCam
   m_TagString: Untagged
@@ -566,6 +565,8 @@ PlayableDirector:
     value: {fileID: 3577013144753390064}
   - key: {fileID: 3201042480885589301, guid: 012f19aadb8b67b4691d610824b27167, type: 2}
     value: {fileID: 3577013144753390064}
+  - key: {fileID: -9061251247608562118, guid: 012f19aadb8b67b4691d610824b27167, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &3577013144753390078
@@ -592,6 +593,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 012f19aadb8b67b4691d610824b27167, type: 2}
   - {fileID: 11400000, guid: 8cb3529185826a64e946e96fbc3a8c3f, type: 2}
   - {fileID: 11400000, guid: 3c91ddeae127b8b41b8904984ebe633c, type: 2}
+  - {fileID: 11400000, guid: 13857943ba8214b4b81bf3813106aaec, type: 2}
 --- !u!114 &3577013144753390064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -927,7 +929,7 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6914954131042661048}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: ScreenEffects, Assembly-CSharp
           m_MethodName: PlaySpeedEffect
           m_Mode: 1
@@ -982,21 +984,6 @@ MonoBehaviour:
   _vegs:
   - {fileID: 8926484042661614526, guid: 2776e0ffae9d60a48ac95e121188cdee, type: 3}
   _visualEffect: {fileID: 3742911593612696169}
---- !u!114 &6914954131042661048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3577013144753390074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3209c150aae8c42478279bde1802c3d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _vegs:
-  - {fileID: 8926484042661614526, guid: 2776e0ffae9d60a48ac95e121188cdee, type: 3}
-  _visualEffect: {fileID: 1109748554}
 --- !u!1 &3577013145075598588
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,7 +24,6 @@ public class DieAction : InteractionActor
 	[SerializeField]
 	private EnemyAnimation _unitAnimation = new EnemyAnimation();
 
-
 	[SerializeField]
 	private float speed = 0f;
 
@@ -64,7 +63,7 @@ public class DieAction : InteractionActor
 	{
 		if (InGame.Player.Position.IsNeighbor(Position) == false) return;
 		base.Interact();
-		Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, new EventParam() { stringParam = "gf" });
+		Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, new EventParam() { stringParam = objName });
 		_unitAnimation.Play(objName);
 		Debug.Log(objName);
 		Define.GetManager<SoundManager>().Play("Boss/" + objName, Define.Sound.Effect, 1);
