@@ -265,7 +265,9 @@ public class UIInGame : UIBase
     public void AddQuestPanel(QuestName name,bool isClearReadQuest = false)
     {
         VisualElement panel = _questPanelTemp.Instantiate();
-        panel.Q<Label>("QuestName").text = name.ToString();
+        QuestTextInfo info = UIManager.Instance.questTextInfoListSO.list[(int)name];
+        panel.Q<Label>("QuestName").text = info.name;
+        panel.Q<Label>("Text").text = info.description;
         _questListPanel.Add(panel);
         _questLlistCard[name] = panel;
 
@@ -309,6 +311,10 @@ public class UIInGame : UIBase
             }
             _crsitalPanel.style.display = DisplayStyle.Flex;
             UpdateCristalText();
+        }
+        else
+        {
+            _crsitalPanel.style.display = DisplayStyle.None;
         }
     }
     public void RoomText(int roomNum)
@@ -392,10 +398,31 @@ public class UIInGame : UIBase
         VisualElement _itemPanel = _itemPanelTemp.Instantiate();
         _itemPanel.style.width = new Length(50, LengthUnit.Percent);
         _itemPanel.Q<VisualElement>("Image").style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
-        _itemPanel.Q<Label>("ItemName").text = id.ToString();
+        _itemPanel.Q<Label>("ItemName").text = ItemIDName(id);
         _itemPanel.Q<Label>("ItemCntText").text = string.Format("x{0}", cnt);
         _showItemPanel.Add(_itemPanel);
         _showItemQueue.Enqueue(_itemPanel);
+    }
+    public string ItemIDName(ItemID id)
+    {
+        string name = "";
+        if (id != ItemID.None && (int)id < 100)
+        {
+            name = UIManager.Instance.weaponTextInfoListSO.weapons[(int)id - 1].weaponNameText;
+        }
+        else if ((int)id < 200)
+        {
+            name = UIManager.Instance.haloTextInfoListSO.list[(int)id-100].nameText;
+        }
+        else if ((int)id < 300)
+        {
+            name = UIManager.Instance.useableItemTextInfoListSO.list[(int)id-200].name;
+        }
+        else
+        {
+            name = UIManager.Instance.questItemTextInfoListSO.list[(int)id - 300].name;
+        }
+        return name;
     }
     public void ShowItemPanel()
     {

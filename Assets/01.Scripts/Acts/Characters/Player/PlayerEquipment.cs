@@ -24,6 +24,9 @@ public class PlayerEquipment : CharacterEquipmentAct
 	private int haloCount = 2;
 	private bool _haveinHand = true;
 
+	[SerializeField]
+	private bool wakeUp = false;
+
 	public override Weapon CurrentWeapon
 	{
 		get
@@ -35,6 +38,11 @@ public class PlayerEquipment : CharacterEquipmentAct
 	}
 
 	private EventParam _eventParam = new EventParam();
+
+	private bool completeWeaponInit = false;
+	private bool finishChange = false;
+
+	public bool FinishChange => finishChange;
 
 	#region Life Cycle
 	public override void Awake()
@@ -48,8 +56,6 @@ public class PlayerEquipment : CharacterEquipmentAct
 		_secondWeapon = DataManager.UserData_.secondWeapon;
 		_playerActor = _characterController as PlayerActor;
 		_playerAnimation = ThisActor.GetAct<PlayerAnimation>();
-
-		EquipAnimation();
 	}
 
 	public override void OnEnable()
@@ -59,8 +65,8 @@ public class PlayerEquipment : CharacterEquipmentAct
 		Define.GetManager<EventManager>().StartListening(EventFlag.WeaponUpgrade, Upgrade);
 		Define.GetManager<EventManager>().StartListening(EventFlag.HaloAdd, AddHalo);
 		Define.GetManager<EventManager>().StartListening(EventFlag.HaloDel, RemoveHalo);
-		if(_playerAnimation != null)
-			EquipAnimation();
+		//f(_playerAnimation != null)
+			//EquipAnimation();
 
 		if (_halos[0] != ItemID.None)
 		{
@@ -110,6 +116,26 @@ public class PlayerEquipment : CharacterEquipmentAct
     public override void Update()
     {
         base.Update();
+
+		if (!completeWeaponInit && !LoadingSceneController.Instnace.IsVisbleLoading())
+        {
+			completeWeaponInit = true;
+			if (wakeUp)
+			{
+				_playerAnimation.ChangeWeaponClips((int)ItemID.None);
+				_playerAnimation.Play("WakeUp");
+				_playerAnimation.GetClip("WakeUp").SetEventOnFrame(_playerAnimation.GetClip("WakeUp").fps - 1, () =>
+				{
+					EquipAnimation();
+					finishChange = true;
+				});
+			}
+			else
+			{
+				EquipAnimation();
+				finishChange = true;
+			}
+        }
 
 		foreach (ItemID haloID in _halos)
 		{
