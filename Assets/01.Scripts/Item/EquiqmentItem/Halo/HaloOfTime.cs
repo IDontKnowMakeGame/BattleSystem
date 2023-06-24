@@ -6,20 +6,30 @@ using Core;
 
 public class HaloOfTime : Halo
 {
+    static float currentTime = 1f;
+    public override void Init()
+    {
+        base.Init();
+        
+    }
     bool use = false;
     public override void Equiqment(CharacterActor actor)
     {
         use = true;
-        Define.GetManager<EventManager>().StartListening(EventFlag.HaloOfTime, Using);
-        Debug.Log("타임 스케일 착용 완료");
+        currentTime = 2f;
+        EventParam eventParam = new EventParam();
+        eventParam.floatParam = currentTime;
+        SetTimeScale(eventParam);
+        Define.GetManager<EventManager>()?.StartListening(EventFlag.HaloOfTime, SetTimeScale);
     }
 
     public override void UnEquipment(CharacterActor actor)
     {
+        currentTime = 1f;
         EventParam eventParam = new EventParam();
-        eventParam.floatParam = 1f;
+        eventParam.floatParam = currentTime;
         SetTimeScale(eventParam);
-        Define.GetManager<EventManager>().StopListening(EventFlag.HaloOfTime, Using);
+        Define.GetManager<EventManager>()?.StopListening(EventFlag.HaloOfTime, SetTimeScale);
         use = false;
     }
 
@@ -38,6 +48,10 @@ public class HaloOfTime : Halo
     public void SetTimeScale(EventParam eventParam)
     {
         if(use)
+        {
             Time.timeScale = eventParam.floatParam;
+            Debug.Log($"Time Set : {eventParam.floatParam}");
+        }
+            
     }
 }
