@@ -59,7 +59,7 @@ public class UIInventory : UIBase
 
     private VisualElement _equipHaloCard = null;
     private ItemID _selectHaloID = ItemID.None;
-    private int _selectHaloEquipNum = 0;
+    private int _selectHaloEquipNum = 1;
     private bool _selectIsHaloCard = false;
     private bool _selectIsEquipHaloCard = false;
     float width = 100;
@@ -162,6 +162,7 @@ public class UIInventory : UIBase
         _haloConnectBtn = _haloTooltipPanel.Q<VisualElement>("ConnectBtn");
         _haloConnectBtn.RegisterCallback<ClickEvent>(e =>
         {
+            UnmountHalo();
             EquipHalo( _selectHaloID, _selectHaloEquipNum);
             _haloTooltipPanel.style.display = DisplayStyle.None;
         });
@@ -572,6 +573,12 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
         _selectIsEquipHaloCard = true;
         CardBorderWidth(card, 1, Color.green);
     }
+    public void UnmountHalo()
+    {
+        EventParam eventParam = new EventParam();
+        eventParam.intParam = 1;
+        Define.GetManager<EventManager>().TriggerEvent(EventFlag.HaloDel, eventParam);
+    }
     public void EquipHalo(ItemID id, int equipNum)
     {
         List<ItemID> list = Define.GetManager<DataManager>().LoadHaloListInUserData();
@@ -590,8 +597,7 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
         }
         else
         {
-            eventParam.intParam = equipNum;
-            Define.GetManager<EventManager>().TriggerEvent(EventFlag.HaloDel, eventParam);
+            UnmountHalo();
         }
         if (id == ItemID.HaloOfTime)
         {
@@ -613,7 +619,7 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
         CardBorderWidth(_equipHaloCard,0,Color.green);
 
         _selectHaloID = ItemID.None;
-        _selectHaloEquipNum = 0;
+        _selectHaloEquipNum = 1;
 
         _selectIsHaloCard = false;
         _selectIsEquipHaloCard = false;

@@ -35,7 +35,10 @@ public class UIPadeInOut : UIBase
         isPaded = true;
 
         _padePanel.RemoveFromClassList(removeClass);
-        yield return new WaitForSeconds(0.7f);
+        if(HaloOfTime.currentTime > 1f)
+            yield return new WaitForSeconds(2f);
+        else
+            yield return new WaitForSeconds(0.7f);
         action?.Invoke();
         _padePanel.AddToClassList(addClass);
         yield return new WaitForSeconds(0.7f);

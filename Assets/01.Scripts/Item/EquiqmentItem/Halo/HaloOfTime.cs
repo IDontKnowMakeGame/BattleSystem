@@ -6,7 +6,7 @@ using Core;
 
 public class HaloOfTime : Halo
 {
-    static float currentTime = 1f;
+    public static float currentTime = 1f;
     public override void Init()
     {
         base.Init();
@@ -50,6 +50,7 @@ public class HaloOfTime : Halo
         if(use)
         {
             Time.timeScale = eventParam.floatParam;
+            currentTime = eventParam.floatParam;
             Debug.Log($"Time Set : {eventParam.floatParam}");
         }
             

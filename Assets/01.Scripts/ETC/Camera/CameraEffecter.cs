@@ -121,7 +121,7 @@ public class CameraEffecter : MonoBehaviour
     }
     public void TimeSet()
     {
-        Time.timeScale = 1;
+        Time.timeScale = HaloOfTime.currentTime;
     }
     
     public LayerMask Mask;
