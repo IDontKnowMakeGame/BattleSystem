@@ -55,7 +55,6 @@ public class DieAction : InteractionActor
 			}
 		}
 		Debug.Log(me.GetTexture("_MainTex").name);
-		//_unitAnimation.Play(objName+"Idle");
 		Debug.Log(_unitAnimation.GetClip(objName + "Idle").name);
 	}
 

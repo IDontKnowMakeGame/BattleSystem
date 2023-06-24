@@ -92,7 +92,7 @@ MonoBehaviour:
       _id: 0
       _count: 0
       _isWeapon: 0
-    isBoss: 0
+    isBoss: 1
   _enemyAnimation:
     curClip:
       name: 

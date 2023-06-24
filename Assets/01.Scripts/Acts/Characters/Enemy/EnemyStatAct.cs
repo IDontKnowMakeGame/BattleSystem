@@ -156,8 +156,12 @@ namespace Acts.Characters.Enemy
         {
 			GameObject obj = Define.GetManager<ResourceManager>().Instantiate("DieObject");
 			obj.GetComponent<DieAction>().InitDieObj(ThisActor.gameObject.name);
-            obj.transform.gameObject.transform.GetChild(0).GetChild(0).localScale = ThisActor.gameObject.transform.GetChild(0).GetChild(0).localScale;
-            obj.transform.gameObject.transform.GetChild(0).GetChild(0).localPosition = Vector3.up;
+
+            GameObject chObj = obj.transform.gameObject.transform.GetChild(0).GetChild(0).gameObject;
+            Vector3 vec = ThisActor.gameObject.transform.GetChild(0).GetChild(0).localScale;
+
+			chObj.transform.localScale = vec;
+            chObj.transform.localPosition = new Vector3(0, (vec.y-1) * 0.5f, 0);
 			obj.transform.position = ThisActor.Position + Vector3.up;
 
             InGame.Player.GetAct<PlayerAttack>().RangeReset();
