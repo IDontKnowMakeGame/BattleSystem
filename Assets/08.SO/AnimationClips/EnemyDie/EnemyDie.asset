@@ -20,12 +20,28 @@ MonoBehaviour:
   - name: CrazyGhostIdle
     nextIdx: 0
     texture: {fileID: 2800000, guid: 08ca083b300231e4da6fda9cf247549b, type: 3}
+    normal: {fileID: 0}
     fps: 1
     isLoop: 1
     delay: 0.1
   - name: CrazyGhost
     nextIdx: 0
     texture: {fileID: 2800000, guid: 82acef2799194bb478697c2cde64e9c3, type: 3}
+    normal: {fileID: 0}
     fps: 29
     isLoop: 0
+    delay: 0.1
+  - name: KnightStatue
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 6d507edda38178f4f815628ed5daedc9, type: 3}
+    normal: {fileID: 0}
+    fps: 28
+    isLoop: 0
+    delay: 0.1
+  - name: KnightStatueIdle
+    nextIdx: 0
+    texture: {fileID: 2800000, guid: 695847088b7466b468e08ea8841c003b, type: 3}
+    normal: {fileID: 0}
+    fps: 1
+    isLoop: 1
     delay: 0.1
