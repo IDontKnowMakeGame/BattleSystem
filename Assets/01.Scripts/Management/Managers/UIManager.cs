@@ -195,5 +195,9 @@ public class UIManager : MonoBehaviour
         BossBar.ShowBossBar(name);
     }
 
+    public void ShowItemPanel()
+    {
+        InGame.ItemPanel();
+    }
     
 }

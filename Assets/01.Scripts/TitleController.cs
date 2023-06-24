@@ -2,7 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Tool.Data.Json;
 
+public class IntroData
+{
+    public bool isClearTutorial = false;
+}
 public class TitleController : MonoBehaviour
 {
     private bool enableLoad = false;
@@ -10,6 +15,7 @@ public class TitleController : MonoBehaviour
     [SerializeField]
     private CanvasGroup group;
 
+    private IntroData introData;
 
     private Animator animator;
 
@@ -19,6 +25,7 @@ public class TitleController : MonoBehaviour
 
     private void Start()
     {
+        introData = JsonManager.LoadJsonFile<IntroData>(Application.streamingAssetsPath + "/SAVE/Tutorial", "IntroData");
         animator = GetComponent<Animator>();
         SetResolution();
     }
@@ -40,7 +47,10 @@ public class TitleController : MonoBehaviour
             _sequence.Append(group.DOFade(0f, 0.5f));
             _sequence.AppendCallback(() =>
             {
-                LoadingSceneController.Instnace.StartCoroutine(LoadingSceneController.Instnace.LoadScene("Lobby"));
+                if(introData.isClearTutorial)
+                    LoadingSceneController.Instnace.StartCoroutine(LoadingSceneController.Instnace.LoadScene("Lobby"));
+                else
+                    LoadingSceneController.Instnace.StartCoroutine(LoadingSceneController.Instnace.LoadScene(Floor.Tutorial.ToString()));
                 _sequence.Kill();
             });
         }

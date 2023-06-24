@@ -103,7 +103,7 @@ MonoBehaviour:
     delay: 0.1
   - name: UpperSlashReturn
     nextIdx: -1
-    texture: {fileID: 2800000, guid: bdc430e4b42908b4e96cbf40d11eaaff, type: 3}
+    texture: {fileID: 2800000, guid: adf73b28723069f40b70bd6e148a35b3, type: 3}
     normal: {fileID: 0}
     fps: 8
     isLoop: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
     delay: 0.1
   - name: UpperStrikeReturn
     nextIdx: -1
-    texture: {fileID: 2800000, guid: ceedd2d4c0dfaef4590daaeb8daf4d28, type: 3}
+    texture: {fileID: 2800000, guid: 860e6f932aa8afb49a93817d7acb8c6a, type: 3}
     normal: {fileID: 0}
     fps: 8
     isLoop: 0

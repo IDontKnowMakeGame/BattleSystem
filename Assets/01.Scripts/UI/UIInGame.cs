@@ -124,6 +124,7 @@ public class UIInGame : UIBase
         InitQuestPanel();
         ChangeHalo();
         HideAbnormalStatusBox();
+        TutorialUI();
 
         CristalInfoInRoom(0);
     }
@@ -146,6 +147,19 @@ public class UIInGame : UIBase
         ChangeFirstWeaponImage(DataManager.UserData_.firstWeapon);
         ChangeSecondWeaponImage(DataManager.UserData_.secondWeapon);
         ChangeWeaponCoolTime();
+    }
+    public void TutorialUI()
+    {
+        if(DataManager.MapData_.currentFloor == Floor.Tutorial)
+        {
+            _firstWaepon.style.visibility = Visibility.Hidden;
+            _secondWeapon.style.visibility = Visibility.Hidden;
+            //_itemList.style.visibility = Visibility.Hidden;
+        }
+    }
+    public void ItemPanel()
+    {
+        _itemList.style.visibility = Visibility.Visible;
     }
     public void ChanageMaxHP(int value)
     {
@@ -471,12 +485,20 @@ public class UIInGame : UIBase
     }
     public void SetItemPanelCnt(ItemID itemID)
     {
+
+        Label cntText = _invenInItems[itemID].Q<Label>("ItemCntText");
+        if (itemID == ItemID.None)
+            cntText.text = "0";
+
         SaveItemData saveData = Define.GetManager<DataManager>().LoadItemFromInventory(itemID);
         if (saveData == null) return;
         if (_invenInItems.ContainsKey(itemID) == false) return;
 
-        Label cntText = _invenInItems[itemID].Q<Label>("ItemCntText");
         cntText.text = saveData.currentCnt.ToString();
+
+        if (itemID == ItemID.FirstMap || itemID == ItemID.CompassOfSpace)
+            cntText.text = "¡Ä";
+
 
     }
     public void UseItemCool(ItemID itemID,int cooltime)

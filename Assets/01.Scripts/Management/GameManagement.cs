@@ -223,7 +223,6 @@ namespace Managements
             {
                 manager.OnDestroy();
             }
-            GetManager<DataManager>().LoadScene(sceneName);
             LoadingSceneController.Instnace.StartCoroutine(LoadingSceneController.Instnace.LoadScene(sceneName));
         }
 

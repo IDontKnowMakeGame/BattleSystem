@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Tool.Data.Json;
 
 public class LoadingSceneController : MonoBehaviour
 {
@@ -115,6 +116,8 @@ public class LoadingSceneController : MonoBehaviour
         yield return new WaitForSeconds(timer);
         SceneManager.sceneLoaded += OnSceneLoaded;
         loadSceneName = sceneName;
+
+        DataManager.LoadScene(loadSceneName);
 
         StartCoroutine(LoadSceneProcess());
     }

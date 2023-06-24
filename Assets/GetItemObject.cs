@@ -83,7 +83,9 @@ public class GetItemObject : InteractionActor
 		
 		if (InGame.Player.Position.IsNeighbor(Position) == false && Define.GetManager<MapManager>().GetBlock(Position)?.ActorOnBlock != InGame.Player) return;
 
-		count++;
+        onInteract?.Invoke();
+
+        count++;
 		canInteraction = false;
 		characterDetect.EnterDetect -= ShowInteration;
 		characterDetect.ExitDetect -= HideInteration;

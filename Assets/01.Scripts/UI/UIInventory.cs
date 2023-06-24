@@ -255,6 +255,7 @@ public class UIInventory : UIBase
         SelectOptionInit(true);
         UIManager.Instance.UpdateInGameUI();
         UIManager.Instance.MoveAndInputPlay();
+        UIManager.Instance.InGame.ChangeItemPanelImage();
     }
 
     public void EquipWeaponBoxImage()
@@ -377,7 +378,6 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
             Define.GetManager<DataManager>().EquipUsableItem(id, equipNum);
             EquipUseableItemBoxImage(selectCard, equipNum);
             CreateCardList(_useableItemScrollPanel, _useableItemCardTemp, Define.GetManager<DataManager>().LoadUsableItemFromInventory(), SelectCard);
-            UIManager.Instance.InGame.ChangeItemPanelImage();
         } 
     }
     public void UnmountItem(int equipNum)

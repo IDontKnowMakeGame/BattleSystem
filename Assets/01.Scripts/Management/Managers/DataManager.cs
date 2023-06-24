@@ -42,10 +42,12 @@ public class DataManager : Manager
 
         WeaponInfoSerialize();
     }
-    public void LoadScene(string floor)
+    public static void LoadScene(string floor)
     {
+        MapData_ = JsonManager.LoadJsonFile<MapData>(Application.streamingAssetsPath + "/SAVE/User", "MapData");
         MapData_.currentFloor = (Floor)Enum.Parse(typeof(Floor), floor);
-        SaveToMapData();
+        string json = JsonManager.ObjectToJson(MapData_);
+        JsonManager.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/User", "MapData", json);
     }
     public void WeaponInfoSerialize()
     {
