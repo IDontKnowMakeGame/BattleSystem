@@ -53,9 +53,13 @@ public class UIInventory : UIBase
     private VisualElement _haloConnectBtn;
     private VisualElement _haloTooltipBackBtn;
 
+    private VisualElement _fastTimeBtn;
+    private VisualElement _slowTimeBtn;
+    private VisualElement _currentTimePanel;
+
     private VisualElement _equipHaloCard = null;
     private ItemID _selectHaloID = ItemID.None;
-    private int _selectHaloEquipNum = 0;
+    private int _selectHaloEquipNum = 1;
     private bool _selectIsHaloCard = false;
     private bool _selectIsEquipHaloCard = false;
     float width = 100;
@@ -158,6 +162,7 @@ public class UIInventory : UIBase
         _haloConnectBtn = _haloTooltipPanel.Q<VisualElement>("ConnectBtn");
         _haloConnectBtn.RegisterCallback<ClickEvent>(e =>
         {
+            UnmountHalo();
             EquipHalo( _selectHaloID, _selectHaloEquipNum);
             _haloTooltipPanel.style.display = DisplayStyle.None;
         });
@@ -167,6 +172,24 @@ public class UIInventory : UIBase
             InitSelectHaloSetting();
             _haloTooltipPanel.style.display = DisplayStyle.None;
         });
+
+        _currentTimePanel = _haloPanel.Q<VisualElement>("checktime");
+        _fastTimeBtn = _haloPanel.Q<VisualElement>("fast-time-btn");
+        _fastTimeBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            _currentTimePanel.style.translate = new StyleTranslate(new Translate(new Length(-50f, LengthUnit.Percent), 0));
+            SetHaloOfTime(2f);
+        });
+        _slowTimeBtn = _haloPanel.Q<VisualElement>("slow-time-btn");
+        _slowTimeBtn.RegisterCallback<ClickEvent>(e =>
+        {
+            _currentTimePanel.style.translate = new StyleTranslate(new Translate(new Length(50f, LengthUnit.Percent), 0));
+            SetHaloOfTime(0.5f);
+        });
+
+        _fastTimeBtn.style.visibility = Visibility.Hidden;
+        _slowTimeBtn.style.visibility = Visibility.Hidden;
+        _currentTimePanel.style.visibility = Visibility.Hidden;
 
         //UseablePanel===================================================================================
         _useableItemScrollPanel = _useableItemPanel.Q<VisualElement>("UseableItemScrollPanel");
@@ -504,6 +527,9 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
         {
             HaloEquipSelectCard(_equipHaloCard, Int32.Parse(_equipHaloCard.name));
         });
+
+        if (id == ItemID.HaloOfTime)
+            SetHaloOfTime(2f);
     }
     public void HaloSelectCard(VisualElement card, int id)
     {
@@ -547,6 +573,12 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
         _selectIsEquipHaloCard = true;
         CardBorderWidth(card, 1, Color.green);
     }
+    public void UnmountHalo()
+    {
+        EventParam eventParam = new EventParam();
+        eventParam.intParam = 1;
+        Define.GetManager<EventManager>().TriggerEvent(EventFlag.HaloDel, eventParam);
+    }
     public void EquipHalo(ItemID id, int equipNum)
     {
         List<ItemID> list = Define.GetManager<DataManager>().LoadHaloListInUserData();
@@ -561,13 +593,24 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
             eventParam.floatParam = (float)id;
             eventParam.intParam = equipNum;
             Define.GetManager<EventManager>().TriggerEvent(EventFlag.HaloAdd, eventParam);
+            
         }
         else
         {
-            eventParam.intParam = equipNum;
-            Define.GetManager<EventManager>().TriggerEvent(EventFlag.HaloDel, eventParam);
+            UnmountHalo();
         }
-            
+        if (id == ItemID.HaloOfTime)
+        {
+            SetHaloOfTime(2f);
+            _currentTimePanel.style.translate = new StyleTranslate(new Translate(new Length(-50f, LengthUnit.Percent), 0));
+        }
+        else
+        {
+            _fastTimeBtn.style.visibility = Visibility.Hidden;
+            _slowTimeBtn.style.visibility = Visibility.Hidden;
+            _currentTimePanel.style.visibility = Visibility.Hidden;
+        }
+
         ChangeHaloImage(_equipHaloCard, id);
         InitSelectHaloSetting();
     }
@@ -576,14 +619,26 @@ public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<Save
         CardBorderWidth(_equipHaloCard,0,Color.green);
 
         _selectHaloID = ItemID.None;
-        _selectHaloEquipNum = 0;
+        _selectHaloEquipNum = 1;
 
         _selectIsHaloCard = false;
         _selectIsEquipHaloCard = false;
     }
     public void ChangeHaloImage(VisualElement card,ItemID id)
     {
+        if(id == ItemID.HaloOfTime)
+        {
+            _fastTimeBtn.style.visibility = Visibility.Visible;
+            _slowTimeBtn.style.visibility = Visibility.Visible;
+            _currentTimePanel.style.visibility = Visibility.Visible;
+        }
         card.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)id}"));
+    }
+    public void SetHaloOfTime(float time)
+    {
+        EventParam param = new EventParam();
+        param.floatParam = time;
+        Define.GetManager<EventManager>().TriggerEvent(EventFlag.HaloOfTime, param);
     }
     public void CardBorderWidth(VisualElement card,float value,Color color)
     {
