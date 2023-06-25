@@ -3,7 +3,7 @@
     <ui:VisualElement name="background" class="background-on" style="width: 100%; height: 100%; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.78); transition-property: opacity; transition-duration: 0.4s; transition-timing-function: ease-in;">
         <ui:VisualElement style="width: 60%; height: 65%;">
             <ui:VisualElement name="explanation-panel" style="flex-basis: 100%; justify-content: center; align-items: center; overflow: hidden;">
-                <ui:VisualElement name="void-panel" style="width: 100%; height: 100%; justify-content: center; align-items: center; translate: -100% 0;">
+                <ui:VisualElement name="void-panel" style="width: 100%; height: 100%; justify-content: center; align-items: center; translate: -200% 0;">
                     <ui:VisualElement name="HPPotion_0" style="justify-content: center; align-items: center; width: 100%; height: 100%; position: absolute;">
                         <ui:VisualElement name="title" style="flex-basis: 20%; flex-direction: row; border-bottom-color: rgb(255, 255, 255); border-bottom-width: 4px; width: 100%;">
                             <ui:VisualElement name="icon" style="background-image: resource(&apos;Item/202&apos;); height: 100%; -unity-background-scale-mode: scale-to-fit; flex-basis: 10%;" />
@@ -12,18 +12,29 @@
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="explanation" style="flex-basis: 80%; width: 100%; justify-content: center;">
-                            <ui:Label text="영혼을 길러 낸 물을 다음 병&#10;&#10;영혼을 회복 시켜준다&#10;&#10;(체력 100 회복)&#10;&#10;메뉴(ESC) &gt; 인벤토리 &gt; 소비 아이템에서&#10;확인 또는 장착/해제 할 수 있습니다." display-tooltip-when-elided="true" class="text" style="font-size: 40px; -unity-text-align: middle-center;" />
+                            <ui:Label text="영혼을 길러 낸 물을 담은 병&#10;&#10;영혼을 회복 시켜준다&#10;&#10;(체력 100 회복)&#10;&#10;메뉴(ESC) &gt; 인벤토리 &gt; 소비 아이템에서&#10;확인 또는 장착/해제 할 수 있습니다." display-tooltip-when-elided="true" class="text" style="font-size: 40px; -unity-text-align: middle-center;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="ItemSetting_1" style="justify-content: center; align-items: center; width: 100%; height: 100%; position: absolute; translate: 100% 0;">
                         <ui:VisualElement name="title" style="flex-basis: 20%; flex-direction: row; border-bottom-color: rgb(255, 255, 255); border-bottom-width: 4px; width: 100%;">
                             <ui:VisualElement name="icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=372084132&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_1&apos;); height: 100%; -unity-background-scale-mode: scale-to-fit; flex-basis: 10%;" />
                             <ui:VisualElement style="flex-basis: 80%; justify-content: center; align-items: center; font-size: 50px; -unity-text-align: middle-center;">
-                                <ui:Label text="아이템 설정" display-tooltip-when-elided="true" class="text" />
+                                <ui:Label text="소모 아이템" display-tooltip-when-elided="true" class="text" />
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="explanation" style="flex-basis: 80%; width: 100%; justify-content: center;">
-                            <ui:Label text="메뉴(ESC) &gt; 인벤토리에서 &#10;무기, 헤일로, 소비아이템, 사용아이템을 &#10;확인 또는 장착/해제 할 수있습니다.&#10;&#10;오른쪽 창에 아이템을 선택하고 " display-tooltip-when-elided="true" class="text" style="font-size: 40px; -unity-text-align: middle-center;" />
+                            <ui:Label text="아이템은 1 2 3 4 5번 키를 입력하여 사용합니다.&#10;&#10;메뉴(ESC) &gt; 인벤토리에서 &gt; 소모 아이템&#10;확인 또는 장착/해제 할 수있습니다.&#10;&#10;오른쪽 창에 아이템을 선택하고 왼쪽에 장착할 칸을 클릭하여 장착합니다." display-tooltip-when-elided="true" class="text" style="font-size: 40px; -unity-text-align: middle-center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Attack_2" style="justify-content: center; align-items: center; width: 100%; height: 100%; position: absolute; translate: 200% 0;">
+                        <ui:VisualElement name="title" style="flex-basis: 20%; flex-direction: row; border-bottom-color: rgb(255, 255, 255); border-bottom-width: 4px; width: 100%;">
+                            <ui:VisualElement name="icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-875096578&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_4&apos;); height: 100%; -unity-background-scale-mode: scale-to-fit; flex-basis: 10%;" />
+                            <ui:VisualElement style="flex-basis: 80%; justify-content: center; align-items: center; font-size: 50px; -unity-text-align: middle-center;">
+                                <ui:Label text="무기와 공격의 이해" display-tooltip-when-elided="true" class="text" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="explanation" style="flex-basis: 80%; width: 100%; justify-content: center;">
+                            <ui:Label text="무기는 [직검] [대검] [쌍검] [창] [활]클래스를 가지고 있습니다.&#10;&#10;각 클래스마다 공격방식이 다르며 이동과 마우스 클릭을 통해 공격합니다." display-tooltip-when-elided="true" class="text" style="font-size: 40px; -unity-text-align: middle-center;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
