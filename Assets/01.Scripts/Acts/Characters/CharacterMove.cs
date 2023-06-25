@@ -219,7 +219,7 @@ namespace Acts.Characters
             var block = map.GetBlock(nextPos.SetY(0));
             if(block.CheckActorOnBlock(ThisActor) == false) return;
             _character.AddState(Actors.Characters.CharacterState.Move);
-
+            _character.isFloating = true;
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
             var seq = DOTween.Sequence();
             block.isWalkable = false;
@@ -229,6 +229,7 @@ namespace Acts.Characters
                 map.GetBlock(nextPos.SetY(0)).SetActorOnBlock(ThisActor);
                 MoveStop();
                 block.isWalkable = true;
+                _character.isFloating = false;
                 isChasing = false;
                 seq.Kill();
             });
@@ -262,6 +263,7 @@ namespace Acts.Characters
                 return;
             }
 
+            _character.isFloating = true;
             var block = map.GetBlock(nextPos.SetY(0));
             if(block.CheckActorOnBlock(ThisActor) == false) return;
             _character.AddState(Actors.Characters.CharacterState.Move);
@@ -278,6 +280,7 @@ namespace Acts.Characters
                 map.GetBlock(nextPos.SetY(0)).SetActorOnBlock(ThisActor);
                 MoveStop();
                 block.isWalkable = true;
+                _character.isFloating = false;
                 isChasing = false;
                 seq.Kill();
             });
