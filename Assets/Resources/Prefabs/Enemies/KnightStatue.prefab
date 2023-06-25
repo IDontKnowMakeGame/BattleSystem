@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4518107190019431484}
   - component: {fileID: 4518107190019431485}
   - component: {fileID: 4518107190019431481}
+  - component: {fileID: 530869540}
   - component: {fileID: 4518107190019431480}
   - component: {fileID: 4518107190019431487}
   - component: {fileID: 4518107190019431486}
@@ -87,6 +88,7 @@ MonoBehaviour:
       ats: 0
       afs: 0
       speed: 0
+    life: 5
     _feahter: 0
     info:
       _id: 0
@@ -112,6 +114,9 @@ MonoBehaviour:
   OnDie:
     m_PersistentCalls:
       m_Calls: []
+  OnRevive:
+    m_PersistentCalls:
+      m_Calls: []
   particle:
     landingParticle: {fileID: 1823908088734513992, guid: 9a6e4d67890b9264886458a44affd224, type: 3}
     secondPhaseParticle: {fileID: 0}
@@ -132,6 +137,7 @@ MonoBehaviour:
   _conditions:
   - rid: 9217235025722867716
   - rid: 9217235071720751104
+  - rid: 9217235143812186113
   references:
     version: 2
     RefIds:
@@ -153,6 +159,41 @@ MonoBehaviour:
         targetActor: {fileID: 0}
         IsPlayer: 1
         Area: 7
+    - rid: 9217235143812186113
+      type: {class: StateCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 12
+        IsNegative: 1
+        IsNeeded: 1
+        _thisActor: {fileID: 4518107190019431485}
+        State: 1024
+--- !u!114 &530869540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4518107190019431475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c99c7c212654c5bb59e9b251e4c5d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: Idle
+  To: Wait
+  _conditions:
+  - rid: 9217235143812186112
+  references:
+    version: 2
+    RefIds:
+    - rid: 9217235143812186112
+      type: {class: StateCondition, ns: AI.Conditions, asm: Assembly-CSharp}
+      data:
+        Type: 12
+        IsNegative: 0
+        IsNeeded: 1
+        _thisActor: {fileID: 4518107190019431485}
+        State: 1024
 --- !u!114 &4518107190019431480
 MonoBehaviour:
   m_ObjectHideFlags: 0
