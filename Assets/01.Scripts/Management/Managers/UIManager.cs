@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
     public UIDeathPanel DeathPanel = new UIDeathPanel();
     public UIQuit Quit = new UIQuit();
     public UISettingPanel SettingPanel = new UISettingPanel();
+    public UIExplanation Explanation = new UIExplanation();
 
     public MapNameData MapNameData;
 
@@ -111,6 +112,7 @@ public class UIManager : MonoBehaviour
         DeathPanel.Init();
         Quit.Init();
         SettingPanel.Init();
+        Explanation.Init();
     }
 
 
@@ -128,13 +130,11 @@ public class UIManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            Smithy.Show();
+
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            Define.GetManager<DataManager>().AddItemInInventory(ItemID.Pick, 3);
-            Define.GetManager<DataManager>().AddItemInInventory(ItemID.Torch, 2);
-            Define.GetManager<DataManager>().AddItemInInventory(ItemID.Shield, 2);
+            Explanation.Show();
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -156,7 +156,7 @@ public class UIManager : MonoBehaviour
 
         MoveAndInputPlay();
         UIBase ui = OpenPanels.Pop();
-        if(ui is UIMenu || ui is UIStatus || ui is UIQuit)
+        if(ui is UIMenu || ui is UIStatus || ui is UIQuit || ui is UIExplanation)
         {
             ui.Hide();
             return;
@@ -198,6 +198,7 @@ public class UIManager : MonoBehaviour
     public void ShowItemPanel()
     {
         InGame.ItemPanel();
+        Explanation.Show(ItemID.HPPotion);
     }
     
 }

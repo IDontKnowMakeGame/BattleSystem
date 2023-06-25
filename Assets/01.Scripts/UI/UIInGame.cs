@@ -154,7 +154,7 @@ public class UIInGame : UIBase
         {
             _firstWaepon.style.visibility = Visibility.Hidden;
             _secondWeapon.style.visibility = Visibility.Hidden;
-            //_itemList.style.visibility = Visibility.Hidden;
+            _itemList.style.visibility = Visibility.Hidden;
         }
     }
     public void ItemPanel()
