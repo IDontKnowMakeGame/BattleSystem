@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Resources/UIDoc/USS/Explanation.uss?fileID=7433441132597879392&amp;guid=b59c082e9173a354c94b3270c0a1334b&amp;type=3#Explanation" />
-    <ui:VisualElement name="background" class="background-on background-off" style="width: 100%; height: 100%; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.78); transition-property: opacity; transition-duration: 0.4s; transition-timing-function: ease-in;">
+    <ui:VisualElement name="background" class="background-on" style="width: 100%; height: 100%; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.78); transition-property: opacity; transition-duration: 0.4s; transition-timing-function: ease-in;">
         <ui:VisualElement style="width: 60%; height: 65%;">
             <ui:VisualElement name="explanation-panel" style="flex-basis: 100%; justify-content: center; align-items: center; overflow: hidden;">
                 <ui:VisualElement name="void-panel" style="width: 100%; height: 100%; justify-content: center; align-items: center; translate: -400% 0;">
@@ -65,7 +65,7 @@
                         <ui:VisualElement name="title" style="flex-basis: 20%; flex-direction: row; border-bottom-color: rgb(255, 255, 255); border-bottom-width: 4px; width: 100%;">
                             <ui:VisualElement name="icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-875096578&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_4&apos;); height: 100%; -unity-background-scale-mode: scale-to-fit; flex-basis: 10%;" />
                             <ui:VisualElement style="flex-basis: 80%; justify-content: center; align-items: center; font-size: 50px; -unity-text-align: middle-center;">
-                                <ui:Label text="무기와 공격의 이해" display-tooltip-when-elided="true" class="text" />
+                                <ui:Label text="클래스 : 쌍검" display-tooltip-when-elided="true" class="text" />
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="explanation" style="flex-basis: 80%; width: 100%; justify-content: center;">
@@ -76,7 +76,7 @@
                         <ui:VisualElement name="title" style="flex-basis: 20%; flex-direction: row; border-bottom-color: rgb(255, 255, 255); border-bottom-width: 4px; width: 100%;">
                             <ui:VisualElement name="icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-875096578&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_4&apos;); height: 100%; -unity-background-scale-mode: scale-to-fit; flex-basis: 10%;" />
                             <ui:VisualElement style="flex-basis: 80%; justify-content: center; align-items: center; font-size: 50px; -unity-text-align: middle-center;">
-                                <ui:Label text="무기와 공격의 이해" display-tooltip-when-elided="true" class="text" />
+                                <ui:Label text="클래스 : 창" display-tooltip-when-elided="true" class="text" />
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="explanation" style="flex-basis: 80%; width: 100%; justify-content: center;">
@@ -87,7 +87,7 @@
                         <ui:VisualElement name="title" style="flex-basis: 20%; flex-direction: row; border-bottom-color: rgb(255, 255, 255); border-bottom-width: 4px; width: 100%;">
                             <ui:VisualElement name="icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/UI_Icon.png?fileID=-875096578&amp;guid=a1cbd5f1f818af548831518a40057cbf&amp;type=3#UI_Icon_4&apos;); height: 100%; -unity-background-scale-mode: scale-to-fit; flex-basis: 10%;" />
                             <ui:VisualElement style="flex-basis: 80%; justify-content: center; align-items: center; font-size: 50px; -unity-text-align: middle-center;">
-                                <ui:Label text="무기와 공격의 이해" display-tooltip-when-elided="true" class="text" />
+                                <ui:Label text="클래스 : 활" display-tooltip-when-elided="true" class="text" />
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="explanation" style="flex-basis: 80%; width: 100%; justify-content: center;">
@@ -97,5 +97,6 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:Label text="ESC를 눌러 창을 닫습니다." display-tooltip-when-elided="true" class="text" style="position: absolute; bottom: 0; right: 0; font-size: 30px; margin-bottom: 10px; margin-right: 10px;" />
     </ui:VisualElement>
 </ui:UXML>

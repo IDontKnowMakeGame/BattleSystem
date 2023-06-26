@@ -77,7 +77,12 @@ namespace Acts.Characters.Enemy
             if (life > 0)
             {
 				ChangeStat.hp = ChangeStat.maxHP;
-	            return;
+                if (ThisActor is BossActor)
+                {
+                    var eActor = ThisActor as BossActor;
+                    if (eActor != null) eActor.OnRevive?.Invoke();
+                }
+                return;
             }
             InGame.GetBlock(ThisActor.Position).RemoveActorOnBlock();
 			_actor.IsUpdatingPosition = false;
