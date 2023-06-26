@@ -74,7 +74,7 @@ namespace Acts.Characters.Enemy
 
             UnitAnimation unit = ThisActor.GetAct<UnitAnimation>();
 
-            _actor.AddState(CharacterState.Die);
+            _actor.SetState(CharacterState.Die);
 			ThisActor.GetAct<EnemyAI>()?.ResetAllConditions();
             life--;
             if (life > 0)

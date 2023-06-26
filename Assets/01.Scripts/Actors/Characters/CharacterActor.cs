@@ -74,6 +74,11 @@ namespace Actors.Characters
 		{
 			_characterState |= state;
 		}
+		
+		public void SetState(CharacterState state)
+		{
+			_characterState = state;
+		}
 
 		public void RemoveState(CharacterState state)
 		{
