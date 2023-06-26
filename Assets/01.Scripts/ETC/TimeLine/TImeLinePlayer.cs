@@ -15,6 +15,7 @@ public class TImeLinePlayer : MonoBehaviour
     private bool _isPlaying;
 
     private int tutorialPhase = 0;
+    private int pageNum = 0;
 
     [SerializeField] 
     private List<PlayableAsset> _timelines = new List<PlayableAsset>();
@@ -67,7 +68,7 @@ public class TImeLinePlayer : MonoBehaviour
 	}
     public void TutorialPhase(int num)
     {
-
+        pageNum = num;
         UIManager.Instance.MoveAndInputStop();
         switch(num)
         {
@@ -84,17 +85,15 @@ public class TImeLinePlayer : MonoBehaviour
                 DataManager.UserData_.firstWeapon = Data.ItemID.OldBow;
                 break;
         }
-        
-
-        StartCoroutine(ExplanationPhase(num));
     }
-    private IEnumerator ExplanationPhase(int num)
+    public void ChangeWeapon()
     {
-        yield return new WaitForSeconds(1f);
         Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponEquip, new EventParam());
-        yield return new WaitForSeconds(1.5f);
-        UIManager.Instance.Explanation.Show(num);
-        Define.GetManager<EventManager>().TriggerEvent(EventFlag.TutorialBossRevive,new EventParam());
+    }
+    public void ShowExplanation()
+    {
+        UIManager.Instance.Explanation.Show(pageNum);
+        Define.GetManager<EventManager>().TriggerEvent(EventFlag.TutorialBossRevive, new EventParam());
     }
     public void TutorialLine()
     {
