@@ -533,7 +533,7 @@ PlayableDirector:
   m_GameObject: {fileID: 3577013144753390074}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 012f19aadb8b67b4691d610824b27167, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 68e1c7c708265584a8366c9b918b2620, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -567,6 +567,22 @@ PlayableDirector:
     value: {fileID: 3577013144753390064}
   - key: {fileID: -9061251247608562118, guid: 012f19aadb8b67b4691d610824b27167, type: 2}
     value: {fileID: 0}
+  - key: {fileID: -4378049050366530579, guid: 4111ee87b7413ad4b97e053ee2a3fea7, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: 595972745439020496, guid: 4111ee87b7413ad4b97e053ee2a3fea7, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: -4378049050366530579, guid: 79754c354f69664489c3c8c564f04333, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: 595972745439020496, guid: 79754c354f69664489c3c8c564f04333, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: -4378049050366530579, guid: 796613dc0bbf1e74396f9844af40e2f8, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: 595972745439020496, guid: 796613dc0bbf1e74396f9844af40e2f8, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: -4378049050366530579, guid: 68e1c7c708265584a8366c9b918b2620, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: 595972745439020496, guid: 68e1c7c708265584a8366c9b918b2620, type: 2}
+    value: {fileID: 3577013144753390064}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &3577013144753390078
@@ -594,6 +610,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8cb3529185826a64e946e96fbc3a8c3f, type: 2}
   - {fileID: 11400000, guid: 3c91ddeae127b8b41b8904984ebe633c, type: 2}
   - {fileID: 11400000, guid: 13857943ba8214b4b81bf3813106aaec, type: 2}
+  - {fileID: 11400000, guid: 4111ee87b7413ad4b97e053ee2a3fea7, type: 2}
+  - {fileID: 11400000, guid: 796613dc0bbf1e74396f9844af40e2f8, type: 2}
+  - {fileID: 11400000, guid: 79754c354f69664489c3c8c564f04333, type: 2}
+  - {fileID: 11400000, guid: 68e1c7c708265584a8366c9b918b2620, type: 2}
 --- !u!114 &3577013144753390064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -628,6 +648,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: a4c594067fa24824aaefca6aa731b816, type: 2}
     - {fileID: 11400000, guid: 2050e6c771e264944b8f2ad949e60852, type: 2}
     - {fileID: 11400000, guid: 06e72de9d83b3ff4393dc9fb6e1fa2e4, type: 2}
+    - {fileID: 11400000, guid: 7f493e7a613550248a0be6c411e091f2, type: 2}
+    - {fileID: 11400000, guid: 316942b42dfbac84eb7bcaa2a6365d27, type: 2}
+    - {fileID: 11400000, guid: 4db24417102449c45856fb947a8e4f27, type: 2}
+    - {fileID: 11400000, guid: 0560f13e04a17534590892d01ab6fdbc, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -965,6 +989,62 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3577013144753390078}
+          m_TargetAssemblyTypeName: TImeLinePlayer, Assembly-CSharp
+          m_MethodName: TutorialPhase
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 4
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3577013144753390078}
+          m_TargetAssemblyTypeName: TImeLinePlayer, Assembly-CSharp
+          m_MethodName: TutorialPhase
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 5
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3577013144753390078}
+          m_TargetAssemblyTypeName: TImeLinePlayer, Assembly-CSharp
+          m_MethodName: TutorialPhase
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 6
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3577013144753390078}
+          m_TargetAssemblyTypeName: TImeLinePlayer, Assembly-CSharp
+          m_MethodName: TutorialPhase
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 7
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
