@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 484606}
   - component: {fileID: 3378178}
   - component: {fileID: 2320666}
-  - component: {fileID: 6414090}
   - component: {fileID: 5030175931980197197}
+  - component: {fileID: 4910462474882928277}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Enemy
@@ -85,20 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6414090
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 186954}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: b3cc05387ce31f24eb66bda23e007c99, type: 3}
 --- !u!114 &5030175931980197197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +134,10 @@ MonoBehaviour:
       afs: 0
       speed: 0
     _feahter: 0
+    info:
+      _id: 0
+      _count: 0
+      _isWeapon: 0
     isBoss: 0
   _enemyAnimation:
     curClip:
@@ -165,6 +155,9 @@ MonoBehaviour:
   alive: 0
   spriteSize: 1
   currentType: 0
+  OnDie:
+    m_PersistentCalls:
+      m_Calls: []
   _brokenStat:
     _basicStat:
       maxHP: 100
@@ -181,3 +174,16 @@ MonoBehaviour:
       afs: 0
       speed: 0
     _brokenObject: {fileID: 937534623520568080, guid: 34ee7571c1b0fd0479270bbcada7cf2d, type: 3}
+--- !u!65 &4910462474882928277
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186954}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.7909775, y: 3.3079445, z: 1.5}
+  m_Center: {x: -0.105025046, y: 1.6500863, z: -0.0464277}

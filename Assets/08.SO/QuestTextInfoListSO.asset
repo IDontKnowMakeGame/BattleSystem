@@ -24,14 +24,14 @@ MonoBehaviour:
     description: "2\uCE35\uC73C\uB85C \uAC00\uB294 \uAE38\uBAA9\uC744 \uB9C9\uACE0
       \uC788\uB294 \uBBF8\uCCD0\uBC84\uB9B0 \uC545\uB839\uC744 \uCC98\uCE58"
   - QuestName: 3
-    name: 
+    name: "S10 \uB4E4\uC5B4\uAC00\uAE30"
     description: 
   - QuestName: 4
-    name: 
+    name: "10\uBA85 \uC8FD\uC5EC"
     description: 
   - QuestName: 5
-    name: 
+    name: "Fallen Angle \uC62E\uAE30\uC148"
     description: 
   - QuestName: 6
-    name: 
+    name: "Fallen Angle \uC5BB\uC5B4"
     description: 
