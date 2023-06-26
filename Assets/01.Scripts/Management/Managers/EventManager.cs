@@ -35,6 +35,7 @@ public enum EventFlag
 	PlayScreenEffect,
 	StopScreenEffect,
 	TraillOnOff,
+	TutorialBossRevive,
 
 	// Halo
 	PollutionHalo,

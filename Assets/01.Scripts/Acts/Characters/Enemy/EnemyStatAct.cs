@@ -12,6 +12,8 @@ using DG.Tweening;
 using Random = UnityEngine.Random;
 using Data;
 using Actors.Characters.Player;
+using TMPro;
+using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace Acts.Characters.Enemy
@@ -19,6 +21,7 @@ namespace Acts.Characters.Enemy
     [Serializable]
     public class EnemyStatAct : CharacterStatAct
     {
+	    [SerializeField] private int life = 1;
         [SerializeField]
         private int _feahter;
         [SerializeField]
@@ -69,7 +72,18 @@ namespace Acts.Characters.Enemy
             if (!ThisActor.gameObject.activeSelf)
                 return;
 
-            _actor.AddState(CharacterState.Die); 
+            _actor.AddState(CharacterState.Die);
+            life--;
+            if (life > 0)
+            {
+				ChangeStat.hp = ChangeStat.maxHP;
+                if (ThisActor is BossActor)
+                {
+                    var eActor = ThisActor as BossActor;
+                    if (eActor != null) eActor.OnRevive?.Invoke();
+                }
+                return;
+            }
             InGame.GetBlock(ThisActor.Position).RemoveActorOnBlock();
 			_actor.IsUpdatingPosition = false;
             

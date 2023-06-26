@@ -200,5 +200,9 @@ public class UIManager : MonoBehaviour
         InGame.ItemPanel();
         Explanation.Show(ItemID.HPPotion);
     }
+    public void ShowExplanationUI(int pageNum)
+    {
+        Explanation.Show(pageNum);
+    }
     
 }

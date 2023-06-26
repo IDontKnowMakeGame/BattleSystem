@@ -9,6 +9,7 @@ public class UIBossBar : UIBase
 {
     private VisualElement _bossIcon;
     private VisualElement _bossBar;
+    private VisualElement _bossBarBack;
     private Label _bossName;
 
     public override void Init()
@@ -17,6 +18,7 @@ public class UIBossBar : UIBase
 
         _bossIcon = _root.Q<VisualElement>("BossIcon");
         _bossBar = _root.Q<VisualElement>("BossBar");
+        _bossBarBack = _root.Q<VisualElement>("FillBack");
         _bossName = _root.Q<Label>("BossName");
     }
 
@@ -37,7 +39,9 @@ public class UIBossBar : UIBase
     public void ChangeBossBarValue(int value)
     {
         VisualElement fill = _bossBar.Q<VisualElement>("Fill");
+        Length length = new Length(value, LengthUnit.Percent);
 
-        fill.style.width = new Length(value, LengthUnit.Percent);
+        fill.style.width = length;
+        _bossBarBack.style.width = length;
     }
 }
