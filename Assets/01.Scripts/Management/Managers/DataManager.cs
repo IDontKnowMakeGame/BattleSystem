@@ -520,8 +520,9 @@ public class DataManager : Manager
             UIManager.Instance.InGame.AddShowItemPanel(id, count);
             UIManager.Instance.InGame.ChangeItemPanelImage();
         }
-            
 
+        Debug.Log(":Ã¼Å©Áß..");
+        QuestManager.Instance.CheckHaveItemMission(id);
         SaveToInventoryData();
     }
     public SaveItemData LoadItemFromInventory(ItemID id)
