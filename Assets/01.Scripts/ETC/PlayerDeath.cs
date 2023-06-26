@@ -12,6 +12,7 @@ namespace ETC
     public class PlayerDeath : MonoBehaviour
     {
         public Volume volume;
+        public string sceneName;
         private Vignette vignette;
 
         private static PlayerDeath instance;
@@ -33,7 +34,7 @@ namespace ETC
             seq.AppendCallback(() =>
             {
                 UIManager.Instance.DeathPanel.Show();
-                LoadingSceneController.Instnace.StartCoroutine(LoadingSceneController.Instnace.LoadScene("Lobby", 4f));
+                LoadingSceneController.Instnace.StartCoroutine(LoadingSceneController.Instnace.LoadScene(sceneName, 4f));
                 DOTween.CompleteAll();
                 DOTween.KillAll();
                 DOTween.Kill(seq);

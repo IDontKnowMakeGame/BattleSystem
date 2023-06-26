@@ -38,7 +38,7 @@ namespace Acts.Characters.Enemy
         public override void Damage(float damage, Actor actor)
         {
 	        if (ChangeStat.hp <= 0) return;
-
+	        
             attackActor = actor;
             base.Damage(damage, actor);
             if (actor is EmptyBlock)
@@ -72,7 +72,10 @@ namespace Acts.Characters.Enemy
             if (!ThisActor.gameObject.activeSelf)
                 return;
 
+            UnitAnimation unit = ThisActor.GetAct<UnitAnimation>();
+
             _actor.AddState(CharacterState.Die);
+			ThisActor.GetAct<EnemyAI>()?.ResetAllConditions();
             life--;
             if (life > 0)
             {
@@ -82,12 +85,12 @@ namespace Acts.Characters.Enemy
                     var eActor = ThisActor as BossActor;
                     if (eActor != null) eActor.OnRevive?.Invoke();
                 }
+                unit.Play("Idle");
                 return;
             }
             InGame.GetBlock(ThisActor.Position).RemoveActorOnBlock();
 			_actor.IsUpdatingPosition = false;
             
-			ThisActor.GetAct<EnemyAI>()?.ResetAllConditions();
             ThisActor.gameObject.tag = "Untagged";
 
             if (attackActor != null)
@@ -99,7 +102,6 @@ namespace Acts.Characters.Enemy
 
             if(isBoss)
             {
-				UnitAnimation unit = ThisActor.GetAct<UnitAnimation>();
 				ClipBase clip = unit.GetClip("Die");
 				clip?.SetEventOnFrame(clip.fps - 1, ObjectCreate);
 				unit?.Play("Die");
@@ -120,7 +122,6 @@ namespace Acts.Characters.Enemy
 
             if (!isBoss)
             {
-	            UnitAnimation unit = ThisActor.GetAct<UnitAnimation>();
 	            CharacterRender render = ThisActor.GetAct<CharacterRender>();
 	            var mat = render.Renderer.material;
 	            ClipBase clip = unit.GetClip("Die");

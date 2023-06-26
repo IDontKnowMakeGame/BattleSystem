@@ -118,7 +118,7 @@ public class PlayerStatAct : CharacterStatAct
 
 		var dieClip = _playerAnimation.GetClip("Die");
 		dieClip.SetEventOnFrame(dieClip.fps - 2, () =>
-			PlayerDeath.Instance.FocusCenter());
+		PlayerDeath.Instance.FocusCenter());
 		dieClip.SetEventOnFrame(dieClip.fps - 1, base.Die);
 
 
