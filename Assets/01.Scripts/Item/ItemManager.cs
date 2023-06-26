@@ -40,7 +40,7 @@ public class ItemManager : Manager
 		{
 			case 0:
 				Weapon weapon = CreateEnumToClass<Weapon>(itemId, id);
-				Debug.Log(weapon);
+				//Debug.Log(weapon);
 				weapon.Init();
 				weapons.Add(itemId, weapon);
 				break;
