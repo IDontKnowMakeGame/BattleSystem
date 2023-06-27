@@ -7,6 +7,7 @@ using System.Resources;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+
 public class UIInventory : UIBase
 {
     private bool isOpen;
@@ -24,6 +25,8 @@ public class UIInventory : UIBase
     private VisualElement _haloPanel;
     private VisualElement _useableItemPanel;
     private VisualElement _questItemPanel;
+
+    private VisualElement _questionMark;
 
     #region WaeponPanel
     private VisualElement _weaponChacraterViewImage;
@@ -88,7 +91,8 @@ public class UIInventory : UIBase
     private VisualTreeAsset _questItemCardTemp;
     #endregion
 
-    
+    private int currentPage = 0;
+
     private bool isSelectEquipBox = false;
     private bool isSelectCard = false;
     private ItemID currentItemId = ItemID.None;
@@ -217,6 +221,12 @@ public class UIInventory : UIBase
         _questItemInfoNameLabel = _questItemPanel.Q<Label>("QuestItemName");
         _questItemInfoTextLabel = _questItemPanel.Q<Label>("QuestItemTextInfo");
 
+        _questionMark = _root.Q<VisualElement>("question-mark");
+        _questionMark.RegisterCallback<ClickEvent>(e =>
+        {
+            UIManager.Instance.Tutorial.Show(currentPage);
+        });
+
         UseableEquipBoxSetting();
         CreateCardList(_weaponScrollPanel, _weaponCardTemp, Define.GetManager<DataManager>().LoadWeaponDataFromInventory(), SelectCard);
         CreateCardList(_useableItemScrollPanel, _useableItemCardTemp, Define.GetManager<DataManager>().LoadUsableItemFromInventory(), SelectCard);
@@ -244,6 +254,7 @@ public class UIInventory : UIBase
         CreateCardList(_useableItemScrollPanel, _useableItemCardTemp, Define.GetManager<DataManager>().LoadUsableItemFromInventory(), SelectCard);
         CreateCardList(_questItemScrollPanel, _questItemCardTemp, Define.GetManager<DataManager>().LoadQuestFromInventory(), SelectCard);
 
+        ChangeShowInventoryPanel(0);
         UIManager.OpenPanels.Push(this);
     }
     public override void Hide()
@@ -274,10 +285,6 @@ public class UIInventory : UIBase
         card.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)list[i-1]}"));
 
     }
-    public void UpdateWeaponIcon()
-    { 
-
-    }
     public void SelectItemBtn(int pageNum,VisualElement chageBox)
     {
         _selectBtnBox.style.height = new Length(80, LengthUnit.Percent);
@@ -292,7 +299,51 @@ public class UIInventory : UIBase
     }
     public void ChangeShowInventoryPanel(int pageNum)
     {
+        ShowTutorialInInventory(pageNum);
+        currentPage = pageNum;
         _itemPanel.style.translate = new StyleTranslate(new Translate(new Length(-100 * pageNum, LengthUnit.Percent), new Length(0, LengthUnit.Pixel)));
+    }
+    public void ShowTutorialInInventory(int  pageNum)
+    {
+        bool value = false;
+        switch (pageNum)
+        {
+            case 0:
+                value = UIManager.TutorialData_.weapon;
+                break;
+            case 1:
+                value = UIManager.TutorialData_.halo;
+                break;
+            case 2:
+                value = UIManager.TutorialData_.useable;
+                break;
+            case 3:
+                value = UIManager.TutorialData_.quest;
+                break;
+        }
+
+        if (value == false)
+            UIManager.Instance.Tutorial.Show(pageNum);
+        else
+            return;
+
+        switch (pageNum)
+        {
+            case 0:
+                UIManager.TutorialData_.weapon = true;
+                break;
+            case 1:
+                UIManager.TutorialData_.halo = true;
+                break;
+            case 2:
+                UIManager.TutorialData_.useable = true;
+                break;
+            case 3:
+                UIManager.TutorialData_.quest = true;
+                break;
+        }
+
+        UIManager.Instance.SaveToTutorialData();
     }
 public void CreateCardList(VisualElement parent, VisualTreeAsset temp ,List<SaveItemData> list,Action<VisualElement,ItemID> action)
     {

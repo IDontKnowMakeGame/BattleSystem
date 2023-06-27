@@ -2,10 +2,19 @@ using Core;
 using Data;
 using System.Collections;
 using System.Collections.Generic;
+using Tool.Data.Json;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+public class TutorialData
+{
+    public bool weapon = false;
+    public bool halo = false;
+    public bool useable = false;
+    public bool quest = false;
+    public bool slider = false;
+}
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
@@ -69,6 +78,8 @@ public class UIManager : MonoBehaviour
         { 11,35000},
         { 12,45000},
     };
+
+    public static TutorialData TutorialData_ = new TutorialData();
     #region Escape
     public static Stack<UIBase> OpenPanels = new Stack<UIBase>();
     #endregion
@@ -83,6 +94,8 @@ public class UIManager : MonoBehaviour
         Instance = this;
 
         _document = GetComponent<UIDocument>();
+
+        TutorialData_ = JsonManager.LoadJsonFile<TutorialData>(Application.streamingAssetsPath + "/SAVE/User", "TutorialData");
 
         Init();
     }
@@ -147,6 +160,13 @@ public class UIManager : MonoBehaviour
             Dialog.NextMessage();
         }
     }
+    public void SaveToTutorialData()
+    {
+        string json = JsonManager.ObjectToJson(TutorialData_);
+        JsonManager.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/User", "TutorialData", json);
+    }
+
+
     public void Escape()
     {
         if (PadeInOut.isPaded) return;

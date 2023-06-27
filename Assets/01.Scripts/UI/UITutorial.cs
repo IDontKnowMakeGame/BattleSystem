@@ -23,13 +23,15 @@ public class UITutorial : UIBase
             
         });
 
+        Debug.Log($"UITutorial name {_root.name}");
+
         Hide();
     }
     public void Show(int page)
     {
         currentPage = page;
         currentPageIndex = 0;
-        //PagePosition(currentPageIndex, currentPage);
+        PagePosition(currentPageIndex, currentPage);
         Show();
     }
     public override void Show()
@@ -44,9 +46,10 @@ public class UITutorial : UIBase
 
     public void NextBtn()
     {
-        if (_backGround[currentPage][currentPageIndex] == null)
+        if (_backGround[currentPage].childCount <= currentPageIndex+1)
         {
             Hide();
+
         }
 
         currentPageIndex++;
@@ -55,6 +58,8 @@ public class UITutorial : UIBase
 
     public void PagePosition(int x,int y)
     {
-        _backGround.style.translate = new StyleTranslate(new Translate(-x * 100, -y * 100));
+        Length xPos = new Length(-x * 100, LengthUnit.Percent);
+        Length yPos = new Length(-y * 100, LengthUnit.Percent);
+        _backGround.style.translate = new StyleTranslate(new Translate(xPos, yPos));
     }
 }
