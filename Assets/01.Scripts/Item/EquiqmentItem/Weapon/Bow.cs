@@ -116,8 +116,7 @@ public class Bow : Weapon
 
 		InputManager<Bow>.OnClickPress += Shoot;
 
-		if (_playerAnimation.GetClip("HorizontalPull") == null)
-			Debug.Log("빽!!");
+		Debug.Log(_playerAnimation.curWeaponClips.name + "입니다.");
 
 		_unitAnimation.GetClip("HorizontalPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
 		_unitAnimation.GetClip("UpperPull")?.SetEventOnFrame(0, () => _characterActor.AddState(CharacterState.StopMove));
@@ -130,7 +129,7 @@ public class Bow : Weapon
 		SetAnimation();
 	}
 
-	private void SetAnimation()
+	public void SetAnimation()
 	{
 		string str = isShoot ? "None" : "Use";
 		_unitAnimation.GetClip("Idle")?.ChangeClip(_unitAnimation.GetClip(str + "Idle"));

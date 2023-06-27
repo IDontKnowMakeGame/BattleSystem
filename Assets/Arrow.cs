@@ -191,6 +191,7 @@ public class Arrow : MonoBehaviour
 		_canPull = false;
 		Bow bow = _shootActor.GetAct<PlayerEquipment>().CurrentWeapon as Bow;
 		bow.isShoot = false;
+		bow.SetAnimation();
 
 		_stickActor?.GetAct<CharacterStatAct>().Damage(_damage / 2, _shootActor);
 
