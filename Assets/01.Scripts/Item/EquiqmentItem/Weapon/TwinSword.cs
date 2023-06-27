@@ -104,5 +104,7 @@ public class TwinSword : Weapon
 		}
 		_eventParam.attackParam = _attackInfo;
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.FureAttack, _eventParam);
+
+		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/TwinSword/TwinMove", this._characterActor.transform.position);
 	}
 }

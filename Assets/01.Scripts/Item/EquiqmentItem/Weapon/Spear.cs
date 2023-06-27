@@ -12,7 +12,7 @@ using Tools;
 
 public class Spear : Weapon
 {
-	private bool _isEnterEnemy = true;
+	private bool _isEnterEnemy = false;
 	private bool _isDown = false;
 	private bool _isCurrentVec = false;
 	private bool _isClick = false;
@@ -106,6 +106,8 @@ public class Spear : Weapon
 
 	public override void Update()
 	{
+		_currentVec = InGame.CamDirCheck(_originVec);
+
 		if (!_isDown)
 			return;
 
@@ -124,8 +126,6 @@ public class Spear : Weapon
 		}
 		else if (!_isEnterEnemy && !isEnemy)
 			_isEnterEnemy = true;
-
-
 	}
 
 	public virtual void Attack(Vector3 vec)

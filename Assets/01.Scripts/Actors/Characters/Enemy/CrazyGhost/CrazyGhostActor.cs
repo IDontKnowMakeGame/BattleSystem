@@ -57,8 +57,9 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 {
                     attack.HorizontalAttack(dir, false);
                     attack.SliceEffect(dir);
-                });
-            }, 30f));
+					Define.GetManager<SoundManager>().PlayAtPoint("Boss/Slash", this.transform.position);
+				});
+			}, 30f));
             pattern.RandomActions.Add(new NextAction(() =>
             {
                 AddState(CharacterState.Attack);
@@ -73,7 +74,8 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 {
                     move.Jump(Position, dir, 6, 0f);
                     attack.VerticalAttack(dir, false);
-                });
+					Define.GetManager<SoundManager>().PlayAtPoint("Boss/Pierce", this.transform.position);
+				});
             }, 70f));
             jump.OnEnter = () =>
             {
@@ -105,17 +107,20 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 {
                     attack.HorizontalAttack(dir, false);
                     attack.SliceEffect(dir);
-                }, () =>
+					Define.GetManager<SoundManager>().PlayAtPoint("Boss/ComboOne", this.transform.position);
+				}, () =>
                 {
                     AttackWithNoReturn(dir,"Combo2", () =>
                     {
                         attack.VerticalAttack(dir, false);
-                    }, () =>
+						Define.GetManager<SoundManager>().PlayAtPoint("Boss/Pierce", this.transform.position);
+					}, () =>
                     {
                         Attack(dir,"Combo3", () =>
                         {
                             attack.ForwardAttack(dir, false);
-                        });
+							Define.GetManager<SoundManager>().PlayAtPoint("Boss/ComboLast", this.transform.position,1.3f);
+						});
                     });
                 });
             };
