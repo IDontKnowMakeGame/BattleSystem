@@ -225,6 +225,11 @@ public class CharacterStatAct : Act
 	}
 	public virtual void Damage(float damage, Actor actor)
 	{
+		var character = ThisActor as CharacterActor;
+		if(character.isFloating)
+		{
+			return;
+		}
 		if (ChangeStat.hp <= 0) return;
 
 		if (actor is EmptyBlock && ChangeStat.hp > 0)

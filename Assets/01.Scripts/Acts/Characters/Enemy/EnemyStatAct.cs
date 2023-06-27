@@ -12,6 +12,8 @@ using DG.Tweening;
 using Random = UnityEngine.Random;
 using Data;
 using Actors.Characters.Player;
+using TMPro;
+using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace Acts.Characters.Enemy
@@ -19,6 +21,7 @@ namespace Acts.Characters.Enemy
     [Serializable]
     public class EnemyStatAct : CharacterStatAct
     {
+	    [SerializeField] private int life = 1;
         [SerializeField]
         private int _feahter;
         [SerializeField]
@@ -35,7 +38,7 @@ namespace Acts.Characters.Enemy
         public override void Damage(float damage, Actor actor)
         {
 	        if (ChangeStat.hp <= 0) return;
-
+	        
             attackActor = actor;
             base.Damage(damage, actor);
             if (actor is EmptyBlock)
@@ -69,11 +72,25 @@ namespace Acts.Characters.Enemy
             if (!ThisActor.gameObject.activeSelf)
                 return;
 
-            _actor.AddState(CharacterState.Die); 
+            UnitAnimation unit = ThisActor.GetAct<UnitAnimation>();
+
+            _actor.SetState(CharacterState.Die);
+			ThisActor.GetAct<EnemyAI>()?.ResetAllConditions();
+            life--;
+            if (life > 0)
+            {
+				ChangeStat.hp = ChangeStat.maxHP;
+                if (ThisActor is BossActor)
+                {
+                    var eActor = ThisActor as BossActor;
+                    if (eActor != null) eActor.OnRevive?.Invoke();
+                }
+                unit.Play("Idle");
+                return;
+            }
             InGame.GetBlock(ThisActor.Position).RemoveActorOnBlock();
 			_actor.IsUpdatingPosition = false;
             
-			ThisActor.GetAct<EnemyAI>()?.ResetAllConditions();
             ThisActor.gameObject.tag = "Untagged";
 
             if (attackActor != null)
@@ -85,7 +102,6 @@ namespace Acts.Characters.Enemy
 
             if(isBoss)
             {
-				UnitAnimation unit = ThisActor.GetAct<UnitAnimation>();
 				ClipBase clip = unit.GetClip("Die");
 				clip?.SetEventOnFrame(clip.fps - 1, ObjectCreate);
 				unit?.Play("Die");
@@ -106,7 +122,6 @@ namespace Acts.Characters.Enemy
 
             if (!isBoss)
             {
-	            UnitAnimation unit = ThisActor.GetAct<UnitAnimation>();
 	            CharacterRender render = ThisActor.GetAct<CharacterRender>();
 	            var mat = render.Renderer.material;
 	            ClipBase clip = unit.GetClip("Die");

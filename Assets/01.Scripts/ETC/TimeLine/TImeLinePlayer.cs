@@ -14,6 +14,9 @@ public class TImeLinePlayer : MonoBehaviour
 
     private bool _isPlaying;
 
+    private int tutorialPhase = 0;
+    private int pageNum = 0;
+
     [SerializeField] 
     private List<PlayableAsset> _timelines = new List<PlayableAsset>();
     private void Awake()
@@ -63,7 +66,63 @@ public class TImeLinePlayer : MonoBehaviour
     {
         _timer = timer;
 	}
-
+    public void TutorialPhase(int num)
+    {
+        pageNum = num;
+        UIManager.Instance.MoveAndInputStop();
+        switch(num)
+        {
+            case 4:
+                DataManager.UserData_.firstWeapon = Data.ItemID.OldGreatSword;
+                break;
+            case 5:
+                DataManager.UserData_.firstWeapon = Data.ItemID.OldTwinSword;
+                break;
+            case 6:
+                DataManager.UserData_.firstWeapon = Data.ItemID.OldSpear;
+                break;
+            case 7:
+                DataManager.UserData_.firstWeapon = Data.ItemID.OldBow;
+                break;
+        }
+    }
+    public void ChangeWeapon()
+    {
+        Define.GetManager<EventManager>().TriggerEvent(EventFlag.WeaponEquip, new EventParam());
+    }
+    public void ShowExplanation()
+    {
+        UIManager.Instance.Explanation.Show(pageNum);
+        Define.GetManager<EventManager>().TriggerEvent(EventFlag.TutorialBossRevive, new EventParam());
+    }
+    public void TutorialLine()
+    {
+        Debug.Log($"Phase : {tutorialPhase}");
+        switch (tutorialPhase)
+        {
+            case 0:
+                tutorialPhase++;
+                PlayTimeLine("TutorialGreatSword");
+                break;
+            case 1:
+                tutorialPhase++;
+                PlayTimeLine("TutorialTwinSword");
+                break;
+            case 2:
+                tutorialPhase++;
+                PlayTimeLine("TutorialSpear");
+                break;
+            case 3:
+                PlayTimeLine("TutorialBow");
+                break;
+        }
+    }
+    public void PlayTimeLine(string name)
+    {
+        _isPlaying = true;
+        ChangeTimeLine(TimeLineNumber(name));
+        _playable.Play();
+    }
     private void PlayTimeLine(EventParam eventParam)
     {
         if (_isPlaying) return;
@@ -71,6 +130,7 @@ public class TImeLinePlayer : MonoBehaviour
         ChangeTimeLine(TimeLineNumber(eventParam.stringParam));
         _playable.Play();
     }
+
 
     //±è´ëÇöÀÌ Â«
     private int TimeLineNumber(string lineName) => lineName switch
@@ -85,7 +145,11 @@ public class TImeLinePlayer : MonoBehaviour
 		"OldGreatSkill" => 7,
 		"Execute" => 8,
 		"KnightStatue" => 9,
-		_ => 0
+        "TutorialGreatSword" => 10,
+        "TutorialTwinSword" => 11,
+        "TutorialSpear" => 12,
+        "TutorialBow" => 13,
+        _ => 0
 	};
 
     private void ChangeTimeLine(int number)

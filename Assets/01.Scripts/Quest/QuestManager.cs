@@ -40,14 +40,6 @@ public class QuestManager : MonoBehaviour
         StartOpenQuestCheck();
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log(checkMonsterDic[EnemyType.OldShade].intList.Count);
-        }
-    }
-
     public void StartOpenQuestCheck()
     {
         List<QuestName> openQuestList = DataManager.PlayerOpenQuestData_.openQuestList;
@@ -130,6 +122,7 @@ public class QuestManager : MonoBehaviour
 
     private void AddRoomMission(QuestName currentQuest, string roomCode)
     {
+        if (!allRoomSODic.ContainsKey(roomCode)) return;
         QuestValue quest = allRoomSODic[roomCode];
         quest.myQuest = new List<QuestName> { currentQuest };
         allRoomSODic[roomCode] = quest;
@@ -204,6 +197,7 @@ public class QuestManager : MonoBehaviour
 
     public void CheckHaveItemMission(ItemID itemID)
     {
+        Debug.Log(itemID + ":체크중..");
         if(checkHaveItem.ContainsKey(itemID) && DataManager.HaveQuestItem(itemID))
         {
             QuestName myQuest = checkHaveItem[itemID].myQuest[0];

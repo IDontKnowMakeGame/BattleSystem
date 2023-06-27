@@ -7,6 +7,7 @@ using Core;
 using Data;
 using Managements.Managers;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Actors.Characters
 {
@@ -36,6 +37,7 @@ namespace Actors.Characters
 		public Action<int, Actor> OnKnockBack = null;
 		public bool canKnockBack = false;
 		public Weapon currentWeapon;
+		public bool isFloating = false;
 		protected override void Init()
 		{
 			base.Init();
@@ -71,6 +73,11 @@ namespace Actors.Characters
 		public void AddState(CharacterState state)
 		{
 			_characterState |= state;
+		}
+		
+		public void SetState(CharacterState state)
+		{
+			_characterState = state;
 		}
 
 		public void RemoveState(CharacterState state)
