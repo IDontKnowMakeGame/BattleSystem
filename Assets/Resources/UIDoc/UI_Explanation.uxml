@@ -1,9 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Resources/UIDoc/USS/Explanation.uss?fileID=7433441132597879392&amp;guid=b59c082e9173a354c94b3270c0a1334b&amp;type=3#Explanation" />
-    <ui:VisualElement name="background" class="background-on background-off" style="width: 100%; height: 100%; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.78); transition-property: opacity; transition-duration: 0.4s; transition-timing-function: ease-in;">
+    <ui:VisualElement name="background" class="background-on" style="width: 100%; height: 100%; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.78); transition-property: opacity; transition-duration: 0.4s; transition-timing-function: ease-in;">
         <ui:VisualElement style="width: 60%; height: 65%;">
             <ui:VisualElement name="explanation-panel" style="flex-basis: 100%; justify-content: center; align-items: center; overflow: hidden;">
-                <ui:VisualElement name="void-panel" style="width: 100%; height: 100%; justify-content: center; align-items: center; translate: -700% 0;">
+                <ui:VisualElement name="void-panel" style="width: 100%; height: 100%; justify-content: center; align-items: center; translate: -400% 0;">
                     <ui:VisualElement name="HPPotion_0" style="justify-content: center; align-items: center; width: 100%; height: 100%; position: absolute;">
                         <ui:VisualElement name="title" style="flex-basis: 20%; flex-direction: row; border-bottom-color: rgb(255, 255, 255); border-bottom-width: 4px; width: 100%;">
                             <ui:VisualElement name="icon" style="background-image: resource(&apos;Item/202&apos;); height: 100%; -unity-background-scale-mode: scale-to-fit; flex-basis: 10%;" />
@@ -45,7 +45,7 @@
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="explanation" style="flex-basis: 80%; width: 100%; justify-content: flex-end;">
-                            <ui:VisualElement style="height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/ExplanationUI/SwordExplanationImage.png?fileID=21300000&amp;guid=76af5b300724862449337cc694719883&amp;type=3#SwordExplanationImage&apos;); -unity-background-scale-mode: scale-to-fit; position: absolute; width: 100%; bottom: 0; opacity: 1;" />
+                            <ui:VisualElement style="height: 85%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/ExplanationUI/SwordExplanationImage.png?fileID=21300000&amp;guid=76af5b300724862449337cc694719883&amp;type=3#SwordExplanationImage&apos;); -unity-background-scale-mode: scale-to-fit; position: absolute; width: 100%; opacity: 1; top: 0;" />
                             <ui:Label display-tooltip-when-elided="true" text="직검은 플레이어의 기준 상하좌우에 좌클릭하여 적에게 데미지를 입힙니다.&#10;플레이어 주변 화살표를 통해 방향을 알 수 있습니다." class="text" style="font-size: 40px; -unity-text-align: middle-center; height: 21%;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
@@ -58,7 +58,7 @@
                         </ui:VisualElement>
                         <ui:VisualElement name="explanation" style="flex-basis: 80%; width: 100%; justify-content: flex-end;">
                             <ui:VisualElement style="height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/ExplanationUI/GreatSwordExplanationImage.png?fileID=21300000&amp;guid=ef8843eac6438104ba582dab2d18c604&amp;type=3#GreatSwordExplanationImage&apos;); -unity-background-scale-mode: scale-to-fit; position: absolute; width: 100%; bottom: 0; opacity: 1;" />
-                            <ui:Label display-tooltip-when-elided="true" text="직검은 플레이어의 기준 상하좌우에 좌클릭하여 적에게 데미지를 입힙니다.&#10;플레이어 주변 화살표를 통해 방향을 알 수 있습니다." class="text" style="font-size: 40px; -unity-text-align: middle-center; height: 21%;" />
+                            <ui:Label display-tooltip-when-elided="true" text="대검은 공격키를 홀드하여 차징해 공격하는 무기입니다. &#10;차징 게이지가 높아질 수록 데미지가 높아지며 &#10;게이지가 전부 차있다면 적을 넉백시킵니다." class="text" style="font-size: 40px; -unity-text-align: middle-center; height: 21%; margin-bottom: 15px;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="TwinSword_5" style="justify-content: center; align-items: center; width: 100%; height: 100%; position: absolute; translate: 500% 0;">
