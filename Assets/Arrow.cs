@@ -75,8 +75,11 @@ public class Arrow : MonoBehaviour
 		int count = 0;
 		for (count = 0; count <= distance; count++)
 		{
-			if (distance - 1 == count)
+			if (distance == count)
+			{
+				count--;
 				break;
+			}
 
 			if (map.GetBlock(position + (vec * count)) != null)
 			{
@@ -191,6 +194,7 @@ public class Arrow : MonoBehaviour
 		_canPull = false;
 		Bow bow = _shootActor.GetAct<PlayerEquipment>().CurrentWeapon as Bow;
 		bow.isShoot = false;
+		bow.SetAnimation();
 
 		_stickActor?.GetAct<CharacterStatAct>().Damage(_damage / 2, _shootActor);
 

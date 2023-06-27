@@ -73,6 +73,9 @@ public class GreatSword : Weapon
 
 		InputManager<GreatSword>.OnMovePress -= MoveEnd;
 	}
+
+
+
 	public virtual void AttakStart(Vector3 vec)
 	{
 		if (_characterActor.HasAnyState())
@@ -85,6 +88,7 @@ public class GreatSword : Weapon
 		_currrentVector = DirReturn(vec);
 		ChargeAnimation(_currrentVector);
         _characterActor.GetAct<CharacterStatAct>().Half += _half;
+		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/GreatSword/GreatSwordCharge", this._characterActor.transform.position);
 	}
 	public virtual void Hold(Vector3 vec)
 	{
@@ -128,6 +132,7 @@ public class GreatSword : Weapon
 			info.Atk = addDamage * (int)(timer / addTime);
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
 			//PlayerAttack.OnAttackEnd += AttackEnd;
+		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/GreatSword/GreatSwordAirCut", this._characterActor.transform.position);
 		}
 		else
         {
@@ -141,6 +146,7 @@ public class GreatSword : Weapon
 
 		_sliderObject.PullSlider(0f, false, Color.white);
 		_sliderObject.SliderActive(false);
+
 	}
 
 	private void MoveEnd(Vector3 vec)
@@ -152,7 +158,12 @@ public class GreatSword : Weapon
 
 		_sliderObject?.PullSlider(0f, false, Color.white);
 		_sliderObject?.SliderActive(false);
-	}
+
+		//if(UnityEngine.Random.Range(0,2) == 1)
+		Define.GetManager<SoundManager>().Play("Sounds/GreatSword/GreatSwordDragging");
+		//else
+		//	Define.GetManager<SoundManager>().PlayAtPoint("Sounds/GreatSword/GreatSwordDragging() (mp3cut.net)", this._characterActor.transform.position);
+	} 
 
 	private void ChargeAnimation(Vector3 dir)
     {
