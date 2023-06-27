@@ -1,9 +1,131 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Resources/UIDoc/USS/Tutorial.uss?fileID=7433441132597879392&amp;guid=7f814fc50da53e340bc8962d0454ae8d&amp;type=3#Tutorial" />
     <ui:VisualElement name="background" style="width: 100%; height: 100%;">
-        <ui:VisualElement name="panel-up" style="justify-content: flex-end; align-items: center; flex-basis: 20%;">
-            <ui:VisualElement />
+        <ui:VisualElement name="1_Weapon-tutorial" class="tutorialPanel" style="width: 100%; height: 100%; translate: 0 0;">
+            <ui:VisualElement name="0" style="width: 100%; height: 100%; position: absolute; background-color: rgba(0, 0, 0, 0.59); justify-content: center; align-items: center;">
+                <ui:Label text="무기 인벤토리입니다. &#10;획득한 무기의 간단한 정보를 확인하고 장착/해제 할 수 있습니다." display-tooltip-when-elided="true" class="Text" style="font-size: 40px; position: absolute; bottom: 50px; right: 50px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="1" style="width: 100%; height: 100%; position: absolute; translate: 100% 0; flex-direction: row; align-items: flex-end;">
+                <ui:VisualElement style="width: 32%; height: 100%; justify-content: flex-end; background-color: rgba(0, 0, 0, 0.59);" />
+                <ui:Label text="무기의 아이콘을 눌러 " display-tooltip-when-elided="true" enable-rich-text="false" class="Text" style="right: 0; bottom: 0; margin-bottom: 50px; margin-left: 50px; font-size: 40px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="2" style="width: 100%; height: 100%; position: absolute; translate: 200% 0; flex-direction: row-reverse; align-items: flex-end;">
+                <ui:VisualElement style="width: 70%; height: 100%; justify-content: flex-end; background-color: rgba(0, 0, 0, 0.59);">
+                    <ui:Label text="아이템의 정보를 확인하고" display-tooltip-when-elided="true" enable-rich-text="false" class="Text" style="right: 0; bottom: 0; margin-bottom: 50px; margin-left: 50px; font-size: 40px;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="width: 30%; height: 20%; background-color: rgba(0, 0, 0, 0.59);" />
+            </ui:VisualElement>
+            <ui:VisualElement name="3" style="width: 100%; height: 100%; position: absolute; translate: 300% 0; flex-direction: row-reverse; align-items: flex-start;">
+                <ui:VisualElement style="width: 70%; height: 100%; justify-content: flex-end; background-color: rgba(0, 0, 0, 0.59);">
+                    <ui:Label text="장착할 칸에 클릭하여 장착합니다." display-tooltip-when-elided="true" enable-rich-text="false" class="Text" style="right: 0; bottom: 0; margin-bottom: 50px; margin-left: 50px; font-size: 40px;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="width: 30%; height: 80%; justify-content: flex-end; background-color: rgba(0, 0, 0, 0.59);" />
+            </ui:VisualElement>
+            <ui:VisualElement name="4" style="width: 100%; height: 100%; position: absolute; translate: 400% 0; flex-direction: row-reverse; align-items: flex-start;">
+                <ui:VisualElement style="width: 70%; height: 100%; justify-content: flex-end; background-color: rgba(0, 0, 0, 0.59);">
+                    <ui:Label text="첫 번째 칸은 사용할 무기가 되고 두 번째 칸은 서브무기로&#10;R를 눌러 사용중인 무기를 교체가능 합니다." display-tooltip-when-elided="true" enable-rich-text="false" class="Text" style="right: 0; bottom: 0; margin-bottom: 50px; margin-left: 50px; font-size: 40px;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="width: 30%; height: 80%; justify-content: flex-end; background-color: rgba(0, 0, 0, 0.59); flex-direction: row; align-items: flex-end;">
+                    <ui:VisualElement style="width: 50%; height: 100px; -unity-background-scale-mode: scale-to-fit; margin-left: 24px;">
+                        <ui:Label text="1" display-tooltip-when-elided="true" class="Text" style="-unity-text-align: middle-center; font-size: 35px; width: 100%; height: 100px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="width: 50%; height: 100px; -unity-background-scale-mode: scale-to-fit;">
+                        <ui:Label text="2" display-tooltip-when-elided="true" class="Text" style="-unity-text-align: middle-center; font-size: 35px; width: 100%; height: 100px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="5" style="width: 100%; height: 100%; position: absolute; translate: 500% 0; flex-direction: row-reverse; align-items: flex-start;">
+                <ui:VisualElement style="width: 100%; height: 100%; justify-content: flex-end; background-color: rgba(0, 0, 0, 0.59);">
+                    <ui:Label text="?표식을 클릭하여 다시 튜토리얼을 볼 수 있습니다 ." display-tooltip-when-elided="true" enable-rich-text="false" class="Text" style="right: 0; bottom: 0; margin-bottom: 50px; font-size: 40px; -unity-text-align: upper-right;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="panel-down" style="flex-basis: 70%;" />
+        <ui:VisualElement name="2_Halo-tutorial" class="tutorialPanel" style="width: 100%; height: 100%; translate: 0 100%;">
+            <ui:VisualElement name="0" style="width: 100%; height: 100%; position: absolute; background-color: rgba(0, 0, 0, 0.59);">
+                <ui:Label text="헤일로 인벤토리입니다.&#10;획득한 헤일로의 정보와 헤일로를 자신과 연결 할 수 있습니다." display-tooltip-when-elided="true" class="Text" style="font-size: 40px; position: absolute; bottom: 50px; right: 50px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="1" style="width: 100%; height: 100%; position: absolute; background-color: rgba(0, 0, 0, 0.59); translate: 100% 0;">
+                <ui:Label text="헤일로를 획득하면 자신의 정신선에  선이 연결되며 &#10;헤일로의 상세정보가 뜨며 헤일로를 연결 할 수 있습니다." display-tooltip-when-elided="true" class="Text" style="font-size: 40px; position: absolute; bottom: 50px; right: 50px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="2" style="width: 100%; height: 100%; position: absolute; translate: 200% 0; flex-direction: row-reverse; align-items: flex-start;">
+                <ui:VisualElement style="width: 100%; height: 100%; justify-content: flex-end; background-color: rgba(0, 0, 0, 0.59);">
+                    <ui:Label text="?표식을 클릭하여 다시 튜토리얼을 볼 수 있습니다 ." display-tooltip-when-elided="true" enable-rich-text="false" class="Text" style="right: 0; bottom: 0; margin-bottom: 50px; font-size: 40px; -unity-text-align: upper-right;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="3_UseableItem-tutorial" class="tutorialPanel" style="width: 100%; height: 100%; translate: 0 200%;">
+            <ui:VisualElement name="0" style="width: 100%; height: 100%; position: absolute; background-color: rgba(0, 0, 0, 0.59);">
+                <ui:Label text="소모 아이템 인벤토리입니다.&#10;획득한 아이템의 정보를 확인하고 장착/해제 할 수 있습니다." display-tooltip-when-elided="true" class="Text" style="font-size: 40px; position: absolute; bottom: 50px; right: 50px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="1" style="width: 100%; height: 100%; position: absolute; translate: 100% 0; flex-direction: row; align-items: flex-end;">
+                <ui:VisualElement style="width: 32%; height: 100%; justify-content: flex-end; background-color: rgba(0, 0, 0, 0.59);" />
+                <ui:Label text="무기의 아이콘을 눌러 " display-tooltip-when-elided="true" enable-rich-text="false" class="Text" style="right: 0; bottom: 0; margin-bottom: 50px; margin-left: 50px; font-size: 40px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="2" style="width: 100%; height: 100%; position: absolute; translate: 200% 0; flex-direction: row-reverse; align-items: flex-end;">
+                <ui:VisualElement style="width: 70%; height: 100%; justify-content: flex-end; background-color: rgba(0, 0, 0, 0.59);">
+                    <ui:Label text="아이템의 정보를 확인하고" display-tooltip-when-elided="true" enable-rich-text="false" class="Text" style="right: 0; bottom: 0; margin-bottom: 50px; margin-left: 50px; font-size: 40px;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="width: 30%; height: 20%; background-color: rgba(0, 0, 0, 0.59);" />
+            </ui:VisualElement>
+            <ui:VisualElement name="3" style="width: 100%; height: 100%; position: absolute; translate: 300% 0; flex-direction: row-reverse; align-items: flex-start;">
+                <ui:VisualElement style="width: 70%; height: 100%; justify-content: flex-end; background-color: rgba(0, 0, 0, 0.59);">
+                    <ui:Label text="장착할 칸에 클릭하여 장착합니다." display-tooltip-when-elided="true" enable-rich-text="false" class="Text" style="right: 0; bottom: 0; margin-bottom: 50px; margin-left: 50px; font-size: 40px;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="width: 30%; height: 80%; justify-content: flex-end; background-color: rgba(0, 0, 0, 0.59);" />
+            </ui:VisualElement>
+            <ui:VisualElement name="4" style="width: 100%; height: 100%; position: absolute; translate: 400% 0; flex-direction: row-reverse; align-items: flex-start;">
+                <ui:VisualElement style="width: 70%; height: 100%; justify-content: flex-end; background-color: rgba(0, 0, 0, 0.59);">
+                    <ui:Label text="1 2 3 4 5 번 칸에 아이템은 1 2 3 4 5 번키를 눌러 아이템을 사용할 수 있습니다." display-tooltip-when-elided="true" enable-rich-text="false" class="Text" style="right: 0; bottom: 0; margin-bottom: 50px; margin-left: 50px; font-size: 40px;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="width: 30%; height: 80%; justify-content: flex-end; background-color: rgba(0, 0, 0, 0.59); flex-direction: row; align-items: flex-end;">
+                    <ui:VisualElement style="width: 50%; height: 100px; -unity-background-scale-mode: scale-to-fit; margin-left: 24px;">
+                        <ui:Label text="1" display-tooltip-when-elided="true" class="Text" style="-unity-text-align: middle-center; font-size: 35px; width: 100%; height: 100px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="width: 50%; height: 100px; -unity-background-scale-mode: scale-to-fit;">
+                        <ui:Label text="2" display-tooltip-when-elided="true" class="Text" style="-unity-text-align: middle-center; font-size: 35px; width: 100%; height: 100px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="width: 50%; height: 100px; -unity-background-scale-mode: scale-to-fit;">
+                        <ui:Label text="3" display-tooltip-when-elided="true" class="Text" style="-unity-text-align: middle-center; font-size: 35px; width: 100%; height: 100px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="width: 50%; height: 100px; -unity-background-scale-mode: scale-to-fit;">
+                        <ui:Label text="4" display-tooltip-when-elided="true" class="Text" style="-unity-text-align: middle-center; font-size: 35px; width: 100%; height: 100px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="width: 50%; height: 100px; -unity-background-scale-mode: scale-to-fit;">
+                        <ui:Label text="5" display-tooltip-when-elided="true" class="Text" style="-unity-text-align: middle-center; font-size: 35px; width: 100%; height: 100px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="5" style="width: 100%; height: 100%; position: absolute; translate: 500% 0; flex-direction: row-reverse; align-items: flex-start;">
+                <ui:VisualElement style="width: 70%; height: 100%; justify-content: flex-end; background-color: rgba(0, 0, 0, 0.59);">
+                    <ui:Label text="그리고 장착된 아이템칸을 클릭하면 장착된 아이템 정보가 뜨며&#10;다시 한 번더 클릭하면 아이템의 해제됩니다." display-tooltip-when-elided="true" enable-rich-text="false" class="Text" style="right: 0; bottom: 0; margin-bottom: 50px; margin-left: 50px; font-size: 40px;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="width: 30%; height: 80%; justify-content: flex-end; background-color: rgba(0, 0, 0, 0.59); flex-direction: row; align-items: flex-end;">
+                    <ui:VisualElement style="width: 50%; height: 100px; -unity-background-scale-mode: scale-to-fit; margin-left: 24px;">
+                        <ui:Label text="1" display-tooltip-when-elided="true" class="Text" style="-unity-text-align: middle-center; font-size: 35px; width: 100%; height: 100px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="width: 50%; height: 100px; -unity-background-scale-mode: scale-to-fit;">
+                        <ui:Label text="2" display-tooltip-when-elided="true" class="Text" style="-unity-text-align: middle-center; font-size: 35px; width: 100%; height: 100px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="width: 50%; height: 100px; -unity-background-scale-mode: scale-to-fit;">
+                        <ui:Label text="3" display-tooltip-when-elided="true" class="Text" style="-unity-text-align: middle-center; font-size: 35px; width: 100%; height: 100px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="width: 50%; height: 100px; -unity-background-scale-mode: scale-to-fit;">
+                        <ui:Label text="4" display-tooltip-when-elided="true" class="Text" style="-unity-text-align: middle-center; font-size: 35px; width: 100%; height: 100px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="width: 50%; height: 100px; -unity-background-scale-mode: scale-to-fit;">
+                        <ui:Label text="5" display-tooltip-when-elided="true" class="Text" style="-unity-text-align: middle-center; font-size: 35px; width: 100%; height: 100px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="6" style="width: 100%; height: 100%; position: absolute; translate: 600% 0; flex-direction: row-reverse; align-items: flex-start;">
+                <ui:VisualElement style="width: 100%; height: 100%; justify-content: flex-end; background-color: rgba(0, 0, 0, 0.59);">
+                    <ui:Label text="?표식을 클릭하여 다시 튜토리얼을 볼 수 있습니다 ." display-tooltip-when-elided="true" enable-rich-text="false" class="Text" style="right: 0; bottom: 0; margin-bottom: 50px; font-size: 40px; -unity-text-align: upper-right;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="4_QuestItem-tutorial" class="tutorialPanel" style="width: 100%; height: 100%; translate: 0 300%;">
+            <ui:VisualElement name="0" style="width: 100%; height: 100%; position: absolute;" />
+            <ui:VisualElement name="1" style="width: 100%; height: 100%; position: absolute; translate: 100% 0;" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
