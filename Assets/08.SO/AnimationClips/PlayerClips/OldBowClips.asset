@@ -19,49 +19,49 @@ MonoBehaviour:
   clips:
   - name: Idle
     nextIdx: -1
-    texture: {fileID: 0}
+    texture: {fileID: 2800000, guid: 8369d7c4fc5d8104f808ba5ff46d628a, type: 3}
     normal: {fileID: 0}
     fps: 10
     isLoop: 1
     delay: 0.1
   - name: HorizontalMove
     nextIdx: -1
-    texture: {fileID: 0}
+    texture: {fileID: 2800000, guid: a5e4d9f47f9495f4183be8b1365188a7, type: 3}
     normal: {fileID: 0}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: UpperMove
     nextIdx: -1
-    texture: {fileID: 0}
+    texture: {fileID: 2800000, guid: 45b194aef0786db40b0c124936d22fd3, type: 3}
     normal: {fileID: 0}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: LowerMove
     nextIdx: -1
-    texture: {fileID: 0}
+    texture: {fileID: 2800000, guid: 23d9648adf646094a95143fc2d877b41, type: 3}
     normal: {fileID: 0}
     fps: 6
     isLoop: 1
     delay: 0.1
   - name: HorizontalCharge
     nextIdx: -1
-    texture: {fileID: 0}
+    texture: {fileID: 2800000, guid: b9df9e01a81f4904c9135dc5a623f95a, type: 3}
     normal: {fileID: 0}
     fps: 8
     isLoop: 0
     delay: 0.06
   - name: UpperCharge
     nextIdx: -1
-    texture: {fileID: 0}
+    texture: {fileID: 2800000, guid: 049ef98520644b04696b0af9956cceee, type: 3}
     normal: {fileID: 0}
     fps: 7
     isLoop: 0
     delay: 0.06
   - name: LowerCharge
     nextIdx: -1
-    texture: {fileID: 0}
+    texture: {fileID: 2800000, guid: e83eed878a892f14ea09146f1851adcd, type: 3}
     normal: {fileID: 0}
     fps: 8
     isLoop: 0
