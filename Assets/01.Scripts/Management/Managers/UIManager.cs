@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     public UIQuit Quit = new UIQuit();
     public UISettingPanel SettingPanel = new UISettingPanel();
     public UIExplanation Explanation = new UIExplanation();
+    public UITutorial Tutorial = new UITutorial();
 
     public MapNameData MapNameData;
 
@@ -113,6 +114,7 @@ public class UIManager : MonoBehaviour
         Quit.Init();
         SettingPanel.Init();
         Explanation.Init();
+        Tutorial.Init();
     }
 
 
@@ -134,7 +136,7 @@ public class UIManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            Explanation.Show();
+            Tutorial.Show(0);
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
