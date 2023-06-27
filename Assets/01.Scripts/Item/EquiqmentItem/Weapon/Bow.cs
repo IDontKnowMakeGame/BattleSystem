@@ -257,12 +257,12 @@ public class Bow : Weapon
 		}
 		if (dir == Vector3.left)
 		{
-			_characterActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
+			//_characterActor.SpriteTransform.localScale = new Vector3(-2, 1, 1);
 			_unitAnimation.Play("HorizontalShoot");
 		}
 		else if (dir == Vector3.right)
 		{
-			_characterActor.SpriteTransform.localScale = new Vector3(2, 1, 1);
+			//_characterActor.SpriteTransform.localScale = new Vector3(2, 1, 1);
 			_unitAnimation.Play("HorizontalShoot");
 		}
 		else if (dir == Vector3.forward)
