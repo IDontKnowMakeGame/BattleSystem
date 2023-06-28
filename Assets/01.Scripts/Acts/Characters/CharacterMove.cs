@@ -311,7 +311,9 @@ namespace Acts.Characters
             astar.SetPath(ThisActor.Position, end);
             ThisActor.StartCoroutine(astar.FindPath());
             yield return new WaitUntil(astar.IsFinished);
+            Debug.Log("찾음.");
             var nextBlock = astar.GetNextPath();
+            Debug.Log(nextBlock);
             if (nextBlock == null)
             {
                 isChasing = false;
