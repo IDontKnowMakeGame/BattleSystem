@@ -40,7 +40,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207113980}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: c6bd9c0cad65a614aacd7ddf4adfef53, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 1d53fadec0d7b6240b3c37ad0b712ac1, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -53,17 +53,15 @@ VideoPlayer:
   m_DataSource: 0
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
-  m_TargetAudioSources:
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 0
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
   m_Url: 
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -116,7 +114,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: c6bd1799c4231b74b99c1491904e0b67, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: be9a916e6b9a65c429f61319d98cf377, type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: 1
 --- !u!114 &6638654511036900005
 MonoBehaviour:
   m_ObjectHideFlags: 0
