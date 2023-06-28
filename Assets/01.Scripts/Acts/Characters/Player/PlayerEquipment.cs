@@ -124,12 +124,16 @@ public class PlayerEquipment : CharacterEquipmentAct
 				_playerAnimation.GetClip("WakeUp").SetEventOnFrame(_playerAnimation.GetClip("WakeUp").fps - 1, () =>
 				{
 					EquipAnimation();
+					CurrentWeapon?.UnEquipment(_characterController);
+					CurrentWeapon?.Equiqment(_characterController);
 					finishChange = true;
 				});
 			}
 			else
 			{
 				EquipAnimation();
+				CurrentWeapon?.UnEquipment(_characterController);
+				CurrentWeapon?.Equiqment(_characterController);
 				finishChange = true;
 			}
         }
@@ -245,8 +249,6 @@ public class PlayerEquipment : CharacterEquipmentAct
 
 
 		_playerAnimation.ChangeWeaponClips((int)_firstWeapon);
-
-		CurrentWeapon?.Equiqment(_characterController);
 
 		_playerAnimation.Play("Equip");
 
