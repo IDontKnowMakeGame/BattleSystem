@@ -127,5 +127,6 @@ public class PlayerStatAct : CharacterStatAct
 		param.stringParam = "Die";
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.HaloOfEreshkigal, param);
 		Debug.Log(ThisActor);
+
 	}
 }

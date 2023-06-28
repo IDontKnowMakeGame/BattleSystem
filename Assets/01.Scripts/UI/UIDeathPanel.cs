@@ -1,3 +1,4 @@
+using Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,12 +19,14 @@ public class UIDeathPanel : UIBase
         _root.style.display = DisplayStyle.Flex;
 
         _deathPanel.RemoveFromClassList("DeathPanel-alphaZero");
-    }
+
+		Define.GetManager<SoundManager>().Play("UI/UIDie", Define.Sound.Bgm);
+	}
 
     public override void Hide()
     {
         _root.style.display = DisplayStyle.None;
 
         _deathPanel.AddToClassList("DeathPanel-alphaZero");
-    }
+	}
 }

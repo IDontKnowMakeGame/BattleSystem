@@ -47,7 +47,8 @@ public class UIMenu : UIBase
     {   if (_isShow) return;
         _isShow = true;
         UIManager.Instance.StartCoroutine(ShowPanelCoroutine());
-    }
+		Define.GetManager<SoundManager>().Play("UI/UIOpen", Define.Sound.Effect);
+	}
     private IEnumerator ShowPanelCoroutine()
     {
         _menuPanel.RemoveFromClassList("MenuPanel-hide");
@@ -68,7 +69,8 @@ public class UIMenu : UIBase
         if (_isShow == false) return;
         
         UIManager.Instance.StartCoroutine(HidePanelCoroutine());
-    }
+		Define.GetManager<SoundManager>().Play("UI/UIClose", Define.Sound.Effect);
+	}
     private IEnumerator HidePanelCoroutine()
     {
         foreach (VisualElement panel in _menuPanel.Children())

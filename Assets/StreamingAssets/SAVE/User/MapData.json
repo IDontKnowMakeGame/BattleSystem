@@ -1,5 +1,5 @@
 {
-    "currentFloor": 2,
+    "currentFloor": 1,
     "mapData": [
         {
             "floor": 0,
@@ -76,7 +76,8 @@
                 26,
                 24,
                 25,
-                23
+                23,
+                20
             ],
             "openChestList": [
                 1

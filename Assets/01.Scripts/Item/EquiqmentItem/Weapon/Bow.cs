@@ -153,8 +153,8 @@ public class Bow : Weapon
 
 		_currentTimer = 0;
 		_isCharge = false;
-		_characterActor.RemoveState(CharacterState.StopMove);
-		_characterActor.RemoveState(CharacterState.Hold);
+		_characterActor?.RemoveState(CharacterState.StopMove);
+		_characterActor?.RemoveState(CharacterState.Hold);
 		_sliderObject.SliderActive(false);
 	}
 

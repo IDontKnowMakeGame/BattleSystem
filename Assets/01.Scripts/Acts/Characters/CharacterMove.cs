@@ -327,7 +327,8 @@ namespace Acts.Characters
                 _character.RemoveState(CharacterState.Chase);
                 yield break;
             }
-            Move(nextPos);  
+            Move(nextPos);
+            Define.GetManager<SoundManager>().PlayAtPoint("Enemy/EnemyWalk", ThisActor.transform.position);
         }
         protected virtual void AnimationCheck()
         {
