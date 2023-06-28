@@ -46,8 +46,6 @@ namespace Actors.Characters.Enemy.OldSpearShade
                 var readyClip = _enemyAnimation.GetClip(dirName + "Ready");
                 var moveClip = _enemyAnimation.GetClip(dirName + "Move");
 
-				//Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Enemy/적 움직이는 사운드", this.gameObject.transform.position);
-
 				if (readyClip == null || moveClip == null) return;
                 _enemyAnimation?.Play(dirName + "Ready");
                 readyClip.OnExit = () =>
@@ -55,6 +53,7 @@ namespace Actors.Characters.Enemy.OldSpearShade
                     AddState(CharacterState.Attack);
                     _enemyAnimation?.Play(dirName + "Move");
                     move?.Translate(dir);
+					Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Enemy/SpearAttack", this.gameObject.transform.position);
 					moveClip.OnExit = () =>
                     {
                         attack?.DefaultAttack(dir, true);
