@@ -11,6 +11,16 @@ public class QuestInteraction : InteractionActor
     [SerializeField]
     private ItemID needItem;
 
+    protected override void Init()
+    {
+        base.Init();
+
+        if(DataManager.PlayerOpenQuestData_.openQuestList.Contains(QuestName.FallenAngelCarryingThing) == false)
+        {
+            RemoveInteration();
+        }
+    }
+
     public override void Interact()
     {
         if (InGame.Player.Position.IsNeighbor(Position) == false) return;
