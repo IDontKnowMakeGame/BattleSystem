@@ -98,6 +98,7 @@ public class Spear : Weapon
 		_isAni = false;
 
 		_currentVec = Vector3.zero;
+		_originVec = Vector3.zero;
 		_nonDir = false;
 		_isDown = false;
 		_characterActor.RemoveState(CharacterState.DontMoveAniation);
@@ -142,6 +143,7 @@ public class Spear : Weapon
 			_attackInfo.RemoveDir(_attackInfo.DirTypes(vec));
 			_attackInfo.PressInput = vec;
 			_currentVec = Vector3.zero;
+			_originVec = Vector3.zero;
 			_nonDir = false;
 			_isDown = false;
 			AttackCorutine(DirReturn(vec));
@@ -161,12 +163,14 @@ public class Spear : Weapon
 		//DefaultAnimation();
 		ReadyAnimation(vec);
 		_isAni = true;
+		Define.GetManager<SoundManager>().PlayAtPoint("Spear/SpearUp", _characterActor.transform.position);
 	} 
 	public virtual void AttackUpCorutine(Vector3 vec)
 	{
 		_attackInfo.RemoveDir(_attackInfo.DirTypes(vec));
 		_attackInfo.PressInput = vec;
 		_currentVec = Vector3.zero;
+		_originVec = Vector3.zero;
 		_nonDir = false;
 		_isDown = false;
 		_characterActor.RemoveState(CharacterState.DontMoveAniation);
