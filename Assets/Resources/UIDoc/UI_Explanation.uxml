@@ -45,8 +45,8 @@
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="explanation" style="flex-basis: 80%; width: 100%; justify-content: flex-end;">
-                            <ui:VisualElement style="height: 85%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/ExplanationUI/SwordExplanationImage.png?fileID=21300000&amp;guid=76af5b300724862449337cc694719883&amp;type=3#SwordExplanationImage&apos;); -unity-background-scale-mode: scale-to-fit; position: absolute; width: 100%; opacity: 1; top: 0;" />
-                            <ui:Label display-tooltip-when-elided="true" text="직검은 플레이어의 기준 상하좌우에 좌클릭하여 적에게 데미지를 입힙니다.&#10;플레이어 주변 화살표를 통해 방향을 알 수 있습니다." class="text" style="font-size: 40px; -unity-text-align: middle-center; height: 21%;" />
+                            <ui:VisualElement style="height: 100%; background-image: url(&apos;project://database/Assets/12.Texture/RenderTexture/Explanation.renderTexture?fileID=8400000&amp;guid=b9bcf5eccab4fab42886c248f8e5e3d9&amp;type=2#Explanation&apos;); -unity-background-scale-mode: scale-to-fit; position: absolute; width: 100%; opacity: 1; top: 0;" />
+                            <ui:Label display-tooltip-when-elided="true" text="직검은 플레이어의 기준 상하좌우에 좌클릭하여 적에게 데미지를 입힙니다.&#10;플레이어 주변 화살표를 통해 방향을 알 수 있습니다." class="text" style="font-size: 40px; -unity-text-align: middle-center; height: 21%; background-color: rgba(0, 0, 0, 0.78);" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="GreatSword_4" style="justify-content: center; align-items: center; width: 100%; height: 100%; position: absolute; translate: 400% 0;">
@@ -57,8 +57,8 @@
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="explanation" style="flex-basis: 80%; width: 100%; justify-content: flex-end;">
-                            <ui:VisualElement style="height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/ExplanationUI/GreatSwordExplanationImage.png?fileID=21300000&amp;guid=ef8843eac6438104ba582dab2d18c604&amp;type=3#GreatSwordExplanationImage&apos;); -unity-background-scale-mode: scale-to-fit; position: absolute; width: 100%; bottom: 0; opacity: 1;" />
-                            <ui:Label display-tooltip-when-elided="true" text="대검은 공격키를 홀드하여 차징해 공격하는 무기입니다. &#10;차징 게이지가 높아질 수록 데미지가 높아지며 &#10;게이지가 전부 차있다면 적을 넉백시킵니다." class="text" style="font-size: 40px; -unity-text-align: middle-center; height: 21%; margin-bottom: 15px;" />
+                            <ui:VisualElement style="height: 100%; background-image: url(&apos;project://database/Assets/12.Texture/RenderTexture/Explanation.renderTexture?fileID=8400000&amp;guid=b9bcf5eccab4fab42886c248f8e5e3d9&amp;type=2#Explanation&apos;); -unity-background-scale-mode: scale-to-fit; position: absolute; width: 100%; opacity: 1; top: 0;" />
+                            <ui:Label display-tooltip-when-elided="true" text="대검은 공격키를 홀드하여 차징해 공격하는 무기입니다. &#10;차징 게이지가 높아질 수록 데미지가 높아지며 &#10;게이지가 전부 차있다면 적을 넉백시킵니다." class="text" style="font-size: 40px; -unity-text-align: middle-center; height: 27%; background-color: rgba(0, 0, 0, 0.78);" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="TwinSword_5" style="justify-content: center; align-items: center; width: 100%; height: 100%; position: absolute; translate: 500% 0;">
@@ -69,8 +69,8 @@
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="explanation" style="flex-basis: 80%; width: 100%; justify-content: flex-end;">
-                            <ui:VisualElement style="height: 100%; -unity-background-scale-mode: scale-to-fit; position: absolute; width: 100%; bottom: 0; opacity: 1;" />
-                            <ui:Label display-tooltip-when-elided="true" text="쌍검은 이동하며 공격하는 무기입니다.&#10;이동하는 방향에 좌 우 에 적이 있다면 데미지가 줍니다." class="text" style="font-size: 40px; -unity-text-align: middle-center; height: 21%;" />
+                            <ui:VisualElement style="height: 100%; -unity-background-scale-mode: scale-to-fit; position: absolute; width: 100%; bottom: 0; opacity: 1; background-image: url(&apos;project://database/Assets/12.Texture/RenderTexture/Explanation.renderTexture?fileID=8400000&amp;guid=b9bcf5eccab4fab42886c248f8e5e3d9&amp;type=2#Explanation&apos;);" />
+                            <ui:Label display-tooltip-when-elided="true" text="쌍검은 이동하며 공격하는 무기입니다.&#10;이동하는 방향에 좌 우 에 적이 있다면 데미지가 줍니다." class="text" style="font-size: 40px; -unity-text-align: middle-center; height: 21%; background-color: rgba(0, 0, 0, 0.78);" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="Spear_6" style="justify-content: center; align-items: center; width: 100%; height: 100%; position: absolute; translate: 600% 0;">
@@ -81,8 +81,8 @@
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="explanation" style="flex-basis: 80%; width: 100%; justify-content: flex-end;">
-                            <ui:VisualElement style="height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/ExplanationUI/SpearExplanationImage.png?fileID=21300000&amp;guid=a77d627768fc3c74da32b336c795db42&amp;type=3#SpearExplanationImage&apos;); -unity-background-scale-mode: scale-to-fit; position: absolute; width: 100%; bottom: 0; opacity: 1;" />
-                            <ui:Label display-tooltip-when-elided="true" text="창은 자신이 원하는 방향에 공격키를 통해 창을 내리고 &#10;앞 뒤로 움직이며 적을 찔러 공격하는 무기입니다.&#10;다시 원하는 방향에 공격키를 누르면 창에 방향을 바꿀 수 있습니다." class="text" style="font-size: 40px; -unity-text-align: middle-center; height: 21%; margin-bottom: 15px;" />
+                            <ui:VisualElement style="height: 100%; background-image: url(&apos;project://database/Assets/12.Texture/RenderTexture/Explanation.renderTexture?fileID=8400000&amp;guid=b9bcf5eccab4fab42886c248f8e5e3d9&amp;type=2#Explanation&apos;); -unity-background-scale-mode: scale-to-fit; position: absolute; width: 100%; bottom: 0; opacity: 1;" />
+                            <ui:Label display-tooltip-when-elided="true" text="창은 자신이 원하는 방향에 공격키를 통해 창을 내리고 &#10;앞 뒤로 움직이며 적을 찔러 공격하는 무기입니다.&#10;다시 원하는 방향에 공격키를 누르면 창에 방향을 바꿀 수 있습니다." class="text" style="font-size: 40px; -unity-text-align: middle-center; height: 28%; background-color: rgba(0, 0, 0, 0.78);" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="Bow_7" style="justify-content: center; align-items: center; width: 100%; height: 100%; position: absolute; translate: 700% 0;">
@@ -93,14 +93,13 @@
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="explanation" style="flex-basis: 80%; width: 100%; justify-content: flex-end;">
-                            <ui:VisualElement style="height: 100%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/ExplanationUI/BowExplanationImage.png?fileID=21300000&amp;guid=3d4b836e83be48e438d4bd553c6e9c0a&amp;type=3#BowExplanationImage&apos;); -unity-background-scale-mode: scale-to-fit; position: absolute; width: 100%; bottom: 0; opacity: 1;" />
-                            <ui:Label display-tooltip-when-elided="true" text="활은 원하는 방향에 공격키를 눌러 화살을 쏩니다.&#10;화살은 하나 밖에 없으며 쏜 화살은 v를 입력하여 회수 할 수 있습니다." class="text" style="font-size: 40px; -unity-text-align: middle-center; height: 21%;" />
+                            <ui:VisualElement style="height: 100%; background-image: url(&apos;project://database/Assets/12.Texture/RenderTexture/Explanation.renderTexture?fileID=8400000&amp;guid=b9bcf5eccab4fab42886c248f8e5e3d9&amp;type=2#Explanation&apos;); -unity-background-scale-mode: scale-to-fit; position: absolute; width: 100%; bottom: 0; opacity: 1;" />
+                            <ui:Label display-tooltip-when-elided="true" text="활은 원하는 방향에 공격키를 눌러 화살을 쏩니다.&#10;화살은 하나 밖에 없으며 쏜 화살은 v를 입력하여 회수 할 수 있습니다." class="text" style="font-size: 40px; -unity-text-align: middle-center; height: 21%; background-color: rgba(0, 0, 0, 0.78);" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:Label text="ESC를 눌러 창을 닫습니다." display-tooltip-when-elided="true" class="text" style="position: absolute; bottom: 0; right: 0; font-size: 30px; margin-bottom: 10px; margin-right: 10px;" />
-        <ui:VisualElement style="position: absolute; width: 1580px; height: 679px; -unity-background-scale-mode: scale-to-fit; background-image: url(&apos;project://database/Assets/12.Texture/RenderTexture/Explanation.renderTexture?fileID=8400000&amp;guid=b9bcf5eccab4fab42886c248f8e5e3d9&amp;type=2#Explanation&apos;);" />
     </ui:VisualElement>
 </ui:UXML>
