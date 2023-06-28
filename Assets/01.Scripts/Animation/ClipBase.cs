@@ -45,6 +45,7 @@ namespace Tools
                 texture = clipBase.texture;
                 fps = clipBase.fps;
                 delay = clipBase.delay;
+                normal = clipBase.normal;
             }
         }
     }

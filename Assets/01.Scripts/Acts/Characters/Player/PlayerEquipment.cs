@@ -60,7 +60,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 
 	public override void OnEnable()
 	{
-		base.OnEnable();
+		//base.OnEnable();
 		Define.GetManager<EventManager>().StartListening(EventFlag.WeaponEquip, EquipmentWeapon);
 		Define.GetManager<EventManager>().StartListening(EventFlag.WeaponUpgrade, Upgrade);
 		Define.GetManager<EventManager>().StartListening(EventFlag.HaloAdd, AddHalo);
@@ -99,9 +99,6 @@ public class PlayerEquipment : CharacterEquipmentAct
 			if (haloID == ItemID.None) return;
 			_useHalo[haloID].Equiqment(_characterController);
 		}
-
-		CurrentWeapon?.UnEquipment(_characterController);
-		CurrentWeapon?.Equiqment(_characterController);
 	}
 
     public override void OnDisable()
@@ -246,12 +243,16 @@ public class PlayerEquipment : CharacterEquipmentAct
 	{
 		_playerActor.AddState(CharacterState.Equip);
 
+
 		_playerAnimation.ChangeWeaponClips((int)_firstWeapon);
+
+		CurrentWeapon?.Equiqment(_characterController);
 
 		_playerAnimation.Play("Equip");
 
 		// 마지막 프레임에 종료 넣기
 		_playerAnimation.curClip.SetEventOnFrame(_playerAnimation.curClip.fps - 1, () => _playerActor.RemoveState(CharacterState.Equip));
+
 	}
 	#endregion
 

@@ -9,6 +9,7 @@
     <ui:Template name="UI_Smithy" src="project://database/Assets/Resources/UIDoc/UI_Smithy.uxml?fileID=9197481963319205126&amp;guid=3108707ba752eca45bf2a04f9a0cea6b&amp;type=3#UI_Smithy" />
     <ui:Template name="UI_FirstFloorMap" src="project://database/Assets/Resources/UIDoc/UI_FirstFloorMap.uxml?fileID=9197481963319205126&amp;guid=db3dc5eecf8a99c4ba30ab12b7c76e02&amp;type=3#UI_FirstFloorMap" />
     <ui:Template name="UI_Explanation" src="project://database/Assets/Resources/UIDoc/UI_Explanation.uxml?fileID=9197481963319205126&amp;guid=1107e359669e05941a09e39db265270c&amp;type=3#UI_Explanation" />
+    <ui:Template name="UI_TutorialPanel" src="project://database/Assets/Resources/UIDoc/UI_TutorialPanel.uxml?fileID=9197481963319205126&amp;guid=ba591800d1349324d9914c603053baac&amp;type=3#UI_TutorialPanel" />
     <ui:Template name="UI_SettingPanel" src="project://database/Assets/Resources/UIDoc/UI_SettingPanel.uxml?fileID=9197481963319205126&amp;guid=8761da35b0cd9fd45ae9a4124aa08172&amp;type=3#UI_SettingPanel" />
     <ui:Template name="UI_PadeInOut" src="project://database/Assets/Resources/UIDoc/UI_PadeInOut.uxml?fileID=9197481963319205126&amp;guid=7cfb45c7a4285ad478047583db268af1&amp;type=3#UI_PadeInOut" />
     <ui:Template name="UI_DeathPanel" src="project://database/Assets/Resources/UIDoc/UI_DeathPanel.uxml?fileID=9197481963319205126&amp;guid=71edbe1749513984f9d7fa5bda7477bc&amp;type=3#UI_DeathPanel" />
@@ -24,6 +25,7 @@
     <ui:Instance template="UI_Smithy" name="UI_Smithy" class="Panel" style="display: none;" />
     <ui:Instance template="UI_FirstFloorMap" name="UI_FirstFloorMap" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: none;" />
     <ui:Instance template="UI_Explanation" name="UI_Explanation" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; display: none;" />
+    <ui:Instance template="UI_TutorialPanel" name="UI_TutorialPanel" class="Panel" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: none;" />
     <ui:Instance template="UI_SettingPanel" name="UI_SettingPanel" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: none;" />
     <ui:Instance template="UI_PadeInOut" name="UI_PadeInOut" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: none;" />
     <ui:Instance template="UI_DeathPanel" name="UI_DeathPanel" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: none;" />
