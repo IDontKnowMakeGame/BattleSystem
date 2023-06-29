@@ -113,24 +113,6 @@
             "maxCnt": 5
         },
         {
-            "id": 203,
-            "name": "FirstMap",
-            "currentCnt": 0,
-            "maxCnt": 0
-        },
-        {
-            "id": 204,
-            "name": "SecondMap",
-            "currentCnt": 0,
-            "maxCnt": 0
-        },
-        {
-            "id": 205,
-            "name": "ThirdMap",
-            "currentCnt": 0,
-            "maxCnt": 0
-        },
-        {
             "id": 206,
             "name": "Pick",
             "currentCnt": 98,
@@ -150,29 +132,6 @@
         }
     ],
     "inventoryInQuestItemList": [
-        {
-            "id": 300,
-            "name": "TEST",
-            "currentCnt": 0,
-            "maxCnt": 0
-        },
-        {
-            "id": 302,
-            "name": "AngelWingFragment",
-            "currentCnt": 9,
-            "maxCnt": 99
-        },
-        {
-            "id": 303,
-            "name": "AngelEyes",
-            "currentCnt": 8,
-            "maxCnt": 99
-        },
-        {
-            "id": 301,
-            "name": "SoulRope",
-            "currentCnt": 1,
-            "maxCnt": 99
-        }
+
     ]
 }
