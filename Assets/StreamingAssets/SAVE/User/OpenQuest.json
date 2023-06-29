@@ -1,11 +1,12 @@
 {
-    "readyQuestList": [],
-    "openQuestList": [
-        6
-    ],
-    "readyClearQuestList": [
-        5,
+    "readyQuestList": [
         2
     ],
-    "clearQuestList": []
+    "openQuestList": [
+        5
+    ],
+    "readyClearQuestList": [],
+    "clearQuestList": [
+        6
+    ]
 }

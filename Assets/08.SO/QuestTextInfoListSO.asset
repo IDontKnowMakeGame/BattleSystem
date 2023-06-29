@@ -30,8 +30,10 @@ MonoBehaviour:
     name: "10\uBA85 \uC8FD\uC5EC"
     description: 
   - QuestName: 5
-    name: "Fallen Angle \uC62E\uAE30\uC148"
-    description: 
+    name: "[\uC81C 1 \uB0B4\uC9C4]\uC73C\uB85C \uBB3C\uAC74 \uC6B4\uBC18"
+    description: "[\uC81C 1 \uB0B4\uC9C4]\uC5D0 \uC788\uB294 \uCC9C\uC0AC \uC870\uAC01\uC0C1\uC5D0
+      \uBB3C\uAC74 \uC6B4\uBC18"
   - QuestName: 6
-    name: "Fallen Angle \uC5BB\uC5B4"
-    description: 
+    name: "\uCC9C\uC0AC\uC758 \uB0A0\uAC1C \uD30C\uD3B8 \uD68D\uB4DD"
+    description: "[\uBC84\uB824\uC9C4 \uCC9C\uC0AC]\uAC00 \uCC3E\uACE0 \uC788\uB294
+      \uD30C\uD3B8 \uCC3E\uAE30"

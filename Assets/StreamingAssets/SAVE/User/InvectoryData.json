@@ -139,7 +139,7 @@
         {
             "id": 207,
             "name": "CompassOfSpace",
-            "currentCnt": 4,
+            "currentCnt": 5,
             "maxCnt": 99
         },
         {
@@ -165,7 +165,13 @@
         {
             "id": 303,
             "name": "AngelEyes",
-            "currentCnt": 6,
+            "currentCnt": 8,
+            "maxCnt": 99
+        },
+        {
+            "id": 301,
+            "name": "SoulRope",
+            "currentCnt": 1,
             "maxCnt": 99
         }
     ]
