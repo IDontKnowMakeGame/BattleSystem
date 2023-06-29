@@ -276,6 +276,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 		{
 			_haloRanderer?.SetHalo(itemId);
 		}
+		Define.GetManager<SoundManager>().Play("Unit/halo");
 		_useHalo[itemId].Equiqment(_characterController);
 	}
 
@@ -296,6 +297,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 				_haloRanderer.DelHalo();
 			}
 		}
+		Define.GetManager<SoundManager>().Play("Unit/haloDetach");
 	}
 	#endregion
 	#region HaloEquipment

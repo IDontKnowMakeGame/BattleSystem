@@ -182,7 +182,8 @@ public class LoadingSceneController : MonoBehaviour
         }
         else if(nextScene && Input.anyKey && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
         {
-            StartCoroutine(Fade(false));
+			Core.Define.GetManager<SoundManager>().Play("UI/LobbyClick");
+			StartCoroutine(Fade(false));
             nextScene = false;
         }
 

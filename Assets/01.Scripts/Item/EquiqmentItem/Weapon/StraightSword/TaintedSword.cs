@@ -35,5 +35,6 @@ public class TaintedSword : StraightSword
 		Define.GetManager<ResourceManager>().Instantiate("TaintedEffect").transform.position = _characterActor.Position + Vector3.up;
 		Define.GetManager<EventManager>().TriggerEvent(EventFlag.PlayTimeLine, new EventParam() { stringParam = "StraightSword", intParam = 2 });
 		_characterActor.RemoveState(CharacterState.Skill);
+		Define.GetManager<SoundManager>().PlayAtPoint("LongSword/TaintedSword", this._characterActor.transform.position);
 	}
 }

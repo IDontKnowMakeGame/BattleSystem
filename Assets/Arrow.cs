@@ -24,6 +24,7 @@ public class Arrow : MonoBehaviour
 	private float _damage;
 	private bool _isStick = false;
 	private bool _canPull = false;
+	private bool _isEnemy = false;
 
 	private bool _isDestroy = false;
 	private bool _isEnd = false;
@@ -98,7 +99,7 @@ public class Arrow : MonoBehaviour
 
 		}
 
-		position.y = 1;
+		position.y = 0.8f;
 
 		this.transform.position = position;
 
@@ -136,7 +137,7 @@ public class Arrow : MonoBehaviour
 		_stickActor = null;
 		_isStick = true;
 
-		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Bow/BowAttack", InGame.Player.Position);
+		Define.GetManager<SoundManager>().PlayAtPoint("Bow/BowAttackGround", this.transform.position);
 		_trail.enabled = false;
 	}
 	private void StickOnWall()
@@ -145,7 +146,7 @@ public class Arrow : MonoBehaviour
 		_isStick = true;
 		_seq.Kill();
 
-		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Bow/BowAttack", InGame.Player.Position);
+		Define.GetManager<SoundManager>().PlayAtPoint("Bow/BowAttackGround", this.transform.position);
 		_trail.enabled = false;
 	}
 
@@ -162,11 +163,12 @@ public class Arrow : MonoBehaviour
 		_stickActor?.GetAct<CharacterStatAct>()?.Damage(_damage, _shootActor);
 		_isStick = true;
 
-		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Bow/BowAttack", InGame.Player.Position);
+		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Bow/BowAttack", this.transform.position);
 
 		if (_isDestroy)
 			Define.GetManager<ResourceManager>().Destroy(this.gameObject);
 		_trail.enabled = false;
+		_isEnemy = true;
 	}
 
 	public void StickReBlock()
@@ -201,6 +203,16 @@ public class Arrow : MonoBehaviour
 		PullAnimation();
 
 		InputManager<Bow>.OnSubPress -= Pull;
+
+		if(_isEnemy)
+		{
+			Define.GetManager<SoundManager>().PlayAtPoint("Bow/PullOut", this.transform.position);
+			_isEnemy = false;
+		}
+		else
+		{
+			Define.GetManager<SoundManager>().PlayAtPoint("Bow/PullOutGround", this.transform.position);
+		}
 
 		Define.GetManager<ResourceManager>().Destroy(this.gameObject);
 	}

@@ -96,7 +96,7 @@ namespace Managements.Managers
 
 		public override void Awake()
 		{
-
+			OnClickPress += Click;
 		}
 
 		public override void Update()
@@ -355,6 +355,11 @@ namespace Managements.Managers
 			OnClickPress = null;
 			OnClickHold = null;
 			OnClickRelease = null;
+		}
+
+		private void Click(Vector3 vec)
+		{
+			Define.GetManager<SoundManager>().Play("UI/UIClick", Define.Sound.Effect);
 		}
 	}
 }

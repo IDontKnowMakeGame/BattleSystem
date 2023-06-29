@@ -96,7 +96,8 @@ public class UIDialog : UIBase
         for (int i =0;i< texts.Length;i++)
         {
             this.message.text += texts[i];
-            yield return new WaitForSeconds(0.05f);
+			Define.GetManager<SoundManager>().Play("UI/Text", Define.Sound.Effect);
+			yield return new WaitForSeconds(0.05f);
         }
         isPlayLineText = false;
     }
@@ -104,7 +105,7 @@ public class UIDialog : UIBase
     {
         if (isPlayDialog == false) return;
         if(isPlayLineText)
-        {
+        { 
             UIManager.Instance.StopCoroutine(textLineCoroutine);
             SetMessageBoxText(currentTextLine);
             isPlayLineText = false;

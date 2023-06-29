@@ -108,6 +108,6 @@ public class Ascalon : GreatSword
 		obj.transform.position = _characterActor.Position + InGame.CamDirCheck(_remainVec) + (Vector3.up / 2);
 		obj.GetComponent<DragonRealm>().Init(AscalonData.duration, AscalonData.decrease);
 
-		//Define.GetManager<SoundManager>().PlayAtPoint("Sounds/GreatSword/AscalonSkill(1)", this._characterActor.transform.position);
+		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/GreatSword/Ascalon", this._characterActor.transform.position);
 	}
 }
