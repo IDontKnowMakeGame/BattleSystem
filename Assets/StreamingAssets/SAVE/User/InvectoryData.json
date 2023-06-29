@@ -97,7 +97,7 @@
         {
             "id": 200,
             "name": "Torch",
-            "currentCnt": 16,
+            "currentCnt": 19,
             "maxCnt": 99
         },
         {
@@ -121,7 +121,7 @@
         {
             "id": 207,
             "name": "CompassOfSpace",
-            "currentCnt": 5,
+            "currentCnt": 6,
             "maxCnt": 99
         },
         {
@@ -129,9 +129,26 @@
             "name": "Bottle",
             "currentCnt": 2,
             "maxCnt": 99
+        },
+        {
+            "id": 203,
+            "name": "FirstMap",
+            "currentCnt": 2,
+            "maxCnt": 99
         }
     ],
     "inventoryInQuestItemList": [
-
+        {
+            "id": 302,
+            "name": "AngelWingFragment",
+            "currentCnt": 1,
+            "maxCnt": 99
+        },
+        {
+            "id": 303,
+            "name": "AngelEyes",
+            "currentCnt": 1,
+            "maxCnt": 99
+        }
     ]
 }

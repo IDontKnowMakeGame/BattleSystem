@@ -92,6 +92,8 @@ public class AbandonedAngel : NPCActor
 
         UIManager.Instance.Dialog.StartListeningDialog(dialogueList[8]);
 
+        Define.GetManager<DataManager>().AddItemInInventory(ItemID.Torch, 30);
+
         questData.firstTalked = true;
         SaveQuestData();
     }
