@@ -21,6 +21,8 @@ public class UISettingPanel : UIBase
 
     private SettingData _settingData;
     private string graphic;
+
+    private bool openPanel = false;
     public override void Init()
     {
         _root = UIManager.Instance._document.rootVisualElement.Q<VisualElement>("UI_SettingPanel");
@@ -78,6 +80,8 @@ public class UISettingPanel : UIBase
 
     public override void Show()
     {
+        openPanel = true;
+
         _root.style.display = DisplayStyle.Flex;
         UIManager.Instance.MoveAndInputStop();
         UIManager.OpenPanels.Push(this);
@@ -85,6 +89,8 @@ public class UISettingPanel : UIBase
 
     public override void Hide()
     {
+        openPanel = false;
+
         _root.style.display = DisplayStyle.None;
         _settingData.graphic = _graphicDropdown.value;
         _settingData.fullScreenMode = _windowModeToggle.value;
@@ -96,15 +102,18 @@ public class UISettingPanel : UIBase
     }
     public override void Update()
     {
+        if(openPanel ==false) return;
+
         int value = (int)_masterSlider.value;
         _masterSlider.Q<Label>("text-value").text = value.ToString();
+        Define.GetManager<SoundManager>().SetMasterVolume(Mathf.Lerp(-80,5,(float)value/100f));
         value = (int)_backgroundSlider.value;
         _backgroundSlider.Q<Label>("text-value").text = value.ToString();
+        Define.GetManager<SoundManager>().SetBGmVolume(Mathf.Lerp(-80, 0, (float)value / 100f));
         value = (int)_vfxSlider.value;
         _vfxSlider.Q<Label>("text-value").text = value.ToString();
+        Define.GetManager<SoundManager>().SetSFXVolume(Mathf.Lerp(-80, 0, (float)value / 100f));
 
-
-        
         if (graphic != _graphicDropdown.value)
         {
             graphic = _graphicDropdown.value;

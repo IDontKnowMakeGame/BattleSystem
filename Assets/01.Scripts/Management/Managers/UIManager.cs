@@ -80,6 +80,8 @@ public class UIManager : MonoBehaviour
     };
 
     public static TutorialData TutorialData_ = new TutorialData();
+
+    public IntroData introData;
     #region Escape
     public static Stack<UIBase> OpenPanels = new Stack<UIBase>();
     #endregion
@@ -95,6 +97,7 @@ public class UIManager : MonoBehaviour
 
         _document = GetComponent<UIDocument>();
 
+        introData = JsonManager.LoadJsonFile<IntroData>(Application.streamingAssetsPath + "/SAVE/Tutorial", "IntroData");
         TutorialData_ = JsonManager.LoadJsonFile<TutorialData>(Application.streamingAssetsPath + "/SAVE/User", "TutorialData");
 
         Init();
@@ -227,4 +230,10 @@ public class UIManager : MonoBehaviour
         Explanation.Show(pageNum);
     }
     
+    public void ClearIntroData()
+    {
+        introData.isClearTutorial = true;
+        string json = JsonManager.ObjectToJson(introData);
+        JsonManager.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/Tutorial", "IntroData",json);
+    }
 }

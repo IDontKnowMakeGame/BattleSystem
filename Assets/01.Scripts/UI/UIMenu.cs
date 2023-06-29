@@ -46,6 +46,8 @@ public class UIMenu : UIBase
     public override void Show()
     {   if (_isShow) return;
         _isShow = true;
+
+        UIManager.Instance.MoveAndInputStop();
         UIManager.Instance.StartCoroutine(ShowPanelCoroutine());
     }
     private IEnumerator ShowPanelCoroutine()

@@ -64,7 +64,8 @@ namespace Actors.Characters.Enemy.OldShade
                 readyClip.OnExit = () =>
                 {
                     _enemyAnimation.Play( nextState + "Attack");
-                };
+					Define.GetManager<SoundManager>().PlayAtPoint("Enemy/StraightAttack", this.transform.position);
+				};
                 attackClip.OnExit = () =>
                 {
                     _enemyAnimation.Play( nextState + "Return");    

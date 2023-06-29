@@ -533,7 +533,7 @@ PlayableDirector:
   m_GameObject: {fileID: 3577013144753390074}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 4111ee87b7413ad4b97e053ee2a3fea7, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 4f87a5b3bde2854458f800cbae452e7c, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -589,6 +589,44 @@ PlayableDirector:
     value: {fileID: 3577013144753390064}
   - key: {fileID: -3909172679024897377, guid: 4111ee87b7413ad4b97e053ee2a3fea7, type: 2}
     value: {fileID: 3577013144753390064}
+  - key: {fileID: -4378049050366530579, guid: 8f283a7b5cb260d4eb46eaa73961c738, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: 595972745439020496, guid: 8f283a7b5cb260d4eb46eaa73961c738, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: -9103125135149570325, guid: 8f283a7b5cb260d4eb46eaa73961c738, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: -3909172679024897377, guid: 8f283a7b5cb260d4eb46eaa73961c738, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: -4378049050366530579, guid: cf1cf989267f05c4bb012ce2d53e2e87, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: 595972745439020496, guid: cf1cf989267f05c4bb012ce2d53e2e87, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: -9103125135149570325, guid: cf1cf989267f05c4bb012ce2d53e2e87, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: -3909172679024897377, guid: cf1cf989267f05c4bb012ce2d53e2e87, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: -4378049050366530579, guid: 46feae610f0af0b45b7688e8e3311d37, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: 595972745439020496, guid: 46feae610f0af0b45b7688e8e3311d37, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: -9103125135149570325, guid: 46feae610f0af0b45b7688e8e3311d37, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: -3909172679024897377, guid: 46feae610f0af0b45b7688e8e3311d37, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: 2936249650157793263, guid: 13857943ba8214b4b81bf3813106aaec, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: -1244546089990018260, guid: 13857943ba8214b4b81bf3813106aaec, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: 2595240917890291771, guid: 13857943ba8214b4b81bf3813106aaec, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: -2131788825330168575, guid: 13857943ba8214b4b81bf3813106aaec, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: -2042157074906712706, guid: 4f87a5b3bde2854458f800cbae452e7c, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: 4426849742585426990, guid: 4f87a5b3bde2854458f800cbae452e7c, type: 2}
+    value: {fileID: 3577013144753390064}
+  - key: {fileID: 226586064682620843, guid: 4f87a5b3bde2854458f800cbae452e7c, type: 2}
+    value: {fileID: 3577013144753390064}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &3577013144753390078
@@ -620,6 +658,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 46feae610f0af0b45b7688e8e3311d37, type: 2}
   - {fileID: 11400000, guid: cf1cf989267f05c4bb012ce2d53e2e87, type: 2}
   - {fileID: 11400000, guid: 8f283a7b5cb260d4eb46eaa73961c738, type: 2}
+  - {fileID: 11400000, guid: 4f87a5b3bde2854458f800cbae452e7c, type: 2}
 --- !u!114 &3577013144753390064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -660,6 +699,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 0560f13e04a17534590892d01ab6fdbc, type: 2}
     - {fileID: 11400000, guid: 75629675bbfee1141ba897def93d1bdd, type: 2}
     - {fileID: 11400000, guid: cebb0b111f005a9449e1dac0da9bfde5, type: 2}
+    - {fileID: 11400000, guid: 82962bee57f242d4b8821a02ea01ca4e, type: 2}
+    - {fileID: 11400000, guid: a0a12c0ff83e865439da892fd17b3fdb, type: 2}
+    - {fileID: 11400000, guid: eb5225a2f2c77ec4bb1461d5bd5d8dea, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -962,8 +1004,8 @@ MonoBehaviour:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ScreenEffects, Assembly-CSharp
-          m_MethodName: PlaySpeedEffect
+          m_TargetAssemblyTypeName: Actors.RisingDoor, Assembly-CSharp
+          m_MethodName: Rise
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1083,6 +1125,48 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3577013144753390079}
+          m_TargetAssemblyTypeName: CameraEffecter, Assembly-CSharp
+          m_MethodName: TimeSlow
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.3
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3577013144753390079}
+          m_TargetAssemblyTypeName: CameraEffecter, Assembly-CSharp
+          m_MethodName: ChangeFollowCamTarget
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3577013144753390078}
+          m_TargetAssemblyTypeName: TImeLinePlayer, Assembly-CSharp
+          m_MethodName: PlayTimeLine
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: LookDoor
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!114 &3577013143329756091

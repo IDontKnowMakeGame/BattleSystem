@@ -6,7 +6,7 @@ using UnityEngine.Video;
 
 public class VideoManager : MonoBehaviour
 {
-    private VideoManager Instance { get; set; }
+    public static VideoManager Instance { get; set; }
 
     [SerializeField]
     private VideoClip[] videoClips = null;
@@ -28,7 +28,7 @@ public class VideoManager : MonoBehaviour
     {
         if (videoClips != null)
         {
-            player.clip = videoClips[num];
+            player.clip = videoClips[num-3];
             player.Play();
         }
     }

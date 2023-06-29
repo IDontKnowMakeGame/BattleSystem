@@ -1,6 +1,6 @@
 {
-    "graphic": "3840x2160",
-    "fullScreenMode": false,
+    "graphic": "1920x1080",
+    "fullScreenMode": true,
     "masterVolume": 100,
     "backgroundVolume": 100,
     "vfxVolume": 100
