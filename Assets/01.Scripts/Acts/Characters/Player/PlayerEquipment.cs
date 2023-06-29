@@ -97,6 +97,7 @@ public class PlayerEquipment : CharacterEquipmentAct
 		foreach(ItemID haloID in _halos)
         {
 			if (haloID == ItemID.None) return;
+			Debug.Log("헤일로 초기화:" + haloID);
 			_useHalo[haloID].Equiqment(_characterController);
 		}
 	}

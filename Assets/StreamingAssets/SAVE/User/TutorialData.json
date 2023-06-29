@@ -1,7 +1,7 @@
 {
     "weapon": true,
-    "halo": false,
-    "useable": false,
+    "halo": true,
+    "useable": true,
     "quest": false,
     "slider": false
 }
