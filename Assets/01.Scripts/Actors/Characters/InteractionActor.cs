@@ -30,11 +30,13 @@ public class InteractionActor : CharacterActor
     }
     public void HideInteration()
     {
-        UIManager.Instance.InGame.HideInteraction();
+        if (UIManager.Instance != null)
+            UIManager.Instance.InGame.HideInteraction();
     }
     public void HideInteration(Vector3 vec)
     {
-        UIManager.Instance.InGame.HideInteraction();
+        if(UIManager.Instance != null)
+            UIManager.Instance.InGame.HideInteraction();
     }
 
     public void RemoveInteration()

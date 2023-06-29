@@ -19,6 +19,9 @@ public class UIExplanation : UIBase
     }
     public void Show(int pageNum)
     {
+        if(pageNum >=3 && pageNum <= 8)
+            VideoManager.Instance.ChangeVideo(pageNum);
+
         _voidPanel.style.translate = new StyleTranslate(new Translate(new Length(-pageNum * 100,LengthUnit.Percent), 0));
         Show();
     }

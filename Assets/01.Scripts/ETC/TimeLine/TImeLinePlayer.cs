@@ -149,6 +149,7 @@ public class TImeLinePlayer : MonoBehaviour
         "TutorialTwinSword" => 11,
         "TutorialSpear" => 12,
         "TutorialBow" => 13,
+        "LookDoor" => 14,
         _ => 0
 	};
 

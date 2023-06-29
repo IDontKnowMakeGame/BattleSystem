@@ -15,14 +15,17 @@ public class HaloOfGhost : Halo
         else
             check = false;
 
-
         _playerStatAct.Plus(StatType.MAXHP, 100);
+
+        InGame.Player.GetAct<PlayerStatAct>().StatChange();
         if(check)
         {
             _playerStatAct.Heal(100);
         }
+
         UIManager.Instance.InGame.ChanageMaxHP((int)InGame.Player.GetAct<PlayerStatAct>().ChangeStat.maxHP / 10);
         UIManager.Instance.InGame.ChangeCurrentHP(InGame.Player.GetAct<PlayerStatAct>().PercentHP());
+        Debug.Log(_playerStatAct.ChangeStat.maxHP);
     }
 
     public override void UnEquipment(CharacterActor actor)
@@ -30,6 +33,8 @@ public class HaloOfGhost : Halo
         Debug.Log("UnEquipement");
         PlayerStatAct _playerStatAct = InGame.Player.GetAct<PlayerStatAct>();
         _playerStatAct.Sub(StatType.MAXHP, 100);
+
+        InGame.Player.GetAct<PlayerStatAct>().StatChange();
         if(check)
         {
             _playerStatAct.Heal(0);
