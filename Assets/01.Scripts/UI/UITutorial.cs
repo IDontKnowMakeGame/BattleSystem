@@ -23,8 +23,6 @@ public class UITutorial : UIBase
             
         });
 
-        Debug.Log($"UITutorial name {_root.name}");
-
         Hide();
     }
     public void Show(int page)

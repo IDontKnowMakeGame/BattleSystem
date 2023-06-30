@@ -3,7 +3,7 @@
     <ui:VisualElement name="background" class="background-on" style="width: 100%; height: 100%; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.78); transition-property: opacity; transition-duration: 0.4s; transition-timing-function: ease-in;">
         <ui:VisualElement style="width: 60%; height: 65%;">
             <ui:VisualElement name="explanation-panel" style="flex-basis: 100%; justify-content: center; align-items: center; overflow: hidden;">
-                <ui:VisualElement name="void-panel" style="width: 100%; height: 100%; justify-content: center; align-items: center; translate: -700% 0;">
+                <ui:VisualElement name="void-panel" style="width: 100%; height: 100%; justify-content: center; align-items: center; translate: -800% 0;">
                     <ui:VisualElement name="HPPotion_0" style="justify-content: center; align-items: center; width: 100%; height: 100%; position: absolute;">
                         <ui:VisualElement name="title" style="flex-basis: 20%; flex-direction: row; border-bottom-color: rgb(255, 255, 255); border-bottom-width: 4px; width: 100%;">
                             <ui:VisualElement name="icon" style="background-image: resource(&apos;Item/202&apos;); height: 100%; -unity-background-scale-mode: scale-to-fit; flex-basis: 10%;" />
@@ -95,6 +95,25 @@
                         <ui:VisualElement name="explanation" style="flex-basis: 80%; width: 100%; justify-content: flex-end;">
                             <ui:VisualElement style="height: 100%; background-image: url(&apos;project://database/Assets/12.Texture/RenderTexture/Explanation.renderTexture?fileID=8400000&amp;guid=b9bcf5eccab4fab42886c248f8e5e3d9&amp;type=2#Explanation&apos;); -unity-background-scale-mode: scale-to-fit; position: absolute; width: 100%; bottom: 0; opacity: 1;" />
                             <ui:Label display-tooltip-when-elided="true" text="활은 원하는 방향에 공격키를 눌러 화살을 쏩니다.&#10;화살은 하나 밖에 없으며 쏜 화살은 v를 입력하여 회수 할 수 있습니다." class="text" style="font-size: 40px; -unity-text-align: middle-center; height: 21%; background-color: rgba(0, 0, 0, 0.78);" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="AngerNAdre_8" style="justify-content: center; align-items: center; width: 100%; height: 100%; position: absolute; translate: 800% 0;">
+                        <ui:VisualElement name="title" style="flex-basis: 20%; flex-direction: row; border-bottom-color: rgb(255, 255, 255); border-bottom-width: 4px; width: 100%;">
+                            <ui:VisualElement name="icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/Player_UI_Hpvar.png?fileID=633027&amp;guid=592a4313b6d8fa44987488eb3b4085aa&amp;type=3#Player_UI_Hpvar_3&apos;); height: 100%; -unity-background-scale-mode: scale-to-fit; flex-basis: 10%;" />
+                            <ui:VisualElement style="flex-basis: 80%; justify-content: center; align-items: center; font-size: 50px; -unity-text-align: middle-center;">
+                                <ui:Label text="분노 &amp; 아드레날린" display-tooltip-when-elided="true" class="text" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="icon" style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/Player_UI_Hpvar.png?fileID=-50398987&amp;guid=592a4313b6d8fa44987488eb3b4085aa&amp;type=3#Player_UI_Hpvar_4&apos;); height: 100%; -unity-background-scale-mode: scale-to-fit; flex-basis: 10%;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="explanation" style="flex-basis: 80%; width: 100%; justify-content: flex-end;">
+                            <ui:VisualElement style="height: 100%; background-image: url(&apos;project://database/Assets/12.Texture/RenderTexture/Explanation.renderTexture?fileID=8400000&amp;guid=b9bcf5eccab4fab42886c248f8e5e3d9&amp;type=2#Explanation&apos;); -unity-background-scale-mode: scale-to-fit; position: absolute; width: 100%; bottom: 0; opacity: 1; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+                                <ui:VisualElement style="width: 100%; height: 28%; background-image: url(&apos;project://database/Assets/02.Sprites/UI/ExplanationUI/Slider_.png?fileID=21300000&amp;guid=7af82eb99d5675a4f8ef671014f66e8d&amp;type=3#Slider_&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                                <ui:VisualElement style="width: 100%; height: 59%; flex-direction: row; justify-content: center;">
+                                    <ui:VisualElement style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/ExplanationUI/Anger.png?fileID=21300000&amp;guid=30c938ec2bebf824c8349193f59349ce&amp;type=3#Anger&apos;); width: 30%; height: 100%; -unity-background-scale-mode: scale-to-fit;" />
+                                    <ui:VisualElement style="background-image: url(&apos;project://database/Assets/02.Sprites/UI/ExplanationUI/Adre.png?fileID=21300000&amp;guid=ab63ff2c84bc29043977804b036b7880&amp;type=3#Adre&apos;); width: 30%; height: 100%; -unity-background-scale-mode: scale-to-fit;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:Label display-tooltip-when-elided="true" text="분노&amp;아드레날린은 전투를 하면서 얻는 버브 시스템입니다.&#10;분노(빨간색) 게이지는 피격당하면 게이지가 차며 가득차면 몇 초동안 데미지가 2배 상승합니다.&#10;아드레날린(초록색) 게이지는 공격을 적중하면 게이지가 차며 가득차면 몇 초동안 공격속도와 속도가 빨라집니다." class="text" style="font-size: 27px; -unity-text-align: middle-center; height: 21%; background-color: rgba(0, 0, 0, 0.78);" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>

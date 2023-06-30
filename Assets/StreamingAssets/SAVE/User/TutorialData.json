@@ -3,5 +3,5 @@
     "halo": true,
     "useable": true,
     "quest": true,
-    "slider": false
+    "slider": true
 }

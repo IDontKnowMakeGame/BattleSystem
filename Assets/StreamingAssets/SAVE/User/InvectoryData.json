@@ -97,7 +97,7 @@
         {
             "id": 200,
             "name": "Torch",
-            "currentCnt": 19,
+            "currentCnt": 39,
             "maxCnt": 99
         },
         {
@@ -127,7 +127,7 @@
         {
             "id": 208,
             "name": "Bottle",
-            "currentCnt": 2,
+            "currentCnt": 0,
             "maxCnt": 99
         },
         {
