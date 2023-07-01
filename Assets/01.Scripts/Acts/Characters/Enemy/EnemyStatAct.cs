@@ -57,7 +57,6 @@ namespace Acts.Characters.Enemy
 
             if(actor is PlayerActor)
             {
-                Debug.Log(actor.gameObject.name);
 				EventParam eventParam = new EventParam();
 				eventParam.intParam = 1;
 				eventParam.stringParam = (actor as CharacterActor).currentWeapon.info.Class;

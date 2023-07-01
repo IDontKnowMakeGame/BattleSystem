@@ -82,9 +82,11 @@ public class Spear : Weapon
 		InputManager<Spear>.OnMovePress += CurrentBool;
 		CharacterMove.OnMoveEnd += MoveEnd;
 
+		Debug.Log("Equiqment");
+
 		DefaultAnimation();
 
-		Debug.Log("Equiqment");
+		_isAni = false;
 	}
 	public override void UnEquipment(CharacterActor actor)
 	{
@@ -107,10 +109,10 @@ public class Spear : Weapon
 
 	public override void Update()
 	{
-		_currentVec = InGame.CamDirCheck(_originVec);
 
 		if (!_isDown)
 			return;
+		_currentVec = InGame.CamDirCheck(_originVec);
 
 		bool isEnemy = false;
 		for (int i = 1; i <= range; i++)
@@ -134,11 +136,17 @@ public class Spear : Weapon
 		if (_characterActor.HasState(CharacterState.Equip))
 			return;
 
-		if (_isDown && InGame.CamDirCheck(DirReturn(vec)) == _currentVec && !_isAni)
+		Debug.Log(!_isAni && InGame.CamDirCheck(DirReturn(vec)) != _currentVec);//true
+		Debug.Log(!_isAni);//true
+		Debug.Log(InGame.CamDirCheck(DirReturn(vec)) != _currentVec);//true
+		Debug.Log(_isDown && DirReturn(vec) == _originVec && !_isAni);//false
+		Debug.Log(_isDown && InGame.CamDirCheck(DirReturn(vec)) == _currentVec && !_isAni);
+
+		if (_isDown && DirReturn(vec) == _originVec && !_isAni)
 		{
 			AttackUpCorutine(DirReturn(vec));
 		}
-		else if (!_isAni && InGame.CamDirCheck(DirReturn(vec)) != _currentVec)
+		else if (!_isAni && DirReturn(vec) != _originVec)
 		{
 			_attackInfo.RemoveDir(_attackInfo.DirTypes(vec));
 			_attackInfo.PressInput = vec;
@@ -149,20 +157,18 @@ public class Spear : Weapon
 			AttackCorutine(DirReturn(vec));
 		}
 
-		Debug.Log(!_isAni && InGame.CamDirCheck(DirReturn(vec)) != _currentVec);
-		Debug.Log(!_isAni);
-		Debug.Log(InGame.CamDirCheck(DirReturn(vec)) != _currentVec);
 	}
 	public virtual void AttackCorutine(Vector3 vec)
 	{
 		_attackInfo.AddDir(_attackInfo.DirTypes(vec));
 		_originVec = vec;
 		_currentVec = InGame.CamDirCheck(_originVec);
+		Debug.Log(_originVec);
+		Debug.Log(_currentVec);
 		_attackInfo.PressInput = vec;
 		_nonDir = true;
-		//DefaultAnimation();
-		ReadyAnimation(vec);
 		_isAni = true;
+		ReadyAnimation(vec);
 		Define.GetManager<SoundManager>().PlayAtPoint("Spear/SpearUp", _characterActor.transform.position);
 	} 
 	public virtual void AttackUpCorutine(Vector3 vec)
@@ -209,7 +215,7 @@ public class Spear : Weapon
 				_characterActor.RemoveState(CharacterState.DontMoveAniation);
 			});
 			name = "HorizontalReady";
-			_playerAnimation.Play("HorizontalReady");
+			_playerAnimation.Play(name);
 			_characterActor.AddState(CharacterState.DontMoveAniation);
 		}
 		else if (vec == Vector3.back)
