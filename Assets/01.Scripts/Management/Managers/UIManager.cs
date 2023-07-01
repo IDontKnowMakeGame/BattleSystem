@@ -82,6 +82,9 @@ public class UIManager : MonoBehaviour
     public static TutorialData TutorialData_ = new TutorialData();
 
     public IntroData introData;
+
+    public bool stopEsc = false;
+    public bool uiOn = false;
     #region Escape
     public static Stack<UIBase> OpenPanels = new Stack<UIBase>();
     #endregion
@@ -172,14 +175,16 @@ public class UIManager : MonoBehaviour
 
     public void Escape()
     {
-        if (PadeInOut.isPaded) return;
+        if (stopEsc) return;
         if(OpenPanels.Count <= 0)
         {
             Menu.Show();
             return;
         }
 
-        MoveAndInputPlay();
+        if(OpenPanels.Count == 1)
+            MoveAndInputPlay();
+
         UIBase ui = OpenPanels.Pop();
         if(ui is UIMenu || ui is UIStatus || ui is UIQuit || ui is UIExplanation)
         {

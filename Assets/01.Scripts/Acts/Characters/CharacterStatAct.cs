@@ -272,7 +272,6 @@ public class CharacterStatAct : Act
 
 	public int PercentHP()
 	{
-		Debug.Log("너지?" + (int)((ChangeStat.hp / ChangeStat.maxHP) * 100));
 		return (int)((ChangeStat.hp / ChangeStat.maxHP) * 100);
 	}
 
@@ -346,7 +345,6 @@ public class CharacterStatAct : Act
 			if (ChangeStat.speed + add > ItemInfo.WeightToSpeed(9))
 				return;
 
-		Debug.Log(_changeStats[StatType.MAXHP]);
 		_changeStats[type] += add;
 	}
 

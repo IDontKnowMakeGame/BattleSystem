@@ -23,6 +23,7 @@ public class UIMenu : UIBase
         
         for(int i = 0; i < 4; i++)
         {
+            if (i == 0) continue;
             VisualElement panel = _menuBtnTemp.Instantiate();
             int index = i;
             panel.RegisterCallback<ClickEvent>(e =>
@@ -47,6 +48,7 @@ public class UIMenu : UIBase
     {   if (_isShow) return;
         _isShow = true;
 
+        UIManager.Instance.uiOn = true;
         UIManager.Instance.MoveAndInputStop();
         UIManager.Instance.StartCoroutine(ShowPanelCoroutine());
 		Define.GetManager<SoundManager>().Play("UI/UIOpen", Define.Sound.Effect);
@@ -69,7 +71,8 @@ public class UIMenu : UIBase
     public override void Hide()
     {
         if (_isShow == false) return;
-        
+
+        UIManager.Instance.uiOn = false;
         UIManager.Instance.StartCoroutine(HidePanelCoroutine());
 		Define.GetManager<SoundManager>().Play("UI/UIClose", Define.Sound.Effect);
 	}

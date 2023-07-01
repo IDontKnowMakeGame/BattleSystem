@@ -2,6 +2,6 @@
     "weapon": true,
     "halo": true,
     "useable": true,
-    "quest": false,
-    "slider": false
+    "quest": true,
+    "slider": true
 }

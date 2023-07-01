@@ -32,7 +32,7 @@ public class UIPadeInOut : UIBase
     private IEnumerator PadeCoroutine(string removeClass,string addClass,Action action = null)
     {
         _root.style.display = DisplayStyle.Flex;
-        isPaded = true;
+        UIManager.Instance.stopEsc = true;
 
         _padePanel.RemoveFromClassList(removeClass);
         if(HaloOfTime.currentTime > 1f)
@@ -43,6 +43,6 @@ public class UIPadeInOut : UIBase
         _padePanel.AddToClassList(addClass);
         yield return new WaitForSeconds(0.7f);
         _root.style.display = DisplayStyle.None;
-        isPaded = false;
+        UIManager.Instance.stopEsc = false;
     }
 }

@@ -30,6 +30,7 @@ public class QuestInfo
 [Serializable]
 public class QuestData
 {
+    public bool firstTalked = false;
     public int currentQuestLine = 0;
     public List<QuestInfo> quests = new List<QuestInfo>();
 }

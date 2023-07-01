@@ -117,7 +117,6 @@ public class UISmithy : UIBase
     public void UpdateWeaponCard(int index)
     {
         currentWeaponID = _weaponList[index].id;
-        Debug.Log($"cardName : {currentWeaponID}");
         _weaponImage.style.backgroundImage = new StyleBackground(Define.GetManager<ResourceManager>().Load<Sprite>($"Item/{(int)currentWeaponID}"));
         _weaponName.text = UIManager.Instance.weaponTextInfoListSO.weapons[(int)currentWeaponID - 1].weaponNameText;
         SelectCard(_weaponPanel[index]);

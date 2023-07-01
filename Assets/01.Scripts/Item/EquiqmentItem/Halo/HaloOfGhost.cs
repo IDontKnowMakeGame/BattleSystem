@@ -25,7 +25,6 @@ public class HaloOfGhost : Halo
 
         UIManager.Instance.InGame.ChanageMaxHP((int)InGame.Player.GetAct<PlayerStatAct>().ChangeStat.maxHP / 10);
         UIManager.Instance.InGame.ChangeCurrentHP(InGame.Player.GetAct<PlayerStatAct>().PercentHP());
-        Debug.Log(_playerStatAct.ChangeStat.maxHP);
     }
 
     public override void UnEquipment(CharacterActor actor)

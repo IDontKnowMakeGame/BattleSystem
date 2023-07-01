@@ -359,7 +359,8 @@ namespace Managements.Managers
 
 		private void Click(Vector3 vec)
 		{
-			Define.GetManager<SoundManager>().Play("UI/UIClick", Define.Sound.Effect);
+			if(UIManager.Instance.uiOn == true)
+				Define.GetManager<SoundManager>().Play("UI/UIClick", Define.Sound.Effect);
 		}
 	}
 }

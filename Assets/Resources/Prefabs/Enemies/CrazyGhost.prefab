@@ -77,6 +77,7 @@ MonoBehaviour:
   _characterState: 0
   _isBlocking: 1
   canKnockBack: 0
+  isFloating: 0
   _secondPhaseHpPercent: 0
   _enemyAi:
     CurrentState:
@@ -101,11 +102,12 @@ MonoBehaviour:
       ats: 0
       afs: 0
       speed: 0
+    life: 1
     _feahter: 0
     info:
-      _id: 0
-      _count: 0
-      _isWeapon: 0
+      _id: 6
+      _count: 1
+      _isWeapon: 1
     isBoss: 1
   _enemyAnimation:
     curClip:
@@ -150,6 +152,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  OnRevive:
+    m_PersistentCalls:
+      m_Calls: []
   particle:
     landingParticle: {fileID: 7310023798986098773}
     secondPhaseParticle: {fileID: 7751943641532557491}

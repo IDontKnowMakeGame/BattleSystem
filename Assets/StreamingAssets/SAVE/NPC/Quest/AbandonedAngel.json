@@ -1,4 +1,34 @@
 {
+    "firstTalked": true,
     "currentQuestLine": 0,
-    "quests": []
+    "quests": [
+        {
+            "btnName": "뭐 부탁할게 있나?",
+            "clearBtnName": "가져 왔다.",
+            "questName": 6,
+            "IsComplate": false,
+            "rewardfeather": 500,
+            "questGiveItem": [],
+            "rewords": [
+                203
+            ],
+            "openQuest": [
+                6
+            ]
+        },
+        {
+            "btnName": "...",
+            "clearBtnName": "가져다 놨다.",
+            "questName": 5,
+            "IsComplate": false,
+            "rewardfeather": 500,
+            "questGiveItem": [
+                303
+            ],
+            "rewords": [
+                301
+            ],
+            "openQuest": []
+        }
+    ]
 }

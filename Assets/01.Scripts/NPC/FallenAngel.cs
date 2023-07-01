@@ -40,7 +40,10 @@ public class FallenAngel : NPCActor
     {
         if (InGame.Player.Position.IsNeighbor(Position) == false) return;
 
-        Talking();
+        if (questData.firstTalked)
+            Talking();
+        else
+            FirstTalking();
     }
 
     public void Talking()
@@ -51,6 +54,17 @@ public class FallenAngel : NPCActor
         //UIManager.Instance.Dialog.AddChoiceBox("돌아가기", BackBtn);
 
         UIManager.Instance.Dialog.StartListeningDialog(dialogueList[0]);
+    }
+    public void FirstTalking()
+    {
+        Debug.Log(gameObject.name);
+        ReadyBtnQuest();
+        UIManager.Instance.Dialog.AddChoiceBox("무기 강화", StoreBtn);
+
+        UIManager.Instance.Dialog.StartListeningDialog(dialogueList[3]);
+
+        questData.firstTalked = true;
+        SaveQuestData();
     }
     private void ReadyBtnQuest()
     {

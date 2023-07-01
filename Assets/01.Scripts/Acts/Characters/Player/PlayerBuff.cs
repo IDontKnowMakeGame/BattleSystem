@@ -77,6 +77,12 @@ namespace Acts.Characters.Player
         {
             if (anger >= 10 && !angerDecrease)
             {
+                if(UIManager.TutorialData_.slider == false)
+                {
+                    UIManager.TutorialData_.slider = true;
+                    UIManager.Instance.SaveToTutorialData();
+                    UIManager.Instance.Explanation.Show(8); 
+                }
                 angerDecrease = true;
                 decreaseAngerTimer = decreaseTime;
                 _playerStat.AddDrainageAtk("Anger",2);
@@ -121,6 +127,12 @@ namespace Acts.Characters.Player
 
             if (adneraline >= 10 && !adneralineDecrease)
             {
+                if (UIManager.TutorialData_.slider == false)
+                {
+                    UIManager.TutorialData_.slider = true;
+                    UIManager.Instance.SaveToTutorialData();
+                    UIManager.Instance.Explanation.Show(8);
+                }
                 adneralineDecrease = true;
                 decreaseAdneralineTimer = decreaseTime;
                 _playerStat.AddDrainageAtk("Adneraline", 1.5f);

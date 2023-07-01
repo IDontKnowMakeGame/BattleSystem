@@ -76,6 +76,8 @@ public class UISettingPanel : UIBase
         _masterSlider.value = _settingData.masterVolume;
         _backgroundSlider.value = _settingData.backgroundVolume;
         _vfxSlider.value = _settingData.vfxVolume;
+
+        SetSound();
     }
 
     public override void Show()
@@ -83,7 +85,9 @@ public class UISettingPanel : UIBase
         openPanel = true;
 
         _root.style.display = DisplayStyle.Flex;
-        UIManager.Instance.MoveAndInputStop();
+
+        UIManager.Instance.uiOn = true;
+        //UIManager.Instance.MoveAndInputStop();
         UIManager.OpenPanels.Push(this);
     }
 
@@ -98,21 +102,14 @@ public class UISettingPanel : UIBase
         _settingData.backgroundVolume = (int)_backgroundSlider.value;
         _settingData.vfxVolume = (int)_vfxSlider.value;
         DataManager.SettingData_ = _settingData;
+        UIManager.Instance.uiOn = false;
         Define.GetManager<DataManager>().SaveToSettingData();
     }
     public override void Update()
     {
         if(openPanel ==false) return;
 
-        int value = (int)_masterSlider.value;
-        _masterSlider.Q<Label>("text-value").text = value.ToString();
-        Define.GetManager<SoundManager>().SetMasterVolume(Mathf.Lerp(-80,5,(float)value/100f));
-        value = (int)_backgroundSlider.value;
-        _backgroundSlider.Q<Label>("text-value").text = value.ToString();
-        Define.GetManager<SoundManager>().SetBGmVolume(Mathf.Lerp(-80, 0, (float)value / 100f));
-        value = (int)_vfxSlider.value;
-        _vfxSlider.Q<Label>("text-value").text = value.ToString();
-        Define.GetManager<SoundManager>().SetSFXVolume(Mathf.Lerp(-80, 0, (float)value / 100f));
+        SetSound();
 
         if (graphic != _graphicDropdown.value)
         {
@@ -120,6 +117,18 @@ public class UISettingPanel : UIBase
             SetResolution();
         }
         
+    }
+    public void SetSound()
+    {
+        int value = (int)_masterSlider.value;
+        _masterSlider.Q<Label>("text-value").text = value.ToString();
+        Define.GetManager<SoundManager>().SetMasterVolume(Mathf.Lerp(-80, 5, (float)value / 100f));
+        value = (int)_backgroundSlider.value;
+        _backgroundSlider.Q<Label>("text-value").text = value.ToString();
+        Define.GetManager<SoundManager>().SetBGmVolume(Mathf.Lerp(-80, 0, (float)value / 100f));
+        value = (int)_vfxSlider.value;
+        _vfxSlider.Q<Label>("text-value").text = value.ToString();
+        Define.GetManager<SoundManager>().SetSFXVolume(Mathf.Lerp(-80, 0, (float)value / 100f));
     }
     public void SetResolution()
     {

@@ -23,12 +23,11 @@ public class UITutorial : UIBase
             
         });
 
-        Debug.Log($"UITutorial name {_root.name}");
-
         Hide();
     }
     public void Show(int page)
     {
+
         currentPage = page;
         currentPageIndex = 0;
         PagePosition(currentPageIndex, currentPage);
@@ -36,11 +35,13 @@ public class UITutorial : UIBase
     }
     public override void Show()
     {
+        UIManager.Instance.stopEsc = true;
         _root.style.display = DisplayStyle.Flex;
     }
 
     public override void Hide()
     {
+        UIManager.Instance.stopEsc = false;
         _root.style.display = DisplayStyle.None;
     }
 
