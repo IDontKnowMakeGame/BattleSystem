@@ -24,6 +24,8 @@ public class OldGreatSword : GreatSword
 		_characterActor.GetAct<PlayerAnimation>().Play("Skill");
 		_characterActor.GetAct<CharacterStatAct>().Half += OldGreatSwordData.decrease;
 
+		_characterActor.AddState(CharacterState.Skill);
+
 		ClipBase clip = _characterActor.GetAct<PlayerAnimation>().GetClip("Skill");
 		clip.SetEventOnFrame(3, () =>
 		{
@@ -39,6 +41,7 @@ public class OldGreatSword : GreatSword
 		clip.SetEventOnFrame(clip.fps - 1, () =>
 		{
 			_characterActor.GetAct<CharacterStatAct>().Half -= OldGreatSwordData.decrease;
+			_characterActor.RemoveState(CharacterState.Skill);
 			Define.GetManager<ResourceManager>().Destroy(particleObj);
 		});
 	}
