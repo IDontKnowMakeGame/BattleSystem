@@ -33,7 +33,7 @@ namespace Acts.Characters.Enemy
             if (currentCoroutine != null)
                 ThisActor.StopCoroutine(currentCoroutine);
             curClip = weaponClipDic[name];
-            Define.GetManager<SoundManager>().PlayAtPoint($"Boss/{name}", ThisActor.Position,  1);
+            Define.GetManager<SoundManager>().PlayAtPoint($"Boss/{ThisActor.name}/{name}", ThisActor.Position,  1);
             currentCoroutine = ThisActor.StartCoroutine(AnimationPlay());
         }
 

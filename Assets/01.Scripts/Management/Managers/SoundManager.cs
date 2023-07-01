@@ -11,6 +11,7 @@ public class SoundManager : Manager
     AudioMixer audioMix;
     AudioMixerGroup[] audioMixerGroups;
     Dictionary<string, AudioClipInfo> _audioClips = new Dictionary<string, AudioClipInfo>();
+    Dictionary<string, AudioSource> _playingAudioSources = new Dictionary<string, AudioSource>();
 
     GameObject soundObj;
     bool isFadeout;
@@ -92,6 +93,7 @@ public class SoundManager : Manager
         if (audioClipInfo.clip == null) return;
 
         var go = Define.GetManager<PoolManager>().Pop(soundObj, _transform);
+        _playingAudioSources.Add(audioClipInfo.clip.name, go?.GetComponent<AudioSource>());
         SetClipInfo(audioClipInfo, 1, pitch, go.gameObject);
 
     }
@@ -100,6 +102,7 @@ public class SoundManager : Manager
     {
         if (audioClipInfo.clip == null) return;
         var go = Define.GetManager<PoolManager>().Pop(soundObj);
+        _playingAudioSources.Add(audioClipInfo.clip.name, go?.GetComponent<AudioSource>());
         go.transform.position = _vec;
         SetClipInfo(audioClipInfo, 1, pitch, go.gameObject);
     }
@@ -108,6 +111,7 @@ public class SoundManager : Manager
     {
         if (audioClipInfo.clip == null) return;
         var go = Define.GetManager<PoolManager>().Pop(soundObj);
+        _playingAudioSources.Add(audioClipInfo.clip.name, go?.GetComponent<AudioSource>());
         go.transform.position = _vec;
         SetClipInfo(audioClipInfo, 2, pitch, go.gameObject, isLoop);
     }
@@ -283,6 +287,13 @@ public class SoundManager : Manager
         }
     }
 
+    public void StopSound(string Clipname)
+    {
+        if(_playingAudioSources[Clipname])
+        {
+            _playingAudioSources[Clipname].Stop();
+        }
+    }
     private void BGMFadeOut()
     {
         AudioSource audio = audioSources[(int)Define.Sound.Bgm];

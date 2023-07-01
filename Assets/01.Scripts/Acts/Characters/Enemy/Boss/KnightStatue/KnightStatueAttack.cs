@@ -22,6 +22,7 @@ namespace Acts.Characters.Enemy.Boss.KnightStatue
             character.canKnockBack = true;
             animation.Play("JumpReady");
             
+            animation.curClip.OnExit += () => Define.GetManager<SoundManager>().PlayAtPoint("Boss/KnightStatue/Jump", ThisActor.Position, 1);
             move.Stamp(InGame.Player.Position, Vector3.zero, 0, 3f);
             yield return new WaitUntil(() => character != null && !character.HasState(CharacterState.Move));
             
