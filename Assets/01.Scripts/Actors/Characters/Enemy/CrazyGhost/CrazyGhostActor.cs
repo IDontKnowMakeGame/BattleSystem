@@ -57,7 +57,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 {
                     attack.HorizontalAttack(dir, false);
                     attack.SliceEffect(dir);
-					Define.GetManager<SoundManager>().PlayAtPoint("Boss/Slash", this.transform.position);
+					Define.GetManager<SoundManager>().PlayAtPoint("Boss/CrazyGhost/Slash", this.transform.position);
 				});
 			}, 30f));
             pattern.RandomActions.Add(new NextAction(() =>
@@ -74,7 +74,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 {
                     move.Jump(Position, dir, 6, 0f);
                     attack.VerticalAttack(dir, false);
-					Define.GetManager<SoundManager>().PlayAtPoint("Boss/Pierce", this.transform.position);
+					Define.GetManager<SoundManager>().PlayAtPoint("Boss/CrazyGhost/Pierce", this.transform.position);
 				});
             }, 70f));
             jump.OnEnter = () =>
@@ -83,7 +83,7 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 canKnockBack = true;
                 var jumpClip = _enemyAnimation.GetClip("JumpAttackJump");
                 var readyClip = _enemyAnimation.GetClip("JumpAttackReady");
-                Define.GetManager<SoundManager>().Play("Boss/jump", Define.Sound.Effect, 1);
+                Define.GetManager<SoundManager>().Play("Boss/CrazyGhost/jump", Define.Sound.Effect, 1);
                 _enemyAnimation.Play("JumpAttackReady");
                 readyClip.OnExit = () =>
                 {
@@ -107,19 +107,19 @@ namespace Actors.Characters.Enemy.CrazyGhost
                 {
                     attack.HorizontalAttack(dir, false);
                     attack.SliceEffect(dir);
-					Define.GetManager<SoundManager>().PlayAtPoint("Boss/ComboOne", this.transform.position);
+					Define.GetManager<SoundManager>().PlayAtPoint("Boss/CrazyGhost/ComboOne", this.transform.position);
 				}, () =>
                 {
                     AttackWithNoReturn(dir,"Combo2", () =>
                     {
                         attack.VerticalAttack(dir, false);
-						Define.GetManager<SoundManager>().PlayAtPoint("Boss/Pierce", this.transform.position);
+						Define.GetManager<SoundManager>().PlayAtPoint("Boss/CrazyGhost/Pierce", this.transform.position);
 					}, () =>
                     {
                         Attack(dir,"Combo3", () =>
                         {
                             attack.ForwardAttack(dir, false);
-							Define.GetManager<SoundManager>().PlayAtPoint("Boss/ComboLast", this.transform.position,1.3f);
+							Define.GetManager<SoundManager>().PlayAtPoint("Boss/CrazyGhost/ComboLast", this.transform.position,1.3f);
 						});
                     });
                 });

@@ -16,7 +16,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
         {
             Attack();
             ThisActor.GetAct<EnemyParticle>().PlayLandingParticle();
-            Define.GetManager<SoundManager>().PlayAtPoint("Boss/JumpImpact", ThisActor.Position, 1);
+            Define.GetManager<SoundManager>().PlayAtPoint("Boss/CrazyGhost/JumpImpact", ThisActor.Position, 1);
             for (var i = -distance; i <= distance; i++)
             {
                 for (var j = -distance; j <= distance; j++)
@@ -50,7 +50,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                         if (area.Contains(attackPos)) continue;
                         //Define.GetManager<MapManager>().AttackBlock(CharacterActor.Position + attackPos, DefaultStat.Atk, DefaultStat.Ats, CharacterActor, MovementType.Roll);
                         InGame.Attack(CharacterActor.Position + attackPos, 0, new Vector3(1, 0, 1), DefaultStat.Atk, DefaultStat.Ats, CharacterActor);
-                        Define.GetManager<SoundManager>().PlayAtPoint("Boss/explosion", CharacterActor.Position + attackPos, 1);
+                        Define.GetManager<SoundManager>().PlayAtPoint("Boss/CrazyGhost/explosion", CharacterActor.Position + attackPos, 1);
                         InGame.ShakeBlock(CharacterActor.Position + attackPos, DefaultStat.Ats, MovementType.Roll);
                         if(distance == 1 || singleLayer)
                             area.Add(attackPos);
@@ -88,7 +88,7 @@ namespace Acts.Characters.Enemy.Boss.CrazyGhost
                     //Define.GetManager<MapManager>().AttackBlock(attackPos, DefaultStat.Atk * 2f, DefaultStat.Ats,
                     //CharacterActor, MovementType.Shake);
                     InGame.Attack(attackPos, 0, new Vector3(1, 0, 1), DefaultStat.Atk, DefaultStat.Ats, CharacterActor);
-                    Define.GetManager<SoundManager>().PlayAtPoint("Boss/soulAttackImpact", attackPos, 1);
+                    Define.GetManager<SoundManager>().PlayAtPoint("Boss/CrazyGhost/soulAttackImpact", attackPos, 1);
                     InGame.ShakeBlock(attackPos, DefaultStat.Ats, MovementType.Shake);
                     block = Define.GetManager<MapManager>().GetBlock(attackPos);
                     if (block != null)
