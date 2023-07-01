@@ -88,7 +88,7 @@ public class GreatSword : Weapon
 		_currrentVector = DirReturn(vec);
 		ChargeAnimation(_currrentVector);
         _characterActor.GetAct<CharacterStatAct>().Half += _half;
-		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/GreatSword/GreatSwordCharge", this._characterActor.transform.position);
+		Define.GetManager<SoundManager>().Play("Sounds/GreatSword/GreatSwordCharge", Define.Sound.Effect);
 	}
 	public virtual void Hold(Vector3 vec)
 	{
@@ -131,8 +131,8 @@ public class GreatSword : Weapon
 			_eventParam.attackParam = _attackInfo;
 			info.Atk = addDamage * (int)(timer / addTime);
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
-			//PlayerAttack.OnAttackEnd += AttackEnd;
-		Define.GetManager<SoundManager>().PlayAtPoint("Sounds/GreatSword/GreatSwordAirCut", this._characterActor.transform.position);
+			Define.GetManager<SoundManager>().StopSound(Define.Sound.Effect);
+			Define.GetManager<SoundManager>().PlayAtPoint("Sounds/GreatSword/GreatSwordAirCut", this._characterActor.transform.position);
 		}
 		else
         {
