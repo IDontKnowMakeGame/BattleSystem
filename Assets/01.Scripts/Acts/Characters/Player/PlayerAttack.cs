@@ -268,7 +268,7 @@ namespace Acts.Characters.Player
         {
 			Define.GetManager<EventManager>()?.StopListening(EventFlag.Attack, Attack);
             Define.GetManager<EventManager>()?.StopListening(EventFlag.NoneAniAttack, NoneAniAttack);
-			Define.GetManager<EventManager>()?.StartListening(EventFlag.FureAttack, FureAttack);
+			Define.GetManager<EventManager>()?.StopListening(EventFlag.FureAttack, FureAttack);
 		}
 
         public void RangeReset()

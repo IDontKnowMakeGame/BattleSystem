@@ -82,9 +82,9 @@ public class Arrow : MonoBehaviour
 				break;
 			}
 
-			if (map.GetBlock(position + (vec * count)) != null)
+			if (map.GetBlock(actor.Position + (vec * count)) != null)
 			{
-				if (!map.GetBlock(position + (vec * count)).isWalkable && map.GetBlock(position + (vec * count)).ActorOnBlock == null)
+				if (!map.GetBlock(actor.Position + (vec * count)).isWalkable && map.GetBlock(actor.Position + (vec * count)).ActorOnBlock == null)
 				{
 					count--;
 					_isEnd = true;
@@ -101,7 +101,7 @@ public class Arrow : MonoBehaviour
 
 		position.y = 0.8f;
 
-		this.transform.position = position;
+		this.transform.position = actor.Position + new Vector3(0, 0.8f, 0);
 
 		float time = count / speed;
 
@@ -179,6 +179,7 @@ public class Arrow : MonoBehaviour
 		Vector3 vec = new Vector3(-150, 0, 0);
 		this.transform.localRotation = Quaternion.Euler(vec);
 		_trail.enabled = false;
+		_isEnemy = false;
 	}
 
 
@@ -259,6 +260,7 @@ public class Arrow : MonoBehaviour
 
 		if (_shootActor.UUID != actor.UUID && !_isStick)
 		{
+			if(!actor.isFloating)
 			StickActor(other);
 		}
 	}

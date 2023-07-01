@@ -80,13 +80,16 @@ public class Spear : Weapon
 
 		InputManager<Spear>.OnClickPress += Attack;
 		InputManager<Spear>.OnMovePress += CurrentBool;
-		CharacterMove.OnMoveEnd += MoveEnd;
+		//CharacterMove.OnMoveEnd += MoveEnd;
 
 		Debug.Log("Equiqment");
 
 		DefaultAnimation();
 
 		_isAni = false;
+		_isEnterEnemy = false;
+		_nonDir = false;
+		_isDown = false;
 	}
 	public override void UnEquipment(CharacterActor actor)
 	{
@@ -96,22 +99,23 @@ public class Spear : Weapon
 
 		InputManager<Spear>.OnClickPress -= Attack;
 		InputManager<Spear>.OnMovePress -= CurrentBool;
-		CharacterMove.OnMoveEnd -= MoveEnd;
+		//CharacterMove.OnMoveEnd -= MoveEnd;
 		_isAni = false;
 
 		_currentVec = Vector3.zero;
 		_originVec = Vector3.zero;
+		_isAni = false;
+		_isEnterEnemy = false;
 		_nonDir = false;
-		_isDown = false;
 		_characterActor.RemoveState(CharacterState.DontMoveAniation);
 		Debug.Log("UnEquiqment");
 	}
 
 	public override void Update()
 	{
-
 		if (!_isDown)
 			return;
+
 		_currentVec = InGame.CamDirCheck(_originVec);
 
 		bool isEnemy = false;
@@ -121,6 +125,29 @@ public class Spear : Weapon
 			if (_mapManager.GetBlock(_characterActor.Position + _currentVec * i)?.ActorOnBlock != null)
 				isEnemy = true;
 		}
+
+
+		if(_isEnterEnemy)
+		{
+			Debug.Log("Çה");
+			if(isEnemy)
+			{
+				Debug.Log("ÇהÇה");
+				if (_isCurrentVec)
+				{
+					Debug.Log("ggg");
+					if (_isDown)
+					{
+						Debug.Log("bbb");
+					}
+				}
+			}
+		}
+		//Debug.Log(_isDown);
+		//Debug.Log(_isEnterEnemy);
+		//Debug.Log(isEnemy);
+		//Debug.Log(_isCurrentVec);
+
 		if (_isDown && _isEnterEnemy && isEnemy && _isCurrentVec)
 		{
 			_eventParam.attackParam = _attackInfo;
@@ -138,7 +165,7 @@ public class Spear : Weapon
 
 		Debug.Log(!_isAni && InGame.CamDirCheck(DirReturn(vec)) != _currentVec);//true
 		Debug.Log(!_isAni);//true
-		Debug.Log(InGame.CamDirCheck(DirReturn(vec)) != _currentVec);//true
+		Debug.Log(DirReturn(vec) == _originVec);//true
 		Debug.Log(_isDown && DirReturn(vec) == _originVec && !_isAni);//false
 		Debug.Log(_isDown && InGame.CamDirCheck(DirReturn(vec)) == _currentVec && !_isAni);
 
@@ -149,7 +176,6 @@ public class Spear : Weapon
 		else if (!_isAni && DirReturn(vec) != _originVec)
 		{
 			_attackInfo.RemoveDir(_attackInfo.DirTypes(vec));
-			_attackInfo.PressInput = vec;
 			_currentVec = Vector3.zero;
 			_originVec = Vector3.zero;
 			_nonDir = false;
@@ -165,7 +191,7 @@ public class Spear : Weapon
 		_currentVec = InGame.CamDirCheck(_originVec);
 		Debug.Log(_originVec);
 		Debug.Log(_currentVec);
-		_attackInfo.PressInput = vec;
+		_attackInfo.PressInput = _originVec;
 		_nonDir = true;
 		_isAni = true;
 		ReadyAnimation(vec);
@@ -260,20 +286,20 @@ public class Spear : Weapon
 	{
 		_isClick = true;
 
-		if (!(vec == _attackInfo.PressInput && _isDown))
-			_isCurrentVec = false;
-		else
+		if (vec == _originVec && _isDown)
 			_isCurrentVec = true;
+		else
+			_isCurrentVec = false;
 	}
-	private void MoveEnd(int id, Vector3 vec)
-	{
-		if (_characterActor == null)
-			return;
-		if (id != _characterActor.UUID)
-			return;
+	//private void MoveEnd(int id, Vector3 vec)
+	//{
+	//	if (_characterActor == null)
+	//		return;
+	//	if (id != _characterActor.UUID)
+	//		return;
 
-		_isClick = false;
-	}
+	//	_isClick = false;
+	//}
 
 
 }
