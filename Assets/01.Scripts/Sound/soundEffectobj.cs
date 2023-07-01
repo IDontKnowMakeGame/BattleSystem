@@ -33,6 +33,7 @@ public class soundEffectobj : MonoBehaviour
         yield return wait;
         if (this.gameObject != null && Define.GetManager<PoolManager>() != null)
         {
+
             Define.GetManager<PoolManager>().Push(this.gameObject.GetComponent<Poolable>());
         }
     }
