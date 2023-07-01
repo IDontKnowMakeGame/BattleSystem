@@ -83,6 +83,8 @@ public class UISettingPanel : UIBase
         openPanel = true;
 
         _root.style.display = DisplayStyle.Flex;
+
+        UIManager.Instance.uiOn = true;
         UIManager.Instance.MoveAndInputStop();
         UIManager.OpenPanels.Push(this);
     }
@@ -98,6 +100,7 @@ public class UISettingPanel : UIBase
         _settingData.backgroundVolume = (int)_backgroundSlider.value;
         _settingData.vfxVolume = (int)_vfxSlider.value;
         DataManager.SettingData_ = _settingData;
+        UIManager.Instance.uiOn = false;
         Define.GetManager<DataManager>().SaveToSettingData();
     }
     public override void Update()

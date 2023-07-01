@@ -242,6 +242,7 @@ public class UIInventory : UIBase
             return;
         }
 
+        UIManager.Instance.uiOn = true;
         UIManager.Instance.MoveAndInputStop();
         isOpen = true;
         _root.style.display = DisplayStyle.Flex;
@@ -264,6 +265,7 @@ public class UIInventory : UIBase
         HideWeaponInfoPanel();
         InitSelectHaloSetting();
         SelectOptionInit(true);
+        UIManager.Instance.uiOn = false;
         UIManager.Instance.UpdateInGameUI();
         UIManager.Instance.MoveAndInputPlay();
         UIManager.Instance.InGame.ChangeItemPanelImage();

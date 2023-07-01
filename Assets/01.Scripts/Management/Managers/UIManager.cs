@@ -84,6 +84,7 @@ public class UIManager : MonoBehaviour
     public IntroData introData;
 
     public bool stopEsc = false;
+    public bool uiOn = false;
     #region Escape
     public static Stack<UIBase> OpenPanels = new Stack<UIBase>();
     #endregion
