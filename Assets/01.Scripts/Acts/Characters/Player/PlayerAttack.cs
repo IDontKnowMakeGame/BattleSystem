@@ -98,8 +98,7 @@ namespace Acts.Characters.Player
 			foreach (EnemyActor enemy in enemys)
             {
                 enemy.GetAct<CharacterStatAct>().Damage(character.ChangeStat.atk, ThisActor);
-                if (enemy.isFloating)
-                    return;
+
 				if (enemy.Alive)
                 {
                     if (_tempState.HasFlag(CharacterState.KnockBack))

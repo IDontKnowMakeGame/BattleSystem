@@ -97,13 +97,10 @@ namespace Acts.Characters.Enemy
             QuestManager.Instance.CheckKillMission((ThisActor as EnemyActor).CurrentType);
 
             GameObject addObject = Define.GetManager<ResourceManager>().Instantiate("EatEffect");
+            addObject.transform.position = ThisActor.Position + Vector3.up;
+			addObject.GetComponent<EatEffect>().Init(attackActor.gameObject);
 
-			addObject.transform.position = InGame.Player.Position + Vector3.up;
-            addObject.transform.localRotation = Quaternion.LookRotation(InGame.Player.Position- this.ThisActor.Position);
-            addObject.transform.parent = InGame.Player.transform;
-            addObject.transform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
-
-			if (isBoss)
+            if(isBoss)
             {
 				ClipBase clip = unit.GetClip("Die");
 				clip?.SetEventOnFrame(clip.fps - 1, ObjectCreate);
