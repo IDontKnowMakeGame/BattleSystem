@@ -160,7 +160,6 @@ public class GreatSword : Weapon
 		_sliderObject?.SliderActive(false);
 
 		//if(UnityEngine.Random.Range(0,2) == 1)
-		Define.GetManager<SoundManager>().Play("Sounds/GreatSword/GreatSwordDragging");
 		//else
 		//	Define.GetManager<SoundManager>().PlayAtPoint("Sounds/GreatSword/GreatSwordDragging() (mp3cut.net)", this._characterActor.transform.position);
 	} 

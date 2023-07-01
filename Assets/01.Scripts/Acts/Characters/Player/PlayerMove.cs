@@ -66,6 +66,9 @@ namespace Acts.Characters.Player
 
 			if (isSkill)
 				_isMoving = false;
+
+			if(ThisActor.GetAct<PlayerEquipment>().CurrentWeapon is GreatSword)
+			Define.GetManager<SoundManager>().Play("Sounds/GreatSword/GreatSwordDragging");
 			base.Move(position);
 		}
 		#region Test Code
