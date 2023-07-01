@@ -175,6 +175,7 @@ MonoBehaviour:
   _characterState: 0
   _isBlocking: 1
   canKnockBack: 0
+  isFloating: 0
   _secondPhaseHpPercent: 0
   _enemyAi:
     CurrentState:
@@ -199,9 +200,10 @@ MonoBehaviour:
       ats: 0
       afs: 0
       speed: 0
+    life: 1
     _feahter: 52
     info:
-      _id: 7
+      _id: 9
       _count: 1
       _isWeapon: 1
     isBoss: 0

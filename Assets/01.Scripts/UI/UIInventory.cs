@@ -255,7 +255,7 @@ public class UIInventory : UIBase
         CreateCardList(_useableItemScrollPanel, _useableItemCardTemp, Define.GetManager<DataManager>().LoadUsableItemFromInventory(), SelectCard);
         CreateCardList(_questItemScrollPanel, _questItemCardTemp, Define.GetManager<DataManager>().LoadQuestFromInventory(), SelectCard);
 
-        ChangeShowInventoryPanel(0);
+        ChangeShowInventoryPanel(currentPage);
         UIManager.OpenPanels.Push(this);
     }
     public override void Hide()
@@ -267,7 +267,7 @@ public class UIInventory : UIBase
         SelectOptionInit(true);
         UIManager.Instance.uiOn = false;
         UIManager.Instance.UpdateInGameUI();
-        UIManager.Instance.MoveAndInputPlay();
+        //UIManager.Instance.MoveAndInputPlay();
         UIManager.Instance.InGame.ChangeItemPanelImage();
     }
 

@@ -182,7 +182,9 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        MoveAndInputPlay();
+        if(OpenPanels.Count == 1)
+            MoveAndInputPlay();
+
         UIBase ui = OpenPanels.Pop();
         if(ui is UIMenu || ui is UIStatus || ui is UIQuit || ui is UIExplanation)
         {

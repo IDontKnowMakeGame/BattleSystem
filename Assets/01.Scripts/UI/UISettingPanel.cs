@@ -85,7 +85,7 @@ public class UISettingPanel : UIBase
         _root.style.display = DisplayStyle.Flex;
 
         UIManager.Instance.uiOn = true;
-        UIManager.Instance.MoveAndInputStop();
+        //UIManager.Instance.MoveAndInputStop();
         UIManager.OpenPanels.Push(this);
     }
 
