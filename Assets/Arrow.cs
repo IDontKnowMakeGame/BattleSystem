@@ -226,6 +226,16 @@ public class Arrow : MonoBehaviour
 	private void OnTriggerEnter(Collider other)
 	{
 		CharacterActor actor = other.GetComponent<CharacterActor>();
+
+		if(_isStick)
+		{
+			if (actor == null)
+				return;
+
+			if (actor != _shootActor)
+				return;
+		}
+
 		if ((1 << other.gameObject.layer == LayerMask.GetMask("Wall") && _isEnd) || (1 << other.gameObject.layer == LayerMask.GetMask("InteractionWall")))
 		{
 			if (_isDestroy)
