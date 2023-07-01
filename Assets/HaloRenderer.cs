@@ -35,6 +35,9 @@ public class HaloRenderer : MonoBehaviour
 	[SerializeField]
 	private HaloAnimationContainor[] _haloAnimationInfos;
 
+	[SerializeField]
+	private Transform _trans;
+
 	private Dictionary<ItemID, HaloAnimationContainor> _animations = new Dictionary<ItemID, HaloAnimationContainor>();
 
 	private	Stack<HaloAnimationContainor> me = new Stack<HaloAnimationContainor>();
@@ -70,11 +73,12 @@ public class HaloRenderer : MonoBehaviour
 		//float z = ;
 
 		Vector3 camDic = InGame.CamDirCheck(Vector3.back) / 5;
-		this.transform.localPosition = vec + camDic;
-		if(camDic.x >= 0.2 || camDic.x <= -0.2)
-		this.transform.localRotation = Quaternion.Euler(new Vector3(0, camDic.x > 0.2f ? 90 : -90, 0));
-		else
-			this.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+		//this.transform.localPosition = vec + camDic;
+		this.transform.localRotation = Quaternion.LookRotation(InGame.CamDirCheck(Vector3.back));
+		//if(camDic.x >= 0.2 || camDic.x <= -0.2)
+		//this.transform.localRotation = Quaternion.Euler(new Vector3(0, camDic.x > 0.2f ? 90 : -90, 0));
+		//else
+		//	this.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
 
 	}
 
