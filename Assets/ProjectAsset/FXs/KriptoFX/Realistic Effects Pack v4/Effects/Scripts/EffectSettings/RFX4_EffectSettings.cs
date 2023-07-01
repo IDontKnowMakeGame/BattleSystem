@@ -1,4 +1,3 @@
-using Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -42,15 +41,7 @@ public class RFX4_EffectSettings : MonoBehaviour
     {
         prevIsVisible = IsVisible;
         CacheRenderers();
-
-        StartCoroutine(DestroySound());
-	}
-
-    private IEnumerator DestroySound()
-    {
-        yield return new WaitForSeconds(3f);
-		Define.GetManager<ResourceManager>().Destroy(this.gameObject);
-	}
+    }
 
     void OnEnable()
     {
@@ -69,7 +60,7 @@ public class RFX4_EffectSettings : MonoBehaviour
                 StartCoroutine(Fadeout());
             else Fadein();
         }
-	}
+    }
 
     void ChangeParticlesBudget(float particlesMul)
     {
@@ -165,7 +156,6 @@ public class RFX4_EffectSettings : MonoBehaviour
             ChangeAlphaFade();
             yield return new WaitForSeconds(1f/30f);
         }
-
     }
 
     string[] colorProperties =

@@ -20,7 +20,7 @@ public class UIDeathPanel : UIBase
 
         _deathPanel.RemoveFromClassList("DeathPanel-alphaZero");
 
-		Define.GetManager<SoundManager>().Play("UI/UIDie", Define.Sound.Bgm);
+		Define.GetManager<SoundManager>().Play("UI/UIDie", Define.Sound.Effect);
 	}
 
     public override void Hide()
