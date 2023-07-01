@@ -13,7 +13,7 @@ public class SoundManager : Manager
     Dictionary<string, AudioClipInfo> _audioClips = new Dictionary<string, AudioClipInfo>();
 
     GameObject soundObj;
-
+    bool isFadeout;
 
     public override void Awake()
     {
@@ -29,7 +29,6 @@ public class SoundManager : Manager
         {
             Debug.Log("있음");
             audioSources = (AudioSource[])root.GetComponentsInChildren<AudioSource>();
-            
         }
         else
         {
@@ -71,6 +70,10 @@ public class SoundManager : Manager
             }
             info.playingList = newList;
         }
+        if(isFadeout)
+        {
+            BGMFadeOut();
+        }
     }
 
     public void Clear()
@@ -108,7 +111,6 @@ public class SoundManager : Manager
         go.transform.position = _vec;
         SetClipInfo(audioClipInfo, 2, pitch, go.gameObject, isLoop);
     }
-
 
     /// <summary>
     /// 게임 오브젝트에 자식으로 붙여서 계속 소리 낼 때 사용하는 함수
@@ -155,6 +157,7 @@ public class SoundManager : Manager
             audio.pitch = pitch;
             audio.clip = audioClipinfo.clip;
             if (audio.isPlaying) audio.Stop();
+            audio.volume = 1;
             audio.Play();
         }
         else
@@ -264,6 +267,30 @@ public class SoundManager : Manager
         if (audioMix)
         {
             audioMixerGroups[2].audioMixer.SetFloat("SoundEffectVolume", value);
+        }
+    }
+
+    public void StopSound(Define.Sound type)
+    {
+        AudioSource audio = audioSources[(int)type];
+        if(type == Define.Sound.Effect)
+        {
+            if (audio.isPlaying) audio.Stop();
+        }
+        else
+        {
+            isFadeout = true;
+        }
+    }
+
+    private void BGMFadeOut()
+    {
+        AudioSource audio = audioSources[(int)Define.Sound.Bgm];
+        audio.volume -= Time.deltaTime;
+        if(audio.volume <= 0.01f)
+        {
+            if (audio.isPlaying) audio.Stop();
+            isFadeout = false;
         }
     }
 }

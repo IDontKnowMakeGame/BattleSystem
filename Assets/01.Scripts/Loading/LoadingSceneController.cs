@@ -106,6 +106,10 @@ public class LoadingSceneController : MonoBehaviour
 
     public IEnumerator LoadScene(string sceneName, float timer = 0f)
     {
+        if(Core.Define.GetManager<SoundManager>() != null)
+        {
+            Core.Define.GetManager<SoundManager>().StopSound(Core.Define.Sound.Bgm);
+        }
         if (IsVisbleLoading()) yield break;
         isLoading = true;
 
@@ -118,7 +122,6 @@ public class LoadingSceneController : MonoBehaviour
         loadSceneName = sceneName;
 
         DataManager.LoadScene(loadSceneName);
-
         StartCoroutine(LoadSceneProcess());
     }
 
@@ -213,6 +216,7 @@ public class LoadingSceneController : MonoBehaviour
         if (!isFadeIn)
         {
             ui.SetActive(false);
+            Debug.Log(loadSceneName + "소리 켜기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11");
             Core.Define.GetManager<SoundManager>().Play("Sounds/BackGround/" + loadSceneName + "BackGround", Core.Define.Sound.Bgm);
         }
     }

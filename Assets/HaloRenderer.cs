@@ -74,7 +74,7 @@ public class HaloRenderer : MonoBehaviour
 
 		Vector3 camDic = InGame.CamDirCheck(Vector3.back) / 5;
 		//this.transform.localPosition = vec + camDic;
-		this.transform.localRotation = Quaternion.LookRotation(InGame.CamDirCheck(Vector3.back));
+		this.transform.localRotation = Quaternion.Slerp(this.transform.localRotation,Quaternion.LookRotation(InGame.CamDirCheck(Vector3.back)), Time.deltaTime * 5);
 		//if(camDic.x >= 0.2 || camDic.x <= -0.2)
 		//this.transform.localRotation = Quaternion.Euler(new Vector3(0, camDic.x > 0.2f ? 90 : -90, 0));
 		//else
