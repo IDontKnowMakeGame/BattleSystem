@@ -128,12 +128,6 @@ namespace Acts.Characters.Player
             if (NotUseItem) return;
 
             base.Update();
-
-            if(Input.GetKeyDown(KeyCode.Alpha9))
-            {
-                _bottle.UseItem();
-            }
-
             _hpPotion.UpdateItem();
             _compassOfSpace.UpdateItem();
         }
