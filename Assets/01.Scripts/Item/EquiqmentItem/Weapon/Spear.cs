@@ -107,8 +107,6 @@ public class Spear : Weapon
 
 	public override void Update()
 	{
-		_currentVec = InGame.CamDirCheck(_originVec);
-
 		if (!_isDown)
 			return;
 
@@ -134,7 +132,7 @@ public class Spear : Weapon
 		if (_characterActor.HasState(CharacterState.Equip))
 			return;
 
-		if (_isDown && InGame.CamDirCheck(DirReturn(vec)) == _currentVec && !_isAni)
+		if (_isDown && DirReturn(vec) == _originVec && !_isAni)
 		{
 			AttackUpCorutine(DirReturn(vec));
 		}

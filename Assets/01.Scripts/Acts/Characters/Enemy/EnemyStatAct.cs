@@ -101,6 +101,7 @@ namespace Acts.Characters.Enemy
 			addObject.transform.position = InGame.Player.Position + Vector3.up;
             addObject.transform.localRotation = Quaternion.LookRotation(InGame.Player.Position- this.ThisActor.Position);
             addObject.transform.parent = InGame.Player.transform;
+            addObject.transform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
 
 			if (isBoss)
             {
