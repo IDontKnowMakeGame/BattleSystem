@@ -19,6 +19,8 @@ public class TitleController : MonoBehaviour
 
     private Animator animator;
 
+    private AudioSource introAudio;
+
     private readonly int hashSkip = Animator.StringToHash("Skip");
 
     Sequence _sequence;
@@ -27,6 +29,11 @@ public class TitleController : MonoBehaviour
     {
         introData = JsonManager.LoadJsonFile<IntroData>(Application.streamingAssetsPath + "/SAVE/Tutorial", "IntroData");
         animator = GetComponent<Animator>();
+        introAudio = GetComponentInChildren<AudioSource>();
+        if(introAudio && introAudio.clip)
+        {
+            introAudio.Play();
+        }
         SetResolution();
     }
 
@@ -35,6 +42,7 @@ public class TitleController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape) && GetNormalizedTime(animator, "NoneSkip") <= 0.7f)
         {
             animator.SetTrigger(hashSkip);
+            introAudio.Stop();
         }
 
         else if (enableLoad && Input.anyKeyDown)
