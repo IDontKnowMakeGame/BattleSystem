@@ -38,8 +38,13 @@ namespace Acts.Characters.Enemy
         public override void Damage(float damage, Actor actor)
         {
 	        if (ChangeStat.hp <= 0) return;
-	        
-            attackActor = actor;
+
+	        var character = ThisActor as CharacterActor;
+	        if(character.isFloating)
+	        {
+		        return;
+	        }
+	        attackActor = actor;
             base.Damage(damage, actor);
             if (actor is EmptyBlock)
             {
