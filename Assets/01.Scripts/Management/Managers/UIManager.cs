@@ -149,14 +149,6 @@ public class UIManager : MonoBehaviour
         UIFirstFloorMap.Update();
         SettingPanel.Update();
 
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            Tutorial.Show(0);
-        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Escape();
