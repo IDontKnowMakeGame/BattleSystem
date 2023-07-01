@@ -100,7 +100,7 @@ public class UISettingPanel : UIBase
         _settingData.fullScreenMode = _windowModeToggle.value;
         _settingData.masterVolume = (int)_masterSlider.value;
         _settingData.backgroundVolume = (int)_backgroundSlider.value;
-        _settingData.vfxVolume = (int) .value;
+        _settingData.vfxVolume = (int)_vfxSlider.value;
         DataManager.SettingData_ = _settingData;
         UIManager.Instance.uiOn = false;
         Define.GetManager<DataManager>().SaveToSettingData();
