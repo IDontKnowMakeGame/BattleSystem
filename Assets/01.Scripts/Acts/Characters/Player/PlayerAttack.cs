@@ -234,8 +234,8 @@ namespace Acts.Characters.Player
             if (enemys.Count > 0)
             {
                 Attack();
+                OnAttackEnd?.Invoke(_playerActor.UUID);
             }
-			OnAttackEnd?.Invoke(_playerActor.UUID);
 			attackCol.AllReset();
 		}
         private void ColParentRotate()

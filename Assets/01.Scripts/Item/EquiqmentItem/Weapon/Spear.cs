@@ -116,6 +116,7 @@ public class Spear : Weapon
 		if (!_isDown)
 			return;
 
+		_attackInfo.RemoveDir(_attackInfo.DirTypes(_originVec));
 		_currentVec = InGame.CamDirCheck(_originVec);
 
 		bool isEnemy = false;
@@ -128,10 +129,11 @@ public class Spear : Weapon
 
 		if (_isDown && _isEnterEnemy && isEnemy && _isCurrentVec)
 		{
-			_attackInfo.LeftStat = new ColliderStat(1, 1, 1, 0);
-			_attackInfo.RightStat = new ColliderStat(1, 1, -1, 0);
+			_attackInfo.LeftStat = new ColliderStat(1, 1, -1, 0);
+			_attackInfo.RightStat = new ColliderStat(1, 1, 1, 0);
 			_attackInfo.UpStat = new ColliderStat(1, 1, 0, 1);
 			_attackInfo.DownStat = new ColliderStat(1, 1, 0, -1);
+			_attackInfo.AddDir(_attackInfo.DirTypes(_originVec));
 			_eventParam.attackParam = _attackInfo;
 			_isEnterEnemy = false;
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.FureAttack, _eventParam);
