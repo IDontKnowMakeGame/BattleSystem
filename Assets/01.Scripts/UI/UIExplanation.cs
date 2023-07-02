@@ -21,6 +21,7 @@ public class UIExplanation : UIBase
     {
         if(pageNum >=3 && pageNum <= 7)
             VideoManager.Instance.ChangeVideo(pageNum);
+        Core.Define.GetManager<SoundManager>().Play("Sounds/UI/UIExplain", Core.Define.Sound.Effect);
 
         _voidPanel.style.translate = new StyleTranslate(new Translate(new Length(-pageNum * 100,LengthUnit.Percent), 0));
         Show();
@@ -28,6 +29,7 @@ public class UIExplanation : UIBase
     public void Show(ItemID itemID)
     {
         _voidPanel.style.translate = new StyleTranslate(new Translate(0, 0));
+        Core.Define.GetManager<SoundManager>().Play("Sounds/UI/UIExplain", Core.Define.Sound.Effect);
         Show();
     }
     public override void Show()
