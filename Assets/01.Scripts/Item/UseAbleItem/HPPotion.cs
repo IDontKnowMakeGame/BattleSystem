@@ -42,7 +42,8 @@ public class HPPotion : UseAbleItem
             //InGame.Player.AddState(CharacterState.StopMove);
             _useHP = true;
             holyParticle.Play();
-            return true;
+			Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Item/HP", InGame.Player.Position);
+			return true;
         }
         return false;
     }

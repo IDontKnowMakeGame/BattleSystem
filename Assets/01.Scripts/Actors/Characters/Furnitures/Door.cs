@@ -25,7 +25,8 @@ namespace Actors.Characters.Furnitures
             FaildInteract = () =>
             {
                 Faild();
-            };
+				Define.GetManager<SoundManager>().PlayAtPoint("Sounds/Effect/DoorLock", InGame.Player.Position);
+			};
 
             anchorTrm = transform.GetChild(0);
             base.Awake();
