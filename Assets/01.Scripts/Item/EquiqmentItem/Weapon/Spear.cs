@@ -61,10 +61,10 @@ public class Spear : Weapon
 				_weaponClassLevelInfo.Ats -= 0.07f;
 				_weaponClassLevelInfo.Afs -= 0.07f;
 
-				_attackInfo.UpStat = new ColliderStat(2, 2, InGame.None, InGame.None);
-				_attackInfo.DownStat = new ColliderStat(2, 2, InGame.None, InGame.None);
-				_attackInfo.LeftStat = new ColliderStat(2, 2, InGame.None, InGame.None);
-				_attackInfo.RightStat = new ColliderStat(2, 2, InGame.None, InGame.None);
+				//_attackInfo.UpStat = new ColliderStat(2, 2, InGame.None, InGame.None);
+				//_attackInfo.DownStat = new ColliderStat(2, 2, InGame.None, InGame.None);
+				//_attackInfo.LeftStat = new ColliderStat(2, 2, InGame.None, InGame.None);
+				//_attackInfo.RightStat = new ColliderStat(2, 2, InGame.None, InGame.None);
 				break;
 		}
 	}
@@ -116,6 +116,7 @@ public class Spear : Weapon
 		if (!_isDown)
 			return;
 
+		_attackInfo.RemoveDir(_attackInfo.DirTypes(_originVec));
 		_currentVec = InGame.CamDirCheck(_originVec);
 
 		bool isEnemy = false;
@@ -126,33 +127,17 @@ public class Spear : Weapon
 				isEnemy = true;
 		}
 
-
-		if(_isEnterEnemy)
-		{
-			Debug.Log("Çה");
-			if(isEnemy)
-			{
-				Debug.Log("ÇהÇה");
-				if (_isCurrentVec)
-				{
-					Debug.Log("ggg");
-					if (_isDown)
-					{
-						Debug.Log("bbb");
-					}
-				}
-			}
-		}
-		//Debug.Log(_isDown);
-		//Debug.Log(_isEnterEnemy);
-		//Debug.Log(isEnemy);
-		//Debug.Log(_isCurrentVec);
-
 		if (_isDown && _isEnterEnemy && isEnemy && _isCurrentVec)
 		{
+			_attackInfo.LeftStat = new ColliderStat(1, 1, -1, 0);
+			_attackInfo.RightStat = new ColliderStat(1, 1, 1, 0);
+			_attackInfo.UpStat = new ColliderStat(1, 1, 0, 1);
+			_attackInfo.DownStat = new ColliderStat(1, 1, 0, -1);
+			_attackInfo.AddDir(_attackInfo.DirTypes(_originVec));
 			_eventParam.attackParam = _attackInfo;
 			_isEnterEnemy = false;
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.FureAttack, _eventParam);
+			Debug.Log("attack");
 		}
 		else if (!_isEnterEnemy && !isEnemy)
 			_isEnterEnemy = true;
