@@ -216,7 +216,6 @@ public class LoadingSceneController : MonoBehaviour
         if (!isFadeIn)
         {
             ui.SetActive(false);
-            Debug.Log(loadSceneName + "소리 켜기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11");
             Core.Define.GetManager<SoundManager>().Play("Sounds/BackGround/" + loadSceneName + "BackGround", Core.Define.Sound.Bgm);
         }
     }

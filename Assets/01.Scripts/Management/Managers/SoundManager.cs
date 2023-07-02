@@ -28,12 +28,10 @@ public class SoundManager : Manager
         string[] soundName = System.Enum.GetNames(typeof(Define.Sound));
         if (root.GetComponentsInChildren<AudioSource>().Length > 0)
         {
-            Debug.Log("있음");
             audioSources = (AudioSource[])root.GetComponentsInChildren<AudioSource>();
         }
         else
         {
-            Debug.Log("없음");
             for (int i = 0; i < soundName.Length - 1; i++)
             {
                 GameObject go = new GameObject { name = soundName[i] };
@@ -42,7 +40,6 @@ public class SoundManager : Manager
             }
         }
 
-        Debug.Log(audioSources[(int)Define.Sound.Bgm]);
         audioSources[(int)Define.Sound.Bgm].loop = true;
         soundObj = Define.GetManager<ResourceManager>().Load<GameObject>("Prefabs/SoundEffectObj");
         audioMix = soundObj.GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer;
@@ -93,6 +90,10 @@ public class SoundManager : Manager
         if (audioClipInfo.clip == null) return;
 
         var go = Define.GetManager<PoolManager>().Pop(soundObj, _transform);
+        if (_playingAudioSources.ContainsKey(audioClipInfo.clip.name))
+        {
+            _playingAudioSources.Remove(audioClipInfo.clip.name);
+        }
         _playingAudioSources.Add(audioClipInfo.clip.name, go?.GetComponent<AudioSource>());
         SetClipInfo(audioClipInfo, 1, pitch, go.gameObject);
 
@@ -102,6 +103,10 @@ public class SoundManager : Manager
     {
         if (audioClipInfo.clip == null) return;
         var go = Define.GetManager<PoolManager>().Pop(soundObj);
+        if (_playingAudioSources.ContainsKey(audioClipInfo.clip.name))
+        {
+            _playingAudioSources.Remove(audioClipInfo.clip.name);
+        }
         _playingAudioSources.Add(audioClipInfo.clip.name, go?.GetComponent<AudioSource>());
         go.transform.position = _vec;
         SetClipInfo(audioClipInfo, 1, pitch, go.gameObject);
@@ -111,6 +116,10 @@ public class SoundManager : Manager
     {
         if (audioClipInfo.clip == null) return;
         var go = Define.GetManager<PoolManager>().Pop(soundObj);
+        if (_playingAudioSources.ContainsKey(audioClipInfo.clip.name))
+        {
+            _playingAudioSources.Remove(audioClipInfo.clip.name);
+        }
         _playingAudioSources.Add(audioClipInfo.clip.name, go?.GetComponent<AudioSource>());
         go.transform.position = _vec;
         SetClipInfo(audioClipInfo, 2, pitch, go.gameObject, isLoop);
