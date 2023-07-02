@@ -98,7 +98,7 @@ public class UIItemStore : UIBase
 
         _currentItemID = itemID;
         _currentItemPrice = itemPrice;
-        _currentPurchaseCnt = 1;
+        _currentPurchaseCnt = 0;
 
 
         UpdateStoreUI();
@@ -120,6 +120,11 @@ public class UIItemStore : UIBase
 
     public void AddBtn()
     {
+        if (_currentItemID == ItemID.None) return;
+
+        int value = _currentFeather - (_currentItemPrice * (_currentPurchaseCnt+1));
+        if (value < 0) return;
+
         _currentPurchaseCnt++;
         UpdateStoreUI();
     }
@@ -141,6 +146,7 @@ public class UIItemStore : UIBase
         _currentFeather = value;
         Define.GetManager<DataManager>().SetFeahter(_currentFeather);
         Define.GetManager<DataManager>().AddItemInInventory(_currentItemID,_currentPurchaseCnt);
+        _currentPurchaseCnt = 0;
         UpdateStoreUI();
     }
     public void UpdateStoreUI()
