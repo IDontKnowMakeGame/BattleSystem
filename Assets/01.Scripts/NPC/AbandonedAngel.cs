@@ -182,7 +182,7 @@ public class AbandonedAngel : NPCActor
         UIManager.Instance.Dialog.StartListeningDialog(dialogueList[7]);
         Define.GetManager<DataManager>().ClearQuest(QuestName.FallenAngelCarryingThing);
 
-        Define.GetManager<DataManager>().AddItemInInventory(questData.quests[0].rewords[0], 1);
+        Define.GetManager<DataManager>().AddItemInInventory(questData.quests[1].rewords[0], 1);
     }
     //================================================================================================
 
