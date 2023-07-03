@@ -219,11 +219,14 @@ namespace Acts.Characters
             var block = map.GetBlock(nextPos.SetY(0));
             if(block.CheckActorOnBlock(ThisActor) == false) return;
             _character.AddState(Actors.Characters.CharacterState.Move);
-            _character.isFloating = true;
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
             var seq = DOTween.Sequence();
             block.isWalkable = false;
             seq.Append(_thisTransform.DOJump(nextPos, power, 1, speed));
+            seq.InsertCallback(0.1f, () =>
+            {
+                _character.isFloating = true;
+            });
             seq.AppendCallback(() =>
             {
                 map.GetBlock(nextPos.SetY(0)).SetActorOnBlock(ThisActor);
@@ -266,12 +269,15 @@ namespace Acts.Characters
             var block = map.GetBlock(nextPos.SetY(0));
             if(block.CheckActorOnBlock(ThisActor) == false) return;
             _character.AddState(Actors.Characters.CharacterState.Move);
-            _character.isFloating = true;
 
             var speed = _character.GetAct<CharacterStatAct>().ChangeStat.speed;
             var seq = DOTween.Sequence();
             block.isWalkable = false;
             seq.Append(_thisTransform.DOMove(nextPos, speed));
+            seq.InsertCallback(0.1f, () =>
+            {
+                _character.isFloating = true;
+            });
             seq.Join(_thisTransform.DOMoveY(power, speed));
             seq.SetDelay(0.8f);
             seq.Append(_thisTransform.DOMoveY(1, speed / 2).SetEase(Ease.InFlash));

@@ -74,7 +74,7 @@ public class BowShadeActor : EnemyActor
 		var degree = Mathf.Atan2(cameraDir.x, cameraDir.z) * Mathf.Rad2Deg;
 		degree = Mathf.Abs(Mathf.RoundToInt(degree));
 
-		if (degree == 90)
+		if (degree <= 90)
 		{
 			dir.x = -dir.x;
 			dir.z = -dir.z;

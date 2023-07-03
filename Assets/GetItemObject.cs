@@ -28,8 +28,6 @@ public class GetItemObject : InteractionActor
 	[SerializeField]
 	private bool _isWeapon;
 
-	public bool canInteraction = true;
-
 	public static int count = 0;
 
 	private static List<GetItemObject> obj = new List<GetItemObject>();
@@ -53,14 +51,14 @@ public class GetItemObject : InteractionActor
 		_id = id;
 		_count = count;
 		_isWeapon = weapon;
-		canInteraction = true;
+		canInteract = true;
 	}
 	public void Init(GetItemInfo info)
 	{
 		_id = info._id;
 		_count = info._count;
 		_isWeapon = info._isWeapon;
-		canInteraction = true;
+		canInteract = true;
 	}
 	public void ShowInteration(Vector3 vec)
 	{
@@ -75,7 +73,7 @@ public class GetItemObject : InteractionActor
 		if (count == 1)
 			return;
 
-		if (!canInteraction)
+		if (!canInteract)
 			return;
 
 		if (InGame.Player == null) return;
@@ -86,7 +84,7 @@ public class GetItemObject : InteractionActor
         onInteract?.Invoke();
 
         count++;
-		canInteraction = false;
+		canInteract = false;
 		characterDetect.EnterDetect -= ShowInteration;
 		characterDetect.ExitDetect -= HideInteration;
 		HideInteration(Vector2.zero);
