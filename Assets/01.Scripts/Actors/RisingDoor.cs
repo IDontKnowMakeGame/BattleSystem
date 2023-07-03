@@ -7,7 +7,9 @@ namespace Actors
     public class RisingDoor : TouchActor
     {
         [SerializeField] private Transform risingTrm;
+        [SerializeField] private Light light = null;
         [SerializeField] private bool canOpen = false;
+
 
         protected override void Update()
         {
@@ -17,7 +19,7 @@ namespace Actors
 
         public void Rise()
         {
-            risingTrm.DOLocalMoveY(1, 3).OnComplete(() =>
+            light.DOIntensity(5, 3).OnComplete(() =>
             {
                 canOpen = true;
             });

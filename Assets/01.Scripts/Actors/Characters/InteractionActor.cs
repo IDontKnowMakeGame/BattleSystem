@@ -12,7 +12,7 @@ using UnityEngine.Serialization;
 public class InteractionActor : CharacterActor
 {
     [SerializeField] protected CharacterDetect characterDetect;
-    [SerializeField] protected bool canInteract = true;
+    [SerializeField] public bool canInteract = true;
     [SerializeField] protected UnityEvent onInteract = new UnityEvent();
     protected override void Init()
     {

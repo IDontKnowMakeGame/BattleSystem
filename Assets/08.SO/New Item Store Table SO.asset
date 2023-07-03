@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   table:
   - itemID: 200
-    price: 50
+    price: 20
     limitItem: 0
     limitCnt: 1
   - itemID: 201
-    price: 100
+    price: 50
     limitItem: 0
     limitCnt: 1
   - itemID: 206
-    price: 300
+    price: 150
     limitItem: 0
     limitCnt: 1
   - itemID: 208
-    price: 500
+    price: 70
     limitItem: 0
     limitCnt: 1

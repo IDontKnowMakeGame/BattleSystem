@@ -233,4 +233,11 @@ public class UIManager : MonoBehaviour
         string json = JsonManager.ObjectToJson(introData);
         JsonManager.SaveJsonFile(Application.streamingAssetsPath + "/SAVE/Tutorial", "IntroData",json);
     }
+
+    public void TutorialSetData()
+    {
+        DataManager.UserData_.firstWeapon = ItemID.OldStraightSword;
+        DataManager.UserData_.secondWeapon = ItemID.OldTwinSword;
+        Define.GetManager<DataManager>().SaveToUserData();
+    }
 }
