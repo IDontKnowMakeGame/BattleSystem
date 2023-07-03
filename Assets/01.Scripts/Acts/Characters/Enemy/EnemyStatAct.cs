@@ -92,6 +92,12 @@ namespace Acts.Characters.Enemy
                 unit.Play("Idle");
                 return;
             }
+
+            var thisTransform = ThisActor.transform;
+
+            thisTransform.DOKill();
+            thisTransform.DOMoveY(0, 0.2f);
+            
             InGame.GetBlock(ThisActor.Position).RemoveActorOnBlock();
 			_actor.IsUpdatingPosition = false;
             
