@@ -104,7 +104,7 @@ namespace Acts.Characters.Enemy
             ThisActor.gameObject.tag = "Untagged";
 
             if (attackActor != null)
-            QuestManager.Instance.CheckKillMission((ThisActor as EnemyActor).CurrentType);
+            QuestManager.Instance.CheckKillMission(((EnemyActor)ThisActor).CurrentType);
 
             GameObject addObject = Define.GetManager<ResourceManager>().Instantiate("EatEffect");
             addObject.transform.position = ThisActor.Position + Vector3.up;
