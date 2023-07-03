@@ -63,6 +63,7 @@ public class UIItemStore : UIBase
     public override void Show()
     {
         _root.style.display = DisplayStyle.Flex;
+        _currentFeather = Define.GetManager<DataManager>().GetFeather();
         UIManager.OpenPanels.Push(this);
         UIManager.Instance.MoveAndInputStop();
     }
@@ -139,13 +140,18 @@ public class UIItemStore : UIBase
     public void PurchaseBtn()
     {
         int value = _currentFeather - (_currentItemPrice * _currentPurchaseCnt);
-        if (value < 0) return;
+        if (_currentPurchaseCnt == 0 || value < 0)
+        {
+            Define.GetManager<SoundManager>().Play("UI/Faield", Define.Sound.Effect);
+            return;
+        }
 
         ItemPrice itemprice = itemPriceDict[_currentItem];
 
         _currentFeather = value;
         Define.GetManager<DataManager>().SetFeahter(_currentFeather);
         Define.GetManager<DataManager>().AddItemInInventory(_currentItemID,_currentPurchaseCnt);
+        Define.GetManager<SoundManager>().Play("UI/BuySound", Define.Sound.Effect);
         _currentPurchaseCnt = 0;
         UpdateStoreUI();
     }

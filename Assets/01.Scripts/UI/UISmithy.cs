@@ -29,6 +29,7 @@ public class UISmithy : UIBase
 
     private List<SaveItemData> _weaponList = new List<SaveItemData>();
 
+    private int currentFeather = 0;
     private ItemID currentWeaponID;
     private float moveSclae = 165f;
     private int index = 0;
@@ -76,6 +77,8 @@ public class UISmithy : UIBase
         });
         _purchaseBtn = _root.Q<VisualElement>("");
 
+
+        currentFeather = Define.GetManager<DataManager>().GetFeather();
         CreateCard();
     }
     public override void Show()
@@ -87,6 +90,7 @@ public class UISmithy : UIBase
             CreateCard();
             UIManager.OpenPanels.Push(this);
         });
+        currentFeather = Define.GetManager<DataManager>().GetFeather();
     }
     public override void Hide()
     {
@@ -140,20 +144,25 @@ public class UISmithy : UIBase
     public void Purchase()
     {
         int level = Define.GetManager<DataManager>().LoadWeaponLevelData(currentWeaponID);
-        if(level >= 3)
+        int value = currentFeather - UIManager.Instance.levelTofeather[level+1];
+        if (level >= 3 || value < 0)
         {
+            Define.GetManager<SoundManager>().Play("UI/Faield", Define.Sound.Effect);
             return;
         }
         level++;
         Define.GetManager<DataManager>().SaveUpGradeWeaponLevelData(currentWeaponID);
-        Define.GetManager<DataManager>().AddFeahter(-UIManager.Instance.levelTofeather[level]);
+        Define.GetManager<DataManager>().SetFeahter(value);
+        Define.GetManager<SoundManager>().Play("UI/UpgradeSound", Define.Sound.Effect);
+
+        currentFeather = value;
 
         UpdateStatus(currentWeaponID);
         UpdateCurrentFeather();
     }
     public void UpdateCurrentFeather()
     {
-        _featherLabel.text = DataManager.UserData_.feather.ToString();
+        _featherLabel.text = currentFeather.ToString();
     }
     public void SelectCard(VisualElement card)
     {
