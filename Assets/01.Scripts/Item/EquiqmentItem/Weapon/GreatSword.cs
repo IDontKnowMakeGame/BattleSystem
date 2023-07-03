@@ -90,6 +90,7 @@ public class GreatSword : Weapon
         _characterActor.GetAct<CharacterStatAct>().Half += _half;
 		Define.GetManager<SoundManager>().Play("Sounds/GreatSword/GreatSwordCharge", Define.Sound.Effect);
 	}
+
 	public virtual void Hold(Vector3 vec)
 	{
 		//_currrentVector = DirReturn(vec);
@@ -131,7 +132,6 @@ public class GreatSword : Weapon
 			_eventParam.attackParam = _attackInfo;
 			info.Atk = addDamage * (int)(timer / addTime);
 			Define.GetManager<EventManager>().TriggerEvent(EventFlag.Attack, _eventParam);
-			Define.GetManager<SoundManager>().StopSound(Define.Sound.Effect);
 			Define.GetManager<SoundManager>().PlayAtPoint("Sounds/GreatSword/GreatSwordAirCut", this._characterActor.transform.position);
 		}
 		else
@@ -144,6 +144,7 @@ public class GreatSword : Weapon
 		_characterActor.GetAct<CharacterStatAct>().Half -= _half;
 		_characterActor.RemoveState(CharacterState.Hold);
 
+		Define.GetManager<SoundManager>().StopSound(Define.Sound.Effect);
 		_sliderObject.PullSlider(0f, false, Color.white);
 		_sliderObject.SliderActive(false);
 
