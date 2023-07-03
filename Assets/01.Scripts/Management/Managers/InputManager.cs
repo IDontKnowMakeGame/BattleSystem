@@ -4,6 +4,7 @@ using System.Linq;
 using Core;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Managements.Managers
 {
@@ -169,14 +170,9 @@ namespace Managements.Managers
 				OnSubPress?.Invoke();
 			}
 
-			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.ChangeKey)))
+			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.ChangeKey)) && DataManager.MapData_.currentFloor != Floor.Tutorial)
 			{
 				OnChangePress?.Invoke();
-			}
-
-			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.TestChangeKey)))
-			{
-				OnTestChangePress?.Invoke();
 			}
 
 			if (Input.GetKeyDown(GetKeyCode(KeyboardInput.Interaction)))

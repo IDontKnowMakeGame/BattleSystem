@@ -123,7 +123,7 @@ public class Arrow : MonoBehaviour
 		_seq.Play();
 
 		if (_shootActor is PlayerActor)
-			InputManager<Bow>.OnSubPress += Pull;
+			InputManager<Bow>.OnInteractionPress += Pull;
 
 		if (_shootActor is PlayerActor)
 			_playerAnimation = _shootActor.GetAct<PlayerAnimation>();
@@ -203,7 +203,7 @@ public class Arrow : MonoBehaviour
 
 		PullAnimation();
 
-		InputManager<Bow>.OnSubPress -= Pull;
+		InputManager<Bow>.OnInteractionPress -= Pull;
 
 		if(_isEnemy)
 		{
@@ -276,6 +276,9 @@ public class Arrow : MonoBehaviour
 		if (_shootActor.UUID == actor.UUID && _isStick)
 		{
 			_canPull = true;
+			UIManager.Instance.InGame.ShowInteraction();
+			//UIManager.Instance.InGame.HideInteraction();
+			
 		}
 	}
 
@@ -288,6 +291,7 @@ public class Arrow : MonoBehaviour
 		if (_shootActor.UUID == actor.UUID && _isStick)
 		{
 			_canPull = false;
+			UIManager.Instance.InGame.HideInteraction();
 		}
 	}
 
