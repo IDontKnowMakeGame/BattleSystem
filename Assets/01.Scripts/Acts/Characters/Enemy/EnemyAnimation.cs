@@ -48,6 +48,11 @@ namespace Acts.Characters.Enemy
         {
             if (currentCoroutine != null)
                 ThisActor.StopCoroutine(currentCoroutine);
+            var character = ThisActor as CharacterActor;
+            if (character == null)
+                return;
+            if (character.HasState(CharacterState.Die))
+                return;
             curClip = curClips.Clips[idx];
             currentCoroutine = ThisActor.StartCoroutine(AnimationPlay());
         }
