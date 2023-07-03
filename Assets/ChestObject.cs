@@ -18,7 +18,7 @@ public class ChestObject : InteractionActor
 
 	protected override void Start()
 	{
-		_itemObject.canInteraction = false;
+		_itemObject.canInteract = false;
 		direction = GetComponent<PlayableDirector>();
 		var particle = _particle.main;
 		particle.loop = true;
@@ -55,6 +55,6 @@ public class ChestObject : InteractionActor
 
 	public void ChestEnd()
 	{
-		_itemObject.canInteraction = true;
+		_itemObject.canInteract = true;
 	}
 }

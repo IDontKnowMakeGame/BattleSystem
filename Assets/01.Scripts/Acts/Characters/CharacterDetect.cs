@@ -22,13 +22,19 @@ namespace Acts.Characters
             foreach (var dir in dirs)
             {
                 if (ThisActor.Position + dir != InGame.Player.Position) continue;
-                if (!isDetecting)
+                var interactor = ThisActor as InteractionActor;
+                if (interactor == null)
+                    return;
+                if (interactor.canInteract)
                 {
-                    EnterDetect?.Invoke(dir);
+                    if (!isDetecting)
+                    {
+                        EnterDetect?.Invoke(dir);
+                    }
+                    isDetecting = true;
+                    detect = true;
+                    StayDetect?.Invoke(dir);
                 }
-                isDetecting = true;
-                detect = true;
-                StayDetect?.Invoke(dir);
             }
 
             if (detect == false && isDetecting)
