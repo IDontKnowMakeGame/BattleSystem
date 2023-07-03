@@ -8,6 +8,7 @@ using Actors.Characters.Enemy;
 using System.Collections;
 using Acts.Characters.Player;
 using System;
+using Actors.Characters.Furnitures;
 
 public class Arrow : MonoBehaviour
 {
@@ -237,7 +238,7 @@ public class Arrow : MonoBehaviour
 				return;
 		}
 
-		if ((1 << other.gameObject.layer == LayerMask.GetMask("Wall") && _isEnd) || (1 << other.gameObject.layer == LayerMask.GetMask("InteractionWall")))
+		if ((1 << other.gameObject.layer == LayerMask.GetMask("Wall") && _isEnd) || actor is Door)
 		{
 			if (_isDestroy)
 			{
@@ -246,7 +247,10 @@ public class Arrow : MonoBehaviour
 				Define.GetManager<ResourceManager>().Destroy(this.gameObject);
 			}
 			else
+			{
 				StickOnWall();
+				return;
+			}
 		}
 
 		if (actor == null)
