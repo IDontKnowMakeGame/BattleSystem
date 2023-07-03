@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5715307449059882802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 0.016666666666666666
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 0be1d2a17f343d64e80315cab435c16f, type: 2}
 --- !u!114 &-4216266828427359169
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28,6 +44,7 @@ MonoBehaviour:
     - {fileID: 6330908048582234604}
     - {fileID: -2406043901713505694}
     - {fileID: 3238378289411089394}
+    - {fileID: -5715307449059882802}
 --- !u!114 &-2406043901713505694
 MonoBehaviour:
   m_ObjectHideFlags: 1

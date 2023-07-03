@@ -70,7 +70,7 @@
                         </ui:VisualElement>
                         <ui:VisualElement name="explanation" style="flex-basis: 80%; width: 100%; justify-content: flex-end;">
                             <ui:VisualElement style="height: 100%; -unity-background-scale-mode: scale-to-fit; position: absolute; width: 100%; bottom: 0; opacity: 1; background-image: url(&apos;project://database/Assets/12.Texture/RenderTexture/Explanation.renderTexture?fileID=8400000&amp;guid=b9bcf5eccab4fab42886c248f8e5e3d9&amp;type=2#Explanation&apos;);" />
-                            <ui:Label display-tooltip-when-elided="true" text="쌍검은 이동하며 공격하는 무기입니다.&#10;이동하는 방향에 좌 우 에 적이 있다면 데미지가 줍니다." class="text" style="font-size: 40px; -unity-text-align: middle-center; height: 21%; background-color: rgba(0, 0, 0, 0.78);" />
+                            <ui:Label display-tooltip-when-elided="true" text="쌍검은 이동하며 공격하는 무기입니다.&#10;이동하는 방향에 좌 우 에 적이 있다면 데미지를 줍니다." class="text" style="font-size: 40px; -unity-text-align: middle-center; height: 21%; background-color: rgba(0, 0, 0, 0.78);" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="Spear_6" style="justify-content: center; align-items: center; width: 100%; height: 100%; position: absolute; translate: 600% 0;">
