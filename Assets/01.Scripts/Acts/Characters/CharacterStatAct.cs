@@ -277,7 +277,6 @@ public class CharacterStatAct : Act
 
 	protected virtual void Fall()
 	{
-		_actor.AddState(CharacterState.Die);
 		var anime = ThisActor.GetAct<UnitAnimation>();
 		if (anime is PlayerAnimation pAnime)
 		{
@@ -292,7 +291,7 @@ public class CharacterStatAct : Act
 			clip.OnExit = Die;
 			eAnime.Play("Die");
 		}
-		
+		_actor.AddState(CharacterState.Die);
 	}
 
 	public void Burns()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Tools;
 using System;
+using Actors.Characters;
 using Core;
 
 namespace Acts.Characters.Enemy
@@ -30,8 +31,14 @@ namespace Acts.Characters.Enemy
         public override void Play(string name)
         {
             if (!weaponClipDic.ContainsKey(name)) return;
+            var character = ThisActor as CharacterActor;
+            if (character == null)
+                return;
+            if (character.HasState(CharacterState.Die))
+                return;
             if (currentCoroutine != null)
                 ThisActor.StopCoroutine(currentCoroutine);
+            
             curClip = weaponClipDic[name];
             Define.GetManager<SoundManager>().PlayAtPoint($"Boss/{ThisActor.name}/{name}", ThisActor.Position,  1);
             currentCoroutine = ThisActor.StartCoroutine(AnimationPlay());
@@ -40,8 +47,15 @@ namespace Acts.Characters.Enemy
         // 인덱스로 애니메이션 재생
         public override void Play(int idx)
         {
+            
+            var character = ThisActor as CharacterActor;
+            if (character == null)
+                return;
+            if (character.HasState(CharacterState.Die))
+                return;
             if (currentCoroutine != null)
                 ThisActor.StopCoroutine(currentCoroutine);
+            
             curClip = curClips.Clips[idx];
             currentCoroutine = ThisActor.StartCoroutine(AnimationPlay());
         }

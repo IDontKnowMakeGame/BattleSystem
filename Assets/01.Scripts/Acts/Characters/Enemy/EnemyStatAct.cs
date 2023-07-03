@@ -78,11 +78,11 @@ namespace Acts.Characters.Enemy
 
             UnitAnimation unit = ThisActor.GetAct<UnitAnimation>();
 
-            _actor.SetState(CharacterState.Die);
 			ThisActor.GetAct<EnemyAI>()?.ResetAllConditions();
             life--;
             if (life > 0)
             {
+				_actor.SetState(CharacterState.Die);
 				ChangeStat.hp = ChangeStat.maxHP;
                 if (ThisActor is BossActor)
                 {
@@ -92,13 +92,19 @@ namespace Acts.Characters.Enemy
                 unit.Play("Idle");
                 return;
             }
+
+            var thisTransform = ThisActor.transform;
+
+            thisTransform.DOKill();
+            thisTransform.DOMoveY(1, 0.2f);
+            
             InGame.GetBlock(ThisActor.Position).RemoveActorOnBlock();
 			_actor.IsUpdatingPosition = false;
             
             ThisActor.gameObject.tag = "Untagged";
 
             if (attackActor != null)
-            QuestManager.Instance.CheckKillMission((ThisActor as EnemyActor).CurrentType);
+            QuestManager.Instance.CheckKillMission(((EnemyActor)ThisActor).CurrentType);
 
             GameObject addObject = Define.GetManager<ResourceManager>().Instantiate("EatEffect");
             addObject.transform.position = ThisActor.Position + Vector3.up;
@@ -169,6 +175,9 @@ namespace Acts.Characters.Enemy
             }
             InGame.Player.GetAct<PlayerAttack>().RangeReset();
             InGame.Player.GetAct<PlayerAttack>().DeleteEnemy(ThisActor.gameObject);
+            
+            
+	        _actor.SetState(CharacterState.Die);
         }
 
         private void ObjectCreate()
