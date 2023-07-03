@@ -78,11 +78,11 @@ namespace Acts.Characters.Enemy
 
             UnitAnimation unit = ThisActor.GetAct<UnitAnimation>();
 
-            _actor.SetState(CharacterState.Die);
 			ThisActor.GetAct<EnemyAI>()?.ResetAllConditions();
             life--;
             if (life > 0)
             {
+				_actor.SetState(CharacterState.Die);
 				ChangeStat.hp = ChangeStat.maxHP;
                 if (ThisActor is BossActor)
                 {
@@ -175,6 +175,9 @@ namespace Acts.Characters.Enemy
             }
             InGame.Player.GetAct<PlayerAttack>().RangeReset();
             InGame.Player.GetAct<PlayerAttack>().DeleteEnemy(ThisActor.gameObject);
+            
+            
+	        _actor.SetState(CharacterState.Die);
         }
 
         private void ObjectCreate()

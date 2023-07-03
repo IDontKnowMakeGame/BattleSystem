@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Tools;
 using System;
+using Actors.Characters;
 using Core;
 
 namespace Acts.Characters.Enemy
@@ -32,6 +33,11 @@ namespace Acts.Characters.Enemy
             if (!weaponClipDic.ContainsKey(name)) return;
             if (currentCoroutine != null)
                 ThisActor.StopCoroutine(currentCoroutine);
+            var character = ThisActor as CharacterActor;
+            if (character == null)
+                return;
+            if (character.HasState(CharacterState.Die))
+                return;
             curClip = weaponClipDic[name];
             Define.GetManager<SoundManager>().PlayAtPoint($"Boss/{ThisActor.name}/{name}", ThisActor.Position,  1);
             currentCoroutine = ThisActor.StartCoroutine(AnimationPlay());
