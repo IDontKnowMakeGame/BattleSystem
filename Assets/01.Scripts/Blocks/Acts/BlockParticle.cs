@@ -15,6 +15,8 @@ namespace Blocks.Acts
             _explosionParticleObject = Resources.Load<GameObject>("Prefabs/BlockExplosion");
             _smokeParticleObject = Resources.Load<GameObject>("Prefabs/BlockSmoke");
             _poolManager = Define.GetManager<PoolManager>();
+            _poolManager.CreatePool(_explosionParticleObject, 50);
+            _poolManager.CreatePool(_smokeParticleObject, 50);
             base.Awake();
         }
         
