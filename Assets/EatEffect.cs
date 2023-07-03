@@ -25,6 +25,14 @@ public class EatEffect : MonoBehaviour
 		Instantiate();
 	}
 
+	private void Update()
+	{
+		if(Input.GetKeyDown(KeyCode.Space))
+		{
+			Instantiate();
+		}
+	}
+
 	private void Instantiate()
 	{
 		for(int i =0; i<maxParticle; i++)
