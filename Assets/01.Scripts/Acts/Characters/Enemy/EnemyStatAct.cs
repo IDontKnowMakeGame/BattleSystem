@@ -96,7 +96,7 @@ namespace Acts.Characters.Enemy
             var thisTransform = ThisActor.transform;
 
             thisTransform.DOKill();
-            thisTransform.DOMoveY(0, 0.2f);
+            thisTransform.DOMoveY(1, 0.2f);
             
             InGame.GetBlock(ThisActor.Position).RemoveActorOnBlock();
 			_actor.IsUpdatingPosition = false;
