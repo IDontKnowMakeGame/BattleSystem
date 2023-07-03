@@ -276,6 +276,7 @@ public class Arrow : MonoBehaviour
 		if (_shootActor.UUID == actor.UUID && _isStick)
 		{
 			_canPull = true;
+			if(actor.GetAct<PlayerEquipment>().CurrentWeapon is Bow)
 			UIManager.Instance.InGame.ShowInteraction();
 			//UIManager.Instance.InGame.HideInteraction();
 			
@@ -291,7 +292,8 @@ public class Arrow : MonoBehaviour
 		if (_shootActor.UUID == actor.UUID && _isStick)
 		{
 			_canPull = false;
-			UIManager.Instance.InGame.HideInteraction();
+			if (actor.GetAct<PlayerEquipment>().CurrentWeapon is Bow)
+				UIManager.Instance.InGame.HideInteraction();
 		}
 	}
 

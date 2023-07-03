@@ -36,7 +36,7 @@ public class OldTwinSword : TwinSword
 	private IEnumerator SkillsCorutine(Vector3 vector, float speed)
 	{
 		yield return new WaitForSeconds(speed);
-		InGame.Attack(_vec + vector, 0, new Vector3(1, 0, 1), info.Atk, 0f, _characterActor, true);
+		InGame.Attack(_vec + vector, 0, new Vector3(1, 0, 1), _characterActor.GetAct<PlayerStatAct>().ChangeStat.atk, 0f, _characterActor, true);
 	}
 
 	private IEnumerator SkillCorutine()
