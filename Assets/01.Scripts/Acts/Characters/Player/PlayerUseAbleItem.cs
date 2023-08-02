@@ -128,7 +128,7 @@ namespace Acts.Characters.Player
             if (NotUseItem) return;
 
             base.Update();
-            _hpPotion.UpdateItem();
+            _hpPotion.UpdateItem(); 
             _compassOfSpace.UpdateItem();
         }
     }
