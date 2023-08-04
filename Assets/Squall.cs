@@ -12,6 +12,7 @@ public class Squall : MonoBehaviour
     private float speed;
 
     private bool isDamage = false;
+
     private float damage = 0f;
 
 	private Rigidbody rb;
@@ -41,6 +42,9 @@ public class Squall : MonoBehaviour
 			}
 			actor.GetAct<PlayerFlooding>().ChangeflooadCnt(1);
 		}
+
+		GameObject obj = Define.GetManager<ResourceManager>().Instantiate("WaterEffect");
+		obj.transform.position = this.transform.position;
 
 		Define.GetManager<ResourceManager>().Destroy(this.gameObject);
 	}
