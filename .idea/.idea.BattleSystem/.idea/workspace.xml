@@ -5,11 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="663d5351-674c-430c-ae0d-93325cd2f322" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/States/SlashState.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/AI/States/SlashState.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/SilentAngel/SilentAngel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/SilentAngel/SilentAngel.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/Boss/SilentAngel.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/Boss/SilentAngel/SilentAngelAttack.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/Boss/SilentAngel/SilentAngelAttack.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BattleSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Player/PlayerUseAbleItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Player/PlayerUseAbleItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefabs/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/InvectoryData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/InvectoryData.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/User/UserData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/WaterAngel.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/WaterAngel/WaterAngelActor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Enemy/WaterAngel/WaterAngelActor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterRender.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/CharacterRender.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/Boss/WaterAngel.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/Boss/WaterAngel/WaterAngelAttack.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Acts/Characters/Enemy/Boss/WaterAngel/WaterAngelAttack.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/AttackDecal/AttackDecal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/AttackDecal/AttackDecal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Scripts/Core/Define.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Scripts/Core/Define.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/06.Shaders/Decal/AttackShader.shadergraph" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/06.Shaders/Decal/AttackShader.shadergraph" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/06.Shaders/Decal/Shader Graphs_AttackShader.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/06.Shaders/Decal/Shader Graphs_AttackShader.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/WaterAngel.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/WaterAngel/WaterAngel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sprites/Boss/WaterAngel/WaterAngel.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CreateBossScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CreateBossScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/Weapon/ClassLevelData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/SAVE/Weapon/ClassLevelData.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/build_info" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/build_info" afterDir="false" />
     </list>
@@ -22,6 +40,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e8a406da998549af9a2680936c7da25a159c00/ab/7be3458c/Material.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/AI/AiConditionHolder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/AI/Conditions/BesideCondition.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/Actors/Characters/Traps/ArrowTrapActor.cs" root0="FORCE_HIGHLIGHTING" />
@@ -29,6 +48,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/Tool/Data/Json/ParsingList/MapData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Scripts/Tool/Extension/ExtensionMethods.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.probuilder@5.0.6/Runtime/MeshOperations/CombineMeshes.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@12.1.10/Editor/Data/Graphs/SerializableTexture.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -219,7 +239,10 @@
       <workItem from="1687271372380" duration="1998000" />
       <workItem from="1690806363866" duration="2579000" />
       <workItem from="1690889367487" duration="3919000" />
-      <workItem from="1690978475470" duration="1355000" />
+      <workItem from="1690978475470" duration="1949000" />
+      <workItem from="1691256628637" duration="2271000" />
+      <workItem from="1691297769416" duration="1191000" />
+      <workItem from="1691328529533" duration="7208000" />
     </task>
     <servers />
   </component>

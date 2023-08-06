@@ -2,6 +2,7 @@
 using System.Collections;
 using Acts.Base;
 using Core;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -19,6 +20,7 @@ namespace Acts.Characters
         [SerializeField] private int _blinkCnt = 1;
         [SerializeField] private float _blinkTime = 0.1f;
         [SerializeField] private float _blinkDelay = 0.1f;
+        [SerializeField] private bool _isFloating = false;
         private readonly int _blinkOn = Shader.PropertyToID("_IsBlink");
         private Renderer _renderer;
         private Material currentMat;
@@ -36,6 +38,15 @@ namespace Acts.Characters
             //     var tiling = new Vector2(1f / _frame, 1);
             //     _renderer.material.SetVector("_Tiling", tiling);
             // }
+        }
+
+        public override void Start()
+        {
+            base.Start();
+            if (_isFloating)
+            {
+                ThisActor.transform.DOLocalMoveY(1.8f, 1.8f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+            }
         }
 
         public override void LateUpdate()

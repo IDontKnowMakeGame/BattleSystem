@@ -189,8 +189,7 @@ namespace Core
             return direction;
         }
 
-        public static void Attack(Vector3 pos, float angle, Vector3 size, float damage, float delay, CharacterActor attacker,
-            bool isLast = false)
+        public static void Attack(Vector3 pos, float angle, Vector3 size, float damage, float delay, CharacterActor attacker, bool isLast = false , FillMethod fillMethod = FillMethod.Expand)
         {
             var block = GetBlock(pos.SetY(0));
             // if (block == null)
@@ -214,7 +213,7 @@ namespace Core
             
 
             var decal = decalObj.GetComponent<AttackDecal>();
-            decal.Attack(rect, attacker, damage, delay, isLast);
+            decal.Attack(rect, attacker, damage, delay, isLast, fillMethod);
         }
 
         public static AttackDecal AttackNoEnd(Vector3 pos, Vector3 size, float damage, CharacterActor attacker,

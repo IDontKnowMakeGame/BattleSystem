@@ -7,10 +7,18 @@ using Actors.Characters.Player;
 using Core;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 namespace AttackDecals
 {
+    public enum FillMethod
+    {
+        Expand,
+        Radial,
+        Slide,
+    }
+    
     public class AttackDecal : MonoBehaviour
     {
         private Vector3 initPos;
@@ -29,9 +37,9 @@ namespace AttackDecals
             material = Instantiate(decalProjector.material);
         }
         
-        public void Attack(Rect _rect, CharacterActor _attacker, float _damage, float delay, bool _isLast = true)
+        public void Attack(Rect _rect, CharacterActor _attacker, float _damage, float delay, bool _isLast = true, FillMethod fillMethod = FillMethod.Expand)
         {
-            Init(_rect, _attacker, _damage, _isLast);
+            Init(_rect, _attacker, _damage, _isLast, fillMethod);
             attacker.AddState(CharacterState.Hold);
             seq = DOTween.Sequence();
             seq.Append(DOTween.To(() => fill, value => fill = value, 0, delay).OnUpdate(()=>
@@ -50,7 +58,7 @@ namespace AttackDecals
             StartCoroutine(DeleteCoroutine());
         }
 
-        private void Init(Rect _rect, CharacterActor _attacker, float _damage, bool _isLast = true)
+        private void Init(Rect _rect, CharacterActor _attacker, float _damage, bool _isLast = true , FillMethod fillMethod = FillMethod.Expand)
         {
             rect = _rect;
             initPos = _attacker.Position;
@@ -62,7 +70,18 @@ namespace AttackDecals
             material.SetFloat("_Fill", fill);
             var decalColor = (_attacker is PlayerActor ? new Color(0, 0.7f, 0.5f) : Color.red) * 0.5f;
             material.SetColor("_MainColor", decalColor);
+            DisableKeyword();
+            material.EnableKeyword($"FILLMETHOD_{fillMethod.ToString().ToUpper()}");
+            Debug.Log($"FILLMETHOD_{fillMethod.ToString().ToUpper()}");
             decalProjector.material = material;
+        }
+
+        private void DisableKeyword()
+        {
+            foreach (var fillMethod in System.Enum.GetValues(typeof(FillMethod)))
+            {
+                material.DisableKeyword($"FILLMETHOD_{fillMethod.ToString().ToUpper()}");
+            }
         }
 
         public void EndAttack()
