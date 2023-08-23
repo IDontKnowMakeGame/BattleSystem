@@ -283,6 +283,11 @@ namespace Managements.Managers
 			{
 				OnMoveHold?.Invoke(Vector3.left);
 			}
+			
+			if (Input.GetKey(GetKeyCode(KeyboardInput.MoveRight)))
+			{
+				OnMoveHold?.Invoke(Vector3.right);
+			}
 
 			if (Input.GetKey(GetKeyCode(KeyboardInput.AttackForward)))
 			{

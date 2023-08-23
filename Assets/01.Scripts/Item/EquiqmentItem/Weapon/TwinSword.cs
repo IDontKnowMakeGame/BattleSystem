@@ -54,7 +54,7 @@ public class TwinSword : Weapon
 		if (isEnemy)
 			return;
 
-		InputManager<TwinSword>.OnMovePress += AttackVec;
+		InputManager<TwinSword>.OnMoveHold += AttackVec;
 		PlayerMove.OnMoveEnd += OnAttack;
 
 		if (_playerAnimation == null)
@@ -66,7 +66,7 @@ public class TwinSword : Weapon
 		base.UnEquipment(actor);
 		if (isEnemy)
 			return;
-		InputManager<TwinSword>.OnMovePress -= AttackVec;
+		InputManager<TwinSword>.OnMoveHold -= AttackVec;
 		PlayerMove.OnMoveEnd -= OnAttack;
 	}
 
@@ -75,6 +75,7 @@ public class TwinSword : Weapon
 	public void OnAttack(int id, Vector3 vec)
 	{
 		if (_characterActor == null) return;
+		if (_characterActor.HasState(CharacterState.Attack)) return;
 
 		if (id != _characterActor.UUID)
 			return;

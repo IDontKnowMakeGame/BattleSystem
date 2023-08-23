@@ -60,7 +60,7 @@ public class GreatSword : Weapon
 		InputManager<GreatSword>.OnClickHold += Hold;
 		InputManager<GreatSword>.OnClickRelease += AttackRealease;
 
-		InputManager<GreatSword>.OnMovePress += MoveEnd;
+		InputManager<GreatSword>.OnMoveHold += MoveEnd;
 	}
 	public override void UnEquipment(CharacterActor actor)
 	{
@@ -71,7 +71,7 @@ public class GreatSword : Weapon
 		InputManager<GreatSword>.OnClickHold -= Hold;
 		InputManager<GreatSword>.OnClickRelease -= AttackRealease;
 
-		InputManager<GreatSword>.OnMovePress -= MoveEnd;
+		InputManager<GreatSword>.OnMoveHold -= MoveEnd;
 	}
 
 

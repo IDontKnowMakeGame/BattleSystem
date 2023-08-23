@@ -79,7 +79,7 @@ public class Spear : Weapon
 		_move = _characterActor?.GetAct<PlayerMove>();
 
 		InputManager<Spear>.OnClickPress += Attack;
-		InputManager<Spear>.OnMovePress += CurrentBool;
+		InputManager<Spear>.OnMoveHold += CurrentBool;
 		//CharacterMove.OnMoveEnd += MoveEnd;
 
 		Debug.Log("Equiqment");
@@ -98,7 +98,7 @@ public class Spear : Weapon
 			return;
 
 		InputManager<Spear>.OnClickPress -= Attack;
-		InputManager<Spear>.OnMovePress -= CurrentBool;
+		InputManager<Spear>.OnMoveHold -= CurrentBool;
 		//CharacterMove.OnMoveEnd -= MoveEnd;
 		_isAni = false;
 
@@ -207,7 +207,7 @@ public class Spear : Weapon
 		if (_characterActor.HasState(CharacterState.Move))
 		{
 			Debug.Log(_playerAnimation.curClip.name);
-			Debug.Log("Àå¾Ö");
+			Debug.Log("ìž¥ì• ");
 		}
 
 		if (vec == Vector3.left || vec == Vector3.right)
