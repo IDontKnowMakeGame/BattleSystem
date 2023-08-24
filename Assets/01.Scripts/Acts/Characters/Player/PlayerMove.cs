@@ -35,7 +35,7 @@ namespace Acts.Characters.Player
 		public override void Awake()
 		{
 			base.Awake();
-			InputManager<Weapon>.OnMovePress += EnqueMove;
+			InputManager<Weapon>.OnMoveHold += EnqueMove;
 		}
 
 		public override void Start()
@@ -74,7 +74,7 @@ namespace Acts.Characters.Player
 		#region Test Code
 		private void EnqueMove(Vector3 direction)
 		{
-			int check = ThisActor.GetAct<PlayerEquipment>().CurrentWeapon.WeaponInfo.Weight > 5 ? 0 : 1;
+			int check = ThisActor.GetAct<PlayerEquipment>().CurrentWeapon.WeaponInfo.Weight > 5 ? 0 : 0;
 			if (moveDir.Count > check || enableQ || LoadingSceneController.Instnace.IsVisbleLoading()) return;
 			moveDir.Enqueue(direction);
 		}

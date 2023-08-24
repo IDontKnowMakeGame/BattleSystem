@@ -10,8 +10,9 @@ Material:
   m_Name: Shader Graphs_AttackShader
   m_Shader: {fileID: -6465566751694194690, guid: 68eb00548ce576b42a3ab82ef53db069, type: 3}
   m_ValidKeywords:
+  - FILLMETHOD_EXPAND
+  m_InvalidKeywords:
   - _FILLMETHOD_EXPAND
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -39,6 +40,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - FILLMETHOD: 0
     - _DecalMeshBiasType: 0
     - _DecalMeshDepthBias: 0
     - _DecalMeshViewBias: 0

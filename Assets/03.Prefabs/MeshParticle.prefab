@@ -49,7 +49,7 @@ MonoBehaviour:
   - Key: Blood
     Texture: {fileID: 2800000, guid: 4b65026860776fe4a82c4796298907ea, type: 3}
     Color: {r: 0.50751156, g: 0.71527684, b: 0.9056604, a: 0}
-    Row: 2
+    Row: 4
     Column: 2
   - Key: Scratch
     Texture: {fileID: 2800000, guid: be78b8c2637b35b4e97fe8bec3eac353, type: 3}
